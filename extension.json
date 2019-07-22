@@ -1,0 +1,26 @@
+{
+	"name": "MachineVision",
+	"version": "0.1.0",
+	"author": [
+		"Wikimedia Product Infrastructure Team"
+	],
+	"url": "https://www.mediawiki.org/wiki/Extension:MachineVision",
+	"descriptionmsg": "machinevision-desc",
+	"license-name": "GPL-2.0-or-later",
+	"type": "other",
+	"requires": {
+		"MediaWiki": ">= 1.34"
+	},
+	"AutoloadNamespaces": {
+		"MediaWiki\\Extension\\MachineVision\\": "src/"
+	},
+	"Hooks": {
+		"LoadExtensionSchemaUpdates": "MediaWiki\\Extension\\MachineVision\\Hooks::onLoadExtensionSchemaUpdates"
+	},
+	"MessagesDirs": {
+		"MachineVision": [
+			"i18n"
+		]
+	},
+	"manifest_version": 2
+}
