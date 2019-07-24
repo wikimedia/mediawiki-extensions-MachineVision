@@ -3,16 +3,28 @@
 namespace MediaWiki\Extension\MachineVision;
 
 use DatabaseUpdater;
+use MediaWiki\MediaWikiServices;
+use UploadBase;
 
 class Hooks {
 
 	/**
-	 * Hook: LoadExtensionSchemaUpdates
+	 * @param UploadBase $uploadBase
+	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/UploadComplete
+	 */
+	public static function onUploadComplete( UploadBase $uploadBase ) {
+		$services = new Services( MediaWikiServices::getInstance() );
+		$handler = $services->getUploadHandler();
+		$handler->handle( $uploadBase );
+	}
+
+	/**
 	 * @param DatabaseUpdater $updater
-	 * @return bool
+	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/LoadExtensionSchemaUpdates
 	 */
 	public static function onLoadExtensionSchemaUpdates( DatabaseUpdater $updater ) {
-		/* Add DB tables */
-		return true;
+		$sqlDir = __DIR__ . '/../sql';
+		$updater->addExtensionTable( 'machine_vision_provider', "$sqlDir/machine_vision.sql" );
 	}
+
 }
