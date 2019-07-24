@@ -16,7 +16,9 @@
 	},
 	"Hooks": {
 		"UploadComplete": "MediaWiki\\Extension\\MachineVision\\Hooks::onUploadComplete",
-		"LoadExtensionSchemaUpdates": "MediaWiki\\Extension\\MachineVision\\Hooks::onLoadExtensionSchemaUpdates"
+		"LoadExtensionSchemaUpdates": "MediaWiki\\Extension\\MachineVision\\Hooks::onLoadExtensionSchemaUpdates",
+		"UnitTestsAfterDatabaseSetup": "MediaWiki\\Extension\\MachineVision\\Hooks::onUnitTestsAfterDatabaseSetup",
+		"UnitTestsBeforeDatabaseTeardown": "MediaWiki\\Extension\\MachineVision\\Hooks::onUnitTestsBeforeDatabaseTeardown"
 	},
 	"ServiceWiringFiles": [
 		"ServiceWiring.php"
