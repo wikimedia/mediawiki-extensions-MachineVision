@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Extension\MachineVision\Handler;
 
+use IContextSource;
 use LocalFile;
 use Psr\Log\LoggerAwareInterface;
 
@@ -17,5 +18,13 @@ interface Handler extends LoggerAwareInterface {
 	 * @param LocalFile $file
 	 */
 	public function handleUploadComplete( LocalFile $file );
+
+	/**
+	 * Add extra data to the action=info page.
+	 * @param IContextSource $context
+	 * @param LocalFile $file
+	 * @param array &$pageInfo See https://www.mediawiki.org/wiki/Manual:Hooks/InfoAction
+	 */
+	public function handleInfoAction( IContextSource $context, LocalFile $file, array &$pageInfo );
 
 }

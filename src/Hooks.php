@@ -4,6 +4,8 @@ namespace MediaWiki\Extension\MachineVision;
 
 use DatabaseUpdater;
 use DeferredUpdates;
+use IContextSource;
+use LocalFile;
 use MediaWiki\Extension\MachineVision\Special\SpecialImageLabeling;
 use MediaWiki\MediaWikiServices;
 use UploadBase;
@@ -24,8 +26,8 @@ class Hooks {
 	public static function onUploadComplete( UploadBase $uploadBase ) {
 		$file = $uploadBase->getLocalFile();
 		DeferredUpdates::addCallableUpdate( function () use ( $file ) {
-			$services = new Services( MediaWikiServices::getInstance() );
-			$registry = $services->getHandlerRegistry();
+			$extensionServices = new Services( MediaWikiServices::getInstance() );
+			$registry = $extensionServices->getHandlerRegistry();
 			foreach ( $registry->getHandlers( $file ) as $handler ) {
 				$handler->handleUploadComplete( $file );
 			}
@@ -38,6 +40,28 @@ class Hooks {
 	 */
 	public static function onwgQueryPages( array &$wgQueryPages ) {
 		$wgQueryPages[] = [ SpecialImageLabeling::class, 'ImageLabeling' ];
+	}
+
+	/**
+	 * @param IContextSource $context
+	 * @param array &$pageInfo
+	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/InfoAction
+	 */
+	public static function onInfoAction( IContextSource $context, array &$pageInfo ) {
+		$services = MediaWikiServices::getInstance();
+		$extensionServices = new Services( MediaWikiServices::getInstance() );
+
+		$title = $context->getTitle();
+		if ( $title->inNamespace( NS_FILE ) ) {
+			/** @var LocalFile $file */
+			$file = $services->getRepoGroup()->getLocalRepo()->findFile( $title );
+			if ( $file ) {
+				$registry = $extensionServices->getHandlerRegistry();
+				foreach ( $registry->getHandlers( $file ) as $handler ) {
+					$handler->handleInfoAction( $context, $file, $pageInfo );
+				}
+			}
+		}
 	}
 
 	/**

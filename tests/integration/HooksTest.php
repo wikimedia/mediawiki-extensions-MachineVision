@@ -2,9 +2,16 @@
 
 namespace MediaWiki\Extension\MachineVision;
 
+use DerivativeContext;
 use LocalFile;
+use LocalRepo;
 use MediaWiki\Extension\MachineVision\Handler\WikidataIdHandler;
+use MediaWiki\MediaWikiServices;
 use MediaWikiIntegrationTestCase;
+use Prophecy\Argument;
+use RepoGroup;
+use RequestContext;
+use Title;
 use UploadBase;
 use function Wikimedia\base_convert;
 
@@ -63,6 +70,38 @@ class HooksTest extends MediaWikiIntegrationTestCase {
 		$this->assertArrayEquals( [ 'Q773044', 'Q29106' ], $values );
 	}
 
+	/**
+	 * @covers \MediaWiki\Extension\MachineVision\Hooks::onInfoAction
+	 */
+	public function testOnInfoAction() {
+		$sha1 = base_convert( sha1( 'Foom.png' ), 16, 36, 31 );
+
+		$context = new DerivativeContext( RequestContext::getMain() );
+		$context->setTitle( Title::newFromText( 'File:Foom.png' ) );
+
+		// file doesn't exist
+		$pageInfo = [];
+		Hooks::onInfoAction( $context, $pageInfo );
+		$this->assertEmpty( $pageInfo );
+
+		$this->setSetMockFile( 'File:Foom.png', $sha1 );
+
+		// file has no labels
+		$pageInfo = [];
+		Hooks::onInfoAction( $context, $pageInfo );
+		$this->assertEmpty( $pageInfo );
+
+		$extensionServices = new Services( MediaWikiServices::getInstance() );
+		$repository = $extensionServices->getRepository();
+		$repository->insertLabels( $sha1, 'fake', [ 'Q123', 'Q234' ] );
+
+		$pageInfo = [];
+		Hooks::onInfoAction( $context, $pageInfo );
+		$entry = $pageInfo['header-properties'][0] ?? null;
+		$this->assertNotEmpty( $entry[0] ?? null );
+		$this->assertSame( 'Q123, Q234', strip_tags( $entry[1] ?? '' ) );
+	}
+
 	private function getMockUpload( LocalFile $file ): UploadBase {
 		$upload = $this->getMockBuilder( UploadBase::class )
 			->setMethods( [ 'getLocalFile' ] )
@@ -84,6 +123,18 @@ class HooksTest extends MediaWikiIntegrationTestCase {
 			->willReturn( $response );
 		/** @var Client $client */
 		return $client;
+	}
+
+	private function setSetMockFile( $name, $sha1 ) {
+		$title = Title::newFromText( $name, NS_FILE );
+		$file = MockHelper::getMockFile( $this, $name, $sha1 );
+		$repo = $this->prophesize( LocalRepo::class );
+		$repo->findFile( Argument::that( function ( $actualTitle ) use ( $title ) {
+			return $title->equals( $actualTitle );
+		} ) )->willReturn( $file );
+		$repoGroup = $this->prophesize( RepoGroup::class );
+		$repoGroup->getLocalRepo()->willReturn( $repo->reveal() );
+		$this->setService( 'RepoGroup', $repoGroup->reveal() );
 	}
 
 }

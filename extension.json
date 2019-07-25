@@ -33,6 +33,7 @@
 	"Hooks": {
 		"UploadComplete": "MediaWiki\\Extension\\MachineVision\\Hooks::onUploadComplete",
 		"wgQueryPages": "MediaWiki\\Extension\\MachineVision\\Hooks::onwgQueryPages",
+		"InfoAction": "MediaWiki\\Extension\\MachineVision\\Hooks::onInfoAction",
 		"LoadExtensionSchemaUpdates": "MediaWiki\\Extension\\MachineVision\\Hooks::onLoadExtensionSchemaUpdates",
 		"UnitTestsAfterDatabaseSetup": "MediaWiki\\Extension\\MachineVision\\Hooks::onUnitTestsAfterDatabaseSetup",
 		"UnitTestsBeforeDatabaseTeardown": "MediaWiki\\Extension\\MachineVision\\Hooks::onUnitTestsBeforeDatabaseTeardown"
