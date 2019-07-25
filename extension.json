@@ -18,10 +18,14 @@
 		"MediaWiki\\Extension\\MachineVision\\MockHelper": "tests/helper/MockHelper.php"
 	},
 	"Hooks": {
-		"UploadComplete": "MediaWiki\\Extension\\MachineVision\\Hooks::onUploadComplete",
 		"LoadExtensionSchemaUpdates": "MediaWiki\\Extension\\MachineVision\\Hooks::onLoadExtensionSchemaUpdates",
 		"UnitTestsAfterDatabaseSetup": "MediaWiki\\Extension\\MachineVision\\Hooks::onUnitTestsAfterDatabaseSetup",
-		"UnitTestsBeforeDatabaseTeardown": "MediaWiki\\Extension\\MachineVision\\Hooks::onUnitTestsBeforeDatabaseTeardown"
+		"UnitTestsBeforeDatabaseTeardown": "MediaWiki\\Extension\\MachineVision\\Hooks::onUnitTestsBeforeDatabaseTeardown",
+		"UploadComplete": "MediaWiki\\Extension\\MachineVision\\Hooks::onUploadComplete",
+		"wgQueryPages": "MediaWiki\\Extension\\MachineVision\\Hooks::onwgQueryPages"
+	},
+	"SpecialPages": {
+		"ImageLabeling": "MediaWiki\\Extension\\MachineVision\\Special\\SpecialImageLabeling"
 	},
 	"ServiceWiringFiles": [
 		"ServiceWiring.php"
@@ -30,6 +34,9 @@
 		"MachineVision": [
 			"i18n"
 		]
+	},
+	"ExtensionMessagesFiles": {
+		"MachineVisionAlias": "MachineVision.alias.php"
 	},
 	"ConfigRegistry": {
 		"MachineVision": "GlobalVarConfig::newInstance"

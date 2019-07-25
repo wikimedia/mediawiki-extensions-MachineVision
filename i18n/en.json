@@ -4,5 +4,7 @@
 			"Wikimedia Product Infrastructure Team"
 		]
 	},
-	"machinevision-desc": "Interfaces with internal and external machine vision service providers and stores results for usage on-wiki."
+	"machinevision-desc": "Interfaces with internal and external machine vision service providers and stores results for usage on-wiki.",
+	"machinevision-pageinfo-field-suggested-labels": "Suggested labels",
+	"machinevision-imagelabeling": "Image labeling"
 }

@@ -4,5 +4,7 @@
 			"Wikimedia Product Infrastructure Team"
 		]
 	},
-	"machinevision-desc": "{{desc|name=MachineVision|url=https://www.mediawiki.org/wiki/Extension:MachineVision}}"
+	"machinevision-desc": "{{desc|name=MachineVision|url=https://www.mediawiki.org/wiki/Extension:MachineVision}}",
+	"machinevision-pageinfo-field-suggested-labels": "Field name for suggested labels in page info table.",
+	"machinevision-imagelabeling": "Name for Special:ImageLabeling."
 }

@@ -4,6 +4,7 @@ namespace MediaWiki\Extension\MachineVision;
 
 use DatabaseUpdater;
 use DeferredUpdates;
+use MediaWiki\Extension\MachineVision\Special\SpecialImageLabeling;
 use MediaWiki\MediaWikiServices;
 use UploadBase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
@@ -29,6 +30,14 @@ class Hooks {
 				$handler->handleUploadComplete( $file );
 			}
 		} );
+	}
+
+	/**
+	 * @param array &$wgQueryPages
+	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/wgQueryPages
+	 */
+	public static function onwgQueryPages( array &$wgQueryPages ) {
+		$wgQueryPages[] = [ SpecialImageLabeling::class, 'ImageLabeling' ];
 	}
 
 	/**
