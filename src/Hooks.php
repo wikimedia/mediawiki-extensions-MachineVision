@@ -3,6 +3,7 @@
 namespace MediaWiki\Extension\MachineVision;
 
 use DatabaseUpdater;
+use DeferredUpdates;
 use MediaWiki\MediaWikiServices;
 use UploadBase;
 
@@ -13,9 +14,14 @@ class Hooks {
 	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/UploadComplete
 	 */
 	public static function onUploadComplete( UploadBase $uploadBase ) {
-		$services = new Services( MediaWikiServices::getInstance() );
-		$handler = $services->getUploadHandler();
-		$handler->handle( $uploadBase );
+		$file = $uploadBase->getLocalFile();
+		DeferredUpdates::addCallableUpdate( function () use ( $file ) {
+			$services = new Services( MediaWikiServices::getInstance() );
+			$registry = $services->getHandlerRegistry();
+			foreach ( $registry->getHandlers( $file ) as $handler ) {
+				$handler->handleUploadComplete( $file );
+			}
+		} );
 	}
 
 	/**

@@ -3,6 +3,7 @@
 
 namespace MediaWiki\Extension\MachineVision;
 
+use MediaWiki\Extension\MachineVision\Handler\Registry;
 use MediaWiki\MediaWikiServices;
 
 class Services {
@@ -22,8 +23,8 @@ class Services {
 		return $this->services->getService( 'MachineVisionRepository' );
 	}
 
-	public function getUploadHandler(): UploadHandler {
-		return $this->services->getService( 'MachineVisionUploadHandler' );
+	public function getHandlerRegistry(): Registry {
+		return $this->services->getService( 'MachineVisionHandlerRegistry' );
 	}
 
 }

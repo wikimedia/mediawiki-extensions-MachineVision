@@ -1,25 +1,21 @@
 <?php
 
 use MediaWiki\Extension\MachineVision\Client;
+use MediaWiki\Extension\MachineVision\Handler\Registry;
 use MediaWiki\Extension\MachineVision\Repository;
-use MediaWiki\Extension\MachineVision\Services;
-use MediaWiki\Extension\MachineVision\UploadHandler;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\NameTableStore;
+use Wikimedia\ObjectFactory;
 
 return [
 
 	'MachineVisionClient' => function ( MediaWikiServices $services ): Client {
-		$machineVisionConfig = $services->getConfigFactory()->makeConfig( 'MachineVision' );
 		$httpRequestFactory = $services->getHttpRequestFactory();
-
 		$wikiId = wfWikiID();
-		$apiUrl = $machineVisionConfig->get( 'MachineVisionLabelingApi' );
 
 		$labelingClient = new Client(
 			$httpRequestFactory,
-			$apiUrl,
 			$httpRequestFactory->getUserAgent() . "($wikiId)"
 		);
 		$labelingClient->setLogger( LoggerFactory::getInstance( 'machinevision' ) );
@@ -52,14 +48,14 @@ return [
 		);
 	},
 
-	'MachineVisionUploadHandler' => function ( MediaWikiServices $services ): UploadHandler {
-		$extensionServices = new Services( $services );
-		$handler = new UploadHandler(
-			$extensionServices->getClient(),
-			$extensionServices->getRepository()
-		);
-		$handler->setLogger( LoggerFactory::getInstance( 'machinevision' ) );
-		return $handler;
+	'MachineVisionHandlerRegistry' => function ( MediaWikiServices $services ): Registry {
+		$objectFactory = new ObjectFactory( $services );
+		$extensionConfig = $services->getConfigFactory()->makeConfig( 'MachineVision' );
+		$handlerConfig = $extensionConfig->get( 'MachineVisionHandlers' );
+
+		$registry = new Registry( $objectFactory, $handlerConfig );
+		$registry->setLogger( LoggerFactory::getInstance( 'machinevision' ) );
+		return $registry;
 	},
 
 ];

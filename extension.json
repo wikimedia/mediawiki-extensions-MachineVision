@@ -14,6 +14,9 @@
 	"AutoloadNamespaces": {
 		"MediaWiki\\Extension\\MachineVision\\": "src/"
 	},
+	"AutoloadClasses": {
+		"MediaWiki\\Extension\\MachineVision\\MockHelper": "tests/helper/MockHelper.php"
+	},
 	"Hooks": {
 		"UploadComplete": "MediaWiki\\Extension\\MachineVision\\Hooks::onUploadComplete",
 		"LoadExtensionSchemaUpdates": "MediaWiki\\Extension\\MachineVision\\Hooks::onLoadExtensionSchemaUpdates"
@@ -38,9 +41,9 @@
 			"value": false,
 			"description": "Database to use for storing the data. False means use the database of the current wiki. To use a table prefix, use '<database>-<prefix'>' format."
 		},
-		"MachineVisionLabelingApi": {
-			"value": "http://visionoid.wmflabs.org/labels?title=$1",
-			"description": "URL of the image labeling API. $1 will be replaced with URL-encoded title."
+		"MachineVisionHandlers": {
+			"value": {},
+			"description": "Configuration for the handlers. Keys are provider names, values are ObjectFactory specifications."
 		}
 	},
 	"manifest_version": 2

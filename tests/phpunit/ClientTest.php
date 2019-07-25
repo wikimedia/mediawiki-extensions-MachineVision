@@ -2,10 +2,8 @@
 
 namespace MediaWiki\Extension\MachineVision;
 
-use File;
 use MediaWiki\Http\HttpRequestFactory;
 use PHPUnit\Framework\TestCase;
-use Title;
 
 class ClientTest extends TestCase {
 
@@ -14,9 +12,9 @@ class ClientTest extends TestCase {
 	 * @dataProvider provideGetFileMetadata
 	 */
 	public function testGetFileMetadata( $httpRequestFactory, $expectedData ) {
-		$file = $this->getMockFile( 'X.png' );
-		$client = new Client( $httpRequestFactory, 'https://example.com/?title=$1', 'UA' );
-		$data = $client->getFileMetadata( $file );
+		$file = MockHelper::getMockFile( $this, 'X.png' );
+		$client = new Client( $httpRequestFactory, 'UA' );
+		$data = $client->getFileMetadata( $file, 'https://example.com/?title=$1' );
 		$this->assertSame( $expectedData, $data );
 	}
 
@@ -33,30 +31,6 @@ class ClientTest extends TestCase {
 				], [
 					'wikidata_id' => 'Q29106',
 					'label' => 'allotrope',
-				], [
-					'wikidata_id' => 'Q876461',
-					'label' => 'spulzied',
-				], [
-					'wikidata_id' => 'Q57538',
-					'label' => 'unnecessariness',
-				], [
-					'wikidata_id' => 'Q790587',
-					'label' => 'lapilliform',
-				], [
-					'wikidata_id' => 'Q963064',
-					'label' => 'gentilize',
-				], [
-					'wikidata_id' => 'Q390032',
-					'label' => 'hyalomelanes',
-				], [
-					'wikidata_id' => 'Q882995',
-					'label' => 'hucks',
-				], [
-					'wikidata_id' => 'Q522949',
-					'label' => 'unordinary',
-				], [
-					'wikidata_id' => 'Q833708',
-					'label' => 'latten',
 				],
 			],
 		];
@@ -85,19 +59,6 @@ class ClientTest extends TestCase {
 			->willReturn( $response );
 		/** @var $httpRequestFactory HttpRequestFactory */
 		return $httpRequestFactory;
-	}
-
-	private function getMockFile( $name ): File {
-		$title = Title::newFromText( $name, NS_FILE );
-		$file = $this->getMockBuilder( File::class )
-			->disableOriginalConstructor()
-			->setMethods( [ 'getTitle' ] )
-			->getMock();
-		$file->expects( $this->any() )
-			->method( 'getTitle' )
-			->willReturn( $title );
-		/** @var $file File */
-		return $file;
 	}
 
 }

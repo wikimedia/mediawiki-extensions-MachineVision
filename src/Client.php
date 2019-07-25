@@ -16,36 +16,31 @@ class Client implements LoggerAwareInterface {
 	private $httpRequestFactory;
 
 	/** @var string */
-	private $apiUrl;
-
-	/** @var string */
 	private $userAgent;
 
 	/**
 	 * @param HttpRequestFactory $httpRequestFactory
-	 * @param string $apiUrl Labeling API URL. $1 will be replaced with the URL-encoded file title.
 	 * @param string $userAgent Request UA.
 	 */
 	public function __construct(
 		HttpRequestFactory $httpRequestFactory,
-		$apiUrl,
 		$userAgent
 	) {
 		$this->httpRequestFactory = $httpRequestFactory;
-		$this->apiUrl = $apiUrl;
 		$this->userAgent = $userAgent;
 
 		$this->setLogger( new NullLogger() );
 	}
 
 	/**
-	 * Fetch file
+	 * Fetch file metadata from the given URL.
 	 * @param File $file
+	 * @param string $apiUrlTemplate API URL. $1 will be replaced with the URL-encoded file title.
 	 * @return array|null Arbitrary metadata returned by the service
 	 */
-	public function getFileMetadata( File $file ) {
+	public function getFileMetadata( File $file, $apiUrlTemplate ) {
 		$titleText = $file->getTitle()->getPrefixedDBkey();
-		$url = str_replace( '$1', urlencode( $titleText ), $this->apiUrl );
+		$url = str_replace( '$1', urlencode( $titleText ), $apiUrlTemplate );
 		$response = $this->httpRequestFactory->get( $url, [
 			'userAgent' => $this->userAgent,
 		], __METHOD__ );
@@ -55,6 +50,7 @@ class Client implements LoggerAwareInterface {
 				$this->logger->error( 'Failed to decode JSON: ' . json_last_error_msg(), [
 					'json' => $response,
 					'url' => $url,
+					'file' => $file->getTitle()->getPrefixedDBkey(),
 				] );
 			}
 			return $json;
