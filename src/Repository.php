@@ -2,13 +2,18 @@
 
 namespace MediaWiki\Extension\MachineVision;
 
+use DBAccessObjectUtils;
+use InvalidArgumentException;
 use MediaWiki\Storage\NameTableStore;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\NullLogger;
+use UnexpectedValueException;
 use Wikimedia\Rdbms\IDatabase;
 
 class Repository implements LoggerAwareInterface {
+
+	use LoggerAwareTrait;
 
 	// Constants used for machine_vision_label.mvl_review
 	const REVIEW_UNREVIEWED = 0;
@@ -16,7 +21,8 @@ class Repository implements LoggerAwareInterface {
 	const REVIEW_REJECTED = -1;
 	const REVIEW_SKIPPED = -2;
 
-	use LoggerAwareTrait;
+	private static $reviewStates = [ self::REVIEW_UNREVIEWED, self::REVIEW_ACCEPTED,
+		self::REVIEW_REJECTED, self::REVIEW_SKIPPED ];
 
 	/** @var NameTableStore */
 	private $nameTableStore;
@@ -81,6 +87,58 @@ class Repository implements LoggerAwareInterface {
 			$data[] = $row->mvl_wikidata_id;
 		}
 		return array_unique( $data );
+	}
+
+	/**
+	 * Change the state of a label suggestion.
+	 * @param string $sha1 Image SHA1
+	 * @param string $label Image label (Wikidata item ID, including the Q prefix)
+	 * @param int $state New state (one of the REVIEW_* constants).
+	 * @return bool Success
+	 */
+	public function setLabelState( $sha1, $label, $state ) {
+		$validStates = array_diff( self::$reviewStates, [ self::REVIEW_UNREVIEWED ] );
+		if ( !in_array( $state, $validStates, true ) ) {
+			$validStates = implode( ', ', $validStates );
+			throw new InvalidArgumentException( "Invalid state $state (must be one of $validStates)" );
+		}
+
+		$this->dbw->update(
+			'machine_vision_label',
+			[ 'mvl_review' => $state ],
+			[ 'mvl_image_sha1' => $sha1, 'mvl_wikidata_id' => $label ],
+			__METHOD__
+		);
+		return (bool)$this->dbw->affectedRows();
+	}
+
+	/**
+	 * Get the state of a label suggestion.
+	 * @param string $sha1 Image SHA1
+	 * @param string $label Image label (Wikidata item ID, including the Q prefix)
+	 * @param int $flags IDBAccessObject flags
+	 * @return int|false Label review state (one of the REVIEW_* constants),
+	 *   or false if there was no such suggestion.
+	 */
+	public function getLabelState( $sha1, $label, $flags = 0 ) {
+		list( $index, $options ) = DBAccessObjectUtils::getDBOptions( $flags );
+		$db = ( $index === DB_MASTER ) ? $this->dbw : $this->dbr;
+
+		// FIXME what if there are suggestions from multiple providers, in different review states?
+		$state = $db->selectField(
+			'machine_vision_label',
+			'mvl_review',
+			[ 'mvl_image_sha1' => $sha1, 'mvl_wikidata_id' => $label ],
+			__METHOD__,
+			$options
+		);
+		if ( $state === false ) {
+			return false;
+		}
+		if ( !in_array( (int)$state, self::$reviewStates, true ) ) {
+			throw new UnexpectedValueException( "Invalid database value for mvl_review: $state" );
+		}
+		return (int)$state;
 	}
 
 }
