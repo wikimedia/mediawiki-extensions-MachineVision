@@ -6,5 +6,12 @@
 	},
 	"machinevision-desc": "{{desc|name=MachineVision|url=https://www.mediawiki.org/wiki/Extension:MachineVision}}",
 	"machinevision-pageinfo-field-suggested-labels": "Field name for suggested labels in page info table.",
-	"machinevision-imagelabeling": "Name for Special:ImageLabeling."
+	"machinevision-imagelabeling": "Name for Special:ImageLabeling.",
+	"apihelp-query+imagelabels-summary": "{{doc-apihelp-summary|query+imagelabels}}",
+	"apihelp-query+imagelabels-param-state": "{{doc-apihelp-param|query+imagelabels|state}}",
+	"apihelp-query+imagelabels-paramvalue-state-unreviewed": "{{doc-apihelp-paramvalue|query+imagelabels|state|unreviewed}}",
+	"apihelp-query+imagelabels-paramvalue-state-accepted": "{{doc-apihelp-paramvalue|query+imagelabels|state|accepted}}",
+	"apihelp-query+imagelabels-paramvalue-state-rejected": "{{doc-apihelp-paramvalue|query+imagelabels|state|rejected}}",
+	"apihelp-query+imagelabels-paramvalue-state-skipped": "{{doc-apihelp-paramvalue|query+imagelabels|state|skipped}}",
+	"apihelp-query+imagelabels-example-1": "{{doc-apihelp-example|query+imagelabels}}"
 }

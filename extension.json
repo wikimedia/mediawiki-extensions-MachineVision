@@ -24,6 +24,12 @@
 		"UnitTestsAfterDatabaseSetup": "MediaWiki\\Extension\\MachineVision\\Hooks::onUnitTestsAfterDatabaseSetup",
 		"UnitTestsBeforeDatabaseTeardown": "MediaWiki\\Extension\\MachineVision\\Hooks::onUnitTestsBeforeDatabaseTeardown"
 	},
+	"APIPropModules": {
+		"imagelabels": {
+			"class": "MediaWiki\\Extension\\MachineVision\\Api\\ApiQueryImageLabels",
+			"factory": "MediaWiki\\Extension\\MachineVision\\Api\\ApiQueryImageLabels::factory"
+		}
+	},
 	"SpecialPages": {
 		"ImageLabeling": "MediaWiki\\Extension\\MachineVision\\Special\\SpecialImageLabeling"
 	},

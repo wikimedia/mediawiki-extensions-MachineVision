@@ -6,5 +6,12 @@
 	},
 	"machinevision-desc": "Interfaces with internal and external machine vision service providers and stores results for usage on-wiki.",
 	"machinevision-pageinfo-field-suggested-labels": "Suggested labels",
-	"machinevision-imagelabeling": "Image labeling"
+	"machinevision-imagelabeling": "Image labeling",
+	"apihelp-query+imagelabels-summary": "Show machine-suggested image labels.",
+	"apihelp-query+imagelabels-param-state": "Only list labels in these review states",
+	"apihelp-query+imagelabels-paramvalue-state-unreviewed": "Labels which have not been reviewed yet.",
+	"apihelp-query+imagelabels-paramvalue-state-accepted": "Labels which have been identified as correct.",
+	"apihelp-query+imagelabels-paramvalue-state-rejected": "Labels which have been identified as incorrect.",
+	"apihelp-query+imagelabels-paramvalue-state-skipped": "Labels which someone tried to identify but gave up.",
+	"apihelp-query+imagelabels-example-1": "Show machine-suggested image labels for <kbd>Example.png</kbd>."
 }

@@ -10,6 +10,12 @@ use Wikimedia\Rdbms\IDatabase;
 
 class Repository implements LoggerAwareInterface {
 
+	// Constants used for machine_vision_label.mvl_review
+	const REVIEW_UNREVIEWED = 0;
+	const REVIEW_ACCEPTED = 1;
+	const REVIEW_REJECTED = -1;
+	const REVIEW_SKIPPED = -2;
+
 	use LoggerAwareTrait;
 
 	/** @var NameTableStore */

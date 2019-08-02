@@ -22,7 +22,7 @@ return [
 		return $labelingClient;
 	},
 
-	'MachineVisionRepository' => function ( MediaWikiServices $services ): Repository {
+	'MachineVisionNameTableStore' => function ( MediaWikiServices $services ): NameTableStore {
 		$extensionConfig = $services->getConfigFactory()->makeConfig( 'MachineVision' );
 		$loadBalancerFactory = $services->getDBLoadBalancerFactory();
 		$wanObjectCache = $services->getMainWANObjectCache();
@@ -34,15 +34,29 @@ return [
 			? $loadBalancerFactory->getExternalLB( $cluster )
 			: $loadBalancerFactory->getMainLB( $database );
 
+		return new NameTableStore(
+			$loadBalancer,
+			$wanObjectCache,
+			LoggerFactory::getInstance( 'machinevision' ),
+			'machine_vision_provider',
+			'mvp_id',
+			'mvp_name'
+		);
+	},
+
+	'MachineVisionRepository' => function ( MediaWikiServices $services ): Repository {
+		$extensionConfig = $services->getConfigFactory()->makeConfig( 'MachineVision' );
+		$loadBalancerFactory = $services->getDBLoadBalancerFactory();
+
+		$cluster = $extensionConfig->get( 'MachineVisionCluster' );
+		$database = $extensionConfig->get( 'MachineVisionDatabase' );
+
+		$loadBalancer = $cluster
+			? $loadBalancerFactory->getExternalLB( $cluster )
+			: $loadBalancerFactory->getMainLB( $database );
+
 		return new Repository(
-			new NameTableStore(
-				$loadBalancer,
-				$wanObjectCache,
-				LoggerFactory::getInstance( 'machinevision' ),
-				'machine_vision_provider',
-				'mvp_id',
-				'mvp_name'
-			),
+			$services->getService( 'MachineVisionNameTableStore' ),
 			$loadBalancer->getLazyConnectionRef( DB_REPLICA, [], $database ),
 			$loadBalancer->getLazyConnectionRef( DB_MASTER, [], $database )
 		);
