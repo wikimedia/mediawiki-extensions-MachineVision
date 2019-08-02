@@ -29,14 +29,12 @@ class SpecialImageLabeling extends ImageQueryPage {
 			'fields' => [
 				'namespace' => NS_FILE,
 				'title' => 'img_name',
-				'value' => 'img_name',
 			],
 			'conds' => [
 				'mvl_review' => 0,
 			],
 			'options' => [
-				// MySQL seems to need both for a sane query plan
-				'GROUP BY' => [ 'img_sha1', 'mvl_image_sha1' ]
+				'GROUP BY' => [ 'mvl_image_sha1' ]
 			],
 			'join_conds' => [ 'image' => [ 'JOIN', 'mvl_image_sha1 = img_sha1' ] ],
 		];

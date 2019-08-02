@@ -18,11 +18,11 @@
 		"MediaWiki\\Extension\\MachineVision\\MockHelper": "tests/helper/MockHelper.php"
 	},
 	"Hooks": {
+		"UploadComplete": "MediaWiki\\Extension\\MachineVision\\Hooks::onUploadComplete",
+		"wgQueryPages": "MediaWiki\\Extension\\MachineVision\\Hooks::onwgQueryPages",
 		"LoadExtensionSchemaUpdates": "MediaWiki\\Extension\\MachineVision\\Hooks::onLoadExtensionSchemaUpdates",
 		"UnitTestsAfterDatabaseSetup": "MediaWiki\\Extension\\MachineVision\\Hooks::onUnitTestsAfterDatabaseSetup",
-		"UnitTestsBeforeDatabaseTeardown": "MediaWiki\\Extension\\MachineVision\\Hooks::onUnitTestsBeforeDatabaseTeardown",
-		"UploadComplete": "MediaWiki\\Extension\\MachineVision\\Hooks::onUploadComplete",
-		"wgQueryPages": "MediaWiki\\Extension\\MachineVision\\Hooks::onwgQueryPages"
+		"UnitTestsBeforeDatabaseTeardown": "MediaWiki\\Extension\\MachineVision\\Hooks::onUnitTestsBeforeDatabaseTeardown"
 	},
 	"SpecialPages": {
 		"ImageLabeling": "MediaWiki\\Extension\\MachineVision\\Special\\SpecialImageLabeling"
