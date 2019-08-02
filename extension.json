@@ -17,12 +17,31 @@
 	"AutoloadClasses": {
 		"MediaWiki\\Extension\\MachineVision\\MockHelper": "tests/helper/MockHelper.php"
 	},
+	"AvailableRights": [
+		"imagelabel-review"
+	],
+	"GroupPermissions": {
+		"user": {
+			"imagelabel-review": true
+		}
+	},
+	"GrantPermissions": {
+		"editpage": {
+			"imagelabel-review": true
+		}
+	},
 	"Hooks": {
 		"UploadComplete": "MediaWiki\\Extension\\MachineVision\\Hooks::onUploadComplete",
 		"wgQueryPages": "MediaWiki\\Extension\\MachineVision\\Hooks::onwgQueryPages",
 		"LoadExtensionSchemaUpdates": "MediaWiki\\Extension\\MachineVision\\Hooks::onLoadExtensionSchemaUpdates",
 		"UnitTestsAfterDatabaseSetup": "MediaWiki\\Extension\\MachineVision\\Hooks::onUnitTestsAfterDatabaseSetup",
 		"UnitTestsBeforeDatabaseTeardown": "MediaWiki\\Extension\\MachineVision\\Hooks::onUnitTestsBeforeDatabaseTeardown"
+	},
+	"APIModules": {
+		"reviewimagelabels": {
+			"class": "MediaWiki\\Extension\\MachineVision\\Api\\ApiReviewImageLabels",
+			"factory": "MediaWiki\\Extension\\MachineVision\\Api\\ApiReviewImageLabels::factory"
+		}
 	},
 	"APIPropModules": {
 		"imagelabels": {
