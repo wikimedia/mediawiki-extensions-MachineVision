@@ -18,6 +18,9 @@ class Registry implements LoggerAwareInterface {
 	/** @var array[] provider => handler config for ObjectFactory */
 	private $handlerConfig;
 
+	/** @var Handler[] */
+	private $handlers;
+
 	/**
 	 * @param ObjectFactory $objectFactory
 	 * @param array $handlerConfig
@@ -35,15 +38,22 @@ class Registry implements LoggerAwareInterface {
 	 * @return Handler[]
 	 */
 	public function getHandlers( LocalFile $file ) {
-		// Not bothering with caching as we don't expect this to be called multiple times per request.
-		$handlers = [];
-		foreach ( $this->handlerConfig as $provider => $spec ) {
-			/** @var Handler $handler */
-			$handler = $this->objectFactory->createObject( $spec, [ 'assertClass' => Handler::class ] );
-			$handler->setLogger( $this->logger );
-			$handlers[] = $handler;
+		return $this->getAllHandlers();
+	}
+
+	/**
+	 * @return Handler[]
+	 */
+	private function getAllHandlers() {
+		if ( $this->handlers === null ) {
+			foreach ( $this->handlerConfig as $provider => $spec ) {
+				/** @var Handler $handler */
+				$handler = $this->objectFactory->createObject( $spec, [ 'assertClass' => Handler::class ] );
+				$handler->setLogger( $this->logger );
+				$this->handlers[] = $handler;
+			}
 		}
-		return $handlers;
+		return $this->handlers;
 	}
 
 }
