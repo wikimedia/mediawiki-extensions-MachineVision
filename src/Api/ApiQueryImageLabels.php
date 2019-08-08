@@ -87,7 +87,7 @@ class ApiQueryImageLabels extends ApiQueryBase {
 
 		$res = $this->getDB()->select(
 			'machine_vision_label',
-			[ 'mvl_image_sha1', 'mvl_provider_id', 'mvl_wikidata_id', 'mvl_review' ],
+			[ 'mvl_image_sha1', 'mvl_wikidata_id', 'mvl_review' ],
 			[ 'mvl_image_sha1' => array_values( $filenameToSha1 ) ],
 			__METHOD__
 		);
