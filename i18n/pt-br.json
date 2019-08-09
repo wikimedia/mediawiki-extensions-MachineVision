@@ -1,0 +1,17 @@
+{
+	"@metadata": {
+		"authors": [
+			"Eduardo Addad de Oliveira"
+		]
+	},
+	"machinevision-desc": "Interfaces com provedores de serviços de visão de máquina internos e externos e armazena resultados para uso no wiki.",
+	"machinevision-pageinfo-field-suggested-labels": "Etiquetas sugeridas",
+	"machinevision-imagelabeling": "Rotulagem de imagem",
+	"apihelp-query+imagelabels-summary": "Mostrar etiquetas de imagens sugeridas por máquinas.",
+	"apihelp-query+imagelabels-param-state": "Somente listar rótulos nesses estados de revisão",
+	"apihelp-query+imagelabels-paramvalue-state-unreviewed": "Etiquetas que ainda não foram revisadas.",
+	"apihelp-query+imagelabels-paramvalue-state-accepted": "Etiquetas que foram identificadas como corretas.",
+	"apihelp-query+imagelabels-paramvalue-state-rejected": "Etiquetas que foram identificadas como incorretas.",
+	"apihelp-query+imagelabels-paramvalue-state-skipped": "Etiquetas que alguém tentou identificar, mas desistiu.",
+	"apihelp-query+imagelabels-example-1": "Mostrar etiquetas de imagem sugeridas por máquina para <kbd>Exemplo.png</kbd>."
+}

@@ -1,0 +1,17 @@
+{
+	"@metadata": {
+		"authors": [
+			"Bjankuloski06"
+		]
+	},
+	"machinevision-desc": "Посредник за внатрешната и надворешната услуга за машински вид и складира исходи за употреба на викито",
+	"machinevision-pageinfo-field-suggested-labels": "Предложени натписи",
+	"machinevision-imagelabeling": "Натписи на слики",
+	"apihelp-query+imagelabels-summary": "Прикажувај машински предложени натписи на слики",
+	"apihelp-query+imagelabels-param-state": "Испишувај ги само натписите во следниве состојби на проверка",
+	"apihelp-query+imagelabels-paramvalue-state-unreviewed": "Натписите кои сè уште не се проверени.",
+	"apihelp-query+imagelabels-paramvalue-state-accepted": "Натписите утврдени како исправни.",
+	"apihelp-query+imagelabels-paramvalue-state-rejected": "Натписите утврдени како неисправни.",
+	"apihelp-query+imagelabels-paramvalue-state-skipped": "Натписите кои некој се обидел да ги утвбри, но се откажал.",
+	"apihelp-query+imagelabels-example-1": "Прикажи машински предложени натписи за <kbd>Example.png</kbd>."
+}

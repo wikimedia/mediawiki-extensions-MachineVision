@@ -1,0 +1,17 @@
+{
+	"@metadata": {
+		"authors": [
+			"ديفيد"
+		]
+	},
+	"machinevision-desc": "واجهات مع مزودي خدمة رؤية الجهاز الداخلية والخارجية وتخزن النتائج للاستخدام على الويكي.",
+	"machinevision-pageinfo-field-suggested-labels": "التسميات المقترحة",
+	"machinevision-imagelabeling": "تسمية الصور",
+	"apihelp-query+imagelabels-summary": "إظهار تسميات الصور التي اقترحها الجهاز.",
+	"apihelp-query+imagelabels-param-state": "سرد التسميات في حالات المراجعة هذه فقط",
+	"apihelp-query+imagelabels-paramvalue-state-unreviewed": "التسميات التي لم تتم مراجعتها بعد.",
+	"apihelp-query+imagelabels-paramvalue-state-accepted": "التسميات التي تم تحديدها بأنها صحيحة.",
+	"apihelp-query+imagelabels-paramvalue-state-rejected": "التسميات التي تم تحديدها على أنها غير صحيحة.",
+	"apihelp-query+imagelabels-paramvalue-state-skipped": "التسميات التي حاول شخص ما تحديدها لكنه تخلى عنها.",
+	"apihelp-query+imagelabels-example-1": "إظهار تسميات الصور التي اقترحها الجهاز لـ<kbd>Example.png</kbd>."
+}
