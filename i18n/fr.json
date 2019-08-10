@@ -1,0 +1,31 @@
+{
+	"@metadata": {
+		"authors": [
+			"Gomoko",
+			"Wladek92"
+		]
+	},
+	"machinevision-desc": "S’interface avec des fournisseurs de service de vision machine interne et externe, et stocke les résultats de l’utilisation dans le wiki.",
+	"machinevision-pageinfo-field-suggested-labels": "Libellés suggérés",
+	"machinevision-imagelabeling": "Libellé de l’image",
+	"right-imagelabel-review": "Relire les suggestions de libellé de l’image",
+	"action-imagelabel-review": "relire les suggestions de libellé de l’image",
+	"apihelp-reviewimagelabels-summary": "Relire les libellés d’image suggérés par la machine.",
+	"apihelp-reviewimagelabels-param-filename": "Nom de l’image (sans le préfixe de l’espace de noms).",
+	"apihelp-reviewimagelabels-param-label": "ID de Wikidata du libellé suggéré (avec le préfixe Q).",
+	"apihelp-reviewimagelabels-param-review": "Résultat de la relecture.",
+	"apihelp-reviewimagelabels-paramvalue-review-accept": "La suggestion est correcte.",
+	"apihelp-reviewimagelabels-paramvalue-review-reject": "La suggestion n’est pas correcte.",
+	"apihelp-reviewimagelabels-paramvalue-review-skip": "L’utilisateur n’était pas sûr, ou a annulé la relecture.",
+	"apihelp-reviewimagelabels-example-1": "Marquer <kbd>Q123</kbd> comme une suggestion correcte pour <kbd>Example.png</kbd>.",
+	"apierror-reviewimagelabels-invalidfile": "<kbd>$1</kbd> n’est pas un nom de fichier valide.",
+	"apierror-reviewimagelabels-invalidlabel": "Le fichier <kbd>$1</kbd> n’a pas de libellé <kbd>$2</kbd>.",
+	"apierror-reviewimagelabels-invalidstate": "<kbd>$3</kbd> n’est pas une action valide pour le libellé <kbd>$2</kbd> du fichier <kbd>$1</kbd>.",
+	"apihelp-query+imagelabels-summary": "Afficher les libellés d’image suggérés par la machine.",
+	"apihelp-query+imagelabels-param-state": "Lister uniquement les libellés dans ces états de relecture",
+	"apihelp-query+imagelabels-paramvalue-state-unreviewed": "Libellés qui n'ont pas encore été revus.",
+	"apihelp-query+imagelabels-paramvalue-state-accepted": "Libellés qui ont été identifiés comme corrects.",
+	"apihelp-query+imagelabels-paramvalue-state-rejected": "Libellés qui ont été identifiés comme non corrects.",
+	"apihelp-query+imagelabels-paramvalue-state-skipped": "Libellés que quelqu’un a essayé d’identifier, mais a abandonné.",
+	"apihelp-query+imagelabels-example-1": "Afficher les libellés d’image suggérés par la machine pour <kbd>Example.png</kbd>."
+}

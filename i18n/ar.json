@@ -1,12 +1,26 @@
 {
 	"@metadata": {
 		"authors": [
-			"ديفيد"
+			"ديفيد",
+			"HitomiAkane"
 		]
 	},
 	"machinevision-desc": "واجهات مع مزودي خدمة رؤية الجهاز الداخلية والخارجية وتخزن النتائج للاستخدام على الويكي.",
 	"machinevision-pageinfo-field-suggested-labels": "التسميات المقترحة",
 	"machinevision-imagelabeling": "تسمية الصور",
+	"right-imagelabel-review": "راجع اقتراحات تسمية الصورة",
+	"action-imagelabel-review": "راجع اقتراحات تسمية الصورة",
+	"apihelp-reviewimagelabels-summary": "مراجعة تسميات الصور التي اقترحها الجهاز.",
+	"apihelp-reviewimagelabels-param-filename": "اسم الصورة (بدون بادئة النطاق).",
+	"apihelp-reviewimagelabels-param-label": "معرف ويكي بيانات للتسمية المقترحة (مع بادئة Q).",
+	"apihelp-reviewimagelabels-param-review": "نتيجة المراجعة.",
+	"apihelp-reviewimagelabels-paramvalue-review-accept": "الاقتراح صحيح.",
+	"apihelp-reviewimagelabels-paramvalue-review-reject": "الاقتراح غير صحيح.",
+	"apihelp-reviewimagelabels-paramvalue-review-skip": "المستخدم غير متأكد من، أو أجهض المراجعة.",
+	"apihelp-reviewimagelabels-example-1": "تعليم <kbd>Q123</kbd> كاقتراح صحيح ل<kbd>Example.png</kbd>.",
+	"apierror-reviewimagelabels-invalidfile": "<kbd>$1</kbd> ليس اسم ملف صالحا.",
+	"apierror-reviewimagelabels-invalidlabel": "الملف <kbd>$1</kbd> ليست له تسمية <kbd>$2</kbd>.",
+	"apierror-reviewimagelabels-invalidstate": "<kbd>$3</kbd> ليس إجراءً صالحا للتسمية <kbd>$2</kbd> للملف <kbd>$1</kbd>.",
 	"apihelp-query+imagelabels-summary": "إظهار تسميات الصور التي اقترحها الجهاز.",
 	"apihelp-query+imagelabels-param-state": "سرد التسميات في حالات المراجعة هذه فقط",
 	"apihelp-query+imagelabels-paramvalue-state-unreviewed": "التسميات التي لم تتم مراجعتها بعد.",
