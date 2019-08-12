@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Eitvys200"
+		]
+	},
+	"machinevision-pageinfo-field-suggested-labels": "Siūlomos žymos",
+	"apihelp-reviewimagelabels-paramvalue-review-accept": "Pasiūlymas yra teisingas.",
+	"apihelp-reviewimagelabels-paramvalue-review-reject": "Pasiūlymas yra neteisingas."
+}
