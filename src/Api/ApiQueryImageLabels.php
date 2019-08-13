@@ -103,8 +103,6 @@ class ApiQueryImageLabels extends ApiQueryBase {
 			}
 
 			$data[$pageId][$row->mvl_wikidata_id]['wikidata_id'] = $row->mvl_wikidata_id;
-			$data[$pageId][$row->mvl_wikidata_id]['provider'][]
-				= $this->nameTableStore->getName( (int)$row->mvl_provider_id );
 			// There could be all kinds of weirdness if the same label is sent by multiple providers
 			// and reviewed differently. We assume DB writes are handled in a way to avoid that.
 			$data[$pageId][$row->mvl_wikidata_id]['state'] = self::$reviewStateNames[$row->mvl_review];
