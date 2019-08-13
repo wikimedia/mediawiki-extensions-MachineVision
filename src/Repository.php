@@ -58,15 +58,44 @@ class Repository implements LoggerAwareInterface {
 	public function insertLabels( $sha1, $providerName, array $wikidataIds ) {
 		$providerId = $this->nameTableStore->acquireId( $providerName );
 		$timestamp = $this->dbw->timestamp();
-		$data = array_map( function ( $wikidataId ) use ( $sha1, $providerId, $timestamp ) {
-			return [
-				'mvl_image_sha1' => $sha1,
-				'mvl_provider_id' => $providerId,
-				'mvl_wikidata_id' => $wikidataId,
-				'mvl_timestamp' => $timestamp,
-			];
-		}, $wikidataIds );
-		$this->dbw->insert( 'machine_vision_label', $data, __METHOD__ );
+		foreach ( $wikidataIds as $wikidataId ) {
+			$this->dbw->insert(
+				'machine_vision_label',
+				[
+					'mvl_image_sha1' => $sha1,
+					'mvl_wikidata_id' => $wikidataId,
+				],
+				__METHOD__,
+				[ 'IGNORE' ]
+			);
+			// Need to re-select in case the row was already added from another provider's results
+			// and the insert fails, in which case we wouldn't have gotten a row ID from insertId().
+			$mvlId = $this->dbw->selectField(
+				'machine_vision_label',
+				'mvl_id',
+				[
+					'mvl_image_sha1' => $sha1,
+					'mvl_wikidata_id' => $wikidataId,
+				],
+				__METHOD__
+			);
+			if ( $mvlId !== false ) {
+				$this->dbw->insert(
+					'machine_vision_suggestion',
+					[
+						'mvs_mvl_id' => $mvlId,
+						'mvs_provider_id' => $providerId,
+						'mvs_timestamp' => $timestamp,
+					],
+					__METHOD__
+				);
+			} else {
+				$this->logger->info(
+					'Could not find row ID for recently retrieved label suggestion ' .
+						$wikidataId . ' for image sha1 ' . $sha1
+				);
+			}
+		}
 	}
 
 	/**
@@ -77,13 +106,12 @@ class Repository implements LoggerAwareInterface {
 	public function getLabels( $sha1 ) {
 		$res = $this->dbr->select(
 			'machine_vision_label',
-			[ 'mvl_provider_id', 'mvl_wikidata_id' ],
+			'mvl_wikidata_id',
 			[ 'mvl_image_sha1' => $sha1 ],
 			__METHOD__
 		);
 		$data = [];
 		foreach ( $res as $row ) {
-			// We assume callers won't care about the providers.
 			$data[] = $row->mvl_wikidata_id;
 		}
 		return array_unique( $data );
@@ -124,7 +152,6 @@ class Repository implements LoggerAwareInterface {
 		list( $index, $options ) = DBAccessObjectUtils::getDBOptions( $flags );
 		$db = ( $index === DB_MASTER ) ? $this->dbw : $this->dbr;
 
-		// FIXME what if there are suggestions from multiple providers, in different review states?
 		$state = $db->selectField(
 			'machine_vision_label',
 			'mvl_review',
