@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Joetaras"
+		]
+	},
+	"apihelp-reviewimagelabels-param-review": "Resultate d'a revisitazione.",
+	"apihelp-reviewimagelabels-paramvalue-review-accept": "'U suggerimende jè corrette.",
+	"apierror-reviewimagelabels-invalidlabel": "File <kbd>$1</kbd> non ge tène <kbd>$2</kbd> 'n'etichette."
+}

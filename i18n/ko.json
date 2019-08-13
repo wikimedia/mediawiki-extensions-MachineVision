@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ykhwong"
+		]
+	},
+	"apihelp-reviewimagelabels-paramvalue-review-reject": "제안이 잘못되었습니다.",
+	"apierror-reviewimagelabels-invalidfile": "<kbd>$1</kbd>은(는) 유효한 파일 이름이 아닙니다."
+}
