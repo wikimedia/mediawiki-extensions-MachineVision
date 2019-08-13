@@ -40,7 +40,9 @@ return [
 			LoggerFactory::getInstance( 'machinevision' ),
 			'machine_vision_provider',
 			'mvp_id',
-			'mvp_name'
+			'mvp_name',
+			null,
+			$database
 		);
 	},
 
