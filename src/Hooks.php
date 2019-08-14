@@ -24,9 +24,13 @@ class Hooks {
 	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/UploadComplete
 	 */
 	public static function onUploadComplete( UploadBase $uploadBase ) {
+		$extensionServices = new Services( MediaWikiServices::getInstance() );
+		if ( !$extensionServices->getExtensionConfig()
+			->get( 'MachineVisionRequestLabelsOnUploadComplete' ) ) {
+			return;
+		}
 		$file = $uploadBase->getLocalFile();
-		DeferredUpdates::addCallableUpdate( function () use ( $file ) {
-			$extensionServices = new Services( MediaWikiServices::getInstance() );
+		DeferredUpdates::addCallableUpdate( function () use ( $file, $extensionServices ) {
 			$registry = $extensionServices->getHandlerRegistry();
 			foreach ( $registry->getHandlers( $file ) as $handler ) {
 				$handler->handleUploadComplete( $file );

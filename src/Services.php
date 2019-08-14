@@ -3,6 +3,7 @@
 
 namespace MediaWiki\Extension\MachineVision;
 
+use Config;
 use MediaWiki\Extension\MachineVision\Handler\Registry;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\NameTableStore;
@@ -30,6 +31,10 @@ class Services {
 
 	public function getHandlerRegistry(): Registry {
 		return $this->services->getService( 'MachineVisionHandlerRegistry' );
+	}
+
+	public function getExtensionConfig(): Config {
+		return $this->services->getService( 'MachineVisionConfig' );
 	}
 
 }
