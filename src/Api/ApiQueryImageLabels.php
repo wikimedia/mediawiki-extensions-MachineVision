@@ -103,18 +103,12 @@ class ApiQueryImageLabels extends ApiQueryBase {
 			}
 
 			$data[$pageId][$row->mvl_wikidata_id]['wikidata_id'] = $row->mvl_wikidata_id;
-			// There could be all kinds of weirdness if the same label is sent by multiple providers
-			// and reviewed differently. We assume DB writes are handled in a way to avoid that.
 			$data[$pageId][$row->mvl_wikidata_id]['state'] = self::$reviewStateNames[$row->mvl_review];
 		}
 		asort( $data );
 		foreach ( $data as $pageId => $pageData ) {
 			asort( $pageData );
 			$pageData = array_values( $pageData );
-			foreach ( $pageData as &$labelData ) {
-				sort( $labelData['provider'] );
-				ApiResult::setIndexedTagName( $labelData['provider'], 'provider' );
-			}
 			ApiResult::setIndexedTagName( $pageData, 'label' );
 			$fit = $apiResult->addValue( [ 'query', 'pages', $pageId ], $this->getModuleName(),
 				 $pageData );
