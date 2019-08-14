@@ -1,0 +1,30 @@
+{
+	"@metadata": {
+		"authors": [
+			"Looong"
+		]
+	},
+	"machinevision-desc": "接触内部和外部的机器视觉服务供应商并在在wiki上保存使用结果。",
+	"machinevision-pageinfo-field-suggested-labels": "被建议的标签",
+	"machinevision-imagelabeling": "图片标签化",
+	"right-imagelabel-review": "审查图片标签建议",
+	"action-imagelabel-review": "审查图片标签建议",
+	"apihelp-reviewimagelabels-summary": "审查机器建议的图片标签",
+	"apihelp-reviewimagelabels-param-filename": "图片名字（不带命名空间前缀）",
+	"apihelp-reviewimagelabels-param-label": "带有建议标签的Wididata ID（带有前缀Q）",
+	"apihelp-reviewimagelabels-param-review": "审查结果",
+	"apihelp-reviewimagelabels-paramvalue-review-accept": "该建议是正确的。",
+	"apihelp-reviewimagelabels-paramvalue-review-reject": "该建议不正确。",
+	"apihelp-reviewimagelabels-paramvalue-review-skip": "用户不确定或放弃本次审查",
+	"apihelp-reviewimagelabels-example-1": "标记Q123是Example.png的正确建议。",
+	"apierror-reviewimagelabels-invalidfile": "<kbd>$1</kbd>不是一个合理的文件名。",
+	"apierror-reviewimagelabels-invalidlabel": "$1个文件不能有$2个标签。",
+	"apierror-reviewimagelabels-invalidstate": "对于文件$1的标签$2，$3不是合理动作。",
+	"apihelp-query+imagelabels-summary": "显示机器建议的图片标签",
+	"apihelp-query+imagelabels-param-state": "只列举这些审查状态的标签",
+	"apihelp-query+imagelabels-paramvalue-state-unreviewed": "还没有被审查的标签。",
+	"apihelp-query+imagelabels-paramvalue-state-accepted": "已经被认定为正确的标签。",
+	"apihelp-query+imagelabels-paramvalue-state-rejected": "已经被标记为正确的标签",
+	"apihelp-query+imagelabels-paramvalue-state-skipped": "已经别认定但是放弃的标签",
+	"apihelp-query+imagelabels-example-1": "为<kbd>Example.png</kbd>显示机器建议的图片标签。"
+}
