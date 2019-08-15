@@ -17,6 +17,7 @@ class Hooks {
 	public static $testTables = [
 		'machine_vision_provider',
 		'machine_vision_label',
+		'machine_vision_suggestion',
 	];
 
 	/**
