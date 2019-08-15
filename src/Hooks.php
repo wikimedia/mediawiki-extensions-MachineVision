@@ -30,6 +30,9 @@ class Hooks {
 			return;
 		}
 		$file = $uploadBase->getLocalFile();
+		if ( $file->getMediaType() !== MEDIATYPE_BITMAP ) {
+			return;
+		}
 		DeferredUpdates::addCallableUpdate( function () use ( $file, $extensionServices ) {
 			$registry = $extensionServices->getHandlerRegistry();
 			foreach ( $registry->getHandlers( $file ) as $handler ) {
