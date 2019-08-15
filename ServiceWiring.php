@@ -74,4 +74,8 @@ return [
 		return $registry;
 	},
 
+	'MachineVisionConfig' => function ( MediaWikiServices $services ): Config {
+		return $services->getConfigFactory()->makeConfig( 'MachineVision' );
+	}
+
 ];

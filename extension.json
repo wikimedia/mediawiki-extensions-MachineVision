@@ -79,6 +79,10 @@
 		"MachineVisionHandlers": {
 			"value": {},
 			"description": "Configuration for the handlers. Keys are provider names, values are ObjectFactory specifications."
+		},
+		"MachineVisionRequestLabelsOnUploadComplete": {
+			"value": false,
+			"description": "Whether to request image labels from the configured provider(s) for image files on upload complete."
 		}
 	},
 	"manifest_version": 2
