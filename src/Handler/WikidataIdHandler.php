@@ -26,6 +26,7 @@ abstract class WikidataIdHandler implements Handler {
 	public function __construct( Repository $repository, LabelResolver $labelResolver ) {
 		$this->repository = $repository;
 		$this->labelResolver = $labelResolver;
+
 		$this->setLogger( new NullLogger() );
 	}
 
@@ -45,16 +46,15 @@ abstract class WikidataIdHandler implements Handler {
 	 * @param array &$pageInfo
 	 */
 	public function handleInfoAction( IContextSource $context, LocalFile $file, array &$pageInfo ) {
-		$labelIds = $this->repository->getLabels( $file->getSha1() );
-		if ( $labelIds ) {
-			// TODO: Merge with EntityLookup/i18n patch
-			$labels = $this->labelResolver->resolve( $labelIds, 'en' );
+		$ids = $this->repository->getLabels( $file->getSha1() );
+		if ( $ids ) {
+			$labels = $this->labelResolver->resolve( $context, $ids );
 			$wdItemLinks = array_map( function ( $id ) use ( $labels ) {
 				// @phan-suppress-next-line SecurityCheck-DoubleEscaped
 				return Html::element( 'a', [
 					'href' => 'https://www.wikidata.org/wiki/' . htmlentities( $id ),
 				], $labels[$id] );
-			}, $labelIds );
+			}, $ids );
 			// TODO there should probably be a structured-data or similar header but this extension
 			// is not the right place for that
 			$pageInfo['header-properties'][] = [

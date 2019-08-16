@@ -8,6 +8,8 @@ use MediaWiki\Extension\MachineVision\Repository;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\NameTableStore;
+use Wikibase\Repo\WikibaseRepo;
+use Wikibase\LanguageFallbackChainFactory;
 use Wikimedia\ObjectFactory;
 
 return [
@@ -90,10 +92,22 @@ return [
 	},
 
 	'MachineVisionLabelResolver' => function ( MediaWikiServices $services ): LabelResolver {
+		$extensionConfig = $services->getConfigFactory()->makeConfig( 'MachineVision' );
+		$entityLookup = WikibaseRepo::getDefaultInstance()->getEntityLookup();
+		$languageFallbackChainFactory = new LanguageFallbackChainFactory();
 		$httpRequestFactory = $services->getHttpRequestFactory();
 		$wikiId = wfWikiID();
 		$userAgent = $httpRequestFactory->getUserAgent() . "($wikiId)";
-		return new LabelResolver( $httpRequestFactory, $userAgent );
+		$useWikidataPublicApi =
+			$extensionConfig->get( 'MachineVisionRequestLabelsFromWikidataPublicApi' );
+
+		return new LabelResolver(
+			$entityLookup,
+			$languageFallbackChainFactory,
+			$httpRequestFactory,
+			$userAgent,
+			$useWikidataPublicApi
+		);
 	}
 
 ];
