@@ -5,6 +5,13 @@
 		]
 	},
 	"machinevision-pageinfo-field-suggested-labels": "Siūlomos žymos",
+	"machinevision-imagelabeling": "Paveikslėlių Žymėjimas",
+	"apihelp-reviewimagelabels-param-review": "Peržiūros rezultatas.",
 	"apihelp-reviewimagelabels-paramvalue-review-accept": "Pasiūlymas yra teisingas.",
-	"apihelp-reviewimagelabels-paramvalue-review-reject": "Pasiūlymas yra neteisingas."
+	"apihelp-reviewimagelabels-paramvalue-review-reject": "Pasiūlymas yra neteisingas.",
+	"apihelp-query+imagelabels-param-state": "Rodo žymes tik šiose peržiūros būsenose",
+	"apihelp-query+imagelabels-paramvalue-state-unreviewed": "Žymės, kurios dar nebuvo peržiūrėtos.",
+	"apihelp-query+imagelabels-paramvalue-state-accepted": "Žymės, kurios buvo atpažintos kaip tinkamos.",
+	"apihelp-query+imagelabels-paramvalue-state-rejected": "Žymės, kurios buvo identifikuotos kaip neteisingos.",
+	"apihelp-query+imagelabels-paramvalue-state-skipped": "Žymės, kuras kažkas bandė atpažinti, tačiau to nebaigė."
 }
