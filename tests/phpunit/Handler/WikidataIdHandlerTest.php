@@ -50,8 +50,8 @@ class WikidataIdHandlerTest extends TestCase {
 			->with( $sha1, 'random', [ 'Q773044', 'Q29106' ] );
 		/** @var Repository $repository */
 
-		$wikidataIdHandler = new WikidataIdHandler( $client, $repository, $apiUrlTemplate );
-		$wikidataIdHandler->handleUploadComplete( $file );
+		$wikidataIdHandler = new RandomWikidataIdHandler( $client, $repository, $apiUrlTemplate );
+		$wikidataIdHandler->handleUploadComplete( 'random',  $file );
 	}
 
 }

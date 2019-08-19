@@ -50,7 +50,7 @@ class Registry implements LoggerAwareInterface {
 				/** @var Handler $handler */
 				$handler = $this->objectFactory->createObject( $spec, [ 'assertClass' => Handler::class ] );
 				$handler->setLogger( $this->logger );
-				$this->handlers[] = $handler;
+				$this->handlers[$provider] = $handler;
 			}
 		}
 		return $this->handlers;

@@ -15,9 +15,10 @@ interface Handler extends LoggerAwareInterface {
 
 	/**
 	 * Process a file that has been successfully uploaded.
+	 * @param string $provider provider name
 	 * @param LocalFile $file
 	 */
-	public function handleUploadComplete( LocalFile $file );
+	public function handleUploadComplete( $provider, LocalFile $file );
 
 	/**
 	 * Add extra data to the action=info page.

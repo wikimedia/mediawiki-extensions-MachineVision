@@ -101,8 +101,8 @@ class FetchSuggestions extends Maintenance {
 	}
 
 	private function fetchForFile( LocalFile $file ) {
-		foreach ( $this->handlerRegistry->getHandlers( $file ) as $handler ) {
-			$handler->handleUploadComplete( $file );
+		foreach ( $this->handlerRegistry->getHandlers( $file ) as $provider => $handler ) {
+			$handler->handleUploadComplete( $provider, $file );
 		}
 	}
 
