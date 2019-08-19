@@ -69,6 +69,7 @@ class WikidataIdHandler implements Handler {
 		if ( $labels ) {
 			// FIXME there's probably a nice way to build human-readable description of Q-items
 			$labels = array_map( function ( $label ) {
+				// @phan-suppress-next-line SecurityCheck-DoubleEscaped
 				return Html::element( 'a', [
 					'href' => 'https://www.wikidata.org/wiki/' . htmlentities( $label ),
 				], $label );
