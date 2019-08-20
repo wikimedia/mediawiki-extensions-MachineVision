@@ -80,6 +80,8 @@ class Hooks {
 	public static function onLoadExtensionSchemaUpdates( DatabaseUpdater $updater ) {
 		$sqlDir = __DIR__ . '/../sql';
 		$updater->addExtensionTable( 'machine_vision_provider', "$sqlDir/machine_vision.sql" );
+		$updater->addExtensionTable( 'machine_vision_freebase_mapping',
+			"$sqlDir/patches/01-add-freebase_mapping.sql" );
 	}
 
 	/**
