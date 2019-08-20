@@ -114,6 +114,7 @@ class ApiReviewImageLabels extends ApiBase {
 			// Remove the page from the review queue, if there's a persisted queue.
 			/** @var SpecialImageLabeling $queryPage */
 			$queryPage = $this->specialPageFactory->getPage( 'ImageLabeling' );
+			// @phan-suppress-next-line PhanUndeclaredMethod
 			$queryPage->delete( $title );
 		}
 

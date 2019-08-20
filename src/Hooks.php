@@ -63,6 +63,7 @@ class Hooks {
 		if ( $title->inNamespace( NS_FILE ) ) {
 			/** @var LocalFile $file */
 			$file = $services->getRepoGroup()->getLocalRepo()->findFile( $title );
+			'@phan-var LocalFile $file';
 			if ( $file ) {
 				$registry = $extensionServices->getHandlerRegistry();
 				foreach ( $registry->getHandlers( $file ) as $handler ) {
