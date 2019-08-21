@@ -51,7 +51,8 @@
 		}
 	},
 	"SpecialPages": {
-		"ImageLabeling": "MediaWiki\\Extension\\MachineVision\\Special\\SpecialImageLabeling"
+		"ImageLabeling": "MediaWiki\\Extension\\MachineVision\\Special\\SpecialImageLabeling",
+		"MachineAidedTagging": "MediaWiki\\Extension\\MachineVision\\Special\\SpecialMachineAidedTagging"
 	},
 	"ServiceWiringFiles": [
 		"ServiceWiring.php"
@@ -83,6 +84,77 @@
 		"MachineVisionRequestLabelsOnUploadComplete": {
 			"value": false,
 			"description": "Whether to request image labels from the configured provider(s) for image files on upload complete."
+		}
+	},
+	"ResourceFileModulePaths": {
+		"localBasePath": "",
+		"remoteExtPath": "MachineVision"
+	},
+	"ResourceModules": {
+		"ext.MachineVision": {
+			"packageFiles": [
+				"resources/init.js",
+				"resources/base/DOMLessGroupWidget.js",
+				"resources/base/TemplateRenderingDOMLessGroupWidget.js",
+				"resources/models/ImageData.js",
+				"resources/models/SuggestionData.js",
+				"resources/widgets/ImageDepictsSuggestionsPager.js",
+				"resources/widgets/ImageDepictsSuggestionsPage.js",
+				"resources/widgets/ImageWithSuggestionsWidget.js",
+				"resources/widgets/SuggestionBaseWidget.js",
+				"resources/widgets/SuggestionsRejectedGroupWidget.js",
+				"resources/widgets/SuggestionsGroupWidget.js",
+				"resources/widgets/SuggestionWidget.js",
+				"resources/widgets/SuggestionConfirmedWidget.js",
+				"resources/widgets/SuggestionRejectedWidget.js"
+			],
+			"styles": [
+				"resources/widgets/ImageDepictsSuggestionsPager.less",
+				"resources/widgets/ImageDepictsSuggestionsPage.less",
+				"resources/widgets/ImageWithSuggestionsWidget.less",
+				"resources/widgets/SuggestionsRejectedGroupWidget.less",
+				"resources/widgets/SuggestionsGroupWidget.less",
+				"resources/widgets/SuggestionBaseWidget.less",
+				"resources/widgets/SuggestionWidget.less",
+				"resources/widgets/SuggestionConfirmedWidget.less",
+				"resources/widgets/SuggestionRejectedWidget.less"
+			],
+			"dependencies": [
+				"oojs",
+				"oojs-ui-core",
+				"mediawiki.template.mustache+dom"
+			],
+			"templates": [
+				"resources/widgets/ImageDepictsSuggestionsPager.mustache+dom",
+				"resources/widgets/ImageDepictsSuggestionsPage.mustache+dom",
+				"resources/widgets/ImageWithSuggestionsWidget.mustache+dom",
+				"resources/widgets/SuggestionsRejectedGroupWidget.mustache+dom",
+				"resources/widgets/SuggestionsGroupWidget.mustache+dom",
+				"resources/widgets/SuggestionWidget.mustache+dom",
+				"resources/widgets/SuggestionConfirmedWidget.mustache+dom",
+				"resources/widgets/SuggestionRejectedWidget.mustache+dom"
+			],
+			"messages": [
+				"machinevision-machineaidedtagging",
+				"machinevision-machineaidedtagging-intro",
+				"machinevision-suggestions-heading",
+				"machinevision-suggestions-rejected-heading",
+				"machinevision-publish",
+				"machinevision-publish-title",
+				"machinevision-more",
+				"machinevision-more-title",
+				"machinevision-reset",
+				"machinevision-reset-title",
+				"machinevision-close-title",
+				"machinevision-suggestion-confirm-title",
+				"machinevision-suggestion-confirm-undo-title",
+				"machinevision-suggestion-reject-title",
+				"machinevision-suggestion-reject-undo-title"
+			],
+			"targets" : [
+				"mobile",
+				"desktop"
+			]
 		}
 	},
 	"manifest_version": 2

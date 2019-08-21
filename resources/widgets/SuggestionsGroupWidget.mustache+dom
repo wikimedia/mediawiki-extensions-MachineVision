@@ -1,0 +1,4 @@
+{{{titleLabel}}}
+{{#suggestions}}
+{{{.}}}
+{{/suggestions}}

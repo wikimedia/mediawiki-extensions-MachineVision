@@ -1,0 +1,12 @@
+{{{closeButton}}}
+<div class="wbmad-image-with-suggestions-flex-container">
+  <div class="wbmad-image-with-suggestions-flex-left">
+    {{{imageDescriptionLabel}}}
+    <img src="{{thumburl}}" title="{{imageTagTitle}}">
+  </div>
+  <div class="wbmad-image-with-suggestions-flex-right">
+    {{{suggestions}}}
+    {{{rejectedSuggestions}}}
+    <div class="wbmad-buttons">{{{publishButton}}}{{{resetButton}}}</div>
+  </div>
+</div>

@@ -1,13 +1,29 @@
 {
 	"@metadata": {
 		"authors": [
-			"Wikimedia Product Infrastructure Team"
+			"Wikimedia Product Infrastructure Team",
+			"Monte Hurd"
 		]
 	},
 	"machinevision-desc": "Interfaces with internal and external machine vision service providers and stores results for usage on-wiki.",
+	"machinevision-machineaidedtagging": "Machine-aided tagging",
+	"machinevision-machineaidedtagging-intro": "Review image depiction tag suggestions from a computer vision model. Only tags confirmed by users will get added to images.",
 	"machinevision-pageinfo-field-suggested-labels": "Suggested labels",
 	"machinevision-imagelabeling": "Image labeling",
-		"right-imagelabel-review": "Review image label suggestions",
+	"machinevision-suggestions-heading": "Suggested tags",
+	"machinevision-suggestions-rejected-heading": "Rejected tags",
+	"machinevision-publish": "Publish tags",
+	"machinevision-publish-title": "Publish tags?",
+	"machinevision-more": "Next $1 images",
+	"machinevision-more-title": "Show next $1 images?",
+	"machinevision-reset": "Reset tags",
+	"machinevision-reset-title": "Reset tags?",
+	"machinevision-close-title": "Close suggestions for '$1'?",
+	"machinevision-suggestion-confirm-title": "Confirm '$1' suggestion?",
+	"machinevision-suggestion-confirm-undo-title": "Undo '$1' suggestion confirmation?",
+	"machinevision-suggestion-reject-title": "Reject '$1' suggestion?",
+	"machinevision-suggestion-reject-undo-title": "Undo '$1' suggestion rejection?",
+	"right-imagelabel-review": "Review image label suggestions",
 	"action-imagelabel-review": "review image label suggestions",
 	"apihelp-reviewimagelabels-summary": "Review machine-suggested image labels.",
 	"apihelp-reviewimagelabels-param-filename": "Name of the image (without namespace prefix).",

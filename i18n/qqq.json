@@ -1,12 +1,28 @@
 {
 	"@metadata": {
 		"authors": [
-			"Wikimedia Product Infrastructure Team"
+			"Wikimedia Product Infrastructure Team",
+			"Monte Hurd"
 		]
 	},
 	"machinevision-desc": "{{desc|name=MachineVision|url=https://www.mediawiki.org/wiki/Extension:MachineVision}}",
+	"machineaidedtagging": "Name for Special:MachineAidedTagging",
+	"machineaidedtagging-intro": "Introduction appearing on top of Special:MachineAidedTagging.",
 	"machinevision-pageinfo-field-suggested-labels": "Field name for suggested labels in page info table.",
 	"machinevision-imagelabeling": "Name for Special:ImageLabeling.",
+	"machinevision-suggestions-heading": "Label for the 'Suggestions' section",
+	"machinevision-suggestions-rejected-heading": "Label for the 'Rejected' section",
+	"machinevision-publish": "Text for button to save confirmed suggestions",
+	"machinevision-publish-title": "Title for button to save confirmed suggestions",
+	"machinevision-more": "Text for button to show more images. Parameters:\n* $1 - Number of images to show",
+	"machinevision-more-title": "Title for button to show more images. Parameters:\n* $1 - Number of images to show",
+	"machinevision-reset": "Text for button to reset all suggestions for an image",
+	"machinevision-reset-title": "Title for button to reset all suggestions for an image",
+	"machinevision-close-title": "Title for button to close suggestions for an image. Parameters:\n* $1 - File name of image to close",
+	"machinevision-suggestion-confirm-title": "Title for button to confirm individual suggestion for an image. Parameters:\n* $1 - Text of suggestion to confirm",
+	"machinevision-suggestion-confirm-undo-title": "Title for button to undo individual suggestion confirmation for an image. Parameters:\n* $1 - Text of suggestion confirmation to undo",
+	"machinevision-suggestion-reject-title": "Title for button to reject individual suggestion for an image. Parameters:\n* $1 - Text of suggestion to reject",
+	"machinevision-suggestion-reject-undo-title": "Title for button to undo individual suggestion rejection for an image. Parameters:\n* $1 - Text of suggestion rejection to undo",
 	"right-imagelabel-review": "{{doc-right|imagelabel-review}}",
 	"action-imagelabel-review": "{{doc-action|imagelabel-review}}",
 	"apihelp-reviewimagelabels-summary": "{{doc-apihelp-summary|reviewimagelabels}}",
