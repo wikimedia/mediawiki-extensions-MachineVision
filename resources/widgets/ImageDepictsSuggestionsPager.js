@@ -52,16 +52,27 @@ ImageDepictsSuggestionsPager.prototype.fetchAndShowPageIfScrolledToBottom = func
 */
 
 var queryURLWithCountAndOffset = function( count, offset ) {
-	// TODO: switch to middleware endpoint once it exists
-	var url = "https://en.wikipedia.org/w/api.php?action=query&format=json&prop=imageinfo&generator=querypage&formatversion=2&iiprop=url&iiurlwidth=320&iiurlparam=&gqppage=Uncategorizedimages&origin=*"
-		+ "&gqplimit=" + count;
-	if (offset == 0) {
-		return url;
+	var query = {
+		action: 'query',
+		format: 'json',
+		formatversion: 2,
+		generator: 'querypage',
+		gqppage: 'ImageLabeling',
+		gqplimit: count,
+		prop: 'imageinfo|imagelabels',
+		iiprop: 'url',
+		iiurlwidth: 320,
+	};
+
+	if ( offset ) {
+		query['gqpoffset'] = count * offset;
+		query['continue'] = 'gqpoffset||';
 	}
-	return url
-		+ "&gqpoffset=" + (count * offset)
-		+ "&continue=gqpoffset||";
-}
+
+	return mw.config.get( 'wgServer' )
+		+ mw.config.get ( 'wgScriptPath' ) + '/api.php?'
+		+ Object.keys( query ).map( k => `${k}=${query[k]}` ).join('&');
+};
 
 var randomDescription = function() {
 	var array = [
