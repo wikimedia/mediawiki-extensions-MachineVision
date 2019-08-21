@@ -36,8 +36,8 @@ class Hooks {
 		}
 		DeferredUpdates::addCallableUpdate( function () use ( $file, $extensionServices ) {
 			$registry = $extensionServices->getHandlerRegistry();
-			foreach ( $registry->getHandlers( $file ) as $handler ) {
-				$handler->handleUploadComplete( $file );
+			foreach ( $registry->getHandlers( $file ) as $provider => $handler ) {
+				$handler->handleUploadComplete( $provider, $file );
 			}
 		} );
 	}

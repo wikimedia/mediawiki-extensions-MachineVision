@@ -1,5 +1,6 @@
 <?php
 
+use Google\Cloud\Vision\V1\ImageAnnotatorClient;
 use MediaWiki\Extension\MachineVision\Client;
 use MediaWiki\Extension\MachineVision\Handler\Registry;
 use MediaWiki\Extension\MachineVision\Repository;
@@ -20,6 +21,11 @@ return [
 		);
 		$labelingClient->setLogger( LoggerFactory::getInstance( 'machinevision' ) );
 		return $labelingClient;
+	},
+
+	'MachineVisionGoogleImageAnnotatorClient' => function ( MediaWikiServices $services ):
+		ImageAnnotatorClient {
+		return new ImageAnnotatorClient();
 	},
 
 	'MachineVisionNameTableStore' => function ( MediaWikiServices $services ): NameTableStore {
@@ -76,6 +82,10 @@ return [
 
 	'MachineVisionConfig' => function ( MediaWikiServices $services ): Config {
 		return $services->getConfigFactory()->makeConfig( 'MachineVision' );
+	},
+
+	'MachineVisionRepoGroup' => function ( MediaWikiServices $services ): RepoGroup {
+		return $services::getInstance()->getRepoGroup();
 	}
 
 ];

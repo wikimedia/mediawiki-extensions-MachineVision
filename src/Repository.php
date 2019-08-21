@@ -168,4 +168,18 @@ class Repository implements LoggerAwareInterface {
 		return (int)$state;
 	}
 
+	/**
+	 * Get the mapped Wikidata ID(s) given a Freebase ID.
+	 * @param string $freebaseId
+	 * @return string[]|false Array containing all matching Wikidata IDs, or false if none are found
+	 */
+	public function getMappedWikidataIds( $freebaseId ) {
+		return $this->dbr->selectFieldValues(
+			'machine_vision_freebase_mapping',
+			'mvfm_wikidata_id',
+			[ 'mvfm_freebase_id' => $freebaseId ],
+			__METHOD__
+		);
+	}
+
 }

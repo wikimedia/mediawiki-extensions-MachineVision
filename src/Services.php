@@ -7,6 +7,7 @@ use Config;
 use MediaWiki\Extension\MachineVision\Handler\Registry;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\NameTableStore;
+use RepoGroup;
 
 class Services {
 
@@ -35,6 +36,10 @@ class Services {
 
 	public function getExtensionConfig(): Config {
 		return $this->services->getService( 'MachineVisionConfig' );
+	}
+
+	public function getRepoGroup(): RepoGroup {
+		return $this->services->getService( 'MachineVisionRepoGroup' );
 	}
 
 }
