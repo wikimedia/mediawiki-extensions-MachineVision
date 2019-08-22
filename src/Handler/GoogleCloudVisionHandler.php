@@ -23,6 +23,7 @@ class GoogleCloudVisionHandler extends WikidataIdHandler {
 	 * @param ImageAnnotatorClient $client
 	 * @param Repository $repository
 	 * @param RepoGroup $repoGroup
+	 * @param LabelResolver $labelResolver
 	 * @param bool $sendFileContents
 	 * @suppress PhanUndeclaredTypeParameter
 	 */
@@ -30,9 +31,10 @@ class GoogleCloudVisionHandler extends WikidataIdHandler {
 		ImageAnnotatorClient $client,
 		Repository $repository,
 		RepoGroup $repoGroup,
+		LabelResolver $labelResolver,
 		$sendFileContents
 	) {
-		parent::__construct( $repository );
+		parent::__construct( $repository, $labelResolver );
 		$this->client = $client;
 		$this->repoGroup = $repoGroup;
 		$this->sendFileContents = $sendFileContents;

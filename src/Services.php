@@ -4,6 +4,7 @@
 namespace MediaWiki\Extension\MachineVision;
 
 use Config;
+use MediaWiki\Extension\MachineVision\Handler\LabelResolver;
 use MediaWiki\Extension\MachineVision\Handler\Registry;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\NameTableStore;
@@ -40,6 +41,10 @@ class Services {
 
 	public function getRepoGroup(): RepoGroup {
 		return $this->services->getService( 'MachineVisionRepoGroup' );
+	}
+
+	public function getLabelResolver(): LabelResolver {
+		return $this->services->getService( 'MachineVisionLabelResolver' );
 	}
 
 }

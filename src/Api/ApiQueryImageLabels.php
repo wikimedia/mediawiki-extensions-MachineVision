@@ -7,10 +7,10 @@ use ApiQuery;
 use ApiQueryBase;
 use ApiResult;
 use LocalFile;
+use MediaWiki\Extension\MachineVision\Handler\LabelResolver;
 use MediaWiki\Extension\MachineVision\Repository;
 use MediaWiki\Extension\MachineVision\Services;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Storage\NameTableStore;
 use RepoGroup;
 use Title;
 
@@ -26,8 +26,8 @@ class ApiQueryImageLabels extends ApiQueryBase {
 	/** @var RepoGroup */
 	private $repoGroup;
 
-	/** @var NameTableStore */
-	private $nameTableStore;
+	/** @var LabelResolver */
+	private $labelResolver;
 
 	/**
 	 * @param ApiQuery $query
@@ -38,14 +38,14 @@ class ApiQueryImageLabels extends ApiQueryBase {
 		$services = MediaWikiServices::getInstance();
 		$extensionServices = new Services( $services );
 		return new self( $query, $moduleName, $services->getRepoGroup(),
-			$extensionServices->getNameTableStore() );
+			$extensionServices->getLabelResolver() );
 	}
 
 	/**
 	 * @param ApiQuery $query
 	 * @param string $moduleName
 	 * @param RepoGroup $repoGroup
-	 * @param NameTableStore $nameTableStore
+	 * @param LabelResolver $labelResolver
 	 */
 	public function __construct(
 		// API extra args
@@ -53,11 +53,11 @@ class ApiQueryImageLabels extends ApiQueryBase {
 		$moduleName,
 		// services
 		RepoGroup $repoGroup,
-		NameTableStore $nameTableStore
+		LabelResolver $labelResolver
 	) {
 		parent::__construct( $query, $moduleName, 'il' );
 		$this->repoGroup = $repoGroup;
-		$this->nameTableStore = $nameTableStore;
+		$this->labelResolver = $labelResolver;
 	}
 
 	/** @inheritDoc */
@@ -105,6 +105,16 @@ class ApiQueryImageLabels extends ApiQueryBase {
 			$data[$pageId][$row->mvl_wikidata_id]['wikidata_id'] = $row->mvl_wikidata_id;
 			$data[$pageId][$row->mvl_wikidata_id]['state'] = self::$reviewStateNames[$row->mvl_review];
 		}
+
+		foreach ( $data as $pageId => $pageData ) {
+			$ids = array_keys( $pageData );
+			// TODO: merge with EntityLookup/i18n patch
+			$labels = $this->labelResolver->resolve( $ids, 'en' );
+			foreach ( $labels as $id => $label ) {
+				$data[$pageId][$id]['label'] = $label;
+			}
+		}
+
 		asort( $data );
 		foreach ( $data as $pageId => $pageData ) {
 			asort( $pageData );

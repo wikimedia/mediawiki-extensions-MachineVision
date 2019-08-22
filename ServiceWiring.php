@@ -2,6 +2,7 @@
 
 use Google\Cloud\Vision\V1\ImageAnnotatorClient;
 use MediaWiki\Extension\MachineVision\Client;
+use MediaWiki\Extension\MachineVision\Handler\LabelResolver;
 use MediaWiki\Extension\MachineVision\Handler\Registry;
 use MediaWiki\Extension\MachineVision\Repository;
 use MediaWiki\Logger\LoggerFactory;
@@ -86,6 +87,13 @@ return [
 
 	'MachineVisionRepoGroup' => function ( MediaWikiServices $services ): RepoGroup {
 		return $services::getInstance()->getRepoGroup();
+	},
+
+	'MachineVisionLabelResolver' => function ( MediaWikiServices $services ): LabelResolver {
+		$httpRequestFactory = $services->getHttpRequestFactory();
+		$wikiId = wfWikiID();
+		$userAgent = $httpRequestFactory->getUserAgent() . "($wikiId)";
+		return new LabelResolver( $httpRequestFactory, $userAgent );
 	}
 
 ];
