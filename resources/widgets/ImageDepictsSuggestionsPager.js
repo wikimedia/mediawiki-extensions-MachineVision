@@ -85,21 +85,17 @@ var randomDescription = function() {
 	return array[randomNumber];
 };
 
-var randomSuggestions = function() {
-	var array = 'this,that,other,bird,dog,cat,fish,horse,goat,frog,soup,chicken,stick,sky,mountain,house,beach,face,eye,book,shirt,watch,hair,arm,bricks,map,hand,window,floor,lamp,river,can,logo,bottle,form,stamp,chart,graph,lines'.split(',');
-	array = $.map( array, function( string ) {
-		return new SuggestionData( string );
-	});
-	var shuffled = array.sort( function () {
-		return .5 - Math.random();
-	});
-	return shuffled.slice( 0, Math.min( 15, Math.floor( Math.random() * array.length ) + 5 ) );
-};
-
 var getImageDataForQueryResponsePage = function( page ) {
 	// TODO: grab actual description and suggestions from middleware endpoint once it exists,
 	// then delete the random methods and the `thumbwidth != 320` check (which the middleware will enforce)
-	return ( !page.imageinfo || page.imageinfo[0].thumbwidth != 320 ) ? null : new ImageData( page.title, page.imageinfo[0].thumburl, randomDescription(), randomSuggestions() );
+	if ( page.imageinfo && page.imagelabels && page.imagelabels.length ) {
+		return new ImageData(
+			page.title,
+			page.imageinfo[0].thumburl,
+			randomDescription(),
+			page.imagelabels.map( labelData => new SuggestionData( labelData.label ) )
+		);
+	}
 };
 
 var updateMoreButtonVisibility = function ( resultsFound ) {
