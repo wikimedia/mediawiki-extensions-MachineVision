@@ -5,8 +5,12 @@
 		]
 	},
 	"machinevision-desc": "'Nderfacce cu gestore d'u servizie d'u 'ndrucamende d'a maghene 'nderne e esterne e reggìstre le resultate pe l'ause sus a uicchi.",
+	"machinevision-machineaidedtagging": "Taggamende de l'aijute maghene",
 	"machinevision-pageinfo-field-suggested-labels": "Etichette suggerite",
 	"machinevision-imagelabeling": "Etichettature de l'immaggine",
+	"machinevision-close-title": "Achiude le suggereminde pe '$1'?",
+	"machinevision-suggestion-reject-title": "Scitte 'u suggerimende '$1'?",
+	"machinevision-suggestion-reject-undo-title": "Annulle 'u scettamende d'u suggerimende '$1'?",
 	"right-imagelabel-review": "Condrolle le suggereminde de l'etichette de l'immaggine",
 	"action-imagelabel-review": "condrolle le suggereminde de l'etichette de l'immaggine",
 	"apihelp-reviewimagelabels-summary": "Condrolle l'etichette de l'immaggine d'a maghene suggerite.",
