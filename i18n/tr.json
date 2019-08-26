@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Suvarioglu"
+		]
+	},
+	"machinevision-suggestions-rejected-heading": "Reddedilmiş etiketler",
+	"machinevision-reset": "Etiketleri sıfırla",
+	"machinevision-reset-title": "Etiketleri sıfırla?"
+}
