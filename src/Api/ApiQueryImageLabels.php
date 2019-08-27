@@ -62,7 +62,7 @@ class ApiQueryImageLabels extends ApiQueryBase {
 
 	/** @inheritDoc */
 	public function execute() {
-		// TODO move some of this to Handler?
+		// TODO: move some of this to Handler?
 		$params = $this->extractRequestParams();
 		$continuePageId = $params['continue'] ?? -1 * PHP_INT_MAX;
 
@@ -108,8 +108,7 @@ class ApiQueryImageLabels extends ApiQueryBase {
 
 		foreach ( $data as $pageId => $pageData ) {
 			$ids = array_keys( $pageData );
-			// TODO: merge with EntityLookup/i18n patch
-			$labels = $this->labelResolver->resolve( $ids, 'en' );
+			$labels = $this->labelResolver->resolve( $this->getContext(), $ids );
 			foreach ( $labels as $id => $label ) {
 				$data[$pageId][$id]['label'] = $label;
 			}

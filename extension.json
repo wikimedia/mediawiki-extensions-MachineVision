@@ -84,6 +84,10 @@
 		"MachineVisionRequestLabelsOnUploadComplete": {
 			"value": false,
 			"description": "Whether to request image labels from the configured provider(s) for image files on upload complete."
+		},
+		"MachineVisionRequestLabelsFromWikidataPublicApi": {
+			"value": false,
+			"description": "If true, request labels for item IDs from the Wikidata public API. Otherwise, look them up in the configured Wikibase repo. Public API usage is intended for testing only."
 		}
 	},
 	"ResourceFileModulePaths": {

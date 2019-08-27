@@ -11,6 +11,12 @@ use Psr\Log\NullLogger;
 use UnexpectedValueException;
 use Wikimedia\Rdbms\IDatabase;
 
+/**
+ * Database interaction for label suggestions.
+ * TODO: This class refers to unresolved Wikidata IDs as "labels" but this is confusing since
+ * elsewhere we use "label" to refer to the resolved text labels. We should find better terminology
+ * here.
+ */
 class Repository implements LoggerAwareInterface {
 
 	use LoggerAwareTrait;
