@@ -153,7 +153,7 @@ class ApiQueryImageLabels extends ApiQueryBase {
 
 	/** @inheritDoc */
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/Extension:MachineVision#API';
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/Extension:MachineVision#API';
 	}
 
 }
