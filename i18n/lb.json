@@ -6,5 +6,6 @@
 	},
 	"machinevision-pageinfo-field-suggested-labels": "Proposéiert Etiketten",
 	"machinevision-more": "Nächst $1 Biller",
+	"machinevision-suggestion-reject-title": "Propos '$1' refuséieren?",
 	"apihelp-reviewimagelabels-paramvalue-review-reject": "D'Propos ass net korrekt."
 }

@@ -1,0 +1,15 @@
+{
+	"@metadata": {
+		"authors": [
+			"RadioAzureus"
+		]
+	},
+	"machinevision-suggestions-heading": "Voorgestelde labels",
+	"machinevision-publish-title": "Tags publiceren?",
+	"machinevision-more": "Volgende $1 fotos",
+	"machinevision-reset": "Reset label",
+	"machinevision-close-title": "Sluit suggesties voor $1",
+	"machinevision-suggestion-confirm-title": "Bevestig $1 voorstel",
+	"machinevision-suggestion-reject-title": "Wijs $1 voorstel af?",
+	"apihelp-reviewimagelabels-paramvalue-review-accept": "Het voorstel is goed"
+}
