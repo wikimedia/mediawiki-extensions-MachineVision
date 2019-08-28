@@ -1,6 +1,6 @@
 'use strict';
 
-var IMAGES_PER_PAGE = 25,
+var IMAGES_PER_PAGE = 10,
 TemplateRenderingDOMLessGroupWidget = require( './../base/TemplateRenderingDOMLessGroupWidget.js' ),
 ImageDepictsSuggestionsPage = require( './ImageDepictsSuggestionsPage.js' ),
 SuggestionData = require( './../models/SuggestionData.js' ),
@@ -56,9 +56,8 @@ var queryURLWithCountAndOffset = function( count, offset ) {
 		action: 'query',
 		format: 'json',
 		formatversion: 2,
-		generator: 'querypage',
-		gqppage: 'ImageLabeling',
-		gqplimit: count,
+		generator: 'unreviewedimagelabels',
+		guillimit: count,
 		prop: 'imageinfo|imagelabels',
 		iiprop: 'url',
 		iiurlwidth: 320,
