@@ -6,7 +6,6 @@ use DatabaseUpdater;
 use DeferredUpdates;
 use IContextSource;
 use LocalFile;
-use MediaWiki\Extension\MachineVision\Special\SpecialImageLabeling;
 use MediaWiki\MediaWikiServices;
 use UploadBase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
@@ -40,14 +39,6 @@ class Hooks {
 				$handler->handleUploadComplete( $provider, $file );
 			}
 		} );
-	}
-
-	/**
-	 * @param array &$wgQueryPages
-	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/wgQueryPages
-	 */
-	public static function onwgQueryPages( array &$wgQueryPages ) {
-		$wgQueryPages[] = [ SpecialImageLabeling::class, 'ImageLabeling' ];
 	}
 
 	/**
