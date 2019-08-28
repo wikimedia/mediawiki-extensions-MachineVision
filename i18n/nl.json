@@ -1,15 +1,18 @@
 {
 	"@metadata": {
 		"authors": [
-			"RadioAzureus"
+			"RadioAzureus",
+			"Siebrand"
 		]
 	},
 	"machinevision-suggestions-heading": "Voorgestelde labels",
+	"machinevision-publish": "Labels publiceren",
 	"machinevision-publish-title": "Tags publiceren?",
-	"machinevision-more": "Volgende $1 fotos",
-	"machinevision-reset": "Reset label",
-	"machinevision-close-title": "Sluit suggesties voor $1",
-	"machinevision-suggestion-confirm-title": "Bevestig $1 voorstel",
-	"machinevision-suggestion-reject-title": "Wijs $1 voorstel af?",
-	"apihelp-reviewimagelabels-paramvalue-review-accept": "Het voorstel is goed"
+	"machinevision-more": "Volgende $1 afbeeldingen",
+	"machinevision-reset": "Labels opnieuw instellen",
+	"machinevision-reset-title": "Labels opnieuw instellen?",
+	"machinevision-close-title": "Voorstellen voor \"$1\" sluiten?",
+	"machinevision-suggestion-confirm-title": "Voorstel \"$1\" bevestigen?",
+	"machinevision-suggestion-reject-title": "Voorstel \"$1\" afwijzen?",
+	"apihelp-reviewimagelabels-paramvalue-review-accept": "Het voorstel is correct."
 }
