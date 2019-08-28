@@ -9,7 +9,6 @@
 	"machinevision-machineaidedtagging": "Machine-aided tagging",
 	"machinevision-machineaidedtagging-intro": "Review image depiction tag suggestions from a computer vision model. Only tags confirmed by users will get added to images.",
 	"machinevision-pageinfo-field-suggested-labels": "Suggested labels",
-	"machinevision-imagelabeling": "Image labeling",
 	"machinevision-suggestions-heading": "Suggested tags",
 	"machinevision-suggestions-rejected-heading": "Rejected tags",
 	"machinevision-publish": "Publish tags",
@@ -42,5 +41,8 @@
 	"apihelp-query+imagelabels-paramvalue-state-accepted": "Labels which have been identified as correct.",
 	"apihelp-query+imagelabels-paramvalue-state-rejected": "Labels which have been identified as incorrect.",
 	"apihelp-query+imagelabels-paramvalue-state-skipped": "Labels which someone tried to identify but gave up.",
-	"apihelp-query+imagelabels-example-1": "Show machine-suggested image labels for <kbd>Example.png</kbd>."
+	"apihelp-query+imagelabels-example-1": "Show machine-suggested image labels for <kbd>Example.png</kbd>.",
+	"apihelp-query+unreviewedimagelabels-summary": "Show titles with suggested image labels needing review.",
+	"apihelp-query+unreviewedimagelabels-param-uploader": "Only return results uploaded by this user.",
+	"apihelp-query+unreviewedimagelabels-param-limit": "Number of result items to return."
 }

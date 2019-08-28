@@ -177,6 +177,35 @@ class Repository implements LoggerAwareInterface {
 	}
 
 	/**
+	 * Get list of image titles with unreviewed image labels.
+	 * @param int $limit
+	 * @param int|null $userId local user ID for filtering
+	 * @return string[] Titles of file pages with associated unreviewed labels
+	 */
+	public function getTitlesWithUnreviewedLabels( $limit, $userId = null ) {
+		$conds = [ 'mvl_review' => self::REVIEW_UNREVIEWED ];
+		if ( $userId ) {
+			$conds['mvl_uploader_id'] = strval( $userId );
+		}
+		$res = $this->dbr->select(
+			[ 'machine_vision_label', 'image' ],
+			'img_name',
+			$conds,
+			__METHOD__,
+			[
+				'GROUP BY' => [ 'mvl_image_sha1' ],
+				'LIMIT' => $limit,
+			],
+			[ 'image' => [ 'JOIN', 'mvl_image_sha1 = img_sha1' ] ]
+		);
+		$data = [];
+		foreach ( $res as $row ) {
+			$data[] = $row->img_name;
+		}
+		return array_unique( $data );
+	}
+
+	/**
 	 * Get the mapped Wikidata ID(s) given a Freebase ID.
 	 * @param string $freebaseId
 	 * @return string[]|false Array containing all matching Wikidata IDs, or false if none are found

@@ -40,5 +40,8 @@
 	"apihelp-query+imagelabels-paramvalue-state-accepted": "{{doc-apihelp-paramvalue|query+imagelabels|state|accepted}}",
 	"apihelp-query+imagelabels-paramvalue-state-rejected": "{{doc-apihelp-paramvalue|query+imagelabels|state|rejected}}",
 	"apihelp-query+imagelabels-paramvalue-state-skipped": "{{doc-apihelp-paramvalue|query+imagelabels|state|skipped}}",
-	"apihelp-query+imagelabels-example-1": "{{doc-apihelp-example|query+imagelabels}}"
+	"apihelp-query+imagelabels-example-1": "{{doc-apihelp-example|query+imagelabels}}",
+	"apihelp-query+unreviewedimagelabels-summary": "{{doc-apihelp-summary|query+unreviewedimagelabels}}",
+	"apihelp-query+unreviewedimagelabels-param-uploader": "{{doc-apihelp-param|query+unreviewedimagelabels|uploader}}",
+	"apihelp-query+unreviewedimagelabels-param-limit": "{{doc-apihelp-param|query+unreviewedimagelabels|limit}}"
 }

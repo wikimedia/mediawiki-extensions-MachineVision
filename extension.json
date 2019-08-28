@@ -47,6 +47,12 @@
 			"factory": "MediaWiki\\Extension\\MachineVision\\Api\\ApiReviewImageLabels::factory"
 		}
 	},
+	"APIListModules": {
+		"unreviewedimagelabels": {
+			"class": "MediaWiki\\Extension\\MachineVision\\Api\\ApiQueryUnreviewedImageLabels",
+			"factory": "MediaWiki\\Extension\\MachineVision\\Api\\ApiQueryUnreviewedImageLabels::factory"
+		}
+	},
 	"APIPropModules": {
 		"imagelabels": {
 			"class": "MediaWiki\\Extension\\MachineVision\\Api\\ApiQueryImageLabels",
