@@ -59,7 +59,8 @@ class GoogleCloudVisionHandler extends WikidataIdHandler {
 				$wikidataIds = array_merge( $wikidataIds, $mappedWikidataIds );
 			}
 		}
-		$this->getRepository()->insertLabels( $file->getSha1(), $provider, $wikidataIds );
+		$this->getRepository()->insertLabels( $file->getSha1(), $provider,
+			$file->getUser( 'id' ), $wikidataIds );
 	}
 
 	private function getUrl( LocalFile $file ) {

@@ -82,6 +82,8 @@ class Hooks {
 		$updater->addExtensionTable( 'machine_vision_provider', "$sqlDir/machine_vision.sql" );
 		$updater->addExtensionTable( 'machine_vision_freebase_mapping',
 			"$sqlDir/patches/01-add-freebase_mapping.sql" );
+		$updater->addExtensionField( 'machine_vision_label', 'mvl_uploader_id',
+			"$sqlDir/patches/02-add-mvl_uploader_id.sql" );
 	}
 
 	/**

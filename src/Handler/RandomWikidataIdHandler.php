@@ -45,7 +45,8 @@ class RandomWikidataIdHandler extends WikidataIdHandler {
 		] );
 		if ( $metadata ) {
 			$wikidataIds = array_column( $metadata['labels'], 'wikidata_id' );
-			$this->getRepository()->insertLabels( $file->getSha1(), $provider, $wikidataIds );
+			$this->getRepository()->insertLabels( $file->getSha1(), $provider,
+				$file->getUser( 'id' ), $wikidataIds );
 		}
 	}
 

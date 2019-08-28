@@ -6,6 +6,7 @@ use MediaWiki\Extension\MachineVision\Client;
 use MediaWiki\Extension\MachineVision\MockHelper;
 use MediaWiki\Extension\MachineVision\Repository;
 use PHPUnit\Framework\TestCase;
+use User;
 
 class WikidataIdHandlerTest extends TestCase {
 
@@ -15,7 +16,8 @@ class WikidataIdHandlerTest extends TestCase {
 	public function testHandleUploadComplete() {
 		$apiUrlTemplate = 'https://example.com/?title=$1';
 		$sha1 = '0beec7b5ea3f0fdbc95d0dd47f3c5bc275da8a33';
-		$file = MockHelper::getMockFile( $this, 'Foo.png', $sha1 );
+		$user = User::newFromId( 1 );
+		$file = MockHelper::getMockFile( $this, 'Foo.png', $sha1, $user );
 		$response = [
 			'title' => 'File:Seal_mechanical_compression.png',
 			'timestamp' => 1563972620213,
@@ -47,7 +49,7 @@ class WikidataIdHandlerTest extends TestCase {
 			->getMock();
 		$repository->expects( $this->once() )
 			->method( 'insertLabels' )
-			->with( $sha1, 'random', [ 'Q773044', 'Q29106' ] );
+			->with( $sha1, 'random', $user, [ 'Q773044', 'Q29106' ] );
 		/** @var Repository $repository */
 
 		$labelResolver = $this->getMockBuilder( LabelResolver::class )

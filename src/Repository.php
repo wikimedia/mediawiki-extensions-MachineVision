@@ -59,9 +59,10 @@ class Repository implements LoggerAwareInterface {
 	/**
 	 * @param string $sha1 Image SHA1
 	 * @param string $providerName Provider name
+	 * @param int $uploaderId the uploader's local user ID
 	 * @param array $wikidataIds A list of Wikidata ID such as 'Q123'
 	 */
-	public function insertLabels( $sha1, $providerName, array $wikidataIds ) {
+	public function insertLabels( $sha1, $providerName, $uploaderId, array $wikidataIds ) {
 		$providerId = $this->nameTableStore->acquireId( $providerName );
 		$timestamp = $this->dbw->timestamp();
 		foreach ( $wikidataIds as $wikidataId ) {
@@ -70,6 +71,7 @@ class Repository implements LoggerAwareInterface {
 				[
 					'mvl_image_sha1' => $sha1,
 					'mvl_wikidata_id' => $wikidataId,
+					'mvl_uploader_id' => $uploaderId,
 				],
 				__METHOD__,
 				[ 'IGNORE' ]
