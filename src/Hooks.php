@@ -75,6 +75,8 @@ class Hooks {
 			"$sqlDir/patches/01-add-freebase_mapping.sql" );
 		$updater->addExtensionField( 'machine_vision_label', 'mvl_uploader_id',
 			"$sqlDir/patches/02-add-mvl_uploader_id.sql" );
+		$updater->addExtensionField( 'machine_vision_suggestion', 'mvs_confidence',
+			"$sqlDir/patches/03-add-mvs_confidence.sql" );
 	}
 
 	/**

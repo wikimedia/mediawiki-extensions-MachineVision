@@ -5,6 +5,7 @@ namespace MediaWiki\Extension\MachineVision\Handler;
 use LocalFile;
 use MediaWiki\Extension\MachineVision\Client;
 use MediaWiki\Extension\MachineVision\Repository;
+use MediaWiki\Extension\MachineVision\LabelSuggestion;
 
 class RandomWikidataIdHandler extends WikidataIdHandler {
 
@@ -45,8 +46,11 @@ class RandomWikidataIdHandler extends WikidataIdHandler {
 		] );
 		if ( $metadata ) {
 			$wikidataIds = array_column( $metadata['labels'], 'wikidata_id' );
+			$suggestions = array_map( function ( $wikidataId ) {
+				return new LabelSuggestion( $wikidataId );
+			}, $wikidataIds );
 			$this->getRepository()->insertLabels( $file->getSha1(), $provider,
-				$file->getUser( 'id' ), $wikidataIds );
+				$file->getUser( 'id' ), $suggestions );
 		}
 	}
 

@@ -5,6 +5,7 @@ namespace MediaWiki\Extension\MachineVision\Handler;
 use MediaWiki\Extension\MachineVision\Client;
 use MediaWiki\Extension\MachineVision\MockHelper;
 use MediaWiki\Extension\MachineVision\Repository;
+use MediaWiki\Extension\MachineVision\LabelSuggestion;
 use PHPUnit\Framework\TestCase;
 use User;
 
@@ -49,7 +50,10 @@ class WikidataIdHandlerTest extends TestCase {
 			->getMock();
 		$repository->expects( $this->once() )
 			->method( 'insertLabels' )
-			->with( $sha1, 'random', $user, [ 'Q773044', 'Q29106' ] );
+			->with( $sha1, 'random', $user, [
+				new LabelSuggestion( 'Q773044' ),
+				new LabelSuggestion( 'Q29106' ),
+			] );
 		/** @var Repository $repository */
 
 		$labelResolver = $this->getMockBuilder( LabelResolver::class )

@@ -5,6 +5,7 @@ namespace MediaWiki\Extension\MachineVision\Handler;
 use Google\Cloud\Vision\V1\ImageAnnotatorClient;
 use LocalFile;
 use MediaWiki\Extension\MachineVision\Repository;
+use MediaWiki\Extension\MachineVision\LabelSuggestion;
 use RepoGroup;
 
 class GoogleCloudVisionHandler extends WikidataIdHandler {
@@ -51,16 +52,18 @@ class GoogleCloudVisionHandler extends WikidataIdHandler {
 	public function handleUploadComplete( $provider, LocalFile $file ) {
 		$payload = $this->sendFileContents ? $this->getContents( $file ) : $this->getUrl( $file );
 		$labels = $this->client->labelDetection( $payload )->getLabelAnnotations();
-		$wikidataIds = [];
+		$suggestions = [];
 		foreach ( $labels as $label ) {
 			$freebaseId = $label->getMid();
+			$score = $label->getScore();
 			$mappedWikidataIds = $this->getRepository()->getMappedWikidataIds( $freebaseId );
-			if ( $mappedWikidataIds ) {
-				$wikidataIds = array_merge( $wikidataIds, $mappedWikidataIds );
-			}
+			$newSuggestions = array_map( function ( $mappedId ) use ( $score ) {
+				return new LabelSuggestion( $mappedId, $score );
+			}, $mappedWikidataIds );
+			$suggestions = array_merge( $suggestions, $newSuggestions );
 		}
 		$this->getRepository()->insertLabels( $file->getSha1(), $provider,
-			$file->getUser( 'id' ), $wikidataIds );
+			$file->getUser( 'id' ), $suggestions );
 	}
 
 	private function getUrl( LocalFile $file ) {
