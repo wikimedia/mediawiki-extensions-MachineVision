@@ -9,10 +9,7 @@
 	"license-name": "GPL-2.0-or-later",
 	"type": "other",
 	"requires": {
-		"MediaWiki": ">= 1.34",
-		"extensions": {
-			"WikibaseClient": "*"
-		}
+		"MediaWiki": ">= 1.34"
 	},
 	"AutoloadNamespaces": {
 		"MediaWiki\\Extension\\MachineVision\\": "src/"
