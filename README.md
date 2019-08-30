@@ -1,7 +1,107 @@
 ## mediawiki-extensions-MachineVision
 
-This extension will support collecting data about images from internal and external machine vision services, storing it for on-wiki usage, and serving it for editor verification.
+This extension will support collecting data about images from internal and
+external machine vision services, storing it for on-wiki usage, and serving it
+for editor verification.
 
-For details, see the [project page on mediawiki.org](https://www.mediawiki.org/wiki/Wikimedia_Product/Machine_vision_middleware). 
+For details, see the [project page on
+mediawiki.org](https://www.mediawiki.org/wiki/Wikimedia_Product/Machine_vision_middleware).
 
-![wip](https://user-images.githubusercontent.com/3143487/63376423-9f564600-c342-11e9-9278-36a288c6b195.gif)
+### Installation
+
+#### Download and enable the extension
+1. Clone the extension repo into the `extensions` directory of your local
+   Mediawiki installation:
+   `git clone "https://gerrit.wikimedia.org/r/mediawiki/extensions/MachineVision"`
+2. Run `composer install` in the MachineVision directory
+3. Add `wfLoadExtension( 'MachineVision' );` to your `LocalSettings.php` file
+4. Run `php maintenance/update.php` in your top-level Mediawiki directory
+
+#### Import a mapping file
+This extension will eventually support other providers, but for now testing and
+development will be done using the Google Cloud Vision API. To map Freebase
+objects (used by this API) to Wikidata entities (used by this extension),
+download the Freebase/Wikidata Mappings file from Google at the below URL:
+
+https://developers.google.com/freebase/#freebase-wikidata-mappings
+
+Extract the downloaded file from its archive and place it somewhere that Mediawiki can access it. To
+import, run the following maintenance script:
+
+```
+# in the mediawiki/extensions/MachineVision directory
+php maintenance/populateFreebaseMapping --mappingFile path_to_your_file.nt
+```
+
+This process may take some time to complete.
+
+#### Google API Credentials
+To use the Google Cloud Vision with this extension, you will need to have valid
+Google Cloud credentials. You will need to sign up for a free trial at:
+https://console.cloud.google.com and generate credentials for the Google Cloud
+Vision service. Download a JSON file with your credentials from the dashboard
+and place it somewhere accessible to the web server that is running MediaWiki.
+You will need to provide a path to this file as an environment variable on the
+web server:
+
+```
+GOOGLE_APPLICATION_CREDENTIALS=/var/www/mediawiki/machine-vision-credentials.json
+```
+
+If you are using mediawiki-docker-dev, you can specify this environment variable
+in `docker-compose.yml` in the `web` section (you will have to create or
+re-create containers for this to take effect).
+
+### Configuration and Usage
+
+#### Configuration
+Use the following settings in `LocalSettings.php` if using the Google Cloud
+Vision API:
+
+```php
+require_once "$IP/extensions/MachineVision/vendor/autoload.php";
+
+$wgMachineVisionRequestLabelsOnUploadComplete = true;
+$wgMachineVisionRequestLabelsFromWikidataPublicApi = true;
+$wgMachineVisionHandlers['google'] = [
+	'class' => 'MediaWiki\\Extension\\MachineVision\\Handler\\GoogleCloudVisionHandler',
+	'services' => [
+		'MachineVisionGoogleImageAnnotatorClient',
+		'MachineVisionRepository',
+		'MachineVisionRepoGroup',
+		'MachineVisionLabelResolver',
+	],
+	'args' => [
+		true // sendFileContents
+	]
+];
+```
+
+Additionally, for local development, you will probably want to disable the
+following code in `src/Hooks.php`:
+
+```php
+DeferredUpdates::addCallableUpdate( function () use ( $file, $extensionServices ) {
+    $registry = $extensionServices->getHandlerRegistry();
+    foreach ( $registry->getHandlers( $file ) as $provider => $handler ) {
+ 		$handler->handleUploadComplete( $provider, $file );
+ 	}
+} );
+```
+
+Replace it with the following:
+
+```php
+$registry = $extensionServices->getHandlerRegistry();
+foreach ( $registry->getHandlers( $file ) as $provider => $handler ) {
+    $handler->handleUploadComplete( $provider, $file );
+}
+```
+
+#### Usage
+Log in and upload a file (after `$wgMachineVisionRequestLabelsOnUploadComplete`
+has been set to `true`); After upload, navigate to `Special:MachineAidedTagging`
+to see suggested tags from Google.
+
+#### Federation
+TBD: is this possible?
