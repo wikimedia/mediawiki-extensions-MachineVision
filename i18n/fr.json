@@ -9,7 +9,6 @@
 	"machinevision-machineaidedtagging": "Balise d’aide machine",
 	"machinevision-machineaidedtagging-intro": "Revoir les suggestions de balise de description d’image pour un modèle de vision par ordinateur. Seules les balises confirmées par les utilisateurs seront ajoutées aux images.",
 	"machinevision-pageinfo-field-suggested-labels": "Libellés suggérés",
-	"machinevision-imagelabeling": "Libellé de l’image",
 	"machinevision-suggestions-heading": "Balises suggérées",
 	"machinevision-suggestions-rejected-heading": "Balises rejetées",
 	"machinevision-publish": "Publier les balises",
@@ -42,5 +41,8 @@
 	"apihelp-query+imagelabels-paramvalue-state-accepted": "Libellés qui ont été identifiés comme corrects.",
 	"apihelp-query+imagelabels-paramvalue-state-rejected": "Libellés qui ont été identifiés comme non corrects.",
 	"apihelp-query+imagelabels-paramvalue-state-skipped": "Libellés que quelqu’un a essayé d’identifier, mais a abandonné.",
-	"apihelp-query+imagelabels-example-1": "Afficher les libellés d’image suggérés par la machine pour <kbd>Example.png</kbd>."
+	"apihelp-query+imagelabels-example-1": "Afficher les libellés d’image suggérés par la machine pour <kbd>Example.png</kbd>.",
+	"apihelp-query+unreviewedimagelabels-summary": "Afficher les titres avec les libellés d’image suggérés nécessitant une relecture.",
+	"apihelp-query+unreviewedimagelabels-param-uploader": "Ne renvoyer que les résultats téléchargés par cet utilisateur.",
+	"apihelp-query+unreviewedimagelabels-param-limit": "Nombre d’éléments de résultat à renvoyer."
 }

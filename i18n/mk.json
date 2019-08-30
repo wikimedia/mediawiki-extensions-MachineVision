@@ -8,7 +8,6 @@
 	"machinevision-machineaidedtagging": "Машински потпомогнато означување",
 	"machinevision-machineaidedtagging-intro": "Прегледајте ги предложените ознаки за прикажаното на сликите од модел за сметачки вид. Кон сликите ќе се додаваат само ознаките потврдени од корисници.",
 	"machinevision-pageinfo-field-suggested-labels": "Предложени натписи",
-	"machinevision-imagelabeling": "Натписи на слики",
 	"machinevision-suggestions-heading": "Предложени ознаки",
 	"machinevision-suggestions-rejected-heading": "Одбиени ознаки",
 	"machinevision-publish": "Објави ознаки",
@@ -41,5 +40,8 @@
 	"apihelp-query+imagelabels-paramvalue-state-accepted": "Натписите утврдени како исправни.",
 	"apihelp-query+imagelabels-paramvalue-state-rejected": "Натписите утврдени како неисправни.",
 	"apihelp-query+imagelabels-paramvalue-state-skipped": "Натписите кои некој се обидел да ги утвбри, но се откажал.",
-	"apihelp-query+imagelabels-example-1": "Прикажи машински предложени натписи за <kbd>Example.png</kbd>."
+	"apihelp-query+imagelabels-example-1": "Прикажи машински предложени натписи за <kbd>Example.png</kbd>.",
+	"apihelp-query+unreviewedimagelabels-summary": "Прикажи наслови со предложени натписи на слики на кои им треба проверка.",
+	"apihelp-query+unreviewedimagelabels-param-uploader": "Дај само ставки подигнати од овој корисник.",
+	"apihelp-query+unreviewedimagelabels-param-limit": "Колку исходни ставки да се даваат."
 }

@@ -8,7 +8,6 @@
 	"machinevision-machineaidedtagging": "Etiquetagem auxiliada por máquina",
 	"machinevision-machineaidedtagging-intro": "Analise as sugestões de etiquetas de representação de imagem de um modelo de visão computacional. Somente etiquetas confirmadas pelos usuários serão adicionadas às imagens.",
 	"machinevision-pageinfo-field-suggested-labels": "Etiquetas sugeridas",
-	"machinevision-imagelabeling": "Rotulagem de imagem",
 	"machinevision-suggestions-heading": "Etiquetas sugeridas",
 	"machinevision-suggestions-rejected-heading": "Etiquetas rejeitadas",
 	"machinevision-publish": "Publicar etiquetas",

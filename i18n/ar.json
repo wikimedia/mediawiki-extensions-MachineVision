@@ -9,7 +9,6 @@
 	"machinevision-machineaidedtagging": "الوسم بمساعدة الآلة",
 	"machinevision-machineaidedtagging-intro": "راجع اقتراحات وسوم تصوير الصورة من نموذج رؤية الحاسوب، ستتم إضافة الوسوم التي أكدها المستخدمون فقط إلى الصور.",
 	"machinevision-pageinfo-field-suggested-labels": "التسميات المقترحة",
-	"machinevision-imagelabeling": "تسمية الصور",
 	"machinevision-suggestions-heading": "الوسوم المقترحة",
 	"machinevision-suggestions-rejected-heading": "الوسوم المرفوضة",
 	"machinevision-publish": "نشر الوسوم",
@@ -42,5 +41,8 @@
 	"apihelp-query+imagelabels-paramvalue-state-accepted": "التسميات التي تم تحديدها بأنها صحيحة.",
 	"apihelp-query+imagelabels-paramvalue-state-rejected": "التسميات التي تم تحديدها على أنها غير صحيحة.",
 	"apihelp-query+imagelabels-paramvalue-state-skipped": "التسميات التي حاول شخص ما تحديدها لكنه تخلى عنها.",
-	"apihelp-query+imagelabels-example-1": "إظهار تسميات الصور التي اقترحها الجهاز لـ<kbd>Example.png</kbd>."
+	"apihelp-query+imagelabels-example-1": "إظهار تسميات الصور التي اقترحها الجهاز لـ<kbd>Example.png</kbd>.",
+	"apihelp-query+unreviewedimagelabels-summary": "عرض العناوين مع تسميات الصور المقترحة التي تحتاج إلى مراجعة.",
+	"apihelp-query+unreviewedimagelabels-param-uploader": "إرجاع النتائج المرفوعة من قبل هذا المستخدم فقط.",
+	"apihelp-query+unreviewedimagelabels-param-limit": "عدد عناصر النتيجة للعودة."
 }

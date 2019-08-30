@@ -6,7 +6,6 @@
 	},
 	"machinevision-desc": "接触内部和外部的机器视觉服务供应商并在在wiki上保存使用结果。",
 	"machinevision-pageinfo-field-suggested-labels": "被建议的标签",
-	"machinevision-imagelabeling": "图片标签化",
 	"right-imagelabel-review": "审查图片标签建议",
 	"action-imagelabel-review": "审查图片标签建议",
 	"apihelp-reviewimagelabels-summary": "审查机器建议的图片标签",

@@ -5,7 +5,6 @@
 		]
 	},
 	"machinevision-pageinfo-field-suggested-labels": "Пропоновані назви",
-	"machinevision-imagelabeling": "Називання зображень",
 	"right-imagelabel-review": "Перегляд підказок назв зображень",
 	"action-imagelabel-review": "перегляд підказок назв зображень",
 	"apihelp-reviewimagelabels-summary": "Переглянути підказки назв зображень.",

@@ -5,7 +5,6 @@
 		]
 	},
 	"machinevision-pageinfo-field-suggested-labels": "Siūlomos žymos",
-	"machinevision-imagelabeling": "Paveikslėlių Žymėjimas",
 	"apihelp-reviewimagelabels-param-review": "Peržiūros rezultatas.",
 	"apihelp-reviewimagelabels-paramvalue-review-accept": "Pasiūlymas yra teisingas.",
 	"apihelp-reviewimagelabels-paramvalue-review-reject": "Pasiūlymas yra neteisingas.",
