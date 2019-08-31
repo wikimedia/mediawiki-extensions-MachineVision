@@ -40,5 +40,8 @@
 	"apihelp-query+imagelabels-paramvalue-state-accepted": "Etichette ca onne state idendificate cumme corrette.",
 	"apihelp-query+imagelabels-paramvalue-state-rejected": "Etichette ca onne state idendificate cumme scorrette.",
 	"apihelp-query+imagelabels-paramvalue-state-skipped": "Etichette ca quacchedune ave pruvate a idendificà ma ave renungiate.",
-	"apihelp-query+imagelabels-example-1": "'Ndruche le etichette de le immaggine de le maghene suggerite pe <kbd>Example.png</kbd>."
+	"apihelp-query+imagelabels-example-1": "'Ndruche le etichette de le immaggine de le maghene suggerite pe <kbd>Example.png</kbd>.",
+	"apihelp-query+unreviewedimagelabels-summary": "Fà 'ndrucà le titole cu le etichette de le immaggine suggerite ca onne abbesogne de 'na revisitazione.",
+	"apihelp-query+unreviewedimagelabels-param-uploader": "Tuèrne sulamende le resultate carecate da stu utende.",
+	"apihelp-query+unreviewedimagelabels-param-limit": "Numere de le vôsce de resultate da turnà."
 }

@@ -40,5 +40,8 @@
 	"apihelp-query+imagelabels-paramvalue-state-accepted": "Etiquetas que foram identificadas como corretas.",
 	"apihelp-query+imagelabels-paramvalue-state-rejected": "Etiquetas que foram identificadas como incorretas.",
 	"apihelp-query+imagelabels-paramvalue-state-skipped": "Etiquetas que alguém tentou identificar, mas desistiu.",
-	"apihelp-query+imagelabels-example-1": "Mostrar etiquetas de imagem sugeridas por máquina para <kbd>Exemplo.png</kbd>."
+	"apihelp-query+imagelabels-example-1": "Mostrar etiquetas de imagem sugeridas por máquina para <kbd>Exemplo.png</kbd>.",
+	"apihelp-query+unreviewedimagelabels-summary": "Mostrar títulos com rótulos de imagem sugeridos que precisam de revisão.",
+	"apihelp-query+unreviewedimagelabels-param-uploader": "Retorne apenas os resultados enviados por este usuário.",
+	"apihelp-query+unreviewedimagelabels-param-limit": "O número de resultados a serem devolvidos."
 }
