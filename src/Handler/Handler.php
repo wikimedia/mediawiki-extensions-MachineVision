@@ -5,6 +5,7 @@ namespace MediaWiki\Extension\MachineVision\Handler;
 use IContextSource;
 use LocalFile;
 use Psr\Log\LoggerAwareInterface;
+use User;
 
 /**
  * Interface for machine vision provider handlers.
@@ -27,5 +28,15 @@ interface Handler extends LoggerAwareInterface {
 	 * @param array &$pageInfo See https://www.mediawiki.org/wiki/Manual:Hooks/InfoAction
 	 */
 	public function handleInfoAction( IContextSource $context, LocalFile $file, array &$pageInfo );
+
+	/**
+	 * Take any needed follow-up action when a label is human-reviewed.
+	 * @param User $user
+	 * @param LocalFile $file
+	 * @param string $label label
+	 * @param string $token CSRF token
+	 * @param int $reviewState review state (as defined in Repository)
+	 */
+	public function handleLabelReview( User $user, LocalFile $file, $label, $token, $reviewState );
 
 }

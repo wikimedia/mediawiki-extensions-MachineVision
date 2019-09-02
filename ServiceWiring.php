@@ -2,6 +2,7 @@
 
 use Google\Cloud\Vision\V1\ImageAnnotatorClient;
 use MediaWiki\Extension\MachineVision\Client;
+use MediaWiki\Extension\MachineVision\Handler\WikidataDepictsSetter;
 use MediaWiki\Extension\MachineVision\Handler\LabelResolver;
 use MediaWiki\Extension\MachineVision\Handler\Registry;
 use MediaWiki\Extension\MachineVision\Repository;
@@ -10,6 +11,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\NameTableStore;
 use Wikibase\Repo\WikibaseRepo;
 use Wikibase\LanguageFallbackChainFactory;
+use Wikibase\MediaInfo\Services\MediaInfoByLinkedTitleLookup;
 use Wikimedia\ObjectFactory;
 
 return [
@@ -107,6 +109,22 @@ return [
 			$httpRequestFactory,
 			$userAgent,
 			$useWikidataPublicApi
+		);
+	},
+
+	'MachineVisionDepictsSetter' => function ( MediaWikiServices $services ):
+		WikidataDepictsSetter {
+		$wbRepo = WikibaseRepo::getDefaultInstance();
+		$entityByLinkedTitleLookup = $wbRepo->getStore()->getEntityByLinkedTitleLookup();
+		$changeOpFactoryProvider = $wbRepo->getChangeOpFactoryProvider();
+
+		return new WikidataDepictsSetter(
+			$services->getRevisionStore(),
+			new MediaInfoByLinkedTitleLookup( $entityByLinkedTitleLookup ),
+			$wbRepo->getEntityLookup(),
+			$wbRepo->newEditEntityFactory(),
+			$changeOpFactoryProvider->getStatementChangeOpFactory(),
+			$wbRepo->getSummaryFormatter()
 		);
 	}
 
