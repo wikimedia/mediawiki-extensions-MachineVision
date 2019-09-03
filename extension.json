@@ -63,7 +63,8 @@
 	],
 	"MessagesDirs": {
 		"MachineVision": [
-			"i18n"
+			"i18n",
+			"i18n/api"
 		]
 	},
 	"ExtensionMessagesFiles": {
@@ -159,7 +160,7 @@
 				"machinevision-suggestion-reject-title",
 				"machinevision-suggestion-reject-undo-title"
 			],
-			"targets" : [
+			"targets": [
 				"mobile",
 				"desktop"
 			]

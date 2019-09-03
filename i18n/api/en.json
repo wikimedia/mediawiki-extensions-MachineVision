@@ -1,0 +1,29 @@
+{
+	"@metadata": {
+		"authors": [
+			"Wikimedia Product Infrastructure Team",
+			"Monte Hurd"
+		]
+	},
+	"apihelp-reviewimagelabels-summary": "Review machine-suggested image labels.",
+	"apihelp-reviewimagelabels-param-filename": "Name of the image (without namespace prefix).",
+	"apihelp-reviewimagelabels-param-label": "Wikidata ID of the suggested label (with Q prefix).",
+	"apihelp-reviewimagelabels-param-review": "Result of the review.",
+	"apihelp-reviewimagelabels-paramvalue-review-accept": "The suggestion is correct.",
+	"apihelp-reviewimagelabels-paramvalue-review-reject": "The suggestion is incorrect.",
+	"apihelp-reviewimagelabels-paramvalue-review-skip": "The user was unsure, or aborted the review.",
+	"apihelp-reviewimagelabels-example-1": "Mark <kbd>Q123</kbd> as a correct suggestion for <kbd>Example.png</kbd>.",
+	"apierror-reviewimagelabels-invalidfile": "<kbd>$1</kbd> is not a valid filename.",
+	"apierror-reviewimagelabels-invalidlabel": "File <kbd>$1</kbd> has no <kbd>$2</kbd> label.",
+	"apierror-reviewimagelabels-invalidstate": "<kbd>$3</kbd> is not a valid action for label <kbd>$2</kbd> of file <kbd>$1</kbd>.",
+	"apihelp-query+imagelabels-summary": "Show machine-suggested image labels.",
+	"apihelp-query+imagelabels-param-state": "Only list labels in these review states",
+	"apihelp-query+imagelabels-paramvalue-state-unreviewed": "Labels which have not been reviewed yet.",
+	"apihelp-query+imagelabels-paramvalue-state-accepted": "Labels which have been identified as correct.",
+	"apihelp-query+imagelabels-paramvalue-state-rejected": "Labels which have been identified as incorrect.",
+	"apihelp-query+imagelabels-paramvalue-state-skipped": "Labels which someone tried to identify but gave up.",
+	"apihelp-query+imagelabels-example-1": "Show machine-suggested image labels for <kbd>Example.png</kbd>.",
+	"apihelp-query+unreviewedimagelabels-summary": "Show titles with suggested image labels needing review.",
+	"apihelp-query+unreviewedimagelabels-param-uploader": "Only return results uploaded by this user.",
+	"apihelp-query+unreviewedimagelabels-param-limit": "Number of result items to return."
+}
