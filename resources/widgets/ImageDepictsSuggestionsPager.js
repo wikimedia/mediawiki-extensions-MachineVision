@@ -61,6 +61,7 @@ var queryURLWithCountAndOffset = function( count, offset ) {
 		prop: 'imageinfo|imagelabels',
 		iiprop: 'url',
 		iiurlwidth: 320,
+		ilstate: 'unreviewed'
 	};
 
 	if ( offset ) {
