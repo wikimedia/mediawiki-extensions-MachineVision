@@ -5,11 +5,10 @@ namespace MediaWiki\Extension\MachineVision\Api;
 use ApiBase;
 use ApiMain;
 use IDBAccessObject;
+use MediaWiki\Extension\MachineVision\Handler\Registry;
 use MediaWiki\Extension\MachineVision\Repository;
 use MediaWiki\Extension\MachineVision\Services;
-use MediaWiki\Extension\MachineVision\Special\SpecialImageLabeling;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Special\SpecialPageFactory;
 use MediaWiki\Storage\NameTableStore;
 use RepoGroup;
 use Title;
@@ -31,8 +30,8 @@ class ApiReviewImageLabels extends ApiBase {
 	/** @var Repository */
 	private $repository;
 
-	/** @var SpecialPageFactory */
-	private $specialPageFactory;
+	/** @var Registry */
+	private $registry;
 
 	/**
 	 * @param ApiMain $main
@@ -48,7 +47,7 @@ class ApiReviewImageLabels extends ApiBase {
 			$services->getRepoGroup(),
 			$extensionServices->getNameTableStore(),
 			$extensionServices->getRepository(),
-			$services->getSpecialPageFactory()
+			$extensionServices->getHandlerRegistry()
 		);
 	}
 
@@ -58,7 +57,7 @@ class ApiReviewImageLabels extends ApiBase {
 	 * @param RepoGroup $repoGroup
 	 * @param NameTableStore $nameTableStore
 	 * @param Repository $repository
-	 * @param SpecialPageFactory $specialPageFactory
+	 * @param Registry $registry
 	 */
 	public function __construct(
 		ApiMain $main,
@@ -66,13 +65,13 @@ class ApiReviewImageLabels extends ApiBase {
 		RepoGroup $repoGroup,
 		NameTableStore $nameTableStore,
 		Repository $repository,
-		SpecialPageFactory $specialPageFactory
+		Registry $registry
 	) {
 		parent::__construct( $main, $moduleName );
 		$this->repoGroup = $repoGroup;
 		$this->nameTableStore = $nameTableStore;
 		$this->repository = $repository;
-		$this->specialPageFactory = $specialPageFactory;
+		$this->registry = $registry;
 	}
 
 	/** @inheritDoc */
@@ -111,11 +110,13 @@ class ApiReviewImageLabels extends ApiBase {
 
 		$success = $this->repository->setLabelState( $sha1, $params['label'], $newState );
 		if ( $success ) {
-			// Remove the page from the review queue, if there's a persisted queue.
-			/** @var SpecialImageLabeling $queryPage */
-			$queryPage = $this->specialPageFactory->getPage( 'ImageLabeling' );
-			// @phan-suppress-next-line PhanUndeclaredMethod
-			$queryPage->delete( $title );
+			// @phan-suppress-next-line PhanTypeMismatchArgument
+			$handlers = $this->registry->getHandlers( $file );
+			foreach ( $handlers as $handler ) {
+				// @phan-suppress-next-line PhanTypeMismatchArgument
+				$handler->handleLabelReview( $this->getUser(), $file, $params['label'],
+					$params['token'], $newState );
+			}
 		}
 
 		$this->getResult()->addValue( null, $this->getModuleName(),

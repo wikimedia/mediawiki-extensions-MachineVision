@@ -8,6 +8,7 @@ use LocalFile;
 use MediaWiki\Extension\MachineVision\Repository;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\NullLogger;
+use User;
 
 abstract class WikidataIdHandler implements Handler {
 
@@ -16,15 +17,24 @@ abstract class WikidataIdHandler implements Handler {
 	/** @var Repository */
 	private $repository;
 
+	/** @var WikidataDepictsSetter */
+	private $depictsSetter;
+
 	/** @var LabelResolver */
 	private $labelResolver;
 
 	/**
 	 * @param Repository $repository
+	 * @param WikidataDepictsSetter $depictsSetter
 	 * @param LabelResolver $labelResolver
 	 */
-	public function __construct( Repository $repository, LabelResolver $labelResolver ) {
+	public function __construct(
+		Repository $repository,
+		WikidataDepictsSetter $depictsSetter,
+		LabelResolver $labelResolver
+	) {
 		$this->repository = $repository;
+		$this->depictsSetter = $depictsSetter;
 		$this->labelResolver = $labelResolver;
 
 		$this->setLogger( new NullLogger() );
@@ -62,6 +72,17 @@ abstract class WikidataIdHandler implements Handler {
 				$context->getLanguage()->commaList( $wdItemLinks ),
 			];
 		}
+	}
+
+	/** @inheritDoc */
+	public function handleLabelReview( User $user, LocalFile $file, $label, $token, $reviewState ) {
+		if ( $reviewState === Repository::REVIEW_ACCEPTED ) {
+			$this->handleLabelAccepted( $user, $file, $label, $token );
+		}
+	}
+
+	private function handleLabelAccepted( User $user, LocalFile $file, $label, $token ) {
+		$this->depictsSetter->addDepicts( $user, $file, $label, $token );
 	}
 
 }
