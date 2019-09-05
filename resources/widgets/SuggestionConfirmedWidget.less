@@ -1,12 +1,15 @@
 @import '../style-variables.less';
 
 .wbmad-confirmed-suggestion {
-  background-color: @green90;
-  border-color: @green50;
-  .oo-ui-buttonWidget {
-    .oo-ui-buttonElement-button {
-      margin-left: -0.7em;
-      margin-right: 0.7em;
-    }
-  }
+	background-color: @green90;
+	border-color: @green50;
+
+	/* stylelint-disable selector-class-pattern */
+	.oo-ui-buttonWidget {
+		.oo-ui-buttonElement-button {
+			margin-left: -0.7em;
+			margin-right: 0.7em;
+		}
+	}
+	/* stylelint-enable selector-class-pattern */
 }

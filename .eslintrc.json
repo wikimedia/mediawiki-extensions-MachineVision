@@ -4,8 +4,12 @@
 		"wikimedia/client",
 		"wikimedia/jquery"
 	],
+	"env": {
+		"commonjs": true
+	},
 	"globals": {
 		"mw": false,
-		"OO": false
+		"OO": false,
+		"module": false
 	}
 }

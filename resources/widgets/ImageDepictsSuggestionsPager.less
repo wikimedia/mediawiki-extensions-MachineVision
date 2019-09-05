@@ -1,15 +1,22 @@
 .wbmad-image-depicts-suggestions-pager {
-  max-width: 60em;
-  margin-left: auto;
-  margin-right: auto;
-  #wbmad-image-depicts-suggestions-pages {
-    margin-top: 1em;
-  }
-  .wbmad-more-button {
-    display: none;
-    .oo-ui-buttonElement-button, .oo-ui-buttonElement-button:hover {
-      width: 100%;
-    }
-  }
-  margin-bottom: 4em;
+	max-width: 60em;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 4em;
+
+	/* stylelint-disable-next-line selector-max-id */
+	#wbmad-image-depicts-suggestions-pages {
+		margin-top: 1em;
+	}
+
+	.wbmad-more-button {
+		display: none;
+
+		/* stylelint-disable selector-class-pattern */
+		.oo-ui-buttonElement-button,
+		.oo-ui-buttonElement-button:hover {
+			width: 100%;
+		}
+		/* stylelint-enable selector-class-pattern */
+	}
 }

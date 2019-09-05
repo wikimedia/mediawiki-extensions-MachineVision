@@ -1,11 +1,17 @@
 'use strict';
 
+// TODO: Replace jQuery array methods with real ones
+/* eslint-disable no-jquery/no-in-array */
+/* eslint-disable no-jquery/no-map-util */
+
 var TemplateRenderingDOMLessGroupWidget = require( './../base/TemplateRenderingDOMLessGroupWidget.js' ),
-SuggestionWidget = require( './SuggestionWidget.js' ),
-SuggestionConfirmedWidget = require( './SuggestionConfirmedWidget.js' ),
+	SuggestionWidget = require( './SuggestionWidget.js' ),
+	SuggestionConfirmedWidget = require( './SuggestionConfirmedWidget.js' ),
+	SuggestionsGroupWidget;
+
 SuggestionsGroupWidget = function WikibaseMachineAssistedDepictsSuggestionsGroupWidget( config ) {
 	SuggestionsGroupWidget.parent.call( this, $.extend( {}, config ) );
-	this.$element.addClass('wbmad-suggestion-group');
+	this.$element.addClass( 'wbmad-suggestion-group' );
 
 	this.suggestionDataArray = config.suggestionDataArray;
 	this.confirmedSuggestionDataArray = config.confirmedSuggestionDataArray;
@@ -22,14 +28,16 @@ SuggestionsGroupWidget = function WikibaseMachineAssistedDepictsSuggestionsGroup
 	} );
 	this.render();
 };
+
 OO.inheritClass( SuggestionsGroupWidget, TemplateRenderingDOMLessGroupWidget );
 
-SuggestionsGroupWidget.prototype.getSuggestionWidgetForSuggestionData = function (suggestionData) {
+SuggestionsGroupWidget.prototype.getSuggestionWidgetForSuggestionData = function ( suggestionData ) {
 	if ( $.inArray( suggestionData, this.confirmedSuggestionDataArray ) > -1 ) {
 		return new SuggestionConfirmedWidget( {
 			suggestionData: suggestionData
 		} );
 	}
+
 	if ( $.inArray( suggestionData, this.rejectedSuggestionDataArray ) > -1 ) {
 		return null;
 	}

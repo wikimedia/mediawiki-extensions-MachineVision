@@ -6,6 +6,8 @@
 		]
 	},
 	"machinevision-desc": "{{desc|name=MachineVision|url=https://www.mediawiki.org/wiki/Extension:MachineVision}}",
+	"machinevision-machineaidedtagging": "Display title for Special:MachineAidedTagging",
+	"machinevision-machineaidedtagging-intro": "Introductory text appearing on Special:MachineAidedTagging.",
 	"machinevision-pageinfo-field-suggested-labels": "Field name for suggested labels in page info table.",
 	"machinevision-suggestions-heading": "Label for the 'Suggestions' section",
 	"machinevision-suggestions-rejected-heading": "Label for the 'Rejected' section",

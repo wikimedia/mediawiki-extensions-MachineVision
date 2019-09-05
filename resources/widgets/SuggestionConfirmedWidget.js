@@ -1,9 +1,11 @@
 'use strict';
 
 var SuggestionBaseWidget = require( './SuggestionBaseWidget.js' ),
-SuggestionConfirmedWidget = function WikibaseMachineAssistedDepictsSuggestionConfirmedWidget( config ) {
+	SuggestionConfirmedWidget;
+
+SuggestionConfirmedWidget = function ( config ) {
 	SuggestionConfirmedWidget.parent.call( this, $.extend( {}, config ) );
-	this.$element.addClass('wbmad-confirmed-suggestion');
+	this.$element.addClass( 'wbmad-confirmed-suggestion' );
 
 	this.suggestionLabel = new OO.ui.LabelWidget( {
 		label: this.suggestionData.text
@@ -21,16 +23,14 @@ SuggestionConfirmedWidget = function WikibaseMachineAssistedDepictsSuggestionCon
 
 	this.render();
 };
+
 OO.inheritClass( SuggestionConfirmedWidget, SuggestionBaseWidget );
 
 SuggestionConfirmedWidget.prototype.render = function () {
-	this.renderTemplate(
-		'resources/widgets/SuggestionConfirmedWidget.mustache+dom',
-		{
-			suggestionLabel: this.suggestionLabel,
-			checkButton: this.checkButton
-		}
-	);
+	this.renderTemplate( 'resources/widgets/SuggestionConfirmedWidget.mustache+dom', {
+		suggestionLabel: this.suggestionLabel,
+		checkButton: this.checkButton
+	} );
 };
 
 module.exports = SuggestionConfirmedWidget;

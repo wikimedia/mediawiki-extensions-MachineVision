@@ -1,12 +1,14 @@
 'use strict';
 
-var DOMLessGroupWidget = require( './DOMLessGroupWidget.js' );
+var DOMLessGroupWidget = require( './DOMLessGroupWidget.js' ),
+	TemplateRenderingDOMLessGroupWidget;
 
-var	TemplateRenderingDOMLessGroupWidget = function WikibaseMachineAssistedDepictsTemplateRenderingDOMLessGroupWidget( config ) {
+TemplateRenderingDOMLessGroupWidget = function ( config ) {
 	config = config || {};
 	TemplateRenderingDOMLessGroupWidget.parent.call( this, $.extend( {}, config ) );
 	DOMLessGroupWidget.call( this, $.extend( {}, config ) );
 };
+
 OO.inheritClass( TemplateRenderingDOMLessGroupWidget, OO.ui.Widget );
 OO.mixinClass( TemplateRenderingDOMLessGroupWidget, DOMLessGroupWidget );
 
@@ -15,8 +17,8 @@ TemplateRenderingDOMLessGroupWidget.prototype.renderTemplate = function ( templa
 		.empty()
 		.append(
 			mw.template
-			.get( mw.config.get( 'moduleID' ), templatePath )
-			.render( data )
+				.get( mw.config.get( 'moduleID' ), templatePath )
+				.render( data )
 		);
 };
 
