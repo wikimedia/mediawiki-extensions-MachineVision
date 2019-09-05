@@ -60,12 +60,15 @@ class Repository implements LoggerAwareInterface {
 	 * @param string $sha1 Image SHA1
 	 * @param string $providerName Provider name
 	 * @param int $uploaderId the uploader's local user ID
-	 * @param array $wikidataIds A list of Wikidata ID such as 'Q123'
+	 * @param LabelSuggestion[] $suggestions A list of Wikidata ID such as 'Q123'
 	 */
-	public function insertLabels( $sha1, $providerName, $uploaderId, array $wikidataIds ) {
+	public function insertLabels( $sha1, $providerName, $uploaderId, array $suggestions ) {
 		$providerId = $this->nameTableStore->acquireId( $providerName );
 		$timestamp = $this->dbw->timestamp();
-		foreach ( $wikidataIds as $wikidataId ) {
+		foreach ( $suggestions as $suggestion ) {
+			$wikidataId = $suggestion->getWikidataId();
+			$confidence = $suggestion->getConfidence();
+
 			$this->dbw->insert(
 				'machine_vision_label',
 				[
@@ -94,6 +97,7 @@ class Repository implements LoggerAwareInterface {
 						'mvs_mvl_id' => $mvlId,
 						'mvs_provider_id' => $providerId,
 						'mvs_timestamp' => $timestamp,
+						'mvs_confidence' => $confidence,
 					],
 					__METHOD__
 				);
