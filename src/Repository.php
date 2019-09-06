@@ -9,13 +9,13 @@ use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\NullLogger;
 use UnexpectedValueException;
+use Wikimedia\AtEase\AtEase;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
  * Database interaction for label suggestions.
  * TODO: This class refers to unresolved Wikidata IDs as "labels" but this is confusing since
- * elsewhere we use "label" to refer to the resolved text labels. We should find better terminology
- * here.
+ * elsewhere we use "label" to refer to the resolved text labels. We should use terms consistently.
  */
 class Repository implements LoggerAwareInterface {
 
@@ -75,6 +75,7 @@ class Repository implements LoggerAwareInterface {
 					'mvl_image_sha1' => $sha1,
 					'mvl_wikidata_id' => $wikidataId,
 					'mvl_uploader_id' => $uploaderId,
+					'mvl_suggested_time' => (int)( microtime( true ) * 10000 ),
 				],
 				__METHOD__,
 				[ 'IGNORE' ]
@@ -181,7 +182,11 @@ class Repository implements LoggerAwareInterface {
 	}
 
 	/**
-	 * Get list of image titles with unreviewed image labels.
+	 * Get list of image titles with unreviewed image labels. This effectuates queue-like behavior
+	 * by selecting results sorted by mvl_suggested_time and updating selected rows'
+	 * mvl_suggested_time with the current microtime as part of the same transaction.
+	 * Label suggestions fall out of the "queue" when their review state changes to a state other
+	 * than REVIEW_UNREVIEWED.
 	 * @param int $limit
 	 * @param int|null $userId local user ID for filtering
 	 * @return string[] Titles of file pages with associated unreviewed labels
@@ -191,22 +196,37 @@ class Repository implements LoggerAwareInterface {
 		if ( $userId ) {
 			$conds['mvl_uploader_id'] = strval( $userId );
 		}
-		$res = $this->dbr->select(
-			[ 'machine_vision_label', 'image' ],
-			'img_name',
+		$this->dbw->startAtomic( __METHOD__ );
+		// Suppress a warning about using aggregation (DISTINCT) with a locking select. This is for
+		// practical purposes a WMF-specific extension, and the warning is about compatibility with
+		// alternative DB backends like Postgres, which isn't a concern in WMF production.
+		AtEase::suppressWarnings();
+		$sha1s = $this->dbw->selectFieldValues(
+			'machine_vision_label',
+			'mvl_image_sha1',
 			$conds,
 			__METHOD__,
 			[
-				'GROUP BY' => [ 'mvl_image_sha1' ],
+				'DISTINCT',
+				'FOR UPDATE',
+				'ORDER BY' => 'mvl_suggested_time',
 				'LIMIT' => $limit,
-			],
-			[ 'image' => [ 'JOIN', 'mvl_image_sha1 = img_sha1' ] ]
+			]
 		);
-		$data = [];
-		foreach ( $res as $row ) {
-			$data[] = $row->img_name;
-		}
-		return array_unique( $data );
+		AtEase::restoreWarnings();
+		$this->dbw->update(
+			'machine_vision_label',
+			[ 'mvl_suggested_time' => (int)( microtime( true ) * 10000 ) ],
+			[ 'mvl_image_sha1' => $sha1s ],
+			__METHOD__
+		);
+		$this->dbw->endAtomic( __METHOD__ );
+		return $this->dbw->selectFieldValues(
+			'image',
+			'img_name',
+			[ 'img_sha1' => $sha1s ],
+			__METHOD__
+		);
 	}
 
 	/**
