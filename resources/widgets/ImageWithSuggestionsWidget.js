@@ -1,7 +1,6 @@
 'use strict';
 
 var TemplateRenderingDOMLessGroupWidget = require( './../base/TemplateRenderingDOMLessGroupWidget.js' ),
-	SuggestionsRejectedGroupWidget = require( './SuggestionsRejectedGroupWidget.js' ),
 	SuggestionsGroupWidget = require( './SuggestionsGroupWidget.js' ),
 	ImageWithSuggestionsWidget,
 	deepArrayCopy,
@@ -9,7 +8,9 @@ var TemplateRenderingDOMLessGroupWidget = require( './../base/TemplateRenderingD
 
 ImageWithSuggestionsWidget = function ( config ) {
 	ImageWithSuggestionsWidget.parent.call( this, $.extend( {}, config ) );
+
 	this.$element.addClass( 'wbmad-image-with-suggestions' );
+
 	this.imageData = config.imageData;
 	this.suggestions = this.imageData.suggestions;
 	this.originalSuggestions = deepArrayCopy( this.suggestions );
@@ -25,14 +26,7 @@ ImageWithSuggestionsWidget = function ( config ) {
 	} ).connect( this, {
 		confirmSuggestion: 'onConfirmSuggestion',
 		unconfirmSuggestion: 'onUnconfirmSuggestion',
-		rejectSuggestion: 'onRejectSuggestion'
-	} );
-
-	this.rejectedSuggestionGroupWidget = new SuggestionsRejectedGroupWidget( {
-		label: mw.message( 'machinevision-suggestions-rejected-heading' ).text(),
-		suggestionDataArray: this.rejectedSuggestions,
-		useSuggestionChosenWidgets: true
-	} ).connect( this, {
+		rejectSuggestion: 'onRejectSuggestion',
 		unrejectSuggestion: 'onUnrejectSuggestion'
 	} );
 
@@ -94,13 +88,12 @@ moveItemBetweenArrays = function ( item, fromArray, toArray ) {
 ImageWithSuggestionsWidget.prototype.rerenderGroups = function () {
 	var isAnythingSelected;
 
+	// TODO: Implement a setData() method or similar to avoid direct
+	// manipulation of child widget properties
 	this.suggestionGroupWidget.suggestionDataArray = this.originalSuggestions;
 	this.suggestionGroupWidget.confirmedSuggestionDataArray = this.confirmedSuggestions;
 	this.suggestionGroupWidget.rejectedSuggestionDataArray = this.rejectedSuggestions;
 	this.suggestionGroupWidget.render();
-
-	this.rejectedSuggestionGroupWidget.suggestionDataArray = this.rejectedSuggestions;
-	this.rejectedSuggestionGroupWidget.render();
 
 	isAnythingSelected = this.confirmedSuggestions.length > 0 ||
 		this.rejectedSuggestions.length > 0;

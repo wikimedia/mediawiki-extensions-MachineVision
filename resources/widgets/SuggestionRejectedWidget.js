@@ -3,6 +3,10 @@
 var SuggestionBaseWidget = require( './SuggestionBaseWidget.js' ),
 	SuggestionRejectedWidget;
 
+/**
+ * TODO: Document this
+ * @param {Object} config
+ */
 SuggestionRejectedWidget = function ( config ) {
 	SuggestionRejectedWidget.parent.call( this, $.extend( {}, config ) );
 	this.$element.addClass( 'wbmad-rejected-suggestion' );
@@ -12,7 +16,10 @@ SuggestionRejectedWidget = function ( config ) {
 	} );
 
 	this.closeButton = new OO.ui.ButtonWidget( {
-		title: mw.message( 'machinevision-suggestion-reject-undo-title', this.suggestionData.text ).text(),
+		title: mw.message(
+			'machinevision-suggestion-reject-undo-title',
+			this.suggestionData.text
+		).text(),
 		icon: 'close',
 		framed: false
 	} );

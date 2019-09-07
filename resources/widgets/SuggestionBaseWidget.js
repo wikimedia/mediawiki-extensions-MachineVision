@@ -3,6 +3,10 @@
 var TemplateRenderingDOMLessGroupWidget = require( './../base/TemplateRenderingDOMLessGroupWidget.js' ),
 	SuggestionBaseWidget;
 
+/**
+ * @param {Object} config
+ * @param {Object} config.suggestionData
+ */
 SuggestionBaseWidget = function ( config ) {
 	config.classes = [ 'wbmad-base-suggestion' ];
 	SuggestionBaseWidget.parent.call( this, $.extend( {}, config ) );
@@ -14,12 +18,15 @@ OO.inheritClass( SuggestionBaseWidget, TemplateRenderingDOMLessGroupWidget );
 SuggestionBaseWidget.prototype.emitConfirmSuggestion = function () {
 	this.emit( 'confirmSuggestion' );
 };
+
 SuggestionBaseWidget.prototype.emitUnconfirmSuggestion = function () {
 	this.emit( 'unconfirmSuggestion' );
 };
+
 SuggestionBaseWidget.prototype.emitRejectSuggestion = function () {
 	this.emit( 'rejectSuggestion' );
 };
+
 SuggestionBaseWidget.prototype.emitUnrejectSuggestion = function () {
 	this.emit( 'unrejectSuggestion' );
 };
