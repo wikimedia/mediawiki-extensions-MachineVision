@@ -77,6 +77,8 @@ class Hooks {
 			"$sqlDir/patches/02-add-mvl_uploader_id.sql" );
 		$updater->addExtensionField( 'machine_vision_suggestion', 'mvs_confidence',
 			"$sqlDir/patches/03-add-mvs_confidence.sql" );
+		$updater->addExtensionField( 'machine_vision_label', 'mvl_suggested_time',
+			"$sqlDir/patches/04-add-mvl_suggested_time.sql" );
 	}
 
 	/**
