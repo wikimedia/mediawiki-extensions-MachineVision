@@ -69,6 +69,7 @@ $wgMachineVisionHandlers['google'] = [
 		'MachineVisionGoogleImageAnnotatorClient',
 		'MachineVisionRepository',
 		'MachineVisionRepoGroup',
+		'MachineVisionDepictsSetter',
 		'MachineVisionLabelResolver',
 	],
 	'args' => [
@@ -82,10 +83,10 @@ following code in `src/Hooks.php`:
 
 ```php
 DeferredUpdates::addCallableUpdate( function () use ( $file, $extensionServices ) {
-    $registry = $extensionServices->getHandlerRegistry();
-    foreach ( $registry->getHandlers( $file ) as $provider => $handler ) {
- 		$handler->handleUploadComplete( $provider, $file );
- 	}
+	$registry = $extensionServices->getHandlerRegistry();
+	foreach ( $registry->getHandlers( $file ) as $provider => $handler ) {
+		$handler->handleUploadComplete( $provider, $file );
+	}
 } );
 ```
 
@@ -94,7 +95,7 @@ Replace it with the following:
 ```php
 $registry = $extensionServices->getHandlerRegistry();
 foreach ( $registry->getHandlers( $file ) as $provider => $handler ) {
-    $handler->handleUploadComplete( $provider, $file );
+	$handler->handleUploadComplete( $provider, $file );
 }
 ```
 
