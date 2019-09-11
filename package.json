@@ -1,14 +1,18 @@
 {
 	"private": true,
 	"scripts": {
-		"test": "grunt test"
+		"test": "grunt test && npm run test:unit",
+		"test:unit": "mw-node-qunit --require @wikimedia/mw-node-qunit/wikimedia-setup.js 'tests/node-qunit/**/*.test.js'"
 	},
 	"devDependencies": {
+		"@wikimedia/mw-node-qunit": "git://github.com/wikimedia/mw-node-qunit.git#fc35d073b0987be52a7279acdd3eb5fcd1b0859e",
 		"eslint-config-wikimedia": "0.12.0",
 		"grunt": "1.0.4",
 		"grunt-banana-checker": "0.7.0",
 		"grunt-eslint": "21.0.0",
 		"grunt-stylelint": "0.10.1",
+		"oojs": "2.2.2",
+		"oojs-ui": "0.33.0",
 		"stylelint": "9.10.1",
 		"stylelint-config-wikimedia": "0.6.0"
 	}
