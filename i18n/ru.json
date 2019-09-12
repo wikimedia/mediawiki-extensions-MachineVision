@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Марио"
+		]
+	},
+	"machinevision-more": "Далее $1 {{PLURAL:$1|изображение|изображения|изображений}}",
+	"machinevision-suggestion-reject-title": "Отменено \"$1\" предложение?",
+	"machinevision-suggestion-reject-undo-title": "Отменить \"$1\" предложение отклонения?"
+}

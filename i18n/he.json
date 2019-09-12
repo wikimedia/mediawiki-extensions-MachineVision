@@ -1,8 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"YaronSh"
+			"YaronSh",
+			"Falling star"
 		]
 	},
-	"machinevision-pageinfo-field-suggested-labels": "תוויות מוצעות"
+	"machinevision-pageinfo-field-suggested-labels": "תוויות מוצעות",
+	"machinevision-more": "{{PLURAL:$1|תמונה אחת|$1 תמונות}}"
 }

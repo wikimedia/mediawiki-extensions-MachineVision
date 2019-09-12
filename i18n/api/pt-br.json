@@ -1,0 +1,28 @@
+{
+	"@metadata": {
+		"authors": [
+			"Eduardo Addad de Oliveira"
+		]
+	},
+	"apihelp-reviewimagelabels-summary": "Revise os rótulos de imagem sugeridos pela máquina.",
+	"apihelp-reviewimagelabels-param-filename": "Nome da imagem (sem prefixo de espaços nominais).",
+	"apihelp-reviewimagelabels-param-label": "ID do Wikidata do rótulo sugerido (com prefixo Q).",
+	"apihelp-reviewimagelabels-param-review": "Resultado da revisão.",
+	"apihelp-reviewimagelabels-paramvalue-review-accept": "A sugestão está correta.",
+	"apihelp-reviewimagelabels-paramvalue-review-reject": "A sugestão está incorreta.",
+	"apihelp-reviewimagelabels-paramvalue-review-skip": "O usuário não estava certo ou cancelou a revisão.",
+	"apihelp-reviewimagelabels-example-1": "Marcar <kbd>Q123</kbd> como uma sugestão correta para <kbd>Exemplo.png</kbd>.",
+	"apierror-reviewimagelabels-invalidfile": "<kbd>$1</kbd> não é um nome de arquivo válido.",
+	"apierror-reviewimagelabels-invalidlabel": "Arquivo <kbd>$1</kbd> não tem rótulo <kbd>$2</kbd>.",
+	"apierror-reviewimagelabels-invalidstate": "<kbd>$3</kbd> não é uma ação válida para etiqueta <kbd>$2</kbd> do arquivo <kbd>$1</kbd>.",
+	"apihelp-query+imagelabels-summary": "Mostrar etiquetas de imagens sugeridas por máquinas.",
+	"apihelp-query+imagelabels-param-state": "Somente listar rótulos nesses estados de revisão",
+	"apihelp-query+imagelabels-paramvalue-state-unreviewed": "Etiquetas que ainda não foram revisadas.",
+	"apihelp-query+imagelabels-paramvalue-state-accepted": "Etiquetas que foram identificadas como corretas.",
+	"apihelp-query+imagelabels-paramvalue-state-rejected": "Etiquetas que foram identificadas como incorretas.",
+	"apihelp-query+imagelabels-paramvalue-state-skipped": "Etiquetas que alguém tentou identificar, mas desistiu.",
+	"apihelp-query+imagelabels-example-1": "Mostrar etiquetas de imagem sugeridas por máquina para <kbd>Exemplo.png</kbd>.",
+	"apihelp-query+unreviewedimagelabels-summary": "Mostrar títulos com rótulos de imagem sugeridos que precisam de revisão.",
+	"apihelp-query+unreviewedimagelabels-param-uploader": "Retorne apenas os resultados enviados por este usuário.",
+	"apihelp-query+unreviewedimagelabels-param-limit": "O número de resultados a serem devolvidos."
+}

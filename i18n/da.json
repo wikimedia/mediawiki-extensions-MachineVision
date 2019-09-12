@@ -4,5 +4,5 @@
 			"Saederup92"
 		]
 	},
-	"machinevision-more": "Næste $1 billeder"
+	"machinevision-more": "Næste $1 {{PLURAL:$1|billede|billeder}}"
 }

@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Bjankuloski06"
+			"Bjankuloski06",
+			"Vlad5250"
 		]
 	},
 	"machinevision-desc": "Посредник за внатрешната и надворешната услуга за машински вид и складира исходи за употреба на викито",
@@ -12,8 +13,8 @@
 	"machinevision-suggestions-rejected-heading": "Одбиени ознаки",
 	"machinevision-publish": "Објави ознаки",
 	"machinevision-publish-title": "Да ги објавам ознаките?",
-	"machinevision-more": "Следни $1 слики",
-	"machinevision-more-title": "Да ги прикажам следните $1 слики?",
+	"machinevision-more": "{{PLURAL:$1|Следна $1 слика|Следни $1 слики}}",
+	"machinevision-more-title": "Да {{PLURAL:$1|ја|ги}} прикажам {{PLURAL:$1|следната $1 слика|следните $1 слики}}?",
 	"machinevision-reset": "Поврати означување",
 	"machinevision-reset-title": "Да го повратам означувањето?",
 	"machinevision-close-title": "Да ги затворам предлозите за „$1“?",
@@ -22,26 +23,5 @@
 	"machinevision-suggestion-reject-title": "Да го одбијам предлогот „$1“?",
 	"machinevision-suggestion-reject-undo-title": "Да го отповикам одбивањето на предлогот „$1“?",
 	"right-imagelabel-review": "Проверка на предложени натписи за слики",
-	"action-imagelabel-review": "проверка на предложени натписи за слики",
-	"apihelp-reviewimagelabels-summary": "Проверка на машински предложени натписи за слики.",
-	"apihelp-reviewimagelabels-param-filename": "Назив на сликата (без претставката за именски простор).",
-	"apihelp-reviewimagelabels-param-label": "Назнака на предложениот натпис од Википодатоците (со претставката Q)",
-	"apihelp-reviewimagelabels-param-review": "Исход од проверката.",
-	"apihelp-reviewimagelabels-paramvalue-review-accept": "Предлогот е исправен.",
-	"apihelp-reviewimagelabels-paramvalue-review-reject": "Предлогот е неисправен.",
-	"apihelp-reviewimagelabels-paramvalue-review-skip": "Корисникот беше несигурен или ја откажа проверката.",
-	"apihelp-reviewimagelabels-example-1": "Означи го <kbd>Q123</kbd> како исправен предлог за <kbd>Example.png</kbd>.",
-	"apierror-reviewimagelabels-invalidfile": "<kbd>$1</kbd> не претставува важечко податотечно име.",
-	"apierror-reviewimagelabels-invalidlabel": "Податотеката <kbd>$1</kbd> нема натпис <kbd>$2</kbd>.",
-	"apierror-reviewimagelabels-invalidstate": "<kbd>$3</kbd> не претставува важечко дејство за натписот <kbd>$2</kbd> на податотеката <kbd>$1</kbd>.",
-	"apihelp-query+imagelabels-summary": "Прикажувај машински предложени натписи на слики",
-	"apihelp-query+imagelabels-param-state": "Испишувај ги само натписите во следниве состојби на проверка",
-	"apihelp-query+imagelabels-paramvalue-state-unreviewed": "Натписите кои сè уште не се проверени.",
-	"apihelp-query+imagelabels-paramvalue-state-accepted": "Натписите утврдени како исправни.",
-	"apihelp-query+imagelabels-paramvalue-state-rejected": "Натписите утврдени како неисправни.",
-	"apihelp-query+imagelabels-paramvalue-state-skipped": "Натписите кои некој се обидел да ги утвбри, но се откажал.",
-	"apihelp-query+imagelabels-example-1": "Прикажи машински предложени натписи за <kbd>Example.png</kbd>.",
-	"apihelp-query+unreviewedimagelabels-summary": "Прикажи наслови со предложени натписи на слики на кои им треба проверка.",
-	"apihelp-query+unreviewedimagelabels-param-uploader": "Дај само ставки подигнати од овој корисник.",
-	"apihelp-query+unreviewedimagelabels-param-limit": "Колку исходни ставки да се даваат."
+	"action-imagelabel-review": "проверка на предложени натписи за слики"
 }

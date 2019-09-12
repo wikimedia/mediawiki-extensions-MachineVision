@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Fitoschido"
+		]
+	},
+	"apihelp-reviewimagelabels-paramvalue-review-accept": "El suggeriment és correcte.",
+	"apihelp-reviewimagelabels-paramvalue-review-reject": "El suggeriment és incorrecte."
+}

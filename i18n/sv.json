@@ -14,12 +14,5 @@
 	"machinevision-suggestion-confirm-title": "Bekräfta förslaget \"$1\"?",
 	"machinevision-suggestion-confirm-undo-title": "Ångra att förslaget \"$1\" bekräftades?",
 	"machinevision-suggestion-reject-title": "Avvisa förslaget \"$1\"?",
-	"machinevision-suggestion-reject-undo-title": "Ångra att förslaget \"$1\" avvisades?",
-	"apihelp-reviewimagelabels-summary": "Granska maskinförslagna bildetiketter.",
-	"apihelp-reviewimagelabels-param-filename": "Bildens namn (utan namnrymdsprefix).",
-	"apihelp-reviewimagelabels-param-label": "Wikidata-ID för den förslagna etiketten (med Q-prefix).",
-	"apihelp-reviewimagelabels-param-review": "Granskningens resultat.",
-	"apihelp-reviewimagelabels-paramvalue-review-accept": "Förslaget är korrekt.",
-	"apihelp-reviewimagelabels-paramvalue-review-skip": "Användaren var osäker eller avbröt granskningen.",
-	"apierror-reviewimagelabels-invalidlabel": "Filen <kbd>$1</kbd> har inte etiketten <kbd>$2</kbd>."
+	"machinevision-suggestion-reject-undo-title": "Ångra att förslaget \"$1\" avvisades?"
 }

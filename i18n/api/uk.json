@@ -1,0 +1,25 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ата"
+		]
+	},
+	"apihelp-reviewimagelabels-summary": "Переглянути підказки назв зображень.",
+	"apihelp-reviewimagelabels-param-filename": "Назва файлу зображення (без префікса простору назв).",
+	"apihelp-reviewimagelabels-param-label": "ID у Вікіданих пропонованої назви (з префіксом Q).",
+	"apihelp-reviewimagelabels-param-review": "Результат перегляду.",
+	"apihelp-reviewimagelabels-paramvalue-review-accept": "Підказка правильна.",
+	"apihelp-reviewimagelabels-paramvalue-review-reject": "Підказка неправильна.",
+	"apihelp-reviewimagelabels-paramvalue-review-skip": "Користувач не був упевнений або перервав перегляд.",
+	"apihelp-reviewimagelabels-example-1": "Позначити <kbd>Q123</kbd> як правильну підказку для <kbd>Example.png</kbd>.",
+	"apierror-reviewimagelabels-invalidfile": "<kbd>$1</kbd> не є дійсною назвою файлу.",
+	"apierror-reviewimagelabels-invalidlabel": "Файл <kbd>$1</kbd> не має назви <kbd>$2</kbd>.",
+	"apierror-reviewimagelabels-invalidstate": "<kbd>$3</kbd> не є дійсною дією для назви <kbd>$2</kbd> файлу <kbd>$1</kbd>.",
+	"apihelp-query+imagelabels-summary": "Переглянути машинні підказки назв зображень.",
+	"apihelp-query+imagelabels-param-state": "Перелічити лише назви із цими статусами перегляду",
+	"apihelp-query+imagelabels-paramvalue-state-unreviewed": "Назви, які ще не були переглянуті.",
+	"apihelp-query+imagelabels-paramvalue-state-accepted": "Назви, які були визначені як правильні.",
+	"apihelp-query+imagelabels-paramvalue-state-rejected": "Назви, які були визначені як неправильні.",
+	"apihelp-query+imagelabels-paramvalue-state-skipped": "Назви, які хтось спробував визначити, але здався.",
+	"apihelp-query+imagelabels-example-1": "Переглянути машинні підказки назв зображень для <kbd>Example.png</kbd>."
+}
