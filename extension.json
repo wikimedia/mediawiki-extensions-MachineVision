@@ -59,7 +59,7 @@
 		}
 	},
 	"SpecialPages": {
-		"MachineAidedTagging": "MediaWiki\\Extension\\MachineVision\\Special\\SpecialMachineAidedTagging"
+		"SuggestedTags": "MediaWiki\\Extension\\MachineVision\\Special\\SpecialSuggestedTags"
 	},
 	"ServiceWiringFiles": [
 		"ServiceWiring.php"

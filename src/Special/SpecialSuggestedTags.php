@@ -4,10 +4,10 @@ namespace MediaWiki\Extension\MachineVision\Special;
 
 use SpecialPage;
 
-class SpecialMachineAidedTagging extends SpecialPage {
+class SpecialSuggestedTags extends SpecialPage {
 
 	/** @inheritDoc */
-	public function __construct( $name = 'MachineAidedTagging' ) {
+	public function __construct( $name = 'SuggestedTags' ) {
 		parent::__construct( $name );
 	}
 

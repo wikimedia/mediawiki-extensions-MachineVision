@@ -3,5 +3,5 @@
 $specialPageAliases = [];
 
 $specialPageAliases['en'] = [
-	'MachineAidedTagging' => [ 'MachineAidedTagging' ],
+	'SuggestedTags' => [ 'SuggestedTags' ],
 ];

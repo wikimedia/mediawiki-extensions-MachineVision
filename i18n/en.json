@@ -6,7 +6,7 @@
 		]
 	},
 	"machinevision-desc": "Interfaces with internal and external machine vision service providers and stores results for usage on-wiki.",
-	"machinevision-machineaidedtagging": "Machine-aided tagging",
+	"machinevision-machineaidedtagging": "Suggested tags",
 	"machinevision-machineaidedtagging-intro": "Review image depiction tag suggestions from a computer vision model. Only tags confirmed by users will get added to images.",
 	"machinevision-pageinfo-field-suggested-labels": "Suggested labels",
 	"machinevision-suggestions-heading": "Suggested tags",

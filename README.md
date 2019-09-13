@@ -101,7 +101,7 @@ foreach ( $registry->getHandlers( $file ) as $provider => $handler ) {
 
 #### Usage
 Log in and upload a file (after `$wgMachineVisionRequestLabelsOnUploadComplete`
-has been set to `true`); After upload, navigate to `Special:MachineAidedTagging`
+has been set to `true`); After upload, navigate to `Special:SuggestedTags`
 to see suggested tags from Google.
 
 #### Federation
