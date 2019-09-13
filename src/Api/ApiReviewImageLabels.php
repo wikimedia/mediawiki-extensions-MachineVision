@@ -10,6 +10,7 @@ use MediaWiki\Extension\MachineVision\Repository;
 use MediaWiki\Extension\MachineVision\Services;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\NameTableStore;
+use Message;
 use RepoGroup;
 use Title;
 
@@ -75,51 +76,200 @@ class ApiReviewImageLabels extends ApiBase {
 
 	/** @inheritDoc */
 	public function execute() {
-		// TODO move some of this to Handler?
-		$params = $this->extractRequestParams();
-
 		$this->checkUserRightsAny( 'imagelabel-review' );
 
-		$title = Title::newFromText( $params['filename'], NS_FILE );
+		// TODO move some of this to Handler?
+		$params = $this->extractRequestParams();
+		$votes = $this->collectAndValidateVotes( $params );
+
+		$filename = $params['filename'];
+		$file = $this->getFile( $filename );
+		$sha1 = $file->getSha1();
+
+		$token = $params['token'];
+
+		$result = [
+			'success' => [],
+		];
+
+		foreach ( $votes as $vote ) {
+			$label = $vote['label'];
+			$review = $vote['review'];
+
+			$oldState = $this->repository->getLabelState( $sha1, $label,
+				IDBAccessObject::READ_LOCKING );
+			$newState = self::$reviewActions[$review];
+			$this->validateLabelState( $filename, $label, $review, $oldState, $newState );
+
+			$success = $this->repository->setLabelState( $sha1, $label, $newState );
+			if ( $success ) {
+				$this->propagateSetLabelSuccess( $file, $label, $token, $newState );
+				$result['success'][$label] = $review;
+			} else {
+				$this->addWarning( 'apiwarn-reviewimagelabels-setlabelstate-failed',
+					$review, $label );
+				if ( !array_key_exists( 'failure', $result ) ) {
+					$result['failure'] = [];
+				}
+				$result['failure'][$label] = $review;
+			}
+		}
+
+		$this->getResult()->addValue( null, $this->getModuleName(), [ 'result' => $result ] );
+	}
+
+	private function collectAndValidateVotes( $params ) {
+		$filename = $params['filename'];
+		$requiredVoteParams = [ 'label', 'review' ];
+
+		foreach ( $requiredVoteParams as $param ) {
+			$this->requireOnlyOneParameter( $params, $param, 'batch' );
+		}
+
+		if ( $params['batch'] ) {
+			$votes = $this->getBatchedVotes( $filename, $params['batch'] );
+			foreach ( $votes as $vote ) {
+				$this->requireAtLeastOneBatchParameter( $vote, 'filename' );
+				foreach ( $requiredVoteParams as $param ) {
+					$this->requireAtLeastOneBatchParameter( $vote, $param );
+				}
+			}
+		} else {
+			foreach ( $requiredVoteParams as $param ) {
+				$this->requireAtLeastOneParameter( $params, $param );
+			}
+			$votes = [];
+			$votes[] = [
+				'filename' => $filename,
+				'label' => $params['label'],
+				'review' => $params['review'],
+			];
+		}
+		return $votes;
+	}
+
+	private function getFile( $filename ) {
+		$title = Title::newFromText( $filename, NS_FILE );
 		if ( !$title ) {
-			$this->dieWithError( wfMessage( 'apierror-reviewimagelabels-invalidfile',
-				$params['filename'] ) );
+			$this->dieWithError(
+				wfMessage( 'apierror-reviewimagelabels-invalidfile', $filename )
+			);
 		}
 		$file = $this->repoGroup->getLocalRepo()->findFile( $title );
 		if ( !$file ) {
-			$this->dieWithError( wfMessage( 'apierror-reviewimagelabels-invalidfile',
-				$params['filename'] ) );
+			$this->dieWithError(
+				wfMessage( 'apierror-reviewimagelabels-invalidfile', $filename )
+			);
 		}
+		return $file;
+	}
 
-		$sha1 = $file->getSha1();
-		$oldState = $this->repository->getLabelState( $sha1, $params['label'],
-			IDBAccessObject::READ_LOCKING );
-		$newState = self::$reviewActions[$params['review']];
+	private function validateLabelState( $filename, $label, $review, $oldState, $newState ) {
 		if ( $oldState === false ) {
-			$this->dieWithError( wfMessage( 'apierror-reviewimagelabels-invalidlabel',
-				$params['filename'], $params['label'] ) );
+			$this->dieWithError(
+				wfMessage( 'apierror-reviewimagelabels-invalidlabel', $filename, $label )
+			);
 		} elseif (
 			$oldState !== Repository::REVIEW_UNREVIEWED
 			// handle double-submits gracefully
 			&& $oldState !== $newState
 		) {
-			$this->dieWithError( wfMessage( 'apierror-reviewimagelabels-invalidstate',
-				$params['filename'], $params['label'], $params['review'] ) );
+			$this->dieWithError(
+				wfMessage( 'apierror-reviewimagelabels-invalidstate', $filename, $label, $review )
+			);
 		}
+	}
 
-		$success = $this->repository->setLabelState( $sha1, $params['label'], $newState );
-		if ( $success ) {
+	private function propagateSetLabelSuccess( $file, $label, $token, $newState ) {
+		// @phan-suppress-next-line PhanTypeMismatchArgument
+		$handlers = $this->registry->getHandlers( $file );
+		foreach ( $handlers as $handler ) {
 			// @phan-suppress-next-line PhanTypeMismatchArgument
-			$handlers = $this->registry->getHandlers( $file );
-			foreach ( $handlers as $handler ) {
-				// @phan-suppress-next-line PhanTypeMismatchArgument
-				$handler->handleLabelReview( $this->getUser(), $file, $params['label'],
-					$params['token'], $newState );
+			$handler->handleLabelReview( $this->getUser(), $file, $label, $token, $newState );
+		}
+	}
+
+	/**
+	 * Decode, validate and normalize the 'batch' parameter.
+	 * TODO: This is copied nearly verbatim from ApiTrait in ReadingLists, with only message keys
+	 * changed. Have a chat with Gergo about moving it into a library, and/or file a task.
+	 * @param string $filename Filename to which the votes apply
+	 * @param string $rawBatch The raw value of the 'batch' parameter.
+	 * @return array Array of operations, each consisting of a flat associative array.
+	 */
+	private function getBatchedVotes( $filename, $rawBatch ) {
+		$batch = json_decode( $rawBatch, true );
+
+		// Must be a real array, and not empty.
+		if ( !is_array( $batch ) || $batch !== array_values( $batch ) || !$batch ) {
+			if ( json_last_error() ) {
+				$jsonError = json_last_error_msg();
+				$this->dieWithError( wfMessage( 'apierror-reviewimagelabels-batch-invalid-json',
+					wfEscapeWikiText( $jsonError ) ) );
 			}
+			$this->dieWithError( 'apierror-reviewimagelabels-batch-invalid-structure' );
 		}
 
-		$this->getResult()->addValue( null, $this->getModuleName(),
-			[ 'result' => $success ? 'success' : 'failure' ] );
+		// Limit the batch size to a reasonable maximum.
+		if ( count( $batch ) > ApiBase::LIMIT_BIG1 ) {
+			$msg = wfMessage( 'apierror-reviewimagelabels-batch-toomanyvalues',
+				ApiBase::LIMIT_BIG1 );
+			$this->dieWithError( $msg, 'toomanyvalues' );
+		}
+
+		$request = $this->getContext()->getRequest();
+		foreach ( $batch as &$op ) {
+			$op['filename'] = $filename;
+			// Each batch operation must be an associative array with scalar fields.
+			if (
+				!is_array( $op )
+				|| array_values( $op ) === $op
+				|| array_filter( $op, 'is_scalar' ) !== $op
+			) {
+				$this->dieWithError( 'apierror-reviewimagelabels-batch-invalid-structure' );
+			}
+			// JSON-escaped characters might have skipped WebRequest's normalization, repeat it.
+			array_walk_recursive( $op, function ( &$value ) use ( $request ) {
+				if ( is_string( $value ) ) {
+					$value = $request->normalizeUnicode( $value );
+				}
+			} );
+		}
+		return $batch;
+	}
+
+	/**
+	 * Validate a single operation in the 'batch' parameter of write APIs. Works the same way as
+	 * requireAtLeastOneParameter.
+	 * TODO: This is copied nearly verbatim from ApiTrait in ReadingLists, with only message keys
+	 * changed. Have a chat with Gergo about moving it into a library, and/or file a task.
+	 * @param array $op
+	 * @param string $param,...
+	 */
+	// @codingStandardsIgnoreLine MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment.NewLineComment
+	protected function requireAtLeastOneBatchParameter( array $op, $param /*...*/ ) {
+		$required = func_get_args();
+		array_shift( $required );
+
+		$intersection = array_intersect(
+			array_keys( array_filter( $op, function ( $val ) {
+				return !is_null( $val ) && $val !== false;
+			} ) ),
+			$required
+		);
+
+		if ( count( $intersection ) == 0 ) {
+			$this->dieWithError( [
+				'apierror-reviewimagelabels-batch-missingparam-at-least-one-of',
+				Message::listParam( array_map(
+					function ( $p ) {
+						return '<var>' . $this->encodeParamName( $p ) . '</var>';
+					},
+					array_values( $required )
+				) ),
+				count( $required ),
+			], 'missingparam' );
+		}
 	}
 
 	/** @inheritDoc */
@@ -141,13 +291,14 @@ class ApiReviewImageLabels extends ApiBase {
 			],
 			'label' => [
 				ApiBase::PARAM_TYPE => 'string',
-				ApiBase::PARAM_REQUIRED => true,
 			],
 			'review' => [
 				ApiBase::PARAM_TYPE => array_keys( self::$reviewActions ),
-				ApiBase::PARAM_REQUIRED => true,
 				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
 			],
+			'batch' => [
+				ApiBase::PARAM_TYPE => 'string',
+			]
 		];
 	}
 
@@ -156,6 +307,9 @@ class ApiReviewImageLabels extends ApiBase {
 		return [
 			'action=reviewimagelabels&filename=Example.png&label=Q123&review=accept'
 				=> 'apihelp-reviewimagelabels-example-1',
+			'action=reviewimagelabels&filename=Example.png&batch='
+				. '[{"label":"Q1","review":"accept"},{"label":"Q2","review":"reject"}]'
+				=> 'apihelp-reviewimagelabels-example-2',
 		];
 	}
 

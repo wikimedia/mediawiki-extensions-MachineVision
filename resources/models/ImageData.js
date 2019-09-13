@@ -1,6 +1,10 @@
 'use strict';
 
-var ImageData = function WikibaseMachineAssistedDepictsImageData( title, thumburl, description, suggestions ) {
+var ImageData = function WikibaseMachineAssistedDepictsImageData(
+	title,
+	thumburl,
+	description,
+	suggestions ) {
 	this.title = title;
 	this.thumburl = thumburl;
 	this.description = description;
