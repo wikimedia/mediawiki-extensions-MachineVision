@@ -3,6 +3,10 @@
 var SuggestionBaseWidget = require( './SuggestionBaseWidget.js' ),
 	SuggestionConfirmedWidget;
 
+/**
+ * TODO: Document this
+ * @param {Object} config
+ */
 SuggestionConfirmedWidget = function ( config ) {
 	SuggestionConfirmedWidget.parent.call( this, $.extend( {}, config ) );
 	this.$element.addClass( 'wbmad-confirmed-suggestion' );
@@ -12,7 +16,10 @@ SuggestionConfirmedWidget = function ( config ) {
 	} );
 
 	this.checkButton = new OO.ui.ButtonWidget( {
-		title: mw.message( 'machinevision-suggestion-confirm-undo-title', this.suggestionData.text ).text(),
+		title: mw.message(
+			'machinevision-suggestion-confirm-undo-title',
+			this.suggestionData.text
+		).text(),
 		icon: 'check',
 		framed: false
 	} );
