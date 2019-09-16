@@ -7,6 +7,8 @@ use LocalFile;
 use MediaWiki\Extension\MachineVision\Repository;
 use MediaWiki\Extension\MachineVision\LabelSuggestion;
 use RepoGroup;
+use Wikibase\DataModel\Entity\ItemId;
+use Wikibase\DataModel\Services\Lookup\EntityLookup;
 
 class GoogleCloudVisionHandler extends WikidataIdHandler {
 
@@ -17,6 +19,9 @@ class GoogleCloudVisionHandler extends WikidataIdHandler {
 	/** @var RepoGroup */
 	private $repoGroup;
 
+	/** @var EntityLookup */
+	private $entityLookup;
+
 	/** @var bool */
 	private $sendFileContents;
 
@@ -26,6 +31,7 @@ class GoogleCloudVisionHandler extends WikidataIdHandler {
 	 * @param RepoGroup $repoGroup
 	 * @param WikidataDepictsSetter $depictsSetter
 	 * @param LabelResolver $labelResolver
+	 * @param EntityLookup $entityLookup
 	 * @param bool $sendFileContents
 	 * @suppress PhanUndeclaredTypeParameter
 	 */
@@ -35,11 +41,13 @@ class GoogleCloudVisionHandler extends WikidataIdHandler {
 		RepoGroup $repoGroup,
 		WikidataDepictsSetter $depictsSetter,
 		LabelResolver $labelResolver,
+		EntityLookup $entityLookup,
 		$sendFileContents
 	) {
 		parent::__construct( $repository, $depictsSetter, $labelResolver );
 		$this->client = $client;
 		$this->repoGroup = $repoGroup;
+		$this->entityLookup = $entityLookup;
 		$this->sendFileContents = $sendFileContents;
 	}
 
@@ -59,9 +67,24 @@ class GoogleCloudVisionHandler extends WikidataIdHandler {
 			$freebaseId = $label->getMid();
 			$score = $label->getScore();
 			$mappedWikidataIds = $this->getRepository()->getMappedWikidataIds( $freebaseId );
-			$newSuggestions = array_map( function ( $mappedId ) use ( $score ) {
-				return new LabelSuggestion( $mappedId, $score );
-			}, $mappedWikidataIds );
+			$items = [];
+			$newSuggestions = [];
+			// Look up the entity associated with the provided ID.
+			// Redirects will be resolved during lookup, and values returning null will be ignored.
+			// TODO: Update the mappings table when redirects are resolved.
+			// This can be detected when item->getId() has a different value than the ID provided.
+			foreach ( $mappedWikidataIds as $mappedId ) {
+				$item = $this->entityLookup->getEntity( new ItemId( $mappedId ) );
+				if ( $item ) {
+					$items[] = $item;
+				}
+			}
+			foreach ( $items as $item ) {
+				$itemId = $item->getId();
+				if ( $itemId ) {
+					$newSuggestions[] = new LabelSuggestion( $itemId, $score );
+				}
+			}
 			$suggestions = array_merge( $suggestions, $newSuggestions );
 		}
 		$this->getRepository()->insertLabels( $file->getSha1(), $provider,
