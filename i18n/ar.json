@@ -6,7 +6,7 @@
 		]
 	},
 	"machinevision-desc": "واجهات مع مزودي خدمة رؤية الجهاز الداخلية والخارجية وتخزن النتائج للاستخدام على الويكي.",
-	"machinevision-machineaidedtagging": "الوسم بمساعدة الآلة",
+	"machinevision-machineaidedtagging": "الوسوم المقترحة",
 	"machinevision-machineaidedtagging-intro": "راجع اقتراحات وسوم تصوير الصورة من نموذج رؤية الحاسوب، ستتم إضافة الوسوم التي أكدها المستخدمون فقط إلى الصور.",
 	"machinevision-pageinfo-field-suggested-labels": "التسميات المقترحة",
 	"machinevision-suggestions-heading": "الوسوم المقترحة",

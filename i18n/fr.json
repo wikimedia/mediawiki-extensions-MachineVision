@@ -3,11 +3,12 @@
 		"authors": [
 			"Gomoko",
 			"Wladek92",
-			"Thibaut120094"
+			"Thibaut120094",
+			"Crochet.david"
 		]
 	},
 	"machinevision-desc": "S’interface avec des fournisseurs de service de vision machine interne et externe, et stocke les résultats de l’utilisation dans le wiki.",
-	"machinevision-machineaidedtagging": "Balise d’aide machine",
+	"machinevision-machineaidedtagging": "Balises suggérées",
 	"machinevision-machineaidedtagging-intro": "Revoir les suggestions de balise de description d’image pour un modèle de vision par ordinateur. Seules les balises confirmées par les utilisateurs seront ajoutées aux images.",
 	"machinevision-pageinfo-field-suggested-labels": "Libellés suggérés",
 	"machinevision-suggestions-heading": "Balises suggérées",

@@ -5,7 +5,7 @@
 		]
 	},
 	"machinevision-desc": "Interfaces com provedores de serviços de visão de máquina internos e externos e armazena resultados para uso no wiki.",
-	"machinevision-machineaidedtagging": "Etiquetagem auxiliada por máquina",
+	"machinevision-machineaidedtagging": "Etiquetas sugeridas",
 	"machinevision-machineaidedtagging-intro": "Analise as sugestões de etiquetas de representação de imagem de um modelo de visão computacional. Somente etiquetas confirmadas pelos usuários serão adicionadas às imagens.",
 	"machinevision-pageinfo-field-suggested-labels": "Etiquetas sugeridas",
 	"machinevision-suggestions-heading": "Etiquetas sugeridas",
