@@ -188,14 +188,20 @@ ImageWithSuggestionsWidget.prototype.onPublish = function () {
 	// TODO: wire up to middleware 'save' endpoint once it exists
 	/* eslint-disable-next-line no-alert */
 	if ( confirm( this.getPublishDebugString() ) ) {
-		/* eslint-disable-next-line no-jquery/no-slide */
-		this.$element.slideUp();
+		this.onClose();
 	}
 };
 
+/**
+ * Handle removed card.
+ *
+ * @fires itemRemoved
+ */
 ImageWithSuggestionsWidget.prototype.onClose = function () {
-	/* eslint-disable-next-line no-jquery/no-slide */
-	this.$element.slideUp();
+	this.$element.remove();
+
+	// Emit an event so parent element can see if we need to fetch more images.
+	this.emit( 'itemRemoved' );
 };
 
 ImageWithSuggestionsWidget.prototype.render = function () {

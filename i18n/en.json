@@ -22,6 +22,7 @@
 	"machinevision-suggestion-confirm-undo-title": "Undo \"$1\" suggestion confirmation?",
 	"machinevision-suggestion-reject-title": "Reject \"$1\" suggestion?",
 	"machinevision-suggestion-reject-undo-title": "Undo \"$1\" suggestion rejection?",
+	"machinevision-loading-message": "Loading...",
 	"right-imagelabel-review": "Review image label suggestions",
 	"action-imagelabel-review": "review image label suggestions"
 }

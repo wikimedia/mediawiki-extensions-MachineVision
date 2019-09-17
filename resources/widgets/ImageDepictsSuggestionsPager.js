@@ -5,34 +5,38 @@
 
 var IMAGES_PER_PAGE = 10,
 	TemplateRenderingDOMLessGroupWidget = require( './../base/TemplateRenderingDOMLessGroupWidget.js' ),
-	ImageDepictsSuggestionsPage = require( './ImageDepictsSuggestionsPage.js' ),
+	ImageWithSuggestionsWidget = require( './ImageWithSuggestionsWidget.js' ),
 	SuggestionData = require( './../models/SuggestionData.js' ),
 	ImageData = require( './../models/ImageData.js' ),
 	ImageDepictsSuggestionsPager,
 	randomDescription,
 	showFailureMessage,
-	queryURLWithCountAndOffset,
-	getImageDataForQueryResponsePage,
-	updateMoreButtonVisibility;
+	showLoadingMessage,
+	queryURLWithCount,
+	getImageDataForQueryResponse;
 
+/**
+ * Container element for ImageWithSuggestionsWidgets. This element fetches a set
+ * number of items initially, then checks each time an item is published or
+ * skipped to see when another batch of items needs to be fetched.
+ *
+ * @param {Object} config
+ */
 ImageDepictsSuggestionsPager = function ( config ) {
 	ImageDepictsSuggestionsPager.parent.call( this, $.extend( {}, config ) );
 
-	this.$element.addClass( 'wbmad-image-depicts-suggestions-pager' );
+	this.$element.addClass( 'wbmad-suggested-tags-pager' );
+	this.connect( this, { itemRemoved: 'onItemRemoved' } );
 
+	// TODO: move this to a parent component.
 	this.descriptionLabel = new OO.ui.LabelWidget( {
 		label: mw.message( 'machinevision-machineaidedtagging-intro' ).text()
 	} );
 
-	this.moreButton = new OO.ui.ButtonWidget( {
-		classes: [ 'wbmad-more-button' ],
-		title: mw.message( 'machinevision-more-title', IMAGES_PER_PAGE ).text(),
-		label: mw.message( 'machinevision-more', IMAGES_PER_PAGE ).text()
-	} ).on( 'click', this.onMore, [], this );
-
 	this.render();
-	// $(window).scroll(this.fetchAndShowPageIfScrolledToBottom.bind(this));
-	this.fetchAndShowPage();
+
+	// Fetch the first batch of items.
+	this.fetchItems();
 };
 
 OO.inheritClass(
@@ -40,31 +44,32 @@ OO.inheritClass(
 	TemplateRenderingDOMLessGroupWidget
 );
 
-ImageDepictsSuggestionsPager.prototype.onMore = function () {
-	this.fetchAndShowPage();
-};
-
 ImageDepictsSuggestionsPager.prototype.render = function () {
 	this.renderTemplate( 'resources/widgets/ImageDepictsSuggestionsPager.mustache+dom', {
-		descriptionLabel: this.descriptionLabel,
-		moreButton: this.moreButton
+		descriptionLabel: this.descriptionLabel
 	} );
 };
 
-/*
-var isScrolledToBottom = function() {
-	return ( $( window ).scrollTop() + $( window ).height() == $( document ).height() );
-}
-
-ImageDepictsSuggestionsPager.prototype.fetchAndShowPageIfScrolledToBottom = function () {
-	if ( !isScrolledToBottom() ) {
-		return;
+/**
+ * Each time an image is removed (published or skipped), check if new ones need
+ * to be fetched. When there are no items remaining, fetch another batch (unless
+ * no results were found last time).
+ *
+ * TODO: (T233232) Improve loading experience.
+ */
+ImageDepictsSuggestionsPager.prototype.onItemRemoved = function () {
+	if ( this.resultsFound && $( '.wbmad-image-with-suggestions' ).length === 0 ) {
+		this.fetchItems();
 	}
-	this.fetchAndShowPage();
-}
-*/
+};
 
-queryURLWithCountAndOffset = function ( count, offset ) {
+/**
+ * Build a query URL.
+ *
+ * @param {number} count
+ * @return {string}
+ */
+queryURLWithCount = function ( count ) {
 	var query, urlString;
 
 	query = {
@@ -79,11 +84,6 @@ queryURLWithCountAndOffset = function ( count, offset ) {
 		ilstate: 'unreviewed'
 	};
 
-	if ( offset ) {
-		query.gqpoffset = count * offset;
-		query.continue = 'gqpoffset||';
-	}
-
 	urlString = mw.config.get( 'wgServer' ) +
 		mw.config.get( 'wgScriptPath' ) + '/api.php?';
 
@@ -94,6 +94,7 @@ queryURLWithCountAndOffset = function ( count, offset ) {
 	return urlString;
 };
 
+// TODO: remove.
 randomDescription = function () {
 	var array, randomNumber;
 
@@ -109,50 +110,81 @@ randomDescription = function () {
 	return array[ randomNumber ];
 };
 
-getImageDataForQueryResponsePage = function ( page ) {
+/**
+ * Get a formatted object of image data.
+ *
+ * @param {Object} item An item from the query response
+ * @return {Object}
+ */
+getImageDataForQueryResponse = function ( item ) {
 	// TODO: grab actual description and suggestions from middleware endpoint
 	// once it exists, then delete the random methods and the
 	// `thumbwidth != // 320` check (which the middleware will enforce)
-	if ( page.imageinfo && page.imagelabels && page.imagelabels.length ) {
+	if ( item.imageinfo && item.imagelabels && item.imagelabels.length ) {
 		return new ImageData(
-			page.title,
-			page.imageinfo[ 0 ].thumburl,
+			item.title,
+			item.imageinfo[ 0 ].thumburl,
 			randomDescription(),
-			page.imagelabels.map( function ( labelData ) {
+			item.imagelabels.map( function ( labelData ) {
 				return new SuggestionData( labelData.label );
 			} )
 		);
 	}
 };
 
-updateMoreButtonVisibility = function ( resultsFound ) {
-	$( '.wbmad-more-button' ).css( 'display', resultsFound ? 'block' : 'none' );
-};
+/**
+ * Add items from the latest query to the pager.
+ *
+ * @param {Object} response
+ */
+ImageDepictsSuggestionsPager.prototype.showItemsForQueryResponse = function ( response ) {
+	var newWidget,
+		self = this,
+		imageDataArray = response.query.pages.map( function ( page ) {
+			return getImageDataForQueryResponse( page );
+		} );
 
-ImageDepictsSuggestionsPager.prototype.showPageForQueryResponse = function ( response ) {
-	var resultsFound;
+	// Clear out loading message.
+	// TODO: (T233232) Remove this.
+	$( '#wbmad-suggested-tags-items' ).empty();
 
-	$( '#wbmad-image-depicts-suggestions-pages' ).append(
-		new ImageDepictsSuggestionsPage( {
-			imageDataArray: response.query.pages.map( function ( page ) {
-				return getImageDataForQueryResponsePage( page );
-			} )
-		} ).$element
+	// Append a new ImageWithSuggestionsWidget element for each item.
+	$( '#wbmad-suggested-tags-items' ).append(
+		imageDataArray.map( function ( imageData ) {
+			newWidget = new ImageWithSuggestionsWidget( {
+				imageData: imageData
+			} );
+			newWidget.connect( self, { itemRemoved: 'onItemRemoved' } );
+			return newWidget.$element;
+		} )
 	);
 
-	resultsFound = ( response.query.pages && response.query.pages.length > 0 );
-	updateMoreButtonVisibility( resultsFound );
+	this.resultsFound = ( response.query.pages && response.query.pages.length > 0 );
 };
 
-ImageDepictsSuggestionsPager.prototype.fetchAndShowPage = function () {
-	$.getJSON( queryURLWithCountAndOffset( IMAGES_PER_PAGE, $( '.wbmad-image-depicts-suggestions-page' ).length ) )
-		.done( this.showPageForQueryResponse.bind( this ) )
+/**
+ * Fetch a batch of items.
+ */
+ImageDepictsSuggestionsPager.prototype.fetchItems = function () {
+	showLoadingMessage();
+
+	// Do the query with the appropriate # items
+	// Then show the page (or a failure message);
+	$.getJSON( queryURLWithCount( IMAGES_PER_PAGE ) )
+		.done( this.showItemsForQueryResponse.bind( this ) )
 		.fail( showFailureMessage );
 };
 
+// TODO: (T233232) Add "failed" state and show content in the template instead.
 showFailureMessage = function () {
-	// FIXME
 	// $( '#content' ).append( '<p>Oh no, something went wrong!</p>' );
+};
+
+// TODO: (T233232) Add "loading" state and show content in the template instead.
+showLoadingMessage = function () {
+	$( '#wbmad-suggested-tags-items' ).append(
+		'<p class="wbmad-loading-message">' + mw.message( 'machinevision-loading-message' ).text() + '</p>'
+	);
 };
 
 module.exports = ImageDepictsSuggestionsPager;
