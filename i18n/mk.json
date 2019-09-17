@@ -6,7 +6,7 @@
 		]
 	},
 	"machinevision-desc": "Посредник за внатрешната и надворешната услуга за машински вид и складира исходи за употреба на викито",
-	"machinevision-machineaidedtagging": "Машински потпомогнато означување",
+	"machinevision-machineaidedtagging": "Предложени ознаки",
 	"machinevision-machineaidedtagging-intro": "Прегледајте ги предложените ознаки за прикажаното на сликите од модел за сметачки вид. Кон сликите ќе се додаваат само ознаките потврдени од корисници.",
 	"machinevision-pageinfo-field-suggested-labels": "Предложени натписи",
 	"machinevision-suggestions-heading": "Предложени ознаки",
