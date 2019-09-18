@@ -22,6 +22,7 @@
 	"machinevision-suggestion-confirm-undo-title": "Title for button to undo individual suggestion confirmation for an image. Parameters:\n* $1 - Text of suggestion confirmation to undo",
 	"machinevision-suggestion-reject-title": "Title for button to reject individual suggestion for an image. Parameters:\n* $1 - Text of suggestion to reject",
 	"machinevision-suggestion-reject-undo-title": "Title for button to undo individual suggestion rejection for an image. Parameters:\n* $1 - Text of suggestion rejection to undo",
+	"machinevision-loading-message": "Message shown to the user when image cards are loading",
 	"right-imagelabel-review": "{{doc-right|imagelabel-review}}",
 	"action-imagelabel-review": "{{doc-action|imagelabel-review}}"
 }

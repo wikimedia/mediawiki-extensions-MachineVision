@@ -111,7 +111,6 @@
 				"resources/models/ImageData.js",
 				"resources/models/SuggestionData.js",
 				"resources/widgets/ImageDepictsSuggestionsPager.js",
-				"resources/widgets/ImageDepictsSuggestionsPage.js",
 				"resources/widgets/ImageWithSuggestionsWidget.js",
 				"resources/widgets/SuggestionBaseWidget.js",
 				"resources/widgets/SuggestionsRejectedGroupWidget.js",
@@ -122,7 +121,6 @@
 			],
 			"styles": [
 				"resources/widgets/ImageDepictsSuggestionsPager.less",
-				"resources/widgets/ImageDepictsSuggestionsPage.less",
 				"resources/widgets/ImageWithSuggestionsWidget.less",
 				"resources/widgets/SuggestionsRejectedGroupWidget.less",
 				"resources/widgets/SuggestionsGroupWidget.less",
@@ -138,7 +136,6 @@
 			],
 			"templates": [
 				"resources/widgets/ImageDepictsSuggestionsPager.mustache+dom",
-				"resources/widgets/ImageDepictsSuggestionsPage.mustache+dom",
 				"resources/widgets/ImageWithSuggestionsWidget.mustache+dom",
 				"resources/widgets/SuggestionsRejectedGroupWidget.mustache+dom",
 				"resources/widgets/SuggestionsGroupWidget.mustache+dom",
@@ -160,6 +157,7 @@
 				"machinevision-close-title",
 				"machinevision-suggestion-confirm-title",
 				"machinevision-suggestion-confirm-undo-title",
+				"machinevision-loading-message",
 				"machinevision-suggestion-reject-title",
 				"machinevision-suggestion-reject-undo-title"
 			],
