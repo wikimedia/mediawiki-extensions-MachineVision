@@ -8,7 +8,6 @@
 
 	<div class="wbmad-image-with-suggestions-flex-right">
 		{{{suggestions}}}
-		{{{rejectedSuggestions}}}
 		<div class="wbmad-buttons">
 			{{{publishButton}}}
 			{{{resetButton}}}

@@ -23,12 +23,4 @@ SuggestionBaseWidget.prototype.emitUnconfirmSuggestion = function () {
 	this.emit( 'unconfirmSuggestion' );
 };
 
-SuggestionBaseWidget.prototype.emitRejectSuggestion = function () {
-	this.emit( 'rejectSuggestion' );
-};
-
-SuggestionBaseWidget.prototype.emitUnrejectSuggestion = function () {
-	this.emit( 'unrejectSuggestion' );
-};
-
 module.exports = SuggestionBaseWidget;

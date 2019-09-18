@@ -15,19 +15,15 @@ ImageWithSuggestionsWidget = function ( config ) {
 	this.suggestions = this.imageData.suggestions;
 	this.originalSuggestions = deepArrayCopy( this.suggestions );
 	this.confirmedSuggestions = [];
-	this.rejectedSuggestions = [];
 	this.imageTitle = this.imageData.title.split( ':' ).pop();
 
 	this.suggestionGroupWidget = new SuggestionsGroupWidget( {
 		label: mw.message( 'machinevision-suggestions-heading' ).text(),
 		suggestionDataArray: this.originalSuggestions,
-		confirmedSuggestionDataArray: this.confirmedSuggestions,
-		rejectedSuggestionDataArray: this.rejectedSuggestions
+		confirmedSuggestionDataArray: this.confirmedSuggestions
 	} ).connect( this, {
 		confirmSuggestion: 'onConfirmSuggestion',
-		unconfirmSuggestion: 'onUnconfirmSuggestion',
-		rejectSuggestion: 'onRejectSuggestion',
-		unrejectSuggestion: 'onUnrejectSuggestion'
+		unconfirmSuggestion: 'onUnconfirmSuggestion'
 	} );
 
 	this.imageDescriptionLabel = new OO.ui.LabelWidget( {
@@ -92,11 +88,9 @@ ImageWithSuggestionsWidget.prototype.rerenderGroups = function () {
 	// manipulation of child widget properties
 	this.suggestionGroupWidget.suggestionDataArray = this.originalSuggestions;
 	this.suggestionGroupWidget.confirmedSuggestionDataArray = this.confirmedSuggestions;
-	this.suggestionGroupWidget.rejectedSuggestionDataArray = this.rejectedSuggestions;
 	this.suggestionGroupWidget.render();
 
-	isAnythingSelected = this.confirmedSuggestions.length > 0 ||
-		this.rejectedSuggestions.length > 0;
+	isAnythingSelected = this.confirmedSuggestions.length > 0;
 
 	this.publishButton.setDisabled( !isAnythingSelected );
 	this.resetButton.setDisabled( !isAnythingSelected );
@@ -112,16 +106,6 @@ ImageWithSuggestionsWidget.prototype.onConfirmSuggestion = function ( suggestion
 	this.rerenderGroups();
 };
 
-ImageWithSuggestionsWidget.prototype.onRejectSuggestion = function ( suggestionWidget ) {
-	moveItemBetweenArrays(
-		suggestionWidget.suggestionData,
-		this.suggestions,
-		this.rejectedSuggestions
-	);
-
-	this.rerenderGroups();
-};
-
 ImageWithSuggestionsWidget.prototype.onUnconfirmSuggestion = function ( suggestionWidget ) {
 	moveItemBetweenArrays(
 		suggestionWidget.suggestionData,
@@ -132,34 +116,15 @@ ImageWithSuggestionsWidget.prototype.onUnconfirmSuggestion = function ( suggesti
 	this.rerenderGroups();
 };
 
-ImageWithSuggestionsWidget.prototype.onUnrejectSuggestion = function ( suggestionWidget ) {
-	moveItemBetweenArrays(
-		suggestionWidget.suggestionData,
-		this.rejectedSuggestions,
-		this.suggestions
-	);
-
-	this.rerenderGroups();
-};
-
 ImageWithSuggestionsWidget.prototype.onConfirmAll = function () {
 	this.suggestions = [];
 	this.confirmedSuggestions = this.getOriginalSuggestions();
-	this.rejectedSuggestions = [];
-	this.rerenderGroups();
-};
-
-ImageWithSuggestionsWidget.prototype.onRejectAll = function () {
-	this.suggestions = [];
-	this.confirmedSuggestions = [];
-	this.rejectedSuggestions = this.getOriginalSuggestions();
 	this.rerenderGroups();
 };
 
 ImageWithSuggestionsWidget.prototype.onReset = function () {
 	this.suggestions = this.getOriginalSuggestions();
 	this.confirmedSuggestions = [];
-	this.rejectedSuggestions = [];
 	this.rerenderGroups();
 };
 
@@ -172,12 +137,6 @@ ImageWithSuggestionsWidget.prototype.getPublishDebugString = function () {
 	debugString += '\n\nDEPICTS:\n';
 
 	debugString += this.confirmedSuggestions.map( function ( suggestion ) {
-		return suggestion.text;
-	} ).join( ', ' );
-
-	debugString += '\n\nDOESN\'T DEPICT: \n';
-
-	debugString += this.rejectedSuggestions.map( function ( suggestion ) {
 		return suggestion.text;
 	} ).join( ', ' );
 
@@ -210,7 +169,6 @@ ImageWithSuggestionsWidget.prototype.render = function () {
 		imageDescriptionLabel: this.imageDescriptionLabel,
 		imageTagTitle: this.imageTitle + '\n' + this.imageData.description,
 		suggestions: this.suggestionGroupWidget,
-		rejectedSuggestions: this.rejectedSuggestionGroupWidget,
 		thumburl: this.imageData.thumburl,
 		resetButton: this.resetButton,
 		publishButton: this.publishButton

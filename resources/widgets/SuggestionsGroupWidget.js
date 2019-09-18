@@ -7,7 +7,6 @@
 var TemplateRenderingDOMLessGroupWidget = require( './../base/TemplateRenderingDOMLessGroupWidget.js' ),
 	SuggestionWidget = require( './SuggestionWidget.js' ),
 	SuggestionConfirmedWidget = require( './SuggestionConfirmedWidget.js' ),
-	SuggestionRejectedWidget = require( './SuggestionRejectedWidget.js' ),
 	SuggestionsGroupWidget;
 
 /**
@@ -15,7 +14,6 @@ var TemplateRenderingDOMLessGroupWidget = require( './../base/TemplateRenderingD
  * @param {Object} config
  * @param {Array} config.suggestionDataArray
  * @param {Array} config.confirmedSuggestionDataArray
- * @param {Array} config.rejectedSuggestionDataArray
  */
 SuggestionsGroupWidget = function ( config ) {
 	SuggestionsGroupWidget.parent.call( this, $.extend( {}, config ) );
@@ -23,13 +21,10 @@ SuggestionsGroupWidget = function ( config ) {
 
 	this.suggestionDataArray = config.suggestionDataArray;
 	this.confirmedSuggestionDataArray = config.confirmedSuggestionDataArray;
-	this.rejectedSuggestionDataArray = config.rejectedSuggestionDataArray;
 
 	this.aggregate( {
 		confirmSuggestion: 'confirmSuggestion',
-		unconfirmSuggestion: 'unconfirmSuggestion',
-		rejectSuggestion: 'rejectSuggestion',
-		unrejectSuggestion: 'unrejectSuggestion'
+		unconfirmSuggestion: 'unconfirmSuggestion'
 	} );
 
 	this.titleLabel = new OO.ui.LabelWidget( {
@@ -50,12 +45,6 @@ OO.inheritClass( SuggestionsGroupWidget, TemplateRenderingDOMLessGroupWidget );
 SuggestionsGroupWidget.prototype.getSuggestionWidgetForSuggestionData = function ( data ) {
 	if ( $.inArray( data, this.confirmedSuggestionDataArray ) > -1 ) {
 		return new SuggestionConfirmedWidget( {
-			suggestionData: data
-		} );
-	}
-
-	if ( $.inArray( data, this.rejectedSuggestionDataArray ) > -1 ) {
-		return new SuggestionRejectedWidget( {
 			suggestionData: data
 		} );
 	}

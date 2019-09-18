@@ -10,7 +10,6 @@
 	"machinevision-machineaidedtagging-intro": "Review image depiction tag suggestions from a computer vision model. Only tags confirmed by users will get added to images.",
 	"machinevision-pageinfo-field-suggested-labels": "Suggested labels",
 	"machinevision-suggestions-heading": "Suggested tags",
-	"machinevision-suggestions-rejected-heading": "Rejected tags",
 	"machinevision-publish": "Publish tags",
 	"machinevision-publish-title": "Publish tags?",
 	"machinevision-more": "Next $1 {{PLURAL:$1|image|images}}",
@@ -20,8 +19,6 @@
 	"machinevision-close-title": "Close suggestions for \"$1\"?",
 	"machinevision-suggestion-confirm-title": "Confirm \"$1\" suggestion?",
 	"machinevision-suggestion-confirm-undo-title": "Undo \"$1\" suggestion confirmation?",
-	"machinevision-suggestion-reject-title": "Reject \"$1\" suggestion?",
-	"machinevision-suggestion-reject-undo-title": "Undo \"$1\" suggestion rejection?",
 	"machinevision-loading-message": "Loading...",
 	"right-imagelabel-review": "Review image label suggestions",
 	"action-imagelabel-review": "review image label suggestions"
