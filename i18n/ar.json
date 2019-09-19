@@ -22,6 +22,7 @@
 	"machinevision-suggestion-confirm-undo-title": "التراجع عن تأكيد الاقتراح \"$1\"؟",
 	"machinevision-suggestion-reject-title": "رفض اقتراح \"$1\"؟",
 	"machinevision-suggestion-reject-undo-title": "التراجع عن رفض الاقتراح \"$1\"؟",
+	"machinevision-loading-message": "جارٍ التحميل...",
 	"right-imagelabel-review": "راجع اقتراحات تسمية الصورة",
 	"action-imagelabel-review": "راجع اقتراحات تسمية الصورة"
 }

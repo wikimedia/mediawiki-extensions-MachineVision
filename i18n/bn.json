@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"আফতাবুজ্জামান"
+			"আফতাবুজ্জামান",
+			"Nokib Sarkar"
 		]
 	},
+	"machinevision-machineaidedtagging": "প্রস্তাবিত ট্যাগগুলি",
 	"machinevision-more": "পরবর্তী $1টি {{PLURAL:$1|চিত্র}}",
 	"machinevision-more-title": "পরবর্তী $1টি {{PLURAL:$1|চিত্র}} দেখবেন?"
 }

@@ -2,14 +2,15 @@
 	"@metadata": {
 		"authors": [
 			"RadioAzureus",
-			"Siebrand"
+			"Siebrand",
+			"Robin van der Linde"
 		]
 	},
 	"machinevision-machineaidedtagging": "Voorgestelde labels",
 	"machinevision-suggestions-heading": "Voorgestelde labels",
 	"machinevision-publish": "Labels publiceren",
 	"machinevision-publish-title": "Tags publiceren?",
-	"machinevision-more": "Volgende $1 afbeeldingen",
+	"machinevision-more": "Volgende $1 {{PLURAL:$1|afbeelding|afbeeldingen}}",
 	"machinevision-reset": "Labels opnieuw instellen",
 	"machinevision-reset-title": "Labels opnieuw instellen?",
 	"machinevision-close-title": "Voorstellen voor \"$1\" sluiten?",

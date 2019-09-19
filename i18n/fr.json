@@ -24,6 +24,7 @@
 	"machinevision-suggestion-confirm-undo-title": "Annuler la confirmation de la suggestion « $1 » ?",
 	"machinevision-suggestion-reject-title": "Rejeter la suggestion « $1 » ?",
 	"machinevision-suggestion-reject-undo-title": "Annuler le rejet de la suggestion « $1 » ?",
+	"machinevision-loading-message": "Chargement…",
 	"right-imagelabel-review": "Relire les suggestions de libellé de l’image",
 	"action-imagelabel-review": "relire les suggestions de libellé de l’image"
 }
