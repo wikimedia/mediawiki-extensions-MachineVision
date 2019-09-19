@@ -18,7 +18,6 @@ class ApiReviewImageLabels extends ApiBase {
 	private static $reviewActions = [
 		'accept' => Repository::REVIEW_ACCEPTED,
 		'reject' => Repository::REVIEW_REJECTED,
-		'skip' => Repository::REVIEW_SKIPPED,
 	];
 
 	/** @var RepoGroup */
