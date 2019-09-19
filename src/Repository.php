@@ -25,10 +25,12 @@ class Repository implements LoggerAwareInterface {
 	const REVIEW_UNREVIEWED = 0;
 	const REVIEW_ACCEPTED = 1;
 	const REVIEW_REJECTED = -1;
-	const REVIEW_SKIPPED = -2;
 
-	private static $reviewStates = [ self::REVIEW_UNREVIEWED, self::REVIEW_ACCEPTED,
-		self::REVIEW_REJECTED, self::REVIEW_SKIPPED ];
+	private static $reviewStates = [
+		self::REVIEW_UNREVIEWED,
+		self::REVIEW_ACCEPTED,
+		self::REVIEW_REJECTED,
+	];
 
 	/** @var NameTableStore */
 	private $nameTableStore;
