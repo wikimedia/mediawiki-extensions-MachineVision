@@ -8,6 +8,8 @@ var SuggestionBaseWidget = require( './SuggestionBaseWidget.js' ),
  * @param {Object} config
  */
 SuggestionConfirmedWidget = function ( config ) {
+	var iconText;
+
 	SuggestionConfirmedWidget.parent.call( this, $.extend( {}, config ) );
 	this.$element.addClass( 'wbmad-confirmed-suggestion' );
 
@@ -15,13 +17,14 @@ SuggestionConfirmedWidget = function ( config ) {
 		label: this.suggestionData.text
 	} );
 
-	this.checkButton = new OO.ui.ButtonWidget( {
-		title: mw.message(
-			'machinevision-suggestion-confirm-undo-title',
-			this.suggestionData.text
-		).text(),
+	iconText = mw.message(
+		'machinevision-suggestion-confirm-undo-title',
+		this.suggestionData.text
+	).text();
+	this.checkIcon = new OO.ui.IconWidget( {
 		icon: 'check',
-		framed: false
+		label: iconText,
+		title: iconText
 	} );
 
 	this.$element.on( {
@@ -36,7 +39,7 @@ OO.inheritClass( SuggestionConfirmedWidget, SuggestionBaseWidget );
 SuggestionConfirmedWidget.prototype.render = function () {
 	this.renderTemplate( 'resources/widgets/SuggestionConfirmedWidget.mustache+dom', {
 		suggestionLabel: this.suggestionLabel,
-		checkButton: this.checkButton
+		checkIcon: this.checkIcon
 	} );
 };
 

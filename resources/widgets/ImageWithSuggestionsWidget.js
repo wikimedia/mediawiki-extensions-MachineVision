@@ -18,7 +18,7 @@ ImageWithSuggestionsWidget = function ( config ) {
 	this.imageTitle = this.imageData.title.split( ':' ).pop();
 
 	this.suggestionGroupWidget = new SuggestionsGroupWidget( {
-		label: mw.message( 'machinevision-suggestions-heading' ).text(),
+		label: this.imageTitle,
 		suggestionDataArray: this.originalSuggestions,
 		confirmedSuggestionDataArray: this.confirmedSuggestions
 	} ).connect( this, {
@@ -26,16 +26,12 @@ ImageWithSuggestionsWidget = function ( config ) {
 		unconfirmSuggestion: 'onUnconfirmSuggestion'
 	} );
 
-	this.imageDescriptionLabel = new OO.ui.LabelWidget( {
-		label: this.imageTitle
-	} );
-
-	this.closeButton = new OO.ui.ButtonWidget( {
-		classes: [ 'wbmad-close-button' ],
-		title: mw.message( 'machinevision-close-title', this.imageTitle ).text(),
-		icon: 'close',
+	this.skipButton = new OO.ui.ButtonWidget( {
+		classes: [ 'wbmad-skip-button' ],
+		title: mw.message( 'machinevision-skip-title', this.imageTitle ).text(),
+		label: mw.message( 'machinevision-skip' ).text(),
 		framed: false
-	} ).on( 'click', this.onClose, [], this );
+	} ).on( 'click', this.onSkip, [], this );
 
 	this.resetButton = new OO.ui.ButtonWidget( {
 		classes: [ 'wbmad-button-reset' ],
@@ -147,7 +143,7 @@ ImageWithSuggestionsWidget.prototype.onPublish = function () {
 	// TODO: wire up to middleware 'save' endpoint once it exists
 	/* eslint-disable-next-line no-alert */
 	if ( confirm( this.getPublishDebugString() ) ) {
-		this.onClose();
+		this.onSkip();
 	}
 };
 
@@ -156,7 +152,7 @@ ImageWithSuggestionsWidget.prototype.onPublish = function () {
  *
  * @fires itemRemoved
  */
-ImageWithSuggestionsWidget.prototype.onClose = function () {
+ImageWithSuggestionsWidget.prototype.onSkip = function () {
 	this.$element.remove();
 
 	// Emit an event so parent element can see if we need to fetch more images.
@@ -165,7 +161,7 @@ ImageWithSuggestionsWidget.prototype.onClose = function () {
 
 ImageWithSuggestionsWidget.prototype.render = function () {
 	this.renderTemplate( 'resources/widgets/ImageWithSuggestionsWidget.mustache+dom', {
-		closeButton: this.closeButton,
+		skipButton: this.skipButton,
 		imageDescriptionLabel: this.imageDescriptionLabel,
 		imageTagTitle: this.imageTitle + '\n' + this.imageData.description,
 		suggestions: this.suggestionGroupWidget,

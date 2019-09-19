@@ -80,7 +80,7 @@ queryURLWithCount = function ( count ) {
 		guillimit: count,
 		prop: 'imageinfo|imagelabels',
 		iiprop: 'url',
-		iiurlwidth: 320,
+		iiurlwidth: 800,
 		ilstate: 'unreviewed'
 	};
 
