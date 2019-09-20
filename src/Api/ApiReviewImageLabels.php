@@ -81,6 +81,8 @@ class ApiReviewImageLabels extends ApiBase {
 		// TODO move some of this to Handler?
 		$params = $this->extractRequestParams();
 		$votes = $this->collectAndValidateVotes( $params );
+		$userId = $this->getUser()->getId();
+		$ts = (int)( microtime( true ) * 10000 );
 
 		$filename = $params['filename'];
 		$file = $this->getFile( $filename );
@@ -101,7 +103,8 @@ class ApiReviewImageLabels extends ApiBase {
 			$newState = self::$reviewActions[$review];
 			$this->validateLabelState( $filename, $label, $review, $oldState, $newState );
 
-			$success = $this->repository->setLabelState( $sha1, $label, $newState );
+			$success = $this->repository->setLabelState( $sha1, $label, $newState,
+				$userId, $ts );
 			if ( $success ) {
 				$this->propagateSetLabelSuccess( $file, $label, $token, $newState );
 				$result['success'][$label] = $review;

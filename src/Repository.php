@@ -14,8 +14,6 @@ use Wikimedia\Rdbms\IDatabase;
 
 /**
  * Database interaction for label suggestions.
- * TODO: This class refers to unresolved Wikidata IDs as "labels" but this is confusing since
- * elsewhere we use "label" to refer to the resolved text labels. We should use terms consistently.
  */
 class Repository implements LoggerAwareInterface {
 
@@ -121,15 +119,19 @@ class Repository implements LoggerAwareInterface {
 	public function getLabels( $sha1 ) {
 		$res = $this->dbr->select(
 			'machine_vision_label',
-			'mvl_wikidata_id',
+			[ 'mvl_wikidata_id', 'mvl_review', 'mvl_reviewer_id' ],
 			[ 'mvl_image_sha1' => $sha1 ],
 			__METHOD__
 		);
 		$data = [];
 		foreach ( $res as $row ) {
-			$data[] = $row->mvl_wikidata_id;
+			$data[] = [
+				'wikidata_id' => $row->mvl_wikidata_id,
+				'review' => (int)$row->mvl_review,
+				'reviewer_id' => (int)$row->mvl_reviewer_id,
+			];
 		}
-		return array_unique( $data );
+		return $data;
 	}
 
 	/**
@@ -137,9 +139,11 @@ class Repository implements LoggerAwareInterface {
 	 * @param string $sha1 Image SHA1
 	 * @param string $label Image label (Wikidata item ID, including the Q prefix)
 	 * @param int $state New state (one of the REVIEW_* constants).
+	 * @param int $reviewerId Local user ID of the user submitting the review.
+	 * @param int $ts review timestamp (unix format with microseconds, converted to an int)
 	 * @return bool Success
 	 */
-	public function setLabelState( $sha1, $label, $state ) {
+	public function setLabelState( $sha1, $label, $state, $reviewerId, $ts ) {
 		$validStates = array_diff( self::$reviewStates, [ self::REVIEW_UNREVIEWED ] );
 		if ( !in_array( $state, $validStates, true ) ) {
 			$validStates = implode( ', ', $validStates );
@@ -148,7 +152,11 @@ class Repository implements LoggerAwareInterface {
 
 		$this->dbw->update(
 			'machine_vision_label',
-			[ 'mvl_review' => $state ],
+			[
+				'mvl_review' => $state,
+				'mvl_reviewer_id' => $reviewerId,
+				'mvl_reviewed_time' => $ts
+			],
 			[ 'mvl_image_sha1' => $sha1, 'mvl_wikidata_id' => $label ],
 			__METHOD__
 		);

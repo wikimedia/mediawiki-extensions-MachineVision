@@ -79,6 +79,10 @@ class Hooks {
 			"$sqlDir/patches/03-add-mvs_confidence.sql" );
 		$updater->addExtensionField( 'machine_vision_label', 'mvl_suggested_time',
 			"$sqlDir/patches/04-add-mvl_suggested_time.sql" );
+		$updater->addExtensionField( 'machine_vision_label', 'mvl_reviewer_id',
+			"$sqlDir/patches/05-add-mvl_reviewer_id.sql" );
+		$updater->addExtensionField( 'machine_vision_label', 'mvl_reviewed_time',
+			"$sqlDir/patches/06-add-mvl_reviewed_time.sql" );
 	}
 
 	/**
