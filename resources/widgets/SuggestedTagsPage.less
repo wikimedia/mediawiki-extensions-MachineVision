@@ -1,0 +1,41 @@
+@import 'mediawiki.mixins';
+@import '../style-variables.less';
+
+.wbmad-suggested-tags-page {
+	max-width: 60em;
+
+	.wbmad-suggested-tags-page-tabs-heading {
+		border: 0;
+		font-family: @font-family-sans;
+		font-weight: 600;
+		margin-top: 1.25em;
+	}
+
+	.wbmad-suggested-tags-page-license-info {
+		.box-sizing( border-box );
+		background-color: @base90;
+		padding: 1em;
+	}
+
+	/* stylelint-disable selector-class-pattern */
+	// Override padding to ensure box shadow of card is visible.
+	.oo-ui-indexLayout-stackLayout > .oo-ui-panelLayout {
+		padding: 0.5em 0.2em 2em;
+	}
+
+	// Needed to avoid vertical scrolling within tab content.
+	.oo-ui-panelLayout-expanded {
+		position: static;
+	}
+
+	// Lighten inactive tab title.
+	.oo-ui-tabOptionWidget {
+		color: @base30;
+	}
+
+	// Lighten underline effect of tab menu.
+	.oo-ui-tabSelectWidget-frameless {
+		.box-shadow( inset 0 -1px 0 0 @base70 );
+	}
+	/* stylelint-enable selector-class-pattern */
+}

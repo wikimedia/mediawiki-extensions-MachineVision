@@ -1,0 +1,6 @@
+{{#needLogin}}
+	{{{loginMessage}}}
+{{/needLogin}}
+{{^needLogin}}
+	<div id="wbmad-suggested-tags-cards-{{queryType}}"></div>
+{{/needLogin}}

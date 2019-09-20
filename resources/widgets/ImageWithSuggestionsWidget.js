@@ -6,6 +6,12 @@ var TemplateRenderingDOMLessGroupWidget = require( './../base/TemplateRenderingD
 	deepArrayCopy,
 	moveItemBetweenArrays;
 
+/**
+ * A card within the cardstack on the Suggested Tags page. Each card contains
+ * an image and a SuggestionsGroupWidget.
+ *
+ * @param {Object} config
+ */
 ImageWithSuggestionsWidget = function ( config ) {
 	ImageWithSuggestionsWidget.parent.call( this, $.extend( {}, config ) );
 

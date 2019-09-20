@@ -1,0 +1,8 @@
+{{{pageDescription}}}
+<h2 class="wbmad-suggested-tags-page-tabs-heading">
+	{{{tabsHeading}}}
+</h2>
+{{{tabs}}}
+<div class="wbmad-suggested-tags-page-license-info">
+	{{{licenseInfo}}}
+</div>

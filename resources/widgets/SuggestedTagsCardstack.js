@@ -1,14 +1,11 @@
 'use strict';
 
-// TODO: remove jQuery global selectors
-/* eslint-disable no-jquery/no-global-selector */
-
 var IMAGES_PER_PAGE = 10,
-	TemplateRenderingDOMLessGroupWidget = require( './../base/TemplateRenderingDOMLessGroupWidget.js' ),
+	TemplateRenderingDOMLessGroupWidget = require( '../base/TemplateRenderingDOMLessGroupWidget.js' ),
 	ImageWithSuggestionsWidget = require( './ImageWithSuggestionsWidget.js' ),
-	SuggestionData = require( './../models/SuggestionData.js' ),
-	ImageData = require( './../models/ImageData.js' ),
-	ImageDepictsSuggestionsPager,
+	SuggestionData = require( '../models/SuggestionData.js' ),
+	ImageData = require( '../models/ImageData.js' ),
+	SuggestedTagsCardstack,
 	randomDescription,
 	showFailureMessage,
 	showLoadingMessage,
@@ -22,31 +19,38 @@ var IMAGES_PER_PAGE = 10,
  *
  * @param {Object} config
  */
-ImageDepictsSuggestionsPager = function ( config ) {
-	ImageDepictsSuggestionsPager.parent.call( this, $.extend( {}, config ) );
+SuggestedTagsCardstack = function ( config ) {
+	this.config = config || {};
+	SuggestedTagsCardstack.parent.call( this, $.extend( {}, config ) );
 
-	this.$element.addClass( 'wbmad-suggested-tags-pager' );
+	this.queryType = this.config.queryType;
+	this.$element.addClass( 'wbmad-suggested-tags-cardstack' );
 	this.connect( this, { itemRemoved: 'onItemRemoved' } );
 
-	// TODO: move this to a parent component.
-	this.descriptionLabel = new OO.ui.LabelWidget( {
-		label: mw.message( 'machinevision-machineaidedtagging-intro' ).text()
-	} );
+	this.needLogin = this.queryType === 'user' && !mw.config.get( 'wgUserName' );
+	this.isLoading = true;
+	this.hasError = false;
 
 	this.render();
 
 	// Fetch the first batch of items.
-	this.fetchItems();
+	if ( !this.needLogin ) {
+		this.fetchItems();
+	}
 };
 
 OO.inheritClass(
-	ImageDepictsSuggestionsPager,
+	SuggestedTagsCardstack,
 	TemplateRenderingDOMLessGroupWidget
 );
 
-ImageDepictsSuggestionsPager.prototype.render = function () {
-	this.renderTemplate( 'resources/widgets/ImageDepictsSuggestionsPager.mustache+dom', {
-		descriptionLabel: this.descriptionLabel
+SuggestedTagsCardstack.prototype.render = function () {
+	this.renderTemplate( 'resources/widgets/SuggestedTagsCardstack.mustache+dom', {
+		queryType: this.queryType,
+		needLogin: this.needLogin,
+		isLoading: this.isLoading,
+		hasError: this.hasError,
+		loginMessage: $( '<p>' ).msg( 'machinevision-personal-uploads-login-message' )
 	} );
 };
 
@@ -57,8 +61,9 @@ ImageDepictsSuggestionsPager.prototype.render = function () {
  *
  * TODO: (T233232) Improve loading experience.
  */
-ImageDepictsSuggestionsPager.prototype.onItemRemoved = function () {
-	if ( this.resultsFound && $( '.wbmad-image-with-suggestions' ).length === 0 ) {
+SuggestedTagsCardstack.prototype.onItemRemoved = function () {
+	// TODO: Use something else instead of this horrific global selector.
+	if ( this.resultsFound && $( '#wbmad-suggested-tags-cards-' + this.queryType + ' .wbmad-image-with-suggestions' ).length === 0 ) {
 		this.fetchItems();
 	}
 };
@@ -67,9 +72,10 @@ ImageDepictsSuggestionsPager.prototype.onItemRemoved = function () {
  * Build a query URL.
  *
  * @param {number} count
+ * @param {string} queryType
  * @return {string}
  */
-queryURLWithCount = function ( count ) {
+queryURLWithCount = function ( count, queryType ) {
 	var query, urlString;
 
 	query = {
@@ -83,6 +89,10 @@ queryURLWithCount = function ( count ) {
 		iiurlwidth: 800,
 		ilstate: 'unreviewed'
 	};
+
+	if ( queryType === 'user' ) {
+		query.guiluploader = mw.user.getId();
+	}
 
 	urlString = mw.config.get( 'wgServer' ) +
 		mw.config.get( 'wgScriptPath' ) + '/api.php?';
@@ -137,7 +147,7 @@ getImageDataForQueryResponse = function ( item ) {
  *
  * @param {Object} response
  */
-ImageDepictsSuggestionsPager.prototype.showItemsForQueryResponse = function ( response ) {
+SuggestedTagsCardstack.prototype.showItemsForQueryResponse = function ( response ) {
 	var newWidget,
 		self = this,
 		imageDataArray = response.query.pages.map( function ( page ) {
@@ -146,10 +156,10 @@ ImageDepictsSuggestionsPager.prototype.showItemsForQueryResponse = function ( re
 
 	// Clear out loading message.
 	// TODO: (T233232) Remove this.
-	$( '#wbmad-suggested-tags-items' ).empty();
+	$( '#wbmad-suggested-tags-cards-' + this.queryType ).empty();
 
 	// Append a new ImageWithSuggestionsWidget element for each item.
-	$( '#wbmad-suggested-tags-items' ).append(
+	$( '#wbmad-suggested-tags-cards-' + this.queryType ).append(
 		imageDataArray.map( function ( imageData ) {
 			newWidget = new ImageWithSuggestionsWidget( {
 				imageData: imageData
@@ -165,12 +175,12 @@ ImageDepictsSuggestionsPager.prototype.showItemsForQueryResponse = function ( re
 /**
  * Fetch a batch of items.
  */
-ImageDepictsSuggestionsPager.prototype.fetchItems = function () {
-	showLoadingMessage();
+SuggestedTagsCardstack.prototype.fetchItems = function () {
+	showLoadingMessage( this.queryType );
 
 	// Do the query with the appropriate # items
 	// Then show the page (or a failure message);
-	$.getJSON( queryURLWithCount( IMAGES_PER_PAGE ) )
+	$.getJSON( queryURLWithCount( IMAGES_PER_PAGE, this.config.queryType ) )
 		.done( this.showItemsForQueryResponse.bind( this ) )
 		.fail( showFailureMessage );
 };
@@ -181,10 +191,10 @@ showFailureMessage = function () {
 };
 
 // TODO: (T233232) Add "loading" state and show content in the template instead.
-showLoadingMessage = function () {
-	$( '#wbmad-suggested-tags-items' ).append(
+showLoadingMessage = function ( queryType ) {
+	$( '#wbmad-suggested-tags-cards-' + queryType ).append(
 		'<p class="wbmad-loading-message">' + mw.message( 'machinevision-loading-message' ).text() + '</p>'
 	);
 };
 
-module.exports = ImageDepictsSuggestionsPager;
+module.exports = SuggestedTagsCardstack;

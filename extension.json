@@ -110,16 +110,18 @@
 				"resources/base/TemplateRenderingDOMLessGroupWidget.js",
 				"resources/models/ImageData.js",
 				"resources/models/SuggestionData.js",
-				"resources/widgets/ImageDepictsSuggestionsPager.js",
 				"resources/widgets/ImageWithSuggestionsWidget.js",
+				"resources/widgets/SuggestedTagsCardstack.js",
+				"resources/widgets/SuggestedTagsPage.js",
 				"resources/widgets/SuggestionBaseWidget.js",
 				"resources/widgets/SuggestionsGroupWidget.js",
 				"resources/widgets/SuggestionWidget.js",
 				"resources/widgets/SuggestionConfirmedWidget.js"
 			],
 			"styles": [
-				"resources/widgets/ImageDepictsSuggestionsPager.less",
 				"resources/widgets/ImageWithSuggestionsWidget.less",
+				"resources/widgets/SuggestedTagsCardstack.less",
+				"resources/widgets/SuggestedTagsPage.less",
 				"resources/widgets/SuggestionsGroupWidget.less",
 				"resources/widgets/SuggestionBaseWidget.less",
 				"resources/widgets/SuggestionWidget.less",
@@ -128,11 +130,14 @@
 			"dependencies": [
 				"oojs",
 				"oojs-ui-core",
+				"oojs-ui-widgets",
+				"oojs-ui-windows",
 				"mediawiki.template.mustache+dom"
 			],
 			"templates": [
-				"resources/widgets/ImageDepictsSuggestionsPager.mustache+dom",
 				"resources/widgets/ImageWithSuggestionsWidget.mustache+dom",
+				"resources/widgets/SuggestedTagsCardstack.mustache+dom",
+				"resources/widgets/SuggestedTagsPage.mustache+dom",
 				"resources/widgets/SuggestionsGroupWidget.mustache+dom",
 				"resources/widgets/SuggestionWidget.mustache+dom",
 				"resources/widgets/SuggestionConfirmedWidget.mustache+dom"
@@ -140,6 +145,11 @@
 			"messages": [
 				"machinevision-machineaidedtagging",
 				"machinevision-machineaidedtagging-intro",
+				"machinevision-machineaidedtagging-tabs-heading",
+				"machinevision-machineaidedtagging-popular-tab",
+				"machinevision-machineaidedtagging-user-tab",
+				"machinevision-machineaidedtagging-license-information",
+				"machinevision-personal-uploads-login-message",
 				"machinevision-publish",
 				"machinevision-publish-title",
 				"machinevision-more",
