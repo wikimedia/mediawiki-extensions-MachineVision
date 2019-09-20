@@ -10,7 +10,6 @@
 	"apihelp-reviewimagelabels-param-review": "Результат перегляду.",
 	"apihelp-reviewimagelabels-paramvalue-review-accept": "Підказка правильна.",
 	"apihelp-reviewimagelabels-paramvalue-review-reject": "Підказка неправильна.",
-	"apihelp-reviewimagelabels-paramvalue-review-skip": "Користувач не був упевнений або перервав перегляд.",
 	"apihelp-reviewimagelabels-example-1": "Позначити <kbd>Q123</kbd> як правильну підказку для <kbd>Example.png</kbd>.",
 	"apierror-reviewimagelabels-invalidfile": "<kbd>$1</kbd> не є дійсною назвою файлу.",
 	"apierror-reviewimagelabels-invalidlabel": "Файл <kbd>$1</kbd> не має назви <kbd>$2</kbd>.",
@@ -20,6 +19,5 @@
 	"apihelp-query+imagelabels-paramvalue-state-unreviewed": "Назви, які ще не були переглянуті.",
 	"apihelp-query+imagelabels-paramvalue-state-accepted": "Назви, які були визначені як правильні.",
 	"apihelp-query+imagelabels-paramvalue-state-rejected": "Назви, які були визначені як неправильні.",
-	"apihelp-query+imagelabels-paramvalue-state-skipped": "Назви, які хтось спробував визначити, але здався.",
 	"apihelp-query+imagelabels-example-1": "Переглянути машинні підказки назв зображень для <kbd>Example.png</kbd>."
 }

@@ -3,17 +3,17 @@
 		"authors": [
 			"RadioAzureus",
 			"Siebrand",
-			"Robin van der Linde"
+			"Robin van der Linde",
+			"Elroy"
 		]
 	},
 	"machinevision-machineaidedtagging": "Voorgestelde labels",
-	"machinevision-suggestions-heading": "Voorgestelde labels",
-	"machinevision-publish": "Labels publiceren",
+	"machinevision-publish": "Plaatsen",
 	"machinevision-publish-title": "Tags publiceren?",
 	"machinevision-more": "Volgende $1 {{PLURAL:$1|afbeelding|afbeeldingen}}",
-	"machinevision-reset": "Labels opnieuw instellen",
+	"machinevision-reset": "Opnieuw instellen",
 	"machinevision-reset-title": "Labels opnieuw instellen?",
-	"machinevision-close-title": "Voorstellen voor \"$1\" sluiten?",
+	"machinevision-skip": "Overslaan",
 	"machinevision-suggestion-confirm-title": "Voorstel \"$1\" bevestigen?",
-	"machinevision-suggestion-reject-title": "Voorstel \"$1\" afwijzen?"
+	"machinevision-loading-message": "Laden..."
 }

@@ -4,5 +4,10 @@
 			"Beta16"
 		]
 	},
-	"machinevision-machineaidedtagging": "Etichette suggerite"
+	"machinevision-machineaidedtagging": "Etichette suggerite",
+	"machinevision-publish": "Pubblica",
+	"machinevision-reset": "Reimposta",
+	"machinevision-skip": "Salta",
+	"machinevision-skip-title": "Salta suggerimenti per \"$1\"?",
+	"machinevision-loading-message": "Caricamento..."
 }

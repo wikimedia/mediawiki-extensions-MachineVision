@@ -2,26 +2,24 @@
 	"@metadata": {
 		"authors": [
 			"ديفيد",
-			"HitomiAkane"
+			"HitomiAkane",
+			"Meno25"
 		]
 	},
 	"machinevision-desc": "واجهات مع مزودي خدمة رؤية الجهاز الداخلية والخارجية وتخزن النتائج للاستخدام على الويكي.",
 	"machinevision-machineaidedtagging": "الوسوم المقترحة",
 	"machinevision-machineaidedtagging-intro": "راجع اقتراحات وسوم تصوير الصورة من نموذج رؤية الحاسوب، ستتم إضافة الوسوم التي أكدها المستخدمون فقط إلى الصور.",
 	"machinevision-pageinfo-field-suggested-labels": "التسميات المقترحة",
-	"machinevision-suggestions-heading": "الوسوم المقترحة",
-	"machinevision-suggestions-rejected-heading": "الوسوم المرفوضة",
-	"machinevision-publish": "نشر الوسوم",
+	"machinevision-publish": "نشر",
 	"machinevision-publish-title": "نشر الوسوم؟",
 	"machinevision-more": "{{PLURAL:$1|الصورة|الصور}} $1 التالية",
 	"machinevision-more-title": "عرض {{PLURAL:$1|الصورة|الصور}} $1 التالية؟",
-	"machinevision-reset": "إعادة تعيين الوسوم",
+	"machinevision-reset": "إعادة ضبط",
 	"machinevision-reset-title": "إعادة تعيين الوسوم؟",
-	"machinevision-close-title": "ألق الاقتراحات لـ\"$1\"؟",
+	"machinevision-skip": "تجاوز",
+	"machinevision-skip-title": "تجاوز الاقتراحات ل\"$1\"؟",
 	"machinevision-suggestion-confirm-title": "هل تريد تأكيد اقتراح \"$1\"؟",
 	"machinevision-suggestion-confirm-undo-title": "التراجع عن تأكيد الاقتراح \"$1\"؟",
-	"machinevision-suggestion-reject-title": "رفض اقتراح \"$1\"؟",
-	"machinevision-suggestion-reject-undo-title": "التراجع عن رفض الاقتراح \"$1\"؟",
 	"machinevision-loading-message": "جارٍ التحميل...",
 	"right-imagelabel-review": "راجع اقتراحات تسمية الصورة",
 	"action-imagelabel-review": "راجع اقتراحات تسمية الصورة"

@@ -6,6 +6,5 @@
 	},
 	"machinevision-pageinfo-field-suggested-labels": "Proposéiert Etiketten",
 	"machinevision-more": "Nächst {{PLURAL:$1|Bild|$1 Biller}}",
-	"machinevision-more-title": "{{PLURAL:$1|Dat nächst Bild|Déi nächst $1 Biller}}  weisen?",
-	"machinevision-suggestion-reject-title": "Propos \"$1\" refuséieren?"
+	"machinevision-more-title": "{{PLURAL:$1|Dat nächst Bild|Déi nächst $1 Biller}}  weisen?"
 }

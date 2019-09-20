@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Beta16"
+		]
+	},
+	"apihelp-query+imagelabels-paramvalue-state-accepted": "Etichette identificate come corrette.",
+	"apihelp-query+imagelabels-paramvalue-state-rejected": "Etichette non identificate come corrette."
+}

@@ -1,8 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Saw Aye Chan Maung"
+			"Saw Aye Chan Maung",
+			"Dr Lotus Black"
 		]
 	},
-	"machinevision-close-title": "$1အတွက် အကြုံပြုချက်များကို ပိတ်မည်လား။"
+	"machinevision-publish": "လွှင့်တင်ရန်",
+	"machinevision-skip": "ကျော်ရန်",
+	"machinevision-loading-message": "ဝန်ဆွဲတင်နေသည်..."
 }

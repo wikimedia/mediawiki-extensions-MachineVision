@@ -10,6 +10,5 @@
 	"apihelp-query+imagelabels-param-state": "Rodo žymes tik šiose peržiūros būsenose",
 	"apihelp-query+imagelabels-paramvalue-state-unreviewed": "Žymės, kurios dar nebuvo peržiūrėtos.",
 	"apihelp-query+imagelabels-paramvalue-state-accepted": "Žymės, kurios buvo atpažintos kaip tinkamos.",
-	"apihelp-query+imagelabels-paramvalue-state-rejected": "Žymės, kurios buvo identifikuotos kaip neteisingos.",
-	"apihelp-query+imagelabels-paramvalue-state-skipped": "Žymės, kuras kažkas bandė atpažinti, tačiau to nebaigė."
+	"apihelp-query+imagelabels-paramvalue-state-rejected": "Žymės, kurios buvo identifikuotos kaip neteisingos."
 }

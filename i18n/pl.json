@@ -7,9 +7,6 @@
 	"machinevision-machineaidedtagging": "Proponowane tagi",
 	"machinevision-more": "{{PLURAL:$1|Następny obraz|Następne $1 obrazy|Następne $1 obrazów}}",
 	"machinevision-more-title": "Pokaż {{PLURAL:$1|następny obraz|następne $1 obrazy|następne $1 obrazów}}",
-	"machinevision-close-title": "Zamknąć sugestie dla „$1”?",
 	"machinevision-suggestion-confirm-title": "Zatwierdzić sugestię „$1”?",
-	"machinevision-suggestion-confirm-undo-title": "Cofnąć akceptację sugestii „$1”?",
-	"machinevision-suggestion-reject-title": "Odrzucić sugestię „$1”?",
-	"machinevision-suggestion-reject-undo-title": "Cofnąć odrzucenie sugestii „$1”?"
+	"machinevision-suggestion-confirm-undo-title": "Cofnąć akceptację sugestii „$1”?"
 }

@@ -6,6 +6,5 @@
 	},
 	"machinevision-pageinfo-field-suggested-labels": "Siūlomos žymos",
 	"machinevision-more": "{{PLURAL:$1|Kitas $1 paveikslėlis|Kiti $1 paveikslėliai}}",
-	"machinevision-more-title": "{{PLURAL:$1|Kitas $1 paveikslėlis|Kiti $1 paveikslėliai}}",
-	"machinevision-suggestion-reject-title": "Atmesti „$1“ pasiūlymą?"
+	"machinevision-more-title": "{{PLURAL:$1|Kitas $1 paveikslėlis|Kiti $1 paveikslėliai}}"
 }

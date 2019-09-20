@@ -4,14 +4,10 @@
 			"Ykhwong"
 		]
 	},
-	"machinevision-suggestions-heading": "제안 태그",
 	"machinevision-publish": "태그 게시",
 	"machinevision-publish-title": "태그를 게시하시겠습니까?",
 	"machinevision-more": "다음 {{PLURAL:$1|이미지}} $1개",
 	"machinevision-more-title": "다음 {{PLURAL:$1|이미지}} $1개를 보시겠습니까?",
-	"machinevision-close-title": "\"$1\"의 제안을 닫으시겠습니까?",
 	"machinevision-suggestion-confirm-title": "\"$1\" 제안을 확인하시겠습니까?",
-	"machinevision-suggestion-confirm-undo-title": "\"$1\" 제안 확인을 취소하시겠습니까?",
-	"machinevision-suggestion-reject-title": "\"$1\" 제안을 거절하시겠습니까?",
-	"machinevision-suggestion-reject-undo-title": "\"$1\" 제안 거절을 취소하시겠습니까?"
+	"machinevision-suggestion-confirm-undo-title": "\"$1\" 제안 확인을 취소하시겠습니까?"
 }

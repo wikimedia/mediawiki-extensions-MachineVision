@@ -10,7 +10,6 @@
 	"apihelp-reviewimagelabels-param-review": "审查结果",
 	"apihelp-reviewimagelabels-paramvalue-review-accept": "该建议是正确的。",
 	"apihelp-reviewimagelabels-paramvalue-review-reject": "该建议不正确。",
-	"apihelp-reviewimagelabels-paramvalue-review-skip": "用户不确定或放弃本次审查",
 	"apihelp-reviewimagelabels-example-1": "标记Q123是Example.png的正确建议。",
 	"apierror-reviewimagelabels-invalidfile": "<kbd>$1</kbd>不是一个合理的文件名。",
 	"apierror-reviewimagelabels-invalidlabel": "$1个文件不能有$2个标签。",
@@ -20,6 +19,5 @@
 	"apihelp-query+imagelabels-paramvalue-state-unreviewed": "还没有被审查的标签。",
 	"apihelp-query+imagelabels-paramvalue-state-accepted": "已经被认定为正确的标签。",
 	"apihelp-query+imagelabels-paramvalue-state-rejected": "已经被标记为正确的标签",
-	"apihelp-query+imagelabels-paramvalue-state-skipped": "已经别认定但是放弃的标签",
 	"apihelp-query+imagelabels-example-1": "为<kbd>Example.png</kbd>显示机器建议的图片标签。"
 }
