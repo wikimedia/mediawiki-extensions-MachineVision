@@ -132,7 +132,8 @@
 				"oojs-ui-core",
 				"oojs-ui-widgets",
 				"oojs-ui-windows",
-				"mediawiki.template.mustache+dom"
+				"mediawiki.template.mustache+dom",
+				"wikibase.api.RepoApi"
 			],
 			"templates": [
 				"resources/widgets/ImageWithSuggestionsWidget.mustache+dom",

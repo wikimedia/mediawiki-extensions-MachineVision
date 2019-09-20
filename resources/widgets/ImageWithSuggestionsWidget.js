@@ -1,3 +1,4 @@
+/* global wikibase */
 'use strict';
 
 var TemplateRenderingDOMLessGroupWidget = require( './../base/TemplateRenderingDOMLessGroupWidget.js' ),
@@ -57,6 +58,10 @@ ImageWithSuggestionsWidget = function ( config ) {
 			'progressive'
 		]
 	} ).on( 'click', this.onPublish, [], this );
+
+	this.api = wikibase.api.getLocationAgnosticMwApi(
+		mw.config.get( 'wbmiRepoApiUrl', mw.config.get( 'wbRepoApiUrl' ) )
+	);
 
 	this.render();
 };
@@ -146,10 +151,38 @@ ImageWithSuggestionsWidget.prototype.getPublishDebugString = function () {
 };
 
 ImageWithSuggestionsWidget.prototype.onPublish = function () {
-	// TODO: wire up to middleware 'save' endpoint once it exists
-	/* eslint-disable-next-line no-alert */
+	// TODO: keep approved/rejected state in the SuggestionData model rather than bouncing
+	//  suggestions between two different arrays
+	var self = this,
+		batch = [];
+	this.confirmedSuggestions.forEach( function ( suggestion ) {
+		batch.push( { label: suggestion.wikidataId, review: 'accept' } );
+	} );
+	this.suggestions.forEach( function ( suggestion ) {
+		batch.push( { label: suggestion.wikidataId, review: 'reject' } );
+	} );
+	// TODO: Improve the confirmation dialog
+	// eslint-disable-next-line no-alert
 	if ( confirm( this.getPublishDebugString() ) ) {
-		this.onSkip();
+		this.api.postWithToken(
+			'csrf',
+			{
+				action: 'reviewimagelabels',
+				filename: this.imageTitle,
+				batch: JSON.stringify( batch )
+			}
+		)
+			// eslint-disable-next-line no-unused-vars
+			.done( function ( result ) {
+				// TODO: indicate success somehow?
+			} )
+			// eslint-disable-next-line no-unused-vars
+			.fail( function ( errorCode, error ) {
+				// TODO: indicate failure
+			} )
+			.always( function () {
+				self.onSkip();
+			} );
 	}
 };
 

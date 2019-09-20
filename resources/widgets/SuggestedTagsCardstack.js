@@ -136,7 +136,7 @@ getImageDataForQueryResponse = function ( item ) {
 			item.imageinfo[ 0 ].thumburl,
 			randomDescription(),
 			item.imagelabels.map( function ( labelData ) {
-				return new SuggestionData( labelData.label );
+				return new SuggestionData( labelData.label, labelData.wikidata_id );
 			} )
 		);
 	}
