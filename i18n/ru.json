@@ -1,8 +1,18 @@
 {
 	"@metadata": {
 		"authors": [
-			"Марио"
+			"Марио",
+			"Katunchik"
 		]
 	},
-	"machinevision-more": "Далее $1 {{PLURAL:$1|изображение|изображения|изображений}}"
+	"machinevision-machineaidedtagging": "Предлагаемые теги",
+	"machinevision-publish": "Опубликовать",
+	"machinevision-more": "Далее $1 {{PLURAL:$1|изображение|изображения|изображений}}",
+	"machinevision-more-title": "Показать следующие $1 {{PLURAL:$1|изображение|изображения}}?",
+	"machinevision-reset": "Сбросить",
+	"machinevision-skip": "Пропустить",
+	"machinevision-skip-title": "Пропустить предложения для \"$1\"?",
+	"machinevision-suggestion-confirm-title": "Подтвердить предложение $1?",
+	"machinevision-suggestion-confirm-undo-title": "Отменить подтверждение предложения $1?",
+	"machinevision-loading-message": "Загрузка…"
 }

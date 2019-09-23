@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Bjankuloski06"
+			"Bjankuloski06",
+			"Vlad5250"
 		]
 	},
 	"apihelp-reviewimagelabels-summary": "Проверка на машински предложени натписи за слики.",
@@ -17,8 +18,8 @@
 	"apihelp-query+imagelabels-summary": "Прикажувај машински предложени натписи на слики",
 	"apihelp-query+imagelabels-param-state": "Испишувај ги само натписите во следниве состојби на проверка",
 	"apihelp-query+imagelabels-paramvalue-state-unreviewed": "Натписите кои сè уште не се проверени.",
-	"apihelp-query+imagelabels-paramvalue-state-accepted": "Натписите утврдени како исправни.",
-	"apihelp-query+imagelabels-paramvalue-state-rejected": "Натписите утврдени како неисправни.",
+	"apihelp-query+imagelabels-paramvalue-state-accepted": "Натписите што се утврдени како исправни.",
+	"apihelp-query+imagelabels-paramvalue-state-rejected": "Натписите што се утврдени како неисправни.",
 	"apihelp-query+imagelabels-example-1": "Прикажи машински предложени натписи за <kbd>Example.png</kbd>.",
 	"apihelp-query+unreviewedimagelabels-summary": "Прикажи наслови со предложени натписи на слики на кои им треба проверка.",
 	"apihelp-query+unreviewedimagelabels-param-uploader": "Дај само ставки подигнати од овој корисник.",

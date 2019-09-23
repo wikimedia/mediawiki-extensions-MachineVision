@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"MrJaroslavik"
+		]
+	},
+	"machinevision-publish": "Zveřejnit",
+	"machinevision-skip": "Přeskočit",
+	"machinevision-loading-message": "Načítání..."
+}

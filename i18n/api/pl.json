@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Rail"
+		]
+	},
+	"apihelp-query+imagelabels-paramvalue-state-accepted": "Etykiety zidentyfikowane jako właściwe.",
+	"apihelp-query+imagelabels-paramvalue-state-rejected": "Etykiety niezidentyfikowane jako właściwe."
+}

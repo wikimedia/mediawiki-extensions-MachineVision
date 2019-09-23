@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"McDutchie"
+		]
+	},
+	"apihelp-query+imagelabels-paramvalue-state-accepted": "Etiquettas que ha essite identificate como correcte.",
+	"apihelp-query+imagelabels-paramvalue-state-rejected": "Etiquettas que non ha essite identificate como correcte."
+}
