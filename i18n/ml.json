@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Adithyak1997"
+		]
+	},
+	"machinevision-publish": "പ്രസിദ്ധീകരിക്കുക",
+	"machinevision-reset": "പുനഃക്രമീകരിക്കുക",
+	"machinevision-skip": "മറികടക്കുക",
+	"machinevision-loading-message": "ശേഖരിക്കുന്നു..."
+}

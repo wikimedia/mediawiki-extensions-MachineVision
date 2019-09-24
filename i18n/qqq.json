@@ -2,20 +2,21 @@
 	"@metadata": {
 		"authors": [
 			"Wikimedia Product Infrastructure Team",
-			"Monte Hurd"
+			"Monte Hurd",
+			"Robby"
 		]
 	},
 	"machinevision-desc": "{{desc|name=MachineVision|url=https://www.mediawiki.org/wiki/Extension:MachineVision}}",
 	"machinevision-machineaidedtagging": "Display title for Special:SuggestedTags",
 	"machinevision-machineaidedtagging-intro": "Introductory text appearing on Special:SuggestedTags",
 	"machinevision-pageinfo-field-suggested-labels": "Field name for suggested labels in page info table",
-	"machinevision-publish": "Text for button to save confirmed suggestions",
+	"machinevision-publish": "Text for button to save confirmed suggestions\n{{Identical|Publish}}",
 	"machinevision-publish-title": "Title for button to save confirmed suggestions",
 	"machinevision-more": "Text for button to show more images. Parameters:\n* $1 - Number of images to show",
 	"machinevision-more-title": "Title for button to show more images. Parameters:\n* $1 - Number of images to show",
-	"machinevision-reset": "Text for button to reset all suggestions for an image",
+	"machinevision-reset": "Text for button to reset all suggestions for an image\n{{identical|Reset}}",
 	"machinevision-reset-title": "Title for button to reset all suggestions for an image",
-	"machinevision-skip": "Text for button to skip picking suggestions for an image",
+	"machinevision-skip": "Text for button to skip picking suggestions for an image\n{{Identical|Skip}}",
 	"machinevision-skip-title": "Title for button to skip picking suggestions for an image. Parameters:\n* $1 - File name of image to close",
 	"machinevision-suggestion-confirm-title": "Title for button to confirm individual suggestion for an image. Parameters:\n* $1 - Text of suggestion to confirm",
 	"machinevision-suggestion-confirm-undo-title": "Title for button to undo individual suggestion confirmation for an image. Parameters:\n* $1 - Text of suggestion confirmation to undo",
