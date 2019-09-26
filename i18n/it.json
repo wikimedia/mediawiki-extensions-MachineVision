@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Beta16"
+			"Beta16",
+			"Sannita"
 		]
 	},
 	"machinevision-machineaidedtagging": "Etichette suggerite",
@@ -9,5 +10,6 @@
 	"machinevision-reset": "Reimposta",
 	"machinevision-skip": "Salta",
 	"machinevision-skip-title": "Salta suggerimenti per \"$1\"?",
+	"machinevision-suggestion-confirm-title": "Stai suggerendo \"$1\", confermi?",
 	"machinevision-loading-message": "Caricamento..."
 }
