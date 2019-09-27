@@ -5,11 +5,14 @@
 		]
 	},
 	"machinevision-machineaidedtagging": "Föreslagna taggar",
-	"machinevision-publish": "Publicera taggar",
+	"machinevision-publish": "Publicera",
 	"machinevision-publish-title": "Publicera taggar?",
 	"machinevision-more": "Nästa $1 {{PLURAL:$1|bild|bilder}}",
-	"machinevision-reset": "Återställ taggar",
+	"machinevision-reset": "Återställ",
 	"machinevision-reset-title": "Återställ taggar?",
+	"machinevision-skip": "Hoppa över",
+	"machinevision-skip-title": "Hoppa över förslag för \"$1\"?",
 	"machinevision-suggestion-confirm-title": "Bekräfta förslaget \"$1\"?",
-	"machinevision-suggestion-confirm-undo-title": "Ångra att förslaget \"$1\" bekräftades?"
+	"machinevision-suggestion-confirm-undo-title": "Ångra att förslaget \"$1\" bekräftades?",
+	"machinevision-loading-message": "Läser in..."
 }

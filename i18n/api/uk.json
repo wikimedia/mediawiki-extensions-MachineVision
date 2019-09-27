@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Ата"
+			"Ата",
+			"Movses"
 		]
 	},
 	"apihelp-reviewimagelabels-summary": "Переглянути підказки назв зображень.",
@@ -18,6 +19,6 @@
 	"apihelp-query+imagelabels-param-state": "Перелічити лише назви із цими статусами перегляду",
 	"apihelp-query+imagelabels-paramvalue-state-unreviewed": "Назви, які ще не були переглянуті.",
 	"apihelp-query+imagelabels-paramvalue-state-accepted": "Назви, які були визначені як правильні.",
-	"apihelp-query+imagelabels-paramvalue-state-rejected": "Назви, які були визначені як неправильні.",
+	"apihelp-query+imagelabels-paramvalue-state-rejected": "Назви, які не були визначені як правильні.",
 	"apihelp-query+imagelabels-example-1": "Переглянути машинні підказки назв зображень для <kbd>Example.png</kbd>."
 }
