@@ -1,11 +1,14 @@
 {
 	"@metadata": {
 		"authors": [
-			"Looong"
+			"Looong",
+			"Josephine W."
 		]
 	},
 	"machinevision-desc": "接触内部和外部的机器视觉服务供应商并在在wiki上保存使用结果。",
 	"machinevision-pageinfo-field-suggested-labels": "被建议的标签",
+	"machinevision-publish": "保存",
+	"machinevision-skip": "跳过",
 	"right-imagelabel-review": "审查图片标签建议",
 	"action-imagelabel-review": "审查图片标签建议"
 }

@@ -1,9 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"Fitoschido"
+			"Fitoschido",
+			"Madamebiblio"
 		]
 	},
+	"machinevision-machineaidedtagging": "Etiquetas sugeridas",
 	"machinevision-pageinfo-field-suggested-labels": "Etiquetas sugeridas",
-	"machinevision-reset": "Restablecer etiquetas"
+	"machinevision-reset": "Restablecer",
+	"machinevision-loading-message": "Cargando…"
 }
