@@ -96,6 +96,18 @@
 		"MachineVisionRequestLabelsFromWikidataPublicApi": {
 			"value": false,
 			"description": "If true, request labels for item IDs from the Wikidata public API. Otherwise, look them up in the configured Wikibase repo. Public API usage is intended for testing only."
+		},
+		"MachineVisionMinImageWidth": {
+			"value": 150,
+			"description": "Minimum width (in px) of an image for the image to qualify for suggested tags."
+		},
+		"MachineVisionCategoryBlacklist": {
+			"value": [],
+			"description": "Omit images with file pages linked to these categories from suggested tags. Category names should use underscores in place of spaces and include the 'Category:' prefix."
+		},
+		"MachineVisionTemplateBlacklist": {
+			"value": [],
+			"description": "Omit images with file pages linked to these templates from suggested tags. Template names should use underscores in place of spaces and include the 'Template:' prefix."
 		}
 	},
 	"ResourceFileModulePaths": {
