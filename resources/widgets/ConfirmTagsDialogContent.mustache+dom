@@ -1,0 +1,3 @@
+	<p class="wbmad-confirm-tags-heading">{{heading}}</p>
+	<p class="wbmad-confirm-tags-list">{{tagsList}}</p>
+	<img class="wbmad-confirm-tags-image" src="{{imgUrl}}" title="{{imgTitle}}" alt="{{imgDescription}}">

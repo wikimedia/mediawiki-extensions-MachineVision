@@ -3,6 +3,7 @@
 
 var TemplateRenderingDOMLessGroupWidget = require( './../base/TemplateRenderingDOMLessGroupWidget.js' ),
 	SuggestionsGroupWidget = require( './SuggestionsGroupWidget.js' ),
+	ConfirmTagsDialog = require( './ConfirmTagsDialog.js' ),
 	ImageWithSuggestionsWidget,
 	deepArrayCopy,
 	moveItemBetweenArrays;
@@ -62,6 +63,8 @@ ImageWithSuggestionsWidget = function ( config ) {
 	this.api = wikibase.api.getLocationAgnosticMwApi(
 		mw.config.get( 'wbmiRepoApiUrl', mw.config.get( 'wbRepoApiUrl' ) )
 	);
+
+	this.connect( this, { confirm: 'onFinalConfirm' } );
 
 	this.render();
 };
@@ -135,24 +138,38 @@ ImageWithSuggestionsWidget.prototype.onReset = function () {
 	this.rerenderGroups();
 };
 
-ImageWithSuggestionsWidget.prototype.getPublishDebugString = function () {
-	var debugString;
+/**
+ * Show a dialog prmopting user to confirm tags before publishing.
+ */
+ImageWithSuggestionsWidget.prototype.onPublish = function () {
+	var self = this,
+		tagsList = this.confirmedSuggestions.map( function ( suggestion ) {
+			return suggestion.text;
+		} ).join( ', ' ),
+		confirmTagsDialog,
+		windowManager;
 
-	debugString = 'IMAGE:\n' +
-		this.imageTitle;
+	confirmTagsDialog = new ConfirmTagsDialog( {
+		tagsList: tagsList,
+		imgUrl: this.imageData.thumburl,
+		imgTitle: this.imageTitle,
+		imgDescription: this.imageData.description
+	} )
+		.connect( self, { confirm: 'onFinalConfirm' } );
 
-	debugString += '\n\nDEPICTS:\n';
+	windowManager = new OO.ui.WindowManager();
+	$( document.body ).append( windowManager.$element );
 
-	debugString += this.confirmedSuggestions.map( function ( suggestion ) {
-		return suggestion.text;
-	} ).join( ', ' );
-
-	return debugString;
+	windowManager.addWindows( [ confirmTagsDialog ] );
+	windowManager.openWindow( confirmTagsDialog );
 };
 
-ImageWithSuggestionsWidget.prototype.onPublish = function () {
-	// TODO: keep approved/rejected state in the SuggestionData model rather than bouncing
-	//  suggestions between two different arrays
+/**
+ * Publish new tags and move to the next image.
+ */
+ImageWithSuggestionsWidget.prototype.onFinalConfirm = function () {
+	// TODO: keep approved/rejected state in the SuggestionData model rather
+	// than bouncing suggestions between two different arrays
 	var self = this,
 		batch = [];
 	this.confirmedSuggestions.forEach( function ( suggestion ) {
@@ -161,33 +178,30 @@ ImageWithSuggestionsWidget.prototype.onPublish = function () {
 	this.suggestions.forEach( function ( suggestion ) {
 		batch.push( { label: suggestion.wikidataId, review: 'reject' } );
 	} );
-	// TODO: Improve the confirmation dialog
-	// eslint-disable-next-line no-alert
-	if ( confirm( this.getPublishDebugString() ) ) {
-		this.api.postWithToken(
-			'csrf',
-			{
-				action: 'reviewimagelabels',
-				filename: this.imageTitle,
-				batch: JSON.stringify( batch )
-			}
-		)
-			// eslint-disable-next-line no-unused-vars
-			.done( function ( result ) {
-				// TODO: indicate success somehow?
-			} )
-			// eslint-disable-next-line no-unused-vars
-			.fail( function ( errorCode, error ) {
-				// TODO: indicate failure
-			} )
-			.always( function () {
-				self.onSkip();
-			} );
-	}
+	this.api.postWithToken(
+		'csrf',
+		{
+			action: 'reviewimagelabels',
+			filename: this.imageTitle,
+			batch: JSON.stringify( batch )
+		}
+	)
+		// eslint-disable-next-line no-unused-vars
+		.done( function ( result ) {
+			// TODO: Add success message.
+		} )
+		// eslint-disable-next-line no-unused-vars
+		.fail( function ( errorCode, error ) {
+			// TODO: indicate failure
+		} )
+		.always( function () {
+			// Move to the next image.
+			self.onSkip();
+		} );
 };
 
 /**
- * Handle removed card.
+ * Remove this image. As a result, the next image will display (via CSS).
  *
  * @fires itemRemoved
  */
