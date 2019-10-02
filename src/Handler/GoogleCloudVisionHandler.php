@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Extension\MachineVision\Handler;
 
+use Google\Cloud\Vision\V1\Feature\Type;
 use Google\Cloud\Vision\V1\ImageAnnotatorClient;
 use LocalFile;
 use MediaWiki\Extension\MachineVision\Repository;
@@ -49,13 +50,14 @@ class GoogleCloudVisionHandler extends WikidataIdHandler {
 	 * @param string $provider provider name
 	 * @param LocalFile $file
 	 * @throws \Google\ApiCore\ApiException
-	 * @suppress PhanUndeclaredTypeThrowsType,PhanUndeclaredClassMethod
+	 * @suppress PhanUndeclaredTypeThrowsType,PhanUndeclaredClassMethod,PhanUndeclaredClassConstant
 	 */
 	public function handleUploadComplete( $provider, LocalFile $file ) {
 		$payload = $this->sendFileContents ? $this->getContents( $file ) : $this->getUrl( $file );
-		$labels = $this->client->labelDetection( $payload )->getLabelAnnotations();
+		$features = [ Type::LABEL_DETECTION, Type::SAFE_SEARCH_DETECTION ];
+		$annotations = $this->client->annotateImage( $payload, $features );
 		$suggestions = [];
-		foreach ( $labels as $label ) {
+		foreach ( $annotations->getLabelAnnotations() as $label ) {
 			$freebaseId = $label->getMid();
 			$score = $label->getScore();
 			$mappedWikidataIds = $this->getRepository()->getMappedWikidataIds( $freebaseId );
@@ -66,6 +68,16 @@ class GoogleCloudVisionHandler extends WikidataIdHandler {
 		}
 		$this->getRepository()->insertLabels( $file->getSha1(), $provider,
 			$file->getUser( 'id' ), $suggestions );
+
+		$safeSearchAnnotations = $annotations->getSafeSearchAnnotation();
+		$this->getRepository()->insertSafeSearchAnnotations(
+			$file->getSha1(),
+			$safeSearchAnnotations->getAdult(),
+			$safeSearchAnnotations->getSpoof(),
+			$safeSearchAnnotations->getMedical(),
+			$safeSearchAnnotations->getViolence(),
+			$safeSearchAnnotations->getRacy()
+		);
 	}
 
 	private function getUrl( LocalFile $file ) {

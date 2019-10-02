@@ -257,4 +257,30 @@ class Repository implements LoggerAwareInterface {
 		);
 	}
 
+	/**
+	 * Insert SafeSearch annotations. For meanings associated with the integer values, see
+	 *  Google\Cloud\Vision\V1\Likelihood.
+	 * @param string $sha1 image SHA1 digest
+	 * @param int $adult
+	 * @param int $spoof
+	 * @param int $medical
+	 * @param int $violence
+	 * @param int $racy
+	 */
+	public function insertSafeSearchAnnotations( $sha1, $adult, $spoof, $medical, $violence,
+		$racy ) {
+		$this->dbw->insert(
+			'machine_vision_safe_search',
+			[
+				'mvss_image_sha1' => $sha1,
+				'mvss_adult' => $adult,
+				'mvss_spoof' => $spoof,
+				'mvss_medical' => $medical,
+				'mvss_violence' => $violence,
+				'mvss_racy' => $racy,
+			],
+			__METHOD__
+		);
+	}
+
 }
