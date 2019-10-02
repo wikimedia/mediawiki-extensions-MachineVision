@@ -6,7 +6,6 @@ use Maintenance;
 use MediaWiki\Extension\MachineVision\Services;
 use MediaWiki\Extension\MachineVision\TitleFilter;
 use MediaWiki\MediaWikiServices;
-use RepoGroup;
 use Wikimedia\Rdbms\IDatabase;
 
 $basePath = getenv( 'MW_INSTALL_PATH' ) !== false
@@ -20,23 +19,11 @@ require_once "$basePath/maintenance/Maintenance.php";
  */
 class CreateFileListFromCategoriesAndTemplates extends Maintenance {
 
-	/** @var RepoGroup */
-	private $repoGroup;
-
 	/** @var TitleFilter */
 	private $titleFilter;
 
 	/** @var IDatabase */
 	private $dbr;
-
-	/** @var int */
-	private $minImageWidth;
-
-	/** @var string[] */
-	private $categoryBlacklist;
-
-	/** @var string[] */
-	private $templateBlacklist;
 
 	public function __construct() {
 		parent::__construct();
@@ -55,14 +42,9 @@ class CreateFileListFromCategoriesAndTemplates extends Maintenance {
 	public function init() {
 		$services = MediaWikiServices::getInstance();
 		$extensionServices = new Services( $services );
-		$this->repoGroup = $services->getRepoGroup();
-		$this->titleFilter = TitleFilter::instance();
+		$this->titleFilter = $extensionServices->getTitleFilter();
 
 		$extensionConfig = $extensionServices->getExtensionConfig();
-		$this->minImageWidth = $extensionConfig->get( 'MachineVisionMinImageWidth' );
-		$this->categoryBlacklist = $extensionConfig->get( 'MachineVisionCategoryBlacklist' );
-		$this->templateBlacklist = $extensionConfig->get( 'MachineVisionTemplateBlacklist' );
-
 		$loadBalancerFactory = $services->getDBLoadBalancerFactory();
 
 		$cluster = $extensionConfig->get( 'MachineVisionCluster' );
@@ -100,16 +82,7 @@ class CreateFileListFromCategoriesAndTemplates extends Maintenance {
 					]
 				]
 			);
-			$result = array_merge(
-				$result,
-				$this->titleFilter->filterGoodTitles(
-					$candidates,
-					$this->repoGroup->getLocalRepo(),
-					$this->minImageWidth,
-					$this->categoryBlacklist,
-					$this->templateBlacklist
-				)
-			);
+			$result = array_merge( $result, $this->titleFilter->filterGoodTitles( $candidates ) );
 		}
 
 		foreach ( $templates as $template ) {
@@ -130,16 +103,7 @@ class CreateFileListFromCategoriesAndTemplates extends Maintenance {
 					]
 				]
 			);
-			$result = array_merge(
-				$result,
-				$this->titleFilter->filterGoodTitles(
-					$candidates,
-					$this->repoGroup->getLocalRepo(),
-					$this->minImageWidth,
-					$this->categoryBlacklist,
-					$this->templateBlacklist
-				)
-			);
+			$result = array_merge( $result, $this->titleFilter->filterGoodTitles( $candidates ) );
 		}
 
 		file_put_contents( $outputFile, array_map( function ( $title ) {
