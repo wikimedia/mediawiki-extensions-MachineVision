@@ -101,6 +101,10 @@
 			"value": 150,
 			"description": "Minimum width (in px) of an image for the image to qualify for suggested tags."
 		},
+		"MachineVisionMaxExistingDepictsStatements": {
+			"value": 1,
+			"description": "Exclude images from suggested tags when more than this number of depicts (P180) statements already exist."
+		},
 		"MachineVisionCategoryBlacklist": {
 			"value": [],
 			"description": "Omit images with file pages linked to these categories from suggested tags. Category names should use underscores in place of spaces and include the 'Category:' prefix."

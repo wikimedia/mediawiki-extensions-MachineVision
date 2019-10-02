@@ -9,11 +9,12 @@ class Util {
 
 	/**
 	 * Get the configured property ID for a MediaInfo property.
+	 * @param MediaWikiServices $services
 	 * @param string $prop property name
 	 * @return string
 	 */
-	public static function getMediaInfoPropertyId( $prop ) {
-		$configFactory = MediaWikiServices::getInstance()->getConfigFactory();
+	public static function getMediaInfoPropertyId( MediaWikiServices $services, $prop ) {
+		$configFactory = $services->getConfigFactory();
 		$wbmiConfig = $configFactory->makeConfig( 'WikibaseMediaInfo' );
 		if ( !$wbmiConfig->has( 'MediaInfoProperties' ) ) {
 			throw new DomainException( 'MediaInfoProperties not set' );

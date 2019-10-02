@@ -3,15 +3,23 @@
 namespace MediaWiki\Extension\MachineVision;
 
 use LocalRepo;
+use MediaWiki\Storage\RevisionStore;
 use Title;
+use Wikibase\DataModel\Entity\PropertyId;
 
 class TitleFilter {
 
 	/** @var LocalRepo */
 	private $localRepo;
 
+	/** @var RevisionStore */
+	private $revisionStore;
+
 	/** @var int */
 	private $minImageWidth;
+
+	/** @var int */
+	private $maxExistingDepictsStatements;
 
 	/** @var string[] */
 	private $categoryBlacklist;
@@ -19,23 +27,36 @@ class TitleFilter {
 	/** @var string[] */
 	private $templateBlacklist;
 
+	/** @var string */
+	private $depictsIdSerialization;
+
 	/**
 	 * TitleFilter constructor.
 	 * @param LocalRepo $localRepo
-	 * @param int $minImageWidth
-	 * @param array $categoryBlacklist
-	 * @param array $templateBlacklist
+	 * @param RevisionStore $revisionStore
+	 * @param int $minImageWidth min image width to qualify for labeling
+	 * @param int $maxExistingDepictsStatements max # of existing depicts statements to qualify for
+	 *  labeling
+	 * @param array $categoryBlacklist omit images with these categories from labeling
+	 * @param array $templateBlacklist omit images with these templates from labeling
+	 * @param string $depictsIdSerialization depicts ID defined in WikibaseMediaInfo config
 	 */
 	public function __construct(
 		LocalRepo $localRepo,
+		RevisionStore $revisionStore,
 		$minImageWidth,
+		$maxExistingDepictsStatements,
 		array $categoryBlacklist,
-		array $templateBlacklist
+		array $templateBlacklist,
+		$depictsIdSerialization
 	) {
 		$this->localRepo = $localRepo;
+		$this->revisionStore = $revisionStore;
 		$this->minImageWidth = $minImageWidth;
+		$this->maxExistingDepictsStatements = $maxExistingDepictsStatements;
 		$this->categoryBlacklist = $categoryBlacklist;
 		$this->templateBlacklist = $templateBlacklist;
+		$this->depictsIdSerialization = $depictsIdSerialization;
 	}
 
 	/**
@@ -67,6 +88,20 @@ class TitleFilter {
 		}
 		if ( !$file->getWidth() || $file->getWidth() < $this->minImageWidth ) {
 			return false;
+		}
+		$revision = $this->revisionStore->getRevisionByTitle( $title );
+		if ( $revision->hasSlot( 'mediainfo' ) ) {
+			$mediaInfoContent = $revision->getContent( 'mediainfo' );
+			if ( $mediaInfoContent ) {
+				// @phan-suppress-next-line PhanUndeclaredMethod
+				$mediaInfo = $mediaInfoContent->getEntity();
+				$statementList = $mediaInfo->getStatements();
+				$propertyId = new PropertyId( $this->depictsIdSerialization );
+				$depictsStatements = $statementList->getByPropertyId( new PropertyId( $propertyId ) );
+				if ( $depictsStatements->count() > $this->maxExistingDepictsStatements ) {
+					return false;
+				}
+			}
 		}
 		if ( count( $this->categoryBlacklist ) ) {
 			$categories = array_keys( $title->getParentCategories() );
