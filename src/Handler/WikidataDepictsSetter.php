@@ -52,6 +52,9 @@ class WikidataDepictsSetter {
 	// @phan-suppress-next-line PhanUndeclaredTypeProperty
 	private $summaryFormatter;
 
+	/** @var string */
+	private $depictsIdSerialization;
+
 	/**
 	 * WikidataDepictsSetter constructor.
 	 * @param RevisionStore $revisionStore
@@ -60,6 +63,7 @@ class WikidataDepictsSetter {
 	 * @param MediawikiEditEntityFactory $mediawikiEditEntityFactory
 	 * @param StatementChangeOpFactory $statementChangeOpFactory
 	 * @param SummaryFormatter $summaryFormatter
+	 * @param string $depictsIdSerialization depicts ID defined in WikibaseMediaInfo config
 	 * @suppress PhanUndeclaredTypeParameter
 	 */
 	public function __construct(
@@ -68,7 +72,8 @@ class WikidataDepictsSetter {
 		EntityLookup $entityLookup,
 		MediawikiEditEntityFactory $mediawikiEditEntityFactory,
 		StatementChangeOpFactory $statementChangeOpFactory,
-		SummaryFormatter $summaryFormatter
+		SummaryFormatter $summaryFormatter,
+		$depictsIdSerialization
 	) {
 		$this->revisionStore = $revisionStore;
 		$this->mediaInfoByLinkedTitleLookup = $mediaInfoByLinkedTitleLookup;
@@ -76,6 +81,7 @@ class WikidataDepictsSetter {
 		$this->editEntityFactory = $mediawikiEditEntityFactory;
 		$this->statementChangeOpFactory = $statementChangeOpFactory;
 		$this->summaryFormatter = $summaryFormatter;
+		$this->depictsIdSerialization = $depictsIdSerialization;
 	}
 
 	/**
@@ -121,12 +127,11 @@ class WikidataDepictsSetter {
 	 * P180 represents "depicts" in your development environment, and fairly likely that neither
 	 * P180 nor the item ID represented by $label exist at all. For testing, consider hard-coding
 	 * known good values in their place here, e.g., P1 in place of P180 and Q1 in place of $label.
-	 * TODO: Make the property this class acts on configurable.
 	 * @param string $label Wikidata item ID associated with the label
 	 * @return PropertyValueSnak
 	 */
 	private function getDepictsSnak( $label ) {
-		$depicts = new PropertyId( 'P180' );
+		$depicts = new PropertyId( $this->depictsIdSerialization );
 		$itemId = new ItemId( $label );
 		$itemIdValue = new EntityIdValue( $itemId );
 		return new PropertyValueSnak( $depicts, $itemIdValue );
