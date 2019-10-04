@@ -9,6 +9,7 @@ use MediaWiki\Extension\MachineVision\Repository;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\NameTableStore;
+use Wikibase\DataModel\Services\Lookup\EntityLookup;
 use Wikibase\Repo\WikibaseRepo;
 use Wikibase\LanguageFallbackChainFactory;
 use Wikibase\MediaInfo\Services\MediaInfoByLinkedTitleLookup;
@@ -126,6 +127,10 @@ return [
 			$changeOpFactoryProvider->getStatementChangeOpFactory(),
 			$wbRepo->getSummaryFormatter()
 		);
-	}
+	},
+
+	'MachineVisionEntityLookup' => function ( MediaWikiServices $services ): EntityLookup {
+		return WikibaseRepo::getDefaultInstance()->getEntityLookup();
+	},
 
 ];
