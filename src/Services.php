@@ -47,4 +47,8 @@ class Services {
 		return $this->services->getService( 'MachineVisionLabelResolver' );
 	}
 
+	public function getTitleFilter(): TitleFilter {
+		return $this->services->getService( 'MachineVisionTitleFilter' );
+	}
+
 }

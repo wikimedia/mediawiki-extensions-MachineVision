@@ -6,6 +6,7 @@ use MediaWiki\Extension\MachineVision\Handler\WikidataDepictsSetter;
 use MediaWiki\Extension\MachineVision\Handler\LabelResolver;
 use MediaWiki\Extension\MachineVision\Handler\Registry;
 use MediaWiki\Extension\MachineVision\Repository;
+use MediaWiki\Extension\MachineVision\TitleFilter;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\NameTableStore;
@@ -132,5 +133,15 @@ return [
 	'MachineVisionEntityLookup' => function ( MediaWikiServices $services ): EntityLookup {
 		return WikibaseRepo::getDefaultInstance()->getEntityLookup();
 	},
+
+	'MachineVisionTitleFilter' => function ( MediaWikiServices $services ): TitleFilter {
+		$extensionConfig = $services->getConfigFactory()->makeConfig( 'MachineVision' );
+		return new TitleFilter(
+			$services->getRepoGroup()->getLocalRepo(),
+			$extensionConfig->get( 'MachineVisionMinImageWidth' ),
+			$extensionConfig->get( 'MachineVisionCategoryBlacklist' ),
+			$extensionConfig->get( 'MachineVisionTemplateBlacklist' )
+		);
+	}
 
 ];
