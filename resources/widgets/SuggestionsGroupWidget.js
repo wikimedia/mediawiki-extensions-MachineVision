@@ -6,7 +6,6 @@
 
 var TemplateRenderingDOMLessGroupWidget = require( './../base/TemplateRenderingDOMLessGroupWidget.js' ),
 	SuggestionWidget = require( './SuggestionWidget.js' ),
-	SuggestionConfirmedWidget = require( './SuggestionConfirmedWidget.js' ),
 	SuggestionsGroupWidget;
 
 /**
@@ -43,14 +42,11 @@ OO.inheritClass( SuggestionsGroupWidget, TemplateRenderingDOMLessGroupWidget );
  * @return {SuggestionWidget}
  */
 SuggestionsGroupWidget.prototype.getSuggestionWidgetForSuggestionData = function ( data ) {
-	if ( $.inArray( data, this.confirmedSuggestionDataArray ) > -1 ) {
-		return new SuggestionConfirmedWidget( {
-			suggestionData: data
-		} );
-	}
+	var confirmed = !!( $.inArray( data, this.confirmedSuggestionDataArray ) > -1 );
 
 	return new SuggestionWidget( {
-		suggestionData: data
+		suggestionData: data,
+		confirmed: confirmed
 	} );
 };
 

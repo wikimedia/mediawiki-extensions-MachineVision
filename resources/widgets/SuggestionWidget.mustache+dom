@@ -1,1 +1,4 @@
+{{#confirmed}}
+{{{checkIcon}}}
+{{/confirmed}}
 {{{suggestionLabel}}}

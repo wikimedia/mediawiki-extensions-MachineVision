@@ -125,19 +125,15 @@
 				"resources/widgets/ImageWithSuggestionsWidget.js",
 				"resources/widgets/SuggestedTagsCardstack.js",
 				"resources/widgets/SuggestedTagsPage.js",
-				"resources/widgets/SuggestionBaseWidget.js",
 				"resources/widgets/SuggestionsGroupWidget.js",
-				"resources/widgets/SuggestionWidget.js",
-				"resources/widgets/SuggestionConfirmedWidget.js"
+				"resources/widgets/SuggestionWidget.js"
 			],
 			"styles": [
 				"resources/widgets/ImageWithSuggestionsWidget.less",
 				"resources/widgets/SuggestedTagsCardstack.less",
 				"resources/widgets/SuggestedTagsPage.less",
 				"resources/widgets/SuggestionsGroupWidget.less",
-				"resources/widgets/SuggestionBaseWidget.less",
-				"resources/widgets/SuggestionWidget.less",
-				"resources/widgets/SuggestionConfirmedWidget.less"
+				"resources/widgets/SuggestionWidget.less"
 			],
 			"dependencies": [
 				"oojs",
@@ -152,8 +148,7 @@
 				"resources/widgets/SuggestedTagsCardstack.mustache+dom",
 				"resources/widgets/SuggestedTagsPage.mustache+dom",
 				"resources/widgets/SuggestionsGroupWidget.mustache+dom",
-				"resources/widgets/SuggestionWidget.mustache+dom",
-				"resources/widgets/SuggestionConfirmedWidget.mustache+dom"
+				"resources/widgets/SuggestionWidget.mustache+dom"
 			],
 			"messages": [
 				"machinevision-machineaidedtagging",
