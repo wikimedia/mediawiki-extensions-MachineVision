@@ -128,7 +128,7 @@ return [
 			$wbRepo->newEditEntityFactory(),
 			$changeOpFactoryProvider->getStatementChangeOpFactory(),
 			$wbRepo->getSummaryFormatter(),
-			Util::getMediaInfoPropertyId( 'depicts' )
+			Util::getMediaInfoPropertyId( $services, 'depicts' )
 		);
 	},
 
@@ -137,12 +137,16 @@ return [
 	},
 
 	'MachineVisionTitleFilter' => function ( MediaWikiServices $services ): TitleFilter {
-		$extensionConfig = $services->getConfigFactory()->makeConfig( 'MachineVision' );
+		$configFactory = $services->getConfigFactory();
+		$extensionConfig = $configFactory->makeConfig( 'MachineVision' );
 		return new TitleFilter(
 			$services->getRepoGroup()->getLocalRepo(),
+			$services->getRevisionStore(),
 			$extensionConfig->get( 'MachineVisionMinImageWidth' ),
+			$extensionConfig->get( 'MachineVisionMaxExistingDepictsStatements' ),
 			$extensionConfig->get( 'MachineVisionCategoryBlacklist' ),
-			$extensionConfig->get( 'MachineVisionTemplateBlacklist' )
+			$extensionConfig->get( 'MachineVisionTemplateBlacklist' ),
+			Util::getMediaInfoPropertyId( $services, 'depicts' )
 		);
 	}
 
