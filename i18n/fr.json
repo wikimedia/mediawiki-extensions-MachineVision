@@ -4,17 +4,18 @@
 			"Gomoko",
 			"Wladek92",
 			"Thibaut120094",
-			"Crochet.david"
+			"Crochet.david",
+			"Verdy p"
 		]
 	},
-	"machinevision-desc": "S’interface avec des fournisseurs de service de vision machine interne et externe, et stocke les résultats de l’utilisation dans le wiki.",
+	"machinevision-desc": "S’interface avec des fournisseurs de service de vision machine interne et externe et stocke les résultats de l’utilisation dans le wiki.",
 	"machinevision-machineaidedtagging": "Balises suggérées",
 	"machinevision-machineaidedtagging-intro": "Revoir les balises suggérées des [[c:Commons:Depicts|objets illustrés]] dans les images. Seules les balises confirmées par l’utilisateur sont ajoutées aux images. Pour plus d’information, consultez la [[c:Commons:Structured_data/Computer-aided_tagging|page de projet]] et [[give feedback|donnez votre avis]] sur comment rendre cet outil plus utile !",
 	"machinevision-machineaidedtagging-tabs-heading": "Images à revoir",
 	"machinevision-machineaidedtagging-popular-tab": "Populaire",
 	"machinevision-machineaidedtagging-user-tab": "Téléversements personnels",
-	"machinevision-machineaidedtagging-license-information": "Licence CC0 pour les contributions de balise – En cliquant sur « publier », vous acceptez les [[wmf:Terms_of_Use|conditions d’utilisation]], et acceptez de façon irrévocable de mettre votre contribution sous la [https://creativecommons.org/publicdomain/zero/1.0/ licence Creative Commons CC0].",
-	"machinevision-pageinfo-field-suggested-labels": "Libellés suggérés",
+	"machinevision-machineaidedtagging-license-information": "Licence CC0 pour les contributions de balise – En cliquant sur « Publier », vous acceptez les [[wmf:Terms_of_Use|conditions d’utilisation]], et acceptez de façon irrévocable de mettre votre contribution sous la [https://creativecommons.org/publicdomain/zero/1.0/ licence Creative Commons CC0].",
+	"machinevision-pageinfo-field-suggested-labels": "Légendes suggérées",
 	"machinevision-personal-uploads-login-message": "Veuillez [[Special:UserLogin|vous connecter]] pour voir vos téléchargements personnels.",
 	"machinevision-publish": "Publier",
 	"machinevision-publish-title": "Publier les balises ?",
@@ -23,10 +24,10 @@
 	"machinevision-reset": "Réinitialiser",
 	"machinevision-reset-title": "Réinitialiser les balises ?",
 	"machinevision-skip": "Sauter",
-	"machinevision-skip-title": "Sauter les suggestions de « $1 » ?",
-	"machinevision-suggestion-confirm-title": "Confirmer la suggestion « $1 » ?",
-	"machinevision-suggestion-confirm-undo-title": "Annuler la confirmation de la suggestion « $1 » ?",
-	"machinevision-loading-message": "Chargement…",
-	"right-imagelabel-review": "Relire les suggestions de libellé de l’image",
-	"action-imagelabel-review": "relire les suggestions de libellé de l’image"
+	"machinevision-skip-title": "Sauter les suggestions pour « $1 » ?",
+	"machinevision-suggestion-confirm-title": "Confirmer la suggestion « $1 » ?",
+	"machinevision-suggestion-confirm-undo-title": "Annuler la confirmation de la suggestion « $1 » ?",
+	"machinevision-loading-message": "Chargement...",
+	"right-imagelabel-review": "Relire les suggestions de légende de l’image",
+	"action-imagelabel-review": "relire les suggestions de légende de l’image"
 }

@@ -5,7 +5,7 @@
 			"Movses"
 		]
 	},
-	"apihelp-reviewimagelabels-summary": "Переглянути підказки назв зображень.",
+	"apihelp-reviewimagelabels-summary": "Переглянути машинні підказки назв зображень.",
 	"apihelp-reviewimagelabels-param-filename": "Назва файлу зображення (без префікса простору назв).",
 	"apihelp-reviewimagelabels-param-label": "ID у Вікіданих пропонованої назви (з префіксом Q).",
 	"apihelp-reviewimagelabels-param-review": "Результат перегляду.",
@@ -20,5 +20,8 @@
 	"apihelp-query+imagelabels-paramvalue-state-unreviewed": "Назви, які ще не були переглянуті.",
 	"apihelp-query+imagelabels-paramvalue-state-accepted": "Назви, які були визначені як правильні.",
 	"apihelp-query+imagelabels-paramvalue-state-rejected": "Назви, які не були визначені як правильні.",
-	"apihelp-query+imagelabels-example-1": "Переглянути машинні підказки назв зображень для <kbd>Example.png</kbd>."
+	"apihelp-query+imagelabels-example-1": "Переглянути машинні підказки назв зображень для <kbd>Example.png</kbd>.",
+	"apihelp-query+unreviewedimagelabels-summary": "Показувати заголовки із підказками назв зображень, яким потрібна перевірка.",
+	"apihelp-query+unreviewedimagelabels-param-uploader": "Повертати тільки завантажені цим користувачем.",
+	"apihelp-query+unreviewedimagelabels-param-limit": "Кількість результатів, що повертаються"
 }

@@ -1,0 +1,29 @@
+{
+	"@metadata": {
+		"authors": [
+			"Vlad5250"
+		]
+	},
+	"machinevision-desc": "Sučelje za unutrašnju i spoljašnju uslugu za mašinski uvid i sprema ishode za uporabu na wikiju",
+	"machinevision-machineaidedtagging": "Predloženi tagovi",
+	"machinevision-machineaidedtagging-intro": "Provjerite predložene tagove [[c:Commons:Depicts|prikazanih predmeta]] u slikama. Dodaju se samo tagovi potvrđeni korisnicima. Više ćete saznati na [[c:Commons:Structured_data/Computer-aided_tagging|projektnoj stranici]] i [[give feedback|dajte vašu povratnu informaciju]] kako da napravim alat korisnijim!",
+	"machinevision-machineaidedtagging-tabs-heading": "Slike za provjeru",
+	"machinevision-machineaidedtagging-popular-tab": "Popularne",
+	"machinevision-machineaidedtagging-user-tab": "Osobna otpremanja",
+	"machinevision-machineaidedtagging-license-information": "Licencija CC0 za učesništvo s tagovima – Klikom na \"objavi\" slažete se s [[wmf:Terms_of_Use|uvjetima uporabe]] i neopozivo pristajete na objavu doprinosa pod licencijom [https://creativecommons.org/publicdomain/zero/1.0/ Creative Commons CC0].",
+	"machinevision-pageinfo-field-suggested-labels": "Predložene etikete",
+	"machinevision-personal-uploads-login-message": "Molimo [[Special:UserLogin|prijavite se]] da biste mogli vidjeti svoja osobna otpremanja.",
+	"machinevision-publish": "Objavi",
+	"machinevision-publish-title": "Da objavim tagove?",
+	"machinevision-more": "{{PLURAL:$1|Sljedeća $1 slika|Sljedećih $1 slika}}",
+	"machinevision-more-title": "Da prikažem {{PLURAL:$1|sljedeću $1 sliku|sljedećih $1 slika}}?",
+	"machinevision-reset": "Poništi",
+	"machinevision-reset-title": "Da poništim označivanje?",
+	"machinevision-skip": "Preskoči",
+	"machinevision-skip-title": "Da preskočim prijedloge za \"$1\"?",
+	"machinevision-suggestion-confirm-title": "Da potvrdim prijedlog \"$1\"?",
+	"machinevision-suggestion-confirm-undo-title": "Da poništim potvrdu prijedloga \"$1\"?",
+	"machinevision-loading-message": "Učitavanje...",
+	"right-imagelabel-review": "Provjera predloženih etiketa za slike",
+	"action-imagelabel-review": "provjera predloženih etiketa za slike"
+}

@@ -1,0 +1,26 @@
+{
+	"@metadata": {
+		"authors": [
+			"Kly"
+		]
+	},
+	"apihelp-reviewimagelabels-summary": "檢閱機器建議圖片標籤。",
+	"apihelp-reviewimagelabels-param-filename": "圖片名稱（不帶命名空間字首）。",
+	"apihelp-reviewimagelabels-param-label": "建議標籤的維基數據 ID（帶有字首 Q）。",
+	"apihelp-reviewimagelabels-param-review": "檢閱結果",
+	"apihelp-reviewimagelabels-paramvalue-review-accept": "建議正確。",
+	"apihelp-reviewimagelabels-paramvalue-review-reject": "建議不正確。",
+	"apihelp-reviewimagelabels-example-1": "標記 <kbd>Q123</kbd> 為 <kbd>Example.png</kbd> 的正確建議。",
+	"apierror-reviewimagelabels-invalidfile": "<kbd>$1</kbd> 不是有效的檔案名稱。",
+	"apierror-reviewimagelabels-invalidlabel": "檔案<kbd>$1</kbd>沒有<kbd>$2</kbd>標籤。",
+	"apierror-reviewimagelabels-invalidstate": "<kbd>$3</kbd>對於檔案<kbd>$1</kbd>的標籤<kbd>$2</kbd>不是有效操作。",
+	"apihelp-query+imagelabels-summary": "顯示機器建議圖片標籤。",
+	"apihelp-query+imagelabels-param-state": "僅列出在這些檢閱狀態的標籤",
+	"apihelp-query+imagelabels-paramvalue-state-unreviewed": "尚未被檢閱的標籤。",
+	"apihelp-query+imagelabels-paramvalue-state-accepted": "識別為正確的標籤。",
+	"apihelp-query+imagelabels-paramvalue-state-rejected": "沒被識別為正確的標籤。",
+	"apihelp-query+imagelabels-example-1": "顯示用於 <kbd>Example.png</kbd> 的機器建立圖片標籤。",
+	"apihelp-query+unreviewedimagelabels-summary": "顯示帶有需要檢閱建議圖片標籤的標題。",
+	"apihelp-query+unreviewedimagelabels-param-uploader": "僅回傳由該使用者上傳的結果。",
+	"apihelp-query+unreviewedimagelabels-param-limit": "回傳的結果項目數量。"
+}

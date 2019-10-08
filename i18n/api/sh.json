@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"Vlad5250"
+		]
+	},
+	"apihelp-reviewimagelabels-summary": "Provjera na strojno predložene etikete za slike.",
+	"apihelp-reviewimagelabels-paramvalue-review-accept": "Prijedlog je ispravan.",
+	"apihelp-reviewimagelabels-paramvalue-review-reject": "Prijedlog je neispravan.",
+	"apierror-reviewimagelabels-invalidfile": "<kbd>$1</kbd> ne predstavlja važeće datotečno ime.",
+	"apierror-reviewimagelabels-invalidlabel": "Datoteka <kbd>$1</kbd> nema etikete <kbd>$2</kbd>.",
+	"apierror-reviewimagelabels-invalidstate": "<kbd>$3</kbd> ne predstavlja važeća radnja za etiketu <kbd>$2</kbd> datoteke <kbd>$1</kbd>.",
+	"apihelp-query+imagelabels-summary": "Prikazuj strojno predložene etikete slika",
+	"apihelp-query+imagelabels-param-state": "Iscrtavaj samo etikete sljedećih stanja provjere",
+	"apihelp-query+imagelabels-example-1": "Prikaži strojno predložene etikete za <kbd>Example.png</kbd>.",
+	"apihelp-query+unreviewedimagelabels-summary": "Prikaži naslove sa strojno predloženim etiketama slika kojim treba provjera.",
+	"apihelp-query+unreviewedimagelabels-param-uploader": "Daj samo unose otpremljene ovim korisnikom.",
+	"apihelp-query+unreviewedimagelabels-param-limit": "Koliko ishodnih unosa da se daju."
+}
