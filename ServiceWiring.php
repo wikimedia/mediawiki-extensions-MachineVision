@@ -7,6 +7,7 @@ use MediaWiki\Extension\MachineVision\Handler\LabelResolver;
 use MediaWiki\Extension\MachineVision\Handler\Registry;
 use MediaWiki\Extension\MachineVision\Repository;
 use MediaWiki\Extension\MachineVision\TitleFilter;
+use MediaWiki\Extension\MachineVision\Util;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\NameTableStore;
@@ -126,7 +127,8 @@ return [
 			$wbRepo->getEntityLookup(),
 			$wbRepo->newEditEntityFactory(),
 			$changeOpFactoryProvider->getStatementChangeOpFactory(),
-			$wbRepo->getSummaryFormatter()
+			$wbRepo->getSummaryFormatter(),
+			Util::getMediaInfoPropertyId( 'depicts' )
 		);
 	},
 
