@@ -1,11 +1,6 @@
-{{#needLogin}}
-	{{{loginMessage}}}
-{{/needLogin}}
-{{^needLogin}}
-	{{#showCta}}
-		{{{cta}}}
-	{{/showCta}}
-	{{^showCta}}
-		<div id="wbmad-suggested-tags-cards-{{queryType}}"></div>
-	{{/showCta}}
-{{/needLogin}}
+{{#showCta}}
+	{{{cta}}}
+{{/showCta}}
+{{^showCta}}
+	<div id="wbmad-suggested-tags-cards-{{queryType}}"></div>
+{{/showCta}}

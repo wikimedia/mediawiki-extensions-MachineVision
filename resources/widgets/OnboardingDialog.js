@@ -42,12 +42,10 @@ OnboardingDialog.static.actions = [
  * Store user preference to permanently dismiss this dialog, then close it.
  */
 OnboardingDialog.prototype.onClose = function () {
-	if ( mw.user.isAnon() ) {
-		mw.storage.set( this.config.onboardingPrefKey, 1 );
-	} else {
-		new mw.Api().saveOption( this.config.onboardingPrefKey, 1 );
-		mw.user.options.set( this.config.onboardingPrefKey, 1 );
-	}
+	// Only authenticated users can see this tool so we can forego checking
+	// isAnon().
+	new mw.Api().saveOption( this.config.onboardingPrefKey, 1 );
+	mw.user.options.set( this.config.onboardingPrefKey, 1 );
 
 	this.close();
 };
