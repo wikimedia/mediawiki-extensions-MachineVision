@@ -3,6 +3,7 @@
 namespace MediaWiki\Extension\MachineVision\Special;
 
 use SpecialPage;
+use ContentSecurityPolicy;
 
 class SpecialSuggestedTags extends SpecialPage {
 
@@ -16,7 +17,10 @@ class SpecialSuggestedTags extends SpecialPage {
 		$request = $this->getRequest();
 		$output = $this->getOutput();
 		$this->setHeaders();
-		// $out->addModuleStyles( $moduleStyles );
+
+		// Set CSP headers
+		ContentSecurityPolicy::sendHeaders( $this->getContext() );
+
 		$moduleID = 'ext.MachineVision';
 		$this->getOutput()->addJsConfigVars( [ 'moduleID' => $moduleID ] );
 		$this->getOutput()->addModules( [ $moduleID ] );
