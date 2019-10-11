@@ -29,6 +29,7 @@
 	"machinevision-confirm-tags-dialog-confirm-action": "OK",
 	"machinevision-confirm-tags-dialog-cancel-action": "Cancel",
 	"machinevision-confirm-tags-dialog-heading": "This image depicts:",
+	"machinevision-success-message": "Tags added to image.",
 	"right-imagelabel-review": "Review image label suggestions",
 	"action-imagelabel-review": "review image label suggestions"
 }

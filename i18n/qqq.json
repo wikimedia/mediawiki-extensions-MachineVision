@@ -30,6 +30,7 @@
 	"machinevision-confirm-tags-dialog-confirm-action": "Text for the 'confirm' action of the 'Confirm tags' dialog",
 	"machinevision-confirm-tags-dialog-cancel-action": "Text for the 'cancel' action of the 'Confirm tags' dialog",
 	"machinevision-confirm-tags-dialog-heading": "Text above confirmed tags in the 'Confirm tags' dialog",
+	"machinevision-success-message": "Message posted to user after tags are successfully published",
 	"right-imagelabel-review": "{{doc-right|imagelabel-review}}",
 	"action-imagelabel-review": "{{doc-action|imagelabel-review}}"
 }

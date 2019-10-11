@@ -2,7 +2,17 @@
 @import '../style-variables.less';
 
 .wbmad-image-with-suggestions {
+	@keyframes fadeIn {
+		0% {
+			opacity: 0;
+		}
+
+		100% {
+			opacity: 1;
+		}
+	}
 	.box-shadow(0 1px 4px rgba( 0, 0, 0, 0.25 ));
+	animation: fadeIn 0.5s;
 	border-radius: @outer-border-radius;
 	display: none;
 

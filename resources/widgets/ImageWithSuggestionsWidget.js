@@ -71,6 +71,17 @@ ImageWithSuggestionsWidget = function ( config ) {
 
 OO.inheritClass( ImageWithSuggestionsWidget, TemplateRenderingDOMLessGroupWidget );
 
+ImageWithSuggestionsWidget.prototype.render = function () {
+	this.renderTemplate( 'resources/widgets/ImageWithSuggestionsWidget.mustache+dom', {
+		skipButton: this.skipButton,
+		imageTagTitle: this.imageTitle,
+		suggestions: this.suggestionGroupWidget,
+		thumburl: this.imageData.thumburl,
+		resetButton: this.resetButton,
+		publishButton: this.publishButton
+	} );
+};
+
 deepArrayCopy = function ( array ) {
 	return $.extend( true, [], array );
 };
@@ -188,7 +199,8 @@ ImageWithSuggestionsWidget.prototype.onFinalConfirm = function () {
 	)
 		// eslint-disable-next-line no-unused-vars
 		.done( function ( result ) {
-			// TODO: Add success message.
+			// Show success message.
+			self.emit( 'tagsPublished' );
 		} )
 		// eslint-disable-next-line no-unused-vars
 		.fail( function ( errorCode, error ) {
@@ -210,18 +222,6 @@ ImageWithSuggestionsWidget.prototype.onSkip = function () {
 
 	// Emit an event so parent element can see if we need to fetch more images.
 	this.emit( 'itemRemoved' );
-};
-
-ImageWithSuggestionsWidget.prototype.render = function () {
-	this.renderTemplate( 'resources/widgets/ImageWithSuggestionsWidget.mustache+dom', {
-		skipButton: this.skipButton,
-		imageDescriptionLabel: this.imageDescriptionLabel,
-		imageTagTitle: this.imageTitle + '\n' + this.imageData.description,
-		suggestions: this.suggestionGroupWidget,
-		thumburl: this.imageData.thumburl,
-		resetButton: this.resetButton,
-		publishButton: this.publishButton
-	} );
 };
 
 module.exports = ImageWithSuggestionsWidget;
