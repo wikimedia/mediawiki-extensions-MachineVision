@@ -150,9 +150,12 @@ getImageDataForQueryResponse = function ( item ) {
 SuggestedTagsCardstack.prototype.showItemsForQueryResponse = function ( response ) {
 	var newWidget,
 		self = this,
-		imageDataArray = response.query.pages.map( function ( page ) {
-			return getImageDataForQueryResponse( page );
-		} );
+		imageDataArray = response.query && response.query.pages &&
+		Array.isArray( response.query.pages ) ? response.query.pages.map( function ( page ) {
+				return getImageDataForQueryResponse( page );
+			} ) : [];
+
+	this.resultsFound = !!imageDataArray.length;
 
 	// Clear out loading message.
 	// TODO: (T233232) Remove this.
@@ -169,7 +172,6 @@ SuggestedTagsCardstack.prototype.showItemsForQueryResponse = function ( response
 		} )
 	);
 
-	this.resultsFound = ( response.query.pages && response.query.pages.length > 0 );
 };
 
 /**
