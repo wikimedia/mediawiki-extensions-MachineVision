@@ -11,7 +11,6 @@ use MediaWiki\Extension\MachineVision\Util;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\NameTableStore;
-use Wikibase\DataModel\Services\Lookup\EntityLookup;
 use Wikibase\Repo\WikibaseRepo;
 use Wikibase\LanguageFallbackChainFactory;
 use Wikibase\MediaInfo\Services\MediaInfoByLinkedTitleLookup;
@@ -130,10 +129,6 @@ return [
 			$wbRepo->getSummaryFormatter(),
 			Util::getMediaInfoPropertyId( $services, 'depicts' )
 		);
-	},
-
-	'MachineVisionEntityLookup' => function ( MediaWikiServices $services ): EntityLookup {
-		return WikibaseRepo::getDefaultInstance()->getEntityLookup();
 	},
 
 	'MachineVisionTitleFilter' => function ( MediaWikiServices $services ): TitleFilter {
