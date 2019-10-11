@@ -216,6 +216,10 @@ class Repository implements LoggerAwareInterface {
 			]
 		);
 		AtEase::restoreWarnings();
+		if ( !$sha1s ) {
+			$this->dbw->endAtomic( __METHOD__ );
+			return [];
+		}
 		$this->dbw->update(
 			'machine_vision_label',
 			[ 'mvl_suggested_time' => (int)( microtime( true ) * 10000 ) ],
