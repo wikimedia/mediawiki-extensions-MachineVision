@@ -38,7 +38,8 @@
 		"InfoAction": "MediaWiki\\Extension\\MachineVision\\Hooks::onInfoAction",
 		"LoadExtensionSchemaUpdates": "MediaWiki\\Extension\\MachineVision\\Hooks::onLoadExtensionSchemaUpdates",
 		"UnitTestsAfterDatabaseSetup": "MediaWiki\\Extension\\MachineVision\\Hooks::onUnitTestsAfterDatabaseSetup",
-		"UnitTestsBeforeDatabaseTeardown": "MediaWiki\\Extension\\MachineVision\\Hooks::onUnitTestsBeforeDatabaseTeardown"
+		"UnitTestsBeforeDatabaseTeardown": "MediaWiki\\Extension\\MachineVision\\Hooks::onUnitTestsBeforeDatabaseTeardown",
+		"GetPreferences": "MediaWiki\\Extension\\MachineVision\\Hooks::onGetPreferences"
 	},
 	"APIModules": {
 		"reviewimagelabels": {
@@ -133,19 +134,23 @@
 				"resources/widgets/ConfirmTagsDialog.js",
 				"resources/widgets/ConfirmTagsDialogContent.js",
 				"resources/widgets/ImageWithSuggestionsWidget.js",
+				"resources/widgets/OnboardingDialog.js",
 				"resources/widgets/SuggestedTagsCardstack.js",
 				"resources/widgets/SuggestedTagsPage.js",
 				"resources/widgets/SuggestionsGroupWidget.js",
-				"resources/widgets/SuggestionWidget.js"
+				"resources/widgets/SuggestionWidget.js",
+				"resources/widgets/UserMessage.js"
 			],
 			"styles": [
 				"resources/widgets/ConfirmTagsDialog.less",
 				"resources/widgets/ConfirmTagsDialogContent.less",
 				"resources/widgets/ImageWithSuggestionsWidget.less",
+				"resources/widgets/OnboardingDialog.less",
 				"resources/widgets/SuggestedTagsCardstack.less",
 				"resources/widgets/SuggestedTagsPage.less",
 				"resources/widgets/SuggestionsGroupWidget.less",
-				"resources/widgets/SuggestionWidget.less"
+				"resources/widgets/SuggestionWidget.less",
+				"resources/widgets/UserMessage.less"
 			],
 			"dependencies": [
 				"oojs",
@@ -161,7 +166,8 @@
 				"resources/widgets/SuggestedTagsCardstack.mustache+dom",
 				"resources/widgets/SuggestedTagsPage.mustache+dom",
 				"resources/widgets/SuggestionsGroupWidget.mustache+dom",
-				"resources/widgets/SuggestionWidget.mustache+dom"
+				"resources/widgets/SuggestionWidget.mustache+dom",
+				"resources/widgets/UserMessage.mustache+dom"
 			],
 			"messages": [
 				"machinevision-machineaidedtagging",
@@ -186,13 +192,24 @@
 				"machinevision-confirm-tags-dialog-confirm-action",
 				"machinevision-confirm-tags-dialog-cancel-action",
 				"machinevision-confirm-tags-dialog-heading",
-				"machinevision-success-message"
+				"machinevision-success-message",
+				"machinevision-onboarding-dialog-heading",
+				"machinevision-onboarding-dialog-text",
+				"machinevision-onboarding-dialog-cta",
+				"machinevision-onboarding-dialog-disclaimer",
+				"machinevision-onboarding-dialog-close-label",
+				"machinevision-cta-heading",
+				"machinevision-cta-text",
+				"machinevision-cta-cta"
 			],
 			"targets": [
 				"mobile",
 				"desktop"
 			]
 		}
+	},
+	"DefaultUserOptions": {
+		"wbmad-onboarding-dialog-dismissed": 0
 	},
 	"manifest_version": 2
 }

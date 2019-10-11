@@ -51,4 +51,36 @@
 			padding: 1em 2em;
 		}
 	}
+
+	// CTA after user has tagged all personal uploads.
+	.wbmad-user-message {
+		@keyframes fadeIn {
+			0% {
+				opacity: 0;
+			}
+
+			100% {
+				opacity: 1;
+			}
+		}
+		animation: fadeIn 0.5s;
+
+		.wbmad-user-message-icon {
+			background-image: url( ../icons/empty-state-icon.svg );
+		}
+
+		.wbmad-user-message-cta {
+			@media screen and ( min-width: @width-breakpoint-tablet ) {
+				width: auto;
+			}
+
+			a {
+				width: 100%;
+
+				@media screen and ( min-width: @width-breakpoint-tablet ) {
+					width: auto;
+				}
+			}
+		}
+	}
 }

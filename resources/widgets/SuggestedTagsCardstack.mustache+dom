@@ -2,5 +2,10 @@
 	{{{loginMessage}}}
 {{/needLogin}}
 {{^needLogin}}
-	<div id="wbmad-suggested-tags-cards-{{queryType}}"></div>
+	{{#showCta}}
+		{{{cta}}}
+	{{/showCta}}
+	{{^showCta}}
+		<div id="wbmad-suggested-tags-cards-{{queryType}}"></div>
+	{{/showCta}}
 {{/needLogin}}

@@ -121,4 +121,16 @@ class Hooks {
 		}
 	}
 
+	/**
+	 * Handler for the GetPreferences hook
+	 *
+	 * @param \User $user The user object
+	 * @param array &$preferences Their preferences object
+	 */
+	public static function onGetPreferences( \User $user, array &$preferences ) {
+		$preferences['wbmad-onboarding-dialog-dismissed'] = [
+			'type' => 'api'
+		];
+	}
+
 }

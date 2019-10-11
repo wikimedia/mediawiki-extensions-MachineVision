@@ -3,6 +3,7 @@
 var IMAGES_PER_PAGE = 10,
 	TemplateRenderingDOMLessGroupWidget = require( '../base/TemplateRenderingDOMLessGroupWidget.js' ),
 	ImageWithSuggestionsWidget = require( './ImageWithSuggestionsWidget.js' ),
+	UserMessage = require( './UserMessage.js' ),
 	SuggestionData = require( '../models/SuggestionData.js' ),
 	ImageData = require( '../models/ImageData.js' ),
 	SuggestedTagsCardstack,
@@ -32,6 +33,7 @@ SuggestedTagsCardstack = function ( config ) {
 	this.needLogin = this.queryType === 'user' && !mw.config.get( 'wgUserName' );
 	this.isLoading = true;
 	this.hasError = false;
+	this.showCta = false;
 
 	this.render();
 
@@ -47,13 +49,26 @@ OO.inheritClass(
 );
 
 SuggestedTagsCardstack.prototype.render = function () {
+	var config = {
+		heading: mw.message( 'machinevision-cta-heading' ).text(),
+		text: mw.message( 'machinevision-cta-text' ).text(),
+		cta: mw.message( 'machinevision-cta-cta' ).text(),
+		event: 'popularTabCtaClick'
+	};
+
 	this.renderTemplate( 'resources/widgets/SuggestedTagsCardstack.mustache+dom', {
 		queryType: this.queryType,
 		needLogin: this.needLogin,
 		isLoading: this.isLoading,
 		hasError: this.hasError,
+		showCta: this.showCta,
+		cta: new UserMessage( config ).connect( this, { popularTabCtaClick: 'onPopularTabCtaClick' } ),
 		loginMessage: $( '<p>' ).msg( 'machinevision-personal-uploads-login-message' )
 	} );
+};
+
+SuggestedTagsCardstack.prototype.onPopularTabCtaClick = function () {
+	this.emit( 'goToPopularTab' );
 };
 
 /**
@@ -64,8 +79,9 @@ SuggestedTagsCardstack.prototype.render = function () {
  * TODO: (T233232) Improve loading experience.
  */
 SuggestedTagsCardstack.prototype.onItemRemoved = function () {
-	// TODO: Use something else instead of this horrific global selector.
-	if ( this.resultsFound && $( '#wbmad-suggested-tags-cards-' + this.queryType + ' .wbmad-image-with-suggestions' ).length === 0 ) {
+	// If there are no more image cards, fetch more.
+	// TODO: Do we need the resultsFound check?
+	if ( this.resultsFound && this.$element.find( '.wbmad-image-with-suggestions' ).length === 0 ) {
 		this.fetchItems();
 	}
 };
@@ -158,20 +174,26 @@ SuggestedTagsCardstack.prototype.showItemsForQueryResponse = function ( response
 	// TODO: (T233232) Remove this.
 	$( '#wbmad-suggested-tags-cards-' + this.queryType ).empty();
 
-	// Append a new ImageWithSuggestionsWidget element for each item.
-	$( '#wbmad-suggested-tags-cards-' + this.queryType ).append(
-		imageDataArray.map( function ( imageData ) {
-			newWidget = new ImageWithSuggestionsWidget( {
-				imageData: imageData
-			} );
-			newWidget.connect( self, {
-				itemRemoved: 'onItemRemoved',
-				tagsPublished: 'onTagsPublished'
-			} );
-			return newWidget.$element;
-		} )
-	);
+	if ( this.resultsFound ) {
+		// Append a new ImageWithSuggestionsWidget element for each item.
+		$( '#wbmad-suggested-tags-cards-' + this.queryType ).append(
+			imageDataArray.map( function ( imageData ) {
+				newWidget = new ImageWithSuggestionsWidget( {
+					imageData: imageData
+				} );
+				newWidget.connect( self, {
+					itemRemoved: 'onItemRemoved',
+					tagsPublished: 'onTagsPublished'
+				} );
+				return newWidget.$element;
+			} )
+		);
+	}
 
+	if ( !this.resultsFound && this.queryType === 'user' ) {
+		this.showCta = true;
+		this.render();
+	}
 };
 
 /**

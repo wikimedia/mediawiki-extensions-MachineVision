@@ -1,0 +1,7 @@
+<div class="wbmad-user-message-icon"></div>
+<p class="wbmad-user-message-heading">{{heading}}</p>
+<div class="wbmad-user-message-text">{{text}}</div>
+{{{ctaButton}}}
+{{#disclaimer}}
+<p class="wbmad-user-message-disclaimer">{{disclaimer}}</p>
+{{/disclaimer}}

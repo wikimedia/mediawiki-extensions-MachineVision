@@ -30,6 +30,14 @@
 	"machinevision-confirm-tags-dialog-cancel-action": "Cancel",
 	"machinevision-confirm-tags-dialog-heading": "This image depicts:",
 	"machinevision-success-message": "Tags added to image.",
+	"machinevision-onboarding-dialog-heading": "Tag images to make them easier for others to find",
+	"machinevision-onboarding-dialog-text": "By confirming suggested tags, you can help make images easier to search for. Tags are computer suggested, but need to be validated by humans to ensure accuracy.",
+	"machinevision-onboarding-dialog-cta": "Start tagging",
+	"machinevision-onboarding-dialog-disclaimer": "Only tags that you approve will be added to images.",
+	"machinevision-onboarding-dialog-close-label": "Close",
+	"machinevision-cta-heading": "You've tagged all your uploads!",
+	"machinevision-cta-text": "Thanks for helping make images more findable for everyone – how about tagging some more?",
+	"machinevision-cta-cta": "Tag popular images",
 	"right-imagelabel-review": "Review image label suggestions",
 	"action-imagelabel-review": "review image label suggestions"
 }

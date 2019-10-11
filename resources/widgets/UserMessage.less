@@ -1,0 +1,44 @@
+@import '../style-variables.less';
+
+.wbmad-user-message {
+	padding: 2em 1em;
+	text-align: center;
+
+	p {
+		margin-bottom: 1em;
+	}
+
+	.wbmad-user-message-icon {
+		background-position: center center;
+		background-repeat: no-repeat;
+		background-size: 100% auto;
+		height: 120px;
+		margin: 0 auto;
+		width: 120px;
+	}
+
+	.wbmad-user-message-heading {
+		font-size: 1.2em;
+		font-weight: 600;
+	}
+
+	.wbmad-user-message-cta {
+		margin: 2em 0 0.5em;
+		width: 100%;
+
+		/* stylelint-disable-next-line selector-class-pattern */
+		&.oo-ui-buttonElement-framed > .oo-ui-buttonElement-button {
+			padding: 0.5em 4em;
+		}
+
+		/* stylelint-disable-next-line selector-class-pattern */
+		.oo-ui-labelElement-label {
+			font-weight: 600;
+		}
+	}
+
+	.wbmad-user-message-disclaimer {
+		color: @base20;
+		font-size: 0.9em;
+	}
+}

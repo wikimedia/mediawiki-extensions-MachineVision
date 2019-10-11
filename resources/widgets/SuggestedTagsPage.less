@@ -2,19 +2,16 @@
 @import '../style-variables.less';
 
 .wbmad-suggested-tags-page {
-	max-width: 60em;
-
-	.wbmad-suggested-tags-page-tabs-heading {
-		border: 0;
-		font-family: @font-family-sans;
-		font-weight: 600;
-		margin-top: 1.25em;
-	}
+	max-width: @wbmad-max-width;
 
 	.wbmad-suggested-tags-page-license-info {
 		.box-sizing( border-box );
 		background-color: @base90;
 		padding: 1em;
+
+		p {
+			margin: 0;
+		}
 	}
 
 	/* stylelint-disable selector-class-pattern */

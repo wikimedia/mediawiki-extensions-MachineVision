@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="114" height="88" viewBox="0 0 114 88">
+    <title>
+        Group 8 Copy 2
+    </title>
+    <desc>
+        Created with Sketch.
+    </desc>
+    <defs>
+        <rect id="path-1" width="102.468" height="72.359" x="0" y="0" rx="2"/>
+        <rect id="path-3" width="102.468" height="72.359" x="0" y="0" rx="2"/>
+    </defs>
+    <g id="Mobile-and-desktop" fill="none" fill-rule="evenodd" stroke="none" stroke-width="1">
+        <g id="6-empty-state-desktop" transform="translate(-558 -389)">
+            <g id="Group-2" transform="translate(320 390)">
+                <g id="Group-8-Copy-2" transform="translate(239)">
+                    <rect id="Second-image" width="98.298" height="69.393" x="2.383" y="0" fill="#C8CCD1" stroke="#A2A9B1" stroke-width="2" rx="2"/>
+                    <g id="Group" transform="translate(0 4.152)">
+                        <g id="Illustration">
+                            <mask id="mask-2" fill="#fff">
+                                <use xlink:href="#path-1"/>
+                            </mask>
+                            <use id="Mask" fill="#F5F5F5" xlink:href="#path-1"/>
+                            <g mask="url(#mask-2)">
+                                <g transform="translate(0 8.303)">
+                                    <ellipse id="Oval" cx="16.425" cy="8.897" fill="#A2A9B1" rx="9.276" ry="8.897"/>
+                                    <path id="Path-3" fill="#A2A9B1" d="M68.393683,27.8758621 C68.393683,27.8758621 85.7254356,39.0649357 89.6248821,34.9482558 C93.5243286,30.8315758 89.6248821,40.9241379 89.6248821,40.9241379 L55.4042553,40.9241379"/>
+                                    <path id="Path-4" fill="#A2A9B1" d="M0,34.4 C0,34.4 13.8475762,43.7971231 33.1455841,43.7971231 C52.443592,43.7971231 37.867196,49.8206897 37.867196,49.8206897 L0.0421155617,49.8206897"/>
+                                    <path id="Path-2" fill="#C8CCD1" d="M68.533306,32.2827623 C59.0591686,50.0531549 102.468085,28.1093169 102.468085,28.1093169 L102.468085,49.8206897 L102.468085,71.1724138 L0,71.1724138 L7.11015171e-16,49.8206897 C7.11015171e-16,49.8206897 78.0074435,14.5123697 68.533306,32.2827623 Z"/>
+                                </g>
+                            </g>
+                        </g>
+                        <mask id="mask-4" fill="#fff">
+                            <use xlink:href="#path-3"/>
+                        </mask>
+                        <use id="Mask" stroke="#A2A9B1" stroke-width="2" xlink:href="#path-3"/>
+                    </g>
+                    <g id="Group-12" stroke-width="2" transform="translate(84 58.124)">
+                        <ellipse id="Oval-2" cx="14" cy="13.938" fill="#C8CCD1" stroke="#A2A9B1" rx="14" ry="13.938"/>
+                        <path id="Shape" fill="#FFF" fill-rule="nonzero" stroke="#FFF" d="M11.3191489 17.2029655L7.59276596 13.4931034 6.32829787 14.7519655 11.3191489 19.7206897 22.0425532 9.04482759 20.7780851 7.78596552z"/>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -31,6 +31,14 @@
 	"machinevision-confirm-tags-dialog-cancel-action": "Text for the 'cancel' action of the 'Confirm tags' dialog",
 	"machinevision-confirm-tags-dialog-heading": "Text above confirmed tags in the 'Confirm tags' dialog",
 	"machinevision-success-message": "Message posted to user after tags are successfully published",
+	"machinevision-onboarding-dialog-heading": "Text at the top of the onboarding dialog",
+	"machinevision-onboarding-dialog-text": "Body text of the onboarding dialog, describing the computer-aided tagging tool to users the first time they visit it",
+	"machinevision-onboarding-dialog-cta": "Onboarding dialog call to action text",
+	"machinevision-onboarding-dialog-disclaimer": "Text below the onboarding dialog CTA button",
+	"machinevision-onboarding-dialog-close-label": "Label for the close action",
+	"machinevision-cta-heading": "Heading for the user message after all personal uploads have been tagged",
+	"machinevision-cta-text": "Text for the user message after all personal uploads have been tagged",
+	"machinevision-cta-cta": "Call to action text for the button linking to the popular uploads tab",
 	"right-imagelabel-review": "{{doc-right|imagelabel-review}}",
 	"action-imagelabel-review": "{{doc-action|imagelabel-review}}"
 }
