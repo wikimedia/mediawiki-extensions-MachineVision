@@ -116,6 +116,8 @@ return [
 
 	'MachineVisionDepictsSetter' => function ( MediaWikiServices $services ):
 		WikidataDepictsSetter {
+		$configFactory = $services->getConfigFactory();
+		$extensionConfig = $configFactory->makeConfig( 'MachineVision' );
 		$wbRepo = WikibaseRepo::getDefaultInstance();
 		$entityByLinkedTitleLookup = $wbRepo->getStore()->getEntityByLinkedTitleLookup();
 		$changeOpFactoryProvider = $wbRepo->getChangeOpFactoryProvider();
@@ -127,7 +129,8 @@ return [
 			$wbRepo->newEditEntityFactory(),
 			$changeOpFactoryProvider->getStatementChangeOpFactory(),
 			$wbRepo->getSummaryFormatter(),
-			Util::getMediaInfoPropertyId( $services, 'depicts' )
+			Util::getMediaInfoPropertyId( $services, 'depicts' ),
+			$extensionConfig->get( 'MachineVisionDepictsTags' )
 		);
 	},
 
