@@ -8,26 +8,21 @@ var TemplateRenderingDOMLessGroupWidget = require( './../base/TemplateRenderingD
  *
  * @param {Object} config
  * @cfg {Object} suggestionData
- * @cfg {bool} confirmed Whether or not the suggestion has been confirmed
  */
 SuggestionWidget = function ( config ) {
 	var iconText;
 
-	this.confirmed = config.confirmed;
 	this.suggestionData = config.suggestionData;
+	this.confirmed = this.suggestionData.confirmed;
 
 	SuggestionWidget.parent.call( this, $.extend( {}, config ) );
-	this.$element.addClass( 'wbmad-suggestion' );
-
-	if ( this.confirmed ) {
-		this.$element.addClass( 'wbmad-suggestion--confirmed' );
-	}
+	this.$element.addClass( 'wbmad-suggestion-wrapper' );
 
 	this.suggestionLabel = new OO.ui.LabelWidget( {
 		label: this.suggestionData.text
 	} );
 
-	// Create an icon for confirmed suggestions.
+	// Create an icon for a confirmed suggestion.
 	iconText = mw.message(
 		'machinevision-suggestion-confirm-undo-title',
 		this.suggestionData.text
@@ -52,18 +47,32 @@ SuggestionWidget = function ( config ) {
 OO.inheritClass( SuggestionWidget, TemplateRenderingDOMLessGroupWidget );
 
 SuggestionWidget.prototype.render = function () {
+	var classes = ( this.confirmed ) ? 'wbmad-suggestion wbmad-suggestion--confirmed' : 'wbmad-suggestion';
+
 	this.renderTemplate( 'resources/widgets/SuggestionWidget.mustache+dom', {
+		classes: classes,
 		suggestionLabel: this.suggestionLabel,
 		confirmed: this.confirmed,
 		checkIcon: this.checkIcon
 	} );
 };
 
+/**
+ * Handle click/enter on suggestion widget.
+ *
+ * Store confirmed status in local "state", tell parent widget about this
+ * change, then re-render the suggestion widget.
+ */
 SuggestionWidget.prototype.toggleSuggestion = function () {
-	var event = ( this.confirmed ) ? 'unconfirmSuggestion' : 'confirmSuggestion';
-	this.emit( event );
+	this.confirmed = !this.confirmed;
+	this.emit( 'toggleSuggestion', this.confirmed );
+	this.render();
 };
 
+/**
+ * Toggle the suggestion on enter keypress.
+ * @param {Object} e
+ */
 SuggestionWidget.prototype.onKeypress = function ( e ) {
 	if ( e.keyCode === 13 ) {
 		this.toggleSuggestion();
