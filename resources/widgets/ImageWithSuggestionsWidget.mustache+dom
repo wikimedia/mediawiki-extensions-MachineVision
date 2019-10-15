@@ -2,7 +2,7 @@
 <div class="wbmad-image-with-suggestions-container">
 	<div class="wbmad-image-with-suggestions-image">
 		<div class="wbmad-image-with-suggestions-image-wrapper">
-			<img src="{{thumburl}}" title="{{imageTagTitle}}">
+			<img src="{{thumburl}}" alt="{{imageTagTitle}}" title="{{imageTagTitle}}">
 		</div>
 	</div>
 

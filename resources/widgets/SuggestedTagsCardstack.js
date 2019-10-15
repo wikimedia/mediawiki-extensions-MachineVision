@@ -6,7 +6,6 @@ var IMAGES_PER_PAGE = 10,
 	SuggestionData = require( '../models/SuggestionData.js' ),
 	ImageData = require( '../models/ImageData.js' ),
 	SuggestedTagsCardstack,
-	randomDescription,
 	showFailureMessage,
 	showLoadingMessage,
 	queryURLWithCount,
@@ -25,7 +24,10 @@ SuggestedTagsCardstack = function ( config ) {
 
 	this.queryType = this.config.queryType;
 	this.$element.addClass( 'wbmad-suggested-tags-cardstack' );
-	this.connect( this, { itemRemoved: 'onItemRemoved' } );
+	this.connect( this, {
+		itemRemoved: 'onItemRemoved',
+		tagsPublished: 'onTagsPublished'
+	} );
 
 	this.needLogin = this.queryType === 'user' && !mw.config.get( 'wgUserName' );
 	this.isLoading = true;
@@ -69,6 +71,21 @@ SuggestedTagsCardstack.prototype.onItemRemoved = function () {
 };
 
 /**
+ * After user publishes tags for an image, show a success message.
+ */
+SuggestedTagsCardstack.prototype.onTagsPublished = function () {
+	var successMessage = new OO.ui.MessageWidget( {
+		label: mw.message( 'machinevision-success-message' ).text(),
+		classes: [ 'wbmad-success-message' ]
+	} );
+	this.$element.append( successMessage.$element );
+
+	setTimeout( function () {
+		successMessage.$element.remove();
+	}, 4000 );
+};
+
+/**
  * Build a query URL.
  *
  * @param {number} count
@@ -104,22 +121,6 @@ queryURLWithCount = function ( count, queryType ) {
 	return urlString;
 };
 
-// TODO: remove.
-randomDescription = function () {
-	var array, randomNumber;
-
-	array = [
-		'This is a thing. This is a random description.',
-		'This is another such thing. This is a random description.',
-		'This is some other stuff. This is a random description.',
-		'This is a dodad. This is a random description.'
-	];
-
-	randomNumber = Math.floor( Math.random() * array.length );
-
-	return array[ randomNumber ];
-};
-
 /**
  * Get a formatted object of image data.
  *
@@ -127,14 +128,10 @@ randomDescription = function () {
  * @return {Object}
  */
 getImageDataForQueryResponse = function ( item ) {
-	// TODO: grab actual description and suggestions from middleware endpoint
-	// once it exists, then delete the random methods and the
-	// `thumbwidth != // 320` check (which the middleware will enforce)
 	if ( item.imageinfo && item.imagelabels && item.imagelabels.length ) {
 		return new ImageData(
 			item.title,
 			item.imageinfo[ 0 ].thumburl,
-			randomDescription(),
 			item.imagelabels.map( function ( labelData ) {
 				return new SuggestionData( labelData.label, labelData.wikidata_id );
 			} )
@@ -167,7 +164,10 @@ SuggestedTagsCardstack.prototype.showItemsForQueryResponse = function ( response
 			newWidget = new ImageWithSuggestionsWidget( {
 				imageData: imageData
 			} );
-			newWidget.connect( self, { itemRemoved: 'onItemRemoved' } );
+			newWidget.connect( self, {
+				itemRemoved: 'onItemRemoved',
+				tagsPublished: 'onTagsPublished'
+			} );
 			return newWidget.$element;
 		} )
 	);

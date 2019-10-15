@@ -181,7 +181,8 @@
 				"machinevision-confirm-tags-dialog-title",
 				"machinevision-confirm-tags-dialog-confirm-action",
 				"machinevision-confirm-tags-dialog-cancel-action",
-				"machinevision-confirm-tags-dialog-heading"
+				"machinevision-confirm-tags-dialog-heading",
+				"machinevision-success-message"
 			],
 			"targets": [
 				"mobile",
