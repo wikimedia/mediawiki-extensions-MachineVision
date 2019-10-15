@@ -25,6 +25,10 @@
 	"machinevision-suggestion-confirm-title": "Confirm \"$1\" suggestion?",
 	"machinevision-suggestion-confirm-undo-title": "Undo \"$1\" suggestion confirmation?",
 	"machinevision-loading-message": "Loading...",
+	"machinevision-confirm-tags-dialog-title": "Confirm tags",
+	"machinevision-confirm-tags-dialog-confirm-action": "OK",
+	"machinevision-confirm-tags-dialog-cancel-action": "Cancel",
+	"machinevision-confirm-tags-dialog-heading": "This image depicts:",
 	"right-imagelabel-review": "Review image label suggestions",
 	"action-imagelabel-review": "review image label suggestions"
 }
