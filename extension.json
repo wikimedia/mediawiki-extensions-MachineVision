@@ -85,6 +85,10 @@
 			"value": false,
 			"description": "Database to use for storing the data. False means use the database of the current wiki. To use a table prefix, use '<database>-<prefix'>' format."
 		},
+		"MachineVisionDepictsTags": {
+			"value": [],
+			"description": "Array of tags added to the revision adding a depicts statement when a label is approved."
+		},
 		"MachineVisionHandlers": {
 			"value": {},
 			"description": "Configuration for the handlers. Keys are provider names, values are ObjectFactory specifications."

@@ -55,6 +55,9 @@ class WikidataDepictsSetter {
 	/** @var string */
 	private $depictsIdSerialization;
 
+	/** @var string[] */
+	private $tags;
+
 	/**
 	 * WikidataDepictsSetter constructor.
 	 * @param RevisionStore $revisionStore
@@ -64,6 +67,7 @@ class WikidataDepictsSetter {
 	 * @param StatementChangeOpFactory $statementChangeOpFactory
 	 * @param SummaryFormatter $summaryFormatter
 	 * @param string $depictsIdSerialization depicts ID defined in WikibaseMediaInfo config
+	 * @param array $tags array of tags to be set on SDC revisions
 	 * @suppress PhanUndeclaredTypeParameter
 	 */
 	public function __construct(
@@ -73,7 +77,8 @@ class WikidataDepictsSetter {
 		MediawikiEditEntityFactory $mediawikiEditEntityFactory,
 		StatementChangeOpFactory $statementChangeOpFactory,
 		SummaryFormatter $summaryFormatter,
-		$depictsIdSerialization
+		$depictsIdSerialization,
+		$tags
 	) {
 		$this->revisionStore = $revisionStore;
 		$this->mediaInfoByLinkedTitleLookup = $mediaInfoByLinkedTitleLookup;
@@ -82,6 +87,7 @@ class WikidataDepictsSetter {
 		$this->statementChangeOpFactory = $statementChangeOpFactory;
 		$this->summaryFormatter = $summaryFormatter;
 		$this->depictsIdSerialization = $depictsIdSerialization;
+		$this->tags = $tags;
 	}
 
 	/**
@@ -104,7 +110,6 @@ class WikidataDepictsSetter {
 
 		$rawSummary = new Summary( 'machineaideddepicts', 'approved' );
 		$summary = $this->summaryFormatter->formatSummary( $rawSummary );
-		$tags = [ 'machine aided depicts' ];
 		$flags = $mediaInfo ? EDIT_UPDATE : EDIT_NEW;
 
 		$mediaInfo = $mediaInfo ?: new MediaInfo( $mediaInfoId );
@@ -115,7 +120,7 @@ class WikidataDepictsSetter {
 
 		$editEntity = $this->editEntityFactory
 			->newEditEntity( $user, $mediaInfoId, $revision->getId() );
-		$status = $editEntity->attemptSave( $mediaInfo, $summary, $flags, $token, null, $tags );
+		$status = $editEntity->attemptSave( $mediaInfo, $summary, $flags, $token, null, $this->tags );
 		if ( !$status->isOK() ) {
 			throw new MachineVisionEntitySaveException( $status->getMessage() );
 		}
