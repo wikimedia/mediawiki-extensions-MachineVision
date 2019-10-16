@@ -73,7 +73,15 @@ $wgMachineVisionHandlers['google'] = [
 		'MachineVisionLabelResolver',
 	],
 	'args' => [
-		true // sendFileContents
+		// sendFileContents
+		true,
+		// safeSearchLimits
+		[
+			'adult' => 3,
+			'medical' => 3,
+			'violent' => 4,
+			'racy' => 4,
+		],
 	]
 ];
 ```

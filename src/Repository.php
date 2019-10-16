@@ -23,6 +23,7 @@ class Repository implements LoggerAwareInterface {
 	const REVIEW_UNREVIEWED = 0;
 	const REVIEW_ACCEPTED = 1;
 	const REVIEW_REJECTED = -1;
+	const REVIEW_WITHHELD = -2;
 
 	private static $reviewStates = [
 		self::REVIEW_UNREVIEWED,
@@ -61,8 +62,15 @@ class Repository implements LoggerAwareInterface {
 	 * @param string $providerName Provider name
 	 * @param int $uploaderId the uploader's local user ID
 	 * @param LabelSuggestion[] $suggestions A list of Wikidata ID such as 'Q123'
+	 * @param int $initialState initial review state
 	 */
-	public function insertLabels( $sha1, $providerName, $uploaderId, array $suggestions ) {
+	public function insertLabels(
+		$sha1,
+		$providerName,
+		$uploaderId,
+		array $suggestions,
+		$initialState = self::REVIEW_UNREVIEWED
+	) {
 		$providerId = $this->nameTableStore->acquireId( $providerName );
 		$timestamp = $this->dbw->timestamp();
 		foreach ( $suggestions as $suggestion ) {
@@ -75,6 +83,7 @@ class Repository implements LoggerAwareInterface {
 					'mvl_image_sha1' => $sha1,
 					'mvl_wikidata_id' => $wikidataId,
 					'mvl_uploader_id' => $uploaderId,
+					'mvl_review' => $initialState,
 					'mvl_suggested_time' => (int)( microtime( true ) * 10000 ),
 				],
 				__METHOD__,
