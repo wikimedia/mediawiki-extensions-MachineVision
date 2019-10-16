@@ -18,8 +18,19 @@ class GoogleCloudVisionHandler extends WikidataIdHandler {
 	/** @var RepoGroup */
 	private $repoGroup;
 
-	/** @var bool */
+	/**
+	 * Send file data if true, otherwise send the public URL.
+	 * @var bool
+	 */
 	private $sendFileContents;
+
+	/**
+	 * Omit images with SafeSearch likelihood scores greater than or equal to the defined values.
+	 * Available categories are 'adult,' 'spoof,' 'medical,' 'violent,' and 'racy.'
+	 * Ex: [ 'adult' => 3, 'medical' => 3, 'violent' => 4, 'racy' => 4 ]
+	 * @var array
+	 */
+	private $safeSearchLimits;
 
 	/**
 	 * @param ImageAnnotatorClient $client
@@ -28,6 +39,7 @@ class GoogleCloudVisionHandler extends WikidataIdHandler {
 	 * @param WikidataDepictsSetter $depictsSetter
 	 * @param LabelResolver $labelResolver
 	 * @param bool $sendFileContents
+	 * @param array $safeSearchLimits
 	 * @suppress PhanUndeclaredTypeParameter
 	 */
 	public function __construct(
@@ -36,12 +48,14 @@ class GoogleCloudVisionHandler extends WikidataIdHandler {
 		RepoGroup $repoGroup,
 		WikidataDepictsSetter $depictsSetter,
 		LabelResolver $labelResolver,
-		$sendFileContents
+		$sendFileContents,
+		$safeSearchLimits
 	) {
 		parent::__construct( $repository, $depictsSetter, $labelResolver );
 		$this->client = $client;
 		$this->repoGroup = $repoGroup;
 		$this->sendFileContents = $sendFileContents;
+		$this->safeSearchLimits = $safeSearchLimits;
 	}
 
 	/**
@@ -56,6 +70,9 @@ class GoogleCloudVisionHandler extends WikidataIdHandler {
 		$payload = $this->sendFileContents ? $this->getContents( $file ) : $this->getUrl( $file );
 		$features = [ Type::LABEL_DETECTION, Type::SAFE_SEARCH_DETECTION ];
 		$annotations = $this->client->annotateImage( $payload, $features );
+		$initialState = Repository::REVIEW_UNREVIEWED;
+		$safeSearchAnnotations = $annotations->getSafeSearchAnnotation();
+
 		$suggestions = [];
 		foreach ( $annotations->getLabelAnnotations() as $label ) {
 			$freebaseId = $label->getMid();
@@ -66,10 +83,25 @@ class GoogleCloudVisionHandler extends WikidataIdHandler {
 			}, $mappedWikidataIds );
 			$suggestions = array_merge( $suggestions, $newSuggestions );
 		}
-		$this->getRepository()->insertLabels( $file->getSha1(), $provider,
-			$file->getUser( 'id' ), $suggestions );
 
-		$safeSearchAnnotations = $annotations->getSafeSearchAnnotation();
+		if (
+			( array_key_exists( 'adult', $this->safeSearchLimits ) &&
+			  $safeSearchAnnotations->getAdult() >= $this->safeSearchLimits['adult'] ) ||
+			( array_key_exists( 'spoof', $this->safeSearchLimits ) &&
+			  $safeSearchAnnotations->getSpoof() >= $this->safeSearchLimits['spoof'] ) ||
+			( array_key_exists( 'medical', $this->safeSearchLimits ) &&
+			  $safeSearchAnnotations->getMedical() >= $this->safeSearchLimits['medical'] ) ||
+			( array_key_exists( 'violence', $this->safeSearchLimits ) &&
+			  $safeSearchAnnotations->getViolence() >= $this->safeSearchLimits['violence'] ) ||
+			( array_key_exists( 'racy', $this->safeSearchLimits ) &&
+			  $safeSearchAnnotations->getRacy() >= $this->safeSearchLimits['racy'] )
+		) {
+			$initialState = Repository::REVIEW_WITHHELD;
+		}
+
+		$this->getRepository()->insertLabels( $file->getSha1(), $provider,
+			$file->getUser( 'id' ), $suggestions, $initialState );
+
 		$this->getRepository()->insertSafeSearchAnnotations(
 			$file->getSha1(),
 			$safeSearchAnnotations->getAdult(),
