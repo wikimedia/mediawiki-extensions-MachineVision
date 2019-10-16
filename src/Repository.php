@@ -260,7 +260,7 @@ class Repository implements LoggerAwareInterface {
 	 * @return int
 	 */
 	public function getUnreviewedImageCount() {
-		return $this->dbr->selectField(
+		return (int)$this->dbr->selectField(
 			[ 'derived' => $this->dbr->buildSelectSubquery(
 				'machine_vision_label',
 				'*',
@@ -281,7 +281,7 @@ class Repository implements LoggerAwareInterface {
 	 * @return int
 	 */
 	public function getUnreviewedImageCountForUser( $userId ) {
-		return $this->dbr->selectField(
+		return (int)$this->dbr->selectField(
 			[ 'derived' => $this->dbr->buildSelectSubquery(
 				'machine_vision_label',
 				'*',
