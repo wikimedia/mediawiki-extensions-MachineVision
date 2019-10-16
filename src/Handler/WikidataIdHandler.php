@@ -56,7 +56,7 @@ abstract class WikidataIdHandler implements Handler {
 	 * @param array &$pageInfo
 	 */
 	public function handleInfoAction( IContextSource $context, LocalFile $file, array &$pageInfo ) {
-		$ids = $this->repository->getLabels( $file->getSha1() );
+		$ids = array_column( $this->repository->getLabels( $file->getSha1() ), 'wikidata_id' );
 		if ( $ids ) {
 			$labels = $this->labelResolver->resolve( $context, $ids );
 			$wdItemLinks = array_map( function ( $id ) use ( $labels ) {
