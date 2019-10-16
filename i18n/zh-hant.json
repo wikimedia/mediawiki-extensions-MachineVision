@@ -25,6 +25,11 @@
 	"machinevision-suggestion-confirm-title": "確認「$1」建議？",
 	"machinevision-suggestion-confirm-undo-title": "取消「$1」建議確認？",
 	"machinevision-loading-message": "載入中…",
+	"machinevision-confirm-tags-dialog-title": "確認標籤",
+	"machinevision-confirm-tags-dialog-confirm-action": "確定",
+	"machinevision-confirm-tags-dialog-cancel-action": "取消",
+	"machinevision-confirm-tags-dialog-heading": "此圖片描述：",
+	"machinevision-success-message": "添加到圖片的標籤。",
 	"right-imagelabel-review": "檢閱圖片標籤建議",
 	"action-imagelabel-review": "檢閱圖片標籤建議"
 }

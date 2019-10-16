@@ -28,6 +28,11 @@
 	"machinevision-suggestion-confirm-title": "Confirmer la suggestion « $1 » ?",
 	"machinevision-suggestion-confirm-undo-title": "Annuler la confirmation de la suggestion « $1 » ?",
 	"machinevision-loading-message": "Chargement...",
+	"machinevision-confirm-tags-dialog-title": "Confirmer les balises",
+	"machinevision-confirm-tags-dialog-confirm-action": "OK",
+	"machinevision-confirm-tags-dialog-cancel-action": "Annuler",
+	"machinevision-confirm-tags-dialog-heading": "Cette image dépeint :",
+	"machinevision-success-message": "Balises ajoutées à l’image.",
 	"right-imagelabel-review": "Relire les suggestions de légende de l’image",
 	"action-imagelabel-review": "relire les suggestions de légende de l’image"
 }
