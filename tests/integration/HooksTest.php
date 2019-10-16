@@ -17,7 +17,7 @@ use function Wikimedia\base_convert;
 
 class HooksTest extends MediaWikiIntegrationTestCase {
 
-	public function setUp() {
+	public function setUp() : void {
 		parent::setUp();
 		$this->setMwGlobals( 'wgMachineVisionHandlers', [
 			'random' => [
