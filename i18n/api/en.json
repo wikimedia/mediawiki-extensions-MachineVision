@@ -30,5 +30,7 @@
 	"apihelp-query+imagelabels-example-1": "Show machine-suggested image labels for <kbd>Example.png</kbd>.",
 	"apihelp-query+unreviewedimagelabels-summary": "Show titles with suggested image labels needing review.",
 	"apihelp-query+unreviewedimagelabels-param-uploader": "Only return results uploaded by this user.",
-	"apihelp-query+unreviewedimagelabels-param-limit": "Number of result items to return."
+	"apihelp-query+unreviewedimagelabels-param-limit": "Number of result items to return.",
+	"apihelp-query+unreviewedimagecount-summary": "Show count of images with label suggestions awaiting review, overall and (if logged in) for the current user.",
+	"apihelp-query+unreviewedimagecount-example": "Get unreviewed image counts."
 }

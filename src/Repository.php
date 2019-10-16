@@ -244,6 +244,52 @@ class Repository implements LoggerAwareInterface {
 	}
 
 	/**
+	 * Get count of all images with labels awaiting review.
+	 * TODO: Cache the result for a reasonable period of time (5 minutes)?  The result is expected
+	 * to be a large number that changes frequently, and need not be exact.
+	 * We could also consider stashing only when the result is greater than a defined minimum.
+	 * @return int
+	 */
+	public function getUnreviewedImageCount() {
+		return $this->dbr->selectField(
+			[ 'derived' => $this->dbr->buildSelectSubquery(
+				'machine_vision_label',
+				'*',
+				[ 'mvl_review' => self::REVIEW_UNREVIEWED ],
+				__METHOD__,
+				[ 'GROUP BY' => 'mvl_image_sha1' ]
+			) ],
+			'COUNT(*)',
+			[],
+			__METHOD__
+		);
+	}
+
+	/**
+	 * Get count of images uploaded by the specified user with labels awaiting review.
+	 * This should always return an exact, up-to-date count.
+	 * @param int $userId local user id
+	 * @return int
+	 */
+	public function getUnreviewedImageCountForUser( $userId ) {
+		return $this->dbr->selectField(
+			[ 'derived' => $this->dbr->buildSelectSubquery(
+				'machine_vision_label',
+				'*',
+				[
+					'mvl_review' => self::REVIEW_UNREVIEWED,
+					'mvl_uploader_id' => $userId,
+				],
+				__METHOD__,
+				[ 'GROUP BY' => 'mvl_image_sha1' ]
+			) ],
+			'COUNT(*)',
+			[],
+			__METHOD__
+		);
+	}
+
+	/**
 	 * Get the mapped Wikidata ID(s) given a Freebase ID.
 	 * @param string $freebaseId
 	 * @return string[]|false Array containing all matching Wikidata IDs, or false if none are found

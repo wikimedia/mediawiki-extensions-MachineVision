@@ -59,6 +59,12 @@
 			"factory": "MediaWiki\\Extension\\MachineVision\\Api\\ApiQueryImageLabels::factory"
 		}
 	},
+	"APIMetaModules": {
+		"unreviewedimagecount": {
+			"class": "MediaWiki\\Extension\\MachineVision\\Api\\ApiQueryUnreviewedImageCount",
+			"factory": "MediaWiki\\Extension\\MachineVision\\Api\\ApiQueryUnreviewedImageCount::factory"
+		}
+	},
 	"SpecialPages": {
 		"SuggestedTags": "MediaWiki\\Extension\\MachineVision\\Special\\SpecialSuggestedTags"
 	},
