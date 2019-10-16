@@ -40,19 +40,25 @@ class Repository implements LoggerAwareInterface {
 	/** @var IDatabase */
 	private $dbw;
 
+	/** @var array */
+	private $blacklist;
+
 	/**
 	 * @param NameTableStore $nameTableStore NameTableStore for provider names
 	 * @param IDatabase $dbr Database connection for reading.
 	 * @param IDatabase $dbw Database connection for writing.
+	 * @param array $blacklist array of blacklisted wikidata Q ids
 	 */
 	public function __construct(
 		NameTableStore $nameTableStore,
 		IDatabase $dbr,
-		IDatabase $dbw
+		IDatabase $dbw,
+		$blacklist
 	) {
 		$this->nameTableStore = $nameTableStore;
 		$this->dbr = $dbr;
 		$this->dbw = $dbw;
+		$this->blacklist = $blacklist;
 
 		$this->logger = new NullLogger();
 	}
@@ -276,16 +282,28 @@ class Repository implements LoggerAwareInterface {
 	}
 
 	/**
+	 * Return filtered array removing blaklisted Q ids
+	 *
+	 * @param array $wikidataIds array of Q ids to filter
+	 * @return array Filtered array removing blacklisted Q ids
+	 */
+	protected function filterIdBlacklist( $wikidataIds ) {
+		return array_diff( $wikidataIds, $this->blacklist );
+	}
+
+	/**
 	 * Get the mapped Wikidata ID(s) given a Freebase ID.
 	 * @param string $freebaseId
 	 * @return string[]|false Array containing all matching Wikidata IDs, or false if none are found
 	 */
 	public function getMappedWikidataIds( $freebaseId ) {
-		return $this->dbr->selectFieldValues(
-			'machine_vision_freebase_mapping',
-			'mvfm_wikidata_id',
-			[ 'mvfm_freebase_id' => $freebaseId ],
-			__METHOD__
+		return $this->filterIdBlacklist(
+			$this->dbr->selectFieldValues(
+				'machine_vision_freebase_mapping',
+				'mvfm_wikidata_id',
+				[ 'mvfm_freebase_id' => $freebaseId ],
+				__METHOD__
+			)
 		);
 	}
 

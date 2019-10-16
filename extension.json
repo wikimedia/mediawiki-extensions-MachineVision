@@ -123,6 +123,10 @@
 		"MachineVisionTemplateBlacklist": {
 			"value": [],
 			"description": "Omit images with file pages linked to these templates from suggested tags. Template names should use underscores in place of spaces and include the 'Template:' prefix."
+		},
+		"MachineVisionWikidataIdBlacklist": {
+			"value": [],
+			"description": "Omit suggested tags corresponding blacklisted wikidata Q ids."
 		}
 	},
 	"ResourceFileModulePaths": {
