@@ -154,7 +154,8 @@ SuggestedTagsPage.prototype.fetchItems = function () {
 			iiprop: 'url',
 			iiurlwidth: 800,
 			ilstate: 'unreviewed',
-			meta: 'unreviewedimagecount'
+			meta: 'unreviewedimagecount',
+			uselang: mw.config.get( 'wgUserLanguage' )
 		};
 
 	if ( this.queryType === 'user' ) {
