@@ -11,6 +11,13 @@ module.exports = {
 		global.OO = require( 'oojs' );
 		require( 'oojs-ui' );
 		require( 'oojs-ui/dist/oojs-ui-wikimediaui.js' );
+
+		// Ensure a user ID is sent to the cardstack for the personal uploads tab.
+		global.mw.user.getId = function () {};
+		sandbox.stub( global.mw.user, 'getId' ).returns( 123 );
+
+		// Stub for the jQuery msg plugin.
+		global.$.fn.msg = sinon.stub();
 	},
 
 	afterEach: function () {

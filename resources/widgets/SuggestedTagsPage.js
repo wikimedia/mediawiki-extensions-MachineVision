@@ -11,20 +11,29 @@ var TemplateRenderingDOMLessGroupWidget = require( '../base/TemplateRenderingDOM
  * @param {Object} config
  */
 SuggestedTagsPage = function ( config ) {
+	var userGroups = mw.config.get( 'wgUserGroups' ) || [];
+
 	SuggestedTagsPage.parent.call( this, $.extend( {}, config ) );
 	this.$element.addClass( 'wbmad-suggested-tags-page' );
+
 	this.onboardingPrefKey = 'wbmad-onboarding-dialog-dismissed';
+	this.userIsAuthenticated = !!mw.config.get( 'wgUserName' );
+	this.userIsAutoconfirmed = userGroups.indexOf( 'autoconfirmed' ) !== -1;
+	this.tabs = null;
 
-	this.tabs = new OO.ui.IndexLayout( {
-		expanded: false,
-		framed: false
-	} )
-		.addTabPanels( [ this.setUpTab( 'popular' ), this.setUpTab( 'user' ) ] );
-	this.tabs.getTabPanel( 'user' ).connect( this, { active: 'onUserTabActive' } );
+	// Only load tabs if user has permission to see them.
+	if ( this.userIsAuthenticated && this.userIsAutoconfirmed ) {
+		this.tabs = new OO.ui.IndexLayout( {
+			expanded: false,
+			framed: false
+		} )
+			.addTabPanels( [ this.setUpTab( 'popular' ), this.setUpTab( 'user' ) ] );
+		this.tabs.getTabPanel( 'user' ).connect( this, { active: 'onUserTabActive' } );
 
-	this.connect( this, {
-		goToPopularTab: 'goToPopularTab'
-	} );
+		this.connect( this, {
+			goToPopularTab: 'goToPopularTab'
+		} );
+	}
 
 	this.render();
 };
@@ -36,6 +45,10 @@ OO.inheritClass(
 
 SuggestedTagsPage.prototype.render = function () {
 	this.renderTemplate( 'resources/widgets/SuggestedTagsPage.mustache+dom', {
+		userIsAuthenticated: this.userIsAuthenticated,
+		userIsAutoconfirmed: this.userIsAutoconfirmed,
+		loginMessage: $( '<p>' ).msg( 'machinevision-login-message' ),
+		autoconfirmedMessage: $( '<p>' ).msg( 'machinevision-autoconfirm-message' ),
 		pageDescription: $( '<p>' ).msg( 'machinevision-machineaidedtagging-intro' ),
 		tabsHeading: mw.message( 'machinevision-machineaidedtagging-tabs-heading' ).text(),
 		tabs: this.tabs,
@@ -69,15 +82,7 @@ SuggestedTagsPage.prototype.setUpTab = function ( queryType ) {
  * @return {boolean}
  */
 SuggestedTagsPage.prototype.onboardingDismissed = function () {
-	var numVal;
-
-	if ( mw.user.isAnon() ) {
-		numVal = Number( mw.storage.get( this.onboardingPrefKey ) ) || 0;
-	} else {
-		numVal = Number( mw.user.options.get( this.onboardingPrefKey ) );
-	}
-
-	return Boolean( numVal );
+	return Boolean( Number( mw.user.options.get( this.onboardingPrefKey ) ) );
 };
 
 /**

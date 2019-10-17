@@ -30,17 +30,12 @@ SuggestedTagsCardstack = function ( config ) {
 		tagsPublished: 'onTagsPublished'
 	} );
 
-	this.needLogin = this.queryType === 'user' && !mw.config.get( 'wgUserName' );
 	this.isLoading = true;
 	this.hasError = false;
 	this.showCta = false;
 
 	this.render();
-
-	// Fetch the first batch of items.
-	if ( !this.needLogin ) {
-		this.fetchItems();
-	}
+	this.fetchItems();
 };
 
 OO.inheritClass(
@@ -58,12 +53,10 @@ SuggestedTagsCardstack.prototype.render = function () {
 
 	this.renderTemplate( 'resources/widgets/SuggestedTagsCardstack.mustache+dom', {
 		queryType: this.queryType,
-		needLogin: this.needLogin,
 		isLoading: this.isLoading,
 		hasError: this.hasError,
 		showCta: this.showCta,
-		cta: new UserMessage( config ).connect( this, { popularTabCtaClick: 'onPopularTabCtaClick' } ),
-		loginMessage: $( '<p>' ).msg( 'machinevision-personal-uploads-login-message' )
+		cta: new UserMessage( config ).connect( this, { popularTabCtaClick: 'onPopularTabCtaClick' } )
 	} );
 };
 
