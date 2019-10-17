@@ -2,5 +2,9 @@
 	{{{cta}}}
 {{/showCta}}
 {{^showCta}}
-	<div id="wbmad-suggested-tags-cards-{{queryType}}"></div>
+	<div id="wbmad-suggested-tags-cards-{{queryType}}">
+		{{#items}}
+			{{{.}}}
+		{{/items}}
+	</div>
 {{/showCta}}

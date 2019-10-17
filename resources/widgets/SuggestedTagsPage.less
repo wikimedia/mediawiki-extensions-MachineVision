@@ -21,7 +21,49 @@
 		}
 	}
 
-	/* stylelint-disable selector-class-pattern */
+	.wbmad-success-message {
+		@keyframes slideInOut {
+			0% {
+				bottom: 0;
+				opacity: 0;
+			}
+
+			25%,
+			85% {
+				bottom: 5vh;
+				opacity: 1;
+			}
+
+			100% {
+				bottom: 5vh;
+				opacity: 0;
+			}
+		}
+		animation: slideInOut 4s;
+		bottom: 5vh;
+		position: fixed;
+		text-align: center;
+		width: @wbmad-max-width;
+
+		/* stylelint-disable selector-class-pattern */
+		&.oo-ui-messageWidget.oo-ui-messageWidget-block.oo-ui-flaggedElement-notice {
+			background: transparent;
+			border: 0;
+		}
+
+		.oo-ui-iconElement-icon {
+			display: none;
+		}
+
+		.oo-ui-labelElement-label {
+			background-color: @base10;
+			border-radius: @outer-border-radius;
+			color: @base100;
+			display: inline-block;
+			padding: 1em 2em;
+		}
+	}
+
 	// Override padding to ensure box shadow of card is visible.
 	.oo-ui-indexLayout-stackLayout > .oo-ui-panelLayout {
 		padding: 0.5em 0.2em 2em;

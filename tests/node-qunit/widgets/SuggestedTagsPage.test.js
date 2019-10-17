@@ -20,7 +20,7 @@ QUnit.test( 'Tabs do not load for anonymous user', function ( assert ) {
 		.withArgs( 'wgUserGroups' ).returns( [ null ] );
 
 	widget = new SuggestedTagsPage();
-	assert.strictEqual( widget.tabs, null );
+	assert.strictEqual( widget.tabs, undefined );
 } );
 
 QUnit.test( 'Tabs do not load for un-autoconfirmed user', function ( assert ) {
@@ -33,7 +33,7 @@ QUnit.test( 'Tabs do not load for un-autoconfirmed user', function ( assert ) {
 		.withArgs( 'wgUserGroups' ).returns( null );
 
 	widget = new SuggestedTagsPage();
-	assert.strictEqual( widget.tabs, null );
+	assert.strictEqual( widget.tabs, undefined );
 } );
 
 QUnit.test( 'Tabs load for authenticated and autoconfirmed user', function ( assert ) {
@@ -44,6 +44,12 @@ QUnit.test( 'Tabs load for authenticated and autoconfirmed user', function ( ass
 	sandbox.stub( global.mw.config, 'get' )
 		.withArgs( 'wgUserName' ).returns( 'UserName' )
 		.withArgs( 'wgUserGroups' ).returns( [ '*', 'user', 'autoconfirmed' ] );
+
+	// Stub the API object and return an empty object as a response.
+	global.mw.Api = function () {};
+	global.mw.Api.prototype = {
+		get: sinon.stub().returns( $.Deferred().resolve( {} ).promise() )
+	};
 
 	widget = new SuggestedTagsPage();
 	assert.strictEqual( widget.tabs instanceof OO.ui.IndexLayout, true );

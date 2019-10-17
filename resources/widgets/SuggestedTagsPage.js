@@ -1,17 +1,21 @@
 'use strict';
 
-var TemplateRenderingDOMLessGroupWidget = require( '../base/TemplateRenderingDOMLessGroupWidget.js' ),
+var IMAGES_PER_PAGE = 10,
+	TemplateRenderingDOMLessGroupWidget = require( '../base/TemplateRenderingDOMLessGroupWidget.js' ),
+	SuggestionData = require( '../models/SuggestionData.js' ),
+	ImageData = require( '../models/ImageData.js' ),
 	OnboardingDialog = require( './OnboardingDialog.js' ),
 	SuggestedTagsCardstack = require( './SuggestedTagsCardstack.js' ),
-	SuggestedTagsPage;
+	SuggestedTagsPage,
+	getImageDataForQueryResponse;
 
 /**
- * Top-level component that houses page UI components.
- *
+ * Top-level component that houses page UI components and runs API query.
  * @param {Object} config
  */
 SuggestedTagsPage = function ( config ) {
-	var userGroups = mw.config.get( 'wgUserGroups' ) || [];
+	var self = this,
+		userGroups = mw.config.get( 'wgUserGroups' ) || [];
 
 	SuggestedTagsPage.parent.call( this, $.extend( {}, config ) );
 	this.$element.addClass( 'wbmad-suggested-tags-page' );
@@ -19,7 +23,7 @@ SuggestedTagsPage = function ( config ) {
 	this.onboardingPrefKey = 'wbmad-onboarding-dialog-dismissed';
 	this.userIsAuthenticated = !!mw.config.get( 'wgUserName' );
 	this.userIsAutoconfirmed = userGroups.indexOf( 'autoconfirmed' ) !== -1;
-	this.tabs = null;
+	this.currentTab = null;
 
 	// Only load tabs if user has permission to see them.
 	if ( this.userIsAuthenticated && this.userIsAutoconfirmed ) {
@@ -27,10 +31,24 @@ SuggestedTagsPage = function ( config ) {
 			expanded: false,
 			framed: false
 		} )
-			.addTabPanels( [ this.setUpTab( 'popular' ), this.setUpTab( 'user' ) ] );
-		this.tabs.getTabPanel( 'user' ).connect( this, { active: 'onUserTabActive' } );
+			.addTabPanels( [
+				new OO.ui.TabPanelLayout( 'popular', {
+					label: mw.message( 'machinevision-machineaidedtagging-popular-tab' ).text()
+				} ),
+				new OO.ui.TabPanelLayout( 'user', {
+					label: mw.message( 'machinevision-machineaidedtagging-user-tab' ).text()
+				} )
+			] );
+
+		// Run query initially on the active tab so we get results.
+		this.onTabSet( this.tabs.getCurrentTabPanelName() );
+
+		// Run query anytime a tab is selected.
+		this.tabs.connect( self, { set: 'onTabSet' } );
 
 		this.connect( this, {
+			fetchItems: 'fetchItems',
+			showSuccessMessage: 'showSuccessMessage',
 			goToPopularTab: 'goToPopularTab'
 		} );
 	}
@@ -51,48 +69,108 @@ SuggestedTagsPage.prototype.render = function () {
 		autoconfirmedMessage: $( '<p>' ).msg( 'machinevision-autoconfirm-message' ),
 		pageDescription: $( '<p>' ).msg( 'machinevision-machineaidedtagging-intro' ),
 		tabsHeading: mw.message( 'machinevision-machineaidedtagging-tabs-heading' ).text(),
-		tabs: this.tabs,
+		tabs: this.tabs || null,
 		licenseInfo: $( '<p>' ).msg( 'machinevision-machineaidedtagging-license-information' )
 	} );
 };
 
+// TODO: (T233232) Add "failed" state and show content in the template instead.
+SuggestedTagsPage.prototype.showFailureMessage = function () {
+	// $( '#content' ).append( '<p>Oh no, something went wrong!</p>' );
+};
+
+// TODO: (T233232) Add "loading" state and show content in the template instead.
+SuggestedTagsPage.prototype.showLoadingMessage = function () {
+	this.currentTab.$element.append(
+		'<p class="wbmad-loading-message">' + mw.message( 'machinevision-loading-message' ).text() + '</p>'
+	);
+};
+
 /**
- * Generate a tab panel layout for the page.
- * @param {string} queryType
+ * Get a formatted object of image data.
+ *
+ * @param {Object} item An item from the query response
  * @return {Object}
  */
-SuggestedTagsPage.prototype.setUpTab = function ( queryType ) {
+getImageDataForQueryResponse = function ( item ) {
+	if ( item.imageinfo && item.imagelabels && item.imagelabels.length ) {
+		return new ImageData(
+			item.title,
+			item.imageinfo[ 0 ].thumburl,
+			item.imagelabels.map( function ( labelData ) {
+				return new SuggestionData( labelData.label, labelData.wikidata_id );
+			} )
+		);
+	}
+};
+
+/**
+ * Add a new cardstack with items from the query response.
+ * @param {Object} response
+ */
+SuggestedTagsPage.prototype.getItemsForQueryResponse = function ( response ) {
 	var self = this,
-		tab = new OO.ui.TabPanelLayout( queryType, {
-			label: mw.message( 'machinevision-machineaidedtagging-' + queryType + '-tab' ).text()
-		} ),
-		suggestedTagsCardstack = new SuggestedTagsCardstack( { queryType: queryType } )
-			.connect( self, {
-				goToPopularTab: 'goToPopularTab'
-			} );
+		suggestedTagsCardstack,
+		imageDataArray = response.query && response.query.pages &&
+			Array.isArray( response.query.pages ) ? response.query.pages.map( function ( page ) {
+				return getImageDataForQueryResponse( page );
+			} ) : [],
+		resultsFound = !!imageDataArray.length;
 
-	tab.$element.append( suggestedTagsCardstack.$element );
-	return tab;
+	suggestedTagsCardstack = new SuggestedTagsCardstack( {
+		queryType: this.queryType,
+		resultsFound: resultsFound,
+		imageDataArray: imageDataArray
+	} )
+		.connect( self, {
+			fetchItems: 'fetchItems',
+			showSuccessMessage: 'showSuccessMessage',
+			goToPopularTab: 'goToPopularTab'
+		} );
+
+	this.currentTab.$element.find( '.wbmad-loading-message' ).remove();
+	this.currentTab.$element.append( suggestedTagsCardstack.$element );
 };
 
 /**
- * Determines whether the onboarding dialog should be shown to the user.
- * Defaults to true. Type coercion is necessary due to the limitations of
- * browser localstorage.
- * @return {boolean}
+ * Fetch a batch of items.
  */
-SuggestedTagsPage.prototype.onboardingDismissed = function () {
-	return Boolean( Number( mw.user.options.get( this.onboardingPrefKey ) ) );
+SuggestedTagsPage.prototype.fetchItems = function () {
+	var api = new mw.Api(),
+		query = {
+			action: 'query',
+			format: 'json',
+			formatversion: 2,
+			generator: 'unreviewedimagelabels',
+			guillimit: IMAGES_PER_PAGE,
+			prop: 'imageinfo|imagelabels',
+			iiprop: 'url',
+			iiurlwidth: 800,
+			ilstate: 'unreviewed',
+			meta: 'unreviewedimagecount'
+		};
+
+	if ( this.queryType === 'user' ) {
+		query.guiluploader = mw.user.getId();
+	}
+
+	this.currentTab.$element.empty();
+	this.showLoadingMessage();
+
+	api.get( query )
+		.done( this.getItemsForQueryResponse.bind( this ) )
+		.fail( this.showFailureMessage );
 };
 
 /**
- * When the user tab is active, show the onboarding dialog if necessary.
+ * Show onboarding dialog if it hasn't been previously dismissed.
  */
-SuggestedTagsPage.prototype.onUserTabActive = function () {
+SuggestedTagsPage.prototype.showOnboardingDialog = function () {
 	var onboardingDialog,
 		windowManager;
 
-	if ( this.onboardingDismissed() ) {
+	// Type coercion is necessary due to limitations of browser localstorage.
+	if ( Number( mw.user.options.get( this.onboardingPrefKey ) ) === 1 ) {
 		return;
 	}
 
@@ -105,10 +183,48 @@ SuggestedTagsPage.prototype.onUserTabActive = function () {
 };
 
 /**
+ * When a tab is selected, run a new query and add a cardstack to show results.
+ */
+SuggestedTagsPage.prototype.onTabSet = function () {
+	var newQueryType = this.tabs.getCurrentTabPanelName();
+
+	// Don't bother running a query if the user clicks on the active tab.
+	if ( this.queryType === newQueryType ) {
+		return;
+	}
+
+	// Store new query type and active tab.
+	this.queryType = newQueryType;
+	this.currentTab = this.tabs.getCurrentTabPanel();
+
+	// Show onboarding dialog for user tab.
+	if ( this.queryType === 'user' ) {
+		this.showOnboardingDialog();
+	}
+
+	this.fetchItems();
+};
+
+/**
  * Send user to the popular uploads tab.
  */
 SuggestedTagsPage.prototype.goToPopularTab = function () {
 	this.tabs.setTabPanel( 'popular' );
+};
+
+/**
+ * After user publishes tags for an image, show a success message.
+ */
+SuggestedTagsPage.prototype.showSuccessMessage = function () {
+	var successMessage = new OO.ui.MessageWidget( {
+		label: mw.message( 'machinevision-success-message' ).text(),
+		classes: [ 'wbmad-success-message' ]
+	} );
+	this.$element.append( successMessage.$element );
+
+	setTimeout( function () {
+		successMessage.$element.remove();
+	}, 4000 );
 };
 
 module.exports = SuggestedTagsPage;
