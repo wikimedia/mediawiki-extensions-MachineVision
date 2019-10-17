@@ -29,5 +29,7 @@
 	"apihelp-query+imagelabels-example-1": "'Ndruche le etichette de le immaggine de le maghene suggerite pe <kbd>Example.png</kbd>.",
 	"apihelp-query+unreviewedimagelabels-summary": "Fà 'ndrucà le titole cu le etichette de le immaggine suggerite ca onne abbesogne de 'na revisitazione.",
 	"apihelp-query+unreviewedimagelabels-param-uploader": "Tuèrne sulamende le resultate carecate da stu utende.",
-	"apihelp-query+unreviewedimagelabels-param-limit": "Numere de le vôsce de resultate da turnà."
+	"apihelp-query+unreviewedimagelabels-param-limit": "Numere de le vôsce de resultate da turnà.",
+	"apihelp-query+unreviewedimagecount-summary": "Fà 'ndrucà 'u condegge de le immaggine cu le suggereminde cu l'etichette ca stonne aspettane 'na revisione, totale e (ce è trasute) pu utende de mò.",
+	"apihelp-query+unreviewedimagecount-example": "Pigghie 'u condegge de le immaggine non reviste."
 }

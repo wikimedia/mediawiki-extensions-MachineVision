@@ -31,6 +31,6 @@
 	"apihelp-query+unreviewedimagelabels-summary": "{{doc-apihelp-summary|query+unreviewedimagelabels}}",
 	"apihelp-query+unreviewedimagelabels-param-uploader": "{{doc-apihelp-param|query+unreviewedimagelabels|uploader}}",
 	"apihelp-query+unreviewedimagelabels-param-limit": "{{doc-apihelp-param|query+unreviewedimagelabels|limit}}",
-	"apihelp-query+unreviewedimagecount-example": "{{doc-apihelp-example|query+unreviewedimagecount}}",
-	"apihelp-query+unreviewedimagecount-summary": "{{doc-apihelp-summary|query+unreviewedimagecount}}"
+	"apihelp-query+unreviewedimagecount-summary": "{{doc-apihelp-summary|query+unreviewedimagecount}}",
+	"apihelp-query+unreviewedimagecount-example": "{{doc-apihelp-example|query+unreviewedimagecount}}"
 }

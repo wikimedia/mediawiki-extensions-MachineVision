@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Silvonen"
+			"Silvonen",
+			"Pyscowicz"
 		]
 	},
 	"machinevision-publish": "Julkaise",
-	"machinevision-skip": "Ohita"
+	"machinevision-skip": "Ohita",
+	"machinevision-confirm-tags-dialog-cancel-action": "Peruuta"
 }

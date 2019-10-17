@@ -26,5 +26,7 @@
 	"apihelp-query+imagelabels-example-1": "Mostrar etiquetas de imagem sugeridas por máquina para <kbd>Exemplo.png</kbd>.",
 	"apihelp-query+unreviewedimagelabels-summary": "Mostrar títulos com rótulos de imagem sugeridos que precisam de revisão.",
 	"apihelp-query+unreviewedimagelabels-param-uploader": "Retorne apenas os resultados enviados por este usuário.",
-	"apihelp-query+unreviewedimagelabels-param-limit": "O número de resultados a serem devolvidos."
+	"apihelp-query+unreviewedimagelabels-param-limit": "O número de resultados a serem devolvidos.",
+	"apihelp-query+unreviewedimagecount-summary": "Mostre a contagem de imagens com sugestões de etiqueta aguardando revisão, no geral e (se estiver entrado) para o usuário atual.",
+	"apihelp-query+unreviewedimagecount-example": "Obtenha contagens de imagens não revisadas."
 }

@@ -30,5 +30,7 @@
 	"apihelp-query+imagelabels-example-1": "إظهار تسميات الصور التي اقترحها الجهاز لـ<kbd>Example.png</kbd>.",
 	"apihelp-query+unreviewedimagelabels-summary": "عرض العناوين مع تسميات الصور المقترحة التي تحتاج إلى مراجعة.",
 	"apihelp-query+unreviewedimagelabels-param-uploader": "إرجاع النتائج المرفوعة من قبل هذا المستخدم فقط.",
-	"apihelp-query+unreviewedimagelabels-param-limit": "عدد عناصر النتيجة للعودة."
+	"apihelp-query+unreviewedimagelabels-param-limit": "عدد عناصر النتيجة للعودة.",
+	"apihelp-query+unreviewedimagecount-summary": "عرض عدد الصور ذات اقتراحات التسمية في انتظار المراجعة، بشكل عام و(في حالة تسجيل الدخول) للمستخدم الحالي.",
+	"apihelp-query+unreviewedimagecount-example": "الحصول على أعداد الصور غير المراجعة."
 }

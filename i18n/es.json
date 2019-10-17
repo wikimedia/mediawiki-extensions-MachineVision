@@ -13,5 +13,10 @@
 	"machinevision-publish": "Publicar",
 	"machinevision-reset": "Restablecer",
 	"machinevision-skip": "Omitir",
-	"machinevision-loading-message": "Cargando…"
+	"machinevision-loading-message": "Cargando…",
+	"machinevision-confirm-tags-dialog-title": "Confirmar etiquetas",
+	"machinevision-confirm-tags-dialog-confirm-action": "Aceptar",
+	"machinevision-confirm-tags-dialog-cancel-action": "Cancelar",
+	"machinevision-confirm-tags-dialog-heading": "Esta imagen muestra:",
+	"machinevision-success-message": "Se añadieron las etiquetas a la imagen."
 }

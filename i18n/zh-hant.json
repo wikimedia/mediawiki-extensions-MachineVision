@@ -30,6 +30,14 @@
 	"machinevision-confirm-tags-dialog-cancel-action": "取消",
 	"machinevision-confirm-tags-dialog-heading": "此圖片描述：",
 	"machinevision-success-message": "添加到圖片的標籤。",
+	"machinevision-onboarding-dialog-heading": "標記圖片來讓它們能更容易被找到",
+	"machinevision-onboarding-dialog-text": "透過確認建議標籤，您可以協助讓圖片能更容易被搜尋到。標籤是由電腦做出的建議，需要經過人工驗證來確保準確度。",
+	"machinevision-onboarding-dialog-cta": "開始標記",
+	"machinevision-onboarding-dialog-disclaimer": "僅添加您核准的標籤到圖片上。",
+	"machinevision-onboarding-dialog-close-label": "關閉",
+	"machinevision-cta-heading": "您尚未標記您所有的更新！",
+	"machinevision-cta-text": "感謝協助讓圖片能更容易被每個人給找尋到 - 要不要再多標記一些呢？",
+	"machinevision-cta-cta": "標記熱門圖片",
 	"right-imagelabel-review": "檢閱圖片標籤建議",
 	"action-imagelabel-review": "檢閱圖片標籤建議"
 }

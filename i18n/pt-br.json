@@ -22,6 +22,16 @@
 	"machinevision-suggestion-confirm-title": "Confirmar sugestão \"$1\"?",
 	"machinevision-suggestion-confirm-undo-title": "Desfazer confirmação de sugestão \"$1\"?",
 	"machinevision-loading-message": "Carregando...",
+	"machinevision-confirm-tags-dialog-confirm-action": "OK",
+	"machinevision-confirm-tags-dialog-cancel-action": "Cancelar",
+	"machinevision-confirm-tags-dialog-heading": "Esta imagem mostra:",
+	"machinevision-onboarding-dialog-heading": "Marque imagens para facilitar a localização de outras pessoas",
+	"machinevision-onboarding-dialog-text": "Ao confirmar as tags sugeridas, você pode ajudar a facilitar a pesquisa de imagens. As tags são sugeridas por computador, mas precisam ser validadas por humanos para garantir a precisão.",
+	"machinevision-onboarding-dialog-cta": "Começar a etiquetar",
+	"machinevision-onboarding-dialog-disclaimer": "Somente as etiquetas que você aprovar serão adicionadas às imagens.",
+	"machinevision-onboarding-dialog-close-label": "Fechar",
+	"machinevision-cta-heading": "Você marcou todos os seus envios!",
+	"machinevision-cta-text": "Obrigado por ajudar a tornar as imagens mais acessíveis para todos - que tal marcar um pouco mais?",
 	"right-imagelabel-review": "Analisar as sugestões do rótulo da imagem",
 	"action-imagelabel-review": "revisar sugestões de marcadores de imagem"
 }

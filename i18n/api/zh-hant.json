@@ -29,5 +29,7 @@
 	"apihelp-query+imagelabels-example-1": "顯示用於 <kbd>Example.png</kbd> 的機器建立圖片標籤。",
 	"apihelp-query+unreviewedimagelabels-summary": "顯示帶有需要檢閱建議圖片標籤的標題。",
 	"apihelp-query+unreviewedimagelabels-param-uploader": "僅回傳由該使用者上傳的結果。",
-	"apihelp-query+unreviewedimagelabels-param-limit": "回傳的結果項目數量。"
+	"apihelp-query+unreviewedimagelabels-param-limit": "回傳的結果項目數量。",
+	"apihelp-query+unreviewedimagecount-summary": "對目前使用者（若有登入）顯示出帶有建議標籤；但待檢閱的圖片計數。",
+	"apihelp-query+unreviewedimagecount-example": "取得尚未被檢視過的圖片計數"
 }

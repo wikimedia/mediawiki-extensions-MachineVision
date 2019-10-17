@@ -11,5 +11,9 @@
 	"machinevision-more-title": "{{PLURAL:$1|Dat nächst Bild|Déi nächst $1 Biller}}  weisen?",
 	"machinevision-reset": "Zrécksetzen",
 	"machinevision-skip": "Iwwersprangen",
-	"machinevision-loading-message": "Lueden..."
+	"machinevision-loading-message": "Lueden...",
+	"machinevision-confirm-tags-dialog-confirm-action": "OK",
+	"machinevision-confirm-tags-dialog-cancel-action": "Ofbriechen",
+	"machinevision-onboarding-dialog-close-label": "Zoumaachen",
+	"machinevision-cta-cta": "Markéiert beléift Biller"
 }
