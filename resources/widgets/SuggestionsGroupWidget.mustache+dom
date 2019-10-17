@@ -1,5 +1,0 @@
-{{{titleLabel}}}
-
-{{#suggestions}}
-{{{.}}}
-{{/suggestions}}

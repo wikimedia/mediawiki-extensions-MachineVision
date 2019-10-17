@@ -143,7 +143,6 @@
 				"resources/widgets/OnboardingDialog.js",
 				"resources/widgets/SuggestedTagsCardstack.js",
 				"resources/widgets/SuggestedTagsPage.js",
-				"resources/widgets/SuggestionsGroupWidget.js",
 				"resources/widgets/SuggestionWidget.js",
 				"resources/widgets/UserMessage.js"
 			],
@@ -154,7 +153,6 @@
 				"resources/widgets/OnboardingDialog.less",
 				"resources/widgets/SuggestedTagsCardstack.less",
 				"resources/widgets/SuggestedTagsPage.less",
-				"resources/widgets/SuggestionsGroupWidget.less",
 				"resources/widgets/SuggestionWidget.less",
 				"resources/widgets/UserMessage.less"
 			],
@@ -171,7 +169,6 @@
 				"resources/widgets/ImageWithSuggestionsWidget.mustache+dom",
 				"resources/widgets/SuggestedTagsCardstack.mustache+dom",
 				"resources/widgets/SuggestedTagsPage.mustache+dom",
-				"resources/widgets/SuggestionsGroupWidget.mustache+dom",
 				"resources/widgets/SuggestionWidget.mustache+dom",
 				"resources/widgets/UserMessage.mustache+dom"
 			],

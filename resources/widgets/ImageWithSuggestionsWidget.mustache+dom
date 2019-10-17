@@ -7,7 +7,14 @@
 	</div>
 
 	<div class="wbmad-image-with-suggestions-tags">
-		{{{suggestions}}}
+		<div class="wbmad-suggestion-group">
+			{{{titleLabel}}}
+
+			{{#suggestions}}
+			{{{.}}}
+			{{/suggestions}}
+		</div>
+
 		<div class="wbmad-buttons">
 			{{{publishButton}}}
 			{{{resetButton}}}

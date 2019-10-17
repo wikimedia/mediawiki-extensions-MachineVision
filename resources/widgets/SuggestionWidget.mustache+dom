@@ -1,4 +1,6 @@
-{{#confirmed}}
-{{{checkIcon}}}
-{{/confirmed}}
-{{{suggestionLabel}}}
+<div class="{{classes}}">
+	{{#confirmed}}
+	{{{checkIcon}}}
+	{{/confirmed}}
+	{{{suggestionLabel}}}
+</div>

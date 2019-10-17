@@ -2,17 +2,16 @@
 'use strict';
 
 var TemplateRenderingDOMLessGroupWidget = require( './../base/TemplateRenderingDOMLessGroupWidget.js' ),
-	SuggestionsGroupWidget = require( './SuggestionsGroupWidget.js' ),
+	SuggestionWidget = require( './SuggestionWidget.js' ),
 	ConfirmTagsDialog = require( './ConfirmTagsDialog.js' ),
-	ImageWithSuggestionsWidget,
-	deepArrayCopy,
-	moveItemBetweenArrays;
+	ImageWithSuggestionsWidget;
 
 /**
  * A card within the cardstack on the Suggested Tags page. Each card contains
- * an image and a SuggestionsGroupWidget.
+ * an image and a group of SuggestionWidgets.
  *
  * @param {Object} config
+ * @cfg {Object} imageData
  */
 ImageWithSuggestionsWidget = function ( config ) {
 	ImageWithSuggestionsWidget.parent.call( this, $.extend( {}, config ) );
@@ -21,17 +20,13 @@ ImageWithSuggestionsWidget = function ( config ) {
 
 	this.imageData = config.imageData;
 	this.suggestions = this.imageData.suggestions;
-	this.originalSuggestions = deepArrayCopy( this.suggestions );
-	this.confirmedSuggestions = [];
+	this.suggestionWidgets = this.getSuggestionWidgets();
+	this.confirmedCount = 0;
 	this.imageTitle = this.imageData.title.split( ':' ).pop();
 
-	this.suggestionGroupWidget = new SuggestionsGroupWidget( {
+	this.titleLabel = new OO.ui.LabelWidget( {
 		label: this.imageTitle,
-		suggestionDataArray: this.originalSuggestions,
-		confirmedSuggestionDataArray: this.confirmedSuggestions
-	} ).connect( this, {
-		confirmSuggestion: 'onConfirmSuggestion',
-		unconfirmSuggestion: 'onUnconfirmSuggestion'
+		classes: [ 'wbmad-suggestion-group-title-label' ]
 	} );
 
 	this.skipButton = new OO.ui.ButtonWidget( {
@@ -64,7 +59,10 @@ ImageWithSuggestionsWidget = function ( config ) {
 		mw.config.get( 'wbmiRepoApiUrl', mw.config.get( 'wbRepoApiUrl' ) )
 	);
 
-	this.connect( this, { confirm: 'onFinalConfirm' } );
+	this.connect( this, {
+		confirm: 'onFinalConfirm',
+		toggleSuggestion: 'onToggleSuggestion'
+	} );
 
 	this.render();
 };
@@ -75,78 +73,62 @@ ImageWithSuggestionsWidget.prototype.render = function () {
 	this.renderTemplate( 'resources/widgets/ImageWithSuggestionsWidget.mustache+dom', {
 		skipButton: this.skipButton,
 		imageTagTitle: this.imageTitle,
-		suggestions: this.suggestionGroupWidget,
+		titleLabel: this.titleLabel,
+		suggestions: this.suggestionWidgets,
 		thumburl: this.imageData.thumburl,
 		resetButton: this.resetButton,
 		publishButton: this.publishButton
 	} );
 };
 
-deepArrayCopy = function ( array ) {
-	return $.extend( true, [], array );
-};
-
-ImageWithSuggestionsWidget.prototype.getOriginalSuggestions = function () {
-	return deepArrayCopy( this.originalSuggestions );
-};
-
-moveItemBetweenArrays = function ( item, fromArray, toArray ) {
-	var fromIndex;
-
-	if ( toArray.indexOf( item ) === -1 ) {
-		toArray.push( item );
-		fromIndex = fromArray.indexOf( item );
-		if ( fromIndex > -1 ) {
-			fromArray.splice( fromIndex, 1 );
+/**
+ * Create an array of suggestion widgets based on suggestion data.
+ * @return {Array}
+ */
+ImageWithSuggestionsWidget.prototype.getSuggestionWidgets = function () {
+	var self = this;
+	return this.suggestions.map( function ( data ) {
+		// If label has no text, don't create a widget.
+		if ( !data.text ) {
+			return null;
 		}
-	}
+
+		return new SuggestionWidget( { suggestionData: data } )
+			.connect( self, { toggleSuggestion: 'onToggleSuggestion' } );
+	} );
 };
 
-ImageWithSuggestionsWidget.prototype.rerenderGroups = function () {
-	var isAnythingSelected;
+/**
+ * When a suggestion is toggled, see if buttons should be disabled.
+ *
+ * This widget has a property keeping track of how many suggestions are
+ * currently confirmed. When this value is 0, the publish and reset buttons
+ * should be disabled.
+ *
+ * @param {bool} confirmed Whether or not the suggestion is confirmed
+ */
+ImageWithSuggestionsWidget.prototype.onToggleSuggestion = function ( confirmed ) {
+	var addend = ( confirmed ) ? 1 : -1,
+		hasConfirmed;
 
-	// TODO: Implement a setData() method or similar to avoid direct
-	// manipulation of child widget properties
-	this.suggestionGroupWidget.suggestionDataArray = this.originalSuggestions;
-	this.suggestionGroupWidget.confirmedSuggestionDataArray = this.confirmedSuggestions;
-	this.suggestionGroupWidget.render();
+	// If the suggestion is confirmed, add 1 to count. If not, that means it
+	// has been un-confirmed, so subtract 1.
+	this.confirmedCount = this.confirmedCount + addend;
+	hasConfirmed = this.confirmedCount > 0;
 
-	isAnythingSelected = this.confirmedSuggestions.length > 0;
-
-	this.publishButton.setDisabled( !isAnythingSelected );
-	this.resetButton.setDisabled( !isAnythingSelected );
+	this.publishButton.setDisabled( !hasConfirmed );
+	this.resetButton.setDisabled( !hasConfirmed );
 };
 
-ImageWithSuggestionsWidget.prototype.onConfirmSuggestion = function ( suggestionWidget ) {
-	moveItemBetweenArrays(
-		suggestionWidget.suggestionData,
-		this.suggestions,
-		this.confirmedSuggestions
-	);
-
-	this.rerenderGroups();
-};
-
-ImageWithSuggestionsWidget.prototype.onUnconfirmSuggestion = function ( suggestionWidget ) {
-	moveItemBetweenArrays(
-		suggestionWidget.suggestionData,
-		this.confirmedSuggestions,
-		this.suggestions
-	);
-
-	this.rerenderGroups();
-};
-
-ImageWithSuggestionsWidget.prototype.onConfirmAll = function () {
-	this.suggestions = [];
-	this.confirmedSuggestions = this.getOriginalSuggestions();
-	this.rerenderGroups();
-};
-
+/**
+ * Set all suggestion widgets to unconfirmed.
+ */
 ImageWithSuggestionsWidget.prototype.onReset = function () {
-	this.suggestions = this.getOriginalSuggestions();
-	this.confirmedSuggestions = [];
-	this.rerenderGroups();
+	this.suggestionWidgets.forEach( function ( widget ) {
+		widget.confirmed = false;
+		widget.render();
+	} );
+	this.confirmedCount = 0;
 };
 
 /**
@@ -154,8 +136,11 @@ ImageWithSuggestionsWidget.prototype.onReset = function () {
  */
 ImageWithSuggestionsWidget.prototype.onPublish = function () {
 	var self = this,
-		tagsList = this.confirmedSuggestions.map( function ( suggestion ) {
-			return suggestion.text;
+		confirmedSuggestions = this.suggestionWidgets.filter( function ( widget ) {
+			return widget.confirmed;
+		} ),
+		tagsList = confirmedSuggestions.map( function ( widget ) {
+			return widget.suggestionData.text;
 		} ).join( ', ' ),
 		confirmTagsDialog,
 		windowManager;
@@ -179,16 +164,14 @@ ImageWithSuggestionsWidget.prototype.onPublish = function () {
  * Publish new tags and move to the next image.
  */
 ImageWithSuggestionsWidget.prototype.onFinalConfirm = function () {
-	// TODO: keep approved/rejected state in the SuggestionData model rather
-	// than bouncing suggestions between two different arrays
 	var self = this,
-		batch = [];
-	this.confirmedSuggestions.forEach( function ( suggestion ) {
-		batch.push( { label: suggestion.wikidataId, review: 'accept' } );
-	} );
-	this.suggestions.forEach( function ( suggestion ) {
-		batch.push( { label: suggestion.wikidataId, review: 'reject' } );
-	} );
+		batch = this.suggestionWidgets.map( function ( widget ) {
+			return {
+				label: widget.suggestionData.wikidataId,
+				review: widget.confirmed ? 'accept' : 'reject'
+			};
+		} );
+
 	this.api.postWithToken(
 		'csrf',
 		{

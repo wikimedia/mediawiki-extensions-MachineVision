@@ -1,17 +1,33 @@
 @import '../style-variables.less';
 
-.wbmad-suggestion {
-	background-color: @base90;
-	border: @suggestion-border-width solid @base50;
-	cursor: pointer;
+.wbmad-suggestion-wrapper {
 	display: inline-block;
-	padding: 0.1em 0.8em;
-	border-radius: 1.2em;
 	margin: 0 1em 1em 0;
-	white-space: nowrap;
 
 	label {
 		cursor: pointer;
+	}
+
+	.wbmad-suggestion {
+		background-color: @base90;
+		border: @suggestion-border-width solid @base50;
+		cursor: pointer;
+		padding: 0.1em 0.8em;
+		border-radius: 1.2em;
+		white-space: nowrap;
+	}
+
+	.wbmad-suggestion--confirmed {
+		background-color: @green90;
+		border-color: @green50;
+
+		/* stylelint-disable-next-line selector-class-pattern */
+		.oo-ui-iconElement {
+			margin-right: 0.6em;
+			min-height: 0;
+			min-width: 0;
+			width: 1em;
+		}
 	}
 
 	/* stylelint-disable-next-line selector-class-pattern */
@@ -20,18 +36,5 @@
 		margin-right: 0;
 		margin-left: 1em;
 		padding-left: 0.2em;
-	}
-}
-
-.wbmad-suggestion--confirmed {
-	background-color: @green90;
-	border-color: @green50;
-
-	/* stylelint-disable-next-line selector-class-pattern */
-	.oo-ui-iconElement {
-		margin-right: 0.6em;
-		min-height: 0;
-		min-width: 0;
-		width: 1em;
 	}
 }

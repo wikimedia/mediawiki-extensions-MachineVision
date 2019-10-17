@@ -5,22 +5,19 @@ QUnit.module( 'SuggestionWidget', hooks );
 
 QUnit.test( 'Constructor test', function ( assert ) {
 	var SuggestionWidget = require( pathToWidget ),
-		data = { text: 'Test label' },
+		data = { text: 'Test label', confirmed: false },
 		widget = new SuggestionWidget( { suggestionData: data } );
 	assert.ok( true );
 } );
 
-QUnit.test( 'Unconfirmed widget emits confirmSuggestion event', function ( assert ) {
+QUnit.test( 'Unconfirmed widget becomes confirmed when toggled', function ( assert ) {
 	var SuggestionWidget = require( pathToWidget ),
-		data = { text: 'Test label' },
-		widget = new SuggestionWidget( {
-			suggestionData: data,
-			confirmed: false
-		} ),
+		data = { text: 'Test label', confirmed: false },
+		widget = new SuggestionWidget( { suggestionData: data } ),
 		done = assert.async();
 
-	widget.on( 'confirmSuggestion', function () {
-		assert.ok( true );
+	widget.on( 'toggleSuggestion', function () {
+		assert.strictEqual( widget.confirmed, true );
 	} );
 
 	widget.toggleSuggestion();
@@ -30,17 +27,14 @@ QUnit.test( 'Unconfirmed widget emits confirmSuggestion event', function ( asser
 	}, 100 );
 } );
 
-QUnit.test( 'Confirmed widget emits unconfirmSuggestion event', function ( assert ) {
+QUnit.test( 'Confirmed widget becomes unconfirmed when toggled', function ( assert ) {
 	var SuggestionWidget = require( pathToWidget ),
-		data = { text: 'Test label' },
-		widget = new SuggestionWidget( {
-			suggestionData: data,
-			confirmed: true
-		} ),
+		data = { text: 'Test label', confirmed: true },
+		widget = new SuggestionWidget( { suggestionData: data } ),
 		done = assert.async();
 
-	widget.on( 'unconfirmSuggestion', function () {
-		assert.ok( true );
+	widget.on( 'toggleSuggestion', function () {
+		assert.strictEqual( widget.confirmed, false );
 	} );
 
 	widget.toggleSuggestion();
@@ -50,36 +44,13 @@ QUnit.test( 'Confirmed widget emits unconfirmSuggestion event', function ( asser
 	}, 100 );
 } );
 
-QUnit.test( 'Enter keypress on unconfirmed widget emits confirmSuggestion event', function ( assert ) {
+QUnit.test( 'Enter keypress on widget emits toggleSuggestion event', function ( assert ) {
 	var SuggestionWidget = require( pathToWidget ),
-		data = { text: 'Test label' },
-		widget = new SuggestionWidget( {
-			suggestionData: data,
-			confirmed: false
-		} ),
+		data = { text: 'Test label', confirmed: false },
+		widget = new SuggestionWidget( { suggestionData: data } ),
 		done = assert.async();
 
-	widget.on( 'confirmSuggestion', function () {
-		assert.ok( true );
-	} );
-
-	widget.onKeypress( { keyCode: 13 } );
-
-	setTimeout( function () {
-		done();
-	}, 100 );
-} );
-
-QUnit.test( 'Enter keypress on confirmed widget emits unconfirmSuggestion event', function ( assert ) {
-	var SuggestionWidget = require( pathToWidget ),
-		data = { text: 'Test label' },
-		widget = new SuggestionWidget( {
-			suggestionData: data,
-			confirmed: true
-		} ),
-		done = assert.async();
-
-	widget.on( 'unconfirmSuggestion', function () {
+	widget.on( 'toggleSuggestion', function () {
 		assert.ok( true );
 	} );
 
