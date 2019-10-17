@@ -37,6 +37,7 @@ OO.inheritClass(
 SuggestedTagsPage.prototype.render = function () {
 	this.renderTemplate( 'resources/widgets/SuggestedTagsPage.mustache+dom', {
 		pageDescription: $( '<p>' ).msg( 'machinevision-machineaidedtagging-intro' ),
+		tabsHeading: mw.message( 'machinevision-machineaidedtagging-tabs-heading' ).text(),
 		tabs: this.tabs,
 		licenseInfo: $( '<p>' ).msg( 'machinevision-machineaidedtagging-license-information' )
 	} );
