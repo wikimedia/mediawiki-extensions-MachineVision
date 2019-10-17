@@ -253,30 +253,7 @@ class Repository implements LoggerAwareInterface {
 	}
 
 	/**
-	 * Get count of all images with labels awaiting review.
-	 * TODO: Cache the result for a reasonable period of time (5 minutes)?  The result is expected
-	 * to be a large number that changes frequently, and need not be exact.
-	 * We could also consider stashing only when the result is greater than a defined minimum.
-	 * @return int
-	 */
-	public function getUnreviewedImageCount() {
-		return (int)$this->dbr->selectField(
-			[ 'derived' => $this->dbr->buildSelectSubquery(
-				'machine_vision_label',
-				'*',
-				[ 'mvl_review' => self::REVIEW_UNREVIEWED ],
-				__METHOD__,
-				[ 'GROUP BY' => 'mvl_image_sha1' ]
-			) ],
-			'COUNT(*)',
-			[],
-			__METHOD__
-		);
-	}
-
-	/**
 	 * Get count of images uploaded by the specified user with labels awaiting review.
-	 * This should always return an exact, up-to-date count.
 	 * @param int $userId local user id
 	 * @return int
 	 */

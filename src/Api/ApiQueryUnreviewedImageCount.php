@@ -4,7 +4,6 @@ namespace MediaWiki\Extension\MachineVision\Api;
 
 use ApiQuery;
 use ApiQueryBase;
-use ApiUsageException;
 use MediaWiki\Extension\MachineVision\Repository;
 use MediaWiki\Extension\MachineVision\Services;
 use MediaWiki\MediaWikiServices;
@@ -51,16 +50,12 @@ class ApiQueryUnreviewedImageCount extends ApiQueryBase {
 	 * @inheritDoc
 	 */
 	public function execute() {
-		try {
-			$totals = [ 'total' => $this->repository->getUnreviewedImageCount() ];
-			if ( !$this->getUser()->isAnon() ) {
-				$totals['user'] =
-					$this->repository->getUnreviewedImageCountForUser( $this->getUser()->getId() );
-			}
-			$this->getResult()->addValue( 'query', 'unreviewedimagecount', $totals );
-		} catch ( ApiUsageException $e ) {
-			$this->dieWithException( $e );
+		$totals = [];
+		if ( !$this->getUser()->isAnon() ) {
+			$userId = $this->getUser()->getId();
+			$totals['user'] = $this->repository->getUnreviewedImageCountForUser( $userId );
 		}
+		$this->getResult()->addValue( 'query', 'unreviewedimagecount', $totals );
 	}
 
 	/**
