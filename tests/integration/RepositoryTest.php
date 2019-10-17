@@ -18,6 +18,7 @@ class RepositoryTest extends MediaWikiIntegrationTestCase {
 		parent::setUp();
 		$this->tablesUsed[] = 'machine_vision_provider';
 		$this->tablesUsed[] = 'machine_vision_label';
+		$this->tablesUsed[] = 'machine_vision_suggestion';
 	}
 
 	/**
@@ -35,22 +36,33 @@ class RepositoryTest extends MediaWikiIntegrationTestCase {
 		$labels = array_column( $repository->getLabels( $sha1Foo ), 'wikidata_id' );
 		$this->assertSame( [], $labels );
 
-		$repository->insertLabels( $sha1Foo, 'some-provider', 0, [ 'Q123', 'Q456' ] );
+		$repository->insertLabels( $sha1Foo, 'some-provider', 0, [
+			new LabelSuggestion( 'Q123', 1 ),
+			new LabelSuggestion( 'Q456', 1 )
+		] );
 		$labels = array_column( $repository->getLabels( $sha1Foo ), 'wikidata_id' );
 		$this->assertArrayEquals( [ 'Q123', 'Q456' ], $labels );
 
-		$repository->insertLabels( $sha1Foo, 'some-provider', 0, [ 'Q789' ] );
+		$repository->insertLabels( $sha1Foo, 'some-provider', 0, [
+			new LabelSuggestion( 'Q789', 1 )
+		] );
 		$labels = array_column( $repository->getLabels( $sha1Foo ), 'wikidata_id' );
 		$this->assertArrayEquals( [ 'Q123', 'Q456', 'Q789' ], $labels );
 
-		$repository->insertLabels( $sha1Foo, 'other-provider', 0, [ 'Q123', 'Q321' ] );
+		$repository->insertLabels( $sha1Foo, 'other-provider', 0, [
+			new LabelSuggestion( 'Q123', 1 ),
+			new LabelSuggestion( 'Q321', 1 )
+		] );
 		$labels = array_column( $repository->getLabels( $sha1Foo ), 'wikidata_id' );
 		$this->assertArrayEquals( [ 'Q123', 'Q456', 'Q789', 'Q321' ], $labels );
 
 		$labels = array_column( $repository->getLabels( $sha1Bar ), 'wikidata_id' );
 		$this->assertSame( [], $labels );
 
-		$repository->insertLabels( $sha1Bar, 'some-provider', 0, [ 'Q123', 'Q234' ] );
+		$repository->insertLabels( $sha1Bar, 'some-provider', 0, [
+			new LabelSuggestion( 'Q123', 1 ),
+			new LabelSuggestion( 'Q234', 1 )
+		] );
 		$labels = array_column( $repository->getLabels( $sha1Foo ), 'wikidata_id' );
 		$this->assertArrayEquals( [ 'Q123', 'Q456', 'Q789', 'Q321' ], $labels );
 		$labels = array_column( $repository->getLabels( $sha1Bar ), 'wikidata_id' );
@@ -69,7 +81,10 @@ class RepositoryTest extends MediaWikiIntegrationTestCase {
 		$sha1Foo = base_convert( sha1( 'foo' ), 16, 36, 31 );
 		$sha1Bar = base_convert( sha1( 'bar' ), 16, 36, 31 );
 
-		$repository->insertLabels( $sha1Foo, 'some-provider', 0, [ 'Q123', 'Q456' ] );
+		$repository->insertLabels( $sha1Foo, 'some-provider', 0, [
+			new LabelSuggestion( 'Q123', 1 ),
+			new LabelSuggestion( 'Q456', 1 )
+		] );
 
 		$this->assertSame( false, $repository->getLabelState( $sha1Bar, 'Q123' ) );
 		$this->assertSame( false, $repository->getLabelState( $sha1Foo, 'Q789' ) );
@@ -85,7 +100,7 @@ class RepositoryTest extends MediaWikiIntegrationTestCase {
 
 		// setting to current state
 		$success = $repository->setLabelState( $sha1Foo, 'Q123', Repository::REVIEW_ACCEPTED, 0, 0 );
-		$this->assertFalse( $success );
+		$this->assertTrue( $success );
 
 		// no such label
 		$success = $repository->setLabelState( $sha1Foo, 'Q789', Repository::REVIEW_ACCEPTED, 0, 0 );
