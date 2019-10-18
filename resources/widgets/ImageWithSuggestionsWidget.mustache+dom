@@ -1,5 +1,4 @@
-
-<div class="wbmad-image-with-suggestions-container">
+<div class="wbmad-image-with-suggestions-container {{spinnerClass}}">
 	<div class="wbmad-image-with-suggestions-image">
 		<div class="wbmad-image-with-suggestions-image-wrapper">
 			<img src="{{thumburl}}" alt="{{imageTagTitle}}" title="{{imageTagTitle}}">
@@ -22,3 +21,9 @@
 		</div>
 	</div>
 </div>
+
+{{#showSpinner}}
+    <div class="wbmad-spinner">
+        <div class="wbmad-spinner-bounce"></div>
+    </div>
+{{/showSpinner}}

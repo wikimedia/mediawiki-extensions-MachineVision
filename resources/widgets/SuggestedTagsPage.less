@@ -1,6 +1,7 @@
 @import 'mediawiki.mixins';
 @import '../style-variables.less';
 
+/* stylelint-disable selector-class-pattern */
 .wbmad-suggested-tags-page {
 	max-width: @wbmad-max-width;
 
@@ -21,7 +22,30 @@
 		}
 	}
 
-	.wbmad-success-message {
+	.wbmad-status-message {
+		.fade-in( 0.5s );
+		text-align: center;
+
+		&.oo-ui-messageWidget.oo-ui-messageWidget-block.oo-ui-flaggedElement-notice {
+			background: transparent;
+			border: 0;
+		}
+
+		.oo-ui-iconElement-icon {
+			display: none;
+		}
+
+		.oo-ui-labelElement-label {
+			background-color: @base100;
+			display: inline-block;
+			font-size: 1.2em;
+			font-weight: 600;
+			margin: 0;
+			padding: 4em 1em;
+		}
+	}
+
+	.wbmad-toast {
 		@keyframes slideInOut {
 			0% {
 				bottom: 0;
@@ -39,13 +63,11 @@
 				opacity: 0;
 			}
 		}
-		animation: slideInOut 4s;
 		bottom: 5vh;
 		position: fixed;
 		text-align: center;
 		width: @wbmad-max-width;
 
-		/* stylelint-disable selector-class-pattern */
 		&.oo-ui-messageWidget.oo-ui-messageWidget-block.oo-ui-flaggedElement-notice {
 			background: transparent;
 			border: 0;
@@ -60,8 +82,17 @@
 			border-radius: @outer-border-radius;
 			color: @base100;
 			display: inline-block;
+			margin: 0;
 			padding: 1em 2em;
 		}
+	}
+
+	.wbmad-success-toast {
+		animation: slideInOut 4s;
+	}
+
+	.wbmad-publish-error-toast {
+		animation: slideInOut 8s;
 	}
 
 	// Override padding to ensure box shadow of card is visible.
@@ -83,5 +114,50 @@
 	.oo-ui-tabSelectWidget-frameless {
 		.box-shadow( inset 0 -1px 0 0 @base70 );
 	}
-	/* stylelint-enable selector-class-pattern */
+}
+/* stylelint-enable selector-class-pattern */
+
+// Pulsating dots loading indicator, adapted from recent changes special page.
+.wbmad-spinner {
+	@keyframes wbmadSpinnerBouncedelay {
+		0%,
+		50%,
+		100% {
+			transform: scale( 0.625 );
+		}
+
+		20% { // Equals 320ms.
+			opacity: 0.87;
+			transform: scale( 1 );
+		}
+	}
+
+	.flex-display();
+	align-items: center;
+	justify-content: center;
+	padding: 4em 1em;
+	white-space: nowrap;
+
+	& .wbmad-spinner-bounce,
+	&:before,
+	&:after {
+		animation: wbmadSpinnerBouncedelay 1600ms ease-in-out -160ms infinite both;
+		background-color: @base30;
+		border-radius: 100%;
+		content: '';
+		display: block;
+		float: left;
+		height: @wbmad-spinner-size;
+		width: @wbmad-spinner-size;
+	}
+
+	&:before {
+		animation-delay: -330ms;
+		margin-right: 4px;
+	}
+
+	&:after {
+		animation-delay: 0s;
+		margin-left: 4px;
+	}
 }

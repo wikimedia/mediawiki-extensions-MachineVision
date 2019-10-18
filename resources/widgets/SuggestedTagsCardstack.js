@@ -22,7 +22,8 @@ SuggestedTagsCardstack = function ( config ) {
 	this.$element.addClass( 'wbmad-suggested-tags-cardstack' );
 	this.connect( this, {
 		itemRemoved: 'onItemRemoved',
-		tagsPublished: 'onTagsPublished'
+		tagsPublished: 'onTagsPublished',
+		publishError: 'onPublishError'
 	} );
 
 	this.queryType = this.config.queryType;
@@ -71,7 +72,8 @@ SuggestedTagsCardstack.prototype.getItems = function () {
 			imageData: imageData
 		} ).connect( self, {
 			itemRemoved: 'onItemRemoved',
-			tagsPublished: 'onTagsPublished'
+			tagsPublished: 'onTagsPublished',
+			publishError: 'onPublishError'
 		} );
 	} );
 };
@@ -103,6 +105,13 @@ SuggestedTagsCardstack.prototype.onItemRemoved = function () {
  */
 SuggestedTagsCardstack.prototype.onTagsPublished = function () {
 	this.emit( 'showSuccessMessage' );
+};
+
+/**
+ * After an error on publish, show user a message describing the issue.
+ */
+SuggestedTagsCardstack.prototype.onPublishError = function () {
+	this.emit( 'showPublishErrorMessage' );
 };
 
 module.exports = SuggestedTagsCardstack;

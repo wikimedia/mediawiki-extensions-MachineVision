@@ -55,3 +55,19 @@
 @wbmad-max-width: 60em;
 @outer-border-radius: 0.5em;
 @suggestion-border-width: 1px;
+@wbmad-spinner-size: 12px;
+
+// Mixins
+// ---------------------------------------------------------
+.fade-in( @duration ) {
+	@keyframes fadeIn {
+		0% {
+			opacity: 0;
+		}
+
+		100% {
+			opacity: 1;
+		}
+	}
+	animation: fadeIn @duration;
+}

@@ -2,22 +2,21 @@
 @import '../style-variables.less';
 
 .wbmad-image-with-suggestions {
-	@keyframes fadeIn {
-		0% {
-			opacity: 0;
-		}
-
-		100% {
-			opacity: 1;
-		}
-	}
-	.box-shadow(0 1px 4px rgba( 0, 0, 0, 0.25 ));
-	animation: fadeIn 0.5s;
-	border-radius: @outer-border-radius;
+	.fade-in( 0.5s );
 	display: none;
+	position: relative;
 
 	&:first-child {
 		display: block;
+	}
+
+	.wbmad-image-with-suggestions-container {
+		.box-shadow(0 1px 4px rgba( 0, 0, 0, 0.25 ));
+		border-radius: @outer-border-radius;
+
+		&.wbmad-spinner-active {
+			opacity: 0.5;
+		}
 	}
 
 	/* stylelint-disable-next-line selector-class-pattern */
@@ -92,5 +91,13 @@
 				margin-left: auto;
 			}
 		}
+	}
+
+	.wbmad-spinner {
+		height: 100%;
+		padding: 0;
+		position: absolute;
+		top: 0;
+		width: 100%;
 	}
 }

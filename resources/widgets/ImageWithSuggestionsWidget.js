@@ -77,7 +77,9 @@ ImageWithSuggestionsWidget.prototype.render = function () {
 		suggestions: this.suggestionWidgets,
 		thumburl: this.imageData.thumburl,
 		resetButton: this.resetButton,
-		publishButton: this.publishButton
+		publishButton: this.publishButton,
+		showSpinner: this.showSpinner,
+		spinnerClass: ( this.showSpinner ) ? 'wbmad-spinner-active' : ''
 	} );
 };
 
@@ -86,13 +88,12 @@ ImageWithSuggestionsWidget.prototype.render = function () {
  * @return {Array}
  */
 ImageWithSuggestionsWidget.prototype.getSuggestionWidgets = function () {
-	var self = this;
-	return this.suggestions.map( function ( data ) {
-		// If label has no text, don't create a widget.
-		if ( !data.text ) {
-			return null;
-		}
+	var self = this,
+		validSuggestions = this.suggestions.filter( function ( suggestion ) {
+			return !!suggestion.text;
+		} );
 
+	return validSuggestions.map( function ( data ) {
 		return new SuggestionWidget( { suggestionData: data } )
 			.connect( self, { toggleSuggestion: 'onToggleSuggestion' } );
 	} );
@@ -172,6 +173,12 @@ ImageWithSuggestionsWidget.prototype.onFinalConfirm = function () {
 			};
 		} );
 
+	this.showSpinner = true;
+	this.publishButton.setDisabled( true );
+	this.resetButton.setDisabled( true );
+	this.skipButton.setDisabled( true );
+	this.render();
+
 	this.api.postWithToken(
 		'csrf',
 		{
@@ -187,10 +194,10 @@ ImageWithSuggestionsWidget.prototype.onFinalConfirm = function () {
 		} )
 		// eslint-disable-next-line no-unused-vars
 		.fail( function ( errorCode, error ) {
-			// TODO: indicate failure
+			self.emit( 'publishError' );
 		} )
 		.always( function () {
-			// Move to the next image.
+			// Move to next image.
 			self.onSkip();
 		} );
 };

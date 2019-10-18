@@ -49,6 +49,7 @@ SuggestedTagsPage = function ( config ) {
 		this.connect( this, {
 			fetchItems: 'fetchItems',
 			showSuccessMessage: 'showSuccessMessage',
+			showPublishErrorMessage: 'showPublishErrorMessage',
 			goToPopularTab: 'goToPopularTab'
 		} );
 	}
@@ -76,14 +77,18 @@ SuggestedTagsPage.prototype.render = function () {
 
 // TODO: (T233232) Add "failed" state and show content in the template instead.
 SuggestedTagsPage.prototype.showFailureMessage = function () {
-	// $( '#content' ).append( '<p>Oh no, something went wrong!</p>' );
+	var failureMessage = new OO.ui.MessageWidget( {
+		label: $( '<p>' ).msg( 'machinevision-failure-message' ),
+		classes: [ 'wbmad-status-message' ]
+	} );
+	this.currentTab.$element.empty();
+	this.currentTab.$element.append( failureMessage.$element );
 };
 
 // TODO: (T233232) Add "loading" state and show content in the template instead.
 SuggestedTagsPage.prototype.showLoadingMessage = function () {
-	this.currentTab.$element.append(
-		'<p class="wbmad-loading-message">' + mw.message( 'machinevision-loading-message' ).text() + '</p>'
-	);
+	var spinner = '<div class="wbmad-spinner"><div class="wbmad-spinner-bounce"></div></div>';
+	this.currentTab.$element.append( spinner );
 };
 
 /**
@@ -125,10 +130,12 @@ SuggestedTagsPage.prototype.getItemsForQueryResponse = function ( response ) {
 		.connect( self, {
 			fetchItems: 'fetchItems',
 			showSuccessMessage: 'showSuccessMessage',
+			showPublishErrorMessage: 'showPublishErrorMessage',
 			goToPopularTab: 'goToPopularTab'
 		} );
 
-	this.currentTab.$element.find( '.wbmad-loading-message' ).remove();
+	// Clear out loading indicator and add new cardstack.
+	this.currentTab.$element.empty();
 	this.currentTab.$element.append( suggestedTagsCardstack.$element );
 };
 
@@ -159,7 +166,7 @@ SuggestedTagsPage.prototype.fetchItems = function () {
 
 	api.get( query )
 		.done( this.getItemsForQueryResponse.bind( this ) )
-		.fail( this.showFailureMessage );
+		.fail( this.showFailureMessage.bind( this ) );
 };
 
 /**
@@ -218,13 +225,28 @@ SuggestedTagsPage.prototype.goToPopularTab = function () {
 SuggestedTagsPage.prototype.showSuccessMessage = function () {
 	var successMessage = new OO.ui.MessageWidget( {
 		label: mw.message( 'machinevision-success-message' ).text(),
-		classes: [ 'wbmad-success-message' ]
+		classes: [ 'wbmad-toast wbmad-success-toast' ]
 	} );
 	this.$element.append( successMessage.$element );
 
 	setTimeout( function () {
 		successMessage.$element.remove();
 	}, 4000 );
+};
+
+/**
+ * After user publishes tags for an image, show a success message.
+ */
+SuggestedTagsPage.prototype.showPublishErrorMessage = function () {
+	var errorMessage = new OO.ui.MessageWidget( {
+		label: mw.message( 'machinevision-publish-error-message' ).text(),
+		classes: [ 'wbmad-toast wbmad-publish-error-toast' ]
+	} );
+	this.$element.append( errorMessage.$element );
+
+	setTimeout( function () {
+		errorMessage.$element.remove();
+	}, 8000 );
 };
 
 module.exports = SuggestedTagsPage;
