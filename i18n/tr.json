@@ -1,9 +1,20 @@
 {
 	"@metadata": {
 		"authors": [
-			"Suvarioglu"
+			"Suvarioglu",
+			"Grkn gll"
 		]
 	},
 	"machinevision-reset": "Etiketleri sıfırla",
-	"machinevision-reset-title": "Etiketleri sıfırla?"
+	"machinevision-reset-title": "Etiketleri sıfırla?",
+	"machinevision-confirm-tags-dialog-title": "Etiketleri onayla",
+	"machinevision-confirm-tags-dialog-confirm-action": "Tamam",
+	"machinevision-confirm-tags-dialog-cancel-action": "İptal",
+	"machinevision-success-message": "Etiketler resme eklendi.",
+	"machinevision-onboarding-dialog-heading": "Görüntüleri başkalarının bulmasını kolaylaştırmak için etiketleyin",
+	"machinevision-onboarding-dialog-cta": "Etiketlemeye başla",
+	"machinevision-onboarding-dialog-close-label": "Kapat",
+	"machinevision-cta-heading": "Tüm yüklemelerini etiketledin!",
+	"machinevision-cta-text": "Resimlerin herkes için daha kullanışlı hale gelmesine yardımcı olduğunuz için teşekkür ederiz - biraz daha etiketlemeye ne dersiniz?",
+	"machinevision-cta-cta": "Popüler görüntüleri etiketle"
 }

@@ -13,5 +13,6 @@
 	"machinevision-suggestion-confirm-title": "Stai suggerendo \"$1\", confermi?",
 	"machinevision-loading-message": "Caricamento...",
 	"machinevision-confirm-tags-dialog-confirm-action": "OK",
-	"machinevision-confirm-tags-dialog-cancel-action": "Annulla"
+	"machinevision-confirm-tags-dialog-cancel-action": "Annulla",
+	"machinevision-onboarding-dialog-close-label": "Chiudi"
 }

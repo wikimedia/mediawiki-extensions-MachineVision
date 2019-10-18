@@ -11,7 +11,6 @@
 	"machinevision-machineaidedtagging-popular-tab": "Популярные",
 	"machinevision-machineaidedtagging-user-tab": "Личные загрузки",
 	"machinevision-machineaidedtagging-license-information": "Лицензия CC0 для вкладок тегов. Нажав «Опубликовать», вы соглашаетесь с [[wmf:Terms_of_Use|условиями использования]] и безотзывно соглашаетесь публиковать свой вклад на условиях [https://creativecommons.org/publicdomain/zero/1.0/ лицензии Creative Commons CC0].",
-	"machinevision-personal-uploads-login-message": "Пожалуйста, [[Special:UserLogin|войдите]], чтобы увидеть ваши личные загрузки.",
 	"machinevision-publish": "Опубликовать",
 	"machinevision-more": "Далее $1 {{PLURAL:$1|изображение|изображения|изображений}}",
 	"machinevision-more-title": "Показать следующие $1 {{PLURAL:$1|изображение|изображения}}?",

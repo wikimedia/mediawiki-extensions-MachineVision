@@ -8,7 +8,6 @@
 	"machinevision-machineaidedtagging-popular-tab": "Populiaru",
 	"machinevision-machineaidedtagging-user-tab": "Asmeniniai įkėlimai",
 	"machinevision-pageinfo-field-suggested-labels": "Siūlomos žymos",
-	"machinevision-personal-uploads-login-message": "Prašome [[Special:UserLogin|prisijungti]], kad matytumėte savo asmeninius įkėlimus.",
 	"machinevision-more": "{{PLURAL:$1|Kitas $1 paveikslėlis|Kiti $1 paveikslėliai}}",
 	"machinevision-more-title": "{{PLURAL:$1|Kitas $1 paveikslėlis|Kiti $1 paveikslėliai}}"
 }

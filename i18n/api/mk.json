@@ -30,5 +30,7 @@
 	"apihelp-query+imagelabels-example-1": "Прикажи машински предложени натписи за <kbd>Example.png</kbd>.",
 	"apihelp-query+unreviewedimagelabels-summary": "Прикажи наслови со предложени натписи на слики на кои им треба проверка.",
 	"apihelp-query+unreviewedimagelabels-param-uploader": "Дај само ставки подигнати од овој корисник.",
-	"apihelp-query+unreviewedimagelabels-param-limit": "Колку исходни ставки да се даваат."
+	"apihelp-query+unreviewedimagelabels-param-limit": "Колку исходни ставки да се даваат.",
+	"apihelp-query+unreviewedimagecount-summary": "Го прикажува бројот на слики со предложени ознаки во исчекување севкупно и (ако сте најавени) за тековниот корисник.",
+	"apihelp-query+unreviewedimagecount-example": "Дај број на непроверени слики."
 }
