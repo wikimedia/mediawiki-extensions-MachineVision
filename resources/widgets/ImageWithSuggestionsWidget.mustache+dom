@@ -1,7 +1,9 @@
 <div class="wbmad-image-with-suggestions-container {{spinnerClass}}">
 	<div class="wbmad-image-with-suggestions-image">
 		<div class="wbmad-image-with-suggestions-image-wrapper">
-			<img src="{{thumburl}}" alt="{{imageTagTitle}}" title="{{imageTagTitle}}">
+			<a href="{{filePageUrl}}" target="_blank">
+				<img src="{{thumburl}}" alt="{{imageTagTitle}}" title="{{imageTagTitle}}">
+			</a>
 		</div>
 	</div>
 

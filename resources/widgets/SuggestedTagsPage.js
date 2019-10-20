@@ -131,6 +131,7 @@ SuggestedTagsPage.prototype.getItemsForQueryResponse = function ( response ) {
 		if ( item.imageinfo && item.imagelabels && item.imagelabels.length ) {
 			return new ImageData(
 				item.title,
+				item.imageinfo[ 0 ].descriptionurl,
 				item.imageinfo[ 0 ].thumburl,
 				item.imagelabels.map( function ( labelData ) {
 					return new SuggestionData( labelData.label, labelData.wikidata_id );
