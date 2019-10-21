@@ -23,9 +23,13 @@ ImageWithSuggestionsWidget = function ( config ) {
 	this.suggestionWidgets = this.getSuggestionWidgets();
 	this.confirmedCount = 0;
 	this.imageTitle = this.imageData.title.split( ':' ).pop();
+	this.filePageUrl = this.imageData.descriptionurl;
 
 	this.titleLabel = new OO.ui.LabelWidget( {
-		label: this.imageTitle,
+		label: $( '<a>' )
+			.attr( 'href', this.filePageUrl )
+			.attr( 'target', '_blank' )
+			.text( this.imageTitle ),
 		classes: [ 'wbmad-suggestion-group-title-label' ]
 	} );
 
@@ -76,6 +80,7 @@ ImageWithSuggestionsWidget.prototype.render = function () {
 		titleLabel: this.titleLabel,
 		suggestions: this.suggestionWidgets,
 		thumburl: this.imageData.thumburl,
+		filePageUrl: this.filePageUrl,
 		resetButton: this.resetButton,
 		publishButton: this.publishButton,
 		showSpinner: this.showSpinner,
