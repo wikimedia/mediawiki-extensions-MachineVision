@@ -14,7 +14,7 @@
 	"machinevision-skip-title": "\"$1\"의 제안을 건너뛰시겠습니까?",
 	"machinevision-suggestion-confirm-title": "\"$1\" 제안을 확인하시겠습니까?",
 	"machinevision-suggestion-confirm-undo-title": "\"$1\" 제안 확인을 취소하시겠습니까?",
-	"machinevision-loading-message": "불러오는 중...",
+	"machinevision-loading-message": "이미지를 불러오는 중...",
 	"machinevision-confirm-tags-dialog-confirm-action": "확인",
 	"machinevision-confirm-tags-dialog-cancel-action": "취소",
 	"machinevision-onboarding-dialog-close-label": "닫기"

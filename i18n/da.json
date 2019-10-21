@@ -7,5 +7,6 @@
 	"machinevision-machineaidedtagging-popular-tab": "Populær",
 	"machinevision-more": "Næste $1 {{PLURAL:$1|billede|billeder}}",
 	"machinevision-skip": "Spring over",
-	"machinevision-loading-message": "Indlæser..."
+	"machinevision-loading-message": "Indlæser billeder...",
+	"machinevision-onboarding-dialog-close-label": "Luk"
 }

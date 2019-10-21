@@ -10,5 +10,7 @@
 	"machinevision-skip": "Izlaist",
 	"machinevision-loading-message": "Ielādē…",
 	"machinevision-confirm-tags-dialog-confirm-action": "Labi",
-	"machinevision-confirm-tags-dialog-cancel-action": "Atcelt"
+	"machinevision-confirm-tags-dialog-cancel-action": "Atcelt",
+	"machinevision-onboarding-dialog-cta": "Sākt atzīmēšanu",
+	"machinevision-onboarding-dialog-close-label": "Aizvērt"
 }

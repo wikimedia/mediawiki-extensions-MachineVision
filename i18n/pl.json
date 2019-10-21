@@ -15,5 +15,11 @@
 	"machinevision-skip-title": "Pominąć sugestie dla „$1”?",
 	"machinevision-suggestion-confirm-title": "Zatwierdzić sugestię „$1”?",
 	"machinevision-suggestion-confirm-undo-title": "Cofnąć akceptację sugestii „$1”?",
-	"machinevision-loading-message": "Ładowanie…"
+	"machinevision-loading-message": "Ładowanie obrazów…",
+	"machinevision-onboarding-dialog-heading": "Otaguj obrazy aby ułatwić innym ich znajdowanie",
+	"machinevision-onboarding-dialog-cta": "Rozpocznij tagowanie",
+	"machinevision-onboarding-dialog-disclaimer": "Tylko zatwierdzone przez ciebie tagi zostaną dodane do obrazów.",
+	"machinevision-onboarding-dialog-close-label": "Zamknij",
+	"machinevision-cta-heading": "Otagowano wszystkie przesłane pliki!",
+	"machinevision-cta-cta": "Otaguj popularne obrazy"
 }
