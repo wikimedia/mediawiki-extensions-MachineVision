@@ -18,6 +18,9 @@ module.exports = {
 
 		// Stub for the jQuery msg plugin.
 		global.$.fn.msg = sinon.stub();
+
+		// Stub the history object
+		sandbox.stub( global.window.history, 'replaceState' );
 	},
 
 	afterEach: function () {

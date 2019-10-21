@@ -6,52 +6,58 @@ var IMAGES_PER_PAGE = 10,
 	ImageData = require( '../models/ImageData.js' ),
 	OnboardingDialog = require( './OnboardingDialog.js' ),
 	SuggestedTagsCardstack = require( './SuggestedTagsCardstack.js' ),
-	SuggestedTagsPage,
-	getImageDataForQueryResponse;
+	SuggestedTagsPage;
 
 /**
  * Top-level component that houses page UI components and runs API query.
  * @param {Object} config
+ * @param {string} [config.startTag] which tab to set as active when page loads
  */
 SuggestedTagsPage = function ( config ) {
-	var self = this,
-		userGroups = mw.config.get( 'wgUserGroups' ) || [];
+	var userGroups = mw.config.get( 'wgUserGroups' ) || [],
+		showTabs,
+		defaults = {
+			onboardingPrefKey: 'wbmad-onboarding-dialog-dismissed',
+			startTab: 'popular'
+		};
 
-	SuggestedTagsPage.parent.call( this, $.extend( {}, config ) );
+	this.config = $.extend( defaults, config );
+	SuggestedTagsPage.parent.call( this, this.config );
+
 	this.$element.addClass( 'wbmad-suggested-tags-page' );
-
-	this.onboardingPrefKey = 'wbmad-onboarding-dialog-dismissed';
 	this.userIsAuthenticated = !!mw.config.get( 'wgUserName' );
 	this.userIsAutoconfirmed = userGroups.indexOf( 'autoconfirmed' ) !== -1;
-	this.currentTab = null;
+
+	showTabs = this.userIsAuthenticated && this.userIsAutoconfirmed;
 
 	// Only load tabs if user has permission to see them.
-	if ( this.userIsAuthenticated && this.userIsAutoconfirmed ) {
+	if ( showTabs ) {
 		this.tabs = new OO.ui.IndexLayout( {
 			expanded: false,
 			framed: false
-		} )
-			.addTabPanels( [
-				new OO.ui.TabPanelLayout( 'popular', {
-					label: mw.message( 'machinevision-machineaidedtagging-popular-tab' ).text()
-				} ),
-				new OO.ui.TabPanelLayout( 'user', {
-					label: mw.message( 'machinevision-machineaidedtagging-user-tab' ).text()
-				} )
-			] );
+		} ).addTabPanels( [
+			new OO.ui.TabPanelLayout( 'popular', {
+				label: mw.message( 'machinevision-machineaidedtagging-popular-tab' ).text()
+			} ),
+			new OO.ui.TabPanelLayout( 'user', {
+				label: mw.message( 'machinevision-machineaidedtagging-user-tab' ).text()
+			} )
+		] );
 
 		// Run query initially on the active tab so we get results.
-		this.onTabSet( this.tabs.getCurrentTabPanelName() );
-
-		// Run query anytime a tab is selected.
-		this.tabs.connect( self, { set: 'onTabSet' } );
+		this.goToTab( this.config.startTab );
+		this.fetchItems();
 
 		this.connect( this, {
 			fetchItems: 'fetchItems',
 			showSuccessMessage: 'showSuccessMessage',
 			showPublishErrorMessage: 'showPublishErrorMessage',
-			goToPopularTab: 'goToPopularTab'
+			goToPopularTab: [ 'goToTab', 'popular' ]
 		} );
+
+		// Run query anytime a tab is selected.
+		this.tabs.connect( this, { set: 'onSetTab' } );
+		window.addEventListener( 'hashchange', this.onHashChange.bind( this ), false );
 	}
 
 	this.render();
@@ -75,38 +81,40 @@ SuggestedTagsPage.prototype.render = function () {
 	} );
 };
 
-// TODO: (T233232) Add "failed" state and show content in the template instead.
-SuggestedTagsPage.prototype.showFailureMessage = function () {
-	var failureMessage = new OO.ui.MessageWidget( {
-		label: $( '<p>' ).msg( 'machinevision-failure-message' ),
-		classes: [ 'wbmad-status-message' ]
-	} );
-	this.currentTab.$element.empty();
-	this.currentTab.$element.append( failureMessage.$element );
-};
-
-// TODO: (T233232) Add "loading" state and show content in the template instead.
-SuggestedTagsPage.prototype.showLoadingMessage = function () {
-	var spinner = '<div class="wbmad-spinner"><div class="wbmad-spinner-bounce"></div></div>';
-	this.currentTab.$element.append( spinner );
+/**
+ * @param {OO.ui.TabPanelLayout} tabPanel
+ */
+SuggestedTagsPage.prototype.onSetTab = function ( tabPanel ) {
+	window.history.replaceState( null, null, '#' + tabPanel.name );
+	this.fetchItems();
 };
 
 /**
- * Get a formatted object of image data.
- *
- * @param {Object} item An item from the query response
- * @return {Object}
+ * @param {string} tabName
  */
-getImageDataForQueryResponse = function ( item ) {
-	if ( item.imageinfo && item.imagelabels && item.imagelabels.length ) {
-		return new ImageData(
-			item.title,
-			item.imageinfo[ 0 ].thumburl,
-			item.imagelabels.map( function ( labelData ) {
-				return new SuggestionData( labelData.label, labelData.wikidata_id );
-			} )
-		);
+SuggestedTagsPage.prototype.goToTab = function ( tabName ) {
+	// Show onboarding dialog for user tab.
+	if ( tabName === 'user' ) {
+		this.showOnboardingDialog();
 	}
+
+	if ( tabName in this.tabs.tabPanels ) {
+		this.tabs.setTabPanel( tabName );
+		window.history.replaceState( null, null, '#' + tabName );
+	} else {
+		this.goToTab( 'popular' );
+	}
+};
+
+/**
+ * If the user manually changes the hash, attempt to navigate to a new tab of
+ * the same name.
+ * @param {HashChangeEvent} hashChange
+ */
+SuggestedTagsPage.prototype.onHashChange = function ( hashChange ) {
+	var newHash = new URL( hashChange.newURL ).hash,
+		name = newHash.substring( 1 );
+	this.goToTab( name );
 };
 
 /**
@@ -114,29 +122,46 @@ getImageDataForQueryResponse = function ( item ) {
  * @param {Object} response
  */
 SuggestedTagsPage.prototype.getItemsForQueryResponse = function ( response ) {
-	var self = this,
-		suggestedTagsCardstack,
-		imageDataArray = response.query && response.query.pages &&
-			Array.isArray( response.query.pages ) ? response.query.pages.map( function ( page ) {
-				return getImageDataForQueryResponse( page );
-			} ) : [],
-		resultsFound = !!imageDataArray.length;
+	var suggestedTagsCardstack,
+		imageDataArray = [],
+		resultsFound = false;
 
+	// Helper function to process query results
+	function getImageDataForQueryResponse( item ) {
+		if ( item.imageinfo && item.imagelabels && item.imagelabels.length ) {
+			return new ImageData(
+				item.title,
+				item.imageinfo[ 0 ].thumburl,
+				item.imagelabels.map( function ( labelData ) {
+					return new SuggestionData( labelData.label, labelData.wikidata_id );
+				} )
+			);
+		}
+	}
+
+	// Process query response, if we have one
+	if ( response.query && response.query.pages && Array.isArray( response.query.pages ) ) {
+		resultsFound = true;
+		imageDataArray = response.query.pages.map( function ( page ) {
+			return getImageDataForQueryResponse( page );
+		} );
+	}
+
+	// Set up a new SuggestedCardStack of the appropriate type
 	suggestedTagsCardstack = new SuggestedTagsCardstack( {
-		queryType: this.queryType,
+		queryType: this.tabs.getCurrentTabPanelName(),
 		resultsFound: resultsFound,
 		imageDataArray: imageDataArray
-	} )
-		.connect( self, {
-			fetchItems: 'fetchItems',
-			showSuccessMessage: 'showSuccessMessage',
-			showPublishErrorMessage: 'showPublishErrorMessage',
-			goToPopularTab: 'goToPopularTab'
-		} );
+	} ).connect( this, {
+		fetchItems: 'fetchItems',
+		showSuccessMessage: 'showSuccessMessage',
+		showPublishErrorMessage: 'showPublishErrorMessage',
+		goToPopularTab: [ 'goToTab', 'popular' ]
+	} );
 
 	// Clear out loading indicator and add new cardstack.
-	this.currentTab.$element.empty();
-	this.currentTab.$element.append( suggestedTagsCardstack.$element );
+	this.tabs.getCurrentTabPanel().$element.empty();
+	this.tabs.getCurrentTabPanel().$element.append( suggestedTagsCardstack.$element );
 };
 
 /**
@@ -144,6 +169,7 @@ SuggestedTagsPage.prototype.getItemsForQueryResponse = function ( response ) {
  */
 SuggestedTagsPage.prototype.fetchItems = function () {
 	var api = new mw.Api(),
+		queryType = this.tabs.getCurrentTabPanelName(),
 		query = {
 			action: 'query',
 			format: 'json',
@@ -157,66 +183,40 @@ SuggestedTagsPage.prototype.fetchItems = function () {
 			meta: 'unreviewedimagecount'
 		};
 
-	if ( this.queryType === 'user' ) {
+	// Bail early if query type has not changed
+	if ( this.queryType === queryType ) {
+		return;
+	}
+
+	if ( queryType === 'user' ) {
 		query.guiluploader = mw.user.getId();
 	}
 
-	this.currentTab.$element.empty();
+	this.tabs.getCurrentTabPanel().$element.empty();
 	this.showLoadingMessage();
+
+	// Stash query type to avoid redundant requests later
+	this.queryType = queryType;
 
 	api.get( query )
 		.done( this.getItemsForQueryResponse.bind( this ) )
 		.fail( this.showFailureMessage.bind( this ) );
 };
 
-/**
- * Show onboarding dialog if it hasn't been previously dismissed.
- */
-SuggestedTagsPage.prototype.showOnboardingDialog = function () {
-	var onboardingDialog,
-		windowManager;
+SuggestedTagsPage.prototype.showFailureMessage = function () {
+	var failureMessage = new OO.ui.MessageWidget( {
+		label: $( '<p>' ).msg( 'machinevision-failure-message' ),
+		classes: [ 'wbmad-status-message' ]
+	} );
 
-	// Type coercion is necessary due to limitations of browser localstorage.
-	if ( Number( mw.user.options.get( this.onboardingPrefKey ) ) === 1 ) {
-		return;
-	}
-
-	onboardingDialog = new OnboardingDialog( { onboardingPrefKey: this.onboardingPrefKey } );
-	windowManager = new OO.ui.WindowManager();
-
-	$( document.body ).append( windowManager.$element );
-	windowManager.addWindows( [ onboardingDialog ] );
-	windowManager.openWindow( onboardingDialog );
+	this.tabs.getCurrentTabPanel().$element.empty();
+	this.tabs.getCurrentTabPanel().$element.append( failureMessage.$element );
 };
 
-/**
- * When a tab is selected, run a new query and add a cardstack to show results.
- */
-SuggestedTagsPage.prototype.onTabSet = function () {
-	var newQueryType = this.tabs.getCurrentTabPanelName();
-
-	// Don't bother running a query if the user clicks on the active tab.
-	if ( this.queryType === newQueryType ) {
-		return;
-	}
-
-	// Store new query type and active tab.
-	this.queryType = newQueryType;
-	this.currentTab = this.tabs.getCurrentTabPanel();
-
-	// Show onboarding dialog for user tab.
-	if ( this.queryType === 'user' ) {
-		this.showOnboardingDialog();
-	}
-
-	this.fetchItems();
-};
-
-/**
- * Send user to the popular uploads tab.
- */
-SuggestedTagsPage.prototype.goToPopularTab = function () {
-	this.tabs.setTabPanel( 'popular' );
+// TODO: (T233232) Add "loading" state and show content in the template instead.
+SuggestedTagsPage.prototype.showLoadingMessage = function () {
+	var spinner = '<div class="wbmad-spinner"><div class="wbmad-spinner-bounce"></div></div>';
+	this.tabs.getCurrentTabPanel().$element.append( spinner );
 };
 
 /**
@@ -247,6 +247,26 @@ SuggestedTagsPage.prototype.showPublishErrorMessage = function () {
 	setTimeout( function () {
 		errorMessage.$element.remove();
 	}, 8000 );
+};
+
+/**
+ * Show onboarding dialog if it hasn't been previously dismissed.
+ */
+SuggestedTagsPage.prototype.showOnboardingDialog = function () {
+	var onboardingDialog,
+		windowManager;
+
+	// Type coercion is necessary due to limitations of browser localstorage.
+	if ( Number( mw.user.options.get( this.config.onboardingPrefKey ) ) === 1 ) {
+		return;
+	}
+
+	onboardingDialog = new OnboardingDialog( { onboardingPrefKey: this.config.onboardingPrefKey } );
+	windowManager = new OO.ui.WindowManager();
+
+	$( document.body ).append( windowManager.$element );
+	windowManager.addWindows( [ onboardingDialog ] );
+	windowManager.openWindow( onboardingDialog );
 };
 
 module.exports = SuggestedTagsPage;
