@@ -10,9 +10,9 @@
 		"grunt": "1.0.4",
 		"grunt-banana-checker": "0.7.0",
 		"grunt-eslint": "21.0.0",
-		"grunt-stylelint": "0.10.1",
+		"grunt-stylelint": "0.11.1",
 		"oojs": "2.2.2",
-		"oojs-ui": "0.33.0",
+		"oojs-ui": "0.35.1",
 		"stylelint": "9.10.1",
 		"stylelint-config-wikimedia": "0.6.0"
 	}
