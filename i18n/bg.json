@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"StanProg"
+		]
+	},
+	"machinevision-confirm-tags-dialog-confirm-action": "Добре",
+	"machinevision-confirm-tags-dialog-cancel-action": "Отказ"
+}

@@ -11,9 +11,11 @@
 	"machinevision-more-title": "{{PLURAL:$1|Dat nächst Bild|Déi nächst $1 Biller}}  weisen?",
 	"machinevision-reset": "Zrécksetzen",
 	"machinevision-skip": "Iwwersprangen",
-	"machinevision-loading-message": "Lueden...",
+	"machinevision-loading-message": "Biller gi gelueden...",
 	"machinevision-confirm-tags-dialog-confirm-action": "OK",
 	"machinevision-confirm-tags-dialog-cancel-action": "Ofbriechen",
+	"machinevision-confirm-tags-dialog-heading": "Dëst Bild weist:",
+	"machinevision-onboarding-dialog-heading": "Markéiert Biller fir se fir Anerer méi einfach ze fannen ze maachen",
 	"machinevision-onboarding-dialog-close-label": "Zoumaachen",
 	"machinevision-cta-cta": "Markéiert beléift Biller"
 }

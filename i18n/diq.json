@@ -8,6 +8,8 @@
 	"machinevision-publish": "Vıla ke",
 	"machinevision-reset": "Raçarne",
 	"machinevision-skip": "Ravêre",
-	"machinevision-loading-message": "Bar beno...",
+	"machinevision-loading-message": "Resımi bar benê...",
+	"machinevision-confirm-tags-dialog-confirm-action": "TEMAM",
+	"machinevision-confirm-tags-dialog-cancel-action": "Bıtexelne",
 	"machinevision-onboarding-dialog-close-label": "Kip ke"
 }

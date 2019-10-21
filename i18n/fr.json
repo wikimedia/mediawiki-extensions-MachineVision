@@ -5,7 +5,8 @@
 			"Wladek92",
 			"Thibaut120094",
 			"Crochet.david",
-			"Verdy p"
+			"Verdy p",
+			"Pols12"
 		]
 	},
 	"machinevision-desc": "S’interface avec des fournisseurs de service de vision machine interne et externe et stocke les résultats de l’utilisation dans le wiki.",
@@ -28,12 +29,14 @@
 	"machinevision-skip-title": "Sauter les suggestions pour « $1 » ?",
 	"machinevision-suggestion-confirm-title": "Confirmer la suggestion « $1 » ?",
 	"machinevision-suggestion-confirm-undo-title": "Annuler la confirmation de la suggestion « $1 » ?",
-	"machinevision-loading-message": "Chargement...",
+	"machinevision-loading-message": "Chargement des images…",
+	"machinevision-failure-message": "Désolé, une erreur s’est produite. Réessayez ultérieurement ou [[c:Commons_talk:Structured_data/Computer-aided_tagging|contactez-nous]].",
 	"machinevision-confirm-tags-dialog-title": "Confirmer les balises",
 	"machinevision-confirm-tags-dialog-confirm-action": "OK",
 	"machinevision-confirm-tags-dialog-cancel-action": "Annuler",
 	"machinevision-confirm-tags-dialog-heading": "Cette image dépeint :",
 	"machinevision-success-message": "Balises ajoutées à l’image.",
+	"machinevision-publish-error-message": "Une erreur s’est produite et les étiquettes n’ont pas été publiées. Merci de réessayer plus tard.",
 	"machinevision-onboarding-dialog-heading": "Marquer les images pour les rendre plus facile à trouver par d’autres",
 	"machinevision-onboarding-dialog-text": "En confirmant les balises suggérées, vous pouvez aider à rendre les images plus faciles à chercher. Les balises sont suggérées par l’ordinateur, mais doivent être validés par des humains pour garantir leur pertinence.",
 	"machinevision-onboarding-dialog-cta": "Commencer à marquer",
