@@ -5,6 +5,19 @@
 .wbmad-suggested-tags-page {
 	max-width: @wbmad-max-width;
 
+	// Necessary to center fixed toast messages within page element on desktop.
+	@media screen and ( min-width: @width-breakpoint-tablet ) {
+		.flex-display();
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+
+	.wbmad-suggested-tags-page-tabs-heading,
+	.wbmad-suggested-tags-page-tabs,
+	.wbmad-suggested-tags-page-license-info {
+		width: 100%;
+	}
+
 	.wbmad-suggested-tags-page-tabs-heading {
 		border: 0;
 		font-family: @font-family-sans;
@@ -45,6 +58,8 @@
 		}
 	}
 
+	// Toast messages are fixed and require different methods for centering
+	// within container on mobile and desktop.
 	.wbmad-toast {
 		@keyframes slideInOut {
 			0% {
@@ -64,9 +79,20 @@
 			}
 		}
 		bottom: 5vh;
+		left: 50%;
+		// Equal to the horizontal padding of the page.
+		padding: 16px;
 		position: fixed;
 		text-align: center;
-		width: @wbmad-max-width;
+		transform: translateX( -50% );
+		width: 100%;
+
+		@media screen and ( min-width: @width-breakpoint-tablet ) {
+			left: auto;
+			padding: 0;
+			transform: none;
+			width: auto;
+		}
 
 		&.oo-ui-messageWidget.oo-ui-messageWidget-block.oo-ui-flaggedElement-notice {
 			background: transparent;

@@ -34,7 +34,8 @@ SuggestedTagsPage = function ( config ) {
 	if ( showTabs ) {
 		this.tabs = new OO.ui.IndexLayout( {
 			expanded: false,
-			framed: false
+			framed: false,
+			classes: [ 'wbmad-suggested-tags-page-tabs' ]
 		} ).addTabPanels( [
 			new OO.ui.TabPanelLayout( 'popular', {
 				label: mw.message( 'machinevision-machineaidedtagging-popular-tab' ).text()
@@ -205,6 +206,9 @@ SuggestedTagsPage.prototype.fetchItems = function () {
 		.fail( this.showFailureMessage.bind( this ) );
 };
 
+/**
+ * When fetch fails, show a message explaining the situation.
+ */
 SuggestedTagsPage.prototype.showFailureMessage = function () {
 	var failureMessage = new OO.ui.MessageWidget( {
 		label: $( '<p>' ).msg( 'machinevision-failure-message' ),
@@ -215,7 +219,9 @@ SuggestedTagsPage.prototype.showFailureMessage = function () {
 	this.tabs.getCurrentTabPanel().$element.append( failureMessage.$element );
 };
 
-// TODO: (T233232) Add "loading" state and show content in the template instead.
+/**
+ * Show pulsating dots to indicate loading state.
+ */
 SuggestedTagsPage.prototype.showLoadingMessage = function () {
 	var spinner = '<div class="wbmad-spinner"><div class="wbmad-spinner-bounce"></div></div>';
 	this.tabs.getCurrentTabPanel().$element.append( spinner );
@@ -237,7 +243,7 @@ SuggestedTagsPage.prototype.showSuccessMessage = function () {
 };
 
 /**
- * After user publishes tags for an image, show a success message.
+ * When publish fails, show a message explaining the situation.
  */
 SuggestedTagsPage.prototype.showPublishErrorMessage = function () {
 	var errorMessage = new OO.ui.MessageWidget( {
