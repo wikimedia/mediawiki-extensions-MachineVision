@@ -30,7 +30,7 @@ import, run the following maintenance script:
 
 ```
 # in the mediawiki/extensions/MachineVision directory
-php maintenance/populateFreebaseMapping --mappingFile path_to_your_file.nt
+php maintenance/populateFreebaseMapping.php --mappingFile path_to_your_file.nt
 ```
 
 This process may take some time to complete.
@@ -59,8 +59,6 @@ Use the following settings in `LocalSettings.php` if using the Google Cloud
 Vision API:
 
 ```php
-require_once "$IP/extensions/MachineVision/vendor/autoload.php";
-
 $wgMachineVisionRequestLabelsOnUploadComplete = true;
 $wgMachineVisionRequestLabelsFromWikidataPublicApi = true;
 $wgMachineVisionHandlers['google'] = [

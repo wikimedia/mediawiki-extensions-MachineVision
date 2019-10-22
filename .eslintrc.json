@@ -9,7 +9,6 @@
 	},
 	"globals": {
 		"mw": false,
-		"OO": false,
-		"module": false
+		"OO": false
 	}
 }
