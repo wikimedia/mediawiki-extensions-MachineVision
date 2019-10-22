@@ -73,7 +73,7 @@ SuggestedTagsPage.prototype.render = function () {
 		userIsAuthenticated: this.userIsAuthenticated,
 		userIsAutoconfirmed: this.userIsAutoconfirmed,
 		loginMessage: $( '<p>' ).msg( 'machinevision-login-message' ),
-		autoconfirmedMessage: $( '<p>' ).msg( 'machinevision-autoconfirm-message' ),
+		autoconfirmedMessage: $( '<p>' ).msg( 'machinevision-autoconfirmed-message' ),
 		pageDescription: $( '<p>' ).msg( 'machinevision-machineaidedtagging-intro' ),
 		tabsHeading: mw.message( 'machinevision-machineaidedtagging-tabs-heading' ).text(),
 		tabs: this.tabs || null,
