@@ -33,6 +33,6 @@
 	"apihelp-query+unreviewedimagelabels-summary": "Afficher les titres avec les libellés d’image suggérés nécessitant une relecture.",
 	"apihelp-query+unreviewedimagelabels-param-uploader": "Ne renvoyer que les résultats téléchargés par cet utilisateur.",
 	"apihelp-query+unreviewedimagelabels-param-limit": "Nombre d’éléments de résultat à renvoyer.",
-	"apihelp-query+unreviewedimagecount-summary": "Afficher le nombre d’images avec des suggestions de libellé attendant une revue, globalement et (s’il est connecté) pour l’utilisateur actuel.",
+	"apihelp-query+unreviewedimagecount-summary": "Afficher le nombre d’images avec des suggestions de légende attendant une revue, globalement et pour l’utilisateur actuel s’il est connecté.",
 	"apihelp-query+unreviewedimagecount-example": "Obtenir le nombre d’images non revues."
 }
