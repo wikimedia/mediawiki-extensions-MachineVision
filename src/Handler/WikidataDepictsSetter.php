@@ -5,6 +5,9 @@ namespace MediaWiki\Extension\MachineVision\Handler;
 use LocalFile;
 use MediaWiki\Extension\MachineVision\MachineVisionEntitySaveException;
 use MediaWiki\Revision\RevisionStore;
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerAwareTrait;
+use Psr\Log\NullLogger;
 use User;
 use Wikibase\DataModel\Entity\EntityDocument;
 use Wikibase\DataModel\Entity\EntityIdValue;
@@ -12,6 +15,7 @@ use Wikibase\DataModel\Entity\ItemId;
 use Wikibase\DataModel\Entity\PropertyId;
 use Wikibase\DataModel\Services\Lookup\EntityLookup;
 use Wikibase\DataModel\Snak\PropertyValueSnak;
+use Wikibase\DataModel\Snak\SnakList;
 use Wikibase\DataModel\Statement\Statement;
 use Wikibase\MediaInfo\DataModel\MediaInfo;
 use Wikibase\MediaInfo\Services\MediaInfoByLinkedTitleLookup;
@@ -28,7 +32,9 @@ use Wikibase\SummaryFormatter;
  * such thing in due time.
  * TODO: Test me
  */
-class WikidataDepictsSetter {
+class WikidataDepictsSetter implements LoggerAwareInterface {
+
+	use LoggerAwareTrait;
 
 	/** @var RevisionStore */
 	private $revisionStore;
@@ -88,6 +94,8 @@ class WikidataDepictsSetter {
 		$this->summaryFormatter = $summaryFormatter;
 		$this->depictsIdSerialization = $depictsIdSerialization;
 		$this->tags = $tags;
+
+		$this->logger = new NullLogger();
 	}
 
 	/**
@@ -113,17 +121,36 @@ class WikidataDepictsSetter {
 		$flags = $mediaInfo ? EDIT_UPDATE : EDIT_NEW;
 
 		$mediaInfo = $mediaInfo ?: new MediaInfo( $mediaInfoId );
+		$mainSnak = $this->getDepictsSnak( $label );
 
-		$changeOp = $this->getChangeOp( $label );
-		$this->validateChangeOp( $changeOp, $mediaInfo );
-		$changeOp->apply( $mediaInfo, $rawSummary );
-
-		$editEntity = $this->editEntityFactory
-			->newEditEntity( $user, $mediaInfoId, $revision->getId() );
-		$status = $editEntity->attemptSave( $mediaInfo, $summary, $flags, $token, null, $this->tags );
-		if ( !$status->isOK() ) {
-			throw new MachineVisionEntitySaveException( $status->getMessage() );
+		if ( !$this->depictExists( $mainSnak, $mediaInfo ) ) {
+			$changeOp = $this->getChangeOp( $mainSnak );
+			$this->validateChangeOp( $changeOp, $mediaInfo );
+			$changeOp->apply( $mediaInfo, $rawSummary );
+			$editEntity = $this->editEntityFactory
+				->newEditEntity( $user, $mediaInfoId, $revision->getId() );
+			$status = $editEntity->attemptSave( $mediaInfo, $summary, $flags, $token, null, $this->tags );
+			if ( !$status->isOK() ) {
+				throw new MachineVisionEntitySaveException( $status->getMessage() );
+			}
+		} else {
+			$this->logger->info(
+				'Depict ' . $label . ' already set to file'
+			);
 		}
+	}
+
+	/**
+	 * Check if label/depict exists for given MediaInfo using mainSnak
+	 *
+	 * @param PropertyValueSnak $mainSnak
+	 * @param MediaInfo $mediaInfo
+	 * @return bool
+	 * @suppress PhanUndeclaredClassMethod,PhanUndeclaredTypeParameter
+	 */
+	private function depictExists( PropertyValueSnak $mainSnak, MediaInfo $mediaInfo ): bool {
+		$snakList = new SnakList( $mediaInfo->getStatements()->getAllSnaks() );
+		return $snakList->hasSnak( $mainSnak );
 	}
 
 	/**
@@ -144,12 +171,11 @@ class WikidataDepictsSetter {
 
 	/**
 	 * Get the statement change operation object.
-	 * @param string $label Wikidata item ID associated with the label
+	 * @param PropertyValueSnak $mainSnak Depict Snak associated with the Wikidata Item ID
 	 * @return ChangeOp
 	 * @suppress PhanUndeclaredClassMethod,PhanUndeclaredTypeReturnType
 	 */
-	private function getChangeOp( $label ) {
-		$mainSnak = $this->getDepictsSnak( $label );
+	private function getChangeOp( $mainSnak ) {
 		// TODO: Qualifiers go here in the Statement constructor, if we need or want them
 		$statement = new Statement( $mainSnak );
 		return $this->statementChangeOpFactory->newSetStatementOp( $statement );
