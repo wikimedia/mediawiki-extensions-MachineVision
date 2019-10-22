@@ -17,7 +17,7 @@ TemplateRenderingDOMLessGroupWidget.prototype.renderTemplate = function ( templa
 		.empty()
 		.append(
 			mw.template
-				.get( mw.config.get( 'moduleID' ), templatePath )
+				.get( 'ext.MachineVision', templatePath )
 				.render( data )
 		);
 };

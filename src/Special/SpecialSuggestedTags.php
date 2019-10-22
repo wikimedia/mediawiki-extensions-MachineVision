@@ -21,9 +21,9 @@ class SpecialSuggestedTags extends SpecialPage {
 		// Set CSP headers
 		ContentSecurityPolicy::sendHeaders( $this->getContext() );
 
-		$moduleID = 'ext.MachineVision';
-		$this->getOutput()->addJsConfigVars( [ 'moduleID' => $moduleID ] );
-		$this->getOutput()->addModules( [ $moduleID ] );
+		// TODO: Display a fallback message for Grade C via client-nojs.
+
+		$this->getOutput()->addModules( 'ext.MachineVision' );
 	}
 
 	/** @inheritDoc */
