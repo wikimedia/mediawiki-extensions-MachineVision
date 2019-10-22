@@ -86,6 +86,16 @@ SuggestedTagsPage.prototype.render = function () {
  * @param {OO.ui.TabPanelLayout} tabPanel
  */
 SuggestedTagsPage.prototype.onSetTab = function ( tabPanel ) {
+	// Bail early if tab has not changed.
+	if ( this.queryType === tabPanel.name ) {
+		return;
+	}
+
+	// Show onboarding dialog for user tab.
+	if ( tabPanel.name === 'user' ) {
+		this.showOnboardingDialog();
+	}
+
 	window.history.replaceState( null, null, '#' + tabPanel.name );
 	this.fetchItems();
 };
@@ -94,11 +104,6 @@ SuggestedTagsPage.prototype.onSetTab = function ( tabPanel ) {
  * @param {string} tabName
  */
 SuggestedTagsPage.prototype.goToTab = function ( tabName ) {
-	// Show onboarding dialog for user tab.
-	if ( tabName === 'user' ) {
-		this.showOnboardingDialog();
-	}
-
 	if ( tabName in this.tabs.tabPanels ) {
 		this.tabs.setTabPanel( tabName );
 		window.history.replaceState( null, null, '#' + tabName );
@@ -184,11 +189,6 @@ SuggestedTagsPage.prototype.fetchItems = function () {
 			ilstate: 'unreviewed',
 			meta: 'unreviewedimagecount'
 		};
-
-	// Bail early if query type has not changed
-	if ( this.queryType === queryType ) {
-		return;
-	}
 
 	if ( queryType === 'user' ) {
 		query.guiluploader = mw.user.getId();
