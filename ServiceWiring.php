@@ -65,6 +65,7 @@ return [
 
 		$cluster = $extensionConfig->get( 'MachineVisionCluster' );
 		$database = $extensionConfig->get( 'MachineVisionDatabase' );
+		$wikidataIdBlacklist = $extensionConfig->get( 'MachineVisionWikidataIdBlacklist' );
 
 		$loadBalancer = $cluster
 			? $loadBalancerFactory->getExternalLB( $cluster )
@@ -73,7 +74,8 @@ return [
 		return new Repository(
 			$services->getService( 'MachineVisionNameTableStore' ),
 			$loadBalancer->getLazyConnectionRef( DB_REPLICA, [], $database ),
-			$loadBalancer->getLazyConnectionRef( DB_MASTER, [], $database )
+			$loadBalancer->getLazyConnectionRef( DB_MASTER, [], $database ),
+			$wikidataIdBlacklist
 		);
 	},
 
