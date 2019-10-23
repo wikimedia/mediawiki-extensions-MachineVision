@@ -26,10 +26,7 @@ ImageWithSuggestionsWidget = function ( config ) {
 	this.filePageUrl = this.imageData.descriptionurl;
 
 	this.titleLabel = new OO.ui.LabelWidget( {
-		label: $( '<a>' )
-			.attr( 'href', this.filePageUrl )
-			.attr( 'target', '_blank' )
-			.text( this.imageTitle ),
+		label: this.imageTitle,
 		classes: [ 'wbmad-suggestion-group-title-label' ]
 	} );
 
