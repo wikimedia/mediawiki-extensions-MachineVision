@@ -2,11 +2,12 @@
 	"@metadata": {
 		"authors": [
 			"Марио",
-			"Katunchik"
+			"Katunchik",
+			"Movses"
 		]
 	},
 	"machinevision-machineaidedtagging": "Предлагаемые теги",
-	"machinevision-machineaidedtagging-intro": "Просмотрите предложенные теги [[c:Commons:Depicts|изображенные объектов]] в изображениях. К изображениям добавляются только подтвержденные пользователем теги. Для получения дополнительной информации, проверьте [[c:Commons:Structured_data/Computer-aided_tagging|страницу проекта]] и [[give feedback]] о том, как сделать этот инструмент более полезным!",
+	"machinevision-machineaidedtagging-intro": "Просмотрите предложенные теги [[c:Commons:Depicts|объектов]] изображений. К изображениям добавляются только подтверждённые пользователем теги. Для получения дополнительной информации, проверьте [[c:Commons:Structured_data/Computer-aided_tagging|страницу проекта]] и [[c:Commons_talk:Structured_data/Computer-aided_tagging|оставьте отзыв]] о том, как сделать этот инструмент более полезным!",
 	"machinevision-machineaidedtagging-tabs-heading": "Изображения для просмотра",
 	"machinevision-machineaidedtagging-popular-tab": "Популярные",
 	"machinevision-machineaidedtagging-user-tab": "Личные загрузки",
@@ -19,5 +20,5 @@
 	"machinevision-skip-title": "Пропустить предложения для \"$1\"?",
 	"machinevision-suggestion-confirm-title": "Подтвердить предложение $1?",
 	"machinevision-suggestion-confirm-undo-title": "Отменить подтверждение предложения $1?",
-	"machinevision-loading-message": "Загрузка…"
+	"machinevision-loading-message": "Загрузка изображений…"
 }
