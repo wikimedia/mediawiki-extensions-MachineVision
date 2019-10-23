@@ -41,6 +41,11 @@ abstract class WikidataIdHandler implements Handler {
 	}
 
 	/**
+	 * @inheritDoc
+	 */
+	abstract public function getMaxRequestsPerMinute(): int;
+
+	/**
 	 * @return Repository
 	 */
 	protected function getRepository() {

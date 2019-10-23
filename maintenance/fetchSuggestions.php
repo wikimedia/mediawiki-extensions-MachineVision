@@ -8,6 +8,7 @@ use MediaWiki\Extension\MachineVision\Handler\Registry;
 use MediaWiki\Extension\MachineVision\Services;
 use MediaWiki\MediaWikiServices;
 use RepoGroup;
+use Stiphle\Throttle\LeakyBucket;
 use Title;
 
 $basePath = getenv( 'MW_INSTALL_PATH' ) !== false
@@ -26,6 +27,13 @@ class FetchSuggestions extends Maintenance {
 	/** @var Registry */
 	private $handlerRegistry;
 
+	/**
+	 * Simple request throttle.
+	 * @var LeakyBucket
+	 */
+	// @phan-suppress-next-line PhanUndeclaredTypeProperty
+	private $throttle;
+
 	public function __construct() {
 		parent::__construct();
 		$this->requireExtension( 'MachineVision' );
@@ -40,12 +48,14 @@ class FetchSuggestions extends Maintenance {
 	/**
 	 * Initialization code that should be in the constructor but can't due to the
 	 * idiosyncratic loading order in Maintenance.
+	 * @suppress PhanUndeclaredClassMethod
 	 */
 	public function init() {
 		$services = MediaWikiServices::getInstance();
 		$extensionServices = new Services( $services );
 		$this->repoGroup = $services->getRepoGroup();
 		$this->handlerRegistry = $extensionServices->getHandlerRegistry();
+		$this->throttle = new LeakyBucket();
 	}
 
 	/** @inheritDoc */
@@ -100,8 +110,19 @@ class FetchSuggestions extends Maintenance {
 		}
 	}
 
+	/**
+	 * @param LocalFile $file
+	 * @suppress PhanUndeclaredClassMethod
+	 */
 	private function fetchForFile( LocalFile $file ) {
 		foreach ( $this->handlerRegistry->getHandlers( $file ) as $provider => $handler ) {
+			if ( $handler->getMaxRequestsPerMinute() ) {
+				$this->throttle->throttle(
+					"$provider.label.request",
+					$handler->getMaxRequestsPerMinute(),
+					60000
+				);
+			}
 			$handler->handleUploadComplete( $provider, $file );
 		}
 	}
