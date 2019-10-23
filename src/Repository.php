@@ -333,4 +333,50 @@ class Repository implements LoggerAwareInterface {
 		);
 	}
 
+	/**
+	 * Delete Machine Vision related data from deleted File
+	 *
+	 * @param string $sha1 image SHA1 digest
+	 * @return void
+	 */
+	public function deleteDataOfDeletedFile( $sha1 ) {
+		$this->dbw->startAtomic( __METHOD__ );
+		$mvlIds = $this->dbw->selectFieldValues(
+			'machine_vision_label',
+			'mvl_id',
+			[
+				'mvl_image_sha1' => $sha1,
+			],
+			__METHOD__,
+			[
+				'FOR UPDATE',
+			]
+		);
+		if ( !$mvlIds ) {
+			$this->dbw->endAtomic( __METHOD__ );
+		} else {
+			$this->dbw->delete(
+				'machine_vision_suggestion',
+				[
+					'mvs_mvl_id' => $mvlIds,
+				],
+				__METHOD__
+			);
+			$this->dbw->delete(
+				'machine_vision_label',
+				[
+					'mvl_image_sha1' => $sha1,
+				],
+				__METHOD__
+			);
+			$this->dbw->delete(
+				'machine_vision_safe_search',
+				[
+					'mvss_image_sha1' => $sha1,
+				],
+				__METHOD__
+			);
+			$this->dbw->endAtomic( __METHOD__ );
+		}
+	}
 }

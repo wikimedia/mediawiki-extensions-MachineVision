@@ -9,6 +9,7 @@ use LocalFile;
 use MediaWiki\MediaWikiServices;
 use UploadBase;
 use User;
+use File;
 use Wikimedia\Rdbms\IMaintainableDatabase;
 
 class Hooks {
@@ -32,7 +33,7 @@ class Hooks {
 			return;
 		}
 		$file = $uploadBase->getLocalFile();
-		if ( $file->getMediaType() !== MEDIATYPE_BITMAP ) {
+		if ( !Util::isMediaTypeAllowed( $file->getMediaType() ) ) {
 			return;
 		}
 		$userId = $file->getUser( 'id' );
@@ -142,6 +143,26 @@ class Hooks {
 		$preferences['wbmad-onboarding-dialog-dismissed'] = [
 			'type' => 'api'
 		];
+	}
+
+	/**
+	 * @param File $file
+	 * @param string $oldimage
+	 * @param Article $article
+	 * @param User $user
+	 * @param string $reason
+	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/FileDeleteComplete
+	 * @suppress PhanUndeclaredTypeParameter
+	 */
+	public static function onFileDeleteComplete( File $file, $oldimage, $article, User $user,
+		$reason ) {
+		if ( !$oldimage ) {
+			$extensionServices = new Services( MediaWikiServices::getInstance() );
+			DeferredUpdates::addCallableUpdate( function () use ( $file, $extensionServices ) {
+				$repository = $extensionServices->getRepository();
+				$repository->deleteDataOfDeletedFile( $file->getSha1() );
+			} );
+		}
 	}
 
 	private static function isMachineVisionTester( User $user ): bool {
