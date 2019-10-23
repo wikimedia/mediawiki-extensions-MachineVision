@@ -2,6 +2,9 @@
 	{{{cta}}}
 {{/showCta}}
 {{^showCta}}
+	{{#countString}}
+		{{{countString}}}
+	{{/countString}}
 	<div id="wbmad-suggested-tags-cards-{{queryType}}">
 		{{#items}}
 			{{{.}}}

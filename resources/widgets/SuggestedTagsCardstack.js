@@ -2,6 +2,7 @@
 
 var TemplateRenderingDOMLessGroupWidget = require( '../base/TemplateRenderingDOMLessGroupWidget.js' ),
 	ImageWithSuggestionsWidget = require( './ImageWithSuggestionsWidget.js' ),
+	PersonalUploadsCount = require( './PersonalUploadsCount.js' ),
 	UserMessage = require( './UserMessage.js' ),
 	SuggestedTagsCardstack;
 
@@ -14,6 +15,7 @@ var TemplateRenderingDOMLessGroupWidget = require( '../base/TemplateRenderingDOM
  * @cfg {string} queryType
  * @cfg {bool} resultsFound
  * @cfg {Array} imageDataArray
+ * @cfg {number} userImageCount
  */
 SuggestedTagsCardstack = function ( config ) {
 	this.config = config || {};
@@ -29,8 +31,11 @@ SuggestedTagsCardstack = function ( config ) {
 	this.queryType = this.config.queryType;
 	this.resultsFound = this.config.resultsFound;
 	this.imageDataArray = this.config.imageDataArray;
-	this.items = this.getItems();
+	this.countString = ( this.queryType === 'user' ) ?
+		new PersonalUploadsCount( { userImageCount: this.config.userImageCount } ) :
+		null;
 
+	this.items = this.getItems();
 	this.render();
 };
 
@@ -40,7 +45,8 @@ OO.inheritClass(
 );
 
 SuggestedTagsCardstack.prototype.render = function () {
-	var showCta = !this.resultsFound && this.queryType === 'user',
+	var countString = this.countString,
+		showCta = !this.resultsFound && this.queryType === 'user',
 		config = {
 			heading: mw.message( 'machinevision-cta-heading' ).text(),
 			text: mw.message( 'machinevision-cta-text' ).text(),
@@ -50,6 +56,7 @@ SuggestedTagsCardstack.prototype.render = function () {
 
 	this.renderTemplate( 'resources/widgets/SuggestedTagsCardstack.mustache+dom', {
 		queryType: this.queryType,
+		countString: countString,
 		items: this.items,
 		showCta: showCta,
 		cta: new UserMessage( config ).connect( this, { popularTabCtaClick: 'onPopularTabCtaClick' } )
@@ -105,6 +112,11 @@ SuggestedTagsCardstack.prototype.onItemRemoved = function () {
  */
 SuggestedTagsCardstack.prototype.onTagsPublished = function () {
 	this.emit( 'showSuccessMessage' );
+
+	if ( this.countString ) {
+		this.countString.userImageCount--;
+		this.countString.render();
+	}
 };
 
 /**
