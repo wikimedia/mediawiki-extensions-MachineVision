@@ -7,6 +7,8 @@ use MediaWiki\Extension\MachineVision\Client;
 use MediaWiki\Extension\MachineVision\Repository;
 use MediaWiki\Extension\MachineVision\LabelSuggestion;
 
+// Legacy handler class for early-stage development and testing.
+// TODO: REMOVE
 class RandomWikidataIdHandler extends WikidataIdHandler {
 
 	/** @var Client */
@@ -32,6 +34,13 @@ class RandomWikidataIdHandler extends WikidataIdHandler {
 		parent::__construct( $repository, $depictsSetter, $labelResolver );
 		$this->client = $client;
 		$this->apiUrlTemplate = $apiUrlTemplate;
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function getMaxRequestsPerMinute(): int {
+		return 0;
 	}
 
 	/**

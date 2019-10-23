@@ -33,6 +33,13 @@ class GoogleCloudVisionHandler extends WikidataIdHandler {
 	private $safeSearchLimits;
 
 	/**
+	 * Maximum requests per minute to send to the Google Cloud Vision API when running the label
+	 * fetcher script.
+	 * @var int
+	 */
+	private $maxRequestsPerMinute;
+
+	/**
 	 * @param ImageAnnotatorClient $client
 	 * @param Repository $repository
 	 * @param RepoGroup $repoGroup
@@ -40,6 +47,7 @@ class GoogleCloudVisionHandler extends WikidataIdHandler {
 	 * @param LabelResolver $labelResolver
 	 * @param bool $sendFileContents
 	 * @param array $safeSearchLimits
+	 * @param int $maxRequestsPerMinute
 	 * @suppress PhanUndeclaredTypeParameter
 	 */
 	public function __construct(
@@ -49,13 +57,22 @@ class GoogleCloudVisionHandler extends WikidataIdHandler {
 		WikidataDepictsSetter $depictsSetter,
 		LabelResolver $labelResolver,
 		$sendFileContents,
-		$safeSearchLimits
+		$safeSearchLimits,
+		$maxRequestsPerMinute = 0
 	) {
 		parent::__construct( $repository, $depictsSetter, $labelResolver );
 		$this->client = $client;
 		$this->repoGroup = $repoGroup;
 		$this->sendFileContents = $sendFileContents;
 		$this->safeSearchLimits = $safeSearchLimits;
+		$this->maxRequestsPerMinute = $maxRequestsPerMinute;
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function getMaxRequestsPerMinute(): int {
+		return $this->maxRequestsPerMinute;
 	}
 
 	/**

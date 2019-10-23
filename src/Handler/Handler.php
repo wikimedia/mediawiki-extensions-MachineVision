@@ -15,6 +15,12 @@ use User;
 interface Handler extends LoggerAwareInterface {
 
 	/**
+	 * Get the maximum requests per minute that this handler should make when running a script.
+	 * @return int
+	 */
+	public function getMaxRequestsPerMinute(): int;
+
+	/**
 	 * Process a file that has been successfully uploaded.
 	 * @param string $provider provider name
 	 * @param LocalFile $file
