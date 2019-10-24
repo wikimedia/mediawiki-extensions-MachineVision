@@ -2,10 +2,11 @@
 	"@metadata": {
 		"authors": [
 			"Wikimedia Product Infrastructure Team",
+			"Wikimedia Structured Data Team",
 			"Monte Hurd"
 		]
 	},
-	"machinevision-desc": "Interfaces with internal and external machine vision service providers and stores results for usage on-wiki.",
+	"machinevision-desc": "Interfaces with internal and external machine vision service providers and stores and serves results.",
 	"machinevision-machineaidedtagging": "Suggested tags",
 	"machinevision-machineaidedtagging-intro": "Review suggested tags of [[c:Commons:Depicts|depicted objects]] in images. Only user-confirmed tags are added to images. For more information, check out the [[c:Commons:Structured_data/Computer-aided_tagging|project page]] and [[c:Commons_talk:Structured_data/Computer-aided_tagging|give feedback]] on how to make this tool more helpful!",
 	"machinevision-machineaidedtagging-tabs-heading": "Images for review",

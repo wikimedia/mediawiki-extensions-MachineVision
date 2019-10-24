@@ -2,7 +2,7 @@
 	"name": "MachineVision",
 	"version": "0.1.0",
 	"author": [
-		"Wikimedia Product Infrastructure Team"
+		"Wikimedia Product Infrastructure and Structured Data Teams"
 	],
 	"url": "https://www.mediawiki.org/wiki/Extension:MachineVision",
 	"descriptionmsg": "machinevision-desc",
