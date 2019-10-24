@@ -8,6 +8,7 @@ use IContextSource;
 use LocalFile;
 use MediaWiki\MediaWikiServices;
 use UploadBase;
+use User;
 use Wikimedia\Rdbms\IMaintainableDatabase;
 
 class Hooks {
@@ -25,12 +26,17 @@ class Hooks {
 	 */
 	public static function onUploadComplete( UploadBase $uploadBase ) {
 		$extensionServices = new Services( MediaWikiServices::getInstance() );
-		if ( !$extensionServices->getExtensionConfig()
-			->get( 'MachineVisionRequestLabelsOnUploadComplete' ) ) {
+		$extensionConfig = $extensionServices->getExtensionConfig();
+		if ( !$extensionConfig->get( 'MachineVisionRequestLabelsOnUploadComplete' ) ) {
 			return;
 		}
 		$file = $uploadBase->getLocalFile();
 		if ( $file->getMediaType() !== MEDIATYPE_BITMAP ) {
+			return;
+		}
+		$userId = $file->getUser( 'id' );
+		if ( $extensionConfig->get( 'MachineVisionTestersOnly' ) &&
+			!self::isMachineVisionTester( $userId ) ) {
 			return;
 		}
 		DeferredUpdates::addCallableUpdate( function () use ( $file, $extensionServices ) {
@@ -131,6 +137,12 @@ class Hooks {
 		$preferences['wbmad-onboarding-dialog-dismissed'] = [
 			'type' => 'api'
 		];
+	}
+
+	private static function isMachineVisionTester( int $userId ): bool {
+		$permissionsManager = MediaWikiServices::getInstance()->getPermissionManager();
+		$perms = $permissionsManager->getUserPermissions( User::newFromId( $userId ) );
+		return in_array( 'imagelabel-test', $perms );
 	}
 
 }
