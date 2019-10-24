@@ -2,6 +2,8 @@
 
 namespace MediaWiki\Extension\MachineVision\Special;
 
+use MediaWiki\Extension\MachineVision\Services;
+use MediaWiki\MediaWikiServices;
 use SpecialPage;
 use ContentSecurityPolicy;
 
@@ -9,11 +11,13 @@ class SpecialSuggestedTags extends SpecialPage {
 
 	/** @inheritDoc */
 	public function __construct( $name = 'SuggestedTags' ) {
-		parent::__construct( $name );
+		parent::__construct( $name, $this->testersOnly() ? 'imagelabel-test' : '' );
 	}
 
 	/** @inheritDoc */
 	public function execute( $par ) {
+		$this->checkPermissions();
+
 		$request = $this->getRequest();
 		$output = $this->getOutput();
 		$this->setHeaders();
@@ -29,5 +33,10 @@ class SpecialSuggestedTags extends SpecialPage {
 	/** @inheritDoc */
 	public function getDescription() {
 		return $this->msg( 'machinevision-machineaidedtagging' )->text();
+	}
+
+	private function testersOnly() {
+		$extensionServices = new Services( MediaWikiServices::getInstance() );
+		return $extensionServices->getExtensionConfig()->get( 'MachineVisionTestersOnly' );
 	}
 }
