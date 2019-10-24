@@ -24,6 +24,7 @@
 	"machinevision-reset-title": "Title for button to reset all suggestions for an image",
 	"machinevision-skip": "Text for button to skip picking suggestions for an image\n{{Identical|Skip}}",
 	"machinevision-skip-title": "Title for button to skip picking suggestions for an image. Parameters:\n* $1 - File name of image to close",
+	"machinevision-personal-uploads-count": "Text informing the user of how many personal uploads they have for tagging. Parameters:\n* $1 - Number of user uploads",
 	"machinevision-suggestion-confirm-title": "Title for button to confirm individual suggestion for an image. Parameters:\n* $1 - Text of suggestion to confirm",
 	"machinevision-suggestion-confirm-undo-title": "Title for button to undo individual suggestion confirmation for an image. Parameters:\n* $1 - Text of suggestion confirmation to undo",
 	"machinevision-loading-message": "Message shown to the user when image cards are loading",

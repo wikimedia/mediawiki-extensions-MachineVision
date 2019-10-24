@@ -130,7 +130,10 @@ SuggestedTagsPage.prototype.onHashChange = function ( hashChange ) {
 SuggestedTagsPage.prototype.getItemsForQueryResponse = function ( response ) {
 	var suggestedTagsCardstack,
 		imageDataArray = [],
-		resultsFound = false;
+		resultsFound = false,
+		userImageCount = ( response.query && response.query.unreviewedimagecount ) ?
+			response.query.unreviewedimagecount.user :
+			0;
 
 	// Helper function to process query results
 	function getImageDataForQueryResponse( item ) {
@@ -158,7 +161,8 @@ SuggestedTagsPage.prototype.getItemsForQueryResponse = function ( response ) {
 	suggestedTagsCardstack = new SuggestedTagsCardstack( {
 		queryType: this.tabs.getCurrentTabPanelName(),
 		resultsFound: resultsFound,
-		imageDataArray: imageDataArray
+		imageDataArray: imageDataArray,
+		userImageCount: userImageCount
 	} ).connect( this, {
 		fetchItems: 'fetchItems',
 		showSuccessMessage: 'showSuccessMessage',

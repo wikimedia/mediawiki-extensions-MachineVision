@@ -23,6 +23,7 @@
 	"machinevision-reset-title": "Reset tags?",
 	"machinevision-skip": "Skip",
 	"machinevision-skip-title": "Skip suggestions for \"$1\"?",
+	"machinevision-personal-uploads-count": "You have $1 personal {{PLURAL:$1|upload|uploads}} for review.",
 	"machinevision-suggestion-confirm-title": "Confirm \"$1\" suggestion?",
 	"machinevision-suggestion-confirm-undo-title": "Undo \"$1\" suggestion confirmation?",
 	"machinevision-loading-message": "Loading images...",
