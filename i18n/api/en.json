@@ -27,6 +27,7 @@
 	"apihelp-query+imagelabels-paramvalue-state-unreviewed": "Labels which have not been reviewed yet.",
 	"apihelp-query+imagelabels-paramvalue-state-accepted": "Labels which were identified as correct.",
 	"apihelp-query+imagelabels-paramvalue-state-rejected": "Labels which were not identified as correct.",
+	"apihelp-query+imagelabels-paramvalue-state-withheld": "Labels for an image which was withheld from presentation in Computer-Aided Tagging.",
 	"apihelp-query+imagelabels-example-1": "Show machine-suggested image labels for <kbd>Example.png</kbd>.",
 	"apihelp-query+unreviewedimagelabels-summary": "Show titles with suggested image labels needing review.",
 	"apihelp-query+unreviewedimagelabels-param-uploader": "Only return results uploaded by this user.",
