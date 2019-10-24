@@ -17,5 +17,6 @@
 	"machinevision-loading-message": "이미지를 불러오는 중...",
 	"machinevision-confirm-tags-dialog-confirm-action": "확인",
 	"machinevision-confirm-tags-dialog-cancel-action": "취소",
+	"machinevision-onboarding-dialog-cta": "태그 시작",
 	"machinevision-onboarding-dialog-close-label": "닫기"
 }
