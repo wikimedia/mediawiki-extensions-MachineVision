@@ -36,7 +36,7 @@ class Hooks {
 		}
 		$userId = $file->getUser( 'id' );
 		if ( $extensionConfig->get( 'MachineVisionTestersOnly' ) &&
-			!self::isMachineVisionTester( $userId ) ) {
+			!self::isMachineVisionTester( User::newFromId( $userId ) ) ) {
 			return;
 		}
 		DeferredUpdates::addCallableUpdate( function () use ( $file, $extensionServices ) {
@@ -55,6 +55,10 @@ class Hooks {
 	public static function onInfoAction( IContextSource $context, array &$pageInfo ) {
 		$services = MediaWikiServices::getInstance();
 		$extensionServices = new Services( MediaWikiServices::getInstance() );
+		if ( $extensionServices->getExtensionConfig()->get( 'MachineVisionTestersOnly' ) &&
+			!self::isMachineVisionTester( $context->getUser() ) ) {
+			return;
+		}
 
 		$title = $context->getTitle();
 		if ( $title->inNamespace( NS_FILE ) ) {
@@ -133,15 +137,15 @@ class Hooks {
 	 * @param \User $user The user object
 	 * @param array &$preferences Their preferences object
 	 */
-	public static function onGetPreferences( \User $user, array &$preferences ) {
+	public static function onGetPreferences( User $user, array &$preferences ) {
 		$preferences['wbmad-onboarding-dialog-dismissed'] = [
 			'type' => 'api'
 		];
 	}
 
-	private static function isMachineVisionTester( int $userId ): bool {
+	private static function isMachineVisionTester( User $user ): bool {
 		$permissionsManager = MediaWikiServices::getInstance()->getPermissionManager();
-		$perms = $permissionsManager->getUserPermissions( User::newFromId( $userId ) );
+		$perms = $permissionsManager->getUserPermissions( $user );
 		return in_array( 'imagelabel-test', $perms );
 	}
 
