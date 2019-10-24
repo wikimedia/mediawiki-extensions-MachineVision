@@ -6,6 +6,7 @@ use LocalFile;
 use MediaWiki\Extension\MachineVision\Client;
 use MediaWiki\Extension\MachineVision\Repository;
 use MediaWiki\Extension\MachineVision\LabelSuggestion;
+use Throwable;
 
 // Legacy handler class for early-stage development and testing.
 // TODO: REMOVE
@@ -36,11 +37,14 @@ class RandomWikidataIdHandler extends WikidataIdHandler {
 		$this->apiUrlTemplate = $apiUrlTemplate;
 	}
 
-	/**
-	 * @inheritDoc
-	 */
+	/** @inheritDoc */
 	public function getMaxRequestsPerMinute(): int {
 		return 0;
+	}
+
+	/** @inheritDoc */
+	public function isTooManyRequestsError( Throwable $t ): bool {
+		return false;
 	}
 
 	/**

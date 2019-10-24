@@ -9,6 +9,7 @@ use MediaWiki\Extension\MachineVision\Services;
 use MediaWiki\MediaWikiServices;
 use RepoGroup;
 use Stiphle\Throttle\LeakyBucket;
+use Throwable;
 use Title;
 
 $basePath = getenv( 'MW_INSTALL_PATH' ) !== false
@@ -34,6 +35,12 @@ class FetchSuggestions extends Maintenance {
 	// @phan-suppress-next-line PhanUndeclaredTypeProperty
 	private $throttle;
 
+	/** @var int */
+	private $backoffSeconds;
+
+	/** @var int */
+	private $numRetries;
+
 	public function __construct() {
 		parent::__construct();
 		$this->requireExtension( 'MachineVision' );
@@ -53,9 +60,12 @@ class FetchSuggestions extends Maintenance {
 	public function init() {
 		$services = MediaWikiServices::getInstance();
 		$extensionServices = new Services( $services );
+		$extensionConfig = $extensionServices->getExtensionConfig();
 		$this->repoGroup = $services->getRepoGroup();
 		$this->handlerRegistry = $extensionServices->getHandlerRegistry();
 		$this->throttle = new LeakyBucket();
+		$this->backoffSeconds = $extensionConfig->get( 'MachineVisionLabelRequestBackoffSeconds' );
+		$this->numRetries = $extensionConfig->get( 'MachineVisionLabelRequestNumRetries' );
 	}
 
 	/** @inheritDoc */
@@ -123,7 +133,27 @@ class FetchSuggestions extends Maintenance {
 					60000
 				);
 			}
-			$handler->handleUploadComplete( $provider, $file );
+			try {
+				$handler->handleUploadComplete( $provider, $file );
+			} catch ( Throwable $t ) {
+				$retries = $this->numRetries;
+				while ( $retries ) {
+					if ( $handler->isTooManyRequestsError( $t ) ) {
+						sleep( $this->backoffSeconds );
+						try {
+							$handler->handleUploadComplete( $provider, $file );
+							return;
+						} catch ( Throwable $t ) {
+							if ( $handler->isTooManyRequestsError( $t ) ) {
+								$retries--;
+								continue;
+							}
+							throw $t;
+						}
+					}
+				}
+				throw $t;
+			}
 		}
 	}
 

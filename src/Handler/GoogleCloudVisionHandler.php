@@ -8,6 +8,7 @@ use LocalFile;
 use MediaWiki\Extension\MachineVision\Repository;
 use MediaWiki\Extension\MachineVision\LabelSuggestion;
 use RepoGroup;
+use Throwable;
 
 class GoogleCloudVisionHandler extends WikidataIdHandler {
 
@@ -68,11 +69,17 @@ class GoogleCloudVisionHandler extends WikidataIdHandler {
 		$this->maxRequestsPerMinute = $maxRequestsPerMinute;
 	}
 
-	/**
-	 * @inheritDoc
-	 */
+	/** @inheritDoc */
 	public function getMaxRequestsPerMinute(): int {
 		return $this->maxRequestsPerMinute;
+	}
+
+	/**
+	 * See https://cloud.google.com/apis/design/errors for the API error format.
+	 * @inheritDoc
+	 */
+	public function isTooManyRequestsError( Throwable $t ): bool {
+		return $t->getCode() === 429;
 	}
 
 	/**

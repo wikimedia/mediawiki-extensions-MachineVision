@@ -8,6 +8,7 @@ use LocalFile;
 use MediaWiki\Extension\MachineVision\Repository;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\NullLogger;
+use Throwable;
 use User;
 
 abstract class WikidataIdHandler implements Handler {
@@ -40,14 +41,13 @@ abstract class WikidataIdHandler implements Handler {
 		$this->setLogger( new NullLogger() );
 	}
 
-	/**
-	 * @inheritDoc
-	 */
+	/** @inheritDoc */
 	abstract public function getMaxRequestsPerMinute(): int;
 
-	/**
-	 * @return Repository
-	 */
+	/** @inheritDoc */
+	abstract public function isTooManyRequestsError( Throwable $t ): bool;
+
+	/** @return Repository */
 	protected function getRepository() {
 		return $this->repository;
 	}

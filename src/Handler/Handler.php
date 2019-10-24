@@ -5,6 +5,7 @@ namespace MediaWiki\Extension\MachineVision\Handler;
 use IContextSource;
 use LocalFile;
 use Psr\Log\LoggerAwareInterface;
+use Throwable;
 use User;
 
 /**
@@ -19,6 +20,13 @@ interface Handler extends LoggerAwareInterface {
 	 * @return int
 	 */
 	public function getMaxRequestsPerMinute(): int;
+
+	/**
+	 * Return true if the error is a 429 according to the provider's error output format.
+	 * @param Throwable $t
+	 * @return bool
+	 */
+	public function isTooManyRequestsError( Throwable $t ): bool;
 
 	/**
 	 * Process a file that has been successfully uploaded.

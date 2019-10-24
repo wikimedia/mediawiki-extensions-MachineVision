@@ -130,11 +130,19 @@
 		},
 		"MachineVisionWikidataIdBlacklist": {
 			"value": [],
-			"description": "Omit suggested tags corresponding blacklisted wikidata Q ids."
+			"description": "Omit suggested tags corresponding with these Wikidata item (Q) ids."
 		},
 		"MachineVisionTestersOnly": {
 			"value": false,
 			"description": "If true, Special:SuggestedTags will be shown only to users with the 'imagelabel-test' user right."
+		},
+		"MachineVisionLabelRequestBackoffSeconds": {
+			"value": 0,
+			"description": "Number of seconds to wait upon receiving a 429 error before retrying a label suggestion request. Currently used only in the fetchSuggestions maintenance script."
+		},
+		"MachineVisionLabelRequestNumRetries": {
+			"value": 0,
+			"description": "Number of times to retry a label suggestion request upon catching a handled throwable. Currently used only in the fetchSuggestions maintenance script."
 		}
 	},
 	"ResourceFileModulePaths": {
