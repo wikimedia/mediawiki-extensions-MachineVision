@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Extension\MachineVision;
 
+use Article;
 use Content;
 use DatabaseUpdater;
 use DeferredUpdates;
@@ -32,13 +33,13 @@ class Hooks {
 	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/UploadComplete
 	 */
 	public static function onUploadComplete( UploadBase $uploadBase ) {
+		$file = $uploadBase->getLocalFile();
+		if ( !Util::isMediaTypeAllowed( $file->getMediaType() ) ) {
+			return;
+		}
 		$extensionServices = new Services( MediaWikiServices::getInstance() );
 		$extensionConfig = $extensionServices->getExtensionConfig();
 		if ( !$extensionConfig->get( 'MachineVisionRequestLabelsOnUploadComplete' ) ) {
-			return;
-		}
-		$file = $uploadBase->getLocalFile();
-		if ( !Util::isMediaTypeAllowed( $file->getMediaType() ) ) {
 			return;
 		}
 		$userId = $file->getUser( 'id' );
@@ -46,12 +47,12 @@ class Hooks {
 			!self::isMachineVisionTester( User::newFromId( $userId ) ) ) {
 			return;
 		}
-		DeferredUpdates::addCallableUpdate( function () use ( $file, $extensionServices ) {
-			$registry = $extensionServices->getHandlerRegistry();
-			foreach ( $registry->getHandlers( $file ) as $provider => $handler ) {
+		$registry = $extensionServices->getHandlerRegistry();
+		foreach ( $registry->getHandlers( $file ) as $provider => $handler ) {
+			DeferredUpdates::addCallableUpdate( function () use ( $file, $handler, $provider ) {
 				$handler->handleUploadComplete( $provider, $file );
-			}
-		} );
+			} );
+		}
 	}
 
 	/**
@@ -85,10 +86,14 @@ class Hooks {
 		$baseRevId,
 		$undidRevId = 0
 	) {
-		$services = MediaWikiServices::getInstance();
 		if ( strpos( $summary, 'wbsetclaim-create' ) === false ) {
 			return;
 		}
+		$title = $wikiPage->getTitle();
+		if ( $title->getNamespace() !== NS_FILE ) {
+			return;
+		}
+		$services = MediaWikiServices::getInstance();
 		try {
 			$depicts = Util::getMediaInfoPropertyId( MediaWikiServices::getInstance(), 'depicts' );
 		} catch ( DomainException $e ) {
@@ -97,10 +102,6 @@ class Hooks {
 			return;
 		}
 		if ( strpos( $summary, $depicts ) === false ) {
-			return;
-		}
-		$title = $wikiPage->getTitle();
-		if ( $title->getNamespace() !== NS_FILE ) {
 			return;
 		}
 		DeferredUpdates::addCallableUpdate( function () use ( $services, $title ) {
@@ -122,23 +123,24 @@ class Hooks {
 	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/InfoAction
 	 */
 	public static function onInfoAction( IContextSource $context, array &$pageInfo ) {
+		$title = $context->getTitle();
+		if ( !$title->inNamespace( NS_FILE ) ) {
+			return;
+		}
 		$services = MediaWikiServices::getInstance();
 		$extensionServices = new Services( MediaWikiServices::getInstance() );
+
 		if ( $extensionServices->getExtensionConfig()->get( 'MachineVisionTestersOnly' ) &&
 			!self::isMachineVisionTester( $context->getUser() ) ) {
 			return;
 		}
-
-		$title = $context->getTitle();
-		if ( $title->inNamespace( NS_FILE ) ) {
-			/** @var LocalFile $file */
-			$file = $services->getRepoGroup()->getLocalRepo()->findFile( $title );
-			'@phan-var LocalFile $file';
-			if ( $file ) {
-				$registry = $extensionServices->getHandlerRegistry();
-				foreach ( $registry->getHandlers( $file ) as $handler ) {
-					$handler->handleInfoAction( $context, $file, $pageInfo );
-				}
+		/** @var LocalFile $file */
+		$file = $services->getRepoGroup()->getLocalRepo()->findFile( $title );
+		'@phan-var LocalFile $file';
+		if ( $file ) {
+			$registry = $extensionServices->getHandlerRegistry();
+			foreach ( $registry->getHandlers( $file ) as $handler ) {
+				$handler->handleInfoAction( $context, $file, $pageInfo );
 			}
 		}
 	}
@@ -150,20 +152,6 @@ class Hooks {
 	public static function onLoadExtensionSchemaUpdates( DatabaseUpdater $updater ) {
 		$sqlDir = __DIR__ . '/../sql';
 		$updater->addExtensionTable( 'machine_vision_provider', "$sqlDir/machine_vision.sql" );
-		$updater->addExtensionTable( 'machine_vision_freebase_mapping',
-			"$sqlDir/patches/01-add-freebase_mapping.sql" );
-		$updater->addExtensionField( 'machine_vision_label', 'mvl_uploader_id',
-			"$sqlDir/patches/02-add-mvl_uploader_id.sql" );
-		$updater->addExtensionField( 'machine_vision_suggestion', 'mvs_confidence',
-			"$sqlDir/patches/03-add-mvs_confidence.sql" );
-		$updater->addExtensionField( 'machine_vision_label', 'mvl_suggested_time',
-			"$sqlDir/patches/04-add-mvl_suggested_time.sql" );
-		$updater->addExtensionField( 'machine_vision_label', 'mvl_reviewer_id',
-			"$sqlDir/patches/05-add-mvl_reviewer_id.sql" );
-		$updater->addExtensionField( 'machine_vision_label', 'mvl_reviewed_time',
-			"$sqlDir/patches/06-add-mvl_reviewed_time.sql" );
-		$updater->addExtensionTable( 'machine_vision_safe_search',
-			"$sqlDir/patches/07-add-machine_vision_safe_search.sql" );
 	}
 
 	/**
@@ -219,7 +207,6 @@ class Hooks {
 	 * @param User $user
 	 * @param string $reason
 	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/FileDeleteComplete
-	 * @suppress PhanUndeclaredTypeParameter
 	 */
 	public static function onFileDeleteComplete( File $file, $oldimage, $article, User $user,
 		$reason ) {

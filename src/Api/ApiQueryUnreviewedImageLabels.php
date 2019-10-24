@@ -57,6 +57,9 @@ class ApiQueryUnreviewedImageLabels extends ApiQueryGeneratorBase {
 				'title' => $title->getPrefixedDBkey(),
 				'ns' => NS_FILE,
 			];
+			// FIXME: this uses FOR UPDATE but locks do not (and should not) last accross
+			// different requests by a client. Also, this API does not need to be POSTed,
+			// so using the master DB is not appropriate.
 		}, $this->repository->getTitlesWithUnreviewedLabels( $params['limit'],
 			$params['uploader'] ) );
 		$this->getResult()->addValue( 'query', 'unreviewedimagelabels', $result );
@@ -68,6 +71,9 @@ class ApiQueryUnreviewedImageLabels extends ApiQueryGeneratorBase {
 	 */
 	public function executeGenerator( $resultPageSet ) {
 		$params = $this->extractRequestParams();
+		// FIXME: this uses FOR UPDATE but locks do not (and should not) last accross
+		// different requests by a client. Also, this API does not need to be POSTed,
+		// so using the master DB is not appropriate.
 		$resultPageSet->populateFromTitles( array_map( function ( $title ) {
 			return Title::newFromText( $title, NS_FILE );
 		}, $this->repository->getTitlesWithUnreviewedLabels( $params['limit'],

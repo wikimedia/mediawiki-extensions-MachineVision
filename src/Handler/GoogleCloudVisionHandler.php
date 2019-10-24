@@ -118,6 +118,10 @@ class GoogleCloudVisionHandler extends WikidataIdHandler {
 	 * @param LocalFile $file
 	 */
 	public function handleUploadComplete( $provider, LocalFile $file ) {
+		// FIXME: move this to a Job (via JobQueueGroup) to allow for retries and to avoid
+		// tying up apache threads if the external service is slow. Jobs can afford higher
+		// timeout tolerance as well. This seems a bit heavy-weight for a DeferrableUpdate.
+
 		$annotationRequest = $this->getAnnotationRequest( $file );
 		$status = $annotationRequest->execute();
 
@@ -182,6 +186,13 @@ class GoogleCloudVisionHandler extends WikidataIdHandler {
 
 	/** @suppress PhanUndeclaredClassMethod */
 	private function getAnnotationRequest( LocalFile $file ): MWHttpRequest {
+		// Avoid getFileContents() since files can be large (and there can be more than one
+		// handler, possible doing something like this one). Using resource handles would
+		// require some FileBackend changes and would still hit similar code in
+		// https://github.com/googleapis/google-cloud-php/blob/83ae284c025f6e93b9ce835b987932c425b5a9de/Vision/src/VisionHelpersTrait.php#L111
+		// so this should only stick to URLs unless there is some unusual reason not to.
+		// It also protects agains mistakes with private wiki config since the usual CDN
+		// layers and auth code would be hit by Google accessing the public file URL.
 		$requestBody = [
 			'requests' => [
 				'image' => $this->sendFileContents ?

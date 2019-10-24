@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Extension\MachineVision\Handler;
 
+use IDBAccessObject;
 use LocalFile;
 use MediaWiki\Extension\MachineVision\MachineVisionEntitySaveException;
 use MediaWiki\Revision\RevisionStore;
@@ -108,7 +109,9 @@ class WikidataDepictsSetter implements LoggerAwareInterface {
 	 */
 	public function addDepicts( User $user, LocalFile $file, $label, $token ) {
 		$title = $file->getTitle();
-		$revision = $this->revisionStore->getRevisionByTitle( $title );
+
+		$revision = $this->revisionStore->getRevisionByTitle( $title, null,
+			IDBAccessObject::READ_EXCLUSIVE );
 
 		$mediaInfoId = $this->mediaInfoByLinkedTitleLookup
 			->getEntityIdForLinkedTitle( 'commonswiki', $title->getPrefixedText() );

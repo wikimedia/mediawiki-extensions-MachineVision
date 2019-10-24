@@ -98,8 +98,11 @@ class ApiReviewImageLabels extends ApiBase {
 			$label = $vote['label'];
 			$review = $vote['review'];
 
-			$oldState = $this->repository->getLabelState( $sha1, $label,
-				IDBAccessObject::READ_LOCKING );
+			$oldState = $this->repository->getLabelState(
+				$sha1,
+				$label,
+				IDBAccessObject::READ_EXCLUSIVE
+			);
 			$newState = self::$reviewActions[$review];
 			$this->validateLabelState( $filename, $label, $review, $oldState, $newState );
 

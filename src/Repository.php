@@ -285,7 +285,7 @@ class Repository implements LoggerAwareInterface {
 		return (int)$this->dbr->selectField(
 			[ 'derived' => $this->dbr->buildSelectSubquery(
 				'machine_vision_label',
-				'*',
+				'mvl_image_sha1',
 				[
 					'mvl_review' => self::REVIEW_UNREVIEWED,
 					'mvl_uploader_id' => $userId,
