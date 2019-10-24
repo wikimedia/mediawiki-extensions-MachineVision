@@ -43,5 +43,7 @@
 	"machinevision-cta-text": "Thanks for helping make images more findable for everyone – how about tagging some more?",
 	"machinevision-cta-cta": "Tag popular images",
 	"right-imagelabel-review": "Review image label suggestions",
-	"action-imagelabel-review": "review image label suggestions"
+	"action-imagelabel-review": "review image label suggestions",
+	"right-imagelabel-test": "Test image label suggestions",
+	"action-imagelabel-test": "test image label suggestions"
 }

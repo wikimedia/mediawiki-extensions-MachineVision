@@ -44,5 +44,7 @@
 	"machinevision-cta-text": "Text for the user message after all personal uploads have been tagged",
 	"machinevision-cta-cta": "Call to action text for the button linking to the popular uploads tab",
 	"right-imagelabel-review": "{{doc-right|imagelabel-review}}",
-	"action-imagelabel-review": "{{doc-action|imagelabel-review}}"
+	"action-imagelabel-review": "{{doc-action|imagelabel-review}}",
+	"right-imagelabel-test": "{{doc-right|imagelabel-test}}",
+	"action-imagelabel-test": "{{doc-action|imagelabel-test}}"
 }

@@ -21,9 +21,13 @@
 		"MediaWiki\\Extension\\MachineVision\\MockHelper": "tests/helper/MockHelper.php"
 	},
 	"AvailableRights": [
-		"imagelabel-review"
+		"imagelabel-review",
+		"imagelabel-test"
 	],
 	"GroupPermissions": {
+		"machinevision-tester": {
+			"imagelabel-test": true
+		},
 		"user": {
 			"imagelabel-review": true
 		}
@@ -127,6 +131,10 @@
 		"MachineVisionWikidataIdBlacklist": {
 			"value": [],
 			"description": "Omit suggested tags corresponding blacklisted wikidata Q ids."
+		},
+		"MachineVisionTestersOnly": {
+			"value": false,
+			"description": "If true, Special:SuggestedTags will be shown only to users with the 'imagelabel-test' user right."
 		}
 	},
 	"ResourceFileModulePaths": {
