@@ -17,6 +17,7 @@ class Hooks {
 		'machine_vision_provider',
 		'machine_vision_label',
 		'machine_vision_suggestion',
+		'machine_vision_safe_search',
 	];
 
 	/**
