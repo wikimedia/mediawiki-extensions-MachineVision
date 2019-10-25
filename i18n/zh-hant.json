@@ -5,7 +5,7 @@
 			"Kly"
 		]
 	},
-	"machinevision-desc": "與內部與外部機器視覺服務供應方的介面，且在 wiki 上儲存使用結果。",
+	"machinevision-desc": "與內部與外部機器視覺服務供應方的介面，且儲存並提供結果。",
 	"machinevision-machineaidedtagging": "建議的標籤",
 	"machinevision-machineaidedtagging-intro": "檢閱在圖片裡[[c:Commons:Depicts|描述對象]]的建議標籤，僅能添加使用者確認過的標籤到圖片上。有關更多資訊方面，請查看[[c:Commons:Structured_data/Computer-aided_tagging|專案頁面]]，並[[c:Commons_talk:Structured_data/Computer-aided_tagging|給予意見回饋]]來讓此工具更有用！",
 	"machinevision-machineaidedtagging-tabs-heading": "檢閱的圖片",
@@ -23,6 +23,7 @@
 	"machinevision-reset-title": "重新設定標籤？",
 	"machinevision-skip": "忽略",
 	"machinevision-skip-title": "忽略對於「$1」的建議？",
+	"machinevision-personal-uploads-count": "您有 $1 個要檢閱的個人{{PLURAL:$1|上傳}}。",
 	"machinevision-suggestion-confirm-title": "確認「$1」建議？",
 	"machinevision-suggestion-confirm-undo-title": "取消「$1」建議確認？",
 	"machinevision-loading-message": "載入圖片中…",
@@ -42,5 +43,7 @@
 	"machinevision-cta-text": "感謝協助讓圖片能更容易被每個人給找尋到 - 要不要再多標記一些呢？",
 	"machinevision-cta-cta": "標記熱門圖片",
 	"right-imagelabel-review": "檢閱圖片標籤建議",
-	"action-imagelabel-review": "檢閱圖片標籤建議"
+	"action-imagelabel-review": "檢閱圖片標籤建議",
+	"right-imagelabel-test": "測試圖片標籤建議",
+	"action-imagelabel-test": "測試圖片標籤建議"
 }

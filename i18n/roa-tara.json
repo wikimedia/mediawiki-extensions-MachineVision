@@ -22,6 +22,7 @@
 	"machinevision-reset-title": "Azzere le tag?",
 	"machinevision-skip": "Zumbe",
 	"machinevision-skip-title": "Zumbe le suggereminde pe \"$1\"?",
+	"machinevision-personal-uploads-count": "Tìne $1 {{PLURAL:$1|carecamende|carecaminde}} personale da condrollà.",
 	"machinevision-suggestion-confirm-title": "Conferme 'u suggerimende \"$1\"?",
 	"machinevision-suggestion-confirm-undo-title": "Annulle 'a conferme d'u suggerimende \"$1\"?",
 	"machinevision-loading-message": "Stoche a careche le immaggine…",
@@ -41,5 +42,7 @@
 	"machinevision-cta-text": "Grazie pe averne date 'na màne cu le immaggine ca so cchiù acchiabbele pe cengate - accumme se face a taggà de cchiù?",
 	"machinevision-cta-cta": "Tag de le immaggine popolare",
 	"right-imagelabel-review": "Condrolle le suggereminde de l'etichette de l'immaggine",
-	"action-imagelabel-review": "condrolle le suggereminde de l'etichette de l'immaggine"
+	"action-imagelabel-review": "condrolle le suggereminde de l'etichette de l'immaggine",
+	"right-imagelabel-test": "Teste le suggereminde de l'etichette de l'immaggine",
+	"action-imagelabel-test": "teste le suggereminde de l'etichette de l'immaggine"
 }
