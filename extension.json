@@ -44,7 +44,8 @@
 		"UnitTestsAfterDatabaseSetup": "MediaWiki\\Extension\\MachineVision\\Hooks::onUnitTestsAfterDatabaseSetup",
 		"UnitTestsBeforeDatabaseTeardown": "MediaWiki\\Extension\\MachineVision\\Hooks::onUnitTestsBeforeDatabaseTeardown",
 		"GetPreferences": "MediaWiki\\Extension\\MachineVision\\Hooks::onGetPreferences",
-		"FileDeleteComplete": "MediaWiki\\Extension\\MachineVision\\Hooks::onFileDeleteComplete"
+		"FileDeleteComplete": "MediaWiki\\Extension\\MachineVision\\Hooks::onFileDeleteComplete",
+		"PageContentSaveComplete": "MediaWiki\\Extension\\MachineVision\\Hooks::onPageContentSaveComplete"
 	},
 	"APIModules": {
 		"reviewimagelabels": {

@@ -2,15 +2,20 @@
 
 namespace MediaWiki\Extension\MachineVision;
 
+use Content;
 use DatabaseUpdater;
 use DeferredUpdates;
+use DomainException;
+use File;
 use IContextSource;
 use LocalFile;
 use MediaWiki\MediaWikiServices;
+use Revision;
+use Status;
 use UploadBase;
 use User;
-use File;
 use Wikimedia\Rdbms\IMaintainableDatabase;
+use WikiPage;
 
 class Hooks {
 
@@ -45,6 +50,68 @@ class Hooks {
 			$registry = $extensionServices->getHandlerRegistry();
 			foreach ( $registry->getHandlers( $file ) as $provider => $handler ) {
 				$handler->handleUploadComplete( $provider, $file );
+			}
+		} );
+	}
+
+	/**
+	 * Handler for PageContentSaveComplete hook
+	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/PageContentSaveComplete
+	 *
+	 * @param WikiPage &$wikiPage modified WikiPage
+	 * @param User &$user User who edited
+	 * @param Content $content New article text
+	 * @param string $summary Edit summary
+	 * @param bool $minoredit Minor edit or not
+	 * @param bool $watchthis Watch this article?
+	 * @param string $sectionanchor Section that was edited
+	 * @param int &$flags Edit flags
+	 * @param Revision $revision Revision that was created
+	 * @param Status &$status
+	 * @param int $baseRevId
+	 * @param int $undidRevId
+	 */
+	public static function onPageContentSaveComplete(
+		&$wikiPage,
+		&$user,
+		$content,
+		$summary,
+		$minoredit,
+		$watchthis,
+		$sectionanchor,
+		&$flags,
+		$revision,
+		Status &$status,
+		$baseRevId,
+		$undidRevId = 0
+	) {
+		$services = MediaWikiServices::getInstance();
+		if ( strpos( $summary, 'wbsetclaim-create' ) === false ) {
+			return;
+		}
+		try {
+			$depicts = Util::getMediaInfoPropertyId( MediaWikiServices::getInstance(), 'depicts' );
+		} catch ( DomainException $e ) {
+			// If 'depicts' isn't set in MediaInfo config (for example, if we're running in CI),
+			// just bail out.
+			return;
+		}
+		if ( strpos( $summary, $depicts ) === false ) {
+			return;
+		}
+		$title = $wikiPage->getTitle();
+		if ( $title->getNamespace() !== NS_FILE ) {
+			return;
+		}
+		DeferredUpdates::addCallableUpdate( function () use ( $services, $title ) {
+			$extensionServices = new Services( $services );
+			if ( !$extensionServices->getTitleFilter()->isGoodTitle( $title ) ) {
+				$file = $services->getRepoGroup()->getLocalRepo()->findFile( $title );
+				if ( !$file ) {
+					return;
+				}
+				$repo = $extensionServices->getRepository();
+				$repo->withholdUnreviewedLabelsForFile( $file->getSha1() );
 			}
 		} );
 	}

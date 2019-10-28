@@ -27,7 +27,7 @@ class Util {
 		}
 		$mediaInfoProperties = $wbmiConfig->get( 'MediaInfoProperties' );
 		if ( !isset( $mediaInfoProperties[$prop] ) ) {
-			throw new DomainException( "MediaInfo property $prop is not defined" );
+			throw new DomainException( "MediaInfo property '$prop' is not defined" );
 		}
 		return $mediaInfoProperties[$prop];
 	}

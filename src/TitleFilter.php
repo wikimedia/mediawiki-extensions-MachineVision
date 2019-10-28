@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Extension\MachineVision;
 
+use InvalidArgumentException;
 use LocalRepo;
 use MediaWiki\Storage\RevisionStore;
 use Title;
@@ -60,6 +61,24 @@ class TitleFilter {
 	}
 
 	/**
+	 * Filter missing and redirect titles, and apply the exclusion rules specified in the CAT
+	 * product doc, to wit:
+	 * - No missing or redirect titles
+	 * - No protected titles
+	 * - No files that depict famous works of art, as determined by category membership or template
+	 *    usage
+	 * - No files with width under the configured minimum image width
+	 * - No files with more than the configured maximum number of existing depicts (P180) statements
+	 * @param string[] $filePageTitles
+	 * @return string[]
+	 */
+	public function filterGoodTitles( array $filePageTitles ) {
+		return array_filter( $filePageTitles, function ( $title ) {
+			return $this->isGoodTitle( $title );
+		} );
+	}
+
+	/**
 	 * Return true if $titleText refers to a good image per the exclusion rules specified in the CAT
 	 * product doc, to wit:
 	 * - No missing or redirect titles
@@ -68,11 +87,20 @@ class TitleFilter {
 	 *    usage
 	 * - No files with width under the configured minimum image width
 	 * - No files with more than the configured maximum number of existing depicts (P180) statements
-	 * @param string $titleText
+	 * @param string|Title $title
 	 * @return bool
 	 */
-	public function isGoodTitle( $titleText ) {
-		$title = Title::newFromText( $titleText, NS_FILE );
+	public function isGoodTitle( $title ) {
+		if ( gettype( $title ) === 'string' ) {
+			$title = Title::newFromText( $title, NS_FILE );
+		}
+		if ( !( $title instanceof Title ) ) {
+			throw new InvalidArgumentException( '$title param must be a string or Title' );
+		}
+		return $this->filter( $title );
+	}
+
+	private function filter( Title $title ): bool {
 		if ( !$title->exists() ) {
 			return false;
 		}
@@ -116,24 +144,6 @@ class TitleFilter {
 			}
 		}
 		return true;
-	}
-
-	/**
-	 * Filter missing and redirect titles, and apply the exclusion rules specified in the CAT
-	 * product doc, to wit:
-	 * - No missing or redirect titles
-	 * - No protected titles
-	 * - No files that depict famous works of art, as determined by category membership or template
-	 *    usage
-	 * - No files with width under the configured minimum image width
-	 * - No files with more than the configured maximum number of existing depicts (P180) statements
-	 * @param string[] $filePageTitles
-	 * @return string[]
-	 */
-	public function filterGoodTitles( array $filePageTitles ) {
-		return array_filter( $filePageTitles, function ( $title ) {
-			return $this->isGoodTitle( $title );
-		} );
 	}
 
 }

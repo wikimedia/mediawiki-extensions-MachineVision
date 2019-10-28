@@ -207,6 +207,22 @@ class Repository implements LoggerAwareInterface {
 	}
 
 	/**
+	 * Set all unreviewed label suggestions for an image to REVIEW_WITHHELD.
+	 * @param string $sha1 image SHA1 digest
+	 */
+	public function withholdUnreviewedLabelsForFile( $sha1 ) {
+		$this->dbw->update(
+			'machine_vision_label',
+			[ 'mvl_review' => self::REVIEW_WITHHELD ],
+			[
+				'mvl_image_sha1' => $sha1,
+				'mvl_review' => self::REVIEW_UNREVIEWED,
+			],
+			__METHOD__
+		);
+	}
+
+	/**
 	 * Get list of image titles with unreviewed image labels. This effectuates queue-like behavior
 	 * by selecting results sorted by mvl_suggested_time and updating selected rows'
 	 * mvl_suggested_time with the current microtime as part of the same transaction.
@@ -344,36 +360,26 @@ class Repository implements LoggerAwareInterface {
 		$mvlIds = $this->dbw->selectFieldValues(
 			'machine_vision_label',
 			'mvl_id',
-			[
-				'mvl_image_sha1' => $sha1,
-			],
+			[ 'mvl_image_sha1' => $sha1 ],
 			__METHOD__,
-			[
-				'FOR UPDATE',
-			]
+			[ 'FOR UPDATE' ]
 		);
 		if ( !$mvlIds ) {
 			$this->dbw->endAtomic( __METHOD__ );
 		} else {
 			$this->dbw->delete(
 				'machine_vision_suggestion',
-				[
-					'mvs_mvl_id' => $mvlIds,
-				],
+				[ 'mvs_mvl_id' => $mvlIds ],
 				__METHOD__
 			);
 			$this->dbw->delete(
 				'machine_vision_label',
-				[
-					'mvl_image_sha1' => $sha1,
-				],
+				[ 'mvl_image_sha1' => $sha1 ],
 				__METHOD__
 			);
 			$this->dbw->delete(
 				'machine_vision_safe_search',
-				[
-					'mvss_image_sha1' => $sha1,
-				],
+				[ 'mvss_image_sha1' => $sha1 ],
 				__METHOD__
 			);
 			$this->dbw->endAtomic( __METHOD__ );
