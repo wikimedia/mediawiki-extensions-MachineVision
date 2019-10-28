@@ -69,6 +69,7 @@ class Repository implements LoggerAwareInterface {
 	 * @param int $uploaderId the uploader's local user ID
 	 * @param LabelSuggestion[] $suggestions A list of Wikidata ID such as 'Q123'
 	 * @param int $initialState initial review state
+	 * @return int $labelsCount
 	 */
 	public function insertLabels(
 		$sha1,
@@ -79,6 +80,7 @@ class Repository implements LoggerAwareInterface {
 	) {
 		$providerId = $this->nameTableStore->acquireId( $providerName );
 		$timestamp = $this->dbw->timestamp();
+		$labelsCount = 0;
 
 		$this->dbw->insert(
 			'machine_vision_image',
@@ -112,15 +114,23 @@ class Repository implements LoggerAwareInterface {
 				__METHOD__
 			);
 
-			$mvlId = $this->dbw->insertId() ?: $this->dbw->selectField(
-				'machine_vision_label',
-				'mvl_id',
-				[
-					'mvl_mvi_id' => $mviRowId,
-					'mvl_wikidata_id' => $wikidataId,
-				],
-				__METHOD__
-			);
+			 $mvlId = $this->dbw->insertId();
+			if ( $mvlId ) {
+				// new label inserted; increment $labelsCount
+				$labelsCount++;
+			} else {
+				// suggested label already exists in DB and insert failed;
+				// re-query for row ID
+				$mvlId = $this->dbw->selectField(
+					'machine_vision_label',
+					'mvl_id',
+					[
+						'mvl_mvi_id' => $mviRowId,
+						'mvl_wikidata_id' => $wikidataId,
+					],
+					__METHOD__
+				);
+			}
 
 			$this->dbw->insert(
 				'machine_vision_suggestion',
@@ -133,6 +143,7 @@ class Repository implements LoggerAwareInterface {
 				__METHOD__
 			);
 
+			return $labelsCount;
 		}
 	}
 
