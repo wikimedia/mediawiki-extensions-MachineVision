@@ -8,10 +8,13 @@ use Content;
 use DatabaseUpdater;
 use DeferredUpdates;
 use DomainException;
+use EchoEvent;
+use Exception;
 use File;
 use IContextSource;
 use LocalFile;
 use MediaWiki\MediaWikiServices;
+use MWException;
 use Revision;
 use Status;
 use UploadBase;
@@ -31,6 +34,7 @@ class Hooks {
 
 	/**
 	 * @param UploadBase $uploadBase
+	 * @throws MWException
 	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/UploadComplete
 	 */
 	public static function onUploadComplete( UploadBase $uploadBase ) {
@@ -194,6 +198,7 @@ class Hooks {
 	 *
 	 * @param IMaintainableDatabase $db
 	 * @param string $prefix
+	 * @throws Exception
 	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/UnitTestsAfterDatabaseSetup
 	 */
 	public static function onUnitTestsAfterDatabaseSetup( $db, $prefix ) {
@@ -269,4 +274,50 @@ class Hooks {
 		}
 	}
 
+	/**
+	 * @param array &$notifications
+	 * @param array &$notificationCategories
+	 * @param array &$icons
+	 */
+	public static function onBeforeCreateEchoEvent(
+		&$notifications,
+		&$notificationCategories,
+		&$icons
+	) {
+		// 1. Define notification categories: $notificationCategories[ '...' ]
+		$notificationCategories[ 'machinevision' ] = [
+			'priority' => 3,
+			'tooltip' => 'echo-pref-tooltip-machinevision-suggestions-ready',
+		];
+
+		// 2. Define the event: $notifications[ '...' ]
+		$notifications[ 'machinevision-suggestions-ready'] = [
+			'category' => 'machinevision',
+			'group' => 'positive',
+			'section' => 'alert',
+			'presentation-model' => Notifications\SuggestionsReadyPresentationModel::class,
+			'user-locators' => [ 'EchoUserLocator::locateEventAgent' ],
+			'canNotifyAgent' => true,
+			'bundle' => [
+				'web' => true,
+				'email' => true,
+				'expandable' => false
+			]
+		];
+
+		$icons['suggestions-ready']['path'] = 'MachineVision/resources/icons/suggestions-ready-icon.svg';
+	}
+
+	/**
+	 * @param EchoEvent $event
+	 * @param string &$bundleString
+	 * @return bool
+	 */
+	public static function onEchoGetBundleRules( EchoEvent $event, &$bundleString ) {
+		if ( $event->getType() === 'machinevision-suggestions-ready' ) {
+			$bundleString = 'machinevision';
+		}
+
+		return true;
+	}
 }

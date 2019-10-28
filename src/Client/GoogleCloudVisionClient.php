@@ -2,6 +2,8 @@
 
 namespace MediaWiki\Extension\MachineVision\Client;
 
+use EchoEvent;
+use ExtensionRegistry;
 use LocalFile;
 use MediaWiki\Extension\MachineVision\LabelSuggestion;
 use MediaWiki\Extension\MachineVision\Repository;
@@ -83,10 +85,11 @@ class GoogleCloudVisionClient implements LoggerAwareInterface {
 	 * Fetch annotations from Google Cloud Vision.
 	 * @param string $provider
 	 * @param LocalFile $file
-	 * @return bool
+	 * @param bool $notify true if a notification should be sent to the uploader on success
+	 * @return void
 	 * @throws \MWException
 	 */
-	public function fetchAnnotations( string $provider, LocalFile $file ) {
+	public function fetchAnnotations( string $provider, LocalFile $file, bool $notify = false ) {
 		$annotationRequest = $this->getAnnotationRequest( $file );
 		$status = $annotationRequest->execute();
 
@@ -100,7 +103,7 @@ class GoogleCloudVisionClient implements LoggerAwareInterface {
 					'content' => $annotationRequest->getContent()
 				]
 			);
-			return false;
+			return;
 		}
 
 		$responseBody = json_decode( $annotationRequest->getContent(), true );
@@ -142,11 +145,26 @@ class GoogleCloudVisionClient implements LoggerAwareInterface {
 			$initialState = Repository::REVIEW_WITHHELD;
 		}
 
-		$this->repository->insertLabels( $file->getSha1(), $provider,
-			$file->getUser( 'id' ), $suggestions, $initialState );
+		$labelsCount = $this->repository->insertLabels(
+			$file->getSha1(),
+			$provider,
+			$file->getUser( 'id' ),
+			$suggestions,
+			$initialState
+		);
 
-		$this->repository->insertSafeSearchAnnotations( $file->getSha1(), $adult, $spoof, $medical,
-			$violence, $racy );
+		$this->repository->insertSafeSearchAnnotations(
+			$file->getSha1(),
+			$adult,
+			$spoof,
+			$medical,
+			$violence,
+			$racy
+		);
+
+		if ( $notify && $labelsCount > 0 ) {
+			$this->createEchoNotification( $file );
+		}
 	}
 
 	/**
@@ -193,6 +211,18 @@ class GoogleCloudVisionClient implements LoggerAwareInterface {
 	private function getContents( RepoGroup $repoGroup, LocalFile $file ) {
 		$fileBackend = $repoGroup->getLocalRepo()->getBackend();
 		return $fileBackend->getFileContents( [ 'src' => $file->getPath() ] );
+	}
+
+	private function createEchoNotification( LocalFile $file ) {
+		if ( !ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) ) {
+			return;
+		}
+
+		EchoEvent::create( [
+			'type' => 'machinevision-suggestions-ready',
+			'title' => $file->getTitle(),
+			'agent' => $file->getUser( 'object' )
+		] );
 	}
 
 }

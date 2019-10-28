@@ -48,7 +48,9 @@
 		"PageContentSaveComplete": "MediaWiki\\Extension\\MachineVision\\Hooks::onPageContentSaveComplete",
 		"ArticleRollbackComplete": "MediaWiki\\Extension\\MachineVision\\Hooks::onArticleRollbackComplete",
 		"ListDefinedTags": "MediaWiki\\Extension\\MachineVision\\Hooks::onRegisterTags",
-		"ChangeTagsListActive": "MediaWiki\\Extension\\MachineVision\\Hooks::onRegisterTags"
+		"ChangeTagsListActive": "MediaWiki\\Extension\\MachineVision\\Hooks::onRegisterTags",
+		"BeforeCreateEchoEvent": "MediaWiki\\Extension\\MachineVision\\Hooks::onBeforeCreateEchoEvent",
+		"EchoGetBundleRules": "MediaWiki\\Extension\\MachineVision\\Hooks::onEchoGetBundleRules"
 	},
 	"APIModules": {
 		"reviewimagelabels": {
@@ -268,7 +270,8 @@
 		}
 	},
 	"DefaultUserOptions": {
-		"wbmad-onboarding-dialog-dismissed": 0
+		"wbmad-onboarding-dialog-dismissed": 0,
+		"echo-subscriptions-web-machinevision": false
 	},
 	"load_composer_autoloader": true,
 	"manifest_version": 2
