@@ -5,7 +5,6 @@ namespace MediaWiki\Extension\MachineVision\Special;
 use MediaWiki\Extension\MachineVision\Services;
 use MediaWiki\MediaWikiServices;
 use SpecialPage;
-use ContentSecurityPolicy;
 
 class SpecialSuggestedTags extends SpecialPage {
 
@@ -21,9 +20,6 @@ class SpecialSuggestedTags extends SpecialPage {
 		$request = $this->getRequest();
 		$output = $this->getOutput();
 		$this->setHeaders();
-
-		// Set CSP headers
-		ContentSecurityPolicy::sendHeaders( $this->getContext() );
 
 		// TODO: Display a fallback message for Grade C via client-nojs.
 
