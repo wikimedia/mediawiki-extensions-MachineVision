@@ -5,7 +5,7 @@
 			"Vlad5250"
 		]
 	},
-	"machinevision-desc": "Посредник за внатрешната и надворешната услуга за машински вид и складира исходи за употреба на викито",
+	"machinevision-desc": "Посредува со внатрешната и надворешната услуга за машински вид и складира и дава исходи",
 	"machinevision-machineaidedtagging": "Предложени ознаки",
 	"machinevision-machineaidedtagging-intro": "Проверете ги предложените ознаки на [[c:Commons:Depicts|прикажаните предмети]] во сликите. Се додаваат само ознаки потврдени од корисници. Повеќе ќе дознаете на [[c:Commons:Structured_data/Computer-aided_tagging|проектната страница]] и [[c:Commons_talk:Structured_data/Computer-aided_tagging|дајте ваше мислење]] како да ја направиме алатката покорисна!",
 	"machinevision-machineaidedtagging-tabs-heading": "Слики за проверка",
@@ -23,6 +23,7 @@
 	"machinevision-reset-title": "Да го повратам означувањето?",
 	"machinevision-skip": "Прескокни",
 	"machinevision-skip-title": "Да ги прескокнам предлозите за „$1“?",
+	"machinevision-personal-uploads-count": "Имате $1 {{PLURAL:$1|лично подигање|лични подигања}} за проверка.",
 	"machinevision-suggestion-confirm-title": "Да го потврдам предлогот „$1“?",
 	"machinevision-suggestion-confirm-undo-title": "Да ја отповикам потврдата на предлогот „$1“?",
 	"machinevision-loading-message": "Ги вчитувам сликите...",
@@ -42,5 +43,7 @@
 	"machinevision-cta-text": "Благодариме што го олеснувате пронаоѓањето на сликите. Дали би сакале да означите уште слики?",
 	"machinevision-cta-cta": "Означи најкористени слики",
 	"right-imagelabel-review": "Проверка на предложени натписи за слики",
-	"action-imagelabel-review": "проверка на предложени натписи за слики"
+	"action-imagelabel-review": "проверка на предложени натписи за слики",
+	"right-imagelabel-test": "Испробување на предлози на натписи за слики",
+	"action-imagelabel-test": "испробување на предлози на натписи за слики"
 }

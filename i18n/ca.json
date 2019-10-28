@@ -1,9 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"Fitoschido"
+			"Fitoschido",
+			"Jlrb+"
 		]
 	},
-	"apihelp-reviewimagelabels-paramvalue-review-accept": "El suggeriment és correcte.",
-	"apihelp-reviewimagelabels-paramvalue-review-reject": "El suggeriment és incorrecte."
+	"right-imagelabel-test": "Suggeriments d'etiqueta d'imatge de prova",
+	"action-imagelabel-test": "suggeriments d'etiqueta d'imatge de prova"
 }

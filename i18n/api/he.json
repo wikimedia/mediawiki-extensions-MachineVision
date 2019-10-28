@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Amire80"
+		]
+	},
+	"apihelp-reviewimagelabels-summary": "סקירת תוויות תמונה שהוצעו על־ידי מכונה.",
+	"apihelp-reviewimagelabels-param-filename": "שם התמונה (ללא תחילית מרחב שם).",
+	"apihelp-reviewimagelabels-param-label": "מזהה ויקינתונים של התווית המוצעות (עם התחילית Q).",
+	"apihelp-reviewimagelabels-param-review": "תוצאת הסקירה."
+}

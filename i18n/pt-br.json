@@ -4,7 +4,7 @@
 			"Eduardo Addad de Oliveira"
 		]
 	},
-	"machinevision-desc": "Interfaces com provedores de serviços de visão de máquina internos e externos e armazena resultados para uso no wiki.",
+	"machinevision-desc": "Interage com fornecedores de serviços de visão de máquina internos e externos, armazena e fornece resultados.",
 	"machinevision-machineaidedtagging": "Etiquetas sugeridas",
 	"machinevision-machineaidedtagging-intro": "Analise as sugestões de etiquetas de representação de imagem de um modelo de visão computacional. Somente etiquetas confirmadas pelos usuários serão adicionadas às imagens.",
 	"machinevision-machineaidedtagging-tabs-heading": "Imagens para revisar",
@@ -37,5 +37,7 @@
 	"machinevision-cta-text": "Obrigado por ajudar a tornar as imagens mais acessíveis para todos - que tal marcar um pouco mais?",
 	"machinevision-cta-cta": "Marcar imagens populares",
 	"right-imagelabel-review": "Analisar as sugestões do rótulo da imagem",
-	"action-imagelabel-review": "revisar sugestões de marcadores de imagem"
+	"action-imagelabel-review": "revisar sugestões de marcadores de imagem",
+	"right-imagelabel-test": "Testar sugestões de etiquetas de imagem",
+	"action-imagelabel-test": "sugestões de etiqueta de imagem de teste"
 }

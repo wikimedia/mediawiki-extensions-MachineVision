@@ -10,7 +10,7 @@
 			"Vega"
 		]
 	},
-	"machinevision-desc": "S’interface avec des fournisseurs de service de vision machine interne et externe et stocke les résultats de l’utilisation dans le wiki.",
+	"machinevision-desc": "S’interface avec des fournisseurs de service de vision machine interne et externe et stocke et fournit les résultats.",
 	"machinevision-machineaidedtagging": "Balises suggérées",
 	"machinevision-machineaidedtagging-intro": "Revoir les balises suggérées des [[c:Commons:Depicts|objets illustrés]] dans les images. Seules les balises confirmées par l’utilisateur sont ajoutées aux images. Pour plus d’information, consultez la [[c:Commons:Structured_data/Computer-aided_tagging|page de projet]] et  [[c:Commons_talk:Structured_data/Computer-aided_tagging|donnez votre avis]] sur comment rendre cet outil plus utile !",
 	"machinevision-machineaidedtagging-tabs-heading": "Images à revoir",
@@ -28,6 +28,7 @@
 	"machinevision-reset-title": "Réinitialiser les balises ?",
 	"machinevision-skip": "Sauter",
 	"machinevision-skip-title": "Sauter les suggestions pour « $1 » ?",
+	"machinevision-personal-uploads-count": "Vous avez $1 {{PLURAL:$1|téléversement personnel|téléversement personnels}} à revoir.",
 	"machinevision-suggestion-confirm-title": "Confirmer la suggestion « $1 » ?",
 	"machinevision-suggestion-confirm-undo-title": "Annuler la confirmation de la suggestion « $1 » ?",
 	"machinevision-loading-message": "Chargement des images...",
@@ -43,9 +44,11 @@
 	"machinevision-onboarding-dialog-cta": "Commencer à marquer",
 	"machinevision-onboarding-dialog-disclaimer": "Seules les balises que vous approuvez seront ajoutées aux images.",
 	"machinevision-onboarding-dialog-close-label": "Fermer",
-	"machinevision-cta-heading": "Vous avez marqué tous vos téléchargements !",
+	"machinevision-cta-heading": "Vous avez marqué tous vos téléversements !",
 	"machinevision-cta-text": "Merci d’avoir aidé à rendre les images plus faciles à trouver pour tout le monde — que diriez-vous d’en baliser quelques autres de plus ?",
 	"machinevision-cta-cta": "Marquer les images populaires",
 	"right-imagelabel-review": "Relire les suggestions de légende de l’image",
-	"action-imagelabel-review": "relire les suggestions de légende de l’image"
+	"action-imagelabel-review": "relire les suggestions de légende de l’image",
+	"right-imagelabel-test": "Suggestions de libellé d’image de test",
+	"action-imagelabel-test": "suggestions de libellé d’image de test"
 }

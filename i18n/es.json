@@ -3,9 +3,11 @@
 		"authors": [
 			"Fitoschido",
 			"Madamebiblio",
-			"Hasley"
+			"Hasley",
+			"Canaan9801"
 		]
 	},
+	"machinevision-desc": "Interactua con proveedores de servicios externos y internos de visión artificial y guarda y provee resultados.",
 	"machinevision-machineaidedtagging": "Etiquetas sugeridas",
 	"machinevision-machineaidedtagging-tabs-heading": "Imágenes por revisar",
 	"machinevision-machineaidedtagging-popular-tab": "Populares",
@@ -14,10 +16,14 @@
 	"machinevision-publish": "Publicar",
 	"machinevision-reset": "Restablecer",
 	"machinevision-skip": "Omitir",
+	"machinevision-personal-uploads-count": "Tienes $1 {{PLURAL:$1|carga|cargas}} personal(es) para revisión.",
 	"machinevision-loading-message": "Cargando imágenes…",
 	"machinevision-confirm-tags-dialog-title": "Confirmar etiquetas",
 	"machinevision-confirm-tags-dialog-confirm-action": "Aceptar",
 	"machinevision-confirm-tags-dialog-cancel-action": "Cancelar",
 	"machinevision-confirm-tags-dialog-heading": "Esta imagen muestra:",
-	"machinevision-success-message": "Se añadieron las etiquetas a la imagen."
+	"machinevision-success-message": "Se añadieron las etiquetas a la imagen.",
+	"machinevision-onboarding-dialog-close-label": "Cerrar",
+	"right-imagelabel-test": "Sugerencias de etiquetas para imagenes de prueba",
+	"action-imagelabel-test": "sugerencias de etiquetas para imagenes de prueba"
 }

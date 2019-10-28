@@ -24,6 +24,7 @@
 	"machinevision-reset-title": "إعادة تعيين الوسوم؟",
 	"machinevision-skip": "تجاوز",
 	"machinevision-skip-title": "تجاوز الاقتراحات ل\"$1\"؟",
+	"machinevision-personal-uploads-count": "لديك $1 {{PLURAL:$1|مرفوع|مرفوعات}} شخصي للمراجعة.",
 	"machinevision-suggestion-confirm-title": "هل تريد تأكيد اقتراح \"$1\"؟",
 	"machinevision-suggestion-confirm-undo-title": "التراجع عن تأكيد الاقتراح \"$1\"؟",
 	"machinevision-loading-message": "جارٍ تحميل الصور...",
@@ -43,5 +44,7 @@
 	"machinevision-cta-text": "نشكرك على المساعدة في جعل الصور أكثر قابلية للبحث للجميع - ماذا عن وسم المزيد؟",
 	"machinevision-cta-cta": "وسم الصور الشعبية",
 	"right-imagelabel-review": "راجع اقتراحات تسمية الصورة",
-	"action-imagelabel-review": "راجع اقتراحات تسمية الصورة"
+	"action-imagelabel-review": "راجع اقتراحات تسمية الصورة",
+	"right-imagelabel-test": "اختبار اقتراحات تسمية الصور",
+	"action-imagelabel-test": "اختبار اقتراحات تسمية الصور"
 }
