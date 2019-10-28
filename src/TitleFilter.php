@@ -97,7 +97,7 @@ class TitleFilter {
 				$mediaInfo = $mediaInfoContent->getEntity();
 				$statementList = $mediaInfo->getStatements();
 				$propertyId = new PropertyId( $this->depictsIdSerialization );
-				$depictsStatements = $statementList->getByPropertyId( new PropertyId( $propertyId ) );
+				$depictsStatements = $statementList->getByPropertyId( $propertyId );
 				if ( $depictsStatements->count() > $this->maxExistingDepictsStatements ) {
 					return false;
 				}
