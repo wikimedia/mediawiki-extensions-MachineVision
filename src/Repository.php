@@ -29,6 +29,7 @@ class Repository implements LoggerAwareInterface {
 		self::REVIEW_UNREVIEWED,
 		self::REVIEW_ACCEPTED,
 		self::REVIEW_REJECTED,
+		self::REVIEW_WITHHELD,
 	];
 
 	/** @var NameTableStore */
@@ -159,7 +160,8 @@ class Repository implements LoggerAwareInterface {
 	 * @return bool Success
 	 */
 	public function setLabelState( $sha1, $label, $state, $reviewerId, $ts ) {
-		$validStates = array_diff( self::$reviewStates, [ self::REVIEW_UNREVIEWED ] );
+		$validStates = array_diff( self::$reviewStates,
+			[ self::REVIEW_UNREVIEWED, self::REVIEW_WITHHELD ] );
 		if ( !in_array( $state, $validStates, true ) ) {
 			$validStates = implode( ', ', $validStates );
 			throw new InvalidArgumentException( "Invalid state $state (must be one of $validStates)" );
