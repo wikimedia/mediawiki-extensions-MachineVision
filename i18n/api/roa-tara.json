@@ -26,6 +26,7 @@
 	"apihelp-query+imagelabels-paramvalue-state-unreviewed": "Etichette ca non g'onne state reviste.",
 	"apihelp-query+imagelabels-paramvalue-state-accepted": "Etichette ca onne state idendificate cumme corrette.",
 	"apihelp-query+imagelabels-paramvalue-state-rejected": "Etichette ca non g'onne state idendificate cumme corrette.",
+	"apihelp-query+imagelabels-paramvalue-state-withheld": "Etichette pe 'n'immaggine ca ha state trattuenure da 'a presendazione jndr'à Computer-Aided Tagging.",
 	"apihelp-query+imagelabels-example-1": "'Ndruche le etichette de le immaggine de le maghene suggerite pe <kbd>Example.png</kbd>.",
 	"apihelp-query+unreviewedimagelabels-summary": "Fà 'ndrucà le titole cu le etichette de le immaggine suggerite ca onne abbesogne de 'na revisitazione.",
 	"apihelp-query+unreviewedimagelabels-param-uploader": "Tuèrne sulamende le resultate carecate da stu utende.",

@@ -29,6 +29,7 @@
 	"apihelp-query+imagelabels-paramvalue-state-unreviewed": "Légendes qui n’ont pas encore été relues.",
 	"apihelp-query+imagelabels-paramvalue-state-accepted": "Légendes qui ont été identifiées comme correctes.",
 	"apihelp-query+imagelabels-paramvalue-state-rejected": "Libellés qui n’ont pas été identifiés comme corrects.",
+	"apihelp-query+imagelabels-paramvalue-state-withheld": "Légendes pour une image qui a été retenue de la présentation dans le Balisage assisté par ordinateur.",
 	"apihelp-query+imagelabels-example-1": "Afficher les légendes d’image suggérées par la machine pour <kbd>Example.png</kbd>.",
 	"apihelp-query+unreviewedimagelabels-summary": "Afficher les titres avec les libellés d’image suggérés nécessitant une relecture.",
 	"apihelp-query+unreviewedimagelabels-param-uploader": "Ne renvoyer que les résultats téléchargés par cet utilisateur.",

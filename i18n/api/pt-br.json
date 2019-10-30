@@ -23,6 +23,7 @@
 	"apihelp-query+imagelabels-paramvalue-state-unreviewed": "Etiquetas que ainda não foram revisadas.",
 	"apihelp-query+imagelabels-paramvalue-state-accepted": "Etiquetas que foram identificadas como corretas.",
 	"apihelp-query+imagelabels-paramvalue-state-rejected": "Etiquetas que não foram identificadas como corretas.",
+	"apihelp-query+imagelabels-paramvalue-state-withheld": "Rótulos para uma imagem que foi retida na apresentação em marcações assistidas por computador.",
 	"apihelp-query+imagelabels-example-1": "Mostrar etiquetas de imagem sugeridas por máquina para <kbd>Exemplo.png</kbd>.",
 	"apihelp-query+unreviewedimagelabels-summary": "Mostrar títulos com rótulos de imagem sugeridos que precisam de revisão.",
 	"apihelp-query+unreviewedimagelabels-param-uploader": "Retorne apenas os resultados enviados por este usuário.",
