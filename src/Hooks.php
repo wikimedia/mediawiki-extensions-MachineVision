@@ -3,6 +3,7 @@
 namespace MediaWiki\Extension\MachineVision;
 
 use Article;
+use ChangeTags;
 use Content;
 use DatabaseUpdater;
 use DeferredUpdates;
@@ -86,6 +87,11 @@ class Hooks {
 		$baseRevId,
 		$undidRevId = 0
 	) {
+		if ( $undidRevId ) {
+			self::tagComputerAidedTaggingRevert( $undidRevId );
+			return;
+		}
+		$services = MediaWikiServices::getInstance();
 		if ( strpos( $summary, 'wbsetclaim-create' ) === false ) {
 			return;
 		}
@@ -118,6 +124,22 @@ class Hooks {
 	}
 
 	/**
+	 * Handler for ArticleRollbackComplete hook.
+	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/ArticleRollbackComplete
+	 *
+	 * @param WikiPage $wikiPage The article that was edited
+	 * @param User $agent The user who did the rollback
+	 * @param Revision $newRev The revision the page was reverted back to
+	 * @param Revision $oldRev The revision of the top edit that was reverted
+	 */
+	public static function onArticleRollbackComplete( WikiPage $wikiPage,
+							  User $agent,
+							  Revision $newRev,
+							  Revision $oldRev ) {
+		self::tagComputerAidedTaggingRevert( $oldRev );
+	}
+
+	/**
 	 * @param IContextSource $context
 	 * @param array &$pageInfo
 	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/InfoAction
@@ -143,6 +165,17 @@ class Hooks {
 				$handler->handleInfoAction( $context, $file, $pageInfo );
 			}
 		}
+	}
+
+	/**
+	 * @param array &$tags
+	 * @return bool true
+	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/ListDefinedTags
+	 */
+	public static function onRegisterTags( array &$tags ) {
+		$tags[] = Util::getDepictsTag();
+		$tags[] = Util::getDepictsRevertTag();
+		return true;
 	}
 
 	/**
@@ -223,6 +256,19 @@ class Hooks {
 		$permissionsManager = MediaWikiServices::getInstance()->getPermissionManager();
 		$perms = $permissionsManager->getUserPermissions( $user );
 		return in_array( 'imagelabel-test', $perms );
+	}
+
+	/**
+	 * @param int|Revision $rev
+	 */
+	private static function tagComputerAidedTaggingRevert( $rev ) {
+		if ( gettype( $rev ) === 'integer' ) {
+			$rev = MediaWikiServices::getInstance()->getRevisionStore()->getRevisionById( $rev );
+		}
+		$oldRevTags = ChangeTags::getTags( wfGetDB( DB_REPLICA ), null, $rev->getId() );
+		if ( in_array( Util::getDepictsTag(), $oldRevTags, true ) ) {
+			ChangeTags::addTags( Util::getDepictsRevertTag(), null, $rev->getId() );
+		}
 	}
 
 }

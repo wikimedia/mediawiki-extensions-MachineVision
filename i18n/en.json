@@ -46,5 +46,9 @@
 	"right-imagelabel-review": "Review image label suggestions",
 	"action-imagelabel-review": "review image label suggestions",
 	"right-imagelabel-test": "Test image label suggestions",
-	"action-imagelabel-test": "test image label suggestions"
+	"action-imagelabel-test": "test image label suggestions",
+	"tag-computer-aided-tagging": "Computer-Aided Tagging",
+	"tag-computer-aided-tagging-description": "Edits created with the Computer-Aided Tagging tool",
+	"tag-computer-aided-tagging-revert": "Computer-Aided Tagging revert",
+	"tag-computer-aided-tagging-revert-description": "Edits reverting one or more revisions created with the Computer-Aided Tagging tool"
 }

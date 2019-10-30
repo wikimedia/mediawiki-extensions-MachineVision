@@ -5,6 +5,7 @@ namespace MediaWiki\Extension\MachineVision\Handler;
 use IDBAccessObject;
 use LocalFile;
 use MediaWiki\Extension\MachineVision\MachineVisionEntitySaveException;
+use MediaWiki\Extension\Machinevision\Util;
 use MediaWiki\Revision\RevisionStore;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
@@ -62,9 +63,6 @@ class WikidataDepictsSetter implements LoggerAwareInterface {
 	/** @var string */
 	private $depictsIdSerialization;
 
-	/** @var string[] */
-	private $tags;
-
 	/**
 	 * WikidataDepictsSetter constructor.
 	 * @param RevisionStore $revisionStore
@@ -74,7 +72,6 @@ class WikidataDepictsSetter implements LoggerAwareInterface {
 	 * @param StatementChangeOpFactory $statementChangeOpFactory
 	 * @param SummaryFormatter $summaryFormatter
 	 * @param string $depictsIdSerialization depicts ID defined in WikibaseMediaInfo config
-	 * @param array $tags array of tags to be set on SDC revisions
 	 * @suppress PhanUndeclaredTypeParameter
 	 */
 	public function __construct(
@@ -84,8 +81,7 @@ class WikidataDepictsSetter implements LoggerAwareInterface {
 		MediawikiEditEntityFactory $mediawikiEditEntityFactory,
 		StatementChangeOpFactory $statementChangeOpFactory,
 		SummaryFormatter $summaryFormatter,
-		$depictsIdSerialization,
-		$tags
+		$depictsIdSerialization
 	) {
 		$this->revisionStore = $revisionStore;
 		$this->mediaInfoByLinkedTitleLookup = $mediaInfoByLinkedTitleLookup;
@@ -94,7 +90,6 @@ class WikidataDepictsSetter implements LoggerAwareInterface {
 		$this->statementChangeOpFactory = $statementChangeOpFactory;
 		$this->summaryFormatter = $summaryFormatter;
 		$this->depictsIdSerialization = $depictsIdSerialization;
-		$this->tags = $tags;
 
 		$this->logger = new NullLogger();
 	}
@@ -132,7 +127,8 @@ class WikidataDepictsSetter implements LoggerAwareInterface {
 			$changeOp->apply( $mediaInfo, $rawSummary );
 			$editEntity = $this->editEntityFactory
 				->newEditEntity( $user, $mediaInfoId, $revision->getId() );
-			$status = $editEntity->attemptSave( $mediaInfo, $summary, $flags, $token, null, $this->tags );
+			$status = $editEntity->attemptSave( $mediaInfo, $summary, $flags, $token, null,
+				[ Util::getDepictsTag() ] );
 			if ( !$status->isOK() ) {
 				throw new MachineVisionEntitySaveException( $status->getMessage() );
 			}

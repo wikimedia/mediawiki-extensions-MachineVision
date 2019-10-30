@@ -127,8 +127,7 @@ return [
 			$wbRepo->newEditEntityFactory(),
 			$changeOpFactoryProvider->getStatementChangeOpFactory(),
 			$wbRepo->getSummaryFormatter(),
-			Util::getMediaInfoPropertyId( $services, 'depicts' ),
-			$extensionConfig->get( 'MachineVisionDepictsTags' )
+			Util::getMediaInfoPropertyId( $services, 'depicts' )
 		);
 	},
 

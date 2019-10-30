@@ -45,7 +45,10 @@
 		"UnitTestsBeforeDatabaseTeardown": "MediaWiki\\Extension\\MachineVision\\Hooks::onUnitTestsBeforeDatabaseTeardown",
 		"GetPreferences": "MediaWiki\\Extension\\MachineVision\\Hooks::onGetPreferences",
 		"FileDeleteComplete": "MediaWiki\\Extension\\MachineVision\\Hooks::onFileDeleteComplete",
-		"PageContentSaveComplete": "MediaWiki\\Extension\\MachineVision\\Hooks::onPageContentSaveComplete"
+		"PageContentSaveComplete": "MediaWiki\\Extension\\MachineVision\\Hooks::onPageContentSaveComplete",
+		"ArticleRollbackComplete": "MediaWiki\\Extension\\MachineVision\\Hooks::onArticleRollbackComplete",
+		"ListDefinedTags": "MediaWiki\\Extension\\MachineVision\\Hooks::onRegisterTags",
+		"ChangeTagsListActive": "MediaWiki\\Extension\\MachineVision\\Hooks::onRegisterTags"
 	},
 	"APIModules": {
 		"reviewimagelabels": {
@@ -97,10 +100,6 @@
 		"MachineVisionDatabase": {
 			"value": false,
 			"description": "Database to use for storing the data. False means use the database of the current wiki. To use a table prefix, use '<database>-<prefix'>' format."
-		},
-		"MachineVisionDepictsTags": {
-			"value": [],
-			"description": "Array of tags added to the revision adding a depicts statement when a label is approved."
 		},
 		"MachineVisionHandlers": {
 			"value": {},

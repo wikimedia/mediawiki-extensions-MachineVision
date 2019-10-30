@@ -13,13 +13,24 @@ class Util {
 		MEDIATYPE_BITMAP,
 	];
 
+	/** @return string */
+	public static function getDepictsTag(): string {
+		return 'computer-aided-tagging';
+	}
+
+	/** @return string */
+	public static function getDepictsRevertTag(): string {
+		return 'computer-aided-tagging-revert';
+	}
+
 	/**
 	 * Get the configured property ID for a MediaInfo property.
 	 * @param MediaWikiServices $services
 	 * @param string $prop property name
 	 * @return string
 	 */
-	public static function getMediaInfoPropertyId( MediaWikiServices $services, $prop ) {
+	public static function getMediaInfoPropertyId( MediaWikiServices $services, string $prop ):
+	string {
 		$configFactory = $services->getConfigFactory();
 		$wbmiConfig = $configFactory->makeConfig( 'WikibaseMediaInfo' );
 		if ( !$wbmiConfig->has( 'MediaInfoProperties' ) ) {
@@ -38,7 +49,7 @@ class Util {
 	 * @param string $mediaType
 	 * @return bool
 	 */
-	public static function isMediaTypeAllowed( $mediaType ) {
+	public static function isMediaTypeAllowed( string $mediaType ): bool {
 		return array_search( $mediaType, self::$allowedMediaTypes ) !== false;
 	}
 
