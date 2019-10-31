@@ -27,6 +27,7 @@
 	"apihelp-query+imagelabels-paramvalue-state-unreviewed": "Натписите кои сè уште не се проверени.",
 	"apihelp-query+imagelabels-paramvalue-state-accepted": "Натписите што се утврдени како исправни.",
 	"apihelp-query+imagelabels-paramvalue-state-rejected": "Натписите што се утврдени како неисправни.",
+	"apihelp-query+imagelabels-paramvalue-state-withheld": "Натписи за слика која не влегла во претставените за сметачки потпомогнато означување.",
 	"apihelp-query+imagelabels-example-1": "Прикажи машински предложени натписи за <kbd>Example.png</kbd>.",
 	"apihelp-query+unreviewedimagelabels-summary": "Прикажи наслови со предложени натписи на слики на кои им треба проверка.",
 	"apihelp-query+unreviewedimagelabels-param-uploader": "Дај само ставки подигнати од овој корисник.",

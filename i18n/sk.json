@@ -1,12 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
-			"Vlad5250"
+			"Vlad5250",
+			"Luky001"
 		]
 	},
 	"machinevision-machineaidedtagging-popular-tab": "Obľúbené",
 	"machinevision-publish": "Zverejniť",
 	"machinevision-reset": "Resetovať",
 	"machinevision-skip": "Preskočiť",
-	"machinevision-loading-message": "Načítava sa..."
+	"machinevision-loading-message": "Načítavanie obrázkov..."
 }
