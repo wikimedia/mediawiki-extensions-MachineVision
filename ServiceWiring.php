@@ -5,10 +5,10 @@ use MediaWiki\Extension\MachineVision\Client;
 use MediaWiki\Extension\MachineVision\Handler\WikidataDepictsSetter;
 use MediaWiki\Extension\MachineVision\Handler\LabelResolver;
 use MediaWiki\Extension\MachineVision\Handler\Registry;
+use MediaWiki\Extension\MachineVision\Job\FetchGoogleCloudVisionAnnotationsJobFactory;
 use MediaWiki\Extension\MachineVision\Repository;
 use MediaWiki\Extension\MachineVision\TitleFilter;
 use MediaWiki\Extension\MachineVision\Util;
-use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\NameTableStore;
@@ -147,7 +147,7 @@ return [
 	},
 
 	'MachineVisionGoogleServiceAccountCredentials' => function ( MediaWikiServices $services ):
-	ServiceAccountCredentials {
+		ServiceAccountCredentials {
 		$configFactory = $services->getConfigFactory();
 		$extensionConfig = $configFactory->makeConfig( 'MachineVision' );
 		$scope = 'https://www.googleapis.com/auth/cloud-vision';
@@ -155,9 +155,17 @@ return [
 		return new ServiceAccountCredentials( $scope, $jsonKey );
 	},
 
-	'MachineVisionHttpRequestFactory' => function ( MediaWikiServices $services ):
-	HttpRequestFactory {
-		return $services->getHttpRequestFactory();
-	}
-
+	'MachineVisionFetchGoogleCloudVisionAnnotationsJobFactory' =>
+		function ( MediaWikiServices $services ): FetchGoogleCloudVisionAnnotationsJobFactory {
+			$configFactory = $services->getConfigFactory();
+			$extensionConfig = $configFactory->makeConfig( 'MachineVision' );
+			$safeSearchLimits = $extensionConfig->get( 'MachineVisionGoogleSafeSearchLimits' );
+			$sendFileContents = $extensionConfig->get( 'MachineVisionGCVSendFileContents' );
+			$proxy = $extensionConfig->get( 'MachineVisionHttpProxy' );
+			return new FetchGoogleCloudVisionAnnotationsJobFactory(
+				$sendFileContents,
+				$safeSearchLimits,
+				$proxy
+			);
+		},
 ];

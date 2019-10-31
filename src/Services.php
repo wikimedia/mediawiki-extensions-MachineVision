@@ -4,6 +4,7 @@
 namespace MediaWiki\Extension\MachineVision;
 
 use Config;
+use Google\Auth\Credentials\ServiceAccountCredentials;
 use MediaWiki\Extension\MachineVision\Handler\LabelResolver;
 use MediaWiki\Extension\MachineVision\Handler\Registry;
 use MediaWiki\MediaWikiServices;
@@ -49,6 +50,14 @@ class Services {
 
 	public function getTitleFilter(): TitleFilter {
 		return $this->services->getService( 'MachineVisionTitleFilter' );
+	}
+
+	/**
+	 * @return ServiceAccountCredentials
+	 * @suppress PhanUndeclaredTypeReturnType
+	 */
+	public function getGoogleServiceAccountCredentials(): ServiceAccountCredentials {
+		return $this->services->getService( 'MachineVisionGoogleServiceAccountCredentials' );
 	}
 
 }
