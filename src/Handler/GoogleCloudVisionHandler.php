@@ -2,19 +2,25 @@
 
 namespace MediaWiki\Extension\MachineVision\Handler;
 
-use Google\Cloud\Vision\V1\Feature\Type;
-use Google\Cloud\Vision\V1\ImageAnnotatorClient;
+use Google\Auth\Credentials\ServiceAccountCredentials;
 use LocalFile;
 use MediaWiki\Extension\MachineVision\Repository;
 use MediaWiki\Extension\MachineVision\LabelSuggestion;
+use MediaWiki\Http\HttpRequestFactory;
+use MediaWiki\Logger\LoggerFactory;
+use MWHttpRequest;
 use RepoGroup;
+use Status;
 use Throwable;
 
 class GoogleCloudVisionHandler extends WikidataIdHandler {
 
-	/** @var ImageAnnotatorClient */
+	/** @var ServiceAccountCredentials */
 	// @phan-suppress-next-line PhanUndeclaredTypeProperty
-	private $client;
+	private $credentials;
+
+	/** @var HttpRequestFactory */
+	private $httpRequestFactory;
 
 	/** @var RepoGroup */
 	private $repoGroup;
@@ -34,39 +40,62 @@ class GoogleCloudVisionHandler extends WikidataIdHandler {
 	private $safeSearchLimits;
 
 	/**
+	 * HTTP proxy
+	 * @var string
+	 */
+	private $proxy;
+
+	/**
 	 * Maximum requests per minute to send to the Google Cloud Vision API when running the label
 	 * fetcher script.
 	 * @var int
 	 */
 	private $maxRequestsPerMinute;
 
+	const SAFE_SEARCH_LIKELIHOODS = [
+		'UNKNOWN' => 0,
+		'VERY_UNLIKELY' => 1,
+		'UNLIKELY' => 2,
+		'POSSIBLE' => 3,
+		'LIKELY' => 4,
+		'VERY_LIKELY' => 5,
+	];
+
 	/**
-	 * @param ImageAnnotatorClient $client
+	 * @param ServiceAccountCredentials $credentials
+	 * @param HttpRequestFactory $httpRequestFactory
 	 * @param Repository $repository
 	 * @param RepoGroup $repoGroup
 	 * @param WikidataDepictsSetter $depictsSetter
 	 * @param LabelResolver $labelResolver
 	 * @param bool $sendFileContents
 	 * @param array $safeSearchLimits
+	 * @param string|bool $proxy
 	 * @param int $maxRequestsPerMinute
 	 * @suppress PhanUndeclaredTypeParameter
 	 */
 	public function __construct(
-		ImageAnnotatorClient $client,
+		ServiceAccountCredentials $credentials,
+		HttpRequestFactory $httpRequestFactory,
 		Repository $repository,
 		RepoGroup $repoGroup,
 		WikidataDepictsSetter $depictsSetter,
 		LabelResolver $labelResolver,
 		$sendFileContents,
 		$safeSearchLimits,
+		$proxy = false,
 		$maxRequestsPerMinute = 0
 	) {
 		parent::__construct( $repository, $depictsSetter, $labelResolver );
-		$this->client = $client;
+		$this->credentials = $credentials;
+		$this->httpRequestFactory = $httpRequestFactory;
 		$this->repoGroup = $repoGroup;
 		$this->sendFileContents = $sendFileContents;
 		$this->safeSearchLimits = $safeSearchLimits;
+		$this->proxy = $proxy;
 		$this->maxRequestsPerMinute = $maxRequestsPerMinute;
+
+		$this->setLogger( LoggerFactory::getInstance( 'machinevision' ) );
 	}
 
 	/** @inheritDoc */
@@ -87,20 +116,32 @@ class GoogleCloudVisionHandler extends WikidataIdHandler {
 	 * Retrieves machine vision metadata about the image and stores it.
 	 * @param string $provider provider name
 	 * @param LocalFile $file
-	 * @throws \Google\ApiCore\ApiException
-	 * @suppress PhanUndeclaredTypeThrowsType,PhanUndeclaredClassMethod,PhanUndeclaredClassConstant
 	 */
 	public function handleUploadComplete( $provider, LocalFile $file ) {
-		$payload = $this->sendFileContents ? $this->getContents( $file ) : $this->getUrl( $file );
-		$features = [ Type::LABEL_DETECTION, Type::SAFE_SEARCH_DETECTION ];
-		$annotations = $this->client->annotateImage( $payload, $features );
-		$initialState = Repository::REVIEW_UNREVIEWED;
-		$safeSearchAnnotations = $annotations->getSafeSearchAnnotation();
+		$annotationRequest = $this->getAnnotationRequest( $file );
+		$status = $annotationRequest->execute();
+
+		if ( !$status->isOK() ) {
+			$errors = $status->getErrorsByType( 'error' );
+			$this->logger->warning( Status::wrap( $status )->getWikiText( false, false, 'en' ),
+				[
+					'error' => $errors,
+					'caller' => __METHOD__,
+					'content' => $annotationRequest->getContent()
+				]
+			);
+			return;
+		}
+
+		$responseBody = json_decode( $annotationRequest->getContent(), true );
+		$responses = $responseBody['responses'][0];
+		$labelAnnotations = $responses['labelAnnotations'];
+		$safeSearchAnnotation = $responses['safeSearchAnnotation'];
 
 		$suggestions = [];
-		foreach ( $annotations->getLabelAnnotations() as $label ) {
-			$freebaseId = $label->getMid();
-			$score = $label->getScore();
+		foreach ( $labelAnnotations as $label ) {
+			$freebaseId = $label['mid'];
+			$score = $label['score'];
 			$mappedWikidataIds = $this->getRepository()->getMappedWikidataIds( $freebaseId );
 			$newSuggestions = array_map( function ( $mappedId ) use ( $score ) {
 				return new LabelSuggestion( $mappedId, $score );
@@ -108,17 +149,25 @@ class GoogleCloudVisionHandler extends WikidataIdHandler {
 			$suggestions = array_merge( $suggestions, $newSuggestions );
 		}
 
+		$adult = self::SAFE_SEARCH_LIKELIHOODS[$safeSearchAnnotation['adult']];
+		$spoof = self::SAFE_SEARCH_LIKELIHOODS[$safeSearchAnnotation['spoof']];
+		$medical = self::SAFE_SEARCH_LIKELIHOODS[$safeSearchAnnotation['medical']];
+		$violence = self::SAFE_SEARCH_LIKELIHOODS[$safeSearchAnnotation['violence']];
+		$racy = self::SAFE_SEARCH_LIKELIHOODS[$safeSearchAnnotation['racy']];
+
+		$initialState = Repository::REVIEW_UNREVIEWED;
+
 		if (
 			( array_key_exists( 'adult', $this->safeSearchLimits ) &&
-			  $safeSearchAnnotations->getAdult() >= $this->safeSearchLimits['adult'] ) ||
+				$adult >= $this->safeSearchLimits['adult'] ) ||
 			( array_key_exists( 'spoof', $this->safeSearchLimits ) &&
-			  $safeSearchAnnotations->getSpoof() >= $this->safeSearchLimits['spoof'] ) ||
+				$spoof >= $this->safeSearchLimits['spoof'] ) ||
 			( array_key_exists( 'medical', $this->safeSearchLimits ) &&
-			  $safeSearchAnnotations->getMedical() >= $this->safeSearchLimits['medical'] ) ||
+				$medical >= $this->safeSearchLimits['medical'] ) ||
 			( array_key_exists( 'violence', $this->safeSearchLimits ) &&
-			  $safeSearchAnnotations->getViolence() >= $this->safeSearchLimits['violence'] ) ||
+				$violence >= $this->safeSearchLimits['violence'] ) ||
 			( array_key_exists( 'racy', $this->safeSearchLimits ) &&
-			  $safeSearchAnnotations->getRacy() >= $this->safeSearchLimits['racy'] )
+				$racy >= $this->safeSearchLimits['racy'] )
 		) {
 			$initialState = Repository::REVIEW_WITHHELD;
 		}
@@ -126,14 +175,39 @@ class GoogleCloudVisionHandler extends WikidataIdHandler {
 		$this->getRepository()->insertLabels( $file->getSha1(), $provider,
 			$file->getUser( 'id' ), $suggestions, $initialState );
 
-		$this->getRepository()->insertSafeSearchAnnotations(
-			$file->getSha1(),
-			$safeSearchAnnotations->getAdult(),
-			$safeSearchAnnotations->getSpoof(),
-			$safeSearchAnnotations->getMedical(),
-			$safeSearchAnnotations->getViolence(),
-			$safeSearchAnnotations->getRacy()
+		$this->getRepository()->insertSafeSearchAnnotations( $file->getSha1(), $adult, $spoof,
+			$medical, $violence, $racy
 		);
+	}
+
+	/** @suppress PhanUndeclaredClassMethod */
+	private function getAnnotationRequest( LocalFile $file ): MWHttpRequest {
+		$requestBody = [
+			'requests' => [
+				'image' => $this->sendFileContents ?
+					[ 'content' => base64_encode( $this->getContents( $file ) ) ] :
+					[ 'url' => $this->getUrl( $file ) ],
+				'features' => [
+					[ 'type' => 'LABEL_DETECTION' ],
+					[ 'type' => 'SAFE_SEARCH_DETECTION' ],
+				],
+			],
+		];
+		$options = [
+			'method' => 'POST',
+			'postData' => json_encode( $requestBody )
+		];
+		if ( $this->proxy ) {
+			$options['proxy'] = $this->proxy;
+		}
+		$annotationRequest = $this->httpRequestFactory->create(
+			'https://vision.googleapis.com/v1/images:annotate',
+			$options
+		);
+		$token = $this->credentials->fetchAuthToken()['access_token'];
+		$annotationRequest->setHeader( 'Content-Type', 'application/json; charset=utf-8' );
+		$annotationRequest->setHeader( 'Authorization', "Bearer $token" );
+		return $annotationRequest;
 	}
 
 	private function getUrl( LocalFile $file ) {

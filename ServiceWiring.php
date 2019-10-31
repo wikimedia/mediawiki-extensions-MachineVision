@@ -1,6 +1,6 @@
 <?php
 
-use Google\Cloud\Vision\V1\ImageAnnotatorClient;
+use Google\Auth\Credentials\ServiceAccountCredentials;
 use MediaWiki\Extension\MachineVision\Client;
 use MediaWiki\Extension\MachineVision\Handler\WikidataDepictsSetter;
 use MediaWiki\Extension\MachineVision\Handler\LabelResolver;
@@ -8,6 +8,7 @@ use MediaWiki\Extension\MachineVision\Handler\Registry;
 use MediaWiki\Extension\MachineVision\Repository;
 use MediaWiki\Extension\MachineVision\TitleFilter;
 use MediaWiki\Extension\MachineVision\Util;
+use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\NameTableStore;
@@ -28,11 +29,6 @@ return [
 		);
 		$labelingClient->setLogger( LoggerFactory::getInstance( 'machinevision' ) );
 		return $labelingClient;
-	},
-
-	'MachineVisionGoogleImageAnnotatorClient' => function ( MediaWikiServices $services ):
-		ImageAnnotatorClient {
-		return new ImageAnnotatorClient();
 	},
 
 	'MachineVisionNameTableStore' => function ( MediaWikiServices $services ): NameTableStore {
@@ -148,6 +144,20 @@ return [
 			$extensionConfig->get( 'MachineVisionTemplateBlacklist' ),
 			Util::getMediaInfoPropertyId( $services, 'depicts' )
 		);
+	},
+
+	'MachineVisionGoogleServiceAccountCredentials' => function ( MediaWikiServices $services ):
+	ServiceAccountCredentials {
+		$configFactory = $services->getConfigFactory();
+		$extensionConfig = $configFactory->makeConfig( 'MachineVision' );
+		$scope = 'https://www.googleapis.com/auth/cloud-vision';
+		$jsonKey = $extensionConfig->get( 'MachineVisionGoogleCredentialsFileLocation' );
+		return new ServiceAccountCredentials( $scope, $jsonKey );
+	},
+
+	'MachineVisionHttpRequestFactory' => function ( MediaWikiServices $services ):
+	HttpRequestFactory {
+		return $services->getHttpRequestFactory();
 	}
 
 ];
