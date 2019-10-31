@@ -145,6 +145,14 @@
 		"MachineVisionLabelRequestNumRetries": {
 			"value": 0,
 			"description": "Number of times to retry a label suggestion request upon catching a handled throwable. Currently used only in the fetchSuggestions maintenance script."
+		},
+		"MachineVisionHttpProxy": {
+			"value": false,
+			"description": "String containing the HTTP proxy setting to pass into outgoing HTTP requests, or false for no proxy."
+		},
+		"MachineVisionGoogleCredentialsFileLocation": {
+			"value": false,
+			"description": "Filesystem path to the Google credentials JSON file, or false for none."
 		}
 	},
 	"ResourceFileModulePaths": {

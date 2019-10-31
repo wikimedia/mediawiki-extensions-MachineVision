@@ -41,16 +41,11 @@ Google Cloud credentials. You will need to sign up for a free trial at:
 https://console.cloud.google.com and generate credentials for the Google Cloud
 Vision service. Download a JSON file with your credentials from the dashboard
 and place it somewhere accessible to the web server that is running MediaWiki.
-You will need to provide a path to this file as an environment variable on the
-web server:
+You will need to provide a path to this file as an extension configuration setting:
 
 ```
-GOOGLE_APPLICATION_CREDENTIALS=/var/www/mediawiki/machine-vision-credentials.json
+$wgMachineVisionGoogleCredentialsFileLocation = '/var/www/mediawiki/machine-vision-credentials.json';
 ```
-
-If you are using mediawiki-docker-dev, you can specify this environment variable
-in `docker-compose.yml` in the `web` section (you will have to create or
-re-create containers for this to take effect).
 
 ### Configuration and Usage
 
@@ -64,7 +59,8 @@ $wgMachineVisionRequestLabelsFromWikidataPublicApi = true;
 $wgMachineVisionHandlers['google'] = [
 	'class' => 'MediaWiki\\Extension\\MachineVision\\Handler\\GoogleCloudVisionHandler',
 	'services' => [
-		'MachineVisionGoogleImageAnnotatorClient',
+		'MachineVisionGoogleServiceAccountCredentials',
+		'MachineVisionHttpRequestFactory',
 		'MachineVisionRepository',
 		'MachineVisionRepoGroup',
 		'MachineVisionDepictsSetter',
