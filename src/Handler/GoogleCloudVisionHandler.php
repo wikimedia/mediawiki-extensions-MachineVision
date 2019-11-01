@@ -180,13 +180,19 @@ class GoogleCloudVisionHandler extends WikidataIdHandler {
 		);
 	}
 
-	/** @suppress PhanUndeclaredClassMethod */
+	/**
+	 * @param LocalFile $file
+	 * @return MWHttpRequest
+	 * @suppress PhanUndeclaredClassMethod
+	 */
 	private function getAnnotationRequest( LocalFile $file ): MWHttpRequest {
 		$requestBody = [
 			'requests' => [
 				'image' => $this->sendFileContents ?
 					[ 'content' => base64_encode( $this->getContents( $file ) ) ] :
-					[ 'url' => $this->getUrl( $file ) ],
+					// TODO: check the file size and fall back to a thumb URL if the original
+					//  image size is too large (>10485760 bytes)
+					[ 'source' => [ 'image_uri' => $this->getUrl( $file ) ] ],
 				'features' => [
 					[ 'type' => 'LABEL_DETECTION' ],
 					[ 'type' => 'SAFE_SEARCH_DETECTION' ],
