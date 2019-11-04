@@ -28,7 +28,7 @@
 	"machinevision-reset-title": "Réinitialiser les balises ?",
 	"machinevision-skip": "Sauter",
 	"machinevision-skip-title": "Sauter les suggestions pour « $1 » ?",
-	"machinevision-personal-uploads-count": "Vous avez $1 {{PLURAL:$1|téléversement personnel|téléversement personnels}} à revoir.",
+	"machinevision-personal-uploads-count": "Vous avez $1 téléversement{{PLURAL:$1||s}} personnel{{PLURAL:$1||s}} à revoir.",
 	"machinevision-suggestion-confirm-title": "Confirmer la suggestion « $1 » ?",
 	"machinevision-suggestion-confirm-undo-title": "Annuler la confirmation de la suggestion « $1 » ?",
 	"machinevision-loading-message": "Chargement des images...",
@@ -36,7 +36,7 @@
 	"machinevision-confirm-tags-dialog-title": "Confirmer les balises",
 	"machinevision-confirm-tags-dialog-confirm-action": "Valider",
 	"machinevision-confirm-tags-dialog-cancel-action": "Annuler",
-	"machinevision-confirm-tags-dialog-heading": "Cette image représente :",
+	"machinevision-confirm-tags-dialog-heading": "Cette image représente :",
 	"machinevision-success-message": "Balises ajoutées à l’image.",
 	"machinevision-publish-error-message": "Une erreur est survenue et les étiquettes n’ont pas été publiées. Veuillez réessayer plus tard.",
 	"machinevision-onboarding-dialog-heading": "Baliser les images pour les rendre plus facile à trouver par d’autres",
@@ -49,6 +49,6 @@
 	"machinevision-cta-cta": "Marquer les images populaires",
 	"right-imagelabel-review": "Relire les suggestions de légende de l’image",
 	"action-imagelabel-review": "relire les suggestions de légende de l’image",
-	"right-imagelabel-test": "Suggestions de libellé d’image de test",
-	"action-imagelabel-test": "suggestions de libellé d’image de test"
+	"right-imagelabel-test": "Suggestions de légende d’image de test",
+	"action-imagelabel-test": "suggestions de légende d’image de test"
 }

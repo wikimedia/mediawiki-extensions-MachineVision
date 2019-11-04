@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Eitvys200"
+			"Eitvys200",
+			"Tomasdd"
 		]
 	},
 	"machinevision-machineaidedtagging-tabs-heading": "paveikslėliai peržiūrai",
@@ -9,5 +10,8 @@
 	"machinevision-machineaidedtagging-user-tab": "Asmeniniai įkėlimai",
 	"machinevision-pageinfo-field-suggested-labels": "Siūlomos žymos",
 	"machinevision-more": "{{PLURAL:$1|Kitas $1 paveikslėlis|Kiti $1 paveikslėliai}}",
-	"machinevision-more-title": "{{PLURAL:$1|Kitas $1 paveikslėlis|Kiti $1 paveikslėliai}}"
+	"machinevision-more-title": "{{PLURAL:$1|Kitas $1 paveikslėlis|Kiti $1 paveikslėliai}}",
+	"machinevision-onboarding-dialog-cta": "Pradėti žymėjimą",
+	"machinevision-onboarding-dialog-disclaimer": "Prie vaizdų bus pridėtos tik jūsų patvirtintos žymos.",
+	"machinevision-onboarding-dialog-close-label": "Uždaryti"
 }
