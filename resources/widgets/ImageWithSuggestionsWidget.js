@@ -132,6 +132,9 @@ ImageWithSuggestionsWidget.prototype.onReset = function () {
 		widget.render();
 	} );
 	this.confirmedCount = 0;
+
+	this.publishButton.setDisabled( true );
+	this.resetButton.setDisabled( true );
 };
 
 /**
