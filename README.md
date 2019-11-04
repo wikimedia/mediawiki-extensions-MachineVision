@@ -35,76 +35,57 @@ php maintenance/populateFreebaseMapping.php --mappingFile path_to_your_file.nt
 
 This process may take some time to complete.
 
+### Configuration and Usage
+
+#### Configuration
+For local development, use the following settings in `LocalSettings.php` if using the Google Cloud
+Vision API:
+
+```php
+$wgMachineVisionRequestLabelsOnUploadComplete = true;
+$wgMachineVisionRequestLabelsFromWikidataPublicApi = true;
+$wgMachineVisionGCVSendFileContents = true;
+
+$wgMachineVisionHandlers['google'] = [
+	'class' => 'MediaWiki\\Extension\\MachineVision\\Handler\\GoogleCloudVisionHandler',
+	'services' => [
+		'MachineVisionFetchGoogleCloudVisionAnnotationsJobFactory',
+		'MachineVisionRepository',
+		'MachineVisionRepoGroup',
+		'MachineVisionDepictsSetter',
+		'MachineVisionLabelResolver',
+	],
+];
+```
+If testing filtering criteria for the Computer-Aided Tagging feature, you may want to set some
+ SafeSearch limits:
+```php
+$wgMachineVisionGoogleSafeSearchLimits = [
+	'adult' => 3,
+	'medical' => 3,
+	'violent' => 4,
+	'racy' => 4,
+];
+```
+
 #### Google API Credentials
 To use the Google Cloud Vision with this extension, you will need to have valid
 Google Cloud credentials. You will need to sign up for a free trial at:
 https://console.cloud.google.com and generate credentials for the Google Cloud
 Vision service. Download a JSON file with your credentials from the dashboard
 and place it somewhere accessible to the web server that is running MediaWiki.
-You will need to provide a path to this file as an extension configuration setting:
+You will need to provide a path to this file as an extension configuration setting in
+ `LocalSettings.php`:
 
 ```
 $wgMachineVisionGoogleCredentialsFileLocation = '/var/www/mediawiki/machine-vision-credentials.json';
 ```
 
-### Configuration and Usage
-
-#### Configuration
-Use the following settings in `LocalSettings.php` if using the Google Cloud
-Vision API:
-
-```php
-$wgMachineVisionRequestLabelsOnUploadComplete = true;
-$wgMachineVisionRequestLabelsFromWikidataPublicApi = true;
-$wgMachineVisionHandlers['google'] = [
-	'class' => 'MediaWiki\\Extension\\MachineVision\\Handler\\GoogleCloudVisionHandler',
-	'services' => [
-		'MachineVisionGoogleServiceAccountCredentials',
-		'MachineVisionHttpRequestFactory',
-		'MachineVisionRepository',
-		'MachineVisionRepoGroup',
-		'MachineVisionDepictsSetter',
-		'MachineVisionLabelResolver',
-	],
-	'args' => [
-		// sendFileContents
-		true,
-		// safeSearchLimits
-		[
-			'adult' => 3,
-			'medical' => 3,
-			'violent' => 4,
-			'racy' => 4,
-		],
-	]
-];
-```
-
-Additionally, for local development, you will probably want to disable the
-following code in `src/Hooks.php`:
-
-```php
-DeferredUpdates::addCallableUpdate( function () use ( $file, $extensionServices ) {
-	$registry = $extensionServices->getHandlerRegistry();
-	foreach ( $registry->getHandlers( $file ) as $provider => $handler ) {
-		$handler->handleUploadComplete( $provider, $file );
-	}
-} );
-```
-
-Replace it with the following:
-
-```php
-$registry = $extensionServices->getHandlerRegistry();
-foreach ( $registry->getHandlers( $file ) as $provider => $handler ) {
-	$handler->handleUploadComplete( $provider, $file );
-}
-```
-
 #### Usage
 Log in and upload a file (after `$wgMachineVisionRequestLabelsOnUploadComplete`
-has been set to `true`); After upload, navigate to `Special:SuggestedTags`
-to see suggested tags from Google.
+has been set to `true`). This will enqueue an image annotation job in the MediaWiki job queue. After
+ the job runs, navigate to `Special:SuggestedTags` to see suggested tags from Google.
 
-#### Federation
-TBD: is this possible?
+##### Note
+When and how often jobs run depends on your local configuration; see https://www.mediawiki.org/wiki/Manual%3AJob_queue for details.
+ You can always run all jobs in the job queue manually by executing `maintenance/runJobs.php`.

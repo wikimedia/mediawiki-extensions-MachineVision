@@ -74,6 +74,9 @@
 			"factory": "MediaWiki\\Extension\\MachineVision\\Api\\ApiQueryUnreviewedImageCount::factory"
 		}
 	},
+	"JobClasses": {
+		"fetchGoogleCloudVisionAnnotations": "MediaWiki\\Extension\\MachineVision\\Job\\FetchGoogleCloudVisionAnnotationsJob"
+	},
 	"SpecialPages": {
 		"SuggestedTags": "MediaWiki\\Extension\\MachineVision\\Special\\SpecialSuggestedTags"
 	},
@@ -152,6 +155,14 @@
 		"MachineVisionGoogleCredentialsFileLocation": {
 			"value": false,
 			"description": "Filesystem path to the Google credentials JSON file, or false for none."
+		},
+		"MachineVisionGCVSendFileContents": {
+			"value": false,
+			"description": "If true, send base64-encoded file contents in Google Cloud Vision requests, otherwise send the URL to be retrieved by Google."
+		},
+		"MachineVisionGoogleSafeSearchLimits": {
+			"value": [],
+			"description": "Associative array specifying the likelihood limits on various SafeSearch dimensions at which an image will be excluded from Computer-Aided Tagging. Possible keys are 'adult', 'spoof', 'medical', 'violence', and 'racy'. Possible values are 1 (very unlikely), 2 (unlikely), 3 (possible), 4 (likely), and 5 (very likely)."
 		}
 	},
 	"ResourceFileModulePaths": {
