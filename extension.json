@@ -163,6 +163,10 @@
 		"MachineVisionGoogleSafeSearchLimits": {
 			"value": [],
 			"description": "Associative array specifying the likelihood limits on various SafeSearch dimensions at which an image will be excluded from Computer-Aided Tagging. Possible keys are 'adult', 'spoof', 'medical', 'violence', and 'racy'. Possible values are 1 (very unlikely), 2 (unlikely), 3 (possible), 4 (likely), and 5 (very likely)."
+		},
+		"MachineVisionNewUploadLabelingJobDelay": {
+			"value": 0,
+			"description": "Delay, in seconds, to apply before running a labeling job for a newly uploaded file."
 		}
 	},
 	"ResourceFileModulePaths": {

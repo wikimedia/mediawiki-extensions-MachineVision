@@ -123,6 +123,7 @@ class FetchSuggestions extends Maintenance {
 	/**
 	 * @param LocalFile $file
 	 * @suppress PhanUndeclaredClassMethod
+	 * TODO: Directly make requests in this maintenance script, don't use the JobQueue
 	 */
 	private function fetchForFile( LocalFile $file ) {
 		foreach ( $this->handlerRegistry->getHandlers( $file ) as $provider => $handler ) {
@@ -134,14 +135,14 @@ class FetchSuggestions extends Maintenance {
 				);
 			}
 			try {
-				$handler->handleUploadComplete( $provider, $file );
+				$handler->requestAnnotations( $provider, $file );
 			} catch ( Throwable $t ) {
 				$retries = $this->numRetries;
 				while ( $retries ) {
 					if ( $handler->isTooManyRequestsError( $t ) ) {
 						sleep( $this->backoffSeconds );
 						try {
-							$handler->handleUploadComplete( $provider, $file );
+							$handler->requestAnnotations( $provider, $file );
 							return;
 						} catch ( Throwable $t ) {
 							if ( $handler->isTooManyRequestsError( $t ) ) {

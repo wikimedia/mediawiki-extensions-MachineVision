@@ -161,10 +161,12 @@ return [
 			$safeSearchLimits = $extensionConfig->get( 'MachineVisionGoogleSafeSearchLimits' );
 			$sendFileContents = $extensionConfig->get( 'MachineVisionGCVSendFileContents' );
 			$proxy = $extensionConfig->get( 'MachineVisionHttpProxy' );
+			$delay = $extensionConfig->get( 'MachineVisionNewUploadLabelingJobDelay' );
 			return new FetchGoogleCloudVisionAnnotationsJobFactory(
 				$sendFileContents,
 				$safeSearchLimits,
-				$proxy
+				$proxy,
+				$delay
 			);
 		},
 ];

@@ -48,12 +48,11 @@ class RandomWikidataIdHandler extends WikidataIdHandler {
 	}
 
 	/**
-	 * Handle a new upload, after the core handling has been completed.
 	 * Retrieves machine vision metadata about the image and stores it.
 	 * @param string $provider provider name
 	 * @param LocalFile $file
 	 */
-	public function handleUploadComplete( $provider, LocalFile $file ) {
+	public function requestAnnotations( string $provider, LocalFile $file ): void {
 		$metadata = $this->client->getFileMetadata( $file, $this->apiUrlTemplate );
 		$this->logger->debug( ( $metadata ? 'Retrieved' : 'No' ) . ' machine vision info for file', [
 			'title' => $file->getTitle()->getPrefixedDBkey(),

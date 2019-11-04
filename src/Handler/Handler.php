@@ -29,11 +29,11 @@ interface Handler extends LoggerAwareInterface {
 	public function isTooManyRequestsError( Throwable $t ): bool;
 
 	/**
-	 * Process a file that has been successfully uploaded.
+	 * Request image annotations from a machine vision provider.
 	 * @param string $provider provider name
 	 * @param LocalFile $file
 	 */
-	public function handleUploadComplete( $provider, LocalFile $file );
+	public function requestAnnotations( string $provider, LocalFile $file ): void;
 
 	/**
 	 * Add extra data to the action=info page.

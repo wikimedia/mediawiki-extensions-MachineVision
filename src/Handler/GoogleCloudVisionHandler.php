@@ -63,12 +63,11 @@ class GoogleCloudVisionHandler extends WikidataIdHandler {
 	}
 
 	/**
-	 * Handle a new upload, after the core handling has been completed.
 	 * Retrieves machine vision metadata about the image and stores it.
 	 * @param string $provider provider name
 	 * @param LocalFile $file
 	 */
-	public function handleUploadComplete( $provider, LocalFile $file ) {
+	public function requestAnnotations( string $provider, LocalFile $file ): void {
 		$fetchAnnotationsJob = $this->fetchAnnotationsJobFactory->createJob( $provider, $file );
 		JobQueueGroup::singleton()->push( $fetchAnnotationsJob );
 	}

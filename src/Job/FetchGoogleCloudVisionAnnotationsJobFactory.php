@@ -15,16 +15,26 @@ class FetchGoogleCloudVisionAnnotationsJobFactory {
 	/** @var string|bool */
 	private $proxy;
 
+	/** @var int */
+	private $delay;
+
 	/**
 	 * FetchGoogleCloudVisionAnnotationsJobFactory constructor.
 	 * @param bool $sendFileContents
 	 * @param array $safeSearchLimits
-	 * @param bool $proxy
+	 * @param bool|string $proxy
+	 * @param int $delay
 	 */
-	public function __construct( bool $sendFileContents, array $safeSearchLimits, $proxy ) {
+	public function __construct(
+		bool $sendFileContents,
+		array $safeSearchLimits,
+		$proxy,
+		int $delay
+	) {
 		$this->sendFileContents = $sendFileContents;
 		$this->safeSearchLimits = $safeSearchLimits;
 		$this->proxy = $proxy;
+		$this->delay = $delay;
 	}
 
 	/**
@@ -44,6 +54,7 @@ class FetchGoogleCloudVisionAnnotationsJobFactory {
 				'sendFileContents' => $this->sendFileContents,
 				'safeSearchLimits' => $this->safeSearchLimits,
 				'proxy' => $this->proxy,
+				'jobReleaseTimestamp' => wfTimestamp() + $this->delay,
 			]
 		);
 	}

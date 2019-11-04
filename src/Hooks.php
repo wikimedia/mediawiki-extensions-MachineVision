@@ -50,7 +50,7 @@ class Hooks {
 		}
 		$registry = $extensionServices->getHandlerRegistry();
 		foreach ( $registry->getHandlers( $file ) as $provider => $handler ) {
-			$handler->handleUploadComplete( $provider, $file );
+			$handler->requestAnnotations( $provider, $file );
 		}
 	}
 

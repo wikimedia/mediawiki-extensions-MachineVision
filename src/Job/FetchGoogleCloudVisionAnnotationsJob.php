@@ -121,6 +121,7 @@ class FetchGoogleCloudVisionAnnotationsJob extends Job {
 	 * @param RepoGroup $repoGroup
 	 * @param bool $sendFileContents
 	 * @param string|bool $proxy
+	 * @return MWHttpRequest
 	 * @suppress PhanUndeclaredClassMethod,PhanUndeclaredTypeParameter
 	 */
 	private function getAnnotationRequest(
