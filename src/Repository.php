@@ -156,21 +156,23 @@ class Repository implements LoggerAwareInterface {
 
 	/**
 	 * Get the suggested labels of an image.
-	 * @param string $sha1 Image SHA1
+	 * @param string|array $sha1 Image SHA1
 	 * @return array List of Wikidata item IDs (including the Q prefix)
 	 */
 	public function getLabels( $sha1 ) {
 		$res = $this->dbr->select(
 			[ 'machine_vision_image', 'machine_vision_label' ],
-			[ 'mvl_wikidata_id', 'mvl_review', 'mvl_reviewer_id' ],
+			[ 'mvi_sha1', 'mvl_wikidata_id', 'mvl_review', 'mvl_reviewer_id' ],
 			[ 'mvi_sha1' => $sha1 ],
 			__METHOD__,
 			[],
 			[ 'machine_vision_label' => [ 'INNER JOIN', [ 'mvi_id = mvl_mvi_id' ] ] ]
 		);
+
 		$data = [];
 		foreach ( $res as $row ) {
 			$data[] = [
+				'sha1' => $row->mvi_sha1,
 				'wikidata_id' => $row->mvl_wikidata_id,
 				'review' => (int)$row->mvl_review,
 				'reviewer_id' => (int)$row->mvl_reviewer_id,

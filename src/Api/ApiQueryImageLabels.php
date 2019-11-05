@@ -29,6 +29,9 @@ class ApiQueryImageLabels extends ApiQueryBase {
 	/** @var LabelResolver */
 	private $labelResolver;
 
+	/** @var Repository */
+	private $repository;
+
 	/**
 	 * @param ApiQuery $query
 	 * @param string $moduleName
@@ -38,7 +41,7 @@ class ApiQueryImageLabels extends ApiQueryBase {
 		$services = MediaWikiServices::getInstance();
 		$extensionServices = new Services( $services );
 		return new self( $query, $moduleName, $services->getRepoGroup(),
-			$extensionServices->getLabelResolver() );
+			$extensionServices->getLabelResolver(), $extensionServices->getRepository() );
 	}
 
 	/**
@@ -46,6 +49,7 @@ class ApiQueryImageLabels extends ApiQueryBase {
 	 * @param string $moduleName
 	 * @param RepoGroup $repoGroup
 	 * @param LabelResolver $labelResolver
+	 * @param Repository $repository
 	 */
 	public function __construct(
 		// API extra args
@@ -53,11 +57,13 @@ class ApiQueryImageLabels extends ApiQueryBase {
 		$moduleName,
 		// services
 		RepoGroup $repoGroup,
-		LabelResolver $labelResolver
+		LabelResolver $labelResolver,
+		Repository $repository
 	) {
 		parent::__construct( $query, $moduleName, 'il' );
 		$this->repoGroup = $repoGroup;
 		$this->labelResolver = $labelResolver;
+		$this->repository = $repository;
 	}
 
 	/** @inheritDoc */
@@ -85,28 +91,20 @@ class ApiQueryImageLabels extends ApiQueryBase {
 		}
 		$sha1ToFilename = array_flip( $filenameToSha1 );
 
-		// TODO: Use Repository::getLabels(), which this essentially duplicates
-		$res = $this->getDB()->select(
-			[ 'machine_vision_image', 'machine_vision_label' ],
-			[ 'mvi_sha1', 'mvl_wikidata_id', 'mvl_review' ],
-			[ 'mvi_sha1' => array_values( $filenameToSha1 ) ],
-			__METHOD__,
-			[],
-			[ 'machine_vision_label' => [ 'INNER JOIN', [ 'mvi_id = mvl_mvi_id' ] ] ]
-		);
+		$res = $this->repository->getLabels( array_values( $filenameToSha1 ) );
 
 		$apiResult = $this->getResult();
 		$data = [];
 		foreach ( $res as $row ) {
-			$pageId = $filenameToPageId[$sha1ToFilename[$row->mvi_sha1]];
-			$state = self::$reviewStateNames[$row->mvl_review];
+			$pageId = $filenameToPageId[$sha1ToFilename[$row['sha1']]];
+			$state = self::$reviewStateNames[$row['review']];
 
 			if ( $params['state'] !== null && !in_array( $state, $params['state'] ) ) {
 				continue;
 			}
 
-			$data[$pageId][$row->mvl_wikidata_id]['wikidata_id'] = $row->mvl_wikidata_id;
-			$data[$pageId][$row->mvl_wikidata_id]['state'] = self::$reviewStateNames[$row->mvl_review];
+			$data[$pageId][$row['wikidata_id']]['wikidata_id'] = $row['wikidata_id'];
+			$data[$pageId][$row['wikidata_id']]['state'] = self::$reviewStateNames[$row['review']];
 		}
 
 		foreach ( $data as $pageId => $pageData ) {
