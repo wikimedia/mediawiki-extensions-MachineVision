@@ -15,7 +15,7 @@ class LabelSuggestion {
 	 * @param string $wikidataId
 	 * @param float $confidence
 	 */
-	public function __construct( $wikidataId, $confidence = 0.0 ) {
+	public function __construct( $wikidataId, float $confidence = 0.0 ) {
 		$this->wikidataId = $wikidataId;
 		$this->confidence = $confidence;
 	}
