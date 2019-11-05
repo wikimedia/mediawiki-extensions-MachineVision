@@ -9,7 +9,6 @@ use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\NullLogger;
 use UnexpectedValueException;
-use Wikimedia\AtEase\AtEase;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
@@ -80,6 +79,24 @@ class Repository implements LoggerAwareInterface {
 	) {
 		$providerId = $this->nameTableStore->acquireId( $providerName );
 		$timestamp = $this->dbw->timestamp();
+
+		$this->dbw->insert(
+			'machine_vision_image',
+			[
+				'mvi_sha1' => $sha1,
+				// why does 'RAND()' not work here?
+				'mvi_rand' => $this->getRandomFloat(),
+			],
+			__METHOD__
+		);
+
+		$mviRowId = $this->dbw->insertId() ?: $this->dbw->selectField(
+			'machine_vision_image',
+			'mvi_id',
+			[ 'mvi_sha1' => $sha1 ],
+			__METHOD__
+		);
+
 		foreach ( $suggestions as $suggestion ) {
 			$wikidataId = $suggestion->getWikidataId();
 			$confidence = $suggestion->getConfidence();
@@ -87,43 +104,35 @@ class Repository implements LoggerAwareInterface {
 			$this->dbw->insert(
 				'machine_vision_label',
 				[
-					'mvl_image_sha1' => $sha1,
+					'mvl_mvi_id' => $mviRowId,
 					'mvl_wikidata_id' => $wikidataId,
-					'mvl_uploader_id' => $uploaderId,
 					'mvl_review' => $initialState,
-					'mvl_suggested_time' => (int)( microtime( true ) * 10000 ),
+					'mvl_uploader_id' => $uploaderId,
 				],
-				__METHOD__,
-				[ 'IGNORE' ]
+				__METHOD__
 			);
-			// Need to re-select in case the row was already added from another provider's results
-			// and the insert fails, in which case we wouldn't have gotten a row ID from insertId().
-			$mvlId = $this->dbw->selectField(
+
+			$mvlId = $this->dbw->insertId() ?: $this->dbw->selectField(
 				'machine_vision_label',
 				'mvl_id',
 				[
-					'mvl_image_sha1' => $sha1,
+					'mvl_mvi_id' => $mviRowId,
 					'mvl_wikidata_id' => $wikidataId,
 				],
 				__METHOD__
 			);
-			if ( $mvlId !== false ) {
-				$this->dbw->insert(
-					'machine_vision_suggestion',
-					[
-						'mvs_mvl_id' => $mvlId,
-						'mvs_provider_id' => $providerId,
-						'mvs_timestamp' => $timestamp,
-						'mvs_confidence' => $confidence,
-					],
-					__METHOD__
-				);
-			} else {
-				$this->logger->info(
-					'Could not find row ID for recently retrieved label suggestion ' .
-						$wikidataId . ' for image sha1 ' . $sha1
-				);
-			}
+
+			$this->dbw->insert(
+				'machine_vision_suggestion',
+				[
+					'mvs_mvl_id' => $mvlId,
+					'mvs_provider_id' => $providerId,
+					'mvs_timestamp' => $timestamp,
+					'mvs_confidence' => $confidence,
+				],
+				__METHOD__
+			);
+
 		}
 	}
 
@@ -134,10 +143,12 @@ class Repository implements LoggerAwareInterface {
 	 */
 	public function getLabels( $sha1 ) {
 		$res = $this->dbr->select(
-			'machine_vision_label',
+			[ 'machine_vision_image', 'machine_vision_label' ],
 			[ 'mvl_wikidata_id', 'mvl_review', 'mvl_reviewer_id' ],
-			[ 'mvl_image_sha1' => $sha1 ],
-			__METHOD__
+			[ 'mvi_sha1' => $sha1 ],
+			__METHOD__,
+			[],
+			[ 'machine_vision_label' => [ 'INNER JOIN', [ 'mvi_id = mvl_mvi_id' ] ] ]
 		);
 		$data = [];
 		foreach ( $res as $row ) {
@@ -167,6 +178,7 @@ class Repository implements LoggerAwareInterface {
 			throw new InvalidArgumentException( "Invalid state $state (must be one of $validStates)" );
 		}
 
+		$mviId = $this->getMviIdForSha1( $sha1 );
 		$this->dbw->update(
 			'machine_vision_label',
 			[
@@ -174,7 +186,7 @@ class Repository implements LoggerAwareInterface {
 				'mvl_reviewer_id' => $reviewerId,
 				'mvl_reviewed_time' => $ts
 			],
-			[ 'mvl_image_sha1' => $sha1, 'mvl_wikidata_id' => $label ],
+			[ 'mvl_mvi_id' => $mviId, 'mvl_wikidata_id' => $label ],
 			__METHOD__
 		);
 		return (bool)$this->dbw->affectedRows();
@@ -193,11 +205,12 @@ class Repository implements LoggerAwareInterface {
 		$db = ( $index === DB_MASTER ) ? $this->dbw : $this->dbr;
 
 		$state = $db->selectField(
-			'machine_vision_label',
+			[ 'machine_vision_image', 'machine_vision_label' ],
 			'mvl_review',
-			[ 'mvl_image_sha1' => $sha1, 'mvl_wikidata_id' => $label ],
+			[ 'mvi_sha1' => $sha1, 'mvl_wikidata_id' => $label ],
 			__METHOD__,
-			$options
+			$options,
+			[ 'machine_vision_label' => [ 'INNER JOIN', [ 'mvi_id = mvl_mvi_id' ] ] ]
 		);
 		if ( $state === false ) {
 			return false;
@@ -213,11 +226,12 @@ class Repository implements LoggerAwareInterface {
 	 * @param string $sha1 image SHA1 digest
 	 */
 	public function withholdUnreviewedLabelsForFile( $sha1 ) {
+		$mviId = $this->getMviIdForSha1( $sha1 );
 		$this->dbw->update(
 			'machine_vision_label',
 			[ 'mvl_review' => self::REVIEW_WITHHELD ],
 			[
-				'mvl_image_sha1' => $sha1,
+				'mvl_mvi_id' => $mviId,
 				'mvl_review' => self::REVIEW_UNREVIEWED,
 			],
 			__METHOD__
@@ -225,50 +239,50 @@ class Repository implements LoggerAwareInterface {
 	}
 
 	/**
-	 * Get list of image titles with unreviewed image labels. This effectuates queue-like behavior
-	 * by selecting results sorted by mvl_suggested_time and updating selected rows'
-	 * mvl_suggested_time with the current microtime as part of the same transaction.
-	 * Label suggestions fall out of the "queue" when their review state changes to a state other
-	 * than REVIEW_UNREVIEWED.
+	 * Get a random-ish list of image titles with unreviewed image labels.
 	 * @param int $limit
 	 * @param int|null $userId local user ID for filtering
 	 * @return string[] Titles of file pages with associated unreviewed labels
 	 */
 	public function getTitlesWithUnreviewedLabels( $limit, $userId = null ) {
 		$conds = [ 'mvl_review' => self::REVIEW_UNREVIEWED ];
+		$rand = $this->getRandomFloat();
+		$fname = __METHOD__;
+
 		if ( $userId ) {
+			// TODO: Include withheld images if this is a query for user uploads
 			$conds['mvl_uploader_id'] = strval( $userId );
 		}
-		$this->dbw->startAtomic( __METHOD__ );
-		// Suppress a warning about using aggregation (DISTINCT) with a locking select. This is for
-		// practical purposes a WMF-specific extension, and the warning is about compatibility with
-		// alternative DB backends like Postgres, which isn't a concern in WMF production.
-		AtEase::suppressWarnings();
-		$sha1s = $this->dbw->selectFieldValues(
-			'machine_vision_label',
-			'mvl_image_sha1',
-			$conds,
-			__METHOD__,
-			[
-				'DISTINCT',
-				'FOR UPDATE',
-				'ORDER BY' => 'mvl_suggested_time',
-				'LIMIT' => $limit,
-			]
-		);
-		AtEase::restoreWarnings();
+
+		$select = function ( $ascending, $limit, $conds ) use ( $fname, $rand ) {
+			$whereClause = array_merge( $conds,
+				[ 'mvi_rand ' . ( $ascending ? '> ' : '< ' ) . strval( $rand ) ] );
+
+			return $this->dbr->selectFieldValues(
+				[ 'machine_vision_image', 'machine_vision_label' ],
+				'mvi_sha1',
+				$whereClause,
+				$fname,
+				[
+					'DISTINCT',
+					'ORDER BY' => 'mvi_rand ' . ( $ascending ? 'ASC' : 'DESC' ),
+					'LIMIT' => $limit,
+				],
+				[ 'machine_vision_label' => [ 'INNER JOIN', [ 'mvi_id = mvl_mvi_id' ] ] ]
+			);
+		};
+
+		$sha1s = $select( true, $limit, $conds );
+
+		$shortfall = $limit - count( $sha1s );
+		if ( $shortfall > 0 ) {
+			$sha1s = array_merge( $sha1s, $select( false, $shortfall, $conds ) );
+		}
+
 		if ( !$sha1s ) {
-			$this->dbw->endAtomic( __METHOD__ );
 			return [];
 		}
-		$this->dbw->update(
-			'machine_vision_label',
-			[ 'mvl_suggested_time' => (int)( microtime( true ) * 10000 ) ],
-			[ 'mvl_image_sha1' => $sha1s ],
-			__METHOD__
-		);
-		$this->dbw->endAtomic( __METHOD__ );
-		return $this->dbw->selectFieldValues(
+		return $this->dbr->selectFieldValues(
 			'image',
 			'img_name',
 			[ 'img_sha1' => $sha1s ],
@@ -285,13 +299,13 @@ class Repository implements LoggerAwareInterface {
 		return (int)$this->dbr->selectField(
 			[ 'derived' => $this->dbr->buildSelectSubquery(
 				'machine_vision_label',
-				'mvl_image_sha1',
+				'mvl_mvi_id',
 				[
 					'mvl_review' => self::REVIEW_UNREVIEWED,
 					'mvl_uploader_id' => $userId,
 				],
 				__METHOD__,
-				[ 'GROUP BY' => 'mvl_image_sha1' ]
+				[ 'GROUP BY' => 'mvl_mvi_id' ]
 			) ],
 			'COUNT(*)',
 			[],
@@ -337,10 +351,11 @@ class Repository implements LoggerAwareInterface {
 	 */
 	public function insertSafeSearchAnnotations( $sha1, $adult, $spoof, $medical, $violence,
 		$racy ) {
+		$mviId = $this->getMviIdForSha1( $sha1 );
 		$this->dbw->insert(
 			'machine_vision_safe_search',
 			[
-				'mvss_image_sha1' => $sha1,
+				'mvss_mvi_id' => $mviId,
 				'mvss_adult' => $adult,
 				'mvss_spoof' => $spoof,
 				'mvss_medical' => $medical,
@@ -359,10 +374,16 @@ class Repository implements LoggerAwareInterface {
 	 */
 	public function deleteDataOfDeletedFile( $sha1 ) {
 		$this->dbw->startAtomic( __METHOD__ );
+		$mviId = $this->getMviIdForSha1( $sha1 );
+		$this->dbw->delete(
+			'machine_vision_image',
+			[ 'mvi_sha1' => $sha1 ],
+			__METHOD__
+		);
 		$mvlIds = $this->dbw->selectFieldValues(
 			'machine_vision_label',
 			'mvl_id',
-			[ 'mvl_image_sha1' => $sha1 ],
+			[ 'mvl_mvi_id' => $mviId ],
 			__METHOD__,
 			[ 'FOR UPDATE' ]
 		);
@@ -376,15 +397,29 @@ class Repository implements LoggerAwareInterface {
 			);
 			$this->dbw->delete(
 				'machine_vision_label',
-				[ 'mvl_image_sha1' => $sha1 ],
+				[ 'mvl_mvi_id' => $mviId ],
 				__METHOD__
 			);
 			$this->dbw->delete(
 				'machine_vision_safe_search',
-				[ 'mvss_image_sha1' => $sha1 ],
+				[ 'mvss_mvi_id' => $mviId ],
 				__METHOD__
 			);
 			$this->dbw->endAtomic( __METHOD__ );
 		}
 	}
+
+	private function getMviIdForSha1( $sha1 ) {
+		return $this->dbw->selectField(
+			'machine_vision_image',
+			'mvi_id',
+			[ 'mvi_sha1' => $sha1 ],
+			__METHOD__
+		);
+	}
+
+	private function getRandomFloat(): float {
+		return mt_rand( 0, mt_getrandmax() - 1 ) / mt_getrandmax();
+	}
+
 }

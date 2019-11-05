@@ -8,30 +8,36 @@ CREATE TABLE /*_*/machine_vision_provider (
 CREATE UNIQUE INDEX /*i*/mvp_name ON /*_*/machine_vision_provider (mvp_name);
 
 
+CREATE TABLE /*_*/machine_vision_image (
+    mvi_id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    -- sha1 digest of the image
+    mvi_sha1 varbinary(32) NOT NULL,
+    -- Random value for querying random images
+    mvi_rand float NOT NULL
+) /*wgDBTableOptions*/;
+
+CREATE UNIQUE INDEX /*i*/mvi_sha1 ON /*_*/machine_vision_image (mvi_sha1(10));
+CREATE INDEX /*i*/mvi_rand ON /*_*/machine_vision_image (mvi_rand);
+
+
 CREATE TABLE /*_*/machine_vision_label (
     mvl_id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    -- sha1 digest of the image
-    mvl_image_sha1 varbinary(32) NOT NULL,
+    -- mvi_id of the image to which this suggested label belongs
+    mvl_mvi_id int NOT NULL,
     -- Wikidata ID (Q-number) identifying the item identified as depicted in the image
     mvl_wikidata_id varbinary(32) NOT NULL,
     -- Review status: 0: not reviewed yet, 1: accepted, -1: rejected
     mvl_review tinyint NOT NULL DEFAULT 0,
-    -- Local user ID of the user who uploaded the file
-    mvl_uploader_id int(10) UNSIGNED NOT NULL DEFAULT 0,
-    -- Timestamp of the last time the label represented by the row was served.
-    -- Represented in unix format with microseconds, converted to an integer.
-    mvl_suggested_time binary(14) NOT NULL,
+    -- Local user ID of the user who uploaded the label
+    mvl_uploader_id int(10) UNSIGNED,
     -- Local user ID of the user who reviewed the label
     mvl_reviewer_id int(10) UNSIGNED,
     -- Timestamp representing the time at which the label suggestion was reviewed.
-    -- Represented in unix format with microseconds, converted to an integer.
     mvl_reviewed_time binary(14)
-) /*$wgDBTableOptions*/;
+) /*wgDBTableOptions*/;
 
-CREATE UNIQUE INDEX /*i*/mvl_sha1_wikidata ON /*_*/machine_vision_label (mvl_image_sha1, mvl_wikidata_id);
-CREATE INDEX /*i*/mvl_review_sha1 ON /*_*/machine_vision_label (mvl_review, mvl_image_sha1(10));
+CREATE UNIQUE INDEX /*i*/mvl_mvi_wikidata ON /*_*/machine_vision_label (mvl_mvi_id, mvl_wikidata_id);
 CREATE INDEX /*i*/mvl_uploader_review ON /*_*/machine_vision_label (mvl_uploader_id, mvl_review);
-CREATE INDEX /*i*/mvl_suggested_time ON /*_*/machine_vision_label (mvl_suggested_time);
 
 
 CREATE TABLE /*_*/machine_vision_suggestion (
@@ -54,7 +60,7 @@ CREATE TABLE /*_*/machine_vision_freebase_mapping (
 
 
 CREATE TABLE /*_*/machine_vision_safe_search (
-    mvss_image_sha1 varbinary(32) NOT NULL PRIMARY KEY,
+    mvss_mvi_id int NOT NULL PRIMARY KEY,
     mvss_adult tinyint NOT NULL DEFAULT 0,
     mvss_spoof tinyint NOT NULL DEFAULT 0,
     mvss_medical tinyint NOT NULL DEFAULT 0,
