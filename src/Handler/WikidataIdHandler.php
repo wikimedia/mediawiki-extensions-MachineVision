@@ -65,9 +65,8 @@ abstract class WikidataIdHandler implements Handler {
 		if ( $ids ) {
 			$labels = $this->labelResolver->resolve( $context, $ids );
 			$wdItemLinks = array_map( function ( $id ) use ( $labels ) {
-				// @phan-suppress-next-line SecurityCheck-DoubleEscaped
 				return Html::element( 'a', [
-					'href' => 'https://www.wikidata.org/wiki/' . htmlentities( $id ),
+					'href' => 'https://www.wikidata.org/wiki/' . $id,
 				], $labels[$id] );
 			}, $ids );
 			// TODO there should probably be a structured-data or similar header but this extension
