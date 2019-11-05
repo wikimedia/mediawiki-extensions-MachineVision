@@ -5,6 +5,8 @@ namespace MediaWiki\Extension\MachineVision;
 
 use Config;
 use Google\Auth\Credentials\ServiceAccountCredentials;
+use MediaWiki\Extension\MachineVision\Client\GoogleCloudVisionClient;
+use MediaWiki\Extension\MachineVision\Client\RandomWikidataIdClient;
 use MediaWiki\Extension\MachineVision\Handler\LabelResolver;
 use MediaWiki\Extension\MachineVision\Handler\Registry;
 use MediaWiki\MediaWikiServices;
@@ -20,8 +22,12 @@ class Services {
 		$this->services = $services;
 	}
 
-	public function getClient(): Client {
-		return $this->services->getService( 'MachineVisionClient' );
+	public function getGoogleCloudVisionClient(): GoogleCloudVisionClient {
+		return $this->services->getService( 'MachineVisionGoogleCloudVisionClient' );
+	}
+
+	public function getRandomWikidataIdClient(): RandomWikidataIdClient {
+		return $this->services->getService( 'MachineVisionRandomWikidataIdClient' );
 	}
 
 	public function getNameTableStore(): NameTableStore {

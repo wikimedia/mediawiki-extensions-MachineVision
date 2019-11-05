@@ -2,18 +2,19 @@
 
 namespace MediaWiki\Extension\MachineVision;
 
+use MediaWiki\Extension\MachineVision\Client\RandomWikidataIdClient;
 use MediaWiki\Http\HttpRequestFactory;
 use PHPUnit\Framework\TestCase;
 
-class ClientTest extends TestCase {
+class RandomWikidataIdClientTest extends TestCase {
 
 	/**
-	 * @covers \MediaWiki\Extension\MachineVision\Client::getFileMetadata
+	 * @covers \MediaWiki\Extension\MachineVision\RandomWikidataIdClient::getFileMetadata
 	 * @dataProvider provideGetFileMetadata
 	 */
 	public function testGetFileMetadata( $httpRequestFactory, $expectedData ) {
 		$file = MockHelper::getMockFile( $this, 'X.png' );
-		$client = new Client( $httpRequestFactory, 'UA' );
+		$client = new RandomWikidataIdClient( $httpRequestFactory, 'UA' );
 		$data = $client->getFileMetadata( $file, 'https://example.com/?title=$1' );
 		$this->assertSame( $expectedData, $data );
 	}

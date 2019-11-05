@@ -45,17 +45,17 @@ class FetchGoogleCloudVisionAnnotationsJobFactory {
 	 */
 	public function createJob( string $provider, LocalFile $file ):
 	FetchGoogleCloudVisionAnnotationsJob {
+		$params = [
+			'title' => $file->getTitle()->getDBkey(),
+			'namespace' => $file->getTitle()->getNamespace(),
+			'provider' => $provider,
+		];
+		if ( $this->delay ) {
+			$params['jobReleaseTimestamp'] = wfTimestamp() + $this->delay;
+		}
 		return new FetchGoogleCloudVisionAnnotationsJob(
 			'fetchGoogleCloudVisionAnnotations',
-			[
-				'title' => $file->getTitle()->getDBkey(),
-				'namespace' => $file->getTitle()->getNamespace(),
-				'provider' => $provider,
-				'sendFileContents' => $this->sendFileContents,
-				'safeSearchLimits' => $this->safeSearchLimits,
-				'proxy' => $this->proxy,
-				'jobReleaseTimestamp' => wfTimestamp() + $this->delay,
-			]
+			$params
 		);
 	}
 

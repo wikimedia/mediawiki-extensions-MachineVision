@@ -1,7 +1,8 @@
 <?php
 
 use Google\Auth\Credentials\ServiceAccountCredentials;
-use MediaWiki\Extension\MachineVision\Client;
+use MediaWiki\Extension\MachineVision\Client\GoogleCloudVisionClient;
+use MediaWiki\Extension\MachineVision\Client\RandomWikidataIdClient;
 use MediaWiki\Extension\MachineVision\Handler\WikidataDepictsSetter;
 use MediaWiki\Extension\MachineVision\Handler\LabelResolver;
 use MediaWiki\Extension\MachineVision\Handler\Registry;
@@ -19,16 +20,57 @@ use Wikimedia\ObjectFactory;
 
 return [
 
-	'MachineVisionClient' => function ( MediaWikiServices $services ): Client {
+	'MachineVisionRandomWikidataIdClient' => function ( MediaWikiServices $services ):
+		RandomWikidataIdClient {
 		$httpRequestFactory = $services->getHttpRequestFactory();
 		$wikiId = wfWikiID();
 
-		$labelingClient = new Client(
+		$client = new RandomWikidataIdClient(
 			$httpRequestFactory,
 			$httpRequestFactory->getUserAgent() . "($wikiId)"
 		);
-		$labelingClient->setLogger( LoggerFactory::getInstance( 'machinevision' ) );
-		return $labelingClient;
+		$client->setLogger( LoggerFactory::getInstance( 'machinevision' ) );
+		return $client;
+	},
+
+	'MachineVisionGoogleCloudVisionClient' => function ( MediaWikiServices $services ):
+	GoogleCloudVisionClient {
+		$configFactory = $services->getConfigFactory();
+		$extensionConfig = $configFactory->makeConfig( 'MachineVision' );
+
+		$credentialsScope = 'https://www.googleapis.com/auth/cloud-vision';
+		$credentialsJsonKey = $extensionConfig->get( 'MachineVisionGoogleCredentialsFileLocation' );
+		$credentials = new ServiceAccountCredentials( $credentialsScope, $credentialsJsonKey );
+
+		$safeSearchLimits = $extensionConfig->get( 'MachineVisionGoogleSafeSearchLimits' );
+		$sendFileContents = $extensionConfig->get( 'MachineVisionGCVSendFileContents' );
+		$proxy = $extensionConfig->get( 'MachineVisionHttpProxy' );
+
+		$loadBalancerFactory = $services->getDBLoadBalancerFactory();
+		$cluster = $extensionConfig->get( 'MachineVisionCluster' );
+		$database = $extensionConfig->get( 'MachineVisionDatabase' );
+		$wikidataIdBlacklist = $extensionConfig->get( 'MachineVisionWikidataIdBlacklist' );
+		$loadBalancer = $cluster
+			? $loadBalancerFactory->getExternalLB( $cluster )
+			: $loadBalancerFactory->getMainLB( $database );
+		$repository = new Repository(
+			$services->getService( 'MachineVisionNameTableStore' ),
+			$loadBalancer->getLazyConnectionRef( DB_REPLICA, [], $database ),
+			$loadBalancer->getLazyConnectionRef( DB_MASTER, [], $database ),
+			$wikidataIdBlacklist
+		);
+
+		$client = new GoogleCloudVisionClient(
+			$credentials,
+			$services->getHttpRequestFactory(),
+			$services->getRepoGroup(),
+			$repository,
+			$sendFileContents,
+			$safeSearchLimits,
+			$proxy
+		);
+		$client->setLogger( LoggerFactory::getInstance( 'machinevision' ) );
+		return $client;
 	},
 
 	'MachineVisionNameTableStore' => function ( MediaWikiServices $services ): NameTableStore {
@@ -114,8 +156,6 @@ return [
 
 	'MachineVisionDepictsSetter' => function ( MediaWikiServices $services ):
 		WikidataDepictsSetter {
-		$configFactory = $services->getConfigFactory();
-		$extensionConfig = $configFactory->makeConfig( 'MachineVision' );
 		$wbRepo = WikibaseRepo::getDefaultInstance();
 		$entityByLinkedTitleLookup = $wbRepo->getStore()->getEntityByLinkedTitleLookup();
 		$changeOpFactoryProvider = $wbRepo->getChangeOpFactoryProvider();

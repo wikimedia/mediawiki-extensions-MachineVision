@@ -114,14 +114,14 @@ class HooksTest extends MediaWikiIntegrationTestCase {
 	}
 
 	private function getMockClient( $response ) {
-		$client = $this->getMockBuilder( Client::class )
+		$client = $this->getMockBuilder( RandomWikidataIdClient::class )
 			->disableOriginalConstructor()
 			->setMethods( [ 'getFileMetadata' ] )
 			->getMock();
 		$client->expects( $this->once() )
 			->method( 'getFileMetadata' )
 			->willReturn( $response );
-		/** @var Client $client */
+		/** @var RandomWikidataIdClient $client */
 		return $client;
 	}
 

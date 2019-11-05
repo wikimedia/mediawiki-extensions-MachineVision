@@ -4,6 +4,7 @@ namespace MediaWiki\Extension\MachineVision\Maintenance;
 
 use LocalFile;
 use Maintenance;
+use MediaWiki\Extension\MachineVision\Client\GoogleCloudVisionClient;
 use MediaWiki\Extension\MachineVision\Handler\Registry;
 use MediaWiki\Extension\MachineVision\Services;
 use MediaWiki\MediaWikiServices;
@@ -21,6 +22,9 @@ require_once "$basePath/maintenance/Maintenance.php";
  * Maintenance script for fetching suggestions for specific files.
  */
 class FetchSuggestions extends Maintenance {
+
+	/** @var GoogleCloudVisionClient */
+	private $client;
 
 	/** @var RepoGroup */
 	private $repoGroup;
@@ -61,6 +65,7 @@ class FetchSuggestions extends Maintenance {
 		$services = MediaWikiServices::getInstance();
 		$extensionServices = new Services( $services );
 		$extensionConfig = $extensionServices->getExtensionConfig();
+		$this->client = $extensionServices->getGoogleCloudVisionClient();
 		$this->repoGroup = $services->getRepoGroup();
 		$this->handlerRegistry = $extensionServices->getHandlerRegistry();
 		$this->throttle = new LeakyBucket();
@@ -123,7 +128,6 @@ class FetchSuggestions extends Maintenance {
 	/**
 	 * @param LocalFile $file
 	 * @suppress PhanUndeclaredClassMethod
-	 * TODO: Directly make requests in this maintenance script, don't use the JobQueue
 	 */
 	private function fetchForFile( LocalFile $file ) {
 		foreach ( $this->handlerRegistry->getHandlers( $file ) as $provider => $handler ) {
@@ -135,7 +139,7 @@ class FetchSuggestions extends Maintenance {
 				);
 			}
 			try {
-				$handler->requestAnnotations( $provider, $file );
+				$this->client->fetchAnnotations( $provider, $file );
 			} catch ( Throwable $t ) {
 				$retries = $this->numRetries;
 				while ( $retries ) {

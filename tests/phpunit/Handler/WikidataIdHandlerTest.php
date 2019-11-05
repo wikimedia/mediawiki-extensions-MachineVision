@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Extension\MachineVision\Handler;
 
-use MediaWiki\Extension\MachineVision\Client;
+use MediaWiki\Extension\MachineVision\Client\RandomWikidataIdClient;
 use MediaWiki\Extension\MachineVision\MockHelper;
 use MediaWiki\Extension\MachineVision\Repository;
 use MediaWiki\Extension\MachineVision\LabelSuggestion;
@@ -34,7 +34,7 @@ class WikidataIdHandlerTest extends TestCase {
 			],
 		];
 
-		$client = $this->getMockBuilder( Client::class )
+		$client = $this->getMockBuilder( RandomWikidataIdClient::class )
 			->disableOriginalConstructor()
 			->setMethods( [ 'getFileMetadata' ] )
 			->getMock();
@@ -42,7 +42,7 @@ class WikidataIdHandlerTest extends TestCase {
 			->method( 'getFileMetadata' )
 			->with( $file, $apiUrlTemplate )
 			->willReturn( $response );
-		/** @var Client $client */
+		/** @var RandomWikidataIdClient $client */
 
 		$repository = $this->getMockBuilder( Repository::class )
 			->disableOriginalConstructor()

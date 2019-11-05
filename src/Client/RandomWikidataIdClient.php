@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Extension\MachineVision;
+namespace MediaWiki\Extension\MachineVision\Client;
 
 use File;
 use MediaWiki\Http\HttpRequestFactory;
@@ -8,7 +8,7 @@ use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\NullLogger;
 
-class Client implements LoggerAwareInterface {
+class RandomWikidataIdClient implements LoggerAwareInterface {
 
 	use LoggerAwareTrait;
 

@@ -3,7 +3,7 @@
 namespace MediaWiki\Extension\MachineVision\Handler;
 
 use LocalFile;
-use MediaWiki\Extension\MachineVision\Client;
+use MediaWiki\Extension\MachineVision\Client\RandomWikidataIdClient;
 use MediaWiki\Extension\MachineVision\Repository;
 use MediaWiki\Extension\MachineVision\LabelSuggestion;
 use Throwable;
@@ -12,21 +12,21 @@ use Throwable;
 // TODO: REMOVE
 class RandomWikidataIdHandler extends WikidataIdHandler {
 
-	/** @var Client */
+	/** @var RandomWikidataIdClient */
 	private $client;
 
 	/** @var string API URL. $1 will be replaced with the URL-encoded file title. */
 	private $apiUrlTemplate;
 
 	/**
-	 * @param Client $client
+	 * @param RandomWikidataIdClient $client
 	 * @param Repository $repository
 	 * @param WikidataDepictsSetter $depictsSetter
 	 * @param LabelResolver $labelResolver
 	 * @param string $apiUrlTemplate
 	 */
 	public function __construct(
-		Client $client,
+		RandomWikidataIdClient $client,
 		Repository $repository,
 		WikidataDepictsSetter $depictsSetter,
 		LabelResolver $labelResolver,
