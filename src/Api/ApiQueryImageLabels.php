@@ -85,17 +85,20 @@ class ApiQueryImageLabels extends ApiQueryBase {
 		}
 		$sha1ToFilename = array_flip( $filenameToSha1 );
 
+		// TODO: Use Repository::getLabels(), which this essentially duplicates
 		$res = $this->getDB()->select(
-			'machine_vision_label',
-			[ 'mvl_image_sha1', 'mvl_wikidata_id', 'mvl_review' ],
-			[ 'mvl_image_sha1' => array_values( $filenameToSha1 ) ],
-			__METHOD__
+			[ 'machine_vision_image', 'machine_vision_label' ],
+			[ 'mvi_sha1', 'mvl_wikidata_id', 'mvl_review' ],
+			[ 'mvi_sha1' => array_values( $filenameToSha1 ) ],
+			__METHOD__,
+			[],
+			[ 'machine_vision_label' => [ 'INNER JOIN', [ 'mvi_id = mvl_mvi_id' ] ] ]
 		);
 
 		$apiResult = $this->getResult();
 		$data = [];
 		foreach ( $res as $row ) {
-			$pageId = $filenameToPageId[$sha1ToFilename[$row->mvl_image_sha1]];
+			$pageId = $filenameToPageId[$sha1ToFilename[$row->mvi_sha1]];
 			$state = self::$reviewStateNames[$row->mvl_review];
 
 			if ( $params['state'] !== null && !in_array( $state, $params['state'] ) ) {
