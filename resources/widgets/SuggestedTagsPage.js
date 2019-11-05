@@ -205,6 +205,7 @@ SuggestedTagsPage.prototype.fetchItems = function () {
 
 	if ( queryType === 'user' ) {
 		query.guiluploader = mw.user.getId();
+		query.ilstate = 'unreviewed|withheld';
 	}
 
 	this.tabs.getCurrentTabPanel().$element.empty();
