@@ -45,5 +45,9 @@
 	"right-imagelabel-review": "Проверка на предложени натписи за слики",
 	"action-imagelabel-review": "проверка на предложени натписи за слики",
 	"right-imagelabel-test": "Испробување на предлози на натписи за слики",
-	"action-imagelabel-test": "испробување на предлози на натписи за слики"
+	"action-imagelabel-test": "испробување на предлози на натписи за слики",
+	"tag-computer-aided-tagging": "Сметачки потпомогнато означување",
+	"tag-computer-aided-tagging-description": "Уредувања направени со алатката за сметачки потпомогнато означување",
+	"tag-computer-aided-tagging-revert": "Отповикување на сметачки потпомогнато означување",
+	"tag-computer-aided-tagging-revert-description": "Уредувања кои отповикуваат една или повеќе преработки направени со алатката за сметачки потпомогнато означување"
 }

@@ -50,5 +50,9 @@
 	"right-imagelabel-review": "Relire les suggestions de légende de l’image",
 	"action-imagelabel-review": "relire les suggestions de légende de l’image",
 	"right-imagelabel-test": "Suggestions de légende d’image de test",
-	"action-imagelabel-test": "suggestions de légende d’image de test"
+	"action-imagelabel-test": "suggestions de légende d’image de test",
+	"tag-computer-aided-tagging": "Balisage assisté par ordinateur",
+	"tag-computer-aided-tagging-description": "Modifications créées avec l’outil de balisage assisté par ordinateur",
+	"tag-computer-aided-tagging-revert": "Annulation de balisage assisté par ordinateur",
+	"tag-computer-aided-tagging-revert-description": "Modifications annulant une ou plusieurs révisions créées avec l’outil de balisage assisté par ordinateur"
 }

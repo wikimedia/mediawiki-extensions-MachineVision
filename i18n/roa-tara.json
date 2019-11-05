@@ -44,5 +44,9 @@
 	"right-imagelabel-review": "Condrolle le suggereminde de l'etichette de l'immaggine",
 	"action-imagelabel-review": "condrolle le suggereminde de l'etichette de l'immaggine",
 	"right-imagelabel-test": "Teste le suggereminde de l'etichette de l'immaggine",
-	"action-imagelabel-test": "teste le suggereminde de l'etichette de l'immaggine"
+	"action-imagelabel-test": "teste le suggereminde de l'etichette de l'immaggine",
+	"tag-computer-aided-tagging": "Taggamende de aijute d'u combiuter",
+	"tag-computer-aided-tagging-description": "Le cangiaminde ccrejate cu 'u strumende de taggamende de aijute d'u combiuter",
+	"tag-computer-aided-tagging-revert": "repristine d'u taggamende de aijute d'u combiuter",
+	"tag-computer-aided-tagging-revert-description": "Le cangiaminde ca repristinane une o cchiù versiune ccrejate cu 'u strumende de taggamende de aijute d'u combiuter"
 }
