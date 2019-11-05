@@ -1,7 +1,6 @@
 'use strict';
 
-var TemplateRenderingDOMLessGroupWidget = require( './../base/TemplateRenderingDOMLessGroupWidget.js' ),
-	SuggestionWidget;
+var TemplateRenderingDOMLessGroupWidget = require( './../base/TemplateRenderingDOMLessGroupWidget.js' );
 
 /**
  * A single suggested tag for an image.
@@ -9,7 +8,7 @@ var TemplateRenderingDOMLessGroupWidget = require( './../base/TemplateRenderingD
  * @param {Object} config
  * @cfg {Object} suggestionData
  */
-SuggestionWidget = function ( config ) {
+function SuggestionWidget( config ) {
 	var iconText;
 
 	this.suggestionData = config.suggestionData;
@@ -42,7 +41,7 @@ SuggestionWidget = function ( config ) {
 	this.$element.attr( 'tabindex', 0 );
 
 	this.render();
-};
+}
 
 OO.inheritClass( SuggestionWidget, TemplateRenderingDOMLessGroupWidget );
 

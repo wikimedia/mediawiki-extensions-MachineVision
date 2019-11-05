@@ -1,7 +1,6 @@
 'use strict';
 
-var ConfirmTagsDialog,
-	ConfirmTagsDialogContent = require( './ConfirmTagsDialogContent.js' );
+var ConfirmTagsDialogContent = require( './ConfirmTagsDialogContent.js' );
 
 /**
  * Process dialog for users to confirm tags before they're published.
@@ -16,11 +15,11 @@ var ConfirmTagsDialog,
  * @cfg {string} [imgUrl]
  * @cfg {string} [imgTitle]
  */
-ConfirmTagsDialog = function ( config ) {
+function ConfirmTagsDialog( config ) {
 	this.config = config || {};
 	ConfirmTagsDialog.parent.call( this, config );
 	this.$element.addClass( 'wbmad-confirm-tags-dialog' );
-};
+}
 OO.inheritClass( ConfirmTagsDialog, OO.ui.ProcessDialog );
 
 /**

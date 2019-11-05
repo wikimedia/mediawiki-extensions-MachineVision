@@ -3,8 +3,7 @@
 
 var TemplateRenderingDOMLessGroupWidget = require( './../base/TemplateRenderingDOMLessGroupWidget.js' ),
 	SuggestionWidget = require( './SuggestionWidget.js' ),
-	ConfirmTagsDialog = require( './ConfirmTagsDialog.js' ),
-	ImageWithSuggestionsWidget;
+	ConfirmTagsDialog = require( './ConfirmTagsDialog.js' );
 
 /**
  * A card within the cardstack on the Suggested Tags page. Each card contains
@@ -16,7 +15,7 @@ var TemplateRenderingDOMLessGroupWidget = require( './../base/TemplateRenderingD
  * @cfg {string} thumburl Image thumbnail URL
  * @cfg {string} title Image title
  */
-ImageWithSuggestionsWidget = function ( config ) {
+function ImageWithSuggestionsWidget( config ) {
 	this.config = config || {};
 	ImageWithSuggestionsWidget.parent.call( this, $.extend( {}, config ) );
 	this.$element.addClass( 'wbmad-image-with-suggestions' );
@@ -68,8 +67,7 @@ ImageWithSuggestionsWidget = function ( config ) {
 	} );
 
 	this.render();
-};
-
+}
 OO.inheritClass( ImageWithSuggestionsWidget, TemplateRenderingDOMLessGroupWidget );
 
 ImageWithSuggestionsWidget.prototype.render = function () {

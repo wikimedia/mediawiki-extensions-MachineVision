@@ -1,7 +1,6 @@
 'use strict';
 
-var TemplateRenderingDOMLessGroupWidget = require( '../base/TemplateRenderingDOMLessGroupWidget.js' ),
-	ConfirmTagsDialogContent;
+var TemplateRenderingDOMLessGroupWidget = require( '../base/TemplateRenderingDOMLessGroupWidget.js' );
 
 /**
  * Content within the "Confirm tags" dialog.
@@ -11,13 +10,13 @@ var TemplateRenderingDOMLessGroupWidget = require( '../base/TemplateRenderingDOM
  * @cfg {string} [imgUrl]
  * @cfg {string} [imgTitle]
  */
-ConfirmTagsDialogContent = function ( config ) {
+function ConfirmTagsDialogContent( config ) {
 	this.config = config || {};
 	ConfirmTagsDialogContent.parent.call( this, $.extend( {}, config ) );
 	this.$element.addClass( 'wbmad-confirm-tags-dialog-content' );
 
 	this.render();
-};
+}
 OO.inheritClass( ConfirmTagsDialogContent, TemplateRenderingDOMLessGroupWidget );
 
 ConfirmTagsDialogContent.prototype.render = function () {

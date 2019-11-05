@@ -6,9 +6,9 @@
  *
  * @inheritDoc
  */
-var DOMLessGroupWidget = function ( config ) {
+function DOMLessGroupWidget( config ) {
 	OO.ui.mixin.GroupWidget.call( this, config );
-};
+}
 OO.mixinClass( DOMLessGroupWidget, OO.ui.mixin.GroupWidget );
 
 /**

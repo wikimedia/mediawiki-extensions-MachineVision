@@ -5,15 +5,14 @@ var IMAGES_PER_PAGE = 10,
 	SuggestionData = require( '../models/SuggestionData.js' ),
 	ImageData = require( '../models/ImageData.js' ),
 	OnboardingDialog = require( './OnboardingDialog.js' ),
-	SuggestedTagsCardstack = require( './SuggestedTagsCardstack.js' ),
-	SuggestedTagsPage;
+	SuggestedTagsCardstack = require( './SuggestedTagsCardstack.js' );
 
 /**
  * Top-level component that houses page UI components and runs API query.
  * @param {Object} config
  * @param {string} [config.startTag] which tab to set as active when page loads
  */
-SuggestedTagsPage = function ( config ) {
+function SuggestedTagsPage( config ) {
 	var userGroups = mw.config.get( 'wgUserGroups' ) || [],
 		showTabs,
 		defaults = {
@@ -62,7 +61,7 @@ SuggestedTagsPage = function ( config ) {
 	}
 
 	this.render();
-};
+}
 
 OO.inheritClass(
 	SuggestedTagsPage,

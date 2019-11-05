@@ -1,13 +1,12 @@
 'use strict';
 
-var DOMLessGroupWidget = require( './DOMLessGroupWidget.js' ),
-	TemplateRenderingDOMLessGroupWidget;
+var DOMLessGroupWidget = require( './DOMLessGroupWidget.js' );
 
-TemplateRenderingDOMLessGroupWidget = function ( config ) {
+function TemplateRenderingDOMLessGroupWidget( config ) {
 	config = config || {};
 	TemplateRenderingDOMLessGroupWidget.parent.call( this, $.extend( {}, config ) );
 	DOMLessGroupWidget.call( this, $.extend( {}, config ) );
-};
+}
 
 OO.inheritClass( TemplateRenderingDOMLessGroupWidget, OO.ui.Widget );
 OO.mixinClass( TemplateRenderingDOMLessGroupWidget, DOMLessGroupWidget );

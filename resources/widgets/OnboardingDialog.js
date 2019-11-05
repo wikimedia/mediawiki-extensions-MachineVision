@@ -1,7 +1,6 @@
 'use strict';
 
-var OnboardingDialog,
-	UserMessage = require( './UserMessage.js' );
+var UserMessage = require( './UserMessage.js' );
 
 /**
  * Process dialog that displays on personal uploads tab on first view.
@@ -9,7 +8,7 @@ var OnboardingDialog,
  * @constructor
  * @param {Object} [config]
  */
-OnboardingDialog = function ( config ) {
+function OnboardingDialog( config ) {
 	this.config = config || {};
 	OnboardingDialog.parent.call( this, config );
 	this.$element.addClass( 'wbmad-onboarding-dialog' );
@@ -17,7 +16,7 @@ OnboardingDialog = function ( config ) {
 	this.size = 'large';
 
 	this.connect( this, { close: 'onClose' } );
-};
+}
 OO.inheritClass( OnboardingDialog, OO.ui.ProcessDialog );
 
 /**

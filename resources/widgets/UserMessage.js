@@ -1,7 +1,6 @@
 'use strict';
 
-var TemplateRenderingDOMLessGroupWidget = require( '../base/TemplateRenderingDOMLessGroupWidget.js' ),
-	UserMessage;
+var TemplateRenderingDOMLessGroupWidget = require( '../base/TemplateRenderingDOMLessGroupWidget.js' );
 
 /**
  * User-facing content with an icon, text, and CTA button.
@@ -14,7 +13,7 @@ var TemplateRenderingDOMLessGroupWidget = require( '../base/TemplateRenderingDOM
  * @cfg {string} [disclaimer] Optional small text below CTA button
  * @cfg {string} [event] Event to emit on CTA button click
  */
-UserMessage = function ( config ) {
+function UserMessage( config ) {
 	this.config = config || {};
 	UserMessage.parent.call( this, $.extend( {}, config ) );
 	this.$element.addClass( 'wbmad-user-message ' + this.config.className );
@@ -30,7 +29,7 @@ UserMessage = function ( config ) {
 	} ).on( 'click', this.onClick, [], this );
 
 	this.render();
-};
+}
 OO.inheritClass( UserMessage, TemplateRenderingDOMLessGroupWidget );
 
 UserMessage.prototype.render = function () {

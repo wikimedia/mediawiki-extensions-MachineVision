@@ -3,8 +3,7 @@
 var TemplateRenderingDOMLessGroupWidget = require( '../base/TemplateRenderingDOMLessGroupWidget.js' ),
 	ImageWithSuggestionsWidget = require( './ImageWithSuggestionsWidget.js' ),
 	PersonalUploadsCount = require( './PersonalUploadsCount.js' ),
-	UserMessage = require( './UserMessage.js' ),
-	SuggestedTagsCardstack;
+	UserMessage = require( './UserMessage.js' );
 
 /**
  * Container element for ImageWithSuggestionsWidgets. This element fetches a set
@@ -18,7 +17,7 @@ var TemplateRenderingDOMLessGroupWidget = require( '../base/TemplateRenderingDOM
  * @cfg {number} userUnreviewedImageCount
  * @cfg {number} userTotalImageCount
  */
-SuggestedTagsCardstack = function ( config ) {
+function SuggestedTagsCardstack( config ) {
 	this.config = config || {};
 	SuggestedTagsCardstack.parent.call( this, $.extend( {}, config ) );
 
@@ -41,7 +40,7 @@ SuggestedTagsCardstack = function ( config ) {
 
 	this.items = this.getItems();
 	this.render();
-};
+}
 
 OO.inheritClass(
 	SuggestedTagsCardstack,
