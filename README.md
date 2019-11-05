@@ -11,11 +11,11 @@ mediawiki.org](https://www.mediawiki.org/wiki/Wikimedia_Product/Machine_vision_m
 
 #### Download and enable the extension
 1. Clone the extension repo into the `extensions` directory of your local
-   Mediawiki installation:
+   MediaWiki installation:
    `git clone "https://gerrit.wikimedia.org/r/mediawiki/extensions/MachineVision"`
 2. Run `composer install` in the MachineVision directory
 3. Add `wfLoadExtension( 'MachineVision' );` to your `LocalSettings.php` file
-4. Run `php maintenance/update.php` in your top-level Mediawiki directory
+4. Run `php maintenance/update.php` in your top-level MediaWiki directory
 
 #### Import a mapping file
 This extension will eventually support other providers, but for now testing and
@@ -25,7 +25,7 @@ download the Freebase/Wikidata Mappings file from Google at the below URL:
 
 https://developers.google.com/freebase/#freebase-wikidata-mappings
 
-Extract the downloaded file from its archive and place it somewhere that Mediawiki can access it. To
+Extract the downloaded file from its archive and place it somewhere that MediaWiki can access it. To
 import, run the following maintenance script:
 
 ```
@@ -47,7 +47,7 @@ $wgMachineVisionRequestLabelsFromWikidataPublicApi = true;
 $wgMachineVisionGCVSendFileContents = true;
 
 $wgMachineVisionHandlers['google'] = [
-	'class' => 'MediaWiki\\Extension\\MachineVision\\Handler\\GoogleCloudVisionHandler',
+	'class' => MediaWiki\Extension\MachineVision\Handler\GoogleCloudVisionHandler::class,
 	'services' => [
 		'MachineVisionFetchGoogleCloudVisionAnnotationsJobFactory',
 		'MachineVisionRepository',
@@ -57,8 +57,10 @@ $wgMachineVisionHandlers['google'] = [
 	],
 ];
 ```
+
 If testing filtering criteria for the Computer-Aided Tagging feature, you may want to set some
- SafeSearch limits:
+SafeSearch limits:
+
 ```php
 $wgMachineVisionGoogleSafeSearchLimits = [
 	'adult' => 3,
@@ -87,5 +89,5 @@ has been set to `true`). This will enqueue an image annotation job in the MediaW
  the job runs, navigate to `Special:SuggestedTags` to see suggested tags from Google.
 
 ##### Note
-When and how often jobs run depends on your local configuration; see https://www.mediawiki.org/wiki/Manual%3AJob_queue for details.
+When and how often jobs run depends on your local configuration; see https://www.mediawiki.org/wiki/Manual:Job_queue for details.
  You can always run all jobs in the job queue manually by executing `maintenance/runJobs.php`.
