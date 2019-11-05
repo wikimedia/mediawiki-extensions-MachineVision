@@ -69,7 +69,7 @@ OO.inheritClass(
 );
 
 SuggestedTagsPage.prototype.render = function () {
-	this.renderTemplate( 'resources/widgets/SuggestedTagsPage.mustache+dom', {
+	this.renderTemplate( 'widgets/SuggestedTagsPage.mustache+dom', {
 		userIsAuthenticated: this.userIsAuthenticated,
 		userIsAutoconfirmed: this.userIsAutoconfirmed,
 		loginMessage: $( '<p>' ).msg( 'machinevision-login-message' ),

@@ -58,7 +58,7 @@ SuggestedTagsCardstack.prototype.render = function () {
 			event: 'popularTabCtaClick'
 		};
 
-	this.renderTemplate( 'resources/widgets/SuggestedTagsCardstack.mustache+dom', {
+	this.renderTemplate( 'widgets/SuggestedTagsCardstack.mustache+dom', {
 		queryType: this.queryType,
 		countString: countString,
 		items: this.items,

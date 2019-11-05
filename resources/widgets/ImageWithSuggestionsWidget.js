@@ -71,7 +71,7 @@ function ImageWithSuggestionsWidget( config ) {
 OO.inheritClass( ImageWithSuggestionsWidget, TemplateRenderingDOMLessGroupWidget );
 
 ImageWithSuggestionsWidget.prototype.render = function () {
-	this.renderTemplate( 'resources/widgets/ImageWithSuggestionsWidget.mustache+dom', {
+	this.renderTemplate( 'widgets/ImageWithSuggestionsWidget.mustache+dom', {
 		skipButton: this.skipButton,
 		imageTagTitle: this.imageTitle,
 		titleLabel: this.titleLabel,

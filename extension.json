@@ -177,37 +177,37 @@
 		}
 	},
 	"ResourceFileModulePaths": {
-		"localBasePath": "",
-		"remoteExtPath": "MachineVision"
+		"localBasePath": "resources",
+		"remoteExtPath": "MachineVision/resources"
 	},
 	"ResourceModules": {
 		"ext.MachineVision": {
 			"packageFiles": [
-				"resources/init.js",
-				"resources/base/DOMLessGroupWidget.js",
-				"resources/base/TemplateRenderingDOMLessGroupWidget.js",
-				"resources/models/ImageData.js",
-				"resources/models/SuggestionData.js",
-				"resources/widgets/ConfirmTagsDialog.js",
-				"resources/widgets/ConfirmTagsDialogContent.js",
-				"resources/widgets/ImageWithSuggestionsWidget.js",
-				"resources/widgets/OnboardingDialog.js",
-				"resources/widgets/PersonalUploadsCount.js",
-				"resources/widgets/SuggestedTagsCardstack.js",
-				"resources/widgets/SuggestedTagsPage.js",
-				"resources/widgets/SuggestionWidget.js",
-				"resources/widgets/UserMessage.js"
+				"init.js",
+				"base/DOMLessGroupWidget.js",
+				"base/TemplateRenderingDOMLessGroupWidget.js",
+				"models/ImageData.js",
+				"models/SuggestionData.js",
+				"widgets/ConfirmTagsDialog.js",
+				"widgets/ConfirmTagsDialogContent.js",
+				"widgets/ImageWithSuggestionsWidget.js",
+				"widgets/OnboardingDialog.js",
+				"widgets/PersonalUploadsCount.js",
+				"widgets/SuggestedTagsCardstack.js",
+				"widgets/SuggestedTagsPage.js",
+				"widgets/SuggestionWidget.js",
+				"widgets/UserMessage.js"
 			],
 			"styles": [
-				"resources/widgets/ConfirmTagsDialog.less",
-				"resources/widgets/ConfirmTagsDialogContent.less",
-				"resources/widgets/ImageWithSuggestionsWidget.less",
-				"resources/widgets/OnboardingDialog.less",
-				"resources/widgets/PersonalUploadsCount.less",
-				"resources/widgets/SuggestedTagsCardstack.less",
-				"resources/widgets/SuggestedTagsPage.less",
-				"resources/widgets/SuggestionWidget.less",
-				"resources/widgets/UserMessage.less"
+				"widgets/ConfirmTagsDialog.less",
+				"widgets/ConfirmTagsDialogContent.less",
+				"widgets/ImageWithSuggestionsWidget.less",
+				"widgets/OnboardingDialog.less",
+				"widgets/PersonalUploadsCount.less",
+				"widgets/SuggestedTagsCardstack.less",
+				"widgets/SuggestedTagsPage.less",
+				"widgets/SuggestionWidget.less",
+				"widgets/UserMessage.less"
 			],
 			"dependencies": [
 				"oojs",
@@ -218,13 +218,13 @@
 				"wikibase.api.RepoApi"
 			],
 			"templates": [
-				"resources/widgets/ConfirmTagsDialogContent.mustache+dom",
-				"resources/widgets/ImageWithSuggestionsWidget.mustache+dom",
-				"resources/widgets/PersonalUploadsCount.mustache+dom",
-				"resources/widgets/SuggestedTagsCardstack.mustache+dom",
-				"resources/widgets/SuggestedTagsPage.mustache+dom",
-				"resources/widgets/SuggestionWidget.mustache+dom",
-				"resources/widgets/UserMessage.mustache+dom"
+				"widgets/ConfirmTagsDialogContent.mustache+dom",
+				"widgets/ImageWithSuggestionsWidget.mustache+dom",
+				"widgets/PersonalUploadsCount.mustache+dom",
+				"widgets/SuggestedTagsCardstack.mustache+dom",
+				"widgets/SuggestedTagsPage.mustache+dom",
+				"widgets/SuggestionWidget.mustache+dom",
+				"widgets/UserMessage.mustache+dom"
 			],
 			"messages": [
 				"machinevision-machineaidedtagging",

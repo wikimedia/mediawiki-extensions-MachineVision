@@ -20,7 +20,7 @@ function ConfirmTagsDialogContent( config ) {
 OO.inheritClass( ConfirmTagsDialogContent, TemplateRenderingDOMLessGroupWidget );
 
 ConfirmTagsDialogContent.prototype.render = function () {
-	this.renderTemplate( 'resources/widgets/ConfirmTagsDialogContent.mustache+dom', {
+	this.renderTemplate( 'widgets/ConfirmTagsDialogContent.mustache+dom', {
 		heading: mw.message( 'machinevision-confirm-tags-dialog-heading' ).parse(),
 		tagsList: this.config.tagsList,
 		imgUrl: this.config.imgUrl,

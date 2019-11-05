@@ -33,7 +33,7 @@ function UserMessage( config ) {
 OO.inheritClass( UserMessage, TemplateRenderingDOMLessGroupWidget );
 
 UserMessage.prototype.render = function () {
-	this.renderTemplate( 'resources/widgets/UserMessage.mustache+dom', {
+	this.renderTemplate( 'widgets/UserMessage.mustache+dom', {
 		heading: this.config.heading,
 		text: this.config.text,
 		ctaButton: this.ctaButton,

@@ -20,7 +20,7 @@ function PersonalUploadsCount( config ) {
 OO.inheritClass( PersonalUploadsCount, TemplateRenderingDOMLessGroupWidget );
 
 PersonalUploadsCount.prototype.render = function () {
-	this.renderTemplate( 'resources/widgets/PersonalUploadsCount.mustache+dom', {
+	this.renderTemplate( 'widgets/PersonalUploadsCount.mustache+dom', {
 		countString: mw.message( 'machinevision-personal-uploads-count', this.unreviewed ).parse()
 	} );
 };
