@@ -23,11 +23,11 @@ return [
 	'MachineVisionRandomWikidataIdClient' => function ( MediaWikiServices $services ):
 		RandomWikidataIdClient {
 		$httpRequestFactory = $services->getHttpRequestFactory();
-		$wikiId = wfWikiID();
+		$wikiDomain = $services->getMainConfig()->get( 'ServerName' );
 
 		$client = new RandomWikidataIdClient(
 			$httpRequestFactory,
-			$httpRequestFactory->getUserAgent() . "($wikiId)"
+			$httpRequestFactory->getUserAgent() . " ($wikiDomain)"
 		);
 		$client->setLogger( LoggerFactory::getInstance( 'machinevision' ) );
 		return $client;
@@ -140,8 +140,8 @@ return [
 		$entityLookup = WikibaseRepo::getDefaultInstance()->getEntityLookup();
 		$languageFallbackChainFactory = new LanguageFallbackChainFactory();
 		$httpRequestFactory = $services->getHttpRequestFactory();
-		$wikiId = wfWikiID();
-		$userAgent = $httpRequestFactory->getUserAgent() . "($wikiId)";
+		$wikiDomain = $services->getMainConfig()->get( 'ServerName' );
+		$userAgent = $httpRequestFactory->getUserAgent() . " ($wikiDomain)";
 		$useWikidataPublicApi =
 			$extensionConfig->get( 'MachineVisionRequestLabelsFromWikidataPublicApi' );
 
