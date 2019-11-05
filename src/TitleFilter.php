@@ -10,6 +10,8 @@ use Wikibase\DataModel\Entity\PropertyId;
 
 class TitleFilter {
 
+	const MAX_IMAGE_SIZE = 10485760;
+
 	/** @var LocalRepo */
 	private $localRepo;
 
@@ -115,6 +117,11 @@ class TitleFilter {
 			return false;
 		}
 		if ( !$file->getWidth() || $file->getWidth() < $this->minImageWidth ) {
+			return false;
+		}
+		// TODO: In the labeling client, request and use a thumbnail if the original file is too
+		//  large, and remove this check
+		if ( $file->getSize() > self::MAX_IMAGE_SIZE ) {
 			return false;
 		}
 		$revision = $this->revisionStore->getRevisionByTitle( $title );
