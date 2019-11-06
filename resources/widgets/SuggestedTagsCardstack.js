@@ -117,7 +117,7 @@ SuggestedTagsCardstack.prototype.onTagsPublished = function () {
 	this.emit( 'showSuccessMessage' );
 
 	if ( this.countString ) {
-		this.countString.userUnreviewedImageCount--;
+		this.countString.unreviewed--;
 		this.countString.render();
 	}
 };
