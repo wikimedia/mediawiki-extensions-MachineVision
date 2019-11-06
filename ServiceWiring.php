@@ -39,8 +39,13 @@ return [
 		$extensionConfig = $configFactory->makeConfig( 'MachineVision' );
 
 		$credentialsScope = 'https://www.googleapis.com/auth/cloud-vision';
-		$credentialsJsonKey = $extensionConfig->get( 'MachineVisionGoogleCredentialsFileLocation' );
-		$credentials = new ServiceAccountCredentials( $credentialsScope, $credentialsJsonKey );
+
+		$credentialsData = $extensionConfig->get( 'MachineVisionGoogleApiCredentials' );
+		if ( !$credentialsData ) {
+			// Allow providing a filesystem path for local development
+			$credentialsData = $extensionConfig->get( 'MachineVisionGoogleCredentialsFileLocation' );
+		}
+		$credentials = new ServiceAccountCredentials( $credentialsScope, $credentialsData );
 
 		$safeSearchLimits = $extensionConfig->get( 'MachineVisionGoogleSafeSearchLimits' );
 		$sendFileContents = $extensionConfig->get( 'MachineVisionGCVSendFileContents' );
