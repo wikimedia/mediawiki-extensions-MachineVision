@@ -15,7 +15,6 @@ var ConfirmTagsDialog,
  * @cfg {string} [tagsList] A comma-delimited list of tags to be confirmed.
  * @cfg {string} [imgUrl]
  * @cfg {string} [imgTitle]
- * @cfg {string} [imgDescription]
  */
 ConfirmTagsDialog = function ( config ) {
 	this.config = config || {};

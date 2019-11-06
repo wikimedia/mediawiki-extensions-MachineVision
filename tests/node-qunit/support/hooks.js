@@ -1,6 +1,7 @@
 var sinon = require( 'sinon' ),
 	utils = require( '@wikimedia/mw-node-qunit' ),
 	newMockMediaWiki = require( '@wikimedia/mw-node-qunit/src/mockMediaWiki' ),
+	helpers = require( './helpers.js' ),
 	sandbox;
 
 module.exports = {
@@ -8,6 +9,7 @@ module.exports = {
 		sandbox = sinon.createSandbox();
 
 		global.mw = newMockMediaWiki();
+		global.wikibase = helpers.createWikibaseEnv();
 		global.OO = require( 'oojs' );
 		require( 'oojs-ui' );
 		require( 'oojs-ui/dist/oojs-ui-wikimediaui.js' );
