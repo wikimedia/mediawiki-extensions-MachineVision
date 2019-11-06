@@ -131,29 +131,34 @@ SuggestedTagsPage.prototype.getItemsForQueryResponse = function ( response ) {
 	var suggestedTagsCardstack,
 		imageDataArray = [],
 		resultsFound = false,
+		validItems,
 		userImageCount = ( response.query && response.query.unreviewedimagecount ) ?
 			response.query.unreviewedimagecount.user :
 			0;
 
 	// Helper function to process query results
 	function getImageDataForQueryResponse( item ) {
-		if ( item.imageinfo && item.imagelabels && item.imagelabels.length ) {
-			return new ImageData(
-				item.title,
-				item.imageinfo[ 0 ].descriptionurl,
-				item.imageinfo[ 0 ].thumburl,
-				item.imagelabels.map( function ( labelData ) {
-					return new SuggestionData( labelData.label, labelData.wikidata_id );
-				} )
-			);
-		}
+		return new ImageData(
+			item.title,
+			item.imageinfo[ 0 ].descriptionurl,
+			item.imageinfo[ 0 ].thumburl,
+			item.imagelabels.map( function ( labelData ) {
+				return new SuggestionData( labelData.label, labelData.wikidata_id );
+			} )
+		);
 	}
 
 	// Process query response, if we have one
 	if ( response.query && response.query.pages && Array.isArray( response.query.pages ) ) {
 		resultsFound = true;
-		imageDataArray = response.query.pages.map( function ( page ) {
-			return getImageDataForQueryResponse( page );
+
+		// Filter out any results without the data we need.
+		validItems = response.query.pages.filter( function ( item ) {
+			return item.imageinfo && item.imagelabels && item.imagelabels.length;
+		} );
+
+		imageDataArray = validItems.map( function ( item ) {
+			return getImageDataForQueryResponse( item );
 		} );
 	}
 
