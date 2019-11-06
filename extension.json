@@ -156,6 +156,11 @@
 			"value": false,
 			"description": "Filesystem path to the Google credentials JSON file, or false for none."
 		},
+		"MachineVisionGoogleApiCredentials": {
+			"value": false,
+			"public": false,
+			"description": "Associative array containing a set of Cloud Vision API credentials obtained from the Google Cloud Platform."
+		},
 		"MachineVisionGCVSendFileContents": {
 			"value": false,
 			"description": "If true, send base64-encoded file contents in Google Cloud Vision requests, otherwise send the URL to be retrieved by Google."
