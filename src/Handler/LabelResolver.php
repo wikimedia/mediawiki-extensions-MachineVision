@@ -98,6 +98,7 @@ class LabelResolver {
 		], __METHOD__ );
 		$wbEntitiesResponse = json_decode( $rawWbEntitiesResponse, true );
 		foreach ( $ids as $id ) {
+			// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 			$labelData = $wbEntitiesResponse['entities'][$id]['labels'];
 			$labels = [];
 			foreach ( $labelData as $lang => $data ) {

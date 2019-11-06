@@ -105,6 +105,7 @@ class GoogleCloudVisionClient implements LoggerAwareInterface {
 		}
 
 		$responseBody = json_decode( $annotationRequest->getContent(), true );
+		// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 		$responses = $responseBody['responses'][0];
 		$labelAnnotations = $responses['labelAnnotations'];
 		$safeSearchAnnotation = $responses['safeSearchAnnotation'];
