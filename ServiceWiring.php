@@ -2,6 +2,7 @@
 
 use Google\Auth\Credentials\ServiceAccountCredentials;
 use MediaWiki\Extension\MachineVision\Client\GoogleCloudVisionClient;
+use MediaWiki\Extension\MachineVision\Client\GoogleOAuthClient;
 use MediaWiki\Extension\MachineVision\Client\RandomWikidataIdClient;
 use MediaWiki\Extension\MachineVision\Handler\WikidataDepictsSetter;
 use MediaWiki\Extension\MachineVision\Handler\LabelResolver;
@@ -38,14 +39,13 @@ return [
 		$configFactory = $services->getConfigFactory();
 		$extensionConfig = $configFactory->makeConfig( 'MachineVision' );
 
-		$credentialsScope = 'https://www.googleapis.com/auth/cloud-vision';
-
 		$credentialsData = $extensionConfig->get( 'MachineVisionGoogleApiCredentials' );
 		if ( !$credentialsData ) {
 			// Allow providing a filesystem path for local development
-			$credentialsData = $extensionConfig->get( 'MachineVisionGoogleCredentialsFileLocation' );
+			$filename = $extensionConfig->get( 'MachineVisionGoogleCredentialsFileLocation' );
+			$json = file_get_contents( $filename );
+			$credentialsData = json_decode( $json, true );
 		}
-		$credentials = new ServiceAccountCredentials( $credentialsScope, $credentialsData );
 
 		$safeSearchLimits = $extensionConfig->get( 'MachineVisionGoogleSafeSearchLimits' );
 		$sendFileContents = $extensionConfig->get( 'MachineVisionGCVSendFileContents' );
@@ -66,7 +66,7 @@ return [
 		);
 
 		$client = new GoogleCloudVisionClient(
-			$credentials,
+			new GoogleOAuthClient( $services->getHttpRequestFactory(), $credentialsData, $proxy ),
 			$services->getHttpRequestFactory(),
 			$services->getRepoGroup(),
 			$repository,

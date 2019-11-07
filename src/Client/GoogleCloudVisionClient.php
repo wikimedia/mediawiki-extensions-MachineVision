@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Extension\MachineVision\Client;
 
-use Google\Auth\Credentials\ServiceAccountCredentials;
 use LocalFile;
 use MediaWiki\Extension\MachineVision\LabelSuggestion;
 use MediaWiki\Extension\MachineVision\Repository;
@@ -27,9 +26,8 @@ class GoogleCloudVisionClient implements LoggerAwareInterface {
 		'VERY_LIKELY' => 5,
 	];
 
-	/** @var ServiceAccountCredentials  */
-	// @phan-suppress-next-line PhanUndeclaredTypeProperty
-	private $credentials;
+	/** @var GoogleOAuthClient */
+	private $oAuthClient;
 
 	/** @var HttpRequestFactory */
 	private $httpRequestFactory;
@@ -51,17 +49,16 @@ class GoogleCloudVisionClient implements LoggerAwareInterface {
 
 	/**
 	 * GoogleCloudVisionClient constructor.
-	 * @param ServiceAccountCredentials $credentials
+	 * @param GoogleOAuthClient $oAuthClient
 	 * @param HttpRequestFactory $httpRequestFactory
 	 * @param RepoGroup $repoGroup
 	 * @param Repository $repository
 	 * @param bool $sendFileContents
 	 * @param array $safeSearchLimits
 	 * @param string|bool $proxy
-	 * @suppress PhanUndeclaredTypeParameter
 	 */
 	public function __construct(
-		ServiceAccountCredentials $credentials,
+		GoogleOAuthClient $oAuthClient,
 		HttpRequestFactory $httpRequestFactory,
 		RepoGroup $repoGroup,
 		Repository $repository,
@@ -69,7 +66,7 @@ class GoogleCloudVisionClient implements LoggerAwareInterface {
 		array $safeSearchLimits,
 		$proxy
 	) {
-		$this->credentials = $credentials;
+		$this->oAuthClient = $oAuthClient;
 		$this->httpRequestFactory = $httpRequestFactory;
 		$this->repoGroup = $repoGroup;
 		$this->repository = $repository;
@@ -153,7 +150,6 @@ class GoogleCloudVisionClient implements LoggerAwareInterface {
 	/**
 	 * @param LocalFile $file
 	 * @return MWHttpRequest
-	 * @suppress PhanUndeclaredClassMethod
 	 */
 	private function getAnnotationRequest( LocalFile $file ): MWHttpRequest {
 		$requestBody = [
@@ -180,7 +176,7 @@ class GoogleCloudVisionClient implements LoggerAwareInterface {
 			'https://vision.googleapis.com/v1/images:annotate',
 			$options
 		);
-		$token = $this->credentials->fetchAuthToken()['access_token'];
+		$token = $this->oAuthClient->fetchAuthToken()['access_token'];
 		$annotationRequest->setHeader( 'Content-Type', 'application/json; charset=utf-8' );
 		$annotationRequest->setHeader( 'Authorization', "Bearer $token" );
 		return $annotationRequest;
