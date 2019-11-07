@@ -139,6 +139,7 @@ class FetchSuggestions extends Maintenance {
 							throw $t;
 						}
 					}
+					throw $t;
 				}
 				throw $t;
 			}
