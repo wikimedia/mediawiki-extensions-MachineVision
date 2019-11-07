@@ -1,5 +1,7 @@
 <?php
 
+use Diff\Comparer\ComparableComparer;
+use Diff\Differ\OrderedListDiffer;
 use MediaWiki\Extension\MachineVision\Client\GoogleCloudVisionClient;
 use MediaWiki\Extension\MachineVision\Client\GoogleOAuthClient;
 use MediaWiki\Extension\MachineVision\Client\RandomWikidataIdClient;
@@ -13,6 +15,8 @@ use MediaWiki\Extension\MachineVision\Util;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\NameTableStore;
+use Wikibase\ClaimSummaryBuilder;
+use Wikibase\Repo\Diff\ClaimDiffer;
 use Wikibase\Repo\WikibaseRepo;
 use Wikibase\LanguageFallbackChainFactory;
 use Wikibase\MediaInfo\Services\MediaInfoByLinkedTitleLookup;
@@ -163,6 +167,7 @@ return [
 		$wbRepo = WikibaseRepo::getDefaultInstance();
 		$entityByLinkedTitleLookup = $wbRepo->getStore()->getEntityByLinkedTitleLookup();
 		$changeOpFactoryProvider = $wbRepo->getChangeOpFactoryProvider();
+		$claimDiffer = new ClaimDiffer( new OrderedListDiffer( new ComparableComparer() ) );
 
 		return new WikidataDepictsSetter(
 			$services->getRevisionStore(),
@@ -170,6 +175,7 @@ return [
 			$wbRepo->getEntityLookup(),
 			$wbRepo->newEditEntityFactory(),
 			$changeOpFactoryProvider->getStatementChangeOpFactory(),
+			new ClaimSummaryBuilder( 'wbsetclaim', $claimDiffer ),
 			$wbRepo->getSummaryFormatter(),
 			Util::getMediaInfoPropertyId( $services, 'depicts' )
 		);

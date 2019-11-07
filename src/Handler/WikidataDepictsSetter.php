@@ -11,6 +11,7 @@ use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\NullLogger;
 use User;
+use Wikibase\ClaimSummaryBuilder;
 use Wikibase\DataModel\Entity\EntityDocument;
 use Wikibase\DataModel\Entity\EntityIdValue;
 use Wikibase\DataModel\Entity\ItemId;
@@ -25,7 +26,6 @@ use Wikibase\Repo\ChangeOp\ChangeOp;
 use Wikibase\Repo\ChangeOp\ChangeOpValidationException;
 use Wikibase\Repo\ChangeOp\StatementChangeOpFactory;
 use Wikibase\Repo\EditEntity\MediawikiEditEntityFactory;
-use Wikibase\Summary;
 use Wikibase\SummaryFormatter;
 
 /**
@@ -56,6 +56,10 @@ class WikidataDepictsSetter implements LoggerAwareInterface {
 	// @phan-suppress-next-line PhanUndeclaredTypeProperty
 	private $statementChangeOpFactory;
 
+	/** @var ClaimSummaryBuilder */
+	// @phan-suppress-next-line PhanUndeclaredTypeProperty
+	private $claimSummaryBuilder;
+
 	/** @var SummaryFormatter */
 	// @phan-suppress-next-line PhanUndeclaredTypeProperty
 	private $summaryFormatter;
@@ -70,6 +74,7 @@ class WikidataDepictsSetter implements LoggerAwareInterface {
 	 * @param EntityLookup $entityLookup
 	 * @param MediawikiEditEntityFactory $mediawikiEditEntityFactory
 	 * @param StatementChangeOpFactory $statementChangeOpFactory
+	 * @param ClaimSummaryBuilder $claimSummaryBuilder
 	 * @param SummaryFormatter $summaryFormatter
 	 * @param string $depictsIdSerialization depicts ID defined in WikibaseMediaInfo config
 	 * @suppress PhanUndeclaredTypeParameter
@@ -80,6 +85,7 @@ class WikidataDepictsSetter implements LoggerAwareInterface {
 		EntityLookup $entityLookup,
 		MediawikiEditEntityFactory $mediawikiEditEntityFactory,
 		StatementChangeOpFactory $statementChangeOpFactory,
+		ClaimSummaryBuilder $claimSummaryBuilder,
 		SummaryFormatter $summaryFormatter,
 		$depictsIdSerialization
 	) {
@@ -88,6 +94,7 @@ class WikidataDepictsSetter implements LoggerAwareInterface {
 		$this->entityLookup = $entityLookup;
 		$this->editEntityFactory = $mediawikiEditEntityFactory;
 		$this->statementChangeOpFactory = $statementChangeOpFactory;
+		$this->claimSummaryBuilder = $claimSummaryBuilder;
 		$this->summaryFormatter = $summaryFormatter;
 		$this->depictsIdSerialization = $depictsIdSerialization;
 
@@ -114,21 +121,29 @@ class WikidataDepictsSetter implements LoggerAwareInterface {
 			? $this->entityLookup->getEntity( $mediaInfoId )
 			: null;
 
-		$rawSummary = new Summary( 'machineaideddepicts', 'approved' );
-		$summary = $this->summaryFormatter->formatSummary( $rawSummary );
-		$flags = $mediaInfo ? EDIT_UPDATE : EDIT_NEW;
+		$isNew = false;
+		if ( !$mediaInfo ) {
+			$mediaInfo = new MediaInfo( $mediaInfoId );
+			$isNew = true;
+		}
 
-		$mediaInfo = $mediaInfo ?: new MediaInfo( $mediaInfoId );
 		$mainSnak = $this->getDepictsSnak( $label );
 
 		if ( !$this->depictExists( $mainSnak, $mediaInfo ) ) {
-			$changeOp = $this->getChangeOp( $mainSnak );
+			// TODO: Qualifiers go here in the Statement constructor, if we need or want them
+			$statement = new Statement( $mainSnak );
+			$summary = $this->claimSummaryBuilder->buildClaimSummary( null, $statement );
+			$formattedSummary = $this->summaryFormatter->formatSummary( $summary );
+
+			$changeOp = $this->statementChangeOpFactory->newSetStatementOp( $statement );
 			$this->validateChangeOp( $changeOp, $mediaInfo );
-			$changeOp->apply( $mediaInfo, $rawSummary );
+			$changeOp->apply( $mediaInfo, $summary );
+
 			$editEntity = $this->editEntityFactory
 				->newEditEntity( $user, $mediaInfoId, $revision->getId() );
-			$status = $editEntity->attemptSave( $mediaInfo, $summary, $flags, $token, null,
-				[ Util::getDepictsTag() ] );
+			$flags = $isNew ? EDIT_NEW : EDIT_UPDATE;
+			$status = $editEntity->attemptSave( $mediaInfo, $formattedSummary, $flags, $token,
+				null, [ Util::getDepictsTag() ] );
 			if ( !$status->isOK() ) {
 				throw new MachineVisionEntitySaveException( $status->getMessage() );
 			}
@@ -166,18 +181,6 @@ class WikidataDepictsSetter implements LoggerAwareInterface {
 		$itemId = new ItemId( $label );
 		$itemIdValue = new EntityIdValue( $itemId );
 		return new PropertyValueSnak( $depicts, $itemIdValue );
-	}
-
-	/**
-	 * Get the statement change operation object.
-	 * @param PropertyValueSnak $mainSnak Depict Snak associated with the Wikidata Item ID
-	 * @return ChangeOp
-	 * @suppress PhanUndeclaredClassMethod,PhanUndeclaredTypeReturnType
-	 */
-	private function getChangeOp( $mainSnak ) {
-		// TODO: Qualifiers go here in the Statement constructor, if we need or want them
-		$statement = new Statement( $mainSnak );
-		return $this->statementChangeOpFactory->newSetStatementOp( $statement );
 	}
 
 	/**
