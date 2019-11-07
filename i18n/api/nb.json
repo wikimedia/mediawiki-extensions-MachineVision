@@ -1,0 +1,36 @@
+{
+	"@metadata": {
+		"authors": [
+			"Jon Harald Søby"
+		]
+	},
+	"apihelp-reviewimagelabels-summary": "Gå gjennom maskinforeslåtte bildeetiketter.",
+	"apihelp-reviewimagelabels-param-filename": "Navn på bildet (uten navneromsprefikset).",
+	"apihelp-reviewimagelabels-param-label": "Wikidata-ID for den foreslåtte etiketten (med Q-prefiks).",
+	"apihelp-reviewimagelabels-param-review": "Gjennomgangens resultat.",
+	"apihelp-reviewimagelabels-param-batch": "Batch-data for å gjennomgå flere etikettforslag for et bilde i én enkel forespørsel, i form av en JSON-liste med ett eller flere objekter med <var>label</var> og <var>review</var>-felter.",
+	"apihelp-reviewimagelabels-paramvalue-review-accept": "Forslaget er korrekt.",
+	"apihelp-reviewimagelabels-paramvalue-review-reject": "Forslaget er galt.",
+	"apihelp-reviewimagelabels-example-1": "Merk <kbd>Q123</kbd> som et korrekt forslag for <kbd>Example.png</kbd>.",
+	"apihelp-reviewimagelabels-example-2": "Godta <kbd>Q1</kbd> og avvis <kbd>Q2</kbd> som forslag for <kbd>Example.png</kbd>.",
+	"apierror-reviewimagelabels-batch-invalid-json": "Ugyldig JSON for parameteren <var>batch</var>: $1",
+	"apierror-reviewimagelabels-batch-invalid-structure": "Ugyldig inndata for parameteren <var>batch</var>: må inneholde en liste over objekter som har skalarverdier.",
+	"apierror-reviewimagelabels-batch-missingparam-at-least-one-of": "I hvert objekt inni innputten <var>batch</var> kreves {{PLURAL:$2|feltet $1|minst ett av disse feltene: $1}}.",
+	"apierror-reviewimagelabels-batch-toomanyvalues": "Ugyldig inndata for parameteren <var>batch</var>: for mange oppføringer, maksimalt tillatt antall er $1",
+	"apierror-reviewimagelabels-invalidfile": "<kbd>$1</kbd> er ikke et gyldig filnavn.",
+	"apierror-reviewimagelabels-invalidlabel": "Fila <kbd>$1</kbd> har ingen etikett <kbd>$2</kbd>.",
+	"apierror-reviewimagelabels-invalidstate": "<kbd>$3</kbd> er ikke en gyldig handling for etiketten <kbd>$2</kbd> i fila <kbd>$1</kbd>.",
+	"apiwarn-reviewimagelabels-setlabelstate-failed": "Kunne ikke lagre etikettstatus <kbd>$1</kbd> for etiketten <kbd>$2</kbd>",
+	"apihelp-query+imagelabels-summary": "Vis maskinforeslåtte bildeetiketter.",
+	"apihelp-query+imagelabels-param-state": "List bare opp etiketter med disse gjennomgangsstatusene",
+	"apihelp-query+imagelabels-paramvalue-state-unreviewed": "Etiketter som ikke har blitt gått gjennom ennå.",
+	"apihelp-query+imagelabels-paramvalue-state-accepted": "Etiketter som har blitt identifisert som korrekte.",
+	"apihelp-query+imagelabels-paramvalue-state-rejected": "Etiketter som ikke har blitt identifisert som korrekte.",
+	"apihelp-query+imagelabels-paramvalue-state-withheld": "Etiketter for et bilde som ble unntatt fra presentasjon i algoritmehjuplet tagging.",
+	"apihelp-query+imagelabels-example-1": "Vis maskinforeslåtte bildeetiketter for <kbd>Example.png</kbd>.",
+	"apihelp-query+unreviewedimagelabels-summary": "Vis titler med foreslåtte bildeetiketter som trenger gjennomgang.",
+	"apihelp-query+unreviewedimagelabels-param-uploader": "Returner bare resultater lastet opp av denne brukeren.",
+	"apihelp-query+unreviewedimagelabels-param-limit": "Antall resultatelementer som skal returneres.",
+	"apihelp-query+unreviewedimagecount-summary": "Vis antall bilder med etikettforslag som venter på gjennomgang, til sammen og (hvis innlogget) for den gjeldende brukeren.",
+	"apihelp-query+unreviewedimagecount-example": "Hent antall ikke-gjennomgåtte bilder."
+}

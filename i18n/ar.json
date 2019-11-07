@@ -46,5 +46,9 @@
 	"right-imagelabel-review": "راجع اقتراحات تسمية الصورة",
 	"action-imagelabel-review": "راجع اقتراحات تسمية الصورة",
 	"right-imagelabel-test": "اختبار اقتراحات تسمية الصور",
-	"action-imagelabel-test": "اختبار اقتراحات تسمية الصور"
+	"action-imagelabel-test": "اختبار اقتراحات تسمية الصور",
+	"tag-computer-aided-tagging": "الوسم بمساعدة الحاسوب",
+	"tag-computer-aided-tagging-description": "التعديلات المنشأة بواسطة أداة الوسم بمساعدة الحاسوب",
+	"tag-computer-aided-tagging-revert": "تراجع الوسم بمساعدة الحاسوب",
+	"tag-computer-aided-tagging-revert-description": "تعديلات تُرجع مراجعة أو أكثر من المراجعات المنشأة بواسطة أداة الوسم بمساعدة الحاسوب"
 }
