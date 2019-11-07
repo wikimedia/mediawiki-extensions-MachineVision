@@ -1,6 +1,5 @@
 <?php
 
-use Google\Auth\Credentials\ServiceAccountCredentials;
 use MediaWiki\Extension\MachineVision\Client\GoogleCloudVisionClient;
 use MediaWiki\Extension\MachineVision\Client\GoogleOAuthClient;
 use MediaWiki\Extension\MachineVision\Client\RandomWikidataIdClient;
@@ -188,15 +187,6 @@ return [
 			$extensionConfig->get( 'MachineVisionTemplateBlacklist' ),
 			Util::getMediaInfoPropertyId( $services, 'depicts' )
 		);
-	},
-
-	'MachineVisionGoogleServiceAccountCredentials' => function ( MediaWikiServices $services ):
-		ServiceAccountCredentials {
-		$configFactory = $services->getConfigFactory();
-		$extensionConfig = $configFactory->makeConfig( 'MachineVision' );
-		$scope = 'https://www.googleapis.com/auth/cloud-vision';
-		$jsonKey = $extensionConfig->get( 'MachineVisionGoogleCredentialsFileLocation' );
-		return new ServiceAccountCredentials( $scope, $jsonKey );
 	},
 
 	'MachineVisionFetchGoogleCloudVisionAnnotationsJobFactory' =>
