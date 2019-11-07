@@ -75,13 +75,12 @@ SuggestedTagsCardstack.prototype.getItems = function () {
 	}
 
 	return this.imageDataArray.map( function ( imageData ) {
-		return new ImageWithSuggestionsWidget( {
-			imageData: imageData
-		} ).connect( self, {
-			itemRemoved: 'onItemRemoved',
-			tagsPublished: 'onTagsPublished',
-			publishError: 'onPublishError'
-		} );
+		return new ImageWithSuggestionsWidget( imageData )
+			.connect( self, {
+				itemRemoved: 'onItemRemoved',
+				tagsPublished: 'onTagsPublished',
+				publishError: 'onPublishError'
+			} );
 	} );
 };
 
@@ -96,8 +95,7 @@ SuggestedTagsCardstack.prototype.onPopularTabCtaClick = function () {
  * Each time an image is removed (published or skipped), check if new ones need
  * to be fetched. When there are no items remaining, fetch another batch (unless
  * no results were found last time).
- *
- * TODO: (T233232) Improve loading experience.
+
  */
 SuggestedTagsCardstack.prototype.onItemRemoved = function () {
 	// If there are no more image cards, fetch more.

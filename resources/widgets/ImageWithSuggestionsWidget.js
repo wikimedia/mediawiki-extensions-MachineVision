@@ -11,19 +11,21 @@ var TemplateRenderingDOMLessGroupWidget = require( './../base/TemplateRenderingD
  * an image and a group of SuggestionWidgets.
  *
  * @param {Object} config
- * @cfg {Object} imageData
+ * @cfg {string} descriptionurl Filepage URL
+ * @cfg {Array} suggestions Image tag suggestions
+ * @cfg {string} thumburl Image thumbnail URL
+ * @cfg {string} title Image title
  */
 ImageWithSuggestionsWidget = function ( config ) {
+	this.config = config || {};
 	ImageWithSuggestionsWidget.parent.call( this, $.extend( {}, config ) );
-
 	this.$element.addClass( 'wbmad-image-with-suggestions' );
 
-	this.imageData = config.imageData;
-	this.suggestions = this.imageData.suggestions;
+	this.suggestions = this.config.suggestions;
 	this.suggestionWidgets = this.getSuggestionWidgets();
 	this.confirmedCount = 0;
-	this.imageTitle = this.imageData.title.split( ':' ).pop();
-	this.filePageUrl = this.imageData.descriptionurl;
+	this.imageTitle = this.config.title.split( ':' ).pop();
+	this.filePageUrl = this.config.descriptionurl;
 
 	this.titleLabel = new OO.ui.LabelWidget( {
 		label: this.imageTitle,
@@ -76,7 +78,7 @@ ImageWithSuggestionsWidget.prototype.render = function () {
 		imageTagTitle: this.imageTitle,
 		titleLabel: this.titleLabel,
 		suggestions: this.suggestionWidgets,
-		thumburl: this.imageData.thumburl,
+		thumburl: this.config.thumburl,
 		filePageUrl: this.filePageUrl,
 		resetButton: this.resetButton,
 		publishButton: this.publishButton,
@@ -153,9 +155,8 @@ ImageWithSuggestionsWidget.prototype.onPublish = function () {
 
 	confirmTagsDialog = new ConfirmTagsDialog( {
 		tagsList: tagsList,
-		imgUrl: this.imageData.thumburl,
-		imgTitle: this.imageTitle,
-		imgDescription: this.imageData.description
+		imgUrl: this.config.thumburl,
+		imgTitle: this.imageTitle
 	} )
 		.connect( self, { confirm: 'onFinalConfirm' } );
 
@@ -168,6 +169,7 @@ ImageWithSuggestionsWidget.prototype.onPublish = function () {
 
 /**
  * Publish new tags and move to the next image.
+ * @return {jQuery.Promise}
  */
 ImageWithSuggestionsWidget.prototype.onFinalConfirm = function () {
 	var self = this,
@@ -184,7 +186,7 @@ ImageWithSuggestionsWidget.prototype.onFinalConfirm = function () {
 	this.skipButton.setDisabled( true );
 	this.render();
 
-	this.api.postWithToken(
+	return this.api.postWithToken(
 		'csrf',
 		{
 			action: 'reviewimagelabels',

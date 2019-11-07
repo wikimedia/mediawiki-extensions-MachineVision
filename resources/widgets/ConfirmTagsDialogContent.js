@@ -10,7 +10,6 @@ var TemplateRenderingDOMLessGroupWidget = require( '../base/TemplateRenderingDOM
  * @cfg {string} [tagsList] A comma-delimited list of tags to be confirmed.
  * @cfg {string} [imgUrl]
  * @cfg {string} [imgTitle]
- * @cfg {string} [imgDescription]
  */
 ConfirmTagsDialogContent = function ( config ) {
 	this.config = config || {};
@@ -26,8 +25,7 @@ ConfirmTagsDialogContent.prototype.render = function () {
 		heading: mw.message( 'machinevision-confirm-tags-dialog-heading' ).text(),
 		tagsList: this.config.tagsList,
 		imgUrl: this.config.imgUrl,
-		imgTitle: this.config.imgTitle,
-		imgDescription: this.config.imgDescription
+		imgTitle: this.config.imgTitle
 	} );
 };
 
