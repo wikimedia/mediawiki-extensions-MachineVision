@@ -9,7 +9,6 @@ use MediaWiki\Extension\MachineVision\Handler\Registry;
 use MediaWiki\Extension\MachineVision\Services;
 use MediaWiki\MediaWikiServices;
 use RepoGroup;
-use Stiphle\Throttle\LeakyBucket;
 use Throwable;
 use Title;
 
@@ -32,13 +31,6 @@ class FetchSuggestions extends Maintenance {
 	/** @var Registry */
 	private $handlerRegistry;
 
-	/**
-	 * Simple request throttle.
-	 * @var LeakyBucket
-	 */
-	// @phan-suppress-next-line PhanUndeclaredTypeProperty
-	private $throttle;
-
 	/** @var int */
 	private $backoffSeconds;
 
@@ -59,7 +51,6 @@ class FetchSuggestions extends Maintenance {
 	/**
 	 * Initialization code that should be in the constructor but can't due to the
 	 * idiosyncratic loading order in Maintenance.
-	 * @suppress PhanUndeclaredClassMethod
 	 */
 	public function init() {
 		$services = MediaWikiServices::getInstance();
@@ -68,7 +59,6 @@ class FetchSuggestions extends Maintenance {
 		$this->client = $extensionServices->getGoogleCloudVisionClient();
 		$this->repoGroup = $services->getRepoGroup();
 		$this->handlerRegistry = $extensionServices->getHandlerRegistry();
-		$this->throttle = new LeakyBucket();
 		$this->backoffSeconds = $extensionConfig->get( 'MachineVisionLabelRequestBackoffSeconds' );
 		$this->numRetries = $extensionConfig->get( 'MachineVisionLabelRequestNumRetries' );
 	}
@@ -87,6 +77,7 @@ class FetchSuggestions extends Maintenance {
 			foreach ( $files as $file ) {
 				$this->fetchForFile( $file );
 				$processed++;
+				sleep( 1 );
 			}
 			$this->commitTransaction( $this->getDB( DB_MASTER ), __METHOD__ );
 		}
@@ -127,17 +118,9 @@ class FetchSuggestions extends Maintenance {
 
 	/**
 	 * @param LocalFile $file
-	 * @suppress PhanUndeclaredClassMethod
 	 */
 	private function fetchForFile( LocalFile $file ) {
 		foreach ( $this->handlerRegistry->getHandlers( $file ) as $provider => $handler ) {
-			if ( $handler->getMaxRequestsPerMinute() ) {
-				$this->throttle->throttle(
-					"$provider.label.request",
-					$handler->getMaxRequestsPerMinute(),
-					60000
-				);
-			}
 			try {
 				$this->client->fetchAnnotations( $provider, $file );
 			} catch ( Throwable $t ) {
