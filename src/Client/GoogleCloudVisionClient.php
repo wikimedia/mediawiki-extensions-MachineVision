@@ -17,6 +17,8 @@ class GoogleCloudVisionClient implements LoggerAwareInterface {
 
 	use LoggerAwareTrait;
 
+	const MAX_IMAGE_SIZE = 10485760;
+
 	const SAFE_SEARCH_LIKELIHOODS = [
 		'UNKNOWN' => 0,
 		'VERY_UNLIKELY' => 1,
@@ -156,8 +158,6 @@ class GoogleCloudVisionClient implements LoggerAwareInterface {
 			'requests' => [
 				'image' => $this->sendFileContents ?
 					[ 'content' => base64_encode( $this->getContents( $this->repoGroup, $file ) ) ]
-					// TODO: check the file size and fall back to a thumb URL if the original
-					//  image size is too large (>10485760 bytes)
 					: [ 'source' => [ 'image_uri' => $this->getUrl( $file ) ] ],
 				'features' => [
 					[ 'type' => 'LABEL_DETECTION' ],
@@ -183,6 +183,10 @@ class GoogleCloudVisionClient implements LoggerAwareInterface {
 	}
 
 	private function getUrl( LocalFile $file ) {
+		if ( $file->getSize() > self::MAX_IMAGE_SIZE ) {
+			$thumb = $file->transform( [ 'width' => 1280, 'height' => 1024 ] );
+			return wfExpandUrl( $thumb->getUrl(), PROTO_HTTPS );
+		}
 		return wfExpandUrl( $file->getFullUrl(), PROTO_HTTPS );
 	}
 
