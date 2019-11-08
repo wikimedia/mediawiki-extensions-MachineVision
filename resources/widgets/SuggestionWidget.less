@@ -1,3 +1,4 @@
+@import 'mediawiki.mixins';
 @import '../style-variables.less';
 
 .wbmad-suggestion-wrapper {
@@ -12,7 +13,7 @@
 		background-color: @base90;
 		border: @suggestion-border-width solid @base50;
 		cursor: pointer;
-		padding: 0.1em 0.8em;
+		padding: 0.1em 1.3em;
 		border-radius: 1.2em;
 		white-space: nowrap;
 	}
@@ -20,13 +21,48 @@
 	.wbmad-suggestion--confirmed {
 		background-color: @green90;
 		border-color: @green50;
+		position: relative;
+
+		/* stylelint-disable-next-line selector-class-pattern */
+		.oo-ui-labelWidget {
+			@keyframes slideLeft {
+				0% {
+					.transform( translateX( 0 ) );
+				}
+
+				100% {
+					.transform( translateX( -0.5em ) );
+				}
+			}
+			.transform( translateX( -0.5em ) );
+			animation: slideLeft 0.2s;
+		}
 
 		/* stylelint-disable-next-line selector-class-pattern */
 		.oo-ui-iconElement {
-			margin-right: 0.6em;
+			.fade-in( 0.2s );
 			min-height: 0;
 			min-width: 0;
+			position: absolute;
+			right: 0.5em;
 			width: 1em;
+		}
+	}
+
+	// Animate the process of moving a label back to center when unconfirmed.
+	.wbmad-suggestion--unconfirmed {
+		/* stylelint-disable-next-line selector-class-pattern */
+		.oo-ui-labelWidget {
+			@keyframes slideRight {
+				0% {
+					.transform( translateX( -0.5em ) );
+				}
+
+				100% {
+					.transform( translateX( 0 ) );
+				}
+			}
+			animation: slideRight 0.2s;
 		}
 	}
 
