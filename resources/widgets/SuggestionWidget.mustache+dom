@@ -1,6 +1,6 @@
-<div class="{{classes}}">
-	{{#confirmed}}
-	{{{checkIcon}}}
-	{{/confirmed}}
+<div class="wbmad-suggestion {{className}}">
 	{{{suggestionLabel}}}
+	{{#confirmed}}
+		{{{checkIcon}}}
+	{{/confirmed}}
 </div>

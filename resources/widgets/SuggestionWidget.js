@@ -47,10 +47,10 @@ SuggestionWidget = function ( config ) {
 OO.inheritClass( SuggestionWidget, TemplateRenderingDOMLessGroupWidget );
 
 SuggestionWidget.prototype.render = function () {
-	var classes = ( this.confirmed ) ? 'wbmad-suggestion wbmad-suggestion--confirmed' : 'wbmad-suggestion';
+	var className = ( this.confirmed ) ? 'wbmad-suggestion--confirmed' : 'wbmad-suggestion--unconfirmed';
 
 	this.renderTemplate( 'resources/widgets/SuggestionWidget.mustache+dom', {
-		classes: classes,
+		className: className,
 		suggestionLabel: this.suggestionLabel,
 		confirmed: this.confirmed,
 		checkIcon: this.checkIcon
