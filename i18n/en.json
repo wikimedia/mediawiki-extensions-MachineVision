@@ -19,7 +19,7 @@
 	"machinevision-publish": "Publish",
 	"machinevision-publish-title": "Publish tags?",
 	"machinevision-more": "Next $1 {{PLURAL:$1|image|images}}",
-	"machinevision-more-title": "Show next $1 {{PLURAL:$1|image|images}}?",
+	"machinevision-more-title": "Show next {{PLURAL:$1|image|$1 images}}?",
 	"machinevision-reset": "Reset",
 	"machinevision-reset-title": "Reset tags?",
 	"machinevision-skip": "Skip",
