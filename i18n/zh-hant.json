@@ -45,5 +45,9 @@
 	"right-imagelabel-review": "檢閱圖片標籤建議",
 	"action-imagelabel-review": "檢閱圖片標籤建議",
 	"right-imagelabel-test": "測試圖片標籤建議",
-	"action-imagelabel-test": "測試圖片標籤建議"
+	"action-imagelabel-test": "測試圖片標籤建議",
+	"tag-computer-aided-tagging": "電腦輔助標記",
+	"tag-computer-aided-tagging-description": "用電腦輔助標記工具建立的編輯",
+	"tag-computer-aided-tagging-revert": "電腦輔助標記回退",
+	"tag-computer-aided-tagging-revert-description": "用電腦輔助標記工具建立的回退一個或以上修訂之編輯"
 }
