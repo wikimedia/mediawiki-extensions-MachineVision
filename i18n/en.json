@@ -36,7 +36,7 @@
 	"machinevision-success-message": "Tags added to image.",
 	"machinevision-publish-error-message": "Something went wrong and tags could not be published. Please try again later.",
 	"machinevision-onboarding-dialog-heading": "Tag images to make them easier for others to find",
-	"machinevision-onboarding-dialog-text": "By confirming suggested tags, you can help make images easier to search for. Tags are computer suggested, but need to be validated by humans to ensure accuracy.",
+	"machinevision-onboarding-dialog-text": "By confirming suggested tags, you can help make images easier to search for. Tags are computer-suggested, but need to be validated by humans to ensure accuracy.",
 	"machinevision-onboarding-dialog-cta": "Start tagging",
 	"machinevision-onboarding-dialog-disclaimer": "Only tags that you approve will be added to images.",
 	"machinevision-onboarding-dialog-close-label": "Close",
