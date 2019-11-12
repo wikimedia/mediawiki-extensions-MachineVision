@@ -56,5 +56,5 @@
 	"echo-machinevision-suggestions-ready-notification-body": "Hello! The images {{GENDER:$1|you}} recently uploaded to Commons have been processed with suggested tags and they are ready for review. Accurate tags make it easier for all Commons users to find {{GENDER:$1|your}} images, so follow the link to review {{GENDER:$1|your}} suggested tags. Only tags confirmed by users will be added as part of the image’s data on Commons. For more information about this tool, please visit the computer-aided tagging tool project page.",
 	"echo-machinevision-suggestions-ready-notification-primary-link": "Primary link for the suggestions ready echo notification",
 	"echo-category-title-machinevision": "Suggested tags for review",
-	"echo-pref-tooltip-machinevision-suggestions-ready": "Notify me when my images have been processed and suggested tags are ready for my review"
+	"echo-pref-tooltip-machinevision-suggestions-ready": "Notify me when my images have been processed and suggested tags are ready for my review."
 }
