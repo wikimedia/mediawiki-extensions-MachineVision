@@ -1,11 +1,11 @@
 <?php
 
-namespace Mediawiki\Extension\MachineVision;
+namespace MediaWiki\Extension\MachineVision;
 
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers Mediawiki\Extension\MachineVision\LabelSuggestion
+ * @covers MediaWiki\Extension\MachineVision\LabelSuggestion
  */
 class LabelSuggestionTest extends TestCase {
 
