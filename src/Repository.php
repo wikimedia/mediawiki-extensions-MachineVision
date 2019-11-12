@@ -114,7 +114,7 @@ class Repository implements LoggerAwareInterface {
 				__METHOD__
 			);
 
-			 $mvlId = $this->dbw->insertId();
+			$mvlId = $this->dbw->insertId();
 			if ( $mvlId ) {
 				// new label inserted; increment $labelsCount
 				$labelsCount++;
@@ -142,9 +142,9 @@ class Repository implements LoggerAwareInterface {
 				],
 				__METHOD__
 			);
-
-			return $labelsCount;
 		}
+
+		return $labelsCount;
 	}
 
 	/**

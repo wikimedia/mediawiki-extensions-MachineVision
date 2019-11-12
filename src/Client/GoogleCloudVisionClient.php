@@ -108,9 +108,22 @@ class GoogleCloudVisionClient implements LoggerAwareInterface {
 
 		$responseBody = json_decode( $annotationRequest->getContent(), true );
 		// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
-		$responses = $responseBody['responses'][0];
-		$labelAnnotations = $responses['labelAnnotations'];
-		$safeSearchAnnotation = $responses['safeSearchAnnotation'];
+		$response = $responseBody['responses'][0];
+
+		if ( !array_key_exists( 'labelAnnotations', $response )
+			|| !array_key_exists( 'safeSearchAnnotation', $response ) ) {
+			$this->logger->warning(
+				'labelAnnotations or safeSearchAnnotation key not found in response',
+				[
+					'caller' => __METHOD__,
+					'content' => $annotationRequest->getContent()
+				]
+			);
+			return;
+		}
+
+		$labelAnnotations = $response['labelAnnotations'];
+		$safeSearchAnnotation = $response['safeSearchAnnotation'];
 
 		$suggestions = [];
 		foreach ( $labelAnnotations as $label ) {
