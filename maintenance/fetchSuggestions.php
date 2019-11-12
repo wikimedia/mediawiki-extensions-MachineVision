@@ -129,7 +129,7 @@ class FetchSuggestions extends Maintenance {
 					if ( $handler->isTooManyRequestsError( $t ) ) {
 						sleep( $this->backoffSeconds );
 						try {
-							$handler->requestAnnotations( $provider, $file );
+							$this->client->fetchAnnotations( $provider, $file );
 							return;
 						} catch ( Throwable $t ) {
 							if ( $handler->isTooManyRequestsError( $t ) ) {
