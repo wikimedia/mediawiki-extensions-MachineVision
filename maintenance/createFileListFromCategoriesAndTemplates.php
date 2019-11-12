@@ -60,8 +60,8 @@ class CreateFileListFromCategoriesAndTemplates extends Maintenance {
 	/** @inheritDoc */
 	public function execute() {
 		$this->init();
-		$categories = $this->getOption( 'category' );
-		$templates = $this->getOption( 'template' );
+		$categories = $this->getOption( 'category', [] );
+		$templates = $this->getOption( 'template', [] );
 		$outputFile = $this->getOption( 'outputFile' );
 		$result = [];
 
