@@ -17,7 +17,7 @@
 	"machinevision-publish": "Publicar",
 	"machinevision-publish-title": "Publicar etiquetas?",
 	"machinevision-more": "Próxima {{PLURAL:$1|imagem|imagens}}",
-	"machinevision-more-title": "Mostrar as próximas de {{PLURAL:$1|imagem|imagens}} ?",
+	"machinevision-more-title": "Mostrar as próximas de {{PLURAL:$1|imagem|$1 imagens}} ?",
 	"machinevision-reset": "Redefinir",
 	"machinevision-reset-title": "Redefinir Etiquetas?",
 	"machinevision-skip": "Pular",
@@ -47,5 +47,6 @@
 	"action-imagelabel-test": "sugestões de etiqueta de imagem de teste",
 	"tag-computer-aided-tagging": "Identificação assistida por computador",
 	"tag-computer-aided-tagging-description": "Edições criadas com a ferramenta marcação auxiliada por computador",
+	"tag-computer-aided-tagging-revert": "Rótulo assistido por computador",
 	"tag-computer-aided-tagging-revert-description": "Edita a reversão de uma ou mais revisões criadas com a ferramenta Marcação assistida por computador"
 }

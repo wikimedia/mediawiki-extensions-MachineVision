@@ -8,7 +8,7 @@
 	"machinevision-machineaidedtagging": "পরামর্শকৃত ট্যাগগুলি",
 	"machinevision-publish": "প্রকাশ করুন",
 	"machinevision-more": "পরবর্তী $1টি {{PLURAL:$1|চিত্র}}",
-	"machinevision-more-title": "পরবর্তী $1টি {{PLURAL:$1|চিত্র}} দেখবেন?",
+	"machinevision-more-title": "পরবর্তী {{PLURAL:$1|চিত্র|$1টি চিত্র}} দেখবেন?",
 	"machinevision-skip": "এড়িয়ে যান",
 	"machinevision-loading-message": "লোড করা হচ্ছে..."
 }

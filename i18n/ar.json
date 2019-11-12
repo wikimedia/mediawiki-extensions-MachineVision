@@ -19,7 +19,7 @@
 	"machinevision-publish": "نشر",
 	"machinevision-publish-title": "نشر الوسوم؟",
 	"machinevision-more": "{{PLURAL:$1|الصورة|الصور}} $1 التالية",
-	"machinevision-more-title": "عرض {{PLURAL:$1|الصورة|الصور}} $1 التالية؟",
+	"machinevision-more-title": "عرض {{PLURAL:$1|الصورة|الصور $1}} التالية؟",
 	"machinevision-reset": "إعادة ضبط",
 	"machinevision-reset-title": "إعادة تعيين الوسوم؟",
 	"machinevision-skip": "تجاوز",
