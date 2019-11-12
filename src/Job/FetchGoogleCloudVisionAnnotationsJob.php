@@ -24,7 +24,8 @@ class FetchGoogleCloudVisionAnnotationsJob extends Job {
 
 		$extensionServices = new Services( $services );
 		$client = $extensionServices->getGoogleCloudVisionClient();
-		$client->fetchAnnotations( $provider, $file );
+		$client->fetchAnnotations( $provider, $file, true );
+
 		return true;
 	}
 
