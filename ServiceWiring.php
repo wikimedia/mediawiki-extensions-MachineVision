@@ -82,7 +82,7 @@ return [
 	},
 
 	'MachineVisionNameTableStore' => function ( MediaWikiServices $services ): NameTableStore {
-		$extensionConfig = $services->getConfigFactory()->makeConfig( 'MachineVision' );
+		$extensionConfig = $services->getService( 'MachineVisionConfig' );
 		$loadBalancerFactory = $services->getDBLoadBalancerFactory();
 		$wanObjectCache = $services->getMainWANObjectCache();
 
@@ -106,7 +106,7 @@ return [
 	},
 
 	'MachineVisionRepository' => function ( MediaWikiServices $services ): Repository {
-		$extensionConfig = $services->getConfigFactory()->makeConfig( 'MachineVision' );
+		$extensionConfig = $services->getService( 'MachineVisionConfig' );
 		$loadBalancerFactory = $services->getDBLoadBalancerFactory();
 
 		$cluster = $extensionConfig->get( 'MachineVisionCluster' );
@@ -127,7 +127,7 @@ return [
 
 	'MachineVisionHandlerRegistry' => function ( MediaWikiServices $services ): Registry {
 		$objectFactory = new ObjectFactory( $services );
-		$extensionConfig = $services->getConfigFactory()->makeConfig( 'MachineVision' );
+		$extensionConfig = $services->getService( 'MachineVisionConfig' );
 		$handlerConfig = $extensionConfig->get( 'MachineVisionHandlers' );
 
 		$registry = new Registry( $objectFactory, $handlerConfig );
@@ -144,7 +144,7 @@ return [
 	},
 
 	'MachineVisionLabelResolver' => function ( MediaWikiServices $services ): LabelResolver {
-		$extensionConfig = $services->getConfigFactory()->makeConfig( 'MachineVision' );
+		$extensionConfig = $services->getService( 'MachineVisionConfig' );
 		$entityLookup = WikibaseRepo::getDefaultInstance()->getEntityLookup();
 		$languageFallbackChainFactory = new LanguageFallbackChainFactory();
 		$httpRequestFactory = $services->getHttpRequestFactory();
