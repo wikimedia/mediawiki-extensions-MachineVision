@@ -4,12 +4,17 @@ namespace MediaWiki\Extension\MachineVision\Handler;
 
 use IContextSource;
 use MediaWiki\Http\HttpRequestFactory;
+use MediaWiki\Logger\LoggerFactory;
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerAwareTrait;
 use Wikibase\DataModel\Entity\ItemId;
 use Wikibase\DataModel\Services\Lookup\EntityLookup;
 use Wikibase\LanguageFallbackChain;
 use Wikibase\LanguageFallbackChainFactory;
 
-class LabelResolver {
+class LabelResolver implements LoggerAwareInterface {
+
+	use LoggerAwareTrait;
 
 	/** @var EntityLookup */
 	private $entityLookup;
@@ -46,6 +51,8 @@ class LabelResolver {
 		$this->httpRequestFactory = $httpRequestFactory;
 		$this->userAgent = $userAgent;
 		$this->useWikidataPublicApi = $useWikidataPublicApi;
+
+		$this->setLogger( LoggerFactory::getInstance( 'machinevision' ) );
 	}
 
 	/**
@@ -69,14 +76,24 @@ class LabelResolver {
 	 * @suppress PhanUndeclaredTypeParameter
 	 */
 	private function resolveInternal( LanguageFallbackChain $languageFallbackChain, $ids ) {
-		return array_reduce( $ids, function ( $result, $id ) use ( $languageFallbackChain ) {
+		$result = [];
+		foreach ( $ids as $id ) {
 			$item = $this->entityLookup->getEntity( new ItemId( $id ) );
+			if ( !$item ) {
+				$this->logger->warning(
+					"No entity found for ID $id",
+					[ 'caller' => __METHOD__ ]
+				);
+				continue;
+			}
 			// @phan-suppress-next-line PhanUndeclaredMethod
 			$labels = $item->getLabels()->toTextArray();
-			$result[$id] =
-				$this->getLabelByLanguageFallbackChain( $languageFallbackChain, $labels );
-			return $result;
-		}, [] );
+			if ( $labels ) {
+				$result[$id] =
+					$this->getLabelByLanguageFallbackChain( $languageFallbackChain, $labels );
+			}
+		}
+		return $result;
 	}
 
 	/**
@@ -103,7 +120,10 @@ class LabelResolver {
 			foreach ( $labelData as $lang => $data ) {
 				$labels[$lang] = $data['value'];
 			}
-			$result[$id] = $this->getLabelByLanguageFallbackChain( $languageFallbackChain, $labels );
+			if ( $labels ) {
+				$result[$id] =
+					$this->getLabelByLanguageFallbackChain( $languageFallbackChain, $labels );
+			}
 		}
 		return $result;
 	}
@@ -116,7 +136,10 @@ class LabelResolver {
 	 * @suppress PhanUndeclaredTypeParameter,PhanUndeclaredClassMethod
 	 */
 	private function getLabelByLanguageFallbackChain( LanguageFallbackChain $languageFallbackChain,
-													  $labels ) {
+		$labels ) {
+		if ( !$labels ) {
+			return null;
+		}
 		foreach ( $languageFallbackChain->getFetchLanguageCodes() as $lang ) {
 			if ( array_key_exists( $lang, $labels ) ) {
 				return $labels[$lang];

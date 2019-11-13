@@ -62,21 +62,25 @@ abstract class WikidataIdHandler implements Handler {
 	 */
 	public function handleInfoAction( IContextSource $context, LocalFile $file, array &$pageInfo ) {
 		$ids = array_column( $this->repository->getLabels( $file->getSha1() ), 'wikidata_id' );
-		if ( $ids ) {
-			$labels = $this->labelResolver->resolve( $context, $ids );
-			$wdItemLinks = array_map( function ( $id ) use ( $labels ) {
-				// @phan-suppress-next-line SecurityCheck-DoubleEscaped
-				return Html::element( 'a', [
-					'href' => 'https://www.wikidata.org/wiki/' . htmlentities( $id ),
-				], $labels[$id] );
-			}, $ids );
-			// TODO there should probably be a structured-data or similar header but this extension
-			// is not the right place for that
-			$pageInfo['header-properties'][] = [
-				$context->msg( 'machinevision-pageinfo-field-suggested-labels' )->escaped(),
-				$context->getLanguage()->commaList( $wdItemLinks ),
-			];
+		if ( !$ids ) {
+			return;
 		}
+		$labels = $this->labelResolver->resolve( $context, $ids );
+		if ( !$labels ) {
+			return;
+		}
+		$links = [];
+		foreach ( $labels as $id => $label ) {
+			$links[] = Html::element( 'a', [
+				'href' => 'https://www.wikidata.org/wiki/' . $id,
+			], $label );
+		}
+		// TODO there should probably be a structured-data or similar header but this extension
+		// is not the right place for that
+		$pageInfo['header-properties'][] = [
+			$context->msg( 'machinevision-pageinfo-field-suggested-labels' )->escaped(),
+			$context->getLanguage()->commaList( $links ),
+		];
 	}
 
 	/** @inheritDoc */
