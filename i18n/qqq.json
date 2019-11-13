@@ -4,7 +4,8 @@
 			"Wikimedia Product Infrastructure Team",
 			"Wikimedia Structured Data Team",
 			"Monte Hurd",
-			"Robby"
+			"Robby",
+			"EGardner (WMF)"
 		]
 	},
 	"machinevision-desc": "{{desc|name=MachineVision|url=https://www.mediawiki.org/wiki/Extension:MachineVision}}",
@@ -52,10 +53,10 @@
 	"tag-computer-aided-tagging-description": "Description of change tag for revisions created with the Computer-Aided Tagging tool",
 	"tag-computer-aided-tagging-revert": "Change tag for revisions reverting one or more revisions created with the Computer-Aided Tagging revert",
 	"tag-computer-aided-tagging-revert-description": "Description of change tag for revisions reverting one or more revisions created with the Computer-Aided Tagging revert",
-	"echo-machinevision-suggestions-ready-notification-header": "Generic header for \"suggestions ready\" notification. Parameters:\n* $1 - username, for GENDER support",
 	"echo-machinevision-suggestions-ready-notification-header-compact": "File-specific header for \"suggestions ready\" notification. Parameters:\n* $1 - username, for GENDER support, $2 – filename",
+	"echo-machinevision-suggestions-ready-notification-header": "Generic header for \"suggestions ready\" notification. Parameters:\n* $1 - username, for GENDER support",
 	"echo-machinevision-suggestions-ready-notification-body": "Content for \"suggestions ready\" Echo notification. Parameters:\n* $1 - username, for GENDER support",
-	"echo-machinevision-suggestions-ready-notification-primary-link": "Primary link for the \"suggestions ready\" Echo notification",
+	"echo-machinevision-suggestions-ready-notification-primary-link": "Label for the primary link of the \"suggestions ready\" Echo notification",
 	"echo-category-title-machinevision": "Category title for MachineVision notification preferences",
 	"echo-pref-tooltip-machinevision-suggestions-ready": "Tooltip for MachineVision notification preferences"
 }

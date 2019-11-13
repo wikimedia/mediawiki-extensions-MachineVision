@@ -48,5 +48,11 @@
 	"tag-computer-aided-tagging": "Algoritmehjuplet tagging",
 	"tag-computer-aided-tagging-description": "Redigeringer skapt med verktøyet for algoritmehjulpet tagging",
 	"tag-computer-aided-tagging-revert": "Tilbakestilling av algoritmehjulpet tagging",
-	"tag-computer-aided-tagging-revert-description": "Redigeringer som tilbakestiller én eller flere revisjoner skapt med verktøyet for algoritmehjulpet tagging"
+	"tag-computer-aided-tagging-revert-description": "Redigeringer som tilbakestiller én eller flere revisjoner skapt med verktøyet for algoritmehjulpet tagging",
+	"echo-machinevision-suggestions-ready-notification-header-compact": "Foreslåtte tagger for {{GENDER:$1|fila}} «$2» er klare for gjennomgang",
+	"echo-machinevision-suggestions-ready-notification-header": "Foreslåtte tagger for {{GENDER:$1|dine}} nylige opplastinger er klare for gjennomgang",
+	"echo-machinevision-suggestions-ready-notification-body": "Hei! Bildene {{GENDER:$1|du}} nylig lastet opp på Commons har blitt prosessert med foreslåtte tagger, og er klare for gjennomgang. Nøyaktige tagger gjør det enklere for alle Commons-brukere å finne bildene dine, så følg lenka for å gå gjennom de foreslåtte taggene. Bare tagger som bekreftes av brukere blir lagt til som del av bildets data på Commons. For mer informasjon om dette verktøyet, besøk prosjektsiden for maskinhjuplet tagging.",
+	"echo-machinevision-suggestions-ready-notification-primary-link": "Primær lenke for Echo-varselet for «forslag klart»",
+	"echo-category-title-machinevision": "Gjennomgang av foreslåtte tagger",
+	"echo-pref-tooltip-machinevision-suggestions-ready": "Varsle meg når bildene mine har blitt prosessert og foreslåtte tagger er klare for gjennomgang"
 }

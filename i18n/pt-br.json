@@ -48,5 +48,11 @@
 	"tag-computer-aided-tagging": "Identificação assistida por computador",
 	"tag-computer-aided-tagging-description": "Edições criadas com a ferramenta marcação auxiliada por computador",
 	"tag-computer-aided-tagging-revert": "Rótulo assistido por computador",
-	"tag-computer-aided-tagging-revert-description": "Edita a reversão de uma ou mais revisões criadas com a ferramenta Marcação assistida por computador"
+	"tag-computer-aided-tagging-revert-description": "Edita a reversão de uma ou mais revisões criadas com a ferramenta Marcação assistida por computador",
+	"echo-machinevision-suggestions-ready-notification-header-compact": "Etiquetas sugeridas para {{GENDER:$1|você}} do arquivo \"$2\" estão prontos para revisão",
+	"echo-machinevision-suggestions-ready-notification-header": "Etiquetas sugeridas para {{GENDER:$1|você}} de carregamentos recentes estão prontos para revisão",
+	"echo-machinevision-suggestions-ready-notification-body": "Olá! As imagens que {{GENDER:$1|você}} recentemente enviados para Commons foram processados com etiquetas sugeridas e eles estão prontos para análise. Etiquetas precisas facilitam a localização de todos os usuários do Commons das {{GENDER:$1|suas}} imagens , então siga o link para revisar {{GENDER:$1|suas}} etiquetas sugeridas. Somente etiquetas confirmadas pelos usuários serão adicionadas como parte dos dados da imagem no Commons. Para obter mais informações sobre essa ferramenta, visite a página do projeto da ferramenta de marcação auxiliada por computador.",
+	"echo-machinevision-suggestions-ready-notification-primary-link": "Link principal para a notificação de eco de sugestões prontas",
+	"echo-category-title-machinevision": "Etiquetas sugeridas para revisão",
+	"echo-pref-tooltip-machinevision-suggestions-ready": "Notificar-me quando minhas imagens forem processadas e as tags sugeridas estiverem prontas para minha revisão"
 }

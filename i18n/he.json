@@ -15,7 +15,7 @@
 	"machinevision-machineaidedtagging-license-information": "רישיון CC0 לתורמי תגים – לחיצה על \"פרסום\" מהווה את הסכמתך ל[[wmf:Terms_of_Use|תנאי השימוש]], ואת הסכמתך הבלתי־חוזרת לשחרור התרומה שלך לפי תנאי [https://creativecommons.org/publicdomain/zero/1.0/ רישיון קריאייטיב קומונז CC0].",
 	"machinevision-pageinfo-field-suggested-labels": "תוויות מוצעות",
 	"machinevision-login-message": "נא [[Special:UserLogin|להיכנס]] כדי לראות את הדף הזה ולהתחיל לתייג תמונות. תגים מדויקים מקילים על כל משתמשי ויקישיתוף למצוא תמונות, והתרומות שלח זוכות להערכה.",
-	"machinevision-autoconfirmed-message": "תגים מדויקים עוזרים לכל משתמשי ויקישיתוף למצוא תמונות, אז נא להפוך ל־[[[[mw:Manual:Autoconfirmed_users|בדוק עריכות אוטומטית]] כך שרק משתמשים ען ההרשאה הזאת יוכלו לערוך.",
+	"machinevision-autoconfirmed-message": "תגים מדויקים עוזרים לכל משתמשי ויקישיתוף למצוא תמונות, אז נא להפוך ל־[[mw:Manual:Autoconfirmed_users|בדוק עריכות אוטומטית]] כך שרק משתמשים ען ההרשאה הזאת יוכלו לערוך.",
 	"machinevision-publish": "לפרסם",
 	"machinevision-publish-title": "לפרסם תגים?",
 	"machinevision-more": "{{PLURAL:$1|תמונה אחת|$1 תמונות}}",
@@ -28,6 +28,7 @@
 	"machinevision-suggestion-confirm-title": "לאשר את ההצעה \"$1\"?",
 	"machinevision-suggestion-confirm-undo-title": "לבטל את אישר ההצעה \"$1\"?",
 	"machinevision-loading-message": "טעינת תמונות...",
+	"machinevision-failure-message": "סליחה, משהו השתבש. נא לבדוק מאוחר יותר או [[c:Commons_talk:Structured_data/Computer-aided_tagging|ליצור איתנו קשר]].",
 	"machinevision-confirm-tags-dialog-title": "אישור תגים",
 	"machinevision-confirm-tags-dialog-confirm-action": "אישור",
 	"machinevision-confirm-tags-dialog-cancel-action": "ביטול",
@@ -35,6 +36,7 @@
 	"machinevision-success-message": "תגים נוספו לתמונה.",
 	"machinevision-publish-error-message": "משהו השתבש לא היה אפשר לפרסם את התגים. נא לנסות שוב מאוחר יותר.",
 	"machinevision-onboarding-dialog-heading": "תייגו תמונות כדי שלאחרים יהיה קל יותר למצוא אותן",
+	"machinevision-onboarding-dialog-text": "אישור התגים המוצעים הופך את התמונות לקלות יותר לחיפוש. התגים מחוללים באמצעות מחשב, אבל צריכים להיות מאומתים על־ידי בני־אדם כדי לוודא דיוק.",
 	"machinevision-onboarding-dialog-cta": "להתחיל לתייג",
 	"machinevision-onboarding-dialog-disclaimer": "רק תגים שאישרת יוּספו לתמונות.",
 	"machinevision-onboarding-dialog-close-label": "סגירה",
@@ -48,5 +50,11 @@
 	"tag-computer-aided-tagging": "תיוג בעזרת מחשב",
 	"tag-computer-aided-tagging-description": "עריכות שנוצרו בעזרת כלי תיוג בעזרת מחשב",
 	"tag-computer-aided-tagging-revert": "שחזור תיוג בעזרת מחשב",
-	"tag-computer-aided-tagging-revert-description": "עריכות שמשחזרות גרסה אחת או יותר שנוצרו באמצעות תיוג בעזרת מחשב"
+	"tag-computer-aided-tagging-revert-description": "עריכות שמשחזרות גרסה אחת או יותר שנוצרו באמצעות תיוג בעזרת מחשב",
+	"echo-machinevision-suggestions-ready-notification-header-compact": "תגים מוצעים לקובץ \"$2\" {{GENDER:$1|שהעלית}} מוכנים לסקירה",
+	"echo-machinevision-suggestions-ready-notification-header": "תגים מוצעים להעלאות אחרונות {{GENDER:$1|שלך}} מוכנים לסקירה",
+	"echo-machinevision-suggestions-ready-notification-body": "שלום! התמונות {{GENDER:$1|שהעלית}} לאחרונה לוויקישיתוף עובדו עם תגים מוצעים והם מוכנים להצגה. תגים מדויקים מקלים על כל משתמשי ויקישיתוף למצור את התמונות שלך, אז לחצו על הקישור כדי לבדוק את התגים שהוצעו לך. רק תגים שאושרו על־ידי משתמשים יוספו לנתונים של התמונה בוויקישיתוף. למידע נוסף על הכלי הזה, נא לבקר בדף המיזם על כלי הוספת התגים באמצעות מחשב.",
+	"echo-machinevision-suggestions-ready-notification-primary-link": "קישור ראשי להתראת ה־Echo \"התראות מוכנות\"",
+	"echo-category-title-machinevision": "תגים מוצעים לסקירה",
+	"echo-pref-tooltip-machinevision-suggestions-ready": "להודיע לי כאשר תמונות שלי עובדו ותגים מוצעים מוגנים לסקירה שלי"
 }
