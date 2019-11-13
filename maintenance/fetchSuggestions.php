@@ -77,7 +77,6 @@ class FetchSuggestions extends Maintenance {
 			foreach ( $files as $file ) {
 				$this->fetchForFile( $file );
 				$processed++;
-				sleep( 1 );
 			}
 			$this->commitTransaction( $this->getDB( DB_MASTER ), __METHOD__ );
 		}
