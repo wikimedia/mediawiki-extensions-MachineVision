@@ -27,6 +27,7 @@ use Wikibase\Repo\ChangeOp\ChangeOpValidationException;
 use Wikibase\Repo\ChangeOp\StatementChangeOpFactory;
 use Wikibase\Repo\EditEntity\MediawikiEditEntityFactory;
 use Wikibase\SummaryFormatter;
+use WikiMap;
 
 /**
  * Interacts with Wikidata to set Depicts (P180) statements on MediaInfo items.
@@ -115,8 +116,9 @@ class WikidataDepictsSetter implements LoggerAwareInterface {
 		$revision = $this->revisionStore->getRevisionByTitle( $title, null,
 			IDBAccessObject::READ_EXCLUSIVE );
 
+		$wikiId = WikiMap::getWikiIdFromDbDomain( WikiMap::getCurrentWikiDbDomain() );
 		$mediaInfoId = $this->mediaInfoByLinkedTitleLookup
-			->getEntityIdForLinkedTitle( 'commonswiki', $title->getPrefixedText() );
+			->getEntityIdForLinkedTitle( $wikiId, $title->getPrefixedText() );
 		$mediaInfo = $this->entityLookup->hasEntity( $mediaInfoId )
 			? $this->entityLookup->getEntity( $mediaInfoId )
 			: null;
