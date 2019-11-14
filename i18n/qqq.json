@@ -45,6 +45,8 @@
 	"machinevision-cta-heading": "Heading for the user message after all personal uploads have been tagged",
 	"machinevision-cta-text": "Text for the user message after all personal uploads have been tagged",
 	"machinevision-cta-cta": "Call to action text for the button linking to the popular uploads tab",
+	"machinevision-no-uploads-cta-heading": "Heading for the user message when the user has not yet uploaded any images that have received tag suggestions",
+	"machinevision-no-uploads-cta-text": "Text for the user message when the user has not yet uploaded any images that have received tag suggestions",
 	"right-imagelabel-review": "{{doc-right|imagelabel-review}}",
 	"action-imagelabel-review": "{{doc-action|imagelabel-review}}",
 	"right-imagelabel-test": "{{doc-right|imagelabel-test}}",

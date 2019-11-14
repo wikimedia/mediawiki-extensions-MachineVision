@@ -304,24 +304,27 @@ class Repository implements LoggerAwareInterface {
 	/**
 	 * Get count of images uploaded by the specified user with labels awaiting review.
 	 * @param int $userId local user id
-	 * @return int
+	 * @return array
 	 */
 	public function getUnreviewedImageCountForUser( $userId ) {
-		return (int)$this->dbr->selectField(
-			[ 'derived' => $this->dbr->buildSelectSubquery(
-				'machine_vision_label',
-				'mvl_mvi_id',
-				[
-					'mvl_review' => self::REVIEW_UNREVIEWED,
-					'mvl_uploader_id' => $userId,
-				],
-				__METHOD__,
-				[ 'GROUP BY' => 'mvl_mvi_id' ]
-			) ],
-			'COUNT(*)',
-			[],
+		$res = $this->dbr->select(
+			'machine_vision_label',
+			[ 'mvl_mvi_id', 'mvl_review' ],
+			[ 'mvl_uploader_id' => $userId ],
 			__METHOD__
 		);
+		$unreviewed = [];
+		$total = [];
+		foreach ( $res as $row ) {
+			$total[$row->mvl_mvi_id] = true;
+			if ( (int)$row->mvl_review === self::REVIEW_UNREVIEWED ) {
+				$unreviewed[$row->mvl_mvi_id] = true;
+			}
+		}
+		return [
+			'unreviewed' => count( array_keys( $unreviewed ) ),
+			'total' => count( array_keys( $total ) ),
+		];
 	}
 
 	/**

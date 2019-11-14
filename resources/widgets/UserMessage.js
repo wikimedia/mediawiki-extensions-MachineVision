@@ -7,6 +7,7 @@ var TemplateRenderingDOMLessGroupWidget = require( '../base/TemplateRenderingDOM
  * User-facing content with an icon, text, and CTA button.
  *
  * @param {Object} config
+ * @cfg {string} [className] Class name for this element
  * @cfg {string} [cta] Text for the CTA button
  * @cfg {string} [heading] Heading text
  * @cfg {string} [text] Body text
@@ -16,7 +17,7 @@ var TemplateRenderingDOMLessGroupWidget = require( '../base/TemplateRenderingDOM
 UserMessage = function ( config ) {
 	this.config = config || {};
 	UserMessage.parent.call( this, $.extend( {}, config ) );
-	this.$element.addClass( 'wbmad-user-message' );
+	this.$element.addClass( 'wbmad-user-message ' + this.config.className );
 
 	this.ctaButton = new OO.ui.ButtonWidget( {
 		classes: [ 'wbmad-user-message-cta' ],

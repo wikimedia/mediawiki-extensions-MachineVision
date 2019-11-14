@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="117" height="93" viewBox="0 0 117 93">
     <title>
-        Group 4
+        Group 3
     </title>
     <desc>
         Created with Sketch.
@@ -11,10 +11,10 @@
         <rect id="path-3" width="102.468" height="72.359" x="0" y="0" rx="2"/>
     </defs>
     <g id="CAT-onboarding-and-empty-state-Illustrations" fill="none" fill-rule="evenodd" stroke="none" stroke-width="1">
-        <g id="Monocrome-vs-a-pop-of-color" transform="translate(-120 -220)">
-            <g id="Group-4" transform="translate(121 221)">
-                <rect id="Second-image-Copy" width="98" height="69" x="3" y="0" fill="#C8CCD1" stroke="#A2A9B1" stroke-width="2" rx="2"/>
-                <g id="Group-Copy" transform="translate(0 4)">
+        <g id="Monocrome-vs-a-pop-of-color" transform="translate(-120 -87)">
+            <g id="Group-3" transform="translate(121 88)">
+                <rect id="Second-image" width="98" height="69" x="3" y="0" fill="#C8CCD1" stroke="#A2A9B1" stroke-width="2" rx="2"/>
+                <g id="Group" transform="translate(0 4)">
                     <g id="Illustration">
                         <mask id="mask-2" fill="#fff">
                             <use xlink:href="#path-1"/>
@@ -34,9 +34,9 @@
                     </mask>
                     <use id="Mask" stroke="#A2A9B1" stroke-width="2" xlink:href="#path-3"/>
                 </g>
-                <g id="Group-5" stroke-width="2" transform="translate(79 55)">
-                    <circle id="Oval-2-Copy" cx="18" cy="18" r="18" fill="#C8CCD1" stroke="#A2A9B1"/>
-                    <path id="Shape" fill="#FFF" fill-rule="nonzero" stroke="#FFF" d="M14.6696048 22.6246739L9.68979244 17.6511368 8 19.3387999 14.6696048 26 29 11.6876631 27.3102076 10z"/>
+                <g id="Group-9-Copy" transform="translate(79 55)">
+                    <circle id="Oval-2" cx="18" cy="18" r="18" fill="#C8CCD1" stroke="#A2A9B1" stroke-width="2"/>
+                    <path id="Fill-1" fill="#FFF" d="M30.6358872,20.3396647 L17.6708294,7.37351061 C17.4370182,7.14746999 17.1286913,7.01464695 16.8038245,7 L8.33385368,7 C7.5971863,7 7,7.59724347 7,8.33396647 L7,16.8046536 C7.01464171,17.1295545 7.14746019,17.4379008 7.37347903,17.6717318 L20.3385368,30.6378846 C20.8520038,31.1207064 21.6524493,31.1207039 22.1659163,30.6378846 L30.6759028,22.1271785 C31.1229038,21.6092433 31.1056038,20.8370728 30.6358872,20.3396621 L30.6358872,20.3396647 Z M12.625,15.25 C11.1752519,15.25 10,14.0747481 10,12.625 C10,11.1752519 11.1752532,10 12.625,10 C14.0747468,10 15.25,11.1752519 15.25,12.625 C15.25,14.0747481 14.0747468,15.25 12.625,15.25 Z"/>
                 </g>
             </g>
         </g>

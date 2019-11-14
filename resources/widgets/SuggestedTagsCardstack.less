@@ -8,8 +8,16 @@
 	.wbmad-user-message {
 		.fade-in( 0.5s );
 
-		.wbmad-user-message-icon {
-			background-image: url( ../icons/empty-state-icon.svg );
+		&.wbmad-user-cta {
+			.wbmad-user-message-icon {
+				background-image: url( ../icons/empty-state-icon.svg );
+			}
+		}
+
+		&.wbmad-user-cta--no-uploads {
+			.wbmad-user-message-icon {
+				background-image: url( ../icons/empty-state-icon-no-uploads.svg );
+			}
 		}
 
 		.wbmad-user-message-cta {

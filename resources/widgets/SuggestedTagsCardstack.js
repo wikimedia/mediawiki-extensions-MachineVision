@@ -15,7 +15,8 @@ var TemplateRenderingDOMLessGroupWidget = require( '../base/TemplateRenderingDOM
  * @cfg {string} queryType
  * @cfg {bool} resultsFound
  * @cfg {Array} imageDataArray
- * @cfg {number} userImageCount
+ * @cfg {number} userUnreviewedImageCount
+ * @cfg {number} userTotalImageCount
  */
 SuggestedTagsCardstack = function ( config ) {
 	this.config = config || {};
@@ -32,8 +33,11 @@ SuggestedTagsCardstack = function ( config ) {
 	this.resultsFound = this.config.resultsFound;
 	this.imageDataArray = this.config.imageDataArray;
 	this.countString = ( this.queryType === 'user' ) ?
-		new PersonalUploadsCount( { userImageCount: this.config.userImageCount } ) :
+		new PersonalUploadsCount( {
+			unreviewed: this.config.userUnreviewedImageCount
+		} ) :
 		null;
+	this.userHasLabeledUploads = this.config.userTotalImageCount > 0;
 
 	this.items = this.getItems();
 	this.render();
@@ -48,8 +52,9 @@ SuggestedTagsCardstack.prototype.render = function () {
 	var countString = this.countString,
 		showCta = !this.resultsFound && this.queryType === 'user',
 		config = {
-			heading: mw.message( 'machinevision-cta-heading' ).text(),
-			text: mw.message( 'machinevision-cta-text' ).text(),
+			className: this.userHasLabeledUploads ? 'wbmad-user-cta' : 'wbmad-user-cta--no-uploads',
+			heading: mw.message( this.userHasLabeledUploads ? 'machinevision-cta-heading' : 'machinevision-no-uploads-cta-heading' ).text(),
+			text: mw.message( this.userHasLabeledUploads ? 'machinevision-cta-text' : 'machinevision-no-uploads-cta-text' ).text(),
 			cta: mw.message( 'machinevision-cta-cta' ).text(),
 			event: 'popularTabCtaClick'
 		};
@@ -112,7 +117,7 @@ SuggestedTagsCardstack.prototype.onTagsPublished = function () {
 	this.emit( 'showSuccessMessage' );
 
 	if ( this.countString ) {
-		this.countString.userImageCount--;
+		this.countString.userUnreviewedImageCount--;
 		this.countString.render();
 	}
 };
