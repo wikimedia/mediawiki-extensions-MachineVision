@@ -74,6 +74,7 @@ class FetchSuggestions extends Maintenance {
 				return Title::newFromText( $filename, NS_FILE );
 			}, $filenameBatch );
 			$files = $localRepo->findFiles( $titles );
+			$this->beginTransaction( $this->getDB( DB_MASTER ), __METHOD__ );
 			foreach ( $files as $file ) {
 				$this->fetchForFile( $file );
 				$processed++;
