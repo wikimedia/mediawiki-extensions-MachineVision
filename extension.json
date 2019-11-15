@@ -261,7 +261,9 @@
 				"machinevision-onboarding-dialog-close-label",
 				"machinevision-cta-heading",
 				"machinevision-cta-text",
-				"machinevision-cta-cta"
+				"machinevision-cta-cta",
+				"machinevision-no-uploads-cta-heading",
+				"machinevision-no-uploads-cta-text"
 			],
 			"targets": [
 				"mobile",

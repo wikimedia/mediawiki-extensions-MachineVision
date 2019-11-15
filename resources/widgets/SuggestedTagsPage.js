@@ -132,8 +132,11 @@ SuggestedTagsPage.prototype.getItemsForQueryResponse = function ( response ) {
 		imageDataArray = [],
 		resultsFound = false,
 		validItems,
-		userImageCount = ( response.query && response.query.unreviewedimagecount ) ?
-			response.query.unreviewedimagecount.user :
+		userUnreviewedImageCount = response.query && response.query.unreviewedimagecount ?
+			response.query.unreviewedimagecount.user.unreviewed :
+			0,
+		userTotalImageCount = response.query && response.query.unreviewedimagecount ?
+			response.query.unreviewedimagecount.user.total :
 			0;
 
 	// Helper function to process query results
@@ -167,7 +170,8 @@ SuggestedTagsPage.prototype.getItemsForQueryResponse = function ( response ) {
 		queryType: this.tabs.getCurrentTabPanelName(),
 		resultsFound: resultsFound,
 		imageDataArray: imageDataArray,
-		userImageCount: userImageCount
+		userUnreviewedImageCount: userUnreviewedImageCount,
+		userTotalImageCount: userTotalImageCount
 	} ).connect( this, {
 		fetchItems: 'fetchItems',
 		showSuccessMessage: 'showSuccessMessage',

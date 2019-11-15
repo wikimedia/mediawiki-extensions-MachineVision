@@ -5,6 +5,7 @@ namespace MediaWiki\Extension\MachineVision\Handler;
 use IContextSource;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Logger\LoggerFactory;
+use MWException;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
 use Wikibase\DataModel\Entity\ItemId;
@@ -113,6 +114,9 @@ class LabelResolver implements LoggerAwareInterface {
 		$rawWbEntitiesResponse = $this->httpRequestFactory->get( $url, [
 			'userAgent' => $this->userAgent,
 		], __METHOD__ );
+		if ( !$rawWbEntitiesResponse ) {
+			throw new MWException( 'Label resolution request to Wikidata failed' );
+		}
 		$wbEntitiesResponse = json_decode( $rawWbEntitiesResponse, true );
 		foreach ( $ids as $id ) {
 			// @phan-suppress-next-line PhanTypeArraySuspiciousNullable

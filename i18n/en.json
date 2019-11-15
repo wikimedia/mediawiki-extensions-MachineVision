@@ -43,6 +43,8 @@
 	"machinevision-cta-heading": "You've tagged all your uploads!",
 	"machinevision-cta-text": "Thanks for helping make images more findable for everyone – how about tagging some more?",
 	"machinevision-cta-cta": "Tag popular images",
+	"machinevision-no-uploads-cta-heading": "You have no images for review",
+	"machinevision-no-uploads-cta-text": "How about uploading some images? Or, if you want to help make images more findable for everyone right away, start tagging some popular images now!",
 	"right-imagelabel-review": "Review image label suggestions",
 	"action-imagelabel-review": "review image label suggestions",
 	"right-imagelabel-test": "Test image label suggestions",
