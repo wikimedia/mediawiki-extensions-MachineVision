@@ -5,8 +5,17 @@
 			"Mansil alfalb"
 		]
 	},
+	"machinevision-machineaidedtagging-tabs-heading": "Imagens por revisão",
+	"machinevision-machineaidedtagging-popular-tab": "Popular",
+	"machinevision-machineaidedtagging-user-tab": "Envios pessoais",
+	"machinevision-pageinfo-field-suggested-labels": "Etiquetas sugeridas",
+	"machinevision-publish": "Publicar",
+	"machinevision-publish-title": "Publicar etiquetas?",
 	"machinevision-more": "{{PLURAL:$1|Imagem seguinte|$1 imagens seguintes}}",
 	"machinevision-more-title": "Mostrar {{PLURAL:$1|a imagem seguinte|as $1 imagens seguintes}}?",
+	"machinevision-reset-title": "Reiniciar etiquetas?",
+	"machinevision-skip": "Ignorar",
 	"machinevision-suggestion-confirm-title": "Confirmar sugestão \"$1\"?",
-	"machinevision-suggestion-confirm-undo-title": "Anular confirmação da sugestão \"$1\"?"
+	"machinevision-suggestion-confirm-undo-title": "Anular confirmação da sugestão \"$1\"?",
+	"machinevision-confirm-tags-dialog-cancel-action": "Cancelar"
 }

@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Winston Sung",
-			"Kly"
+			"Kly",
+			"Go1002opn"
 		]
 	},
 	"machinevision-desc": "與內部與外部機器視覺服務供應方的介面，且儲存並提供結果。",
@@ -18,7 +19,7 @@
 	"machinevision-publish": "發佈",
 	"machinevision-publish-title": "發佈標籤？",
 	"machinevision-more": "下 $1 張{{PLURAL:$1|圖片}}",
-	"machinevision-more-title": "顯示下 $1 張{{PLURAL:$1|圖片}}？",
+	"machinevision-more-title": "顯示{{PLURAL:$1|下張圖片|下 $1 張圖片}}？",
 	"machinevision-reset": "重新設定",
 	"machinevision-reset-title": "重新設定標籤？",
 	"machinevision-skip": "忽略",
@@ -49,5 +50,8 @@
 	"tag-computer-aided-tagging": "電腦輔助標記",
 	"tag-computer-aided-tagging-description": "用電腦輔助標記工具建立的編輯",
 	"tag-computer-aided-tagging-revert": "電腦輔助標記回退",
-	"tag-computer-aided-tagging-revert-description": "用電腦輔助標記工具建立的回退一個或以上修訂之編輯"
+	"tag-computer-aided-tagging-revert-description": "用電腦輔助標記工具建立的回退一個或以上修訂之編輯",
+	"echo-machinevision-suggestions-ready-notification-header": "準備好檢查的近期上載內容標籤。",
+	"echo-category-title-machinevision": "建議檢查的標籤。",
+	"echo-pref-tooltip-machinevision-suggestions-ready": "當在圖片已處理，和建議標籤準備好時，通知我，讓我確認。"
 }

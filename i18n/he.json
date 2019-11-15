@@ -56,5 +56,5 @@
 	"echo-machinevision-suggestions-ready-notification-body": "שלום! התמונות {{GENDER:$1|שהעלית}} לאחרונה לוויקישיתוף עובדו עם תגים מוצעים והם מוכנים להצגה. תגים מדויקים מקלים על כל משתמשי ויקישיתוף למצור את התמונות שלך, אז לחצו על הקישור כדי לבדוק את התגים שהוצעו לך. רק תגים שאושרו על־ידי משתמשים יוספו לנתונים של התמונה בוויקישיתוף. למידע נוסף על הכלי הזה, נא לבקר בדף המיזם על כלי הוספת התגים באמצעות מחשב.",
 	"echo-machinevision-suggestions-ready-notification-primary-link": "קישור ראשי להתראת ה־Echo \"התראות מוכנות\"",
 	"echo-category-title-machinevision": "תגים מוצעים לסקירה",
-	"echo-pref-tooltip-machinevision-suggestions-ready": "להודיע לי כאשר תמונות שלי עובדו ותגים מוצעים מוגנים לסקירה שלי"
+	"echo-pref-tooltip-machinevision-suggestions-ready": "להודיע לי כאשר תמונות שלי עובדו ותגים מוצעים מוגנים לסקירה שלי."
 }

@@ -8,7 +8,7 @@
 	"machinevision-pageinfo-field-suggested-labels": "Proposéiert Etiketten",
 	"machinevision-publish": "Verëffentlechen",
 	"machinevision-more": "Nächst {{PLURAL:$1|Bild|$1 Biller}}",
-	"machinevision-more-title": "{{PLURAL:$1|Dat nächst Bild|Déi nächst $1 Biller}}  weisen?",
+	"machinevision-more-title": "{{PLURAL:$1|Dat nächst Bild|Déi nächst $1 Biller}}  weisen ?",
 	"machinevision-reset": "Zrécksetzen",
 	"machinevision-skip": "Iwwersprangen",
 	"machinevision-loading-message": "Biller gi gelueden...",

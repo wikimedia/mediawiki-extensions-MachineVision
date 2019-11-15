@@ -17,7 +17,7 @@
 	"machinevision-publish": "Pubbleche",
 	"machinevision-publish-title": "Pubbleche le tag?",
 	"machinevision-more": "Prosseme $1 {{PLURAL:$1|immaggine}}",
-	"machinevision-more-title": "'Ndruche le prosseme $1 {{PLURAL:$1|immaggine}}?",
+	"machinevision-more-title": "'Ndruche {{PLURAL:$1|'a prosseme|le prosseme $1}} immaggine?",
 	"machinevision-reset": "Azzere",
 	"machinevision-reset-title": "Azzere le tag?",
 	"machinevision-skip": "Zumbe",
@@ -48,5 +48,10 @@
 	"tag-computer-aided-tagging": "Taggamende de aijute d'u combiuter",
 	"tag-computer-aided-tagging-description": "Le cangiaminde ccrejate cu 'u strumende de taggamende de aijute d'u combiuter",
 	"tag-computer-aided-tagging-revert": "repristine d'u taggamende de aijute d'u combiuter",
-	"tag-computer-aided-tagging-revert-description": "Le cangiaminde ca repristinane une o cchiù versiune ccrejate cu 'u strumende de taggamende de aijute d'u combiuter"
+	"tag-computer-aided-tagging-revert-description": "Le cangiaminde ca repristinane une o cchiù versiune ccrejate cu 'u strumende de taggamende de aijute d'u combiuter",
+	"echo-machinevision-suggestions-ready-notification-header-compact": "Le tag suggerite pe 'u file {{GENDER:$1|tune}} \"$2\" sò pronde pa verifeche",
+	"echo-machinevision-suggestions-ready-notification-header": "Le tag suggerite pe le urteme carecaminde {{GENDER:$1|tune}} sò pronde pa verifeche",
+	"echo-machinevision-suggestions-ready-notification-primary-link": "Collegamende primarie pe le suggereminde pronde a 'a notifeche",
+	"echo-category-title-machinevision": "Le tag suggerite pa verifeche",
+	"echo-pref-tooltip-machinevision-suggestions-ready": "Avvisame quanne le immaggine mije onne state processate e le tag sugerite sò pronde pa verifeca meje."
 }
