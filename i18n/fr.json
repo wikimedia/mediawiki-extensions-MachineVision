@@ -47,6 +47,8 @@
 	"machinevision-cta-heading": "Vous avez marqué tous vos téléversements !",
 	"machinevision-cta-text": "Merci d’avoir aidé à rendre les images plus faciles à trouver pour tout le monde — que diriez-vous d’en baliser quelques autres de plus ?",
 	"machinevision-cta-cta": "Marquer les images populaires",
+	"machinevision-no-uploads-cta-heading": "Vous n’avez pas d’image à réviser",
+	"machinevision-no-uploads-cta-text": "Et si vous mettiez en ligne des images ? Ou, si vous voulez aider à rendre les images plus facilement trouvables immédiatement par tout le monde, commencez dès maintenant à étiqueter des images populaires !",
 	"right-imagelabel-review": "Relire les suggestions de légende de l’image",
 	"action-imagelabel-review": "relire les suggestions de légende de l’image",
 	"right-imagelabel-test": "Suggestions de légende d’image de test",

@@ -51,6 +51,7 @@
 	"tag-computer-aided-tagging-revert-description": "Le cangiaminde ca repristinane une o cchiù versiune ccrejate cu 'u strumende de taggamende de aijute d'u combiuter",
 	"echo-machinevision-suggestions-ready-notification-header-compact": "Le tag suggerite pe 'u file {{GENDER:$1|tune}} \"$2\" sò pronde pa verifeche",
 	"echo-machinevision-suggestions-ready-notification-header": "Le tag suggerite pe le urteme carecaminde {{GENDER:$1|tune}} sò pronde pa verifeche",
+	"echo-machinevision-suggestions-ready-notification-body": "Cià! le immaggine ca {{GENDER:$1|tu}} è carecate urtemamende sus a Commons onne state processate cu le tag suggerite e sò pronde pa verifeche. Le tag accurate fanne addevendà cchiù facile, pe tutte le utinde, 'u iacchiamende de le immaggine {{GENDER:$1|tune}}, accussì segue 'u collegamende pe revedè le tag suggerite {{GENDER:$1|tune}}. Sulamende le tag confermate da le utinde avènene aggiunde cumme parte de le date de l'immaggine sus a Commons. Pe cchiù 'mbormaziune sus a stu strumende, pe piacere 'ndruche 'a pàgene d'u pruggette de taggamende d'u computer-aided.",
 	"echo-machinevision-suggestions-ready-notification-primary-link": "Collegamende primarie pe le suggereminde pronde a 'a notifeche",
 	"echo-category-title-machinevision": "Le tag suggerite pa verifeche",
 	"echo-pref-tooltip-machinevision-suggestions-ready": "Avvisame quanne le immaggine mije onne state processate e le tag sugerite sò pronde pa verifeca meje."
