@@ -53,9 +53,9 @@ SuggestedTagsCardstack.prototype.render = function () {
 		showCta = !this.resultsFound && this.queryType === 'user',
 		config = {
 			className: this.userHasLabeledUploads ? 'wbmad-user-cta' : 'wbmad-user-cta--no-uploads',
-			heading: mw.message( this.userHasLabeledUploads ? 'machinevision-cta-heading' : 'machinevision-no-uploads-cta-heading' ).text(),
-			text: mw.message( this.userHasLabeledUploads ? 'machinevision-cta-text' : 'machinevision-no-uploads-cta-text' ).text(),
-			cta: mw.message( 'machinevision-cta-cta' ).text(),
+			heading: mw.message( this.userHasLabeledUploads ? 'machinevision-cta-heading' : 'machinevision-no-uploads-cta-heading' ).parse(),
+			text: mw.message( this.userHasLabeledUploads ? 'machinevision-cta-text' : 'machinevision-no-uploads-cta-text' ).parse(),
+			cta: mw.message( 'machinevision-cta-cta' ).parse(),
 			event: 'popularTabCtaClick'
 		};
 

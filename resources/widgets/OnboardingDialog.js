@@ -33,7 +33,7 @@ OnboardingDialog.static.name = 'OnboardingDialog';
 OnboardingDialog.static.actions = [
 	{
 		action: 'close',
-		label: mw.message( 'machinevision-onboarding-dialog-close-label' ).text(),
+		label: mw.message( 'machinevision-onboarding-dialog-close-label' ).parse(),
 		flags: [ 'safe', 'close' ]
 	}
 ];
@@ -73,10 +73,10 @@ OnboardingDialog.prototype.getActionProcess = function ( action ) {
 OnboardingDialog.prototype.initialize = function () {
 	var self = this,
 		config = {
-			heading: mw.message( 'machinevision-onboarding-dialog-heading' ).text(),
-			text: mw.message( 'machinevision-onboarding-dialog-text' ).text(),
-			cta: mw.message( 'machinevision-onboarding-dialog-cta' ).text(),
-			disclaimer: mw.message( 'machinevision-onboarding-dialog-disclaimer' ).text(),
+			heading: mw.message( 'machinevision-onboarding-dialog-heading' ).parse(),
+			text: mw.message( 'machinevision-onboarding-dialog-text' ).parse(),
+			cta: mw.message( 'machinevision-onboarding-dialog-cta' ).parse(),
+			disclaimer: mw.message( 'machinevision-onboarding-dialog-disclaimer' ).parse(),
 			event: 'close'
 		},
 		dialogContent = new UserMessage( config )

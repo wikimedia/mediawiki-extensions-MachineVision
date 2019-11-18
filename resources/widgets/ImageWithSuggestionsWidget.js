@@ -34,23 +34,23 @@ ImageWithSuggestionsWidget = function ( config ) {
 
 	this.skipButton = new OO.ui.ButtonWidget( {
 		classes: [ 'wbmad-skip-button' ],
-		title: mw.message( 'machinevision-skip-title', this.imageTitle ).text(),
-		label: mw.message( 'machinevision-skip' ).text(),
+		title: mw.message( 'machinevision-skip-title', this.imageTitle ).parse(),
+		label: mw.message( 'machinevision-skip' ).parse(),
 		framed: false
 	} ).on( 'click', this.onSkip, [], this );
 
 	this.resetButton = new OO.ui.ButtonWidget( {
 		classes: [ 'wbmad-button-reset' ],
-		title: mw.message( 'machinevision-reset-title' ).text(),
-		label: mw.message( 'machinevision-reset' ).text(),
+		title: mw.message( 'machinevision-reset-title' ).parse(),
+		label: mw.message( 'machinevision-reset' ).parse(),
 		framed: false,
 		disabled: true
 	} ).on( 'click', this.onReset, [], this );
 
 	this.publishButton = new OO.ui.ButtonWidget( {
 		classes: [ 'wbmad-publish-button' ],
-		title: mw.message( 'machinevision-publish-title' ).text(),
-		label: mw.message( 'machinevision-publish' ).text(),
+		title: mw.message( 'machinevision-publish-title' ).parse(),
+		label: mw.message( 'machinevision-publish' ).parse(),
 		disabled: true,
 		flags: [
 			'primary',

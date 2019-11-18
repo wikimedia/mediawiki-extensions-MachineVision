@@ -38,10 +38,10 @@ SuggestedTagsPage = function ( config ) {
 			classes: [ 'wbmad-suggested-tags-page-tabs' ]
 		} ).addTabPanels( [
 			new OO.ui.TabPanelLayout( 'popular', {
-				label: mw.message( 'machinevision-machineaidedtagging-popular-tab' ).text()
+				label: mw.message( 'machinevision-machineaidedtagging-popular-tab' ).parse()
 			} ),
 			new OO.ui.TabPanelLayout( 'user', {
-				label: mw.message( 'machinevision-machineaidedtagging-user-tab' ).text()
+				label: mw.message( 'machinevision-machineaidedtagging-user-tab' ).parse()
 			} )
 		] );
 
@@ -76,7 +76,7 @@ SuggestedTagsPage.prototype.render = function () {
 		loginMessage: $( '<p>' ).msg( 'machinevision-login-message' ),
 		autoconfirmedMessage: $( '<p>' ).msg( 'machinevision-autoconfirmed-message' ),
 		pageDescription: $( '<p>' ).msg( 'machinevision-machineaidedtagging-intro' ),
-		tabsHeading: mw.message( 'machinevision-machineaidedtagging-tabs-heading' ).text(),
+		tabsHeading: mw.message( 'machinevision-machineaidedtagging-tabs-heading' ).parse(),
 		tabs: this.tabs || null,
 		licenseInfo: $( '<p>' ).msg( 'machinevision-machineaidedtagging-license-information' )
 	} );
@@ -245,7 +245,7 @@ SuggestedTagsPage.prototype.showLoadingMessage = function () {
  */
 SuggestedTagsPage.prototype.showSuccessMessage = function () {
 	var successMessage = new OO.ui.MessageWidget( {
-		label: mw.message( 'machinevision-success-message' ).text(),
+		label: mw.message( 'machinevision-success-message' ).parse(),
 		classes: [ 'wbmad-toast wbmad-success-toast' ]
 	} );
 	this.$element.append( successMessage.$element );
@@ -260,7 +260,7 @@ SuggestedTagsPage.prototype.showSuccessMessage = function () {
  */
 SuggestedTagsPage.prototype.showPublishErrorMessage = function () {
 	var errorMessage = new OO.ui.MessageWidget( {
-		label: mw.message( 'machinevision-publish-error-message' ).text(),
+		label: mw.message( 'machinevision-publish-error-message' ).parse(),
 		classes: [ 'wbmad-toast wbmad-publish-error-toast' ]
 	} );
 	this.$element.append( errorMessage.$element );

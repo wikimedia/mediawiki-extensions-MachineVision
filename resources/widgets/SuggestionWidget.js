@@ -26,7 +26,7 @@ SuggestionWidget = function ( config ) {
 	iconText = mw.message(
 		'machinevision-suggestion-confirm-undo-title',
 		this.suggestionData.text
-	).text();
+	).parse();
 	this.checkIcon = new OO.ui.IconWidget( {
 		icon: 'check',
 		label: iconText,
