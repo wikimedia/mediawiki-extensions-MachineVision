@@ -120,7 +120,15 @@ class LabelResolver implements LoggerAwareInterface {
 		$wbEntitiesResponse = json_decode( $rawWbEntitiesResponse, true );
 		foreach ( $ids as $id ) {
 			// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
-			$labelData = $wbEntitiesResponse['entities'][$id]['labels'];
+			$entityData = $wbEntitiesResponse['entities'][$id];
+			if ( !array_key_exists( 'labels', $entityData ) ) {
+				$this->logger->warning(
+					"No labels found for ID $id",
+					[ 'caller' => __METHOD__ ]
+				);
+				continue;
+			}
+			$labelData = $entityData['labels'];
 			$labels = [];
 			foreach ( $labelData as $lang => $data ) {
 				$labels[$lang] = $data['value'];
