@@ -28,7 +28,7 @@ class SpecialSuggestedTags extends SpecialPage {
 
 	/** @inheritDoc */
 	public function getDescription() {
-		return $this->msg( 'machinevision-machineaidedtagging' )->text();
+		return $this->msg( 'machinevision-machineaidedtagging' )->parse();
 	}
 
 	private function testersOnly() {

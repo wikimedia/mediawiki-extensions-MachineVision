@@ -33,7 +33,7 @@ ConfirmTagsDialog.static.name = 'confirmTagsDialog';
  * @inheritdoc
  * @property title
  */
-ConfirmTagsDialog.static.title = mw.message( 'machinevision-confirm-tags-dialog-title' ).text();
+ConfirmTagsDialog.static.title = mw.message( 'machinevision-confirm-tags-dialog-title' ).parse();
 
 /**
  * @inheritdoc
@@ -42,11 +42,11 @@ ConfirmTagsDialog.static.title = mw.message( 'machinevision-confirm-tags-dialog-
 ConfirmTagsDialog.static.actions = [
 	{
 		action: 'confirm',
-		label: mw.message( 'machinevision-confirm-tags-dialog-confirm-action' ).text(),
+		label: mw.message( 'machinevision-confirm-tags-dialog-confirm-action' ).parse(),
 		flags: [ 'primary', 'progressive' ]
 	},
 	{
-		label: mw.message( 'machinevision-confirm-tags-dialog-cancel-action' ).text(),
+		label: mw.message( 'machinevision-confirm-tags-dialog-cancel-action' ).parse(),
 		flags: [ 'safe', 'close' ]
 	}
 ];

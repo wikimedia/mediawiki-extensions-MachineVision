@@ -16,7 +16,7 @@ class MachineVisionEntitySaveException extends Exception {
 	 * @param Message $message Message from the not-OK Status result when attempting to save
 	 */
 	public function __construct( Message $message ) {
-		parent::__construct( $message->text() );
+		parent::__construct( $message->parse() );
 	}
 
 }

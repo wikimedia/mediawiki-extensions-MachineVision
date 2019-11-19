@@ -26,7 +26,7 @@ OO.inheritClass(
 
 PersonalUploadsCount.prototype.render = function () {
 	this.renderTemplate( 'resources/widgets/PersonalUploadsCount.mustache+dom', {
-		countString: mw.message( 'machinevision-personal-uploads-count', this.unreviewed ).text()
+		countString: mw.message( 'machinevision-personal-uploads-count', this.unreviewed ).parse()
 	} );
 };
 
