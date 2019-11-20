@@ -26,6 +26,7 @@ function SuggestedTagsPage( config ) {
 	this.$element.addClass( 'wbmad-suggested-tags-page' );
 	this.userIsAuthenticated = !!mw.config.get( 'wgUserName' );
 	this.userIsAutoconfirmed = userGroups.indexOf( 'autoconfirmed' ) !== -1;
+	this.initialData = mw.config.get( 'wgMVSuggestedTagsInitialData' );
 
 	showTabs = this.userIsAuthenticated && this.userIsAutoconfirmed;
 
@@ -46,7 +47,21 @@ function SuggestedTagsPage( config ) {
 
 		// Run query initially on the active tab so we get results.
 		this.goToTab( this.config.startTab );
-		this.fetchItems();
+
+		if ( this.config.startTab === 'popular' && this.initialData ) {
+			this.setUpCardstack( this.initialData.map( function ( item ) {
+				return new ImageData(
+					item.title,
+					item.description_url,
+					item.thumb_url,
+					item.suggested_labels.map( function ( labelData ) {
+						return new SuggestionData( labelData.label, labelData.wikidata_id );
+					} )
+				);
+			} ) );
+		} else {
+			this.fetchItems();
+		}
 
 		this.connect( this, {
 			fetchItems: 'fetchItems',
@@ -127,8 +142,7 @@ SuggestedTagsPage.prototype.onHashChange = function ( hashChange ) {
  * @param {Object} response
  */
 SuggestedTagsPage.prototype.getItemsForQueryResponse = function ( response ) {
-	var suggestedTagsCardstack,
-		imageDataArray = [],
+	var imageDataArray = [],
 		resultsFound = false,
 		validItems,
 		userUnreviewedImageCount = response.query && response.query.unreviewedimagecount ?
@@ -164,13 +178,29 @@ SuggestedTagsPage.prototype.getItemsForQueryResponse = function ( response ) {
 		} );
 	}
 
-	// Set up a new SuggestedCardStack of the appropriate type
-	suggestedTagsCardstack = new SuggestedTagsCardstack( {
+	this.setUpCardstack( imageDataArray, resultsFound, userUnreviewedImageCount,
+		userTotalImageCount );
+};
+
+/**
+ * Set up a new SuggestedTagsCardstack of the appropriate type.
+ * @param {Array} imageDataArray
+ * @param {?boolean} resultsFound
+ * @param {?number} userUnreviewedImageCount
+ * @param {?number} userTotalImageCount
+ */
+SuggestedTagsPage.prototype.setUpCardstack = function (
+	imageDataArray,
+	resultsFound,
+	userUnreviewedImageCount,
+	userTotalImageCount
+) {
+	var suggestedTagsCardstack = new SuggestedTagsCardstack( {
 		queryType: this.tabs.getCurrentTabPanelName(),
-		resultsFound: resultsFound,
+		resultsFound: resultsFound || true,
 		imageDataArray: imageDataArray,
-		userUnreviewedImageCount: userUnreviewedImageCount,
-		userTotalImageCount: userTotalImageCount
+		userUnreviewedImageCount: userUnreviewedImageCount || 0,
+		userTotalImageCount: userTotalImageCount || 0
 	} ).connect( this, {
 		fetchItems: 'fetchItems',
 		showSuccessMessage: 'showSuccessMessage',

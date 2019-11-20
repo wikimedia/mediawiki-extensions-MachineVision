@@ -150,7 +150,7 @@ class Repository implements LoggerAwareInterface {
 	/**
 	 * Get the suggested labels of an image.
 	 * @param string $sha1 Image SHA1
-	 * @return string[] List of Wikidata item IDs (including the Q prefix)
+	 * @return array List of Wikidata item IDs (including the Q prefix)
 	 */
 	public function getLabels( $sha1 ) {
 		$res = $this->dbr->select(
