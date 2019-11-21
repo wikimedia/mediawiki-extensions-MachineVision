@@ -256,13 +256,16 @@ class Repository implements LoggerAwareInterface {
 	 * @return string[] Titles of file pages with associated unreviewed labels
 	 */
 	public function getTitlesWithUnreviewedLabels( $limit, $userId = null ) {
-		$conds = [ 'mvl_review' => self::REVIEW_UNREVIEWED ];
 		$rand = $this->getRandomFloat();
 		$fname = __METHOD__;
 
 		if ( $userId ) {
-			// TODO: Include withheld images if this is a query for user uploads
-			$conds['mvl_uploader_id'] = strval( $userId );
+			$conds = [
+				'mvl_review' => [ self::REVIEW_UNREVIEWED, self::REVIEW_WITHHELD ],
+				'mvl_uploader_id' => strval( $userId ),
+			];
+		} else {
+			$conds = [ 'mvl_review' => self::REVIEW_UNREVIEWED ];
 		}
 
 		$select = function ( $ascending, $limit, $conds ) use ( $fname, $rand ) {
@@ -317,7 +320,8 @@ class Repository implements LoggerAwareInterface {
 		$total = [];
 		foreach ( $res as $row ) {
 			$total[$row->mvl_mvi_id] = true;
-			if ( (int)$row->mvl_review === self::REVIEW_UNREVIEWED ) {
+			if ( (int)$row->mvl_review === self::REVIEW_UNREVIEWED ||
+				(int)$row->mvl_review === self::REVIEW_WITHHELD ) {
 				$unreviewed[$row->mvl_mvi_id] = true;
 			}
 		}
