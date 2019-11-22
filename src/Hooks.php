@@ -4,6 +4,7 @@ namespace MediaWiki\Extension\MachineVision;
 
 use Article;
 use ChangeTags;
+use Config;
 use Content;
 use DatabaseUpdater;
 use DeferredUpdates;
@@ -167,6 +168,26 @@ class Hooks {
 				$handler->handleInfoAction( $context, $file, $pageInfo );
 			}
 		}
+	}
+
+	/**
+	 * @param array &$vars
+	 * @param string $skin
+	 * @param Config $conf
+	 * @return bool true
+	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/ResourceLoaderGetConfigVars
+	 */
+	public static function onResourceLoaderGetConfigVars(
+		array &$vars,
+		string $skin,
+		Config $conf
+	) {
+		global $wgMachineVisionTestersOnly, $wgMachineVisionShowUploadWizardCallToAction;
+		$vars['MachineVision'] = [
+			'testersOnly' => $wgMachineVisionTestersOnly,
+			'showComputerAidedTaggingCallToAction' => $wgMachineVisionShowUploadWizardCallToAction,
+		];
+		return true;
 	}
 
 	/**
