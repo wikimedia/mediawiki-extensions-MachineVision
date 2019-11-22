@@ -46,8 +46,12 @@ return [
 		if ( !$credentialsData ) {
 			// Allow providing a filesystem path for local development
 			$filename = $extensionConfig->get( 'MachineVisionGoogleCredentialsFileLocation' );
-			$json = file_get_contents( $filename );
-			$credentialsData = json_decode( $json, true );
+			if ( file_exists( $filename ) ) {
+				$json = file_get_contents( $filename );
+				$credentialsData = json_decode( $json, true );
+			} else {
+				throw new MWException( "Bad credentials file location: $filename" );
+			}
 		}
 
 		$safeSearchLimits = $extensionConfig->get( 'MachineVisionGoogleSafeSearchLimits' );

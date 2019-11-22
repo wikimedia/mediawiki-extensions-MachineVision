@@ -6,11 +6,26 @@ use Maintenance;
 use MediaWiki\Extension\MachineVision\Services;
 use MediaWiki\Extension\MachineVision\TitleFilter;
 use MediaWiki\MediaWikiServices;
+use MWException;
 use Wikimedia\Rdbms\IDatabase;
 
-$basePath = getenv( 'MW_INSTALL_PATH' ) !== false
-	? getenv( 'MW_INSTALL_PATH' )
-	: __DIR__ . '/../../..';
+// Security: Disable all stream wrappers and reenable individually as needed
+foreach ( stream_get_wrappers() as $wrapper ) {
+	stream_wrapper_unregister( $wrapper );
+}
+
+stream_wrapper_restore( 'file' );
+$basePath = getenv( 'MW_INSTALL_PATH' );
+if ( $basePath ) {
+	if ( !is_dir( $basePath )
+		|| strpos( $basePath, '.' ) !== false
+		|| strpos( $basePath, '~' ) !== false
+	) {
+		throw new MWException( "Bad MediaWiki install path: $basePath" );
+	}
+} else {
+	$basePath = __DIR__ . '/../../..';
+}
 require_once "$basePath/maintenance/Maintenance.php";
 
 /**
@@ -65,6 +80,12 @@ class CreateFileListFromCategoriesAndTemplates extends Maintenance {
 		$outputFile = $this->getOption( 'outputFile' );
 		$result = [];
 
+		// Check outputFile path for validity before going any further
+		$path = substr( $outputFile, 0, strrpos( $outputFile, '/' ) );
+		if ( !is_dir( $path ) ) {
+			throw new MWException( "Bad output file location: $outputFile" );
+		}
+
 		foreach ( $categories as $category ) {
 			$candidates = $this->dbr->selectFieldValues(
 				[ 'page', 'categorylinks' ],
@@ -114,4 +135,11 @@ class CreateFileListFromCategoriesAndTemplates extends Maintenance {
 }
 
 $maintClass = CreateFileListFromCategoriesAndTemplates::class;
+
+$doMaintenancePath = RUN_MAINTENANCE_IF_MAIN;
+if ( !( file_exists( $doMaintenancePath ) &&
+	$doMaintenancePath === "$basePath/maintenance/doMaintenance.php" ) ) {
+	throw new MWException( "Bad maintenance script location: $basePath" );
+}
+
 require_once RUN_MAINTENANCE_IF_MAIN;
