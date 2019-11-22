@@ -6,14 +6,14 @@
 	},
 	"devDependencies": {
 		"@wikimedia/mw-node-qunit": "git://github.com/wikimedia/mw-node-qunit.git#fc35d073b0987be52a7279acdd3eb5fcd1b0859e",
-		"eslint-config-wikimedia": "0.12.0",
+		"eslint-config-wikimedia": "0.15.0",
 		"grunt": "1.0.4",
-		"grunt-banana-checker": "0.7.0",
-		"grunt-eslint": "21.0.0",
-		"grunt-stylelint": "0.11.1",
+		"grunt-banana-checker": "0.8.1",
+		"grunt-eslint": "22.0.0",
+		"grunt-stylelint": "0.12.0",
 		"oojs": "2.2.2",
 		"oojs-ui": "0.35.1",
-		"stylelint": "9.10.1",
-		"stylelint-config-wikimedia": "0.6.0"
+		"stylelint": "11.0.0",
+		"stylelint-config-wikimedia": "0.7.0"
 	}
 }
