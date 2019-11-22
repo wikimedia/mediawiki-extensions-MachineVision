@@ -11,7 +11,7 @@
 		"grunt-banana-checker": "0.8.1",
 		"grunt-eslint": "22.0.0",
 		"grunt-stylelint": "0.12.0",
-		"oojs": "2.2.2",
+		"oojs": "3.0.0",
 		"oojs-ui": "0.35.1",
 		"stylelint": "11.0.0",
 		"stylelint-config-wikimedia": "0.7.0"
