@@ -43,6 +43,8 @@
 	"machinevision-cta-heading": "תייגת את כל ההעלאות שלך!",
 	"machinevision-cta-text": "תודה שעזרת לעשות את התמונות קלות יותר למציאה לכולם – אולי תעלה עוד קצת?",
 	"machinevision-cta-cta": "תיוג תמונות מבוקשות",
+	"machinevision-no-uploads-cta-heading": "אין לך תמונות לסקור",
+	"machinevision-no-uploads-cta-text": "אולי {{GENDER:|תעלה|תעלי}}",
 	"right-imagelabel-review": "סקירת הצעות תוויות תמונה",
 	"action-imagelabel-review": "לסקור הצעות תוויות תמונה",
 	"right-imagelabel-test": "בדיקת הצעות תוויות תמונה",
