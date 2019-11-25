@@ -50,7 +50,8 @@
 		"ListDefinedTags": "MediaWiki\\Extension\\MachineVision\\Hooks::onRegisterTags",
 		"ChangeTagsListActive": "MediaWiki\\Extension\\MachineVision\\Hooks::onRegisterTags",
 		"BeforeCreateEchoEvent": "MediaWiki\\Extension\\MachineVision\\Hooks::onBeforeCreateEchoEvent",
-		"EchoGetBundleRules": "MediaWiki\\Extension\\MachineVision\\Hooks::onEchoGetBundleRules"
+		"EchoGetBundleRules": "MediaWiki\\Extension\\MachineVision\\Hooks::onEchoGetBundleRules",
+		"ResourceLoaderGetConfigVars": "MediaWiki\\Extension\\MachineVision\\Hooks::onResourceLoaderGetConfigVars"
 	},
 	"APIModules": {
 		"reviewimagelabels": {
@@ -174,6 +175,10 @@
 		"MachineVisionNewUploadLabelingJobDelay": {
 			"value": 0,
 			"description": "Delay, in seconds, to apply before running a labeling job for a newly uploaded file."
+		},
+		"MachineVisionShowUploadWizardCallToAction": {
+			"value": false,
+			"description": "Whether to show a CAT call to action when the user completes an upload in UploadWizard."
 		}
 	},
 	"ResourceFileModulePaths": {
