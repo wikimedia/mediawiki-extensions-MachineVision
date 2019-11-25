@@ -13,9 +13,12 @@ var TemplateRenderingDOMLessGroupWidget = require( './../base/TemplateRenderingD
  * @cfg {string} descriptionurl Filepage URL
  * @cfg {Array} suggestions Image tag suggestions
  * @cfg {string} thumburl Image thumbnail URL
+ * @cfg {string} thumbheight Image thumbnail height
  * @cfg {string} title Image title
  */
 function ImageWithSuggestionsWidget( config ) {
+	var $image;
+
 	this.config = config || {};
 	ImageWithSuggestionsWidget.parent.call( this, $.extend( {}, config ) );
 	this.$element.addClass( 'wbmad-image-with-suggestions' );
@@ -67,6 +70,12 @@ function ImageWithSuggestionsWidget( config ) {
 	} );
 
 	this.render();
+
+	// Set image height to avoid scroll issue when image is loaded.
+	$image = this.$element.find( 'img' );
+	if ( $image.length > 0 ) {
+		$image[ 0 ].style.height = this.config.thumbheight + 'px';
+	}
 }
 OO.inheritClass( ImageWithSuggestionsWidget, TemplateRenderingDOMLessGroupWidget );
 
@@ -99,6 +108,18 @@ ImageWithSuggestionsWidget.prototype.getSuggestionWidgets = function () {
 		return new SuggestionWidget( { suggestionData: data } )
 			.connect( self, { toggleSuggestion: 'onToggleSuggestion' } );
 	} );
+};
+
+/**
+ * Actually load the image.
+ */
+ImageWithSuggestionsWidget.prototype.loadImage = function () {
+	var $image = this.$element.find( '.wbmad-lazy' );
+
+	if ( $image.length > 0 ) {
+		$image[ 0 ].src = $image[ 0 ].dataset.src;
+		$image.removeClass( 'wbmad-lazy' );
+	}
 };
 
 /**

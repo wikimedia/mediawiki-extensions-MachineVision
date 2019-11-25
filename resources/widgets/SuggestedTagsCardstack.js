@@ -38,6 +38,7 @@ function SuggestedTagsCardstack( config ) {
 	this.userHasLabeledUploads = this.config.userTotalImageCount > 0;
 
 	this.items = this.getItems();
+	this.showCurrentItem();
 	this.render();
 }
 
@@ -87,23 +88,25 @@ SuggestedTagsCardstack.prototype.getItems = function () {
 	} );
 };
 
-/**
- * Tell the parent component to go to the popular tab.
- */
-SuggestedTagsCardstack.prototype.onPopularTabCtaClick = function () {
-	this.emit( 'goToPopularTab' );
+SuggestedTagsCardstack.prototype.showCurrentItem = function () {
+	if ( this.items && this.items.length > 0 ) {
+		this.items[ 0 ].loadImage();
+	}
 };
 
 /**
  * Each time an image is removed (published or skipped), check if new ones need
  * to be fetched. When there are no items remaining, fetch another batch (unless
  * no results were found last time).
-
  */
 SuggestedTagsCardstack.prototype.onItemRemoved = function () {
 	// If there are no more image cards, fetch more.
 	if ( this.$element.find( '.wbmad-image-with-suggestions' ).length === 0 ) {
 		this.emit( 'fetchItems' );
+	} else {
+		// Otherwise, load the image for the next card.
+		this.items.shift();
+		this.showCurrentItem();
 	}
 };
 
@@ -124,6 +127,13 @@ SuggestedTagsCardstack.prototype.onTagsPublished = function () {
  */
 SuggestedTagsCardstack.prototype.onPublishError = function () {
 	this.emit( 'showPublishErrorMessage' );
+};
+
+/**
+ * Tell the parent component to go to the popular tab.
+ */
+SuggestedTagsCardstack.prototype.onPopularTabCtaClick = function () {
+	this.emit( 'goToPopularTab' );
 };
 
 module.exports = SuggestedTagsCardstack;

@@ -41,6 +41,7 @@
 		}
 
 		img {
+			display: block;
 			height: auto;
 			max-height: 786px;
 			max-width: 100%;
@@ -48,6 +49,10 @@
 
 			@media screen and ( min-width: @width-breakpoint-tablet ) {
 				max-height: 600px;
+			}
+
+			&.wbmad-lazy {
+				background-color: @base80;
 			}
 		}
 	}
