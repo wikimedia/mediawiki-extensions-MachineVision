@@ -17,5 +17,6 @@
 	"machinevision-skip": "Ignorar",
 	"machinevision-suggestion-confirm-title": "Confirmar sugestão \"$1\"?",
 	"machinevision-suggestion-confirm-undo-title": "Anular confirmação da sugestão \"$1\"?",
-	"machinevision-confirm-tags-dialog-cancel-action": "Cancelar"
+	"machinevision-confirm-tags-dialog-cancel-action": "Cancelar",
+	"machinevision-no-uploads-cta-heading": "Não tem imagens para rever"
 }
