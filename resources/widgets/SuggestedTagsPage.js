@@ -143,7 +143,6 @@ SuggestedTagsPage.prototype.onHashChange = function ( hashChange ) {
  */
 SuggestedTagsPage.prototype.getItemsForQueryResponse = function ( response ) {
 	var imageDataArray = [],
-		resultsFound = false,
 		validItems,
 		userUnreviewedImageCount = response.query && response.query.unreviewedimagecount ?
 			response.query.unreviewedimagecount.user.unreviewed :
@@ -166,8 +165,6 @@ SuggestedTagsPage.prototype.getItemsForQueryResponse = function ( response ) {
 
 	// Process query response, if we have one
 	if ( response.query && response.query.pages && Array.isArray( response.query.pages ) ) {
-		resultsFound = true;
-
 		// Filter out any results without the data we need.
 		validItems = response.query.pages.filter( function ( item ) {
 			return item.imageinfo && item.imagelabels && item.imagelabels.length;
@@ -178,26 +175,23 @@ SuggestedTagsPage.prototype.getItemsForQueryResponse = function ( response ) {
 		} );
 	}
 
-	this.setUpCardstack( imageDataArray, resultsFound, userUnreviewedImageCount,
+	this.setUpCardstack( imageDataArray, userUnreviewedImageCount,
 		userTotalImageCount );
 };
 
 /**
  * Set up a new SuggestedTagsCardstack of the appropriate type.
  * @param {Array} imageDataArray
- * @param {?boolean} resultsFound
  * @param {?number} userUnreviewedImageCount
  * @param {?number} userTotalImageCount
  */
 SuggestedTagsPage.prototype.setUpCardstack = function (
 	imageDataArray,
-	resultsFound,
 	userUnreviewedImageCount,
 	userTotalImageCount
 ) {
 	var suggestedTagsCardstack = new SuggestedTagsCardstack( {
 		queryType: this.tabs.getCurrentTabPanelName(),
-		resultsFound: resultsFound || true,
 		imageDataArray: imageDataArray,
 		userUnreviewedImageCount: userUnreviewedImageCount || 0,
 		userTotalImageCount: userTotalImageCount || 0

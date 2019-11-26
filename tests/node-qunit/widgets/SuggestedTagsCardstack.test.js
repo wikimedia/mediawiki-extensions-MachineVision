@@ -29,7 +29,6 @@ QUnit.test( 'Constructor test', function ( assert ) {
 	var SuggestedTagsCardstack = require( pathToWidget ),
 		config = {
 			queryType: 'popular',
-			resultsFound: true,
 			imageDataArray: imageDataArray,
 			userUnreviewedImageCount: 2,
 			userTotalImageCount: 2
@@ -42,7 +41,6 @@ QUnit.test( 'ImageWithSuggestionWidgets are created for each image', function ( 
 	var SuggestedTagsCardstack = require( pathToWidget ),
 		config = {
 			queryType: 'popular',
-			resultsFound: true,
 			imageDataArray: imageDataArray,
 			userUnreviewedImageCount: 2,
 			userTotalImageCount: 2
@@ -58,7 +56,6 @@ QUnit.test( 'Count string exists for user query', function ( assert ) {
 	var SuggestedTagsCardstack = require( pathToWidget ),
 		config = {
 			queryType: 'user',
-			resultsFound: true,
 			imageDataArray: imageDataArray,
 			userUnreviewedImageCount: 2,
 			userTotalImageCount: 2
@@ -73,7 +70,6 @@ QUnit.test( 'Count string is null for popular query', function ( assert ) {
 	var SuggestedTagsCardstack = require( pathToWidget ),
 		config = {
 			queryType: 'popular',
-			resultsFound: true,
 			imageDataArray: imageDataArray,
 			userUnreviewedImageCount: 2,
 			userTotalImageCount: 2
@@ -87,7 +83,6 @@ QUnit.test( 'Personal uploads count decrements when tags are published for an im
 	var SuggestedTagsCardstack = require( pathToWidget ),
 		config = {
 			queryType: 'user',
-			resultsFound: true,
 			imageDataArray: imageDataArray,
 			userUnreviewedImageCount: 2,
 			userTotalImageCount: 2

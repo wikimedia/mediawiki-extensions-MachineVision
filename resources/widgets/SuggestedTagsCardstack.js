@@ -12,7 +12,6 @@ var TemplateRenderingDOMLessGroupWidget = require( '../base/TemplateRenderingDOM
  *
  * @param {Object} config
  * @cfg {string} queryType
- * @cfg {bool} resultsFound
  * @cfg {Array} imageDataArray
  * @cfg {number} userUnreviewedImageCount
  * @cfg {number} userTotalImageCount
@@ -29,8 +28,8 @@ function SuggestedTagsCardstack( config ) {
 	} );
 
 	this.queryType = this.config.queryType;
-	this.resultsFound = this.config.resultsFound;
 	this.imageDataArray = this.config.imageDataArray;
+	this.resultsFound = this.imageDataArray.length !== 0;
 	this.countString = ( this.queryType === 'user' ) ?
 		new PersonalUploadsCount( {
 			unreviewed: this.config.userUnreviewedImageCount
@@ -103,8 +102,7 @@ SuggestedTagsCardstack.prototype.onPopularTabCtaClick = function () {
  */
 SuggestedTagsCardstack.prototype.onItemRemoved = function () {
 	// If there are no more image cards, fetch more.
-	// TODO: Do we need the resultsFound check?
-	if ( this.resultsFound && this.$element.find( '.wbmad-image-with-suggestions' ).length === 0 ) {
+	if ( this.$element.find( '.wbmad-image-with-suggestions' ).length === 0 ) {
 		this.emit( 'fetchItems' );
 	}
 };
