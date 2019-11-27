@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Mansil"
+		]
+	},
+	"apihelp-reviewimagelabels-paramvalue-review-accept": "A sugestão está correta.",
+	"apihelp-reviewimagelabels-paramvalue-review-reject": "A sugestão está incorreta."
+}
