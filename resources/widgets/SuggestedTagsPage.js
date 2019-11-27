@@ -87,7 +87,7 @@ SuggestedTagsPage.prototype.render = function () {
 	this.renderTemplate( 'widgets/SuggestedTagsPage.mustache+dom', {
 		userIsAuthenticated: this.userIsAuthenticated,
 		userIsAutoconfirmed: this.userIsAutoconfirmed,
-		loginMessage: $( '<p>' ).msg( 'machinevision-login-message' ),
+		loginMessage: $( '<p>' ).append( mw.config.get( 'wgMVSuggestedTagsLoginMessage' ) ),
 		autoconfirmedMessage: $( '<p>' ).msg( 'machinevision-autoconfirmed-message' ),
 		pageDescription: $( '<p>' ).msg( 'machinevision-machineaidedtagging-intro' ),
 		tabsHeading: mw.message( 'machinevision-machineaidedtagging-tabs-heading' ).parse(),

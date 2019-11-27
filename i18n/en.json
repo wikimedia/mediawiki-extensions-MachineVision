@@ -14,7 +14,7 @@
 	"machinevision-machineaidedtagging-user-tab": "Personal uploads",
 	"machinevision-machineaidedtagging-license-information": "CC0 license for tag contributions – By clicking \"publish\", you agree to the [[wmf:Terms_of_Use|terms of use]], and you irrevocably agree to release your contribution under the [https://creativecommons.org/publicdomain/zero/1.0/ Creative Commons CC0 License].",
 	"machinevision-pageinfo-field-suggested-labels": "Suggested labels",
-	"machinevision-login-message": "Please [[Special:UserLogin|log in]] to see this page and start tagging images. Accurate tags make it easier for all Commons users to find images, and your contributions are appreciated.",
+	"machinevision-login-message": "Please <span class=\"plainlinks\">[{{fullurl:{{#Special:UserLogin}}|returnto=Special:SuggestedTags}} log in]</span> to see this page and start tagging images. Accurate tags make it easier for all Commons users to find images, and your contributions are appreciated.",
 	"machinevision-autoconfirmed-message": "Accurate tags make it easier for all Commons users to find images, so please become [[mw:Manual:Autoconfirmed_users|autoconfirmed]], as only autoconfirmed users can use this tool.",
 	"machinevision-publish": "Publish",
 	"machinevision-publish-title": "Publish tags?",
