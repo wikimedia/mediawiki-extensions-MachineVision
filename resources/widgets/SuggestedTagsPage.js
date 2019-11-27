@@ -50,10 +50,19 @@ function SuggestedTagsPage( config ) {
 
 		if ( this.config.startTab === 'popular' && this.initialData ) {
 			this.setUpCardstack( this.initialData.map( function ( item ) {
+				var height = item.height,
+					width = item.width;
+
+				// Find thumbheight for images wider than 800px.
+				if ( width > 800 ) {
+					height = height * 800 / width;
+				}
+
 				return new ImageData(
 					item.title,
 					item.description_url,
 					item.thumb_url,
+					height,
 					item.suggested_labels.map( function ( labelData ) {
 						return new SuggestionData( labelData.label, labelData.wikidata_id );
 					} )
@@ -157,6 +166,7 @@ SuggestedTagsPage.prototype.getItemsForQueryResponse = function ( response ) {
 			item.title,
 			item.imageinfo[ 0 ].descriptionurl,
 			item.imageinfo[ 0 ].thumburl,
+			item.imageinfo[ 0 ].thumbheight,
 			item.imagelabels.map( function ( labelData ) {
 				return new SuggestionData( labelData.label, labelData.wikidata_id );
 			} )

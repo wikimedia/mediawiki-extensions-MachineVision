@@ -2,7 +2,7 @@
 	<div class="wbmad-image-with-suggestions-image">
 		<div class="wbmad-image-with-suggestions-image-wrapper">
 			<a href="{{filePageUrl}}" target="_blank">
-				<img src="{{thumburl}}" alt="{{imageTagTitle}}" title="{{imageTagTitle}}">
+				<img class="wbmad-lazy" data-src="{{thumburl}}" alt="{{imageTagTitle}}" title="{{imageTagTitle}}">
 			</a>
 		</div>
 	</div>

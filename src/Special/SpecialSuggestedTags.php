@@ -96,6 +96,8 @@ class SpecialSuggestedTags extends SpecialPage {
 				'title' => $title->getPrefixedDBkey(),
 				'description_url' => $file->getDescriptionUrl(),
 				'thumb_url' => $thumbUrl,
+				'height' => $file->getHeight(),
+				'width' => $file->getWidth(),
 				'suggested_labels' => $suggestedLabels,
 			];
 		}
