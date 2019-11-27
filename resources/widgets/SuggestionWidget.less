@@ -10,17 +10,25 @@
 	}
 
 	.wbmad-suggestion {
+		.transition( color @transition-duration-base );
 		background-color: @base90;
 		border: @suggestion-border-width solid @base50;
+		color: @base10;
 		cursor: pointer;
 		padding: 0.1em 1.3em;
 		border-radius: 1.2em;
 		white-space: nowrap;
+
+		&:hover,
+		&:focus {
+			color: @base0;
+		}
 	}
 
 	.wbmad-suggestion--confirmed {
 		background-color: @accent90;
 		border-color: @accent10;
+		color: @base0;
 		position: relative;
 
 		/* stylelint-disable-next-line selector-class-pattern */
