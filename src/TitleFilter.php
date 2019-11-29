@@ -118,7 +118,7 @@ class TitleFilter {
 			return false;
 		}
 		$revision = $this->revisionStore->getRevisionByTitle( $title );
-		if ( $revision->hasSlot( 'mediainfo' ) ) {
+		if ( $revision !== null && $revision->hasSlot( 'mediainfo' ) ) {
 			$mediaInfoContent = $revision->getContent( 'mediainfo' );
 			if ( $mediaInfoContent ) {
 				// @phan-suppress-next-line PhanUndeclaredMethod
