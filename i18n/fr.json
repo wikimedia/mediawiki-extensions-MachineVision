@@ -47,8 +47,8 @@
 	"machinevision-cta-heading": "Vous avez marqué tous vos téléversements !",
 	"machinevision-cta-text": "Merci d’avoir aidé à rendre les images plus faciles à trouver pour tout le monde — que diriez-vous d’en baliser quelques autres de plus ?",
 	"machinevision-cta-cta": "Marquer les images populaires",
-	"machinevision-no-uploads-cta-heading": "Vous n’avez pas d’images à réviser",
-	"machinevision-no-uploads-cta-text": "Et si vous mettiez en ligne des images ? Ou, si vous voulez aider à rendre les images plus facilement trouvables immédiatement par tout le monde, commencez dès maintenant à étiqueter des images populaires !",
+	"machinevision-no-uploads-cta-heading": "Vous n’avez aucune image à passer en revue",
+	"machinevision-no-uploads-cta-text": "Veuillez téléverser les nouvelles images afin que notre outil puisse les analyser et suggérer le marquage approprié. Si vous avez déjà téléversé des images et que vous ne les voyez pas ici, ces images sont peut-être toujours en cours de passage en revue et vous pourrez les consulter ultérieurement. Vous pouvez également faciliter la recherche d’images populaires d’autres utilisateurs en les marquant.",
 	"right-imagelabel-review": "Relire les suggestions de légende de l’image",
 	"action-imagelabel-review": "relire les suggestions de légende de l’image",
 	"right-imagelabel-test": "Suggestions de légende d’image de test",
@@ -62,5 +62,5 @@
 	"echo-machinevision-suggestions-ready-notification-body": "Bonjour ! Les images que {{GENDER:$1|}}vous avez récemment téléversées sur Commons ont été traitées pour produire des balises suggérées et elles sont prêtes au passage en revue. Des balises précises permettent à tous les utilisateurs de Commons de trouver plus facilement {{GENDER:$1|}} vos images, aussi veuillez suivre le lien pour passer en revue {{GENDER:$1|}}vos balises suggérées. Seules les balises confirmées par les utilisateurs seront ajoutées comme partie des données concernant l’image sur Commons. Pour plus d’informations au sujet de cet outil, veuillez visiter la page du projet de balisage assisté par ordinateur.",
 	"echo-machinevision-suggestions-ready-notification-primary-link": "Lien principal pour la notification en écho des suggestions prêtes",
 	"echo-category-title-machinevision": "Balises suggérées pour le passage en revue",
-	"echo-pref-tooltip-machinevision-suggestions-ready": "Me notifier quand mes images ont été traitées et que les balises suggérées sont prêtes pour la relecture."
+	"echo-pref-tooltip-machinevision-suggestions-ready": "Me notifier quand mes images ont été traitées et que des balises suggérées sont prêtes pour ma relecture."
 }
