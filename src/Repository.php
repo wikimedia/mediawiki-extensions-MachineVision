@@ -250,15 +250,21 @@ class Repository implements LoggerAwareInterface {
 	}
 
 	/**
-	 * Get a random-ish list of image titles with unreviewed image labels.
+	 * Get a list of image titles with unreviewed image labels.
+	 * HYPOTHESES:
+	 * 1) The pace of new uploads will ensure that different users will not likely receive the
+	 *  same suggestions at the same time.
+	 * 2) Even if multiple users receive the same suggestions at the same time, it isn't actually
+	 *  that big of an issue.
+	 * Hence, no special effort is made to ensure that users receive unique suggestions.
+	 * If (1) and (2) do not hold, then we may need to set up some kind of in-memory queue of
+	 * suggestions, because randomizing results makes this query quite slow in production.
+	 * TODO: Drop the mvi_rand column, if possible.
 	 * @param int $limit
 	 * @param int|null $userId local user ID for filtering
 	 * @return string[] Titles of file pages with associated unreviewed labels
 	 */
 	public function getTitlesWithUnreviewedLabels( $limit, $userId = null ) {
-		$rand = $this->getRandomFloat();
-		$fname = __METHOD__;
-
 		if ( $userId ) {
 			$conds = [
 				'mvl_review' => [ self::REVIEW_UNREVIEWED, self::REVIEW_WITHHELD ],
@@ -268,30 +274,17 @@ class Repository implements LoggerAwareInterface {
 			$conds = [ 'mvl_review' => self::REVIEW_UNREVIEWED ];
 		}
 
-		$select = function ( $ascending, $limit, $conds ) use ( $fname, $rand ) {
-			$whereClause = array_merge( $conds,
-				[ 'mvi_rand ' . ( $ascending ? '> ' : '< ' ) . strval( $rand ) ] );
-
-			return $this->dbr->selectFieldValues(
-				[ 'machine_vision_image', 'machine_vision_label' ],
-				'mvi_sha1',
-				$whereClause,
-				$fname,
-				[
-					'DISTINCT',
-					'ORDER BY' => 'mvi_rand ' . ( $ascending ? 'ASC' : 'DESC' ),
-					'LIMIT' => $limit,
-				],
-				[ 'machine_vision_label' => [ 'INNER JOIN', [ 'mvi_id = mvl_mvi_id' ] ] ]
-			);
-		};
-
-		$sha1s = $select( true, $limit, $conds );
-
-		$shortfall = $limit - count( $sha1s );
-		if ( $shortfall > 0 ) {
-			$sha1s = array_merge( $sha1s, $select( false, $shortfall, $conds ) );
-		}
+		$sha1s = $this->dbr->selectFieldValues(
+			[ 'machine_vision_image', 'machine_vision_label' ],
+			'mvi_sha1',
+			$conds,
+			__METHOD__,
+			[
+				'DISTINCT',
+				'LIMIT' => $limit,
+			],
+			[ 'machine_vision_label' => [ 'INNER JOIN', [ 'mvi_id = mvl_mvi_id' ] ] ]
+		);
 
 		if ( !$sha1s ) {
 			return [];
