@@ -41,6 +41,11 @@ class SpecialSuggestedTags extends SpecialPage {
 		if ( $initialData ) {
 			$this->getOutput()->addJsConfigVars( 'wgMVSuggestedTagsInitialData', $initialData );
 		}
+
+		// Generate login message with link with returnto URL query parameter.
+		$loginMessage = wfMessage( 'machinevision-login-message' )->parse();
+		$this->getOutput()->addJsConfigVars( 'wgMVSuggestedTagsLoginMessage', $loginMessage );
+
 		$this->getOutput()->addModules( 'ext.MachineVision' );
 	}
 
