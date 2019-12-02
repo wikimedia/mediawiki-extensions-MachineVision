@@ -3,7 +3,7 @@
 
 .wbmad-suggestion-wrapper {
 	display: inline-block;
-	margin: 0 1em 1em 0;
+	margin: 0 16px 16px 0;
 
 	label {
 		cursor: pointer;
@@ -13,8 +13,8 @@
 		background-color: @base90;
 		border: @suggestion-border-width solid @base50;
 		cursor: pointer;
-		padding: 0.1em 1.3em;
-		border-radius: 1.2em;
+		padding: 2px 1.25em;
+		border-radius: 18px;
 		white-space: nowrap;
 	}
 
@@ -64,13 +64,5 @@
 			}
 			animation: slideRight 0.2s;
 		}
-	}
-
-	/* stylelint-disable-next-line selector-class-pattern */
-	.oo-ui-buttonWidget {
-		border-left: @suggestion-border-width solid transparent;
-		margin-right: 0;
-		margin-left: 1em;
-		padding-left: 0.2em;
 	}
 }
