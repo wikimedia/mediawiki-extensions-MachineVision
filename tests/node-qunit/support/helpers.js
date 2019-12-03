@@ -47,3 +47,11 @@ module.exports.createWikibaseEnv = function () {
 		}
 	};
 };
+
+/**
+ * Stub event logger.
+ * @return {Object}
+ */
+module.exports.createEventLogger = function () {
+	return { logEvent: sinon.stub() };
+};

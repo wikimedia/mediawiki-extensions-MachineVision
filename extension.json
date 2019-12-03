@@ -181,6 +181,13 @@
 			"description": "Whether to show a CAT call to action when the user completes an upload in UploadWizard."
 		}
 	},
+	"attributes": {
+		"EventLogging": {
+			"Schemas": {
+				"SuggestedTagsAction": 19624708
+			}
+		}
+	},
 	"ResourceFileModulePaths": {
 		"localBasePath": "resources",
 		"remoteExtPath": "MachineVision/resources"
@@ -215,6 +222,7 @@
 				"widgets/UserMessage.less"
 			],
 			"dependencies": [
+				"ext.eventLogging",
 				"oojs",
 				"oojs-ui-core",
 				"oojs-ui-widgets",

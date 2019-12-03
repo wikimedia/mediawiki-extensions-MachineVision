@@ -79,7 +79,7 @@ SuggestedTagsCardstack.prototype.getItems = function () {
 	}
 
 	return this.imageDataArray.map( function ( imageData ) {
-		return new ImageWithSuggestionsWidget( imageData )
+		return new ImageWithSuggestionsWidget( imageData, self.queryType )
 			.connect( self, {
 				itemRemoved: 'onItemRemoved',
 				tagsPublished: 'onTagsPublished',
