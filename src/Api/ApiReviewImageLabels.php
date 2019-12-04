@@ -8,13 +8,18 @@ use IDBAccessObject;
 use MediaWiki\Extension\MachineVision\Handler\Registry;
 use MediaWiki\Extension\MachineVision\Repository;
 use MediaWiki\Extension\MachineVision\Services;
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\NameTableStore;
 use Message;
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerAwareTrait;
 use RepoGroup;
 use Title;
 
-class ApiReviewImageLabels extends ApiBase {
+class ApiReviewImageLabels extends ApiBase implements LoggerAwareInterface {
+
+	use LoggerAwareTrait;
 
 	private static $reviewActions = [
 		'accept' => Repository::REVIEW_ACCEPTED,
@@ -72,6 +77,8 @@ class ApiReviewImageLabels extends ApiBase {
 		$this->nameTableStore = $nameTableStore;
 		$this->repository = $repository;
 		$this->registry = $registry;
+
+		$this->setLogger( LoggerFactory::getInstance( 'machinevision' ) );
 	}
 
 	/** @inheritDoc */
@@ -180,6 +187,17 @@ class ApiReviewImageLabels extends ApiBase {
 			// handle double-submits gracefully
 			&& $oldState !== $newState
 		) {
+			$this->logger->warning(
+				"Label $label is already reviewed for file $filename",
+				[
+					'filename' => $filename,
+					'label' => $label,
+					'review' => $review,
+					'oldState' => $oldState,
+					'newState' => $newState,
+					'caller' => __METHOD__,
+				]
+			);
 			$this->dieWithError(
 				wfMessage( 'apierror-reviewimagelabels-invalidstate', $filename, $label, $review )
 			);
