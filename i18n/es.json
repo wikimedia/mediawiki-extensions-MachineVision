@@ -27,5 +27,5 @@
 	"right-imagelabel-test": "Sugerencias de etiquetas para imagenes de prueba",
 	"action-imagelabel-test": "sugerencias de etiquetas para imagenes de prueba",
 	"echo-category-title-machinevision": "Etiquetas sugeridas para revisión",
-	"echo-pref-tooltip-machinevision-suggestions-ready": "Notificarme cuando se hayan procesado mis imágenes y haya etiquetas sugeridas para que las revise"
+	"echo-pref-tooltip-machinevision-suggestions-ready": "Notificarme cuando se hayan procesado mis imágenes y haya etiquetas sugeridas para que las revise."
 }

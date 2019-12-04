@@ -12,7 +12,7 @@
 	"machinevision-machineaidedtagging-user-tab": "Carregamentos pessoais",
 	"machinevision-machineaidedtagging-license-information": "Licença CC0 para contribuições de etiquetas - Ao clicar em \"publicar\", você concorda com os [[wmf:Terms_of_Use|termos de usos]], e você concorda irrevogavelmente em liberar sua contribuição sob a [https://creativecommons.org/publicdomain/zero/1.0/ Creative Licença Commons CC0].",
 	"machinevision-pageinfo-field-suggested-labels": "Etiquetas sugeridas",
-	"machinevision-login-message": "Por favor [[Special:UserLogin|entre]] para ver esta página e começar a marcar imagens. Tags precisas facilitam a localização de imagens para todos os usuários do Commons, e suas contribuições são apreciadas.",
+	"machinevision-login-message": "Por favor <span class=\"plainlinks\">[{{fullurl:{{#Special:UserLogin}}|returnto=Special:SuggestedTags}} entre]</span> para ver esta página e começar a marcar imagens. Tags precisas facilitam a localização de imagens para todos os usuários do Commons, e suas contribuições são apreciadas.",
 	"machinevision-autoconfirmed-message": "Etiquetas precisas facilitam a localização de imagens para todos os usuários do Commons, portanto, torne-se [[mw:Manual:Autoconfirmed_users|autoconfirmado]], pois somente usuários confirmados automaticamente podem usar esta ferramenta.",
 	"machinevision-publish": "Publicar",
 	"machinevision-publish-title": "Publicar etiquetas?",

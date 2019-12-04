@@ -15,7 +15,7 @@
 	"machinevision-machineaidedtagging-user-tab": "مرفوعات شخصية",
 	"machinevision-machineaidedtagging-license-information": "ترخيص CC0 لوسم المساهمات - بالنقر فوق \"نشر\"، فإنك توافق على  [[wmf:Terms_of_Use|شروط الاستخدام]]، وتوافق بشكل لا رجعة فيه على إطلاق مساهمتك بموجب [https://creativecommons.org/publicdomain/zero/1.0/ رخصة المشاع الإبداعي CC0].",
 	"machinevision-pageinfo-field-suggested-labels": "التسميات المقترحة",
-	"machinevision-login-message": "يُرجَى [[Special:UserLogin|تسجيل الدخول]] لرؤية هذه الصفحة وبدء وسم الصور، تُسهل الوسوم الدقيقة على جميع مستخدمي كومنز العثور على الصور، كما تُقدَّر مساهماتكم",
+	"machinevision-login-message": "يُرجَى  <span class=\"plainlinks\">[{{fullurl:{{#Special:UserLogin}}|returnto=Special:SuggestedTags}} تسجيل الدخول]</span> لرؤية هذه الصفحة وبدء وسم الصور، تُسهل الوسوم الدقيقة على جميع مستخدمي كومنز العثور على الصور، كما تُقدَّر مساهماتكم",
 	"machinevision-autoconfirmed-message": "تُسهل الوسوم الدقيقة على جميع مستخدمي كومنز العثور على الصور لذا رجاءً لتصبح [[mw:Manual:Autoconfirmed_users|مؤكدا تلقائيا]]، حيث يمكن للمستخدمين المؤكدين تلقائيا فقط استخدام هذه الأداة.",
 	"machinevision-publish": "نشر",
 	"machinevision-publish-title": "نشر الوسوم؟",

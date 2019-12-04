@@ -2,9 +2,11 @@
 	"@metadata": {
 		"authors": [
 			"Suvarioglu",
-			"Grkn gll"
+			"Grkn gll",
+			"BaRaN6161 TURK"
 		]
 	},
+	"machinevision-login-message": "Lütfen bu sayfayı görmek ve görüntüleri etiketlemeye başlamak için <span class=\"plainlinks\">[{{fullurl:{{#Special:UserLogin}}|returnto=Special:SuggestedTags}} giriş yapın]</span>. Doğru etiketler, tüm Commons kullanıcılarının resim bulmasını kolaylaştırır ve katkılarınız için teşekkür ederiz.",
 	"machinevision-reset": "Etiketleri sıfırla",
 	"machinevision-reset-title": "Etiketleri sıfırla?",
 	"machinevision-confirm-tags-dialog-title": "Etiketleri onayla",

@@ -7,7 +7,8 @@
 			"Crochet.david",
 			"Verdy p",
 			"Pols12",
-			"Vega"
+			"Vega",
+			"Aaribaud"
 		]
 	},
 	"machinevision-desc": "S’interface avec des fournisseurs de service de vision machine interne et externe et stocke et fournit les résultats.",
@@ -18,7 +19,7 @@
 	"machinevision-machineaidedtagging-user-tab": "Téléversements personnels",
 	"machinevision-machineaidedtagging-license-information": "Licence CC0 pour les contributions de balise – En cliquant sur « Publier », vous acceptez les [[wmf:Terms_of_Use|conditions d’utilisation]], et acceptez de façon irrévocable de mettre votre contribution sous la [https://creativecommons.org/publicdomain/zero/1.0/ licence Creative Commons CC0].",
 	"machinevision-pageinfo-field-suggested-labels": "Légendes suggérées",
-	"machinevision-login-message": "Veuillez [[Special:UserLogin|vous connecter]] pour voir cette page et démarrer le balisage des images. Des balises pertinentes facilitent la recherche d’images pour tous les utilisateurs de Commons et vos contributions sont appréciées.",
+	"machinevision-login-message": "Veuillez <span class=\"plainlinks\">[{{fullurl:{{#Special:UserLogin}}|returnto=Special:SuggestedTags}} vous connecter]</span> pour voir cette page et démarrer le balisage des images. Des balises pertinentes facilitent la recherche d’images pour tous les utilisateurs de Commons et vos contributions sont appréciées.",
 	"machinevision-autoconfirmed-message": "Des balises pertinentes facilitent la recherche d’images pour tous les utilisateurs de Communs. Veuillez donc contribuer utilement et suffisamment afin de devenir [[mw:Manual:Autoconfirmed_users|confirmé automatiquement]] car seuls les utilisateurs confirmés automatiquement peuvent utiliser cet outil.",
 	"machinevision-publish": "Publier",
 	"machinevision-publish-title": "Publier les balises ?",
@@ -48,7 +49,7 @@
 	"machinevision-cta-text": "Merci d’avoir aidé à rendre les images plus faciles à trouver pour tout le monde — que diriez-vous d’en baliser quelques autres de plus ?",
 	"machinevision-cta-cta": "Marquer les images populaires",
 	"machinevision-no-uploads-cta-heading": "Vous n’avez aucune image à passer en revue",
-	"machinevision-no-uploads-cta-text": "Veuillez téléverser les nouvelles images afin que notre outil puisse les analyser et suggérer le marquage approprié. Si vous avez déjà téléversé des images et que vous ne les voyez pas ici, ces images sont peut-être toujours en cours de passage en revue et vous pourrez les consulter ultérieurement. Vous pouvez également faciliter la recherche d’images populaires d’autres utilisateurs en les marquant.",
+	"machinevision-no-uploads-cta-text": "Veuillez téléverser les nouvelles images afin que notre outil puisse les analyser et suggérer les étiquettes appropriées. Si vous avez déjà téléversé des images et que vous ne les voyez pas ici, ces images sont peut-être toujours en cours de passage en revue et vous pourrez les consulter ultérieurement. Vous pouvez également faciliter la recherche d’images populaires d’autres utilisateurs en les étiquetant.",
 	"right-imagelabel-review": "Relire les suggestions de légende de l’image",
 	"action-imagelabel-review": "relire les suggestions de légende de l’image",
 	"right-imagelabel-test": "Suggestions de légende d’image de test",

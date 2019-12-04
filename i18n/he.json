@@ -14,7 +14,7 @@
 	"machinevision-machineaidedtagging-user-tab": "העלאות אישיות",
 	"machinevision-machineaidedtagging-license-information": "רישיון CC0 לתורמי תגים – לחיצה על \"פרסום\" מהווה את הסכמתך ל[[wmf:Terms_of_Use|תנאי השימוש]], ואת הסכמתך הבלתי־חוזרת לשחרור התרומה שלך לפי תנאי [https://creativecommons.org/publicdomain/zero/1.0/ רישיון קריאייטיב קומונז CC0].",
 	"machinevision-pageinfo-field-suggested-labels": "תוויות מוצעות",
-	"machinevision-login-message": "נא [[Special:UserLogin|להיכנס]] כדי לראות את הדף הזה ולהתחיל לתייג תמונות. תגים מדויקים מקילים על כל משתמשי ויקישיתוף למצוא תמונות, והתרומות שלח זוכות להערכה.",
+	"machinevision-login-message": "נא <span class=\"plainlinks\">[{{fullurl:{{#Special:UserLogin}}|returnto=Special:SuggestedTags}} להיכנס]</span> כדי לראות את הדף הזה ולהתחיל לתייג תמונות. תגים מדויקים מקילים על כל משתמשי ויקישיתוף למצוא תמונות, והתרומות שלח זוכות להערכה.",
 	"machinevision-autoconfirmed-message": "תגים מדויקים עוזרים לכל משתמשי ויקישיתוף למצוא תמונות, אז נא להפוך ל־[[mw:Manual:Autoconfirmed_users|בדוק עריכות אוטומטית]] כך שרק משתמשים ען ההרשאה הזאת יוכלו לערוך.",
 	"machinevision-publish": "לפרסם",
 	"machinevision-publish-title": "לפרסם תגים?",
