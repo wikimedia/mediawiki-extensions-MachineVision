@@ -171,14 +171,16 @@ class ApiReviewImageLabels extends ApiBase {
 	}
 
 	private function validateLabelState( $filename, $label, $review, $oldState, $newState ) {
+		$validOldStates = [ Repository::REVIEW_UNREVIEWED, Repository::REVIEW_WITHHELD ];
 		if ( $oldState === false ) {
 			$this->dieWithError(
 				wfMessage( 'apierror-reviewimagelabels-invalidlabel', $filename, $label )
 			);
-		} elseif (
-			$oldState !== Repository::REVIEW_UNREVIEWED
+		}
+		if (
+			!in_array( $oldState, $validOldStates, true ) &&
 			// handle double-submits gracefully
-			&& $oldState !== $newState
+			$oldState !== $newState
 		) {
 			$this->dieWithError(
 				wfMessage( 'apierror-reviewimagelabels-invalidstate', $filename, $label, $review )
