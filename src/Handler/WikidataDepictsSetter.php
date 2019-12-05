@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Extension\MachineVision\Handler;
 
-use IDBAccessObject;
 use LocalFile;
 use MediaWiki\Extension\MachineVision\MachineVisionEntitySaveException;
 use MediaWiki\Extension\Machinevision\Util;
@@ -112,10 +111,6 @@ class WikidataDepictsSetter implements LoggerAwareInterface {
 	 */
 	public function addDepicts( User $user, LocalFile $file, $label, $token ) {
 		$title = $file->getTitle();
-
-		$revision = $this->revisionStore->getRevisionByTitle( $title, null,
-			IDBAccessObject::READ_EXCLUSIVE );
-
 		$wikiId = WikiMap::getWikiIdFromDbDomain( WikiMap::getCurrentWikiDbDomain() );
 		$mediaInfoId = $this->mediaInfoByLinkedTitleLookup
 			->getEntityIdForLinkedTitle( $wikiId, $title->getPrefixedText() );
@@ -132,7 +127,7 @@ class WikidataDepictsSetter implements LoggerAwareInterface {
 		$mainSnak = $this->getDepictsSnak( $label );
 
 		if ( !$this->depictExists( $mainSnak, $mediaInfo ) ) {
-			// TODO: Qualifiers go here in the Statement constructor, if we need or want them
+			// Qualifiers go here in the Statement constructor, if we need or want them
 			$statement = new Statement( $mainSnak );
 			$summary = $this->claimSummaryBuilder->buildClaimSummary( null, $statement );
 			$formattedSummary = $this->summaryFormatter->formatSummary( $summary );
@@ -141,8 +136,7 @@ class WikidataDepictsSetter implements LoggerAwareInterface {
 			$this->validateChangeOp( $changeOp, $mediaInfo );
 			$changeOp->apply( $mediaInfo, $summary );
 
-			$editEntity = $this->editEntityFactory
-				->newEditEntity( $user, $mediaInfoId, $revision->getId() );
+			$editEntity = $this->editEntityFactory->newEditEntity( $user, $mediaInfoId );
 			$flags = $isNew ? EDIT_NEW : EDIT_UPDATE;
 			$status = $editEntity->attemptSave( $mediaInfo, $formattedSummary, $flags, $token,
 				null, [ Util::getDepictsTag() ] );
