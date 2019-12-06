@@ -178,14 +178,16 @@ class ApiReviewImageLabels extends ApiBase implements LoggerAwareInterface {
 	}
 
 	private function validateLabelState( $filename, $label, $review, $oldState, $newState ) {
+		$validOldStates = [ Repository::REVIEW_UNREVIEWED, Repository::REVIEW_WITHHELD ];
 		if ( $oldState === false ) {
 			$this->dieWithError(
 				wfMessage( 'apierror-reviewimagelabels-invalidlabel', $filename, $label )
 			);
-		} elseif (
-			$oldState !== Repository::REVIEW_UNREVIEWED
+		}
+		if (
+			!in_array( $oldState, $validOldStates, true ) &&
 			// handle double-submits gracefully
-			&& $oldState !== $newState
+			$oldState !== $newState
 		) {
 			$this->logger->warning(
 				"Label $label is already reviewed for file $filename",
