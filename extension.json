@@ -51,7 +51,8 @@
 		"ChangeTagsListActive": "MediaWiki\\Extension\\MachineVision\\Hooks::onRegisterTags",
 		"BeforeCreateEchoEvent": "MediaWiki\\Extension\\MachineVision\\Hooks::onBeforeCreateEchoEvent",
 		"EchoGetBundleRules": "MediaWiki\\Extension\\MachineVision\\Hooks::onEchoGetBundleRules",
-		"ResourceLoaderGetConfigVars": "MediaWiki\\Extension\\MachineVision\\Hooks::onResourceLoaderGetConfigVars"
+		"ResourceLoaderGetConfigVars": "MediaWiki\\Extension\\MachineVision\\Hooks::onResourceLoaderGetConfigVars",
+		"BeforePageDisplay": "MediaWiki\\Extension\\MachineVision\\Hooks::onBeforePageDisplay"
 	},
 	"APIModules": {
 		"reviewimagelabels": {
@@ -186,6 +187,15 @@
 		"remoteExtPath": "MachineVision/resources"
 	},
 	"ResourceModules": {
+		"ext.MachineVision.init": {
+			"styles": [
+				"init.css"
+			],
+			"targets": [
+				"mobile",
+				"desktop"
+			]
+		},
 		"ext.MachineVision": {
 			"packageFiles": [
 				"init.js",
