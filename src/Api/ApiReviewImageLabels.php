@@ -105,13 +105,13 @@ class ApiReviewImageLabels extends ApiBase implements LoggerAwareInterface {
 			$label = $vote['label'];
 			$review = $vote['review'];
 
-			$oldState = $this->repository->getLabelState(
-				$sha1,
-				$label,
-				IDBAccessObject::READ_EXCLUSIVE
-			);
+			$oldState = $this->repository->getLabelState( $sha1, $label,
+				IDBAccessObject::READ_EXCLUSIVE );
 			$newState = self::$reviewActions[$review];
-			$this->validateLabelState( $filename, $label, $review, $oldState, $newState );
+
+			if ( !$this->validateLabelState( $filename, $label, $oldState, $newState ) ) {
+				continue;
+			}
 
 			$success = $this->repository->setLabelState( $sha1, $label, $newState,
 				$userId, $ts );
@@ -177,13 +177,24 @@ class ApiReviewImageLabels extends ApiBase implements LoggerAwareInterface {
 		return $file;
 	}
 
-	private function validateLabelState( $filename, $label, $review, $oldState, $newState ) {
-		$validOldStates = [ Repository::REVIEW_UNREVIEWED, Repository::REVIEW_WITHHELD ];
+	/**
+	 * Check that the review states for the submitted vote are valid. If the label is not in the
+	 * DB, we'll throw. If the label isn't in UNREVIEWED state in the DB, we'll log a warning. If
+	 * the user isn't attempting to reject a previously approved label, we'll allow the vote to
+	 * go forward for further processing.
+	 * @param string $filename
+	 * @param string $label
+	 * @param int $oldState
+	 * @param int $newState
+	 * @return bool true if the vote should be processed
+	 */
+	private function validateLabelState( $filename, $label, $oldState, $newState ) {
 		if ( $oldState === false ) {
 			$this->dieWithError(
 				wfMessage( 'apierror-reviewimagelabels-invalidlabel', $filename, $label )
 			);
 		}
+		$validOldStates = [ Repository::REVIEW_UNREVIEWED, Repository::REVIEW_WITHHELD ];
 		if (
 			!in_array( $oldState, $validOldStates, true ) &&
 			// handle double-submits gracefully
@@ -194,16 +205,14 @@ class ApiReviewImageLabels extends ApiBase implements LoggerAwareInterface {
 				[
 					'filename' => $filename,
 					'label' => $label,
-					'review' => $review,
 					'oldState' => $oldState,
 					'newState' => $newState,
 					'caller' => __METHOD__,
 				]
 			);
-			$this->dieWithError(
-				wfMessage( 'apierror-reviewimagelabels-invalidstate', $filename, $label, $review )
-			);
 		}
+		return !( $oldState === Repository::REVIEW_ACCEPTED &&
+			$newState === Repository::REVIEW_REJECTED );
 	}
 
 	private function propagateSetLabelSuccess( $file, $label, $token, $newState ) {
