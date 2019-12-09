@@ -35,7 +35,12 @@ class SpecialSuggestedTags extends SpecialPage {
 		$this->checkPermissions();
 		$this->setHeaders();
 
-		// TODO: Display a fallback message for Grade C via client-nojs.
+		// no-JS fallback
+		$out = $this->getOutput();
+		$out->addHTML( '<div class="machinevision-client-nojs">' );
+		$out->addHTML( '<p class="warningbox">' .
+			$this->msg( 'machinevision-javascript-required' )->parse() . '</p>' );
+		$out->addHTML( '</div>' );
 
 		$initialData = $this->getInitialSuggestedTagsData();
 		if ( $initialData ) {
