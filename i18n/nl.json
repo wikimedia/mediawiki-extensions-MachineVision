@@ -5,7 +5,8 @@
 			"Siebrand",
 			"Robin van der Linde",
 			"Elroy",
-			"LongJohn nl"
+			"LongJohn nl",
+			"Mainframe98"
 		]
 	},
 	"machinevision-machineaidedtagging": "Voorgestelde labels",
@@ -17,6 +18,8 @@
 	"machinevision-skip": "Overslaan",
 	"machinevision-suggestion-confirm-title": "Voorstel \"$1\" bevestigen?",
 	"machinevision-loading-message": "Laden...",
+	"machinevision-confirm-tags-dialog-confirm-action": "OK",
+	"machinevision-confirm-tags-dialog-cancel-action": "Annuleren",
 	"machinevision-onboarding-dialog-cta": "Beginnen met labelen",
 	"machinevision-onboarding-dialog-disclaimer": "Alleen tags die door u goedgekeurd worden worden toegevoegd aan afbeeldingen.",
 	"machinevision-onboarding-dialog-close-label": "Sluiten",
