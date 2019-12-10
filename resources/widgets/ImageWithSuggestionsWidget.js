@@ -1,3 +1,4 @@
+/* eslint camelcase: 0 */
 /* global wikibase */
 'use strict';
 
@@ -10,13 +11,14 @@ var TemplateRenderingDOMLessGroupWidget = require( './../base/TemplateRenderingD
  * an image and a group of SuggestionWidgets.
  *
  * @param {Object} config
+ * @param {string} queryType
  * @cfg {string} descriptionurl Filepage URL
  * @cfg {Array} suggestions Image tag suggestions
  * @cfg {string} thumburl Image thumbnail URL
  * @cfg {string} thumbheight Image thumbnail height
  * @cfg {string} title Image title
  */
-function ImageWithSuggestionsWidget( config ) {
+function ImageWithSuggestionsWidget( config, queryType ) {
 	var $image;
 
 	this.config = config || {};
@@ -28,6 +30,7 @@ function ImageWithSuggestionsWidget( config ) {
 	this.confirmedCount = 0;
 	this.imageTitle = this.config.title.split( ':' ).pop();
 	this.filePageUrl = this.config.descriptionurl;
+	this.tab = queryType === 'user' ? 'personal' : 'popular';
 
 	this.titleLabel = new OO.ui.LabelWidget( {
 		label: this.imageTitle,
@@ -39,7 +42,7 @@ function ImageWithSuggestionsWidget( config ) {
 		title: mw.message( 'machinevision-skip-title', this.imageTitle ).parse(),
 		label: mw.message( 'machinevision-skip' ).parse(),
 		framed: false
-	} ).on( 'click', this.onSkip, [], this );
+	} ).on( 'click', this.onSkip, [ true ], this );
 
 	this.resetButton = new OO.ui.ButtonWidget( {
 		classes: [ 'wbmad-button-reset' ],
@@ -156,6 +159,8 @@ ImageWithSuggestionsWidget.prototype.onReset = function () {
 
 	this.publishButton.setDisabled( true );
 	this.resetButton.setDisabled( true );
+
+	this.logEvent( { action: 'reset' } );
 };
 
 /**
@@ -171,6 +176,11 @@ ImageWithSuggestionsWidget.prototype.onPublish = function () {
 		} ).join( ', ' ),
 		confirmTagsDialog,
 		windowManager;
+
+	this.logEvent( {
+		action: 'publish',
+		approved_count: this.confirmedCount
+	} );
 
 	confirmTagsDialog = new ConfirmTagsDialog( {
 		tagsList: tagsList,
@@ -205,6 +215,11 @@ ImageWithSuggestionsWidget.prototype.onFinalConfirm = function () {
 	this.skipButton.setDisabled( true );
 	this.render();
 
+	this.logEvent( {
+		action: 'confirm',
+		approved_count: this.confirmedCount
+	} );
+
 	return this.api.postWithToken(
 		'csrf',
 		{
@@ -230,14 +245,33 @@ ImageWithSuggestionsWidget.prototype.onFinalConfirm = function () {
 
 /**
  * Remove this image. As a result, the next image will display (via CSS).
- *
+ * @param {boolean} userExplicitlySkipped set to true if this is called when the user clicks 'skip'
  * @fires itemRemoved
  */
-ImageWithSuggestionsWidget.prototype.onSkip = function () {
+ImageWithSuggestionsWidget.prototype.onSkip = function ( userExplicitlySkipped ) {
 	this.$element.remove();
 
 	// Emit an event so parent element can see if we need to fetch more images.
 	this.emit( 'itemRemoved' );
+
+	if ( userExplicitlySkipped ) {
+		this.logEvent( { action: 'skip' } );
+	}
+};
+
+/**
+ * Log a user interaction event.
+ * @param {!Object} eventData
+ * @return {jQuery.Promise} jQuery Promise object for the logging call.
+ */
+ImageWithSuggestionsWidget.prototype.logEvent = function ( eventData ) {
+	var event = eventData;
+	event.image_title = this.imageTitle;
+	event.suggestions_count = this.suggestions.length;
+	event.is_mobile = mw.config.get( 'skin' ) === 'minerva';
+	event.tab = this.tab;
+	event.user_id = mw.user.getId();
+	return mw.eventLog.logEvent( 'SuggestedTagsAction', event );
 };
 
 module.exports = ImageWithSuggestionsWidget;
