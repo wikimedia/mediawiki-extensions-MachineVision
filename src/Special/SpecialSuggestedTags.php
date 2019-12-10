@@ -41,6 +41,7 @@ class SpecialSuggestedTags extends SpecialPage {
 		$out->addHTML( '<p class="warningbox">' .
 			$this->msg( 'machinevision-javascript-required' )->parse() . '</p>' );
 		$out->addHTML( '</div>' );
+		$out->addModuleStyles( 'ext.MachineVision.init' );
 
 		$initialData = $this->getInitialSuggestedTagsData();
 		if ( $initialData ) {

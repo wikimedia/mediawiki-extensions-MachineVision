@@ -16,10 +16,8 @@ use IContextSource;
 use LocalFile;
 use MediaWiki\MediaWikiServices;
 use MWException;
-use OutputPage;
 use Revision;
 use Status;
-use Skin;
 use UploadBase;
 use User;
 use Wikimedia\Rdbms\IMaintainableDatabase;
@@ -126,23 +124,6 @@ class Hooks {
 				$repo->withholdUnreviewedLabelsForFile( $file->getSha1() );
 			}
 		} );
-	}
-
-	/**
-	 * Handler for BeforePageDisplay hook.
-	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/BeforePageDisplay
-	 * @param OutputPage $out
-	 * @param Skin $skin Skin being used.
-	 * @return bool true in all cases
-	 */
-	public static function onBeforePageDisplay( $out, $skin ) {
-		// Include ext.MachineVision.init in the pre-display page bundle only if the output page
-		// knows about the ext.MachineVision module. This will avoid unnecessarily including the
-		// module on all pages.
-		if ( in_array( 'ext.MachineVision', $out->getModules() ) ) {
-			$out->addModuleStyles( 'ext.MachineVision.init' );
-		}
-		return true;
 	}
 
 	/**
