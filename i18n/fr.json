@@ -50,6 +50,7 @@
 	"machinevision-cta-cta": "Marquer les images populaires",
 	"machinevision-no-uploads-cta-heading": "Vous n’avez aucune image à passer en revue",
 	"machinevision-no-uploads-cta-text": "Veuillez téléverser les nouvelles images afin que notre outil puisse les analyser et suggérer les étiquettes appropriées. Si vous avez déjà téléversé des images et que vous ne les voyez pas ici, ces images sont peut-être toujours en cours de passage en revue et vous pourrez les consulter ultérieurement. Vous pouvez également faciliter la recherche d’images populaires d’autres utilisateurs en les étiquetant.",
+	"machinevision-javascript-required": "JavaScript est nécessaire pour utiliser la fonctionnalité  de balisage assisté par ordinateur.",
 	"right-imagelabel-review": "Relire les suggestions de légende de l’image",
 	"action-imagelabel-review": "relire les suggestions de légende de l’image",
 	"right-imagelabel-test": "Suggestions de légende d’image de test",
