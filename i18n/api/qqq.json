@@ -22,6 +22,7 @@
 	"apierror-reviewimagelabels-invalidlabel": "{{doc-apierror}}\n\nParameters:\n* $1 - File name\n* $2 - Label",
 	"apierror-reviewimagelabels-invalidstate": "{{doc-apierror}}\n\nParameters:\n* $1 - File name\n* $2 - Label\n* $3 - State",
 	"apiwarn-reviewimagelabels-setlabelstate-failed": "{{doc-apierror}}\n\nParameters:\n* $1 - State\n* $2 - Label",
+	"apiwarn-reviewimagelabels-depicts-exists": "{{doc-apierror}}\n\nParameters:\n* $1 - Translated label for the 'depicts' concept\n* $2 - Property ID of the 'depicts' concept\n* $3 - Wikidata ID corresponding to the item that the image depicts\n* $4 - image filename",
 	"apihelp-query+imagelabels-summary": "{{doc-apihelp-summary|query+imagelabels}}",
 	"apihelp-query+imagelabels-param-state": "{{doc-apihelp-param|query+imagelabels|state}}",
 	"apihelp-query+imagelabels-paramvalue-state-unreviewed": "{{doc-apihelp-paramvalue|query+imagelabels|state|unreviewed}}",

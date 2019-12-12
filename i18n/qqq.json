@@ -37,6 +37,7 @@
 	"machinevision-confirm-tags-dialog-cancel-action": "Text for the 'cancel' action of the 'Confirm tags' dialog\n{{Identical|Cancel}}",
 	"machinevision-confirm-tags-dialog-heading": "Text above confirmed tags in the 'Confirm tags' dialog",
 	"machinevision-success-message": "Message posted to user after tags are successfully published",
+	"machinevision-success-message-with-warning": "Message posted to user after tags are successfully published with one or more exceptions",
 	"machinevision-publish-error-message": "Message posted to user after publish process fails",
 	"machinevision-onboarding-dialog-heading": "Text at the top of the onboarding dialog",
 	"machinevision-onboarding-dialog-text": "Body text of the onboarding dialog, describing the computer-aided tagging tool to users the first time they visit it",

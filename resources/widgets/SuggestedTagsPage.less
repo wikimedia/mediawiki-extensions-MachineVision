@@ -78,24 +78,27 @@
 				opacity: 0;
 			}
 		}
+		background-color: @base10;
+		border-radius: @outer-border-radius;
 		bottom: 5vh;
+		color: @base100;
+		display: inline-block;
 		left: 50%;
-		// Equal to the horizontal padding of the page.
-		padding: 16px;
+		margin: 0;
+		padding: 16px 32px;
 		position: fixed;
 		text-align: center;
 		transform: translateX( -50% );
-		width: 100%;
+		width: 95%;
 
 		@media screen and ( min-width: @width-breakpoint-tablet ) {
 			left: auto;
-			padding: 0;
 			transform: none;
 			width: auto;
 		}
 
 		&.oo-ui-messageWidget.oo-ui-messageWidget-block.oo-ui-flaggedElement-notice {
-			background: transparent;
+			background-color: @base10;
 			border: 0;
 		}
 
@@ -104,17 +107,20 @@
 		}
 
 		.oo-ui-labelElement-label {
-			background-color: @base10;
-			border-radius: @outer-border-radius;
-			color: @base100;
-			display: inline-block;
 			margin: 0;
-			padding: 16px 32px;
+		}
+
+		p {
+			margin: 0;
 		}
 	}
 
 	.wbmad-success-toast {
 		animation: slideInOut 4s;
+	}
+
+	.wbmad-success-toast--with-warning {
+		animation: slideInOut 10s;
 	}
 
 	.wbmad-publish-error-toast {

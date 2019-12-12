@@ -275,18 +275,33 @@ SuggestedTagsPage.prototype.showLoadingMessage = function () {
 };
 
 /**
- * After user publishes tags for an image, show a success message.
+ * After user publishes tags for an image, show a success message. This message
+ * may contain a warning that one or more tags already existed for the item.
+ *
+ * @param {string} warningMessage Warning message text
  */
-SuggestedTagsPage.prototype.showSuccessMessage = function () {
-	var successMessage = new OO.ui.MessageWidget( {
-		label: mw.message( 'machinevision-success-message' ).parse(),
-		classes: [ 'wbmad-toast wbmad-success-toast' ]
-	} );
+SuggestedTagsPage.prototype.showSuccessMessage = function ( warningMessage ) {
+	var labelText = warningMessage ?
+			mw.message( 'machinevision-success-message-with-warning' ).parse() :
+			mw.message( 'machinevision-success-message' ).parse(),
+		messageLabel = new OO.ui.LabelWidget( {
+			label: labelText
+		} ),
+		messageContent = warningMessage ?
+			$( '<p>' ).append( warningMessage ) :
+			'',
+		messageClass = warningMessage ? 'wbmad-success-toast--with-warning' : 'wbmad-success-toast',
+		successMessage = new OO.ui.MessageWidget( {
+			content: [ messageLabel, messageContent ],
+			classes: [ 'wbmad-toast ' + messageClass ]
+		} ),
+		displayTime = warningMessage ? 10000 : 4000;
+
 	this.$element.append( successMessage.$element );
 
 	setTimeout( function () {
 		successMessage.$element.remove();
-	}, 4000 );
+	}, displayTime );
 };
 
 /**

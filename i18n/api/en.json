@@ -22,6 +22,7 @@
 	"apierror-reviewimagelabels-invalidlabel": "File <kbd>$1</kbd> has no <kbd>$2</kbd> label.",
 	"apierror-reviewimagelabels-invalidstate": "<kbd>$3</kbd> is not a valid action for label <kbd>$2</kbd> of file <kbd>$1</kbd>.",
 	"apiwarn-reviewimagelabels-setlabelstate-failed": "Failed to store label state <kbd>$1</kbd> for label <kbd>$2</kbd>",
+	"apiwarn-reviewimagelabels-depicts-exists": "Statement '$1 ($2): $3' already exists for file $4",
 	"apihelp-query+imagelabels-summary": "Show machine-suggested image labels.",
 	"apihelp-query+imagelabels-param-state": "Only list labels in these review states",
 	"apihelp-query+imagelabels-paramvalue-state-unreviewed": "Labels which have not been reviewed yet.",

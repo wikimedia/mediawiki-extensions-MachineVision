@@ -228,14 +228,40 @@ ImageWithSuggestionsWidget.prototype.onFinalConfirm = function () {
 		'csrf',
 		{
 			action: 'reviewimagelabels',
+			formatversion: 2,
 			filename: this.imageTitle,
-			batch: JSON.stringify( batch )
+			batch: JSON.stringify( batch ),
+			errorformat: 'plaintext'
 		}
 	)
-		// eslint-disable-next-line no-unused-vars
 		.done( function ( result ) {
+			var i, depictsWarning;
+
+			if ( result.warnings ) {
+				for ( i = 0; i < result.warnings.length; i++ ) {
+					if ( result.warnings[ i ].code === 'reviewimagelabels-depicts-exists' ) {
+						depictsWarning = result.warnings[ i ].text;
+						break;
+					}
+				}
+			}
+
+			if ( depictsWarning ) {
+				depictsWarning = depictsWarning.replace( /Q\d+/g, function ( wikidataId ) {
+					var text, label;
+					for ( i = 0; i < self.suggestionWidgets.length; i++ ) {
+						label = self.suggestionWidgets[ i ].suggestionData;
+						if ( label.wikidataId === wikidataId ) {
+							text = label.text;
+							break;
+						}
+					}
+					return text ? text + ' (' + wikidataId + ')' : wikidataId;
+				} );
+			}
+
 			// Show success message.
-			self.emit( 'tagsPublished' );
+			self.emit( 'tagsPublished', depictsWarning );
 		} )
 		// eslint-disable-next-line no-unused-vars
 		.fail( function ( errorCode, error ) {

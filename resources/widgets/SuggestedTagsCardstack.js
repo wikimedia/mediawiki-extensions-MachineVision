@@ -112,9 +112,10 @@ SuggestedTagsCardstack.prototype.onItemRemoved = function () {
 
 /**
  * After user publishes tags for an image, show a success message.
+ * @param {string} warningMessage Warning message text
  */
-SuggestedTagsCardstack.prototype.onTagsPublished = function () {
-	this.emit( 'showSuccessMessage' );
+SuggestedTagsCardstack.prototype.onTagsPublished = function ( warningMessage ) {
+	this.emit( 'showSuccessMessage', warningMessage );
 
 	if ( this.countString ) {
 		this.countString.unreviewed--;

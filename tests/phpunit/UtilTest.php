@@ -3,10 +3,9 @@
 namespace MediaWiki\Extension\MachineVision;
 
 use PHPUnit\Framework\TestCase;
-use MediaWiki\MediaWikiServices;
 
 /**
- * @covers MediaWiki\Extension\MachineVision\Util
+ * @covers \MediaWiki\Extension\MachineVision\Util
  */
 class UtilTest extends TestCase {
 
@@ -36,8 +35,7 @@ class UtilTest extends TestCase {
 	 * @dataProvider mediaInfoPropertyIdProvider
 	 */
 	public function testGetMediaInfoPropertyId( $property, $id, $expected ) {
-		$services = MediaWikiServices::getInstance();
-		$this->assertEquals( Util::getMediaInfoPropertyId( $services, $property ) === $id, $expected );
+		$this->assertEquals( Util::getMediaInfoPropertyId( $property ) === $id, $expected );
 	}
 
 	public function mediaInfoPropertyIdProvider() {
@@ -49,9 +47,8 @@ class UtilTest extends TestCase {
 	}
 
 	public function testGetMediaInfoPropertyIdException() {
-		$services = MediaWikiServices::getInstance();
 		$this->expectException( \DomainException::class );
-		Util::getMediaInfoPropertyId( $services, 'void' );
+		Util::getMediaInfoPropertyId( 'void' );
 	}
 
 }

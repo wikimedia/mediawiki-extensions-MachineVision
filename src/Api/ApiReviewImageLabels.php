@@ -5,9 +5,12 @@ namespace MediaWiki\Extension\MachineVision\Api;
 use ApiBase;
 use ApiMain;
 use IDBAccessObject;
+use MediaWiki\Extension\MachineVision\Exception\MachineVisionDepictsExistsException;
+use MediaWiki\Extension\MachineVision\Handler\LabelResolver;
 use MediaWiki\Extension\MachineVision\Handler\Registry;
 use MediaWiki\Extension\MachineVision\Repository;
 use MediaWiki\Extension\MachineVision\Services;
+use MediaWiki\Extension\MachineVision\Util;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\NameTableStore;
@@ -38,6 +41,9 @@ class ApiReviewImageLabels extends ApiBase implements LoggerAwareInterface {
 	/** @var Registry */
 	private $registry;
 
+	/** @var LabelResolver */
+	private $labelResolver;
+
 	/**
 	 * @param ApiMain $main
 	 * @param string $moduleName
@@ -52,7 +58,8 @@ class ApiReviewImageLabels extends ApiBase implements LoggerAwareInterface {
 			$services->getRepoGroup(),
 			$extensionServices->getNameTableStore(),
 			$extensionServices->getRepository(),
-			$extensionServices->getHandlerRegistry()
+			$extensionServices->getHandlerRegistry(),
+			$extensionServices->getLabelResolver()
 		);
 	}
 
@@ -63,6 +70,7 @@ class ApiReviewImageLabels extends ApiBase implements LoggerAwareInterface {
 	 * @param NameTableStore $nameTableStore
 	 * @param Repository $repository
 	 * @param Registry $registry
+	 * @param LabelResolver $labelResolver
 	 */
 	public function __construct(
 		ApiMain $main,
@@ -70,13 +78,15 @@ class ApiReviewImageLabels extends ApiBase implements LoggerAwareInterface {
 		RepoGroup $repoGroup,
 		NameTableStore $nameTableStore,
 		Repository $repository,
-		Registry $registry
+		Registry $registry,
+		LabelResolver $labelResolver
 	) {
 		parent::__construct( $main, $moduleName );
 		$this->repoGroup = $repoGroup;
 		$this->nameTableStore = $nameTableStore;
 		$this->repository = $repository;
 		$this->registry = $registry;
+		$this->labelResolver = $labelResolver;
 
 		$this->setLogger( LoggerFactory::getInstance( 'machinevision' ) );
 	}
@@ -119,8 +129,10 @@ class ApiReviewImageLabels extends ApiBase implements LoggerAwareInterface {
 				$this->propagateSetLabelSuccess( $file, $label, $token, $newState );
 				$result['success'][$label] = $review;
 			} else {
-				$this->addWarning( 'apiwarn-reviewimagelabels-setlabelstate-failed',
-					$review, $label );
+				$this->addWarning(
+					$this->getContext()->msg( 'apiwarn-reviewimagelabels-setlabelstate-failed',
+						$review, $label )
+				);
 				if ( !array_key_exists( 'failure', $result ) ) {
 					$result['failure'] = [];
 				}
@@ -219,9 +231,19 @@ class ApiReviewImageLabels extends ApiBase implements LoggerAwareInterface {
 		// @phan-suppress-next-line PhanTypeMismatchArgument
 		$handlers = $this->registry->getHandlers( $file );
 		foreach ( $handlers as $handler ) {
-			// TODO: Handle possible MachineVisionEntitySaveException (T240616)
-			// @phan-suppress-next-line PhanTypeMismatchArgument
-			$handler->handleLabelReview( $this->getUser(), $file, $label, $token, $newState );
+			try {
+				// TODO: Handle possible MachineVisionEntitySaveException (T240616)
+				// @phan-suppress-next-line PhanTypeMismatchArgument
+				$handler->handleLabelReview( $this->getUser(), $file, $label, $token, $newState );
+			} catch ( MachineVisionDepictsExistsException $e ) {
+				$depictsPropertyId = Util::getMediaInfoPropertyId( 'depicts' );
+				$depictsPropertyLabel = $this->labelResolver->resolve( $this->getContext(),
+					[ $depictsPropertyId ] )[ $depictsPropertyId ];
+				$this->addWarning(
+					$this->getContext()->msg( 'apiwarn-reviewimagelabels-depicts-exists',
+						$depictsPropertyLabel, $depictsPropertyId, $label, $file->getName() )
+				);
+			}
 		}
 	}
 

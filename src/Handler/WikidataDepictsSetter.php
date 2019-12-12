@@ -3,7 +3,8 @@
 namespace MediaWiki\Extension\MachineVision\Handler;
 
 use LocalFile;
-use MediaWiki\Extension\MachineVision\MachineVisionEntitySaveException;
+use MediaWiki\Extension\MachineVision\Exception\MachineVisionDepictsExistsException;
+use MediaWiki\Extension\MachineVision\Exception\MachineVisionEntitySaveException;
 use MediaWiki\Extension\Machinevision\Util;
 use MediaWiki\Revision\RevisionStore;
 use Psr\Log\LoggerAwareInterface;
@@ -107,6 +108,7 @@ class WikidataDepictsSetter implements LoggerAwareInterface {
 	 * @param LocalFile $file
 	 * @param string $label Wikidata ID associated with the label
 	 * @param string $token CSRF token for creating the revision
+	 * @throws MachineVisionDepictsExistsException
 	 * @throws MachineVisionEntitySaveException
 	 * @suppress PhanUndeclaredClassMethod
 	 */
@@ -127,27 +129,28 @@ class WikidataDepictsSetter implements LoggerAwareInterface {
 
 		$mainSnak = $this->getDepictsSnak( $label );
 
-		if ( !$this->depictExists( $mainSnak, $mediaInfo ) ) {
-			// Qualifiers go here in the Statement constructor, if we need or want them
-			$statement = new Statement( $mainSnak );
-			$summary = $this->claimSummaryBuilder->buildClaimSummary( null, $statement );
-			$formattedSummary = $this->summaryFormatter->formatSummary( $summary );
-
-			$changeOp = $this->statementChangeOpFactory->newSetStatementOp( $statement );
-			$this->validateChangeOp( $changeOp, $mediaInfo );
-			$changeOp->apply( $mediaInfo, $summary );
-
-			$editEntity = $this->editEntityFactory->newEditEntity( $user, $mediaInfoId );
-			$flags = $isNew ? EDIT_NEW : EDIT_UPDATE;
-			$status = $editEntity->attemptSave( $mediaInfo, $formattedSummary, $flags, $token,
-				null, [ Util::getDepictsTag() ] );
-			if ( !$status->isOK() ) {
-				throw new MachineVisionEntitySaveException( $status );
-			}
-		} else {
-			$this->logger->info(
-				'Depict ' . $label . ' already set to file'
+		if ( $this->depictExists( $mainSnak, $mediaInfo ) ) {
+			$this->logger->warning(
+				"'Depicts $label' already set to MediaInfo ID $mediaInfoId"
 			);
+			throw new MachineVisionDepictsExistsException( $label, $mediaInfoId );
+		}
+
+		// Qualifiers go here in the Statement constructor, if we need or want them
+		$statement = new Statement( $mainSnak );
+		$summary = $this->claimSummaryBuilder->buildClaimSummary( null, $statement );
+		$formattedSummary = $this->summaryFormatter->formatSummary( $summary );
+
+		$changeOp = $this->statementChangeOpFactory->newSetStatementOp( $statement );
+		$this->validateChangeOp( $changeOp, $mediaInfo );
+		$changeOp->apply( $mediaInfo, $summary );
+
+		$editEntity = $this->editEntityFactory->newEditEntity( $user, $mediaInfoId );
+		$flags = $isNew ? EDIT_NEW : EDIT_UPDATE;
+		$status = $editEntity->attemptSave( $mediaInfo, $formattedSummary, $flags, $token,
+			null, [ Util::getDepictsTag() ] );
+		if ( !$status->isOK() ) {
+			throw new MachineVisionEntitySaveException( $status );
 		}
 	}
 

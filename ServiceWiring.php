@@ -181,7 +181,7 @@ return [
 			$changeOpFactoryProvider->getStatementChangeOpFactory(),
 			new ClaimSummaryBuilder( 'wbsetclaim', $claimDiffer ),
 			$wbRepo->getSummaryFormatter(),
-			Util::getMediaInfoPropertyId( $services, 'depicts' )
+			Util::getMediaInfoPropertyId( 'depicts' )
 		);
 	},
 
@@ -195,7 +195,7 @@ return [
 			$extensionConfig->get( 'MachineVisionMaxExistingDepictsStatements' ),
 			$extensionConfig->get( 'MachineVisionCategoryBlacklist' ),
 			$extensionConfig->get( 'MachineVisionTemplateBlacklist' ),
-			Util::getMediaInfoPropertyId( $services, 'depicts' )
+			Util::getMediaInfoPropertyId( 'depicts' )
 		);
 	},
 

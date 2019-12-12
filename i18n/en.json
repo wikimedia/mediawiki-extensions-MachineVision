@@ -34,6 +34,7 @@
 	"machinevision-confirm-tags-dialog-cancel-action": "Cancel",
 	"machinevision-confirm-tags-dialog-heading": "This image depicts:",
 	"machinevision-success-message": "Tags added to image.",
+	"machinevision-success-message-with-warning": "Tags added to image with the following exception(s):",
 	"machinevision-publish-error-message": "Something went wrong and tags could not be published. Please try again later.",
 	"machinevision-onboarding-dialog-heading": "Tag images to make them easier for others to find",
 	"machinevision-onboarding-dialog-text": "By confirming suggested tags, you can help make images easier to search for. Tags are computer-suggested, but need to be validated by humans to ensure accuracy.",

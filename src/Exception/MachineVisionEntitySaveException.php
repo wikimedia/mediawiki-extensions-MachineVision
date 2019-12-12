@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Extension\MachineVision;
+namespace MediaWiki\Extension\MachineVision\Exception;
 
 use Exception;
 use Status;

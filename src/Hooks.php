@@ -104,7 +104,7 @@ class Hooks {
 		}
 		$services = MediaWikiServices::getInstance();
 		try {
-			$depicts = Util::getMediaInfoPropertyId( MediaWikiServices::getInstance(), 'depicts' );
+			$depicts = Util::getMediaInfoPropertyId( 'depicts' );
 		} catch ( DomainException $e ) {
 			// If 'depicts' isn't set in MediaInfo config (for example, if we're running in CI),
 			// just bail out.

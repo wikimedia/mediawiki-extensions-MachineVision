@@ -5,7 +5,8 @@ namespace MediaWiki\Extension\MachineVision\Handler;
 use Html;
 use IContextSource;
 use LocalFile;
-use MediaWiki\Extension\MachineVision\MachineVisionEntitySaveException;
+use MediaWiki\Extension\MachineVision\Exception\MachineVisionDepictsExistsException;
+use MediaWiki\Extension\MachineVision\Exception\MachineVisionEntitySaveException;
 use MediaWiki\Extension\MachineVision\Repository;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\NullLogger;
@@ -86,6 +87,7 @@ abstract class WikidataIdHandler implements Handler {
 
 	/**
 	 * @inheritDoc
+	 * @throws MachineVisionDepictsExistsException
 	 * @throws MachineVisionEntitySaveException
 	 */
 	public function handleLabelReview( User $user, LocalFile $file, $label, $token, $reviewState ) {
@@ -94,7 +96,14 @@ abstract class WikidataIdHandler implements Handler {
 		}
 	}
 
-	/** @throws MachineVisionEntitySaveException */
+	/**
+	 * @param User $user
+	 * @param LocalFile $file
+	 * @param $label
+	 * @param $token
+	 * @throws MachineVisionDepictsExistsException
+	 * @throws MachineVisionEntitySaveException
+	 */
 	private function handleLabelAccepted( User $user, LocalFile $file, $label, $token ) {
 		$this->depictsSetter->addDepicts( $user, $file, $label, $token );
 	}
