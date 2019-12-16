@@ -31,6 +31,7 @@ function ImageWithSuggestionsWidget( config, queryType ) {
 	this.imageTitle = this.config.title.split( ':' ).pop();
 	this.filePageUrl = this.config.descriptionurl;
 	this.tab = queryType === 'user' ? 'personal' : 'popular';
+	this.imageLoaded = false;
 
 	this.titleLabel = new OO.ui.LabelWidget( {
 		label: this.imageTitle,
@@ -88,6 +89,7 @@ ImageWithSuggestionsWidget.prototype.render = function () {
 		imageTagTitle: this.imageTitle,
 		titleLabel: this.titleLabel,
 		suggestions: this.suggestionWidgets,
+		imageLoaded: this.imageLoaded,
 		thumburl: this.config.thumburl,
 		filePageUrl: this.filePageUrl,
 		resetButton: this.resetButton,
@@ -122,6 +124,7 @@ ImageWithSuggestionsWidget.prototype.loadImage = function () {
 	if ( $image.length > 0 ) {
 		$image[ 0 ].src = $image[ 0 ].dataset.src;
 		$image.removeClass( 'wbmad-lazy' );
+		this.imageLoaded = true;
 	}
 };
 
