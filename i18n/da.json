@@ -8,5 +8,6 @@
 	"machinevision-more": "Næste $1 {{PLURAL:$1|billede|billeder}}",
 	"machinevision-skip": "Spring over",
 	"machinevision-loading-message": "Indlæser billeder...",
-	"machinevision-onboarding-dialog-close-label": "Luk"
+	"machinevision-onboarding-dialog-close-label": "Luk",
+	"machinevision-no-uploads-cta-heading": "Du har ingen billeder til gennemgang"
 }

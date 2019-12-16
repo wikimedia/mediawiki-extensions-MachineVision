@@ -5,10 +5,11 @@
 			"Wikimedia Structured Data Team",
 			"Monte Hurd",
 			"Robby",
-			"EGardner (WMF)"
+			"EGardner (WMF)",
+			"Piramidion"
 		]
 	},
-	"machinevision-desc": "{{desc|name=MachineVision|url=https://www.mediawiki.org/wiki/Extension:MachineVision}}",
+	"machinevision-desc": "{{desc|name=MachineVision|url=https://www.mediawiki.org/wiki/Extension:MachineVision}}\nNote: the word \"interfaces\" is a verb, not a noun.",
 	"machinevision-machineaidedtagging": "Display title for Special:SuggestedTags",
 	"machinevision-machineaidedtagging-intro": "Introductory text appearing on Special:SuggestedTags",
 	"machinevision-machineaidedtagging-tabs-heading": "Text that appears above tabs",

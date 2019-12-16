@@ -20,5 +20,7 @@
 	"machinevision-confirm-tags-dialog-cancel-action": "취소",
 	"machinevision-publish-error-message": "무언가 잘못되어 태그를 게시하지 못했습니다. 나중에 다시 시도해 주십시오.",
 	"machinevision-onboarding-dialog-cta": "태그 시작",
-	"machinevision-onboarding-dialog-close-label": "닫기"
+	"machinevision-onboarding-dialog-close-label": "닫기",
+	"machinevision-no-uploads-cta-heading": "검토할 이미지가 없습니다",
+	"machinevision-javascript-required": "이 기능은 사용 중인 웹 브라우저에서 지원되지 않습니다."
 }

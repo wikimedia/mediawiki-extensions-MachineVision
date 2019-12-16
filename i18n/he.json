@@ -45,7 +45,7 @@
 	"machinevision-cta-cta": "תיוג תמונות מבוקשות",
 	"machinevision-no-uploads-cta-heading": "אין לך תמונות לסקור",
 	"machinevision-no-uploads-cta-text": "נא להעלות תמונות חדשות כדי שהכלי שלנו יוכל לנתח אותם ולהציע תגים מתאימים. אם כבר העלית תמונות ואינך רואה אותם כאן, ייתכן שהתמונות האלה עדיין עוברות תהליך סקירה ובאפשרותך לבדוק מאוחר יותר. {{GENDER:|אתה יכול|את יכולה}} גם להפוך תמונות פופולריות ממשתמשים אחרים לקלות יותר למציאה על־ידי זה {{GENDER:|שתתייג|שתייגי}} אותן.",
-	"machinevision-javascript-required": "נדרש JavaScript כדי להשתמש באפשרות תיוג בעזרת מחשב.",
+	"machinevision-javascript-required": "האפשרות הזאת אינה נתמכת בדפדפן שלך.",
 	"right-imagelabel-review": "סקירת הצעות תוויות תמונה",
 	"action-imagelabel-review": "לסקור הצעות תוויות תמונה",
 	"right-imagelabel-test": "בדיקת הצעות תוויות תמונה",

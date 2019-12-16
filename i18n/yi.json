@@ -1,0 +1,24 @@
+{
+	"@metadata": {
+		"authors": [
+			"פוילישער"
+		]
+	},
+	"machinevision-machineaidedtagging": "פארשגעלאגענע טאגן",
+	"machinevision-machineaidedtagging-tabs-heading": "בילדער צו רעצענזירן",
+	"machinevision-machineaidedtagging-popular-tab": "פאפולער",
+	"machinevision-machineaidedtagging-user-tab": "פערזענלעכע ארויפלאנדונגן",
+	"machinevision-publish": "פֿאַרעפֿנטלעכן",
+	"machinevision-publish-title": "פֿאַרעפֿנטלעכן טאַגן?",
+	"machinevision-more": "נעקסטע $1 {{PLURAL:$1|בילד|בילדער}}",
+	"machinevision-more-title": "ווייזן נעקסטע {{PLURAL:$1|בילד|$1 בילדער}}",
+	"machinevision-reset": "צוריקשטעלן",
+	"machinevision-reset-title": "צוריקשטעלן טאגן?",
+	"machinevision-suggestion-confirm-title": "באשטעטיקן \"$1\" פֿארשלאג?",
+	"machinevision-suggestion-confirm-undo-title": "אנולרין \"$1\" פֿארשלאג באשטעטיקונג?",
+	"machinevision-loading-message": "לאדן בילדער…",
+	"machinevision-confirm-tags-dialog-title": "באשטעטיקן טאגן",
+	"machinevision-confirm-tags-dialog-confirm-action": "יאָ",
+	"machinevision-confirm-tags-dialog-cancel-action": "אַנולירן",
+	"machinevision-onboarding-dialog-close-label": "פארמאכן"
+}
