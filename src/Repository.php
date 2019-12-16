@@ -4,11 +4,12 @@ namespace MediaWiki\Extension\MachineVision;
 
 use DBAccessObjectUtils;
 use InvalidArgumentException;
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Storage\NameTableStore;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
-use Psr\Log\NullLogger;
 use UnexpectedValueException;
+use Wikimedia\Rdbms\DBQueryError;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
@@ -60,7 +61,7 @@ class Repository implements LoggerAwareInterface {
 		$this->dbw = $dbw;
 		$this->blacklist = $blacklist;
 
-		$this->logger = new NullLogger();
+		$this->logger = LoggerFactory::getInstance( 'machinevision' );
 	}
 
 	/**
@@ -82,70 +83,75 @@ class Repository implements LoggerAwareInterface {
 		$timestamp = $this->dbw->timestamp();
 		$labelsCount = 0;
 
-		$this->dbw->insert(
-			'machine_vision_image',
-			[
-				'mvi_sha1' => $sha1,
-				// why does 'RAND()' not work here?
-				'mvi_rand' => $this->getRandomFloat(),
-			],
-			__METHOD__,
-			[ 'IGNORE' ]
-		);
-
-		$mviRowId = $this->dbw->insertId() ?: $this->dbw->selectField(
-			'machine_vision_image',
-			'mvi_id',
-			[ 'mvi_sha1' => $sha1 ],
-			__METHOD__
-		);
-
-		foreach ( $suggestions as $suggestion ) {
-			$wikidataId = $suggestion->getWikidataId();
-			$confidence = $suggestion->getConfidence();
-
+		// Catch and log a warning while we investigate the duplicate entries issue and related
+		// job retries (T240518)
+		try {
 			$this->dbw->insert(
-				'machine_vision_label',
+				'machine_vision_image',
 				[
-					'mvl_mvi_id' => $mviRowId,
-					'mvl_wikidata_id' => $wikidataId,
-					'mvl_review' => $initialState,
-					'mvl_uploader_id' => $uploaderId,
+					'mvi_sha1' => $sha1,
+					// why does 'RAND()' not work here?
+					'mvi_rand' => $this->getRandomFloat(),
 				],
 				__METHOD__
 			);
 
-			$mvlId = $this->dbw->insertId();
-			if ( $mvlId ) {
-				// new label inserted; increment $labelsCount
-				$labelsCount++;
-			} else {
-				// suggested label already exists in DB and insert failed;
-				// re-query for row ID
-				$mvlId = $this->dbw->selectField(
+			$mviRowId = $this->dbw->insertId() ?: $this->dbw->selectField(
+				'machine_vision_image',
+				'mvi_id',
+				[ 'mvi_sha1' => $sha1 ],
+				__METHOD__
+			);
+
+			foreach ( $suggestions as $suggestion ) {
+				$wikidataId = $suggestion->getWikidataId();
+				$confidence = $suggestion->getConfidence();
+
+				$this->dbw->insert(
 					'machine_vision_label',
-					'mvl_id',
 					[
 						'mvl_mvi_id' => $mviRowId,
 						'mvl_wikidata_id' => $wikidataId,
+						'mvl_review' => $initialState,
+						'mvl_uploader_id' => $uploaderId,
+					],
+					__METHOD__
+				);
+
+				$mvlId = $this->dbw->insertId();
+				if ( $mvlId ) {
+					// new label inserted; increment $labelsCount
+					$labelsCount++;
+				} else {
+					// suggested label already exists in DB and insert failed;
+					// re-query for row ID
+					$mvlId = $this->dbw->selectField(
+						'machine_vision_label',
+						'mvl_id',
+						[
+							'mvl_mvi_id' => $mviRowId,
+							'mvl_wikidata_id' => $wikidataId,
+						],
+						__METHOD__
+					);
+				}
+
+				$this->dbw->insert(
+					'machine_vision_suggestion',
+					[
+						'mvs_mvl_id' => $mvlId,
+						'mvs_provider_id' => $providerId,
+						'mvs_timestamp' => $timestamp,
+						'mvs_confidence' => $confidence,
 					],
 					__METHOD__
 				);
 			}
 
-			$this->dbw->insert(
-				'machine_vision_suggestion',
-				[
-					'mvs_mvl_id' => $mvlId,
-					'mvs_provider_id' => $providerId,
-					'mvs_timestamp' => $timestamp,
-					'mvs_confidence' => $confidence,
-				],
-				__METHOD__
-			);
+			return $labelsCount;
+		} catch ( DBQueryError $e ) {
+			$this->logger->warning( $e->getMessage() );
 		}
-
-		return $labelsCount;
 	}
 
 	/**
