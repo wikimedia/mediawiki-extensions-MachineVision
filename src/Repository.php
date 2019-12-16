@@ -151,6 +151,7 @@ class Repository implements LoggerAwareInterface {
 			return $labelsCount;
 		} catch ( DBQueryError $e ) {
 			$this->logger->warning( $e->getMessage() );
+			return 0;
 		}
 	}
 
@@ -377,18 +378,22 @@ class Repository implements LoggerAwareInterface {
 	public function insertSafeSearchAnnotations( $sha1, $adult, $spoof, $medical, $violence,
 		$racy ) {
 		$mviId = $this->getMviIdForSha1( $sha1 );
-		$this->dbw->insert(
-			'machine_vision_safe_search',
-			[
-				'mvss_mvi_id' => $mviId,
-				'mvss_adult' => $adult,
-				'mvss_spoof' => $spoof,
-				'mvss_medical' => $medical,
-				'mvss_violence' => $violence,
-				'mvss_racy' => $racy,
-			],
-			__METHOD__
-		);
+		try {
+			$this->dbw->insert(
+				'machine_vision_safe_search',
+				[
+					'mvss_mvi_id' => $mviId,
+					'mvss_adult' => $adult,
+					'mvss_spoof' => $spoof,
+					'mvss_medical' => $medical,
+					'mvss_violence' => $violence,
+					'mvss_racy' => $racy,
+				],
+				__METHOD__
+			);
+		} catch ( DBQueryError $e ) {
+			$this->logger->warning( $e->getMessage() );
+		}
 	}
 
 	/**
