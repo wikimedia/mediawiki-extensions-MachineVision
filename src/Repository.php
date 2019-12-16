@@ -89,7 +89,8 @@ class Repository implements LoggerAwareInterface {
 				// why does 'RAND()' not work here?
 				'mvi_rand' => $this->getRandomFloat(),
 			],
-			__METHOD__
+			__METHOD__,
+			[ 'IGNORE' ]
 		);
 
 		$mviRowId = $this->dbw->insertId() ?: $this->dbw->selectField(
