@@ -3,7 +3,7 @@
 namespace MediaWiki\Extension\MachineVision;
 
 use Exception;
-use Message;
+use Status;
 
 /**
  * Exception thrown when attempting to save a revision to a Wikibase entity.
@@ -13,10 +13,12 @@ use Message;
 class MachineVisionEntitySaveException extends Exception {
 
 	/**
-	 * @param Message $message Message from the not-OK Status result when attempting to save
+	 * Log the entire contents of the bad Status resulting from an entity save attempt, in order to
+	 * navigate the thicket of possibly-failing validation checks.
+	 * @param Status $status not-OK Status result
 	 */
-	public function __construct( Message $message ) {
-		parent::__construct( $message->parse() );
+	public function __construct( Status $status ) {
+		parent::__construct( $status->__toString() );
 	}
 
 }

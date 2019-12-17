@@ -219,6 +219,7 @@ class ApiReviewImageLabels extends ApiBase implements LoggerAwareInterface {
 		// @phan-suppress-next-line PhanTypeMismatchArgument
 		$handlers = $this->registry->getHandlers( $file );
 		foreach ( $handlers as $handler ) {
+			// TODO: Handle possible MachineVisionEntitySaveException (T240616)
 			// @phan-suppress-next-line PhanTypeMismatchArgument
 			$handler->handleLabelReview( $this->getUser(), $file, $label, $token, $newState );
 		}
