@@ -3,6 +3,7 @@
 namespace MediaWiki\Extension\MachineVision;
 
 use Article;
+use BaseTemplate;
 use ChangeTags;
 use Config;
 use Content;
@@ -188,6 +189,23 @@ class Hooks {
 			'showComputerAidedTaggingCallToAction' => $wgMachineVisionShowUploadWizardCallToAction,
 		];
 		return true;
+	}
+
+	/**
+	 * @param BaseTemplate $baseTemplate
+	 * @param array &$toolbox
+	 */
+	public static function onBaseTemplateToolbox( BaseTemplate $baseTemplate, array &$toolbox ) {
+		$extensionServices = new Services( MediaWikiServices::getInstance() );
+		$extensionConfig = $extensionServices->getExtensionConfig();
+		if ( $extensionConfig->get( 'MachineVisionAddToolboxLink' ) ) {
+			$skin = $baseTemplate->getSkin();
+			$toolbox['computer-aided-tagging'] = [
+				'text' => $skin->msg( 'machinevision-machineaidedtagging' ),
+				'href' => $skin::makeSpecialUrl( 'SuggestedTags' ),
+				'id' => 't-computer-aided-tagging',
+			];
+		}
 	}
 
 	/**

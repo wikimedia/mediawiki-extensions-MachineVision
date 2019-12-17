@@ -51,7 +51,8 @@
 		"ChangeTagsListActive": "MediaWiki\\Extension\\MachineVision\\Hooks::onRegisterTags",
 		"BeforeCreateEchoEvent": "MediaWiki\\Extension\\MachineVision\\Hooks::onBeforeCreateEchoEvent",
 		"EchoGetBundleRules": "MediaWiki\\Extension\\MachineVision\\Hooks::onEchoGetBundleRules",
-		"ResourceLoaderGetConfigVars": "MediaWiki\\Extension\\MachineVision\\Hooks::onResourceLoaderGetConfigVars"
+		"ResourceLoaderGetConfigVars": "MediaWiki\\Extension\\MachineVision\\Hooks::onResourceLoaderGetConfigVars",
+		"BaseTemplateToolbox": "MediaWiki\\Extension\\MachineVision\\Hooks::onBaseTemplateToolbox"
 	},
 	"APIModules": {
 		"reviewimagelabels": {
@@ -179,6 +180,10 @@
 		"MachineVisionShowUploadWizardCallToAction": {
 			"value": false,
 			"description": "Whether to show a CAT call to action when the user completes an upload in UploadWizard."
+		},
+		"MachineVisionAddToolboxLink": {
+			"value": false,
+			"description": "Whether to add a link to Special:SuggestedTags to the Tools section of the navigation sidebar."
 		}
 	},
 	"attributes": {
