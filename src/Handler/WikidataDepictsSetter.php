@@ -107,6 +107,7 @@ class WikidataDepictsSetter implements LoggerAwareInterface {
 	 * @param LocalFile $file
 	 * @param string $label Wikidata ID associated with the label
 	 * @param string $token CSRF token for creating the revision
+	 * @throws MachineVisionEntitySaveException
 	 * @suppress PhanUndeclaredClassMethod
 	 */
 	public function addDepicts( User $user, LocalFile $file, $label, $token ) {
@@ -141,7 +142,7 @@ class WikidataDepictsSetter implements LoggerAwareInterface {
 			$status = $editEntity->attemptSave( $mediaInfo, $formattedSummary, $flags, $token,
 				null, [ Util::getDepictsTag() ] );
 			if ( !$status->isOK() ) {
-				throw new MachineVisionEntitySaveException( $status->getMessage() );
+				throw new MachineVisionEntitySaveException( $status );
 			}
 		} else {
 			$this->logger->info(
