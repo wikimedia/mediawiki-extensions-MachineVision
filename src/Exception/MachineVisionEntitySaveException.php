@@ -18,7 +18,9 @@ class MachineVisionEntitySaveException extends Exception {
 	 * @param Status $status not-OK Status result
 	 */
 	public function __construct( Status $status ) {
-		parent::__construct( $status->__toString() );
+		$message = $status->__toString() . "; " . var_export( $status->getErrors(), true ) . "; " .
+			var_export( $status->getValue(), true );
+		parent::__construct( $message );
 	}
 
 }
