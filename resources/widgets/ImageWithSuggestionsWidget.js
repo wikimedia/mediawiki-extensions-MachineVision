@@ -23,7 +23,7 @@ function ImageWithSuggestionsWidget( config, queryType ) {
 
 	this.config = config || {};
 	ImageWithSuggestionsWidget.parent.call( this, $.extend( {}, config ) );
-	this.$element.addClass( 'wbmad-image-with-suggestions' );
+	this.$element.addClass( 'wbmad-image-with-suggestions wbmad-hide-outline' );
 
 	this.suggestions = this.config.suggestions;
 	this.suggestionWidgets = this.getSuggestionWidgets();
@@ -71,6 +71,7 @@ function ImageWithSuggestionsWidget( config, queryType ) {
 		confirm: 'onFinalConfirm',
 		toggleSuggestion: 'onToggleSuggestion'
 	} );
+	this.$element.on( 'keydown', this.onKeydown.bind( this ) );
 
 	this.render();
 
@@ -256,6 +257,16 @@ ImageWithSuggestionsWidget.prototype.onSkip = function ( userExplicitlySkipped )
 
 	if ( userExplicitlySkipped ) {
 		this.logEvent( { action: 'skip' } );
+	}
+};
+
+/**
+ * Remove class when tab key is pressed to ensure user sees focus outline.
+ * @param {Object} e
+ */
+ImageWithSuggestionsWidget.prototype.onKeydown = function ( e ) {
+	if ( e.key === 'Tab' ) {
+		this.$element.removeClass( 'wbmad-hide-outline' );
 	}
 };
 

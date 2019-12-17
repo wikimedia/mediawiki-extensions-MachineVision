@@ -34,7 +34,7 @@ function SuggestionWidget( config ) {
 
 	this.$element.on( {
 		click: this.toggleSuggestion.bind( this ),
-		keypress: this.onKeypress.bind( this )
+		keydown: this.onKeydown.bind( this )
 	} );
 
 	// Ensure element is focusable.
@@ -72,8 +72,8 @@ SuggestionWidget.prototype.toggleSuggestion = function () {
  * Toggle the suggestion on enter keypress.
  * @param {Object} e
  */
-SuggestionWidget.prototype.onKeypress = function ( e ) {
-	if ( e.keyCode === 13 ) {
+SuggestionWidget.prototype.onKeydown = function ( e ) {
+	if ( e.key === 'Enter' ) {
 		this.toggleSuggestion();
 	}
 };

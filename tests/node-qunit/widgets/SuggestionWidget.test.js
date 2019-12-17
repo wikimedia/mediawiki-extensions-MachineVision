@@ -43,5 +43,5 @@ QUnit.test( 'Enter keypress on widget toggles the suggestion', function ( assert
 		assert.ok( true );
 	} );
 
-	widget.onKeypress( { keyCode: 13 } );
+	widget.onKeydown( { key: 'Enter' } );
 } );
