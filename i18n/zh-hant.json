@@ -34,6 +34,7 @@
 	"machinevision-confirm-tags-dialog-cancel-action": "取消",
 	"machinevision-confirm-tags-dialog-heading": "此圖片描述：",
 	"machinevision-success-message": "添加到圖片的標籤。",
+	"machinevision-success-message-with-warning": "標籤已成功添加到圖片，但有以下例外：",
 	"machinevision-publish-error-message": "發生了一些錯誤，而且標籤沒有發佈。請稍後再試。",
 	"machinevision-onboarding-dialog-heading": "標記圖片來讓它們能更容易被找到",
 	"machinevision-onboarding-dialog-text": "透過確認建議標籤，您可以協助讓圖片能更容易被搜尋到。標籤是由電腦做出的建議，需要經過人工驗證來確保準確度。",

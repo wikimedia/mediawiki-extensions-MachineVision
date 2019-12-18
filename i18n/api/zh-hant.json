@@ -21,6 +21,7 @@
 	"apierror-reviewimagelabels-invalidlabel": "檔案<kbd>$1</kbd>沒有<kbd>$2</kbd>標籤。",
 	"apierror-reviewimagelabels-invalidstate": "<kbd>$3</kbd>對於檔案<kbd>$1</kbd>的標籤<kbd>$2</kbd>不是有效操作。",
 	"apiwarn-reviewimagelabels-setlabelstate-failed": "儲存用於 <kbd>$2</kbd> 的標籤狀態 <kbd>$1</kbd> 失敗",
+	"apiwarn-reviewimagelabels-depicts-exists": "檔案$4的聲明'$1（$2）：$3'已存在",
 	"apihelp-query+imagelabels-summary": "顯示機器建議圖片標籤。",
 	"apihelp-query+imagelabels-param-state": "僅列出在這些檢閱狀態的標籤",
 	"apihelp-query+imagelabels-paramvalue-state-unreviewed": "尚未被檢閱的標籤。",

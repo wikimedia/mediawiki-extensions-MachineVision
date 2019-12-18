@@ -22,6 +22,7 @@
 	"apierror-reviewimagelabels-invalidlabel": "الملف <kbd>$1</kbd> ليست له تسمية <kbd>$2</kbd>.",
 	"apierror-reviewimagelabels-invalidstate": "<kbd>$3</kbd> ليس إجراءً صالحا للتسمية <kbd>$2</kbd> للملف <kbd>$1</kbd>.",
 	"apiwarn-reviewimagelabels-setlabelstate-failed": "فشل في تخزين حالة التسمية <kbd>$1</kbd> للتسمية <kbd>$2</kbd>",
+	"apiwarn-reviewimagelabels-depicts-exists": "البيان '$1 ($2): $3' موجود بالفعل للملف $4",
 	"apihelp-query+imagelabels-summary": "إظهار تسميات الصور التي اقترحها الجهاز.",
 	"apihelp-query+imagelabels-param-state": "سرد التسميات في حالات المراجعة هذه فقط",
 	"apihelp-query+imagelabels-paramvalue-state-unreviewed": "التسميات التي لم تتم مراجعتها بعد.",

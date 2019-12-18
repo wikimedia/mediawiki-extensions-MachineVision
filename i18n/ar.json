@@ -35,6 +35,7 @@
 	"machinevision-confirm-tags-dialog-cancel-action": "إلغاء",
 	"machinevision-confirm-tags-dialog-heading": "هذه الصورة تصور:",
 	"machinevision-success-message": "تمت إضافة الوسوم إلى الصورة.",
+	"machinevision-success-message-with-warning": "إضافة الوسوم إلى الصورة مع الاستثناء(ات) التالية:",
 	"machinevision-publish-error-message": "حدث خطأ ما ولم يتم نشر الوسوم، الرجاء معاودة المحاولة في وقت لاحق.",
 	"machinevision-onboarding-dialog-heading": "وسم على الصور لتسهيل العثور عليها بواسطة الآخرين",
 	"machinevision-onboarding-dialog-text": "من خلال تأكيد الوسوم المقترحة، يمكنك المساعدة في تسهيل البحث عن الصور، يتم اقتراح الوسوم باستخدام الحاسوب، ولكن يلزم التحقق من صحتها من قبل البشر لضمان الدقة.",

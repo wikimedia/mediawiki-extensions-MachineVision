@@ -5,6 +5,8 @@
 			"Jlrb+"
 		]
 	},
+	"machinevision-success-message-with-warning": "S’han afegit etiquetes a les imatges, amb les excepcions següents:",
+	"machinevision-javascript-required": "El vostre navegador no admet aquesta funcionalitat.",
 	"right-imagelabel-test": "Suggeriments d'etiqueta d'imatge de prova",
 	"action-imagelabel-test": "suggeriments d'etiqueta d'imatge de prova",
 	"tag-computer-aided-tagging": "Etiquetatge assistit per ordinador",

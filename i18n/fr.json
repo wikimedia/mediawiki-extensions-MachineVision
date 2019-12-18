@@ -11,7 +11,7 @@
 			"Aaribaud"
 		]
 	},
-	"machinevision-desc": "S’interface avec des fournisseurs de service de vision machine interne et externe pour stocker et fournir les résultats.",
+	"machinevision-desc": "S’interface avec des fournisseurs de service de vision industrielle interne et externe pour stocker et fournir les résultats.",
 	"machinevision-machineaidedtagging": "Balises suggérées",
 	"machinevision-machineaidedtagging-intro": "Revoir les balises suggérées des [[c:Commons:Depicts|objets illustrés]] dans les images. Seules les balises confirmées par l’utilisateur sont ajoutées aux images. Pour plus d’information, consultez la [[c:Commons:Structured_data/Computer-aided_tagging|page de projet]] et  [[c:Commons_talk:Structured_data/Computer-aided_tagging|donnez votre avis]] sur comment rendre cet outil plus utile !",
 	"machinevision-machineaidedtagging-tabs-heading": "Images à revoir",
@@ -39,6 +39,7 @@
 	"machinevision-confirm-tags-dialog-cancel-action": "Annuler",
 	"machinevision-confirm-tags-dialog-heading": "Cette image représente :",
 	"machinevision-success-message": "Balises ajoutées à l’image.",
+	"machinevision-success-message-with-warning": "Balises ajoutées à l’image avec les exceptions suivantes :",
 	"machinevision-publish-error-message": "Une erreur est survenue et les étiquettes n’ont pas été publiées. Veuillez réessayer plus tard.",
 	"machinevision-onboarding-dialog-heading": "Baliser les images pour les rendre plus facile à trouver par d’autres",
 	"machinevision-onboarding-dialog-text": "En confirmant les balises suggérées, vous pouvez aider à rendre les images plus faciles à chercher. Les balises sont suggérées par l’ordinateur, mais doivent être validés par des humains pour garantir leur pertinence.",

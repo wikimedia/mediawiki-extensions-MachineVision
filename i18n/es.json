@@ -23,6 +23,7 @@
 	"machinevision-confirm-tags-dialog-cancel-action": "Cancelar",
 	"machinevision-confirm-tags-dialog-heading": "Esta imagen muestra:",
 	"machinevision-success-message": "Se añadieron las etiquetas a la imagen.",
+	"machinevision-success-message-with-warning": "Se añadieron etiquetas a la imagen con las excepciones siguientes:",
 	"machinevision-onboarding-dialog-close-label": "Cerrar",
 	"right-imagelabel-test": "Sugerencias de etiquetas para imagenes de prueba",
 	"action-imagelabel-test": "sugerencias de etiquetas para imagenes de prueba",

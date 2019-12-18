@@ -24,6 +24,7 @@
 	"apierror-reviewimagelabels-invalidlabel": "Le fichier <kbd>$1</kbd> n’a pas de légende <kbd>$2</kbd>.",
 	"apierror-reviewimagelabels-invalidstate": "<kbd>$3</kbd> n’est pas une action valide pour la légende <kbd>$2</kbd> du fichier <kbd>$1</kbd>.",
 	"apiwarn-reviewimagelabels-setlabelstate-failed": "Échec lors du stockage de l’état <kbd>$1</kbd> pour la légende <kbd>$2</kbd>",
+	"apiwarn-reviewimagelabels-depicts-exists": "La déclaration '$1 ($2): $3' existe déjà pour le fichier $4",
 	"apihelp-query+imagelabels-summary": "Afficher les légendes d’image suggérées par la machine.",
 	"apihelp-query+imagelabels-param-state": "Lister uniquement les légendes dans ces états de relecture",
 	"apihelp-query+imagelabels-paramvalue-state-unreviewed": "Légendes qui n’ont pas encore été relues.",
