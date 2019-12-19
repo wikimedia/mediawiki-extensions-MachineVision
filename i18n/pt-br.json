@@ -32,6 +32,7 @@
 	"machinevision-confirm-tags-dialog-cancel-action": "Cancelar",
 	"machinevision-confirm-tags-dialog-heading": "Esta imagem mostra:",
 	"machinevision-success-message": "Etiquetas adicionadas à imagem.",
+	"machinevision-success-message-with-warning": "Etiquetas adicionadas à imagem com as seguintes exceções:",
 	"machinevision-publish-error-message": "Ocorreu um erro e as etiquetas não puderam ser publicadas. Por favor, tente novamente mais tarde.",
 	"machinevision-onboarding-dialog-heading": "Marque imagens para facilitar a localização de outras pessoas",
 	"machinevision-onboarding-dialog-text": "Ao confirmar as tags sugeridas, você pode ajudar a facilitar a pesquisa de imagens. As tags são sugeridas por computador, mas precisam ser validadas por humanos para garantir a precisão.",

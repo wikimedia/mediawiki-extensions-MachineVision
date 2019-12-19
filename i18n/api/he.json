@@ -21,6 +21,7 @@
 	"apierror-reviewimagelabels-invalidlabel": "לקובץ <kbd>$1</kbd> אין תווית <kbd>$2</kbd>.",
 	"apierror-reviewimagelabels-invalidstate": "<kbd>$3</kbd> היא לא פעולה תקינה עבור התווית <kbd>$2</kbd> של הקובץ <kbd>$1</kbd>.",
 	"apiwarn-reviewimagelabels-setlabelstate-failed": "אחסון מצב התווית <kbd>$1</kbd> של התווית <kbd>$2</kbd> נכשל",
+	"apiwarn-reviewimagelabels-depicts-exists": "הקביעה \"$1 ($2): <bdi>$3</bdi>\" כבר קיימת עבור הקובץ $4",
 	"apihelp-query+imagelabels-summary": "הצגת תוויות תמונה שהוצעו על־ידי מכונה.",
 	"apihelp-query+imagelabels-param-state": "להציג רק תוויות במצבי הסקירה האלה",
 	"apihelp-query+imagelabels-paramvalue-state-unreviewed": "תוויות שעדיין לא נסקרו",

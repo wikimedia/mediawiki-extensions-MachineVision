@@ -21,6 +21,7 @@
 	"apierror-reviewimagelabels-invalidlabel": "Fila <kbd>$1</kbd> har ingen etikett <kbd>$2</kbd>.",
 	"apierror-reviewimagelabels-invalidstate": "<kbd>$3</kbd> er ikke en gyldig handling for etiketten <kbd>$2</kbd> i fila <kbd>$1</kbd>.",
 	"apiwarn-reviewimagelabels-setlabelstate-failed": "Kunne ikke lagre etikettstatus <kbd>$1</kbd> for etiketten <kbd>$2</kbd>",
+	"apiwarn-reviewimagelabels-depicts-exists": "Påstanden «$1 ($2): $3» finnes allerede for fila $4",
 	"apihelp-query+imagelabels-summary": "Vis maskinforeslåtte bildeetiketter.",
 	"apihelp-query+imagelabels-param-state": "List bare opp etiketter med disse gjennomgangsstatusene",
 	"apihelp-query+imagelabels-paramvalue-state-unreviewed": "Etiketter som ikke har blitt gått gjennom ennå.",

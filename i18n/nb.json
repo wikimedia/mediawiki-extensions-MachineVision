@@ -32,6 +32,7 @@
 	"machinevision-confirm-tags-dialog-cancel-action": "Avbryt",
 	"machinevision-confirm-tags-dialog-heading": "Avbildet i dette bildet:",
 	"machinevision-success-message": "Tagger lagt til i bildet.",
+	"machinevision-success-message-with-warning": "Tagger lagt til bildet med følgende unntak:",
 	"machinevision-publish-error-message": "Noe gikk galt og taggene kunne ikke publiseres. Prøv igjen senere.",
 	"machinevision-onboarding-dialog-heading": "Tagg bilder for å gjøre dem enklere for andre å finne.",
 	"machinevision-onboarding-dialog-text": "Ved å bekrefte foreslåtte tagger kan du hjelpe til å gjøre det enklere å finne bilder. Tagger foreslås av en algoritme, men må godkjennes av et menneske for å sikre nøyaktigheten.",
