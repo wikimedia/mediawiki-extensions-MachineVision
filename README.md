@@ -52,7 +52,6 @@ $wgMachineVisionHandlers['google'] = [
 		'MachineVisionFetchGoogleCloudVisionAnnotationsJobFactory',
 		'MachineVisionRepository',
 		'MachineVisionRepoGroup',
-		'MachineVisionDepictsSetter',
 		'MachineVisionLabelResolver',
 	],
 ];
@@ -68,6 +67,22 @@ $wgMachineVisionGoogleSafeSearchLimits = [
 	'violent' => 4,
 	'racy' => 4,
 ];
+```
+
+Finally, to test submitting tags for an image locally, you will need to hardcode
+an entity ID in the `onFinalConfirm()` method of the `ImageWithSuggestionsWidget`
+component. Set it to an item that exists on your local instance, e.g.:
+	
+```js
+	new datamodel.Claim(
+		new datamodel.PropertyValueSnak(
+			depictsPropertyId,
+	-       new datamodel.EntityId( widget.suggestionData.wikidataId )
+	+       new datamodel.EntityId( 'Q1' )
+		),
+		null, // qualifiers
+		self.guidGenerator.newGuid()
+	)
 ```
 
 #### Google API Credentials

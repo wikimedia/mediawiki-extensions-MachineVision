@@ -21,7 +21,8 @@ var pathToWidget = '../../../resources/widgets/SuggestedTagsCardstack.js',
 			thumbUrl: 'https://example.com/thumbnails/Dog.jpg',
 			title: 'Such dog'
 		}
-	];
+	],
+	datamodel = require( 'wikibase.datamodel' );
 
 QUnit.module( 'SuggestedTagsCardstack', hooks );
 
