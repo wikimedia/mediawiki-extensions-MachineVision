@@ -21,18 +21,16 @@ class RandomWikidataIdHandler extends WikidataIdHandler {
 	/**
 	 * @param RandomWikidataIdClient $client
 	 * @param Repository $repository
-	 * @param WikidataDepictsSetter $depictsSetter
 	 * @param LabelResolver $labelResolver
 	 * @param string $apiUrlTemplate
 	 */
 	public function __construct(
 		RandomWikidataIdClient $client,
 		Repository $repository,
-		WikidataDepictsSetter $depictsSetter,
 		LabelResolver $labelResolver,
 		$apiUrlTemplate
 	) {
-		parent::__construct( $repository, $depictsSetter, $labelResolver );
+		parent::__construct( $repository, $labelResolver );
 		$this->client = $client;
 		$this->apiUrlTemplate = $apiUrlTemplate;
 	}

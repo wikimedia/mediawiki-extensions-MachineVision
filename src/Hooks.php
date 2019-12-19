@@ -183,10 +183,12 @@ class Hooks {
 		string $skin,
 		Config $conf
 	) {
-		global $wgMachineVisionTestersOnly, $wgMachineVisionShowUploadWizardCallToAction;
+		global $wgMachineVisionTestersOnly, $wgMachineVisionShowUploadWizardCallToAction,
+			   $wgMediaInfoProperties;
 		$vars['MachineVision'] = [
 			'testersOnly' => $wgMachineVisionTestersOnly,
 			'showComputerAidedTaggingCallToAction' => $wgMachineVisionShowUploadWizardCallToAction,
+			'depictsPropertyId' => $wgMediaInfoProperties['depicts'] ?? '',
 		];
 		return true;
 	}

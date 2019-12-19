@@ -56,18 +56,17 @@ class WikidataIdHandlerTest extends TestCase {
 			] );
 		/** @var Repository $repository */
 
-		$depictsSetter = $this->getMockBuilder( WikidataDepictsSetter::class )
-			->disableOriginalConstructor()
-			->getMock();
-		/** @var WikidataDepictsSetter $depictsSetter */
-
 		$labelResolver = $this->getMockBuilder( LabelResolver::class )
 			->disableOriginalConstructor()
 			->getMock();
 		/** @var LabelResolver $labelResolver */
 
-		$wikidataIdHandler = new RandomWikidataIdHandler( $client, $repository, $depictsSetter,
-			$labelResolver, $apiUrlTemplate );
+		$wikidataIdHandler = new RandomWikidataIdHandler(
+			$client,
+			$repository,
+			$labelResolver,
+			$apiUrlTemplate
+		);
 		$wikidataIdHandler->requestAnnotations( 'random',  $file );
 	}
 
