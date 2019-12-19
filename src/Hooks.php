@@ -183,10 +183,12 @@ class Hooks {
 		string $skin,
 		Config $conf
 	) {
-		global $wgMachineVisionTestersOnly, $wgMachineVisionShowUploadWizardCallToAction;
+		global $wgMachineVisionTestersOnly, $wgMachineVisionShowUploadWizardCallToAction,
+			   $wgMediaInfoProperties;
 		$vars['MachineVision'] = [
 			'testersOnly' => $wgMachineVisionTestersOnly,
 			'showComputerAidedTaggingCallToAction' => $wgMachineVisionShowUploadWizardCallToAction,
+			'depictsPropertyId' => $wgMediaInfoProperties['depicts'] ?? '',
 		];
 		return true;
 	}
@@ -356,6 +358,18 @@ class Hooks {
 		if ( $event->getType() === 'machinevision-suggestions-ready' ) {
 			$bundleString = 'machinevision';
 		}
+
+		return true;
+	}
+
+	/**
+	 * @param array &$allowedTags
+	 * @param array $tags
+	 * @param User|null $user
+	 * @return bool
+	 */
+	public static function onChangeTagsAllowedAdd( array &$allowedTags, array $tags, $user ) {
+		$allowedTags[] = Util::getDepictsTag();
 
 		return true;
 	}

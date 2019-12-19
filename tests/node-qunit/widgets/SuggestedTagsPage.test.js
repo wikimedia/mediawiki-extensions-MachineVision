@@ -1,7 +1,8 @@
 var pathToWidget = '../../../resources/widgets/SuggestedTagsPage.js',
 	hooks = require( '../support/hooks.js' ),
 	sinon = require( 'sinon' ),
-	sandbox;
+	sandbox,
+	datamodel = require( 'wikibase.datamodel' );
 
 QUnit.module( 'SuggestedTagsPage', hooks );
 
