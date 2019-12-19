@@ -13,6 +13,9 @@
 		"grunt-stylelint": "0.13.0",
 		"oojs": "3.0.0",
 		"oojs-ui": "0.35.1",
-		"stylelint-config-wikimedia": "0.8.0"
+		"stylelint": "11.0.0",
+		"stylelint-config-wikimedia": "0.7.0",
+		"wikibase-data-model": "6.1.0",
+		"wikibase-serialization": "5.0.0"
 	}
 }
