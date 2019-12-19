@@ -9,7 +9,6 @@ use MediaWiki\Storage\NameTableStore;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
 use UnexpectedValueException;
-use Wikimedia\Rdbms\DBQueryError;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
@@ -65,6 +64,10 @@ class Repository implements LoggerAwareInterface {
 	}
 
 	/**
+	 * Insert a new set of label suggestions, and metadata about them, into the DB tables.
+	 * Tables have uniqueness constraints enforced, and duplicate key errors are ignored
+	 * since it is expected for the job queue to perform a job more than once in some cases (in
+	 * case of service restart, for example).
 	 * @param string $sha1 Image SHA1
 	 * @param string $providerName Provider name
 	 * @param int $uploaderId the uploader's local user ID
@@ -83,76 +86,72 @@ class Repository implements LoggerAwareInterface {
 		$timestamp = $this->dbw->timestamp();
 		$labelsCount = 0;
 
-		// Catch and log a warning while we investigate the duplicate entries issue and related
-		// job retries (T240518)
-		try {
+		$this->dbw->insert(
+			'machine_vision_image',
+			[
+				'mvi_sha1' => $sha1,
+				// why does 'RAND()' not work here?
+				'mvi_rand' => $this->getRandomFloat(),
+			],
+			__METHOD__,
+			[ 'IGNORE' ]
+		);
+
+		$mviRowId = $this->dbw->insertId() ?: $this->dbw->selectField(
+			'machine_vision_image',
+			'mvi_id',
+			[ 'mvi_sha1' => $sha1 ],
+			__METHOD__
+		);
+
+		foreach ( $suggestions as $suggestion ) {
+			$wikidataId = $suggestion->getWikidataId();
+			$confidence = $suggestion->getConfidence();
+
 			$this->dbw->insert(
-				'machine_vision_image',
+				'machine_vision_label',
 				[
-					'mvi_sha1' => $sha1,
-					// why does 'RAND()' not work here?
-					'mvi_rand' => $this->getRandomFloat(),
+					'mvl_mvi_id' => $mviRowId,
+					'mvl_wikidata_id' => $wikidataId,
+					'mvl_review' => $initialState,
+					'mvl_uploader_id' => $uploaderId,
 				],
-				__METHOD__
+				__METHOD__,
+				[ 'IGNORE' ]
 			);
 
-			$mviRowId = $this->dbw->insertId() ?: $this->dbw->selectField(
-				'machine_vision_image',
-				'mvi_id',
-				[ 'mvi_sha1' => $sha1 ],
-				__METHOD__
-			);
-
-			foreach ( $suggestions as $suggestion ) {
-				$wikidataId = $suggestion->getWikidataId();
-				$confidence = $suggestion->getConfidence();
-
-				$this->dbw->insert(
+			$mvlId = $this->dbw->insertId();
+			if ( $mvlId ) {
+				// new label inserted; increment $labelsCount
+				$labelsCount++;
+			} else {
+				// suggested label already exists in DB and insert failed;
+				// re-query for row ID
+				$mvlId = $this->dbw->selectField(
 					'machine_vision_label',
+					'mvl_id',
 					[
 						'mvl_mvi_id' => $mviRowId,
 						'mvl_wikidata_id' => $wikidataId,
-						'mvl_review' => $initialState,
-						'mvl_uploader_id' => $uploaderId,
-					],
-					__METHOD__
-				);
-
-				$mvlId = $this->dbw->insertId();
-				if ( $mvlId ) {
-					// new label inserted; increment $labelsCount
-					$labelsCount++;
-				} else {
-					// suggested label already exists in DB and insert failed;
-					// re-query for row ID
-					$mvlId = $this->dbw->selectField(
-						'machine_vision_label',
-						'mvl_id',
-						[
-							'mvl_mvi_id' => $mviRowId,
-							'mvl_wikidata_id' => $wikidataId,
-						],
-						__METHOD__
-					);
-				}
-
-				$this->dbw->insert(
-					'machine_vision_suggestion',
-					[
-						'mvs_mvl_id' => $mvlId,
-						'mvs_provider_id' => $providerId,
-						'mvs_timestamp' => $timestamp,
-						'mvs_confidence' => $confidence,
 					],
 					__METHOD__
 				);
 			}
 
-			return $labelsCount;
-		} catch ( DBQueryError $e ) {
-			$this->logger->warning( $e->getMessage() );
-			return 0;
+			$this->dbw->insert(
+				'machine_vision_suggestion',
+				[
+					'mvs_mvl_id' => $mvlId,
+					'mvs_provider_id' => $providerId,
+					'mvs_timestamp' => $timestamp,
+					'mvs_confidence' => $confidence,
+				],
+				__METHOD__,
+				[ 'IGNORE' ]
+			);
 		}
+
+		return $labelsCount;
 	}
 
 	/**
@@ -367,7 +366,8 @@ class Repository implements LoggerAwareInterface {
 
 	/**
 	 * Insert SafeSearch annotations. For meanings associated with the integer values, see
-	 *  Google\Cloud\Vision\V1\Likelihood.
+	 * Google\Cloud\Vision\V1\Likelihood. Duplicate attempts to add the same data are expected,
+	 * and duplicate key errors are ignored.
 	 * @param string $sha1 image SHA1 digest
 	 * @param int $adult
 	 * @param int $spoof
@@ -378,22 +378,19 @@ class Repository implements LoggerAwareInterface {
 	public function insertSafeSearchAnnotations( $sha1, $adult, $spoof, $medical, $violence,
 		$racy ) {
 		$mviId = $this->getMviIdForSha1( $sha1 );
-		try {
-			$this->dbw->insert(
-				'machine_vision_safe_search',
-				[
-					'mvss_mvi_id' => $mviId,
-					'mvss_adult' => $adult,
-					'mvss_spoof' => $spoof,
-					'mvss_medical' => $medical,
-					'mvss_violence' => $violence,
-					'mvss_racy' => $racy,
-				],
-				__METHOD__
-			);
-		} catch ( DBQueryError $e ) {
-			$this->logger->warning( $e->getMessage() );
-		}
+		$this->dbw->insert(
+			'machine_vision_safe_search',
+			[
+				'mvss_mvi_id' => $mviId,
+				'mvss_adult' => $adult,
+				'mvss_spoof' => $spoof,
+				'mvss_medical' => $medical,
+				'mvss_violence' => $violence,
+				'mvss_racy' => $racy,
+			],
+			__METHOD__,
+			[ 'IGNORE' ]
+		);
 	}
 
 	/**
