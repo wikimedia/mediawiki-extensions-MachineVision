@@ -52,7 +52,8 @@
 		"BeforeCreateEchoEvent": "MediaWiki\\Extension\\MachineVision\\Hooks::onBeforeCreateEchoEvent",
 		"EchoGetBundleRules": "MediaWiki\\Extension\\MachineVision\\Hooks::onEchoGetBundleRules",
 		"ResourceLoaderGetConfigVars": "MediaWiki\\Extension\\MachineVision\\Hooks::onResourceLoaderGetConfigVars",
-		"BaseTemplateToolbox": "MediaWiki\\Extension\\MachineVision\\Hooks::onBaseTemplateToolbox"
+		"BaseTemplateToolbox": "MediaWiki\\Extension\\MachineVision\\Hooks::onBaseTemplateToolbox",
+		"ChangeTagsAllowedAdd": "MediaWiki\\Extension\\MachineVision\\Hooks::onChangeTagsAllowedAdd"
 	},
 	"APIModules": {
 		"reviewimagelabels": {
@@ -242,7 +243,10 @@
 				"oojs-ui-widgets",
 				"oojs-ui-windows",
 				"mediawiki.template.mustache+dom",
-				"wikibase.api.RepoApi"
+				"wikibase.api.RepoApi",
+				"wikibase.datamodel",
+				"wikibase.serialization",
+				"wikibase.utilities.ClaimGuidGenerator"
 			],
 			"templates": [
 				"widgets/ConfirmTagsDialogContent.mustache+dom",
