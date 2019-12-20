@@ -17,7 +17,7 @@ stream_wrapper_restore( 'file' );
 $basePath = getenv( 'MW_INSTALL_PATH' );
 if ( $basePath ) {
 	if ( !is_dir( $basePath )
-		|| strpos( $basePath, '.' ) !== false
+		|| strpos( $basePath, '..' ) !== false
 		|| strpos( $basePath, '~' ) !== false
 	) {
 		throw new MWException( "Bad MediaWiki install path: $basePath" );
