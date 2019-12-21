@@ -51,7 +51,7 @@ class FetchGoogleCloudVisionAnnotationsJobFactory {
 			'provider' => $provider,
 		];
 		if ( $this->delay ) {
-			$params['jobReleaseTimestamp'] = wfTimestamp() + $this->delay;
+			$params['jobReleaseTimestamp'] = (int)wfTimestamp() + $this->delay;
 		}
 		return new FetchGoogleCloudVisionAnnotationsJob(
 			'fetchGoogleCloudVisionAnnotations',

@@ -145,7 +145,7 @@ class LabelResolver implements LoggerAwareInterface {
 	 * Return the best available label according to the provided language fallback chain.
 	 * @param LanguageFallbackChain $languageFallbackChain
 	 * @param string[] $labels
-	 * @return string
+	 * @return string|null
 	 * @suppress PhanUndeclaredTypeParameter,PhanUndeclaredClassMethod
 	 */
 	private function getLabelByLanguageFallbackChain( LanguageFallbackChain $languageFallbackChain,
