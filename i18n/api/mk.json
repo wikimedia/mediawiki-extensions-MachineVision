@@ -22,6 +22,7 @@
 	"apierror-reviewimagelabels-invalidlabel": "Податотеката <kbd>$1</kbd> нема натпис <kbd>$2</kbd>.",
 	"apierror-reviewimagelabels-invalidstate": "<kbd>$3</kbd> не претставува важечко дејство за натписот <kbd>$2</kbd> на податотеката <kbd>$1</kbd>.",
 	"apiwarn-reviewimagelabels-setlabelstate-failed": "Не успеав да ја складирам состојбата <kbd>$1</kbd> на натписот <kbd>$2</kbd>",
+	"apiwarn-reviewimagelabels-depicts-exists": "Исказот „$1 ($2): $3“ веќе постои за податотека $4",
 	"apihelp-query+imagelabels-summary": "Прикажувај машински предложени натписи на слики",
 	"apihelp-query+imagelabels-param-state": "Испишувај ги само натписите во следниве состојби на проверка",
 	"apihelp-query+imagelabels-paramvalue-state-unreviewed": "Натписите кои сè уште не се проверени.",
