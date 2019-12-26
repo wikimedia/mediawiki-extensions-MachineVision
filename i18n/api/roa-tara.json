@@ -21,6 +21,7 @@
 	"apierror-reviewimagelabels-invalidlabel": "File <kbd>$1</kbd> non ge tène <kbd>$2</kbd> 'n'etichette.",
 	"apierror-reviewimagelabels-invalidstate": "<kbd>$3</kbd> non g'è 'n'azione valide pe l'etichette <kbd>$2</kbd> d'u file <kbd>$1</kbd>.",
 	"apiwarn-reviewimagelabels-setlabelstate-failed": "Non ge se riesce a reggistrà 'u state de l'etichette <kbd>$1</kbd> pe l'etichette <kbd>$2</kbd>",
+	"apiwarn-reviewimagelabels-depicts-exists": "Dichiarazione '$1 ($2): $3' ggià esiste pu file $4",
 	"apihelp-query+imagelabels-summary": "'Ndruche le etichette de le immaggine de le maghene suggerite.",
 	"apihelp-query+imagelabels-param-state": "Sulamende l'elenghe de le etichette jndr'à ste state de revisione",
 	"apihelp-query+imagelabels-paramvalue-state-unreviewed": "Etichette ca non g'onne state reviste.",

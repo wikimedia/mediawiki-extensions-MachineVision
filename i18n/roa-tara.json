@@ -32,6 +32,7 @@
 	"machinevision-confirm-tags-dialog-cancel-action": "Annulle",
 	"machinevision-confirm-tags-dialog-heading": "Sta immaggine face 'ndrucà:",
 	"machinevision-success-message": "Tag aggiunde a l'immaggine.",
+	"machinevision-success-message-with-warning": "Le tag aggiunde a l'immaggine cu ste ecceziune:",
 	"machinevision-publish-error-message": "Quacche cose ha sciute stuèrte e le tag non ge ponne essere pubblecate. Pruève arrete cchiù tarde.",
 	"machinevision-onboarding-dialog-heading": "Tag de l'immaggine pe farle acchià cchiù facilmende a l'otre utinde",
 	"machinevision-onboarding-dialog-text": "Pe confermà le tag suggerite, puè dà 'na màne a acchià cchiù facilmende le immaggine. Le tag so suggerite da 'u combiuter, ma abbesognane de essere validate da le crestiane pe assecurà accuratezze.",
