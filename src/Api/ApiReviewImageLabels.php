@@ -180,6 +180,7 @@ class ApiReviewImageLabels extends ApiBase implements LoggerAwareInterface {
 				wfMessage( 'apierror-reviewimagelabels-invalidfile', $filename )
 			);
 		}
+		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable T240141
 		$file = $this->repoGroup->getLocalRepo()->findFile( $title );
 		if ( !$file ) {
 			$this->dieWithError(
@@ -269,6 +270,7 @@ class ApiReviewImageLabels extends ApiBase implements LoggerAwareInterface {
 		}
 
 		// Limit the batch size to a reasonable maximum.
+		// @phan-suppress-next-line PhanTypeMismatchArgumentNullableInternal T240141
 		if ( count( $batch ) > ApiBase::LIMIT_BIG1 ) {
 			$msg = wfMessage( 'apierror-reviewimagelabels-batch-toomanyvalues',
 				ApiBase::LIMIT_BIG1 );
@@ -293,6 +295,7 @@ class ApiReviewImageLabels extends ApiBase implements LoggerAwareInterface {
 				}
 			} );
 		}
+		// @phan-suppress-next-line PhanTypeMismatchReturnNullable T240141
 		return $batch;
 	}
 
