@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Patsagorn Y."
+			"Patsagorn Y.",
+			"Nitisart Jungtrakungrat"
 		]
 	},
 	"machinevision-machineaidedtagging": "คาดเดาแท็ก",
@@ -45,7 +46,7 @@
 	"machinevision-javascript-required": "คุณลักษณะนี้ไม่พร้อมใช้งานในเบราว์เซอร์ของคุณ",
 	"right-imagelabel-review": "ตรวจสอบป้ายกำกับที่แนะนำ",
 	"action-imagelabel-review": "ตรวจสอบป้ายกำกับภาพที่แนะนำ",
-	"right-imagelabel-test": "ทดสอบป้ายกำกับภาพแนะนำ",
+	"right-imagelabel-test": "ทดสอบป้ายกำกับภาพที่แนะนำ",
 	"action-imagelabel-test": "ทดสอบป้ายกำกับภาพ",
 	"tag-computer-aided-tagging": "การติดแท็กโดยคอมพิวเตอร์",
 	"tag-computer-aided-tagging-description": "การแก้ไขสร้างด้วยเครื่องมือติดแท็กโดยคอมพิวเตอร์",
