@@ -17,7 +17,7 @@
 	"AutoloadNamespaces": {
 		"MediaWiki\\Extension\\MachineVision\\": "src/"
 	},
-	"AutoloadClasses": {
+	"TestAutoloadClasses": {
 		"MediaWiki\\Extension\\MachineVision\\MockHelper": "tests/helper/MockHelper.php"
 	},
 	"AvailableRights": [
