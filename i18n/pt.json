@@ -26,6 +26,7 @@
 	"machinevision-confirm-tags-dialog-cancel-action": "Cancelar",
 	"machinevision-onboarding-dialog-close-label": "Fechar",
 	"machinevision-no-uploads-cta-heading": "Não tem imagens para rever",
+	"machinevision-javascript-required": "Esta funcionalidade não é suportada no seu navegador da Web.",
 	"echo-category-title-machinevision": "Etiquetas sugeridas para revisão",
 	"echo-pref-tooltip-machinevision-suggestions-ready": "Notificar-me quando as minhas imagens tiverem sido processadas e as etiquetas sugeridas estiverem prontas para minha revisão."
 }
