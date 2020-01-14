@@ -3,9 +3,9 @@
 namespace MediaWiki\Extension\MachineVision\Handler;
 
 use MediaWiki\Extension\MachineVision\Client\RandomWikidataIdClient;
+use MediaWiki\Extension\MachineVision\LabelSuggestion;
 use MediaWiki\Extension\MachineVision\MockHelper;
 use MediaWiki\Extension\MachineVision\Repository;
-use MediaWiki\Extension\MachineVision\LabelSuggestion;
 use PHPUnit\Framework\TestCase;
 use User;
 

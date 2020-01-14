@@ -4,8 +4,8 @@ namespace MediaWiki\Extension\MachineVision\Handler;
 
 use LocalFile;
 use MediaWiki\Extension\MachineVision\Client\RandomWikidataIdClient;
-use MediaWiki\Extension\MachineVision\Repository;
 use MediaWiki\Extension\MachineVision\LabelSuggestion;
+use MediaWiki\Extension\MachineVision\Repository;
 use Throwable;
 
 // Legacy handler class for early-stage development and testing.

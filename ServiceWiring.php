@@ -5,9 +5,9 @@ use Diff\Differ\OrderedListDiffer;
 use MediaWiki\Extension\MachineVision\Client\GoogleCloudVisionClient;
 use MediaWiki\Extension\MachineVision\Client\GoogleOAuthClient;
 use MediaWiki\Extension\MachineVision\Client\RandomWikidataIdClient;
-use MediaWiki\Extension\MachineVision\Handler\WikidataDepictsSetter;
 use MediaWiki\Extension\MachineVision\Handler\LabelResolver;
 use MediaWiki\Extension\MachineVision\Handler\Registry;
+use MediaWiki\Extension\MachineVision\Handler\WikidataDepictsSetter;
 use MediaWiki\Extension\MachineVision\Job\FetchGoogleCloudVisionAnnotationsJobFactory;
 use MediaWiki\Extension\MachineVision\Repository;
 use MediaWiki\Extension\MachineVision\TitleFilter;
@@ -16,10 +16,10 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\NameTableStore;
 use Wikibase\ClaimSummaryBuilder;
-use Wikibase\Repo\Diff\ClaimDiffer;
-use Wikibase\Repo\WikibaseRepo;
 use Wikibase\LanguageFallbackChainFactory;
 use Wikibase\MediaInfo\Services\MediaInfoByLinkedTitleLookup;
+use Wikibase\Repo\Diff\ClaimDiffer;
+use Wikibase\Repo\WikibaseRepo;
 use Wikimedia\ObjectFactory;
 
 return [
