@@ -63,5 +63,8 @@
 	"echo-machinevision-suggestions-ready-notification-body": "Content for \"suggestions ready\" Echo notification. Parameters:\n* $1 - username, for GENDER support",
 	"echo-machinevision-suggestions-ready-notification-primary-link": "Label for the primary link of the \"suggestions ready\" Echo notification",
 	"echo-category-title-machinevision": "Category title for MachineVision notification preferences",
-	"echo-pref-tooltip-machinevision-suggestions-ready": "Tooltip for MachineVision notification preferences"
+	"echo-pref-tooltip-machinevision-suggestions-ready": "Tooltip for MachineVision notification preferences",
+	"group-machinevision-tester": "{{doc-group|machinevision-tester}}",
+	"group-machinevision-tester-member": "{{doc-group|machinevision-tester|member}}",
+	"grouppage-machinevision-tester": "{{doc-group|machinevision-testers|page}}"
 }
