@@ -13,7 +13,8 @@ var pathToWidget = '../../../resources/widgets/ImageWithSuggestionsWidget.js',
 		suggestions: suggestions,
 		thumbUrl: 'https://example.com/thumbnails/Cat.jpg',
 		title: 'Domestic shorthair cat with whiskers'
-	};
+	},
+	datamodel = require( 'wikibase.datamodel' );
 
 QUnit.module( 'ImageWithSuggestionsWidget', hooks );
 
