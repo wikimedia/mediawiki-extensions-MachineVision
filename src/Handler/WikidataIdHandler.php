@@ -5,10 +5,13 @@ namespace MediaWiki\Extension\MachineVision\Handler;
 use Html;
 use IContextSource;
 use LocalFile;
+use MediaWiki\Extension\MachineVision\Exception\MachineVisionDepictsExistsException;
+use MediaWiki\Extension\MachineVision\Exception\MachineVisionEntitySaveException;
 use MediaWiki\Extension\MachineVision\Repository;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\NullLogger;
 use Throwable;
+use User;
 
 abstract class WikidataIdHandler implements Handler {
 
@@ -17,15 +20,24 @@ abstract class WikidataIdHandler implements Handler {
 	/** @var Repository */
 	private $repository;
 
+	/** @var WikidataDepictsSetter */
+	private $depictsSetter;
+
 	/** @var LabelResolver */
 	private $labelResolver;
 
 	/**
 	 * @param Repository $repository
+	 * @param WikidataDepictsSetter $depictsSetter
 	 * @param LabelResolver $labelResolver
 	 */
-	public function __construct( Repository $repository, LabelResolver $labelResolver ) {
+	public function __construct(
+		Repository $repository,
+		WikidataDepictsSetter $depictsSetter,
+		LabelResolver $labelResolver
+	) {
 		$this->repository = $repository;
+		$this->depictsSetter = $depictsSetter;
 		$this->labelResolver = $labelResolver;
 
 		$this->setLogger( new NullLogger() );
@@ -71,6 +83,29 @@ abstract class WikidataIdHandler implements Handler {
 			$context->msg( 'machinevision-pageinfo-field-suggested-labels' )->escaped(),
 			$context->getLanguage()->commaList( $links ),
 		];
+	}
+
+	/**
+	 * @inheritDoc
+	 * @throws MachineVisionDepictsExistsException
+	 * @throws MachineVisionEntitySaveException
+	 */
+	public function handleLabelReview( User $user, LocalFile $file, $label, $token, $reviewState ) {
+		if ( $reviewState === Repository::REVIEW_ACCEPTED ) {
+			$this->handleLabelAccepted( $user, $file, $label, $token );
+		}
+	}
+
+	/**
+	 * @param User $user
+	 * @param LocalFile $file
+	 * @param $label
+	 * @param $token
+	 * @throws MachineVisionDepictsExistsException
+	 * @throws MachineVisionEntitySaveException
+	 */
+	private function handleLabelAccepted( User $user, LocalFile $file, $label, $token ) {
+		$this->depictsSetter->addDepicts( $user, $file, $label, $token );
 	}
 
 }

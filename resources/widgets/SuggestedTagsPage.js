@@ -60,7 +60,6 @@ function SuggestedTagsPage( config ) {
 
 				return new ImageData(
 					item.title,
-					item.pageid,
 					item.description_url,
 					item.thumb_url,
 					height,
@@ -165,7 +164,6 @@ SuggestedTagsPage.prototype.getItemsForQueryResponse = function ( response ) {
 	function getImageDataForQueryResponse( item ) {
 		return new ImageData(
 			item.title,
-			item.imageinfo[ 0 ].pageid,
 			item.imageinfo[ 0 ].descriptionurl,
 			item.imageinfo[ 0 ].thumburl,
 			item.imageinfo[ 0 ].thumbheight,
