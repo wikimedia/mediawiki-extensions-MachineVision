@@ -29,6 +29,7 @@ class GoogleCloudVisionHandler extends WikidataIdHandler {
 	 * @param FetchGoogleCloudVisionAnnotationsJobFactory $fetchAnnotationsJobFactory
 	 * @param Repository $repository
 	 * @param RepoGroup $repoGroup
+	 * @param WikidataDepictsSetter $depictsSetter
 	 * @param LabelResolver $labelResolver
 	 * @param int $maxRequestsPerMinute
 	 */
@@ -36,10 +37,11 @@ class GoogleCloudVisionHandler extends WikidataIdHandler {
 		FetchGoogleCloudVisionAnnotationsJobFactory $fetchAnnotationsJobFactory,
 		Repository $repository,
 		RepoGroup $repoGroup,
+		WikidataDepictsSetter $depictsSetter,
 		LabelResolver $labelResolver,
 		$maxRequestsPerMinute = 0
 	) {
-		parent::__construct( $repository, $labelResolver );
+		parent::__construct( $repository, $depictsSetter, $labelResolver );
 		$this->fetchAnnotationsJobFactory = $fetchAnnotationsJobFactory;
 		$this->repoGroup = $repoGroup;
 		$this->maxRequestsPerMinute = $maxRequestsPerMinute;

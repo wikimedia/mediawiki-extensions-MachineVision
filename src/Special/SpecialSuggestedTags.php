@@ -105,7 +105,6 @@ class SpecialSuggestedTags extends SpecialPage {
 
 			$result[] = [
 				'title' => $title->getPrefixedDBkey(),
-				'pageid' => $title->getArticleID(),
 				'description_url' => $file->getDescriptionUrl(),
 				'thumb_url' => $thumbUrl,
 				'height' => $file->getHeight(),
