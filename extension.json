@@ -242,10 +242,7 @@
 				"oojs-ui-widgets",
 				"oojs-ui-windows",
 				"mediawiki.template.mustache+dom",
-				"wikibase.api.RepoApi",
-				"wikibase.datamodel",
-				"wikibase.serialization",
-				"wikibase.utilities.ClaimGuidGenerator"
+				"wikibase.api.RepoApi"
 			],
 			"templates": [
 				"widgets/ConfirmTagsDialogContent.mustache+dom",

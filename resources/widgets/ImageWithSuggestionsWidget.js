@@ -4,9 +4,7 @@
 
 var TemplateRenderingDOMLessGroupWidget = require( './../base/TemplateRenderingDOMLessGroupWidget.js' ),
 	SuggestionWidget = require( './SuggestionWidget.js' ),
-	ConfirmTagsDialog = require( './ConfirmTagsDialog.js' ),
-	datamodel = require( 'wikibase.datamodel' ),
-	serialization = require( 'wikibase.serialization' );
+	ConfirmTagsDialog = require( './ConfirmTagsDialog.js' );
 
 /**
  * A card within the cardstack on the Suggested Tags page. Each card contains
@@ -33,8 +31,6 @@ function ImageWithSuggestionsWidget( config, queryType ) {
 	this.imageTitle = this.config.title.split( ':' ).pop();
 	this.filePageUrl = this.config.descriptionurl;
 	this.tab = queryType === 'user' ? 'personal' : 'popular';
-	this.mediaInfoId = 'M' + this.config.pageid;
-	this.guidGenerator = new wikibase.utilities.ClaimGuidGenerator( this.mediaInfoId );
 	this.imageLoaded = false;
 
 	this.titleLabel = new OO.ui.LabelWidget( {
@@ -206,34 +202,17 @@ ImageWithSuggestionsWidget.prototype.onPublish = function () {
 
 /**
  * Publish new tags and move to the next image.
+ * @return {jQuery.Promise}
  */
 ImageWithSuggestionsWidget.prototype.onFinalConfirm = function () {
 	var self = this,
-		depictsPropertyId = mw.config.get( 'MachineVision' ).depictsPropertyId,
-		reviewBatch = this.suggestionWidgets.map( function ( widget ) {
+		batch = this.suggestionWidgets.map( function ( widget ) {
 			return {
 				label: widget.suggestionData.wikidataId,
 				review: widget.confirmed ? 'accept' : 'reject'
 			};
-		} ),
-		depictsStatements = this.suggestionWidgets.filter( function ( widget ) {
-			return widget.confirmed;
-		} ).map( function ( widget ) {
-			return new datamodel.Statement(
-				new datamodel.Claim(
-					new datamodel.PropertyValueSnak(
-						depictsPropertyId,
-						new datamodel.EntityId( widget.suggestionData.wikidataId )
-					),
-					null, // qualifiers
-					self.guidGenerator.newGuid()
-				)
-			);
-		} ),
-		serializer = new serialization.StatementSerializer(),
-		promise = $.Deferred().resolve().promise();
+		} );
 
-	this.messages = [];
 	this.showSpinner = true;
 	this.publishButton.setDisabled( true );
 	this.resetButton.setDisabled( true );
@@ -245,30 +224,44 @@ ImageWithSuggestionsWidget.prototype.onFinalConfirm = function () {
 		approved_count: this.confirmedCount
 	} );
 
-	promise.then( function () {
-		return self.api.postWithToken( 'csrf', {
+	return this.api.postWithToken(
+		'csrf',
+		{
 			action: 'reviewimagelabels',
-			filename: self.imageTitle,
-			batch: JSON.stringify( reviewBatch )
-		} );
-	} );
-
-	// Send wbsetclaim calls one at a time to prevent edit conflicts
-	depictsStatements.forEach( function ( statement ) {
-		promise = promise.then( function () {
-			return self.api.postWithToken( 'csrf', {
-				action: 'wbsetclaim',
-				claim: JSON.stringify( serializer.serialize( statement ) ),
-				tags: 'computer-aided-tagging'
-			} );
-		} );
-	} );
-
-	$.when( promise )
-		// eslint-disable-next-line no-unused-vars
+			formatversion: 2,
+			filename: this.imageTitle,
+			batch: JSON.stringify( batch ),
+			errorformat: 'plaintext'
+		}
+	)
 		.done( function ( result ) {
+			var i, depictsWarning;
+
+			if ( result.warnings ) {
+				for ( i = 0; i < result.warnings.length; i++ ) {
+					if ( result.warnings[ i ].code === 'reviewimagelabels-depicts-exists' ) {
+						depictsWarning = result.warnings[ i ].text;
+						break;
+					}
+				}
+			}
+
+			if ( depictsWarning ) {
+				depictsWarning = depictsWarning.replace( /Q\d+/g, function ( wikidataId ) {
+					var text, label;
+					for ( i = 0; i < self.suggestionWidgets.length; i++ ) {
+						label = self.suggestionWidgets[ i ].suggestionData;
+						if ( label.wikidataId === wikidataId ) {
+							text = label.text;
+							break;
+						}
+					}
+					return text ? text + ' (' + wikidataId + ')' : wikidataId;
+				} );
+			}
+
 			// Show success message.
-			self.emit( 'tagsPublished' );
+			self.emit( 'tagsPublished', depictsWarning );
 		} )
 		// eslint-disable-next-line no-unused-vars
 		.fail( function ( errorCode, error ) {
@@ -276,7 +269,7 @@ ImageWithSuggestionsWidget.prototype.onFinalConfirm = function () {
 		} )
 		.always( function () {
 			// Move to next image.
-			self.onSkip( false );
+			self.onSkip();
 		} );
 };
 
