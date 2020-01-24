@@ -65,5 +65,8 @@
 	"echo-machinevision-suggestions-ready-notification-body": "Bonjour ! Les images que {{GENDER:$1|}}vous avez récemment téléversées sur Commons ont été analysées et des mots-clés sont suggérés. Des mots-clés précis permettent à tous les utilisateurs de Commons de trouver plus facilement {{GENDER:$1|}} vos images ; aussi, suivez le lien pour passer en revue {{GENDER:$1|}}les mots-clés suggérés. Seuls les mots-clés confirmés par des utilisateurs seront ajoutés aux données concernant l’image sur Commons. Pour plus d’informations au sujet de cet outil, vous pouvez visiter la page du projet d’ajout de mots-clés assisté par ordinateur.",
 	"echo-machinevision-suggestions-ready-notification-primary-link": "Lien principal pour la notification Echo lorsque des suggestions sont prêtes",
 	"echo-category-title-machinevision": "Mots-clés suggérés devant être passés en revue",
-	"echo-pref-tooltip-machinevision-suggestions-ready": "Me notifier quand mes images ont été traitées et que je peux passer en revue des mots-clés qui ont été suggérés."
+	"echo-pref-tooltip-machinevision-suggestions-ready": "Me notifier quand mes images ont été traitées et que je peux passer en revue des mots-clés qui ont été suggérés.",
+	"group-machinevision-tester": "Testeurs de vision machine",
+	"group-machinevision-tester-member": "{{GENDER:$1|testeur de vision machine}}",
+	"grouppage-machinevision-tester": "{{ns:project}}:Machine vision testers"
 }
