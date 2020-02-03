@@ -60,5 +60,8 @@
 	"echo-machinevision-suggestions-ready-notification-body": "Merhaba! Commons'a en son yüklenen {{GENDER:$1|siz}} resimleri önerilen etiketlerle işlendi ve incelenmeye hazır. Doğru etiketler, tüm Commons kullanıcılarının {{GENDER:$1|sizin}} resimlerinizi bulmasını kolaylaştırır, bu nedenle {{GENDER:$1|sizin}} önerilen etiketleri inceleme bağlantısını izleyin. Yalnızca kullanıcılar tarafından onaylanan etiketler, resmin Commons'taki verilerinin bir parçası olarak eklenir. Bu araç hakkında daha fazla bilgi için lütfen bilgisayar destekli etiketleme aracı proje sayfasını ziyaret edin.",
 	"echo-machinevision-suggestions-ready-notification-primary-link": "Öneriler için hazır bağlantı yankı bildirimi",
 	"echo-category-title-machinevision": "İncelenmesi için önerilen etiketler",
-	"echo-pref-tooltip-machinevision-suggestions-ready": "Resimlerim işlendiğinde ve önerilen etiketler incelemem için hazır olduğunda bana bildir."
+	"echo-pref-tooltip-machinevision-suggestions-ready": "Resimlerim işlendiğinde ve önerilen etiketler incelemem için hazır olduğunda bana bildir.",
+	"group-machinevision-tester": "Yapay görme test cihazları",
+	"group-machinevision-tester-member": "{{GENDER:$1|yapay görme test cihazı}}",
+	"grouppage-machinevision-tester": "{{ns:project}}:Yapay görme test cihazları"
 }

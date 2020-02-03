@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Joris Darlington Quarshie"
+		]
+	},
+	"group-machinevision-tester": "Masjienvisietoetsers",
+	"group-machinevision-tester-member": "{{GENDER:$1|masjienvisietoetser}}",
+	"grouppage-machinevision-tester": "{{ns:project}}:Masjienvisietoetsers"
+}
