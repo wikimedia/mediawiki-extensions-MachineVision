@@ -165,7 +165,7 @@ class Repository implements LoggerAwareInterface {
 			[ 'mvi_sha1', 'mvl_wikidata_id', 'mvl_review', 'mvl_reviewer_id' ],
 			[ 'mvi_sha1' => $sha1 ],
 			__METHOD__,
-			[],
+			[ 'ORDER BY' => 'mvl_id' ],
 			[ 'machine_vision_label' => [ 'INNER JOIN', [ 'mvi_id = mvl_mvi_id' ] ] ]
 		);
 
