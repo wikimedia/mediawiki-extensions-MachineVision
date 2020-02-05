@@ -5,12 +5,10 @@ namespace MediaWiki\Extension\MachineVision\Api;
 use ApiBase;
 use ApiMain;
 use IDBAccessObject;
-use MediaWiki\Extension\MachineVision\Exception\MachineVisionDepictsExistsException;
 use MediaWiki\Extension\MachineVision\Handler\LabelResolver;
 use MediaWiki\Extension\MachineVision\Handler\Registry;
 use MediaWiki\Extension\MachineVision\Repository;
 use MediaWiki\Extension\MachineVision\Services;
-use MediaWiki\Extension\MachineVision\Util;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\NameTableStore;
@@ -105,11 +103,7 @@ class ApiReviewImageLabels extends ApiBase implements LoggerAwareInterface {
 		$file = $this->getFile( $filename );
 		$sha1 = $file->getSha1();
 
-		$token = $params['token'];
-
-		$result = [
-			'success' => [],
-		];
+		$result = [ 'success' => [] ];
 
 		foreach ( $votes as $vote ) {
 			$label = $vote['label'];
@@ -126,7 +120,6 @@ class ApiReviewImageLabels extends ApiBase implements LoggerAwareInterface {
 			$success = $this->repository->setLabelState( $sha1, $label, $newState,
 				$userId, $ts );
 			if ( $success ) {
-				$this->propagateSetLabelSuccess( $file, $label, $token, $newState );
 				$result['success'][$label] = $review;
 			} else {
 				$this->addWarning(
@@ -226,26 +219,6 @@ class ApiReviewImageLabels extends ApiBase implements LoggerAwareInterface {
 		}
 		return !( $oldState === Repository::REVIEW_ACCEPTED &&
 			$newState === Repository::REVIEW_REJECTED );
-	}
-
-	private function propagateSetLabelSuccess( $file, $label, $token, $newState ) {
-		// @phan-suppress-next-line PhanTypeMismatchArgument
-		$handlers = $this->registry->getHandlers( $file );
-		foreach ( $handlers as $handler ) {
-			try {
-				// TODO: Handle possible MachineVisionEntitySaveException (T240616)
-				// @phan-suppress-next-line PhanTypeMismatchArgument
-				$handler->handleLabelReview( $this->getUser(), $file, $label, $token, $newState );
-			} catch ( MachineVisionDepictsExistsException $e ) {
-				$depictsPropertyId = Util::getMediaInfoPropertyId( 'depicts' );
-				$depictsPropertyLabel = $this->labelResolver->resolve( $this->getContext(),
-					[ $depictsPropertyId ] )[ $depictsPropertyId ];
-				$this->addWarning(
-					$this->getContext()->msg( 'apiwarn-reviewimagelabels-depicts-exists',
-						$depictsPropertyLabel, $depictsPropertyId, $label, $file->getName() )
-				);
-			}
-		}
 	}
 
 	/**
