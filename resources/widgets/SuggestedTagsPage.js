@@ -165,7 +165,7 @@ SuggestedTagsPage.prototype.getItemsForQueryResponse = function ( response ) {
 	function getImageDataForQueryResponse( item ) {
 		return new ImageData(
 			item.title,
-			item.imageinfo[ 0 ].pageid,
+			item.pageid,
 			item.imageinfo[ 0 ].descriptionurl,
 			item.imageinfo[ 0 ].thumburl,
 			item.imageinfo[ 0 ].thumbheight,
