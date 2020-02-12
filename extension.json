@@ -208,6 +208,19 @@
 				"desktop"
 			]
 		},
+		"ext.MachineVision.config": {
+			"packageFiles": [
+				"config/init.js",
+				{
+					"name": "config/config.json",
+					"callback": [ "MediaWiki\\Extension\\MachineVision\\Hooks", "getJSConfig" ]
+				}
+			],
+			"targets": [
+				"mobile",
+				"desktop"
+			]
+		},
 		"ext.MachineVision": {
 			"packageFiles": [
 				"init.js",
@@ -237,6 +250,7 @@
 				"widgets/UserMessage.less"
 			],
 			"dependencies": [
+				"ext.MachineVision.config",
 				"ext.eventLogging",
 				"oojs",
 				"oojs-ui-core",
@@ -264,7 +278,6 @@
 				"machinevision-machineaidedtagging-popular-tab",
 				"machinevision-machineaidedtagging-user-tab",
 				"machinevision-machineaidedtagging-license-information",
-				"machinevision-login-message",
 				"machinevision-autoconfirmed-message",
 				"machinevision-publish",
 				"machinevision-publish-title",

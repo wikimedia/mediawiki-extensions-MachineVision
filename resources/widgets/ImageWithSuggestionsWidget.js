@@ -6,7 +6,8 @@ var TemplateRenderingDOMLessGroupWidget = require( './../base/TemplateRenderingD
 	SuggestionWidget = require( './SuggestionWidget.js' ),
 	ConfirmTagsDialog = require( './ConfirmTagsDialog.js' ),
 	datamodel = require( 'wikibase.datamodel' ),
-	serialization = require( 'wikibase.serialization' );
+	serialization = require( 'wikibase.serialization' ),
+	mvConfig = require( 'ext.MachineVision.config' );
 
 /**
  * A card within the cardstack on the Suggested Tags page. Each card contains
@@ -209,7 +210,7 @@ ImageWithSuggestionsWidget.prototype.onPublish = function () {
  */
 ImageWithSuggestionsWidget.prototype.onFinalConfirm = function () {
 	var self = this,
-		depictsPropertyId = mw.config.get( 'MachineVision' ).depictsPropertyId,
+		depictsPropertyId = mvConfig.depictsPropertyId,
 		reviewBatch = this.suggestionWidgets.map( function ( widget ) {
 			return {
 				label: widget.suggestionData.wikidataId,

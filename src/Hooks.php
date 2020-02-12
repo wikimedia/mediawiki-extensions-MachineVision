@@ -5,7 +5,6 @@ namespace MediaWiki\Extension\MachineVision;
 use Article;
 use BaseTemplate;
 use ChangeTags;
-use Config;
 use Content;
 use DatabaseUpdater;
 use DeferredUpdates;
@@ -173,24 +172,30 @@ class Hooks {
 
 	/**
 	 * @param array &$vars
-	 * @param string $skin
-	 * @param Config $conf
 	 * @return bool true
 	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/ResourceLoaderGetConfigVars
 	 */
-	public static function onResourceLoaderGetConfigVars(
-		array &$vars,
-		string $skin,
-		Config $conf
-	) {
-		global $wgMachineVisionTestersOnly, $wgMachineVisionShowUploadWizardCallToAction,
-			   $wgMediaInfoProperties;
-		$vars['MachineVision'] = [
+	public static function onResourceLoaderGetConfigVars( array &$vars ) {
+		// @todo this temporarily adds MachineVision into config for all pages,
+		// until all `mw.config.get( 'MachineVision' )` callers have had a change to
+		// adopt the `ext.MachineVision.config` module
+		$vars['MachineVision'] = static::getJSConfig();
+		return true;
+	}
+
+	/**
+	 * @return array
+	 */
+	public static function getJSConfig() {
+		global $wgMachineVisionTestersOnly,
+			$wgMachineVisionShowUploadWizardCallToAction,
+			$wgMediaInfoProperties;
+
+		return [
 			'testersOnly' => $wgMachineVisionTestersOnly,
 			'showComputerAidedTaggingCallToAction' => $wgMachineVisionShowUploadWizardCallToAction,
 			'depictsPropertyId' => $wgMediaInfoProperties['depicts'] ?? '',
 		];
-		return true;
 	}
 
 	/**
