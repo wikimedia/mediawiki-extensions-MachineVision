@@ -1,0 +1,21 @@
+{
+	"@metadata": [],
+	"machinevision-desc": "Schnittstellen zu internen und externen Bildverarbeitungs-Dienstleistern sowie Speicherung und Bereitstellung von Ergebnissen.",
+	"machinevision-machineaidedtagging-popular-tab": "Beliebt",
+	"machinevision-machineaidedtagging-user-tab": "Persönliche Uploads",
+	"machinevision-publish": "Veröffentlichen",
+	"machinevision-more": "{{PLURAL:$1|Nächstes Bild|Nächste $1 Bilder}}",
+	"machinevision-more-title": "Zeige {{PLURAL:$1|das nächste Bild|die nächsten $1 Bilder}}?",
+	"machinevision-reset": "Zurücksetzen",
+	"machinevision-skip": "Überspringen",
+	"machinevision-skip-title": "Vorschläge für \"$1\" überspringen?",
+	"machinevision-personal-uploads-count": "Du hast $1 persönliche {{PLURAL:$1|Upload|Uploads}} zur Überprüfung.",
+	"machinevision-suggestion-confirm-title": "Bestätigen des Vorschlags \"$1\"?",
+	"machinevision-loading-message": "Lade Bilder ...",
+	"machinevision-failure-message": "Es tut uns leid, es ist etwas schief gelaufen. Bitte schaue später noch einmal vorbei oder [[c:Commons_talk:Structured_data/Computer-aided_tagging|kontaktiere uns]].",
+	"machinevision-confirm-tags-dialog-confirm-action": "OK",
+	"machinevision-confirm-tags-dialog-cancel-action": "Abbrechen",
+	"machinevision-confirm-tags-dialog-heading": "Dieses Bild zeigt:",
+	"machinevision-onboarding-dialog-close-label": "Schließen",
+	"machinevision-javascript-required": "Diese Funktion wird von deinem Webbrowser nicht unterstützt."
+}

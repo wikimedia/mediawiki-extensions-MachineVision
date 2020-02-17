@@ -1,11 +1,27 @@
 {
 	"@metadata": {
 		"authors": [
-			"Adithyak1997"
+			"Adithyak1997",
+			"Praveenp"
 		]
 	},
+	"machinevision-machineaidedtagging": "നിർദ്ദേശിക്കുന്ന റ്റാഗുകൾ",
+	"machinevision-machineaidedtagging-tabs-heading": "സംശോധനം ചെയ്യാനുള്ള ചിത്രങ്ങൾ",
+	"machinevision-machineaidedtagging-popular-tab": "ജനപ്രിയം",
+	"machinevision-machineaidedtagging-user-tab": "വ്യക്തിഗത അപ്‌ലോഡുകൾ",
+	"machinevision-machineaidedtagging-license-information": "റ്റാഗ് സംഭാവനകൾക്ക് സി.സി.0 ഉപയോഗാനുമതി – \"പ്രസിദ്ധീകരിക്കുക\" ഞെക്കുമ്പോൾ [[wmf:Terms_of_Use|ഉപയോഗനിബന്ധനകൾ]] താങ്കൾ അംഗീകരിക്കുന്നുണ്ട്, ഒപ്പം താങ്കളുടെ സംഭാവനകൾ [https://creativecommons.org/publicdomain/zero/1.0/ ക്രിയേറ്റീവ് കോമൺസ് CC0 ഉപയോഗാനുമതിയിൽ] ആണ് പ്രസിദ്ധീകരിക്കുന്നതെന്നും താങ്കൾ അംഗീകരിക്കുന്നുണ്ട്.",
 	"machinevision-publish": "പ്രസിദ്ധീകരിക്കുക",
+	"machinevision-more": "അടുത്ത {{PLURAL:$1|ഒരു ചിത്രം|$1 ചിത്രങ്ങൾ}}",
+	"machinevision-more-title": "അടുത്ത {{PLURAL:$1|ഒരു ചിത്രം|$1 ചിത്രങ്ങൾ}} കാണിക്കണോ?",
 	"machinevision-reset": "പുനഃക്രമീകരിക്കുക",
+	"machinevision-reset-title": "റ്റാഗുകൾ പുനഃസജ്ജീകരിക്കുക?",
 	"machinevision-skip": "മറികടക്കുക",
-	"machinevision-loading-message": "ശേഖരിക്കുന്നു..."
+	"machinevision-loading-message": "ചിത്രങ്ങൾ ശേഖരിക്കുന്നു...",
+	"machinevision-confirm-tags-dialog-title": "റ്റാഗുകൾ സ്ഥിരീകരിക്കുക",
+	"machinevision-confirm-tags-dialog-confirm-action": "ശരി",
+	"machinevision-confirm-tags-dialog-cancel-action": "റദ്ദാക്കുക",
+	"machinevision-confirm-tags-dialog-heading": "ഈ ചിത്രത്തിൽ ചിത്രീകരിച്ചിരിക്കുന്നത്:",
+	"machinevision-success-message": "ചിത്രത്തിൽ ചേർത്ത റ്റാഗുകൾ.",
+	"machinevision-onboarding-dialog-cta": "റ്റാഗ് ചേർക്കൽ തുടങ്ങുക",
+	"machinevision-onboarding-dialog-close-label": "അടയ്ക്കുക"
 }
