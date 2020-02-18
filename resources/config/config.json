@@ -1,0 +1,6 @@
+{
+	"README": "This file is a stub with example/dummy content (used in the test suite). Running code will have config.json populated by ResourceLoader, via MediaWiki\\Extension\\MachineVision\\Hooks::getJSConfig",
+	"testersOnly": false,
+	"showComputerAidedTaggingCallToAction": false,
+	"depictsPropertyId": "P180"
+}
