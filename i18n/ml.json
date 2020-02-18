@@ -11,11 +11,16 @@
 	"machinevision-machineaidedtagging-user-tab": "വ്യക്തിഗത അപ്‌ലോഡുകൾ",
 	"machinevision-machineaidedtagging-license-information": "റ്റാഗ് സംഭാവനകൾക്ക് സി.സി.0 ഉപയോഗാനുമതി – \"പ്രസിദ്ധീകരിക്കുക\" ഞെക്കുമ്പോൾ [[wmf:Terms_of_Use|ഉപയോഗനിബന്ധനകൾ]] താങ്കൾ അംഗീകരിക്കുന്നുണ്ട്, ഒപ്പം താങ്കളുടെ സംഭാവനകൾ [https://creativecommons.org/publicdomain/zero/1.0/ ക്രിയേറ്റീവ് കോമൺസ് CC0 ഉപയോഗാനുമതിയിൽ] ആണ് പ്രസിദ്ധീകരിക്കുന്നതെന്നും താങ്കൾ അംഗീകരിക്കുന്നുണ്ട്.",
 	"machinevision-publish": "പ്രസിദ്ധീകരിക്കുക",
+	"machinevision-publish-title": "റ്റാഗുകൾ പ്രസിദ്ധീകരിക്കണോ?",
 	"machinevision-more": "അടുത്ത {{PLURAL:$1|ഒരു ചിത്രം|$1 ചിത്രങ്ങൾ}}",
 	"machinevision-more-title": "അടുത്ത {{PLURAL:$1|ഒരു ചിത്രം|$1 ചിത്രങ്ങൾ}} കാണിക്കണോ?",
 	"machinevision-reset": "പുനഃക്രമീകരിക്കുക",
 	"machinevision-reset-title": "റ്റാഗുകൾ പുനഃസജ്ജീകരിക്കുക?",
 	"machinevision-skip": "മറികടക്കുക",
+	"machinevision-skip-title": "\"$1\" എന്നതിനുള്ള നിർദ്ദേശങ്ങൾ മറികടക്കണോ?",
+	"machinevision-personal-uploads-count": "താങ്കൾക്ക് {{PLURAL:$1|ഒരു വ്യക്തിഗത അപ്‌ലോഡ്|$1 വ്യക്തിഗത അപ്‌ലോഡുകൾ}} സംശോധനത്തിനായുണ്ട്.",
+	"machinevision-suggestion-confirm-title": "\"$1\" നിർദ്ദേശം സ്ഥിരീകരിക്കുന്നുണ്ടോ?",
+	"machinevision-suggestion-confirm-undo-title": "\"$1\" നിർദ്ദേശം സ്ഥിരീകരിച്ചത് തിരസ്കരിക്കുന്നോ?",
 	"machinevision-loading-message": "ചിത്രങ്ങൾ ശേഖരിക്കുന്നു...",
 	"machinevision-confirm-tags-dialog-title": "റ്റാഗുകൾ സ്ഥിരീകരിക്കുക",
 	"machinevision-confirm-tags-dialog-confirm-action": "ശരി",
@@ -23,5 +28,7 @@
 	"machinevision-confirm-tags-dialog-heading": "ഈ ചിത്രത്തിൽ ചിത്രീകരിച്ചിരിക്കുന്നത്:",
 	"machinevision-success-message": "ചിത്രത്തിൽ ചേർത്ത റ്റാഗുകൾ.",
 	"machinevision-onboarding-dialog-cta": "റ്റാഗ് ചേർക്കൽ തുടങ്ങുക",
-	"machinevision-onboarding-dialog-close-label": "അടയ്ക്കുക"
+	"machinevision-onboarding-dialog-close-label": "അടയ്ക്കുക",
+	"machinevision-cta-cta": "ജനപ്രിയ ചിത്രങ്ങളിൽ റ്റാഗ് ചേർക്കുക",
+	"machinevision-no-uploads-cta-heading": "താങ്കൾക്ക് സംശോധനത്തിനായി ഇപ്പോൾ ചിത്രങ്ങൾ ഒന്നുമില്ല"
 }
