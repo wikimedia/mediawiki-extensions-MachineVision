@@ -51,7 +51,6 @@
 		"ChangeTagsListActive": "MediaWiki\\Extension\\MachineVision\\Hooks::onRegisterTags",
 		"BeforeCreateEchoEvent": "MediaWiki\\Extension\\MachineVision\\Hooks::onBeforeCreateEchoEvent",
 		"EchoGetBundleRules": "MediaWiki\\Extension\\MachineVision\\Hooks::onEchoGetBundleRules",
-		"ResourceLoaderGetConfigVars": "MediaWiki\\Extension\\MachineVision\\Hooks::onResourceLoaderGetConfigVars",
 		"BaseTemplateToolbox": "MediaWiki\\Extension\\MachineVision\\Hooks::onBaseTemplateToolbox",
 		"ChangeTagsAllowedAdd": "MediaWiki\\Extension\\MachineVision\\Hooks::onChangeTagsAllowedAdd"
 	},
