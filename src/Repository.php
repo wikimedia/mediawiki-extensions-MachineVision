@@ -265,6 +265,12 @@ class Repository implements LoggerAwareInterface {
 	 * @return string[] Titles of file pages with associated unreviewed labels
 	 */
 	public function getTitlesWithUnreviewedLabels( $limit, $userId = null ) {
+		// Previously this query used the DISTINCT keyword to derive unique image SHA-1 digests
+		// from a query over the machine_vision_label table, in which they are duplicated, but
+		// that query was slow. Instead, we'll query for a multiple of the required values and
+		// deduplicate in PHP.
+		$multiplier = 10;
+
 		$rand = $this->getRandomFloat();
 		$fname = __METHOD__;
 
@@ -277,7 +283,7 @@ class Repository implements LoggerAwareInterface {
 			$conds = [ 'mvl_review' => self::REVIEW_UNREVIEWED ];
 		}
 
-		$select = function ( $ascending, $limit, $conds ) use ( $fname, $rand ) {
+		$select = function ( $ascending, $limit, $conds ) use ( $fname, $rand, $multiplier ) {
 			$whereClause = array_merge( $conds,
 				[ 'mvi_rand ' . ( $ascending ? '> ' : '< ' ) . strval( $rand ) ] );
 
@@ -287,9 +293,8 @@ class Repository implements LoggerAwareInterface {
 				$whereClause,
 				$fname,
 				[
-					'DISTINCT',
 					'ORDER BY' => 'mvi_rand ' . ( $ascending ? 'ASC' : 'DESC' ),
-					'LIMIT' => $limit,
+					'LIMIT' => $limit * $multiplier,
 				],
 				[ 'machine_vision_label' => [ 'INNER JOIN', [ 'mvi_id = mvl_mvi_id' ] ] ]
 			);
@@ -297,7 +302,7 @@ class Repository implements LoggerAwareInterface {
 
 		$sha1s = $select( true, $limit, $conds );
 
-		$shortfall = $limit - count( $sha1s );
+		$shortfall = $limit - count( array_unique( $sha1s ) );
 		if ( $shortfall > 0 ) {
 			$sha1s = array_merge( $sha1s, $select( false, $shortfall, $conds ) );
 		}
@@ -305,10 +310,11 @@ class Repository implements LoggerAwareInterface {
 		if ( !$sha1s ) {
 			return [];
 		}
+
 		return $this->dbr->selectFieldValues(
 			'image',
 			'img_name',
-			[ 'img_sha1' => $sha1s ],
+			[ 'img_sha1' => array_slice( array_unique( $sha1s ), 0, $limit ) ],
 			__METHOD__
 		);
 	}
