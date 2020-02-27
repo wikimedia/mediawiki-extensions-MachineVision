@@ -1,6 +1,5 @@
 {{#userIsAuthenticated}}
 	{{#userIsAutoconfirmed}}
-		{{{pageDescription}}}
 		<h2 class="wbmad-suggested-tags-page-tabs-heading">
 			{{{tabsHeading}}}
 		</h2>
