@@ -22,7 +22,7 @@
 	"machinevision-reset-title": "Poništiti oznake?",
 	"machinevision-skip": "Preskoči",
 	"machinevision-skip-title": "Preskočiti prijedloge za \"$1\"?",
-	"machinevision-personal-uploads-count": "Za pregled imate $1 {{PLURAL:$1|osobnu datoteku|osobne datoteke|osobnih datoteka}}.",
+	"machinevision-personal-uploads-count": "Imate $1 {{PLURAL:$1|osobnu datoteku|osobne datoteke|osobnih datoteka}} za pregled.",
 	"machinevision-suggestion-confirm-title": "Potvrditi prijedlog \"$1\"?",
 	"machinevision-suggestion-confirm-undo-title": "Ponišiti potvrdu prijedloga \"$1\"?",
 	"machinevision-loading-message": "Učitavanje slika...",
