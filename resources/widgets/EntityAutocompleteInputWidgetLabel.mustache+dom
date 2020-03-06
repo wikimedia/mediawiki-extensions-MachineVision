@@ -1,0 +1,17 @@
+<span class="wbmad-entity-input__autocomplete" data-url={{url}}>
+	<span class="wbmad-entity-input__autocomplete__label">
+		{{label}}
+	</span>
+
+	{{#aliases}}
+	<span class="wbmad-entity-input__autocomplete__aliases">
+		{{aliases}}
+	</span>
+	{{/aliases}}
+
+	{{#description}}
+	<span class="wbmad-entity-input__autocomplete__description">
+		{{description}}
+	</span>
+	{{/description}}
+</span>

@@ -6,28 +6,14 @@
  * @cfg {Array} suggestions Suggestion data
  */
 function SuggestionsWidget( config ) {
-	var option,
+	var self = this,
 		options,
 		parentConfig;
 
 	this.config = config || {};
 
 	options = this.config.suggestions.map( function ( suggestion ) {
-		option = new OO.ui.CheckboxMultioptionWidget( {
-			data: suggestion.wikidataId,
-			label: suggestion.text,
-			classes: [ 'wbmad-suggestions__suggestion' ]
-		} );
-
-		// Swap out classes so we can style things ourselves.
-		option.checkbox.$element
-			.removeClass( 'oo-ui-checkboxInputWidget' )
-			.addClass( 'wbmad-suggestions__suggestion__checkbox-widget' );
-		option.checkbox.checkIcon.$element
-			.removeClass( 'oo-ui-checkboxInputWidget-checkIcon oo-ui-image-invert' )
-			.addClass( 'wbmad-suggestions__suggestion__check-icon' );
-
-		return option;
+		return self.createOption( suggestion );
 	} );
 
 	parentConfig = {
@@ -39,6 +25,29 @@ function SuggestionsWidget( config ) {
 	this.connect( this, { select: 'onSelect' } );
 }
 OO.inheritClass( SuggestionsWidget, OO.ui.CheckboxMultiselectWidget );
+
+/**
+ * Create a new option widget.
+ * @param {Object} suggestion
+ * @return {OO.ui.CheckboxMultioptionWidget}
+ */
+SuggestionsWidget.prototype.createOption = function ( suggestion ) {
+	var option = new OO.ui.CheckboxMultioptionWidget( {
+		data: suggestion.wikidataId,
+		label: suggestion.text,
+		classes: [ 'wbmad-suggestions__suggestion' ]
+	} );
+
+	// Swap out classes so we can style things ourselves.
+	option.checkbox.$element
+		.removeClass( 'oo-ui-checkboxInputWidget' )
+		.addClass( 'wbmad-suggestions__suggestion__checkbox-widget' );
+	option.checkbox.checkIcon.$element
+		.removeClass( 'oo-ui-checkboxInputWidget-checkIcon oo-ui-image-invert' )
+		.addClass( 'wbmad-suggestions__suggestion__check-icon' );
+
+	return option;
+};
 
 /**
  * Handle user action of toggling a suggestion.
