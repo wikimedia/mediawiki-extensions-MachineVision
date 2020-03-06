@@ -12,7 +12,7 @@ use MediaWiki\Extension\MachineVision\Util;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\NameTableStore;
-use Wikibase\LanguageFallbackChainFactory;
+use Wikibase\Lib\LanguageFallbackChainFactory;
 use Wikibase\Repo\WikibaseRepo;
 use Wikimedia\ObjectFactory;
 
