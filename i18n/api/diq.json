@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Orbot707"
+		]
+	},
+	"apierror-reviewimagelabels-invalidfile": "<kbd>$1</kbd> ravêrde namey dosya niyo.",
+	"apierror-reviewimagelabels-invalidlabel": "Dosya de <kbd>$1</kbd>etiketê <kbd>$2</kbd> çıniyo ."
+}

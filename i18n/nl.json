@@ -32,5 +32,6 @@
 	"machinevision-onboarding-dialog-disclaimer": "Alleen tags die door u goedgekeurd worden worden toegevoegd aan afbeeldingen.",
 	"machinevision-onboarding-dialog-close-label": "Sluiten",
 	"machinevision-cta-text": "Bedankt voor het helpen om afbeeldingen voor iedereen beter vindbaar te maken - wat dacht je van nog meer taggen?",
-	"machinevision-cta-cta": "Label populaire afbeeldingen"
+	"machinevision-cta-cta": "Label populaire afbeeldingen",
+	"echo-category-title-machinevision": "Gesuggereerde tags ter beoordeling"
 }
