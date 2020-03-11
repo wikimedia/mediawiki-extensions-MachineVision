@@ -2,11 +2,12 @@
 	"@metadata": {
 		"authors": [
 			"Bugoslav",
-			"MaGa"
+			"MaGa",
+			"Neptune, the Mystic"
 		]
 	},
 	"machinevision-machineaidedtagging": "Predložene oznake",
-	"machinevision-machineaidedtagging-intro": "Pregledajte predložene oznake [[c:Commons:Depicts|prikazanih objekata]] na slikama. Samo će oznake koje su potvrdili suradnici biti dodane slikama. Za više informacija pogledajte [[c:Commons:Structured_data/Computer-aided_tagging|stranicu projekta]] i [[c:Commons_talk:Structured_data/Computer-aided_tagging|napišite povratnu informaciju]] kako da ovaj alat učinimo što korisnijim!",
+	"machinevision-machineaidedtagging-intro": "Pregledajte predložene oznake [[Project:Depicts|prikazanih objekata]] na slikama. Samo će oznake koje su potvrdili suradnici biti dodane slikama. Za više informacija pogledajte [[Project:Structured_data/Computer-aided_tagging|stranicu projekta]] i [[Project_talk:Structured_data/Computer-aided_tagging|napišite povratnu informaciju]] kako da ovaj alat učinimo što korisnijim!",
 	"machinevision-machineaidedtagging-tabs-heading": "Slike za pregled",
 	"machinevision-machineaidedtagging-popular-tab": "Popularne",
 	"machinevision-machineaidedtagging-user-tab": "Osobno postavljene",
@@ -26,7 +27,7 @@
 	"machinevision-suggestion-confirm-title": "Potvrditi prijedlog \"$1\"?",
 	"machinevision-suggestion-confirm-undo-title": "Ponišiti potvrdu prijedloga \"$1\"?",
 	"machinevision-loading-message": "Učitavanje slika...",
-	"machinevision-failure-message": "Žao nam je, nešto je pošlo po zlu. Molimo navratite poslije ili nas [[c:Commons_talk:Structured_data/Computer-aided_tagging|kontaktirajte]].",
+	"machinevision-failure-message": "Žao nam je, nešto je pošlo po zlu. Molimo navratite poslije ili [[Project_talk:Structured_data/Computer-aided_tagging|kontaktirajte s nama]].",
 	"machinevision-confirm-tags-dialog-title": "Potvrda oznaka",
 	"machinevision-confirm-tags-dialog-confirm-action": "U redu",
 	"machinevision-confirm-tags-dialog-cancel-action": "Odustani",
