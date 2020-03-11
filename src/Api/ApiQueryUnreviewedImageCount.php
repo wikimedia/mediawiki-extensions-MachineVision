@@ -69,12 +69,4 @@ class ApiQueryUnreviewedImageCount extends ApiQueryBase {
 		];
 	}
 
-	/**
-	 * @inheritDoc
-	 * @return bool
-	 */
-	public function isInternal() {
-		return true;
-	}
-
 }

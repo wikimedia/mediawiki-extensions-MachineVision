@@ -351,4 +351,10 @@ class ApiReviewImageLabels extends ApiBase implements LoggerAwareInterface {
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/Extension:MachineVision#API';
 	}
+
+	/** @inheritDoc */
+	public function isInternal() {
+		return true;
+	}
+
 }
