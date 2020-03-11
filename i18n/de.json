@@ -12,7 +12,7 @@
 	"machinevision-personal-uploads-count": "Du hast $1 persönliche {{PLURAL:$1|Upload|Uploads}} zur Überprüfung.",
 	"machinevision-suggestion-confirm-title": "Bestätigen des Vorschlags \"$1\"?",
 	"machinevision-loading-message": "Lade Bilder ...",
-	"machinevision-failure-message": "Es tut uns leid, es ist etwas schief gelaufen. Bitte schaue später noch einmal vorbei oder [[c:Commons_talk:Structured_data/Computer-aided_tagging|kontaktiere uns]].",
+	"machinevision-failure-message": "Es tut uns leid, es ist etwas schief gelaufen. Bitte schaue später noch einmal vorbei oder [[Project_talk:Structured_data/Computer-aided_tagging|kontaktiere uns]].",
 	"machinevision-confirm-tags-dialog-confirm-action": "OK",
 	"machinevision-confirm-tags-dialog-cancel-action": "Abbrechen",
 	"machinevision-confirm-tags-dialog-heading": "Dieses Bild zeigt:",

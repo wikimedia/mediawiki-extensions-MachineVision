@@ -8,12 +8,13 @@
 			"Verdy p",
 			"Pols12",
 			"Vega",
-			"Aaribaud"
+			"Aaribaud",
+			"Eneelk"
 		]
 	},
 	"machinevision-desc": "S’interface avec des fournisseurs de service de vision industrielle interne et externe pour stocker et fournir les résultats.",
 	"machinevision-machineaidedtagging": "Mots-clés suggérés",
-	"machinevision-machineaidedtagging-intro": "Examiner les mots-clés suggérés des [[c:Commons:Depicts|objets illustrés]] dans les images. Seuls les mots-clés confirmés par un utilisateur sont ajoutés aux images. Pour plus d’information, consultez la [[c:Commons:Structured_data/Computer-aided_tagging|page du projet]] et [[c:Commons_talk:Structured_data/Computer-aided_tagging|donnez votre avis]] sur comment rendre cet outil plus utile !",
+	"machinevision-machineaidedtagging-intro": "Examiner les mots-clés suggérés des [[Project:Depicts|objets illustrés]] dans les images. Seuls les mots-clés confirmés par un utilisateur sont ajoutés aux images. Pour plus d’information, consultez la [[Project:Structured_data/Computer-aided_tagging|page du projet]] et [[Project_talk:Structured_data/Computer-aided_tagging|donnez votre avis]] sur comment rendre cet outil plus utile !",
 	"machinevision-machineaidedtagging-tabs-heading": "Images à revoir",
 	"machinevision-machineaidedtagging-popular-tab": "Populaire",
 	"machinevision-machineaidedtagging-user-tab": "Téléversements personnels",
@@ -33,7 +34,7 @@
 	"machinevision-suggestion-confirm-title": "Confirmer la suggestion « $1 » ?",
 	"machinevision-suggestion-confirm-undo-title": "Annuler la confirmation de la suggestion « $1 » ?",
 	"machinevision-loading-message": "Chargement des images...",
-	"machinevision-failure-message": "Désolé, une erreur s’est produite. Veuillez réessayer ultérieurement ou [[c:Commons_talk:Structured_data/Computer-aided_tagging|nous contacter]].",
+	"machinevision-failure-message": "Désolé, une erreur s’est produite. Veuillez réessayer ultérieurement ou [[Project_talk:Structured_data/Computer-aided_tagging|nous contacter]].",
 	"machinevision-confirm-tags-dialog-title": "Confirmer les mots-clés",
 	"machinevision-confirm-tags-dialog-confirm-action": "Valider",
 	"machinevision-confirm-tags-dialog-cancel-action": "Annuler",
