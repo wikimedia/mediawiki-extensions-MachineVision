@@ -86,6 +86,7 @@ function SuggestedTagsPage( config ) {
 	}
 
 	this.render();
+	$( document.body ).addClass( 'wbmad-ui-initialized' );
 }
 
 OO.inheritClass(
@@ -99,7 +100,6 @@ SuggestedTagsPage.prototype.render = function () {
 		userIsAutoconfirmed: this.userIsAutoconfirmed,
 		loginMessage: $( '<p>' ).append( mw.config.get( 'wgMVSuggestedTagsLoginMessage' ) ),
 		autoconfirmedMessage: $( '<p>' ).msg( 'machinevision-autoconfirmed-message' ),
-		pageDescription: $( '<p>' ).msg( 'machinevision-machineaidedtagging-intro' ),
 		tabsHeading: mw.message( 'machinevision-machineaidedtagging-tabs-heading' ).parse(),
 		tabs: this.tabs || null,
 		licenseInfo: $( '<p>' ).msg( 'machinevision-machineaidedtagging-license-information' )

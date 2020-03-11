@@ -35,9 +35,24 @@ class SpecialSuggestedTags extends SpecialPage {
 		$this->checkPermissions();
 		$this->setHeaders();
 
-		// no-JS fallback
 		$out = $this->getOutput();
-		$out->addHTML( '<div class="machinevision-client-nojs">' );
+
+		// Page intro.
+		$out->addHTML(
+			'<div class="wbmad-intro"><p>' .
+			$this->msg( 'machinevision-machineaidedtagging-intro' )->parse() .
+			'</p></div>'
+		);
+
+		// Placeholder element, to be removed once UI finishes loading.
+		$user = $this->getUser();
+		$placeholder = $user->isAnon() ?
+			'<div class="wbmad-placeholder wbmad-placeholder-anonymous"></div>' :
+			$this->getPlaceholderMarkup();
+		$out->addHTML( $placeholder );
+
+		// no-JS fallback
+		$out->addHTML( '<div class="wbmad-client-nojs">' );
 		$out->addHTML( '<p class="warningbox">' .
 			$this->msg( 'machinevision-javascript-required' )->parse() . '</p>' );
 		$out->addHTML( '</div>' );
@@ -49,6 +64,8 @@ class SpecialSuggestedTags extends SpecialPage {
 		}
 
 		// Generate login message with link with returnto URL query parameter.
+		// Params aren't supported in the JS version of the messages API so we
+		// have parse it here then pass it to the JS.
 		$loginMessage = wfMessage( 'machinevision-login-message' )->parse();
 		$this->getOutput()->addJsConfigVars( 'wgMVSuggestedTagsLoginMessage', $loginMessage );
 
@@ -58,6 +75,39 @@ class SpecialSuggestedTags extends SpecialPage {
 	/** @inheritDoc */
 	public function getDescription() {
 		return $this->msg( 'machinevision-machineaidedtagging' )->parse();
+	}
+
+	/**
+	 * Return markup for content placeholder to be shown during page load.
+	 *
+	 * @return string
+	 */
+	private function getPlaceholderMarkup() {
+		return <<<'EOT'
+<div class="wbmad-placeholder">
+	<div class="wbmad-placeholder__heading"></div>
+	<div class="wbmad-placeholder__tabs-wrapper">
+		<div class="wbmad-placeholder__tabs"></div>
+	</div>
+	<div class="wbmad-placeholder__cardstack">
+		<div class="wbmad-placeholder__cardstack-image">
+			<div class="wbmad-placeholder__spinner">
+				<div class="wbmad-placeholder__spinner-bounce"></div>
+			</div>
+		</div>
+		<div class="wbmad-placeholder__cardstack-tags">
+			<div class="wbmad-placeholder__cardstack-heading"></div>
+			<div class="wbmad-placeholder__cardstack-tag-list">
+				<div class="wbmad-placeholder__cardstack-tag"></div>
+				<div class="wbmad-placeholder__cardstack-tag"></div>
+				<div class="wbmad-placeholder__cardstack-tag"></div>
+				<div class="wbmad-placeholder__cardstack-tag"></div>
+			</div>
+		</div>
+	</div>
+	<div class="wbmad-placeholder__license"></div>
+</div>
+EOT;
 	}
 
 	/**
