@@ -9,5 +9,6 @@
 	"machinevision-reset": "Reinitialisar",
 	"machinevision-skip": "Saltar",
 	"machinevision-skip-title": "Saltar suggestiones pro \"$1\"?",
-	"machinevision-loading-message": "Cargamento de imagines..."
+	"machinevision-loading-message": "Cargamento de imagines...",
+	"machinevision-failure-message": "Guai, un error ha occurrite. Reveni plus tarde o [[Project_talk:Structured_data/Computer-aided_tagging|contacta nos]]."
 }
