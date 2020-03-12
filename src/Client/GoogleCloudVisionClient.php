@@ -159,10 +159,15 @@ class GoogleCloudVisionClient implements LoggerAwareInterface {
 			$initialState = Repository::REVIEW_WITHHELD;
 		}
 
+		// If previous versions of this file exist, grab the oldest one so we
+		// can add this image to the original uploader's personal uploads.
+		$history = $file->getHistory();
+		$fileForUser = !$history ? $file : $history[ count( $history ) - 1 ];
+
 		$labelsCount = $this->repository->insertLabels(
 			$file->getSha1(),
 			$provider,
-			$file->getUser( 'id' ),
+			$fileForUser->getUser( 'id' ),
 			$suggestions,
 			$initialState
 		);
