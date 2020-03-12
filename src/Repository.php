@@ -288,35 +288,33 @@ class Repository implements LoggerAwareInterface {
 				[ 'mvi_rand ' . ( $ascending ? '> ' : '< ' ) . strval( $rand ) ] );
 
 			return $this->dbr->selectFieldValues(
-				[ 'machine_vision_image', 'machine_vision_label' ],
-				'mvi_sha1',
-				$whereClause,
+				[ 'image', 'machinevision' => $this->dbr->buildSelectSubquery(
+					[ 'machine_vision_image', 'machine_vision_label' ],
+					'mvi_sha1',
+					$whereClause,
+					$fname,
+					[
+						'ORDER BY' => 'mvi_rand ' . ( $ascending ? 'ASC' : 'DESC' ),
+						'LIMIT' => $limit * $multiplier,
+					],
+					[ 'machine_vision_label' => [ 'INNER JOIN', [ 'mvi_id = mvl_mvi_id' ] ] ]
+				) ],
+				'img_name',
+				'',
 				$fname,
-				[
-					'ORDER BY' => 'mvi_rand ' . ( $ascending ? 'ASC' : 'DESC' ),
-					'LIMIT' => $limit * $multiplier,
-				],
-				[ 'machine_vision_label' => [ 'INNER JOIN', [ 'mvi_id = mvl_mvi_id' ] ] ]
+				[],
+				[ 'machinevision' => [ 'INNER JOIN', [ 'img_sha1 = machinevision.mvi_sha1' ] ] ]
 			);
 		};
 
-		$sha1s = $select( true, $limit, $conds );
+		$names = $select( true, $limit, $conds );
 
-		$shortfall = $limit - count( array_unique( $sha1s ) );
+		$shortfall = $limit - count( array_unique( $names ) );
 		if ( $shortfall > 0 ) {
-			$sha1s = array_merge( $sha1s, $select( false, $shortfall, $conds ) );
+			$names = array_merge( $names, $select( false, $shortfall, $conds ) );
 		}
 
-		if ( !$sha1s ) {
-			return [];
-		}
-
-		return $this->dbr->selectFieldValues(
-			'image',
-			'img_name',
-			[ 'img_sha1' => array_slice( array_unique( $sha1s ), 0, $limit ) ],
-			__METHOD__
-		);
+		return array_slice( array_unique( $names ), 0, $limit );
 	}
 
 	/**
