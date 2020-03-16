@@ -4,12 +4,13 @@
 			"ديفيد",
 			"HitomiAkane",
 			"Meno25",
-			"محمد أحمد عبد الفتاح"
+			"محمد أحمد عبد الفتاح",
+			"NEHAOUA"
 		]
 	},
 	"machinevision-desc": "واجهات مع مزودي خدمة رؤية الجهاز الداخلية والخارجية وتخزن النتائج للاستخدام على الويكي.",
 	"machinevision-machineaidedtagging": "الوسوم المقترحة",
-	"machinevision-machineaidedtagging-intro": "راجع الوسوم المقترحة [[c:Commons:Depicts|للكائنات المصورة]] في الصور، تتم إضافة الوسوم التي أكدها المستخدم فقط إلى الصور، لمزيد من المعلومات؛ تحقق من [[c:Commons:Structured_data/Computer-aided_tagging|صفحة المشروع]] و[[c:Commons_talk:Structured_data/Computer-aided_tagging|قم لإعطاء ردود الفعل]] حول كيفية جعل هذه الأداة أكثر فائدة!",
+	"machinevision-machineaidedtagging-intro": "راجع الوسوم المقترحة [[Project:Depicts|للكائنات المصورة]] في الصور، تتم إضافة الوسوم التي أكدها المستخدم فقط إلى الصور، لمزيد من المعلومات؛ تحقق من [[Project:Structured_data/Computer-aided_tagging|صفحة المشروع]] و[[Project_talk:Structured_data/Computer-aided_tagging|قم لإعطاء ردود الفعل]] حول كيفية جعل هذه الأداة أكثر فائدة!",
 	"machinevision-machineaidedtagging-tabs-heading": "صور للمراجعة",
 	"machinevision-machineaidedtagging-popular-tab": "الشائع",
 	"machinevision-machineaidedtagging-user-tab": "مرفوعات شخصية",
@@ -29,7 +30,7 @@
 	"machinevision-suggestion-confirm-title": "هل تريد تأكيد اقتراح \"$1\"؟",
 	"machinevision-suggestion-confirm-undo-title": "التراجع عن تأكيد الاقتراح \"$1\"؟",
 	"machinevision-loading-message": "جارٍ تحميل الصور...",
-	"machinevision-failure-message": "نحن آسفون، لقد حصل خطأ ما، يُرجَى التحقق مرة أخرى في وقت لاحق أو [[c:Commons_talk:Structured_data/Computer-aided_tagging|الاتصال بنا]].",
+	"machinevision-failure-message": "نحن آسفون، لقد حصل خطأ ما، يُرجَى التحقق مرة أخرى في وقت لاحق أو [[Project_talk:Structured_data/Computer-aided_tagging|الاتصال بنا]].",
 	"machinevision-confirm-tags-dialog-title": "تأكيد الوسوم",
 	"machinevision-confirm-tags-dialog-confirm-action": "موافق",
 	"machinevision-confirm-tags-dialog-cancel-action": "إلغاء",

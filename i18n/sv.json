@@ -18,5 +18,6 @@
 	"machinevision-suggestion-confirm-title": "Bekräfta förslaget \"$1\"?",
 	"machinevision-suggestion-confirm-undo-title": "Ångra att förslaget \"$1\" bekräftades?",
 	"machinevision-loading-message": "Läser in...",
+	"machinevision-failure-message": "Tyvärr, någonting gick fel. Kom tillbaka senare eller [[Project_talk:Structured_data/Computer-aided_tagging|kontakta oss]].",
 	"machinevision-no-uploads-cta-heading": "Du har inga bilder att granska"
 }
