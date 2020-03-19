@@ -1,0 +1,14 @@
+<div class="wbmad-cardstack-placeholder__image">
+	<div class="wbmad-spinner">
+		<div class="wbmad-spinner-bounce"></div>
+	</div>
+</div>
+<div class="wbmad-cardstack-placeholder__tags">
+	<div class="wbmad-cardstack-placeholder__heading"></div>
+	<div class="wbmad-cardstack-placeholder__tag-list">
+		<div class="wbmad-cardstack-placeholder__tag"></div>
+		<div class="wbmad-cardstack-placeholder__tag"></div>
+		<div class="wbmad-cardstack-placeholder__tag"></div>
+		<div class="wbmad-cardstack-placeholder__tag"></div>
+	</div>
+</div>

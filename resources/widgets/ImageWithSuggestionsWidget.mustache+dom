@@ -1,6 +1,6 @@
-<div class="wbmad-image-with-suggestions-container {{spinnerClass}}">
-	<div class="wbmad-image-with-suggestions-image">
-		<div class="wbmad-image-with-suggestions-image-wrapper">
+<div class="wbmad-image-with-suggestions__container {{spinnerClass}}">
+	<div class="wbmad-image-with-suggestions__image">
+		<div class="wbmad-image-with-suggestions__image-wrapper">
 			<a href="{{filePageUrl}}" target="_blank">
 				<img
 					class="wbmad-lazy"
@@ -15,18 +15,19 @@
 		</div>
 	</div>
 
-	<div class="wbmad-image-with-suggestions-tags">
+	<div class="wbmad-image-with-suggestions__tags">
 		<div class="wbmad-suggestion-group">
 			{{{titleLabel}}}
 
-			{{#suggestions}}
-			{{{.}}}
-			{{/suggestions}}
+			<div class="wbmad-suggestion-group__tags">
+				{{#suggestions}}
+					{{{.}}}
+				{{/suggestions}}
+			</div>
 		</div>
 
-		<div class="wbmad-buttons">
+		<div class="wbmad-action-buttons">
 			{{{publishButton}}}
-			{{{resetButton}}}
 			{{{skipButton}}}
 		</div>
 	</div>

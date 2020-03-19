@@ -5,7 +5,8 @@ var IMAGES_PER_PAGE = 10,
 	SuggestionData = require( '../models/SuggestionData.js' ),
 	ImageData = require( '../models/ImageData.js' ),
 	OnboardingDialog = require( './OnboardingDialog.js' ),
-	SuggestedTagsCardstack = require( './SuggestedTagsCardstack.js' );
+	SuggestedTagsCardstack = require( './SuggestedTagsCardstack.js' ),
+	CardstackPlaceholder = require( './CardstackPlaceholder.js' );
 
 /**
  * Top-level component that houses page UI components and runs API query.
@@ -27,6 +28,7 @@ function SuggestedTagsPage( config ) {
 	this.userIsAuthenticated = !!mw.config.get( 'wgUserName' );
 	this.userIsAutoconfirmed = userGroups.indexOf( 'autoconfirmed' ) !== -1;
 	this.initialData = mw.config.get( 'wgMVSuggestedTagsInitialData' );
+	this.placeholder = new CardstackPlaceholder();
 
 	showTabs = this.userIsAuthenticated && this.userIsAutoconfirmed;
 
@@ -272,8 +274,7 @@ SuggestedTagsPage.prototype.showFailureMessage = function () {
  * Show pulsating dots to indicate loading state.
  */
 SuggestedTagsPage.prototype.showLoadingMessage = function () {
-	var spinner = '<div class="wbmad-spinner"><div class="wbmad-spinner-bounce"></div></div>';
-	this.tabs.getCurrentTabPanel().$element.append( spinner );
+	this.tabs.getCurrentTabPanel().$element.append( this.placeholder.$element );
 };
 
 /**

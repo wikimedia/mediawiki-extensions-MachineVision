@@ -1,5 +1,4 @@
 /* eslint camelcase: 0 */
-/* global wikibase */
 'use strict';
 
 var TemplateRenderingDOMLessGroupWidget = require( './../base/TemplateRenderingDOMLessGroupWidget.js' ),
@@ -39,27 +38,22 @@ function ImageWithSuggestionsWidget( config, queryType ) {
 	this.imageLoaded = false;
 
 	this.titleLabel = new OO.ui.LabelWidget( {
-		label: this.imageTitle,
-		classes: [ 'wbmad-suggestion-group-title-label' ]
+		label: $( '<a>' )
+			.attr( 'href', this.filePageUrl )
+			.attr( 'target', '_blank' )
+			.text( this.imageTitle ),
+		classes: [ 'wbmad-suggestion-group__title-label' ]
 	} );
 
 	this.skipButton = new OO.ui.ButtonWidget( {
-		classes: [ 'wbmad-skip-button' ],
+		classes: [ 'wbmad-action-buttons__skip' ],
 		title: mw.message( 'machinevision-skip-title', this.imageTitle ).parse(),
 		label: mw.message( 'machinevision-skip' ).parse(),
 		framed: false
 	} ).on( 'click', this.onSkip, [ true ], this );
 
-	this.resetButton = new OO.ui.ButtonWidget( {
-		classes: [ 'wbmad-button-reset' ],
-		title: mw.message( 'machinevision-reset-title' ).parse(),
-		label: mw.message( 'machinevision-reset' ).parse(),
-		framed: false,
-		disabled: true
-	} ).on( 'click', this.onReset, [], this );
-
 	this.publishButton = new OO.ui.ButtonWidget( {
-		classes: [ 'wbmad-publish-button' ],
+		classes: [ 'wbmad-action-buttons__publish' ],
 		title: mw.message( 'machinevision-publish-title' ).parse(),
 		label: mw.message( 'machinevision-publish' ).parse(),
 		disabled: true,
@@ -98,7 +92,6 @@ ImageWithSuggestionsWidget.prototype.render = function () {
 		imageLoaded: this.imageLoaded,
 		thumburl: this.config.thumburl,
 		filePageUrl: this.filePageUrl,
-		resetButton: this.resetButton,
 		publishButton: this.publishButton,
 		showSpinner: this.showSpinner,
 		spinnerClass: ( this.showSpinner ) ? 'wbmad-spinner-active' : ''
@@ -138,8 +131,8 @@ ImageWithSuggestionsWidget.prototype.loadImage = function () {
  * When a suggestion is toggled, see if buttons should be disabled.
  *
  * This widget has a property keeping track of how many suggestions are
- * currently confirmed. When this value is 0, the publish and reset buttons
- * should be disabled.
+ * currently confirmed. When this value is 0, the publish button should be
+ * disabled.
  *
  * @param {bool} confirmed Whether or not the suggestion is confirmed
  */
@@ -153,23 +146,6 @@ ImageWithSuggestionsWidget.prototype.onToggleSuggestion = function ( confirmed )
 	hasConfirmed = this.confirmedCount > 0;
 
 	this.publishButton.setDisabled( !hasConfirmed );
-	this.resetButton.setDisabled( !hasConfirmed );
-};
-
-/**
- * Set all suggestion widgets to unconfirmed.
- */
-ImageWithSuggestionsWidget.prototype.onReset = function () {
-	this.suggestionWidgets.forEach( function ( widget ) {
-		widget.confirmed = false;
-		widget.render();
-	} );
-	this.confirmedCount = 0;
-
-	this.publishButton.setDisabled( true );
-	this.resetButton.setDisabled( true );
-
-	this.logEvent( { action: 'reset' } );
 };
 
 /**
@@ -207,6 +183,7 @@ ImageWithSuggestionsWidget.prototype.onPublish = function () {
 
 /**
  * Publish new tags and move to the next image.
+ * @return {jQuery.Promise}
  */
 ImageWithSuggestionsWidget.prototype.onFinalConfirm = function () {
 	var self = this,
@@ -232,12 +209,11 @@ ImageWithSuggestionsWidget.prototype.onFinalConfirm = function () {
 			);
 		} ),
 		serializer = new serialization.StatementSerializer(),
-		promise = $.Deferred().resolve().promise();
+		promise;
 
 	this.messages = [];
 	this.showSpinner = true;
 	this.publishButton.setDisabled( true );
-	this.resetButton.setDisabled( true );
 	this.skipButton.setDisabled( true );
 	this.render();
 
@@ -246,12 +222,10 @@ ImageWithSuggestionsWidget.prototype.onFinalConfirm = function () {
 		approved_count: this.confirmedCount
 	} );
 
-	promise.then( function () {
-		return self.api.postWithToken( 'csrf', {
-			action: 'reviewimagelabels',
-			filename: self.imageTitle,
-			batch: JSON.stringify( reviewBatch )
-		} );
+	promise = this.api.postWithToken( 'csrf', {
+		action: 'reviewimagelabels',
+		filename: this.imageTitle,
+		batch: JSON.stringify( reviewBatch )
 	} );
 
 	// Send wbsetclaim calls one at a time to prevent edit conflicts
@@ -265,7 +239,7 @@ ImageWithSuggestionsWidget.prototype.onFinalConfirm = function () {
 		} );
 	} );
 
-	$.when( promise )
+	return $.when( promise )
 		// eslint-disable-next-line no-unused-vars
 		.done( function ( result ) {
 			// Show success message.

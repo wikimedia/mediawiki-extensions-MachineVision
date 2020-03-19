@@ -227,6 +227,7 @@
 				"base/TemplateRenderingDOMLessGroupWidget.js",
 				"models/ImageData.js",
 				"models/SuggestionData.js",
+				"widgets/CardstackPlaceholder.js",
 				"widgets/ConfirmTagsDialog.js",
 				"widgets/ConfirmTagsDialogContent.js",
 				"widgets/ImageWithSuggestionsWidget.js",
@@ -238,6 +239,7 @@
 				"widgets/UserMessage.js"
 			],
 			"styles": [
+				"widgets/CardstackPlaceholder.less",
 				"widgets/ConfirmTagsDialog.less",
 				"widgets/ConfirmTagsDialogContent.less",
 				"widgets/ImageWithSuggestionsWidget.less",
@@ -262,6 +264,7 @@
 				"wikibase.utilities.ClaimGuidGenerator"
 			],
 			"templates": [
+				"widgets/CardstackPlaceholder.mustache+dom",
 				"widgets/ConfirmTagsDialogContent.mustache+dom",
 				"widgets/ImageWithSuggestionsWidget.mustache+dom",
 				"widgets/PersonalUploadsCount.mustache+dom",
@@ -280,10 +283,6 @@
 				"machinevision-autoconfirmed-message",
 				"machinevision-publish",
 				"machinevision-publish-title",
-				"machinevision-more",
-				"machinevision-more-title",
-				"machinevision-reset",
-				"machinevision-reset-title",
 				"machinevision-skip",
 				"machinevision-skip-title",
 				"machinevision-personal-uploads-count",
