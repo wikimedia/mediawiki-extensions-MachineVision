@@ -235,7 +235,7 @@
 				"widgets/PersonalUploadsCount.js",
 				"widgets/SuggestedTagsCardstack.js",
 				"widgets/SuggestedTagsPage.js",
-				"widgets/SuggestionWidget.js",
+				"widgets/SuggestionsWidget.js",
 				"widgets/UserMessage.js"
 			],
 			"styles": [
@@ -247,7 +247,7 @@
 				"widgets/PersonalUploadsCount.less",
 				"widgets/SuggestedTagsCardstack.less",
 				"widgets/SuggestedTagsPage.less",
-				"widgets/SuggestionWidget.less",
+				"widgets/SuggestionsWidget.less",
 				"widgets/UserMessage.less"
 			],
 			"dependencies": [
@@ -270,7 +270,6 @@
 				"widgets/PersonalUploadsCount.mustache+dom",
 				"widgets/SuggestedTagsCardstack.mustache+dom",
 				"widgets/SuggestedTagsPage.mustache+dom",
-				"widgets/SuggestionWidget.mustache+dom",
 				"widgets/UserMessage.mustache+dom"
 			],
 			"messages": [

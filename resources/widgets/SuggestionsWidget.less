@@ -1,0 +1,108 @@
+@import 'mediawiki.mixins';
+@import '../style-variables.less';
+
+.wbmad-suggestions {
+	margin: 18px 0;
+
+	/* stylelint-disable-next-line selector-class-pattern */
+	.oo-ui-multiselectWidget-group {
+		.flex-display();
+		.flex-wrap( wrap );
+	}
+}
+
+/* stylelint-disable selector-class-pattern */
+.wbmad-suggestions__suggestion {
+	.transition( color @transition-duration-base );
+	background-color: @base90;
+	border: @suggestion-border-width solid @base50;
+	border-radius: 18px;
+	color: @base10;
+	margin: 0 4px 4px 0;
+	padding: 4px 1.25em;
+	white-space: nowrap;
+
+	&:hover,
+	&:focus {
+		color: @base0;
+	}
+
+	.wbmad-suggestions__suggestion__checkbox-widget {
+		margin: 0;
+		position: absolute;
+	}
+
+	// Hide custom checkbox UI element.
+	.wbmad-suggestions__suggestion__check-icon {
+		display: block;
+		opacity: 0;
+	}
+
+	// Hide checkbox input.
+	[ type='checkbox' ] {
+		.visually-hidden();
+		margin: 0;
+	}
+
+	// OOUI overrides.
+	&.oo-ui-labelElement > .oo-ui-labelElement-label {
+		padding: 0;
+	}
+
+	&:first-child {
+		margin-top: 0;
+		padding-top: 4px;
+	}
+
+	// Animate the process of moving a label back to center when unselected.
+	&.wbmad-suggestions__suggestion--toggled {
+		.oo-ui-labelElement-label {
+			@keyframes slideRight {
+				0% {
+					.transform( translateX( -0.5em ) );
+				}
+
+				100% {
+					.transform( translateX( 0 ) );
+				}
+			}
+			animation: slideRight 0.2s;
+		}
+	}
+
+	// Selected suggestion.
+	&.oo-ui-multioptionWidget-selected {
+		background-color: @accent90;
+		border-color: @accent10;
+		color: @base0;
+		position: relative;
+
+		// Slide to the left to make room for the check icon.
+		.oo-ui-labelElement-label {
+			@keyframes slideLeft {
+				0% {
+					.transform( translateX( 0 ) );
+				}
+
+				100% {
+					.transform( translateX( -0.5em ) );
+				}
+			}
+			.transform( translateX( -0.5em ) );
+			animation: slideLeft 0.2s;
+		}
+
+		.wbmad-suggestions__suggestion__checkbox-widget {
+			position: absolute;
+			right: 0.5em;
+		}
+
+		.wbmad-suggestions__suggestion__check-icon {
+			.fade-in( 0.2s );
+			min-height: 0;
+			min-width: 0;
+			opacity: 1;
+			width: 1em;
+		}
+	}
+}

@@ -3,9 +3,9 @@ var pathToWidget = '../../../resources/widgets/ImageWithSuggestionsWidget.js',
 	sinon = require( 'sinon' ),
 	sandbox,
 	suggestions = [
-		{ text: 'cat' },
-		{ text: 'domestic shorthair' },
-		{ text: 'whiskers' }
+		{ text: 'cat', wikidataId: 'Q123' },
+		{ text: 'domestic shorthair', wikidataId: 'Q456' },
+		{ text: 'whiskers', wikidataId: 'Q789' }
 	],
 	imageData = {
 		descriptionUrl: 'https://example.com/File:Cat.jpg',
@@ -22,25 +22,23 @@ QUnit.test( 'Constructor test', function ( assert ) {
 	assert.ok( true );
 } );
 
-QUnit.test( 'Suggestion widgets are created from data passed as config', function ( assert ) {
+QUnit.test( 'Suggestions widget is created from data passed as config', function ( assert ) {
 	var ImageWithSuggestionsWidget = require( pathToWidget ),
-		widget = new ImageWithSuggestionsWidget( imageData ),
-		SuggestionWidget = require( '../../../resources/widgets/SuggestionWidget.js' );
+		widget = new ImageWithSuggestionsWidget( imageData );
 
-	assert.strictEqual( widget.suggestionWidgets.length, 3 );
-	assert.strictEqual( widget.suggestionWidgets[ 0 ] instanceof SuggestionWidget, true );
+	assert.strictEqual( widget.suggestionsWidget.items.length, 3 );
 } );
 
 QUnit.test( 'Suggestions with no label are skipped', function ( assert ) {
 	var ImageWithSuggestionsWidget = require( pathToWidget ),
-		suggestionsWithNullTitle = suggestions.concat( [ { text: null } ] ),
+		suggestionsWithNullTitle = suggestions.concat( [ { text: null, wikidataId: 'Q321' } ] ),
 		imageDataWithNullTitle = $.extend( {}, imageData ),
 		widget;
 
 	imageDataWithNullTitle.suggestions = suggestionsWithNullTitle;
 	widget = new ImageWithSuggestionsWidget( imageDataWithNullTitle );
 
-	assert.strictEqual( widget.suggestionWidgets.length, 3 );
+	assert.strictEqual( widget.suggestionsWidget.items.length, 3 );
 } );
 
 QUnit.test( 'Publish button is only enabled when at least one suggestion is confirmed', function ( assert ) {
@@ -51,11 +49,11 @@ QUnit.test( 'Publish button is only enabled when at least one suggestion is conf
 	assert.strictEqual( widget.publishButton.isDisabled(), true );
 
 	// Enabled after suggestion is confirmed.
-	widget.onToggleSuggestion( true );
+	widget.suggestionsWidget.findItemFromData( 'Q123' ).setSelected( true );
 	assert.strictEqual( widget.publishButton.isDisabled(), false );
 
 	// Disabled after single confirmed suggestion is unconfirmed.
-	widget.onToggleSuggestion( false );
+	widget.suggestionsWidget.findItemFromData( 'Q123' ).setSelected( false );
 	assert.strictEqual( widget.publishButton.isDisabled(), true );
 } );
 
