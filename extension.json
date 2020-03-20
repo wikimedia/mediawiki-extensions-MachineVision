@@ -228,6 +228,7 @@
 				"models/ImageData.js",
 				"models/SuggestionData.js",
 				"widgets/CardstackPlaceholder.js",
+				"widgets/CategoryList.js",
 				"widgets/ConfirmTagsDialog.js",
 				"widgets/ConfirmTagsDialogContent.js",
 				"widgets/ImageWithSuggestionsWidget.js",
@@ -240,6 +241,7 @@
 			],
 			"styles": [
 				"widgets/CardstackPlaceholder.less",
+				"widgets/CategoryList.less",
 				"widgets/ConfirmTagsDialog.less",
 				"widgets/ConfirmTagsDialogContent.less",
 				"widgets/ImageWithSuggestionsWidget.less",
@@ -265,6 +267,7 @@
 			],
 			"templates": [
 				"widgets/CardstackPlaceholder.mustache+dom",
+				"widgets/CategoryList.mustache+dom",
 				"widgets/ConfirmTagsDialogContent.mustache+dom",
 				"widgets/ImageWithSuggestionsWidget.mustache+dom",
 				"widgets/PersonalUploadsCount.mustache+dom",
@@ -305,7 +308,8 @@
 				"machinevision-cta-text",
 				"machinevision-cta-cta",
 				"machinevision-no-uploads-cta-heading",
-				"machinevision-no-uploads-cta-text"
+				"machinevision-no-uploads-cta-text",
+				"machinevision-categories-label"
 			],
 			"targets": [
 				"mobile",

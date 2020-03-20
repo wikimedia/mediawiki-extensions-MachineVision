@@ -2,6 +2,7 @@
 'use strict';
 
 var TemplateRenderingDOMLessGroupWidget = require( './../base/TemplateRenderingDOMLessGroupWidget.js' ),
+	CategoryList = require( './CategoryList.js' ),
 	ConfirmTagsDialog = require( './ConfirmTagsDialog.js' ),
 	SuggestionsWidget = require( './SuggestionsWidget.js' ),
 	datamodel = require( 'wikibase.datamodel' ),
@@ -40,6 +41,7 @@ function ImageWithSuggestionsWidget( config, queryType ) {
 	this.mediaInfoId = 'M' + this.config.pageid;
 	this.guidGenerator = new wikibase.utilities.ClaimGuidGenerator( this.mediaInfoId );
 	this.imageLoaded = false;
+	this.categoryList = new CategoryList();
 
 	this.titleLabel = new OO.ui.LabelWidget( {
 		label: $( '<a>' )
@@ -95,10 +97,19 @@ ImageWithSuggestionsWidget.prototype.render = function () {
 		imageLoaded: this.imageLoaded,
 		thumburl: this.config.thumburl,
 		filePageUrl: this.filePageUrl,
+		categoryList: this.categoryList,
 		publishButton: this.publishButton,
 		showSpinner: this.showSpinner,
 		spinnerClass: ( this.showSpinner ) ? 'wbmad-spinner-active' : ''
 	} );
+};
+
+/**
+ * Load image and categories.
+ */
+ImageWithSuggestionsWidget.prototype.displayWidget = function () {
+	this.loadImage();
+	this.loadCategories();
 };
 
 /**
@@ -112,6 +123,46 @@ ImageWithSuggestionsWidget.prototype.loadImage = function () {
 		$image.removeClass( 'wbmad-lazy' );
 		this.imageLoaded = true;
 	}
+};
+
+/**
+ * Fetch an array of category titles for this image.
+ * @return {jQuery.Promise}
+ */
+ImageWithSuggestionsWidget.prototype.loadCategories = function () {
+	var self = this,
+		api = new mw.Api(),
+		pages,
+		keys,
+		rawCategories,
+		titlePrefix = 'Category:',
+		sliceStart = titlePrefix.length;
+
+	return api.get( {
+		action: 'query',
+		prop: 'categories',
+		titles: [ 'File:' + this.imageTitle ]
+	} )
+		.done( function ( response ) {
+			if ( response.query && response.query.pages ) {
+				pages = response.query.pages;
+				keys = Object.keys( pages );
+
+				// Grab raw category page titles.
+				rawCategories = pages[ Number( keys[ 0 ] ) ].categories;
+
+				if ( rawCategories ) {
+					self.categoryList.categories = rawCategories.map( function ( category ) {
+						// Strip out the "Category:" string.
+						return { title: category.title.slice( sliceStart ) };
+					} );
+					self.categoryList.render();
+				}
+			}
+		} )
+		.fail( function () {
+			// No need to handle errors here, just don't show anything.
+		} );
 };
 
 /**

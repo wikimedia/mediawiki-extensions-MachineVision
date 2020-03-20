@@ -88,9 +88,12 @@ SuggestedTagsCardstack.prototype.getItems = function () {
 	} );
 };
 
+/**
+ * Lazy-load the active image widget's image and categories.
+ */
 SuggestedTagsCardstack.prototype.showCurrentItem = function () {
 	if ( this.items && this.items.length > 0 ) {
-		this.items[ 0 ].loadImage();
+		this.items[ 0 ].displayWidget();
 	}
 };
 

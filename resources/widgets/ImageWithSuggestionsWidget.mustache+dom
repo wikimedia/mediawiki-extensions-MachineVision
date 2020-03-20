@@ -17,6 +17,7 @@
 
 	<div class="wbmad-image-with-suggestions__content">
 		{{{titleLabel}}}
+		{{{categoryList}}}
 
 		{{#suggestions}}
 			{{{.}}}
