@@ -6,7 +6,8 @@
 			"Monte Hurd",
 			"Robby",
 			"EGardner (WMF)",
-			"Piramidion"
+			"Piramidion",
+			"Umherirrender"
 		]
 	},
 	"machinevision-desc": "{{desc|name=MachineVision|url=https://www.mediawiki.org/wiki/Extension:MachineVision}}\nNote: the word \"interfaces\" is a verb, not a noun.",
@@ -66,5 +67,5 @@
 	"echo-pref-tooltip-machinevision-suggestions-ready": "Tooltip for MachineVision notification preferences",
 	"group-machinevision-tester": "{{doc-group|machinevision-tester}}",
 	"group-machinevision-tester-member": "{{doc-group|machinevision-tester|member}}",
-	"grouppage-machinevision-tester": "{{doc-group|machinevision-testers|page}}"
+	"grouppage-machinevision-tester": "{{doc-group|machinevision-tester|page}}"
 }
