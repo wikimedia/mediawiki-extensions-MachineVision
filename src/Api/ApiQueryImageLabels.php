@@ -117,7 +117,6 @@ class ApiQueryImageLabels extends ApiQueryBase {
 
 		asort( $data );
 		foreach ( $data as $pageId => $pageData ) {
-			asort( $pageData );
 			$pageData = array_values( $pageData );
 			ApiResult::setIndexedTagName( $pageData, 'label' );
 			$fit = $apiResult->addValue( [ 'query', 'pages', $pageId ], $this->getModuleName(),
