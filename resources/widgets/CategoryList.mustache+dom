@@ -1,0 +1,8 @@
+{{#hasCategories}}
+	<div class="wbmad-category-list">
+		<span class="wbmad-category-list__label">{{categoriesLabel}}</span>
+		{{#categories}}
+			<span class="wbmad-category-list__item">{{title}}</span>
+		{{/categories}}
+	</div>
+{{/hasCategories}}

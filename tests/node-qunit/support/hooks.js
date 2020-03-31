@@ -18,6 +18,9 @@ module.exports = {
 		} );
 
 		global.mw = newMockMediaWiki();
+		global.mw.Api.prototype.get = sinon.stub().returns(
+			$.Deferred().resolve( {} ).promise()
+		);
 		helpers.registerMvConfigVars();
 
 		global.dataValues = helpers.createDataValuesEnv();
