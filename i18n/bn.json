@@ -12,8 +12,6 @@
 	"machinevision-pageinfo-field-suggested-labels": "পরামর্শকৃত লেবেল",
 	"machinevision-publish": "প্রকাশ করুন",
 	"machinevision-publish-title": "ট্যাগ প্রকাশ করবেন?",
-	"machinevision-more": "পরবর্তী $1টি {{PLURAL:$1|চিত্র}}",
-	"machinevision-more-title": "পরবর্তী {{PLURAL:$1|চিত্র|$1টি চিত্র}} দেখবেন?",
 	"machinevision-skip": "এড়িয়ে যান",
 	"machinevision-loading-message": "চিত্র লোড করা হচ্ছে...",
 	"machinevision-confirm-tags-dialog-confirm-action": "ঠিক আছে",
