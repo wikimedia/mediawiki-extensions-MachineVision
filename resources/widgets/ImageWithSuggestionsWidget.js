@@ -2,15 +2,15 @@
 'use strict';
 
 var TemplateRenderingDOMLessGroupWidget = require( './../base/TemplateRenderingDOMLessGroupWidget.js' ),
-	SuggestionWidget = require( './SuggestionWidget.js' ),
 	ConfirmTagsDialog = require( './ConfirmTagsDialog.js' ),
+	SuggestionsWidget = require( './SuggestionsWidget.js' ),
 	datamodel = require( 'wikibase.datamodel' ),
 	serialization = require( 'wikibase.serialization' ),
 	mvConfig = require( 'ext.MachineVision.config' );
 
 /**
  * A card within the cardstack on the Suggested Tags page. Each card contains
- * an image and a group of SuggestionWidgets.
+ * an image and a group of suggestionsWidget.
  *
  * @param {Object} config
  * @param {string} queryType
@@ -25,11 +25,15 @@ function ImageWithSuggestionsWidget( config, queryType ) {
 
 	this.config = config || {};
 	ImageWithSuggestionsWidget.parent.call( this, $.extend( {}, config ) );
-	this.$element.addClass( 'wbmad-image-with-suggestions wbmad-hide-outline' );
+	this.$element.addClass( 'wbmad-image-with-suggestions' );
 
-	this.suggestions = this.config.suggestions;
-	this.suggestionWidgets = this.getSuggestionWidgets();
-	this.confirmedCount = 0;
+	// Remove suggestions that lack a label.
+	this.suggestions = this.config.suggestions.filter( function ( suggestion ) {
+		return !!suggestion.text;
+	} );
+	this.suggestionsWidget = new SuggestionsWidget( { suggestions: this.suggestions } )
+		.connect( this, { change: 'onChange' } );
+
 	this.imageTitle = this.config.title.split( ':' ).pop();
 	this.filePageUrl = this.config.descriptionurl;
 	this.tab = queryType === 'user' ? 'personal' : 'popular';
@@ -42,7 +46,7 @@ function ImageWithSuggestionsWidget( config, queryType ) {
 			.attr( 'href', this.filePageUrl )
 			.attr( 'target', '_blank' )
 			.text( this.imageTitle ),
-		classes: [ 'wbmad-suggestion-group__title-label' ]
+		classes: [ 'wbmad-image-with-suggestions__title-label' ]
 	} );
 
 	this.skipButton = new OO.ui.ButtonWidget( {
@@ -69,9 +73,8 @@ function ImageWithSuggestionsWidget( config, queryType ) {
 
 	this.connect( this, {
 		confirm: 'onFinalConfirm',
-		toggleSuggestion: 'onToggleSuggestion'
+		change: 'onChange'
 	} );
-	this.$element.on( 'keydown', this.onKeydown.bind( this ) );
 
 	this.render();
 
@@ -88,29 +91,13 @@ ImageWithSuggestionsWidget.prototype.render = function () {
 		skipButton: this.skipButton,
 		imageTagTitle: this.imageTitle,
 		titleLabel: this.titleLabel,
-		suggestions: this.suggestionWidgets,
+		suggestions: this.suggestionsWidget,
 		imageLoaded: this.imageLoaded,
 		thumburl: this.config.thumburl,
 		filePageUrl: this.filePageUrl,
 		publishButton: this.publishButton,
 		showSpinner: this.showSpinner,
 		spinnerClass: ( this.showSpinner ) ? 'wbmad-spinner-active' : ''
-	} );
-};
-
-/**
- * Create an array of suggestion widgets based on suggestion data.
- * @return {Array}
- */
-ImageWithSuggestionsWidget.prototype.getSuggestionWidgets = function () {
-	var self = this,
-		validSuggestions = this.suggestions.filter( function ( suggestion ) {
-			return !!suggestion.text;
-		} );
-
-	return validSuggestions.map( function ( data ) {
-		return new SuggestionWidget( { suggestionData: data } )
-			.connect( self, { toggleSuggestion: 'onToggleSuggestion' } );
 	} );
 };
 
@@ -128,23 +115,10 @@ ImageWithSuggestionsWidget.prototype.loadImage = function () {
 };
 
 /**
- * When a suggestion is toggled, see if buttons should be disabled.
- *
- * This widget has a property keeping track of how many suggestions are
- * currently confirmed. When this value is 0, the publish button should be
- * disabled.
- *
- * @param {bool} confirmed Whether or not the suggestion is confirmed
+ * When a suggestion is changed, see if buttons should be disabled.
  */
-ImageWithSuggestionsWidget.prototype.onToggleSuggestion = function ( confirmed ) {
-	var addend = ( confirmed ) ? 1 : -1,
-		hasConfirmed;
-
-	// If the suggestion is confirmed, add 1 to count. If not, that means it
-	// has been un-confirmed, so subtract 1.
-	this.confirmedCount = this.confirmedCount + addend;
-	hasConfirmed = this.confirmedCount > 0;
-
+ImageWithSuggestionsWidget.prototype.onChange = function () {
+	var hasConfirmed = this.suggestionsWidget.findSelectedItems().length > 0;
 	this.publishButton.setDisabled( !hasConfirmed );
 };
 
@@ -153,18 +127,16 @@ ImageWithSuggestionsWidget.prototype.onToggleSuggestion = function ( confirmed )
  */
 ImageWithSuggestionsWidget.prototype.onPublish = function () {
 	var self = this,
-		confirmedSuggestions = this.suggestionWidgets.filter( function ( widget ) {
-			return widget.confirmed;
-		} ),
-		tagsList = confirmedSuggestions.map( function ( widget ) {
-			return widget.suggestionData.text;
+		confirmedSuggestions = this.suggestionsWidget.findSelectedItems(),
+		tagsList = confirmedSuggestions.map( function ( suggestion ) {
+			return suggestion.label;
 		} ).join( ', ' ),
 		confirmTagsDialog,
 		windowManager;
 
 	this.logEvent( {
 		action: 'publish',
-		approved_count: this.confirmedCount
+		approved_count: confirmedSuggestions.length
 	} );
 
 	confirmTagsDialog = new ConfirmTagsDialog( {
@@ -188,20 +160,21 @@ ImageWithSuggestionsWidget.prototype.onPublish = function () {
 ImageWithSuggestionsWidget.prototype.onFinalConfirm = function () {
 	var self = this,
 		depictsPropertyId = mvConfig.depictsPropertyId,
-		reviewBatch = this.suggestionWidgets.map( function ( widget ) {
+		selected = this.suggestionsWidget.findSelectedItems(),
+		// Data for all suggestions so we can update the database.
+		reviewBatch = this.suggestionsWidget.items.map( function ( suggestion ) {
 			return {
-				label: widget.suggestionData.wikidataId,
-				review: widget.confirmed ? 'accept' : 'reject'
+				label: suggestion.data,
+				review: suggestion.isSelected() ? 'accept' : 'reject'
 			};
 		} ),
-		depictsStatements = this.suggestionWidgets.filter( function ( widget ) {
-			return widget.confirmed;
-		} ).map( function ( widget ) {
+		// Statements for confirmed suggestions to be added to file.
+		depictsStatements = selected.map( function ( suggestion ) {
 			return new datamodel.Statement(
 				new datamodel.Claim(
 					new datamodel.PropertyValueSnak(
 						depictsPropertyId,
-						new datamodel.EntityId( widget.suggestionData.wikidataId )
+						new datamodel.EntityId( suggestion.data )
 					),
 					null, // qualifiers
 					self.guidGenerator.newGuid()
@@ -219,7 +192,7 @@ ImageWithSuggestionsWidget.prototype.onFinalConfirm = function () {
 
 	this.logEvent( {
 		action: 'confirm',
-		approved_count: this.confirmedCount
+		approved_count: selected.length
 	} );
 
 	promise = this.api.postWithToken( 'csrf', {
@@ -268,16 +241,6 @@ ImageWithSuggestionsWidget.prototype.onSkip = function ( userExplicitlySkipped )
 
 	if ( userExplicitlySkipped ) {
 		this.logEvent( { action: 'skip' } );
-	}
-};
-
-/**
- * Remove class when tab key is pressed to ensure user sees focus outline.
- * @param {Object} e
- */
-ImageWithSuggestionsWidget.prototype.onKeydown = function ( e ) {
-	if ( e.key === 'Tab' ) {
-		this.$element.removeClass( 'wbmad-hide-outline' );
 	}
 };
 

@@ -15,16 +15,12 @@
 		</div>
 	</div>
 
-	<div class="wbmad-image-with-suggestions__tags">
-		<div class="wbmad-suggestion-group">
-			{{{titleLabel}}}
+	<div class="wbmad-image-with-suggestions__content">
+		{{{titleLabel}}}
 
-			<div class="wbmad-suggestion-group__tags">
-				{{#suggestions}}
-					{{{.}}}
-				{{/suggestions}}
-			</div>
-		</div>
+		{{#suggestions}}
+			{{{.}}}
+		{{/suggestions}}
 
 		<div class="wbmad-action-buttons">
 			{{{publishButton}}}
