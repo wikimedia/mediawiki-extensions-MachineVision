@@ -14,5 +14,6 @@
 	"machinevision-confirm-tags-dialog-cancel-action": "Abbrechen",
 	"machinevision-confirm-tags-dialog-heading": "Dieses Bild zeigt:",
 	"machinevision-onboarding-dialog-close-label": "Schließen",
-	"machinevision-javascript-required": "Diese Funktion wird von deinem Webbrowser nicht unterstützt."
+	"machinevision-javascript-required": "Diese Funktion wird von deinem Webbrowser nicht unterstützt.",
+	"machinevision-categories-label": "Kategorien:"
 }

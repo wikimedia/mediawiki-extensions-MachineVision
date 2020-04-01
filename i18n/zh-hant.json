@@ -43,6 +43,7 @@
 	"machinevision-no-uploads-cta-heading": "您沒有要檢閱的圖片",
 	"machinevision-no-uploads-cta-text": "請上傳一些新圖片讓我們的工具可以分析它們，並建議合適的標籤。如果您已經上傳圖片但卻沒有看到，可能是這些圖片仍在檢閱中，您可以稍後再回來查看。您也可以透過做出標記，來讓其他使用者的熱門圖片能更容易被找到。",
 	"machinevision-javascript-required": "您的網頁瀏覽器不支援此功能。",
+	"machinevision-categories-label": "分類：",
 	"right-imagelabel-review": "檢閱圖片標籤建議",
 	"action-imagelabel-review": "檢閱圖片標籤建議",
 	"right-imagelabel-test": "測試圖片標籤建議",

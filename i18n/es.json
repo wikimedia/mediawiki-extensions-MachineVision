@@ -25,6 +25,7 @@
 	"machinevision-success-message-with-warning": "Se añadieron etiquetas a la imagen con las excepciones siguientes:",
 	"machinevision-onboarding-dialog-close-label": "Cerrar",
 	"machinevision-javascript-required": "Tu navegador no admite esta función.",
+	"machinevision-categories-label": "Categorías:",
 	"right-imagelabel-test": "Sugerencias de etiquetas para imagenes de prueba",
 	"action-imagelabel-test": "sugerencias de etiquetas para imagenes de prueba",
 	"echo-category-title-machinevision": "Etiquetas sugeridas para revisión",
