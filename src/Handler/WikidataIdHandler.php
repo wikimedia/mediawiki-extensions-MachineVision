@@ -63,7 +63,7 @@ abstract class WikidataIdHandler implements Handler {
 		foreach ( $labels as $id => $label ) {
 			$links[] = Html::element( 'a', [
 				'href' => 'https://www.wikidata.org/wiki/' . $id,
-			], $label );
+			], $label['label'] );
 		}
 		// TODO there should probably be a structured-data or similar header but this extension
 		// is not the right place for that

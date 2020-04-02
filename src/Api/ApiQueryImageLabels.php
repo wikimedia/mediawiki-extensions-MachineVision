@@ -110,8 +110,11 @@ class ApiQueryImageLabels extends ApiQueryBase {
 		foreach ( $data as $pageId => $pageData ) {
 			$ids = array_keys( $pageData );
 			$labels = $this->labelResolver->resolve( $this->getContext(), $ids );
+
 			foreach ( $labels as $id => $label ) {
-				$data[$pageId][$id]['label'] = $label;
+				$data[$pageId][$id]['label'] = $label['label'];
+				$data[$pageId][$id]['description'] = $label['description'] ?? null;
+				$data[$pageId][$id]['alias'] = $label['alias'] ?? null;
 			}
 		}
 
