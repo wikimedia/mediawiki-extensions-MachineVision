@@ -105,6 +105,7 @@ class ApiQueryImageLabels extends ApiQueryBase {
 
 			$data[$pageId][$row['wikidata_id']]['wikidata_id'] = $row['wikidata_id'];
 			$data[$pageId][$row['wikidata_id']]['state'] = self::$reviewStateNames[$row['review']];
+			$data[$pageId][$row['wikidata_id']]['confidence'] = $row['confidence'];
 		}
 
 		foreach ( $data as $pageId => $pageData ) {
