@@ -1,8 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"Nilesh shukla"
+			"Nilesh shukla",
+			"Abijeet Patro"
 		]
 	},
-	"machinevision-machineaidedtagging": "सुझाए गए टैग"
+	"machinevision-machineaidedtagging": "सुझाए गए टैग",
+	"machinevision-categories-label": "श्रेणियाँ :"
 }

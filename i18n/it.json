@@ -13,5 +13,6 @@
 	"machinevision-loading-message": "Caricamento immagini...",
 	"machinevision-confirm-tags-dialog-confirm-action": "OK",
 	"machinevision-confirm-tags-dialog-cancel-action": "Annulla",
-	"machinevision-onboarding-dialog-close-label": "Chiudi"
+	"machinevision-onboarding-dialog-close-label": "Chiudi",
+	"machinevision-categories-label": "Categorie:"
 }

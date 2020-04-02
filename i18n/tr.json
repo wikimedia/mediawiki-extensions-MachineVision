@@ -43,6 +43,7 @@
 	"machinevision-no-uploads-cta-heading": "İncelenecek resminiz yok",
 	"machinevision-no-uploads-cta-text": "Lütfen aracımızın bunları analiz edebilmesi ve uygun etiketleri önerebilmesi için yeni resimler yükleyin. Görüntüleri zaten yüklediyseniz ve burada görmüyorsanız, bu görüntüler hala inceleniyor olabilir ve daha sonra tekrar kontrol edebilirsiniz. Ayrıca diğer kullanıcıların popüler resimlerini etiketleyerek daha kolay bulunmasını sağlayabilirsiniz.",
 	"machinevision-javascript-required": "Bu özellik web tarayıcınızda desteklenmiyor.",
+	"machinevision-categories-label": "Kategoriler:",
 	"right-imagelabel-review": "Resim etiketi önerilerini inceleyin",
 	"action-imagelabel-review": "resim etiketi önerilerini inceleyin",
 	"right-imagelabel-test": "Görüntü etiketi önerilerini test et",
