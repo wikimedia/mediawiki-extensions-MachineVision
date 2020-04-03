@@ -1,4 +1,5 @@
 var pathToWidget = '../../../resources/widgets/ImageWithSuggestionsWidget.js',
+	pathToSuggestionData = require( './../models/SuggestionData.js' ),
 	hooks = require( '../support/hooks.js' ),
 	sinon = require( 'sinon' ),
 	sandbox,
@@ -43,7 +44,9 @@ QUnit.test( 'Suggestions with no label are skipped', function ( assert ) {
 
 QUnit.test( 'Publish button is only enabled when at least one suggestion is confirmed', function ( assert ) {
 	var ImageWithSuggestionsWidget = require( pathToWidget ),
-		widget = new ImageWithSuggestionsWidget( imageData );
+		widget = new ImageWithSuggestionsWidget( imageData ),
+		SuggestionData = require( pathToSuggestionData ),
+		suggestionData = new SuggestionData( 'test label', 'Q123' );
 
 	// Disabled by default.
 	assert.strictEqual( widget.publishButton.isDisabled(), true );
@@ -55,6 +58,10 @@ QUnit.test( 'Publish button is only enabled when at least one suggestion is conf
 	// Disabled after single confirmed suggestion is unconfirmed.
 	widget.suggestionsWidget.findItemFromData( 'Q123' ).setSelected( false );
 	assert.strictEqual( widget.publishButton.isDisabled(), true );
+
+	// Enabled after custom tag is added.
+	widget.onAddCustomTag( suggestionData );
+	assert.strictEqual( widget.publishButton.isDisabled(), false );
 } );
 
 QUnit.test( 'Successful publish results in tagPublished event', function ( assert ) {

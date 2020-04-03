@@ -1,17 +1,22 @@
 @import 'mediawiki.mixins';
 @import '../style-variables.less';
 
+/* stylelint-disable selector-class-pattern */
 .wbmad-suggestions {
 	margin: 18px 0;
 
-	/* stylelint-disable-next-line selector-class-pattern */
 	.oo-ui-multiselectWidget-group {
 		.flex-display();
 		.flex-wrap( wrap );
 	}
+
+	.oo-ui-iconElement-icon {
+		min-height: 0;
+		min-width: 0;
+		width: 1em;
+	}
 }
 
-/* stylelint-disable selector-class-pattern */
 .wbmad-suggestions__suggestion {
 	.transition( color @transition-duration-base );
 	background-color: @base90;
@@ -19,7 +24,7 @@
 	border-radius: 18px;
 	color: @base10;
 	margin: 0 4px 4px 0;
-	padding: 4px 1.25em;
+	padding: 5px 1.25em;
 	white-space: nowrap;
 
 	&:hover,
@@ -106,3 +111,57 @@
 		}
 	}
 }
+
+/* stylelint-disable no-descending-specificity */
+.wbmad-custom-tag-button {
+	.oo-ui-buttonElement-button {
+		.flex-display();
+		align-items: center;
+		background-color: @base90;
+		border: @suggestion-border-width solid @base50;
+		border-radius: 18px;
+		font-weight: normal;
+		white-space: nowrap;
+
+		&:hover,
+		&:focus {
+			color: @base0;
+		}
+	}
+
+	// OOUI overrides.
+	&.oo-ui-labelElement > .oo-ui-buttonElement-button {
+		.transition( color @transition-duration-base );
+		color: @base10;
+
+		&:hover,
+		&:focus {
+			background-color: @base90;
+			color: @base0;
+		}
+	}
+
+	// Even worse OOUI overrides.
+	&.oo-ui-iconElement.oo-ui-labelElement > .oo-ui-buttonElement-button {
+		padding: 4px 1.25em 4px 30/14em;
+
+		> .oo-ui-iconElement-icon {
+			left: 1em;
+		}
+	}
+
+	&.oo-ui-widget-disabled > .oo-ui-buttonElement-button {
+		color: @base100;
+
+		&:hover,
+		&:focus {
+			background-color: @base70;
+			color: @base100;
+		}
+	}
+
+	.oo-ui-labelElement-label {
+		font-weight: bold;
+	}
+}
+/* stylelint-enable selector-class-pattern, no-descending-specificity */

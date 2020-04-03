@@ -2,6 +2,7 @@
 'use strict';
 
 var TemplateRenderingDOMLessGroupWidget = require( './../base/TemplateRenderingDOMLessGroupWidget.js' ),
+	AddCustomTagDialog = require( './AddCustomTagDialog.js' ),
 	CategoryList = require( './CategoryList.js' ),
 	ConfirmTagsDialog = require( './ConfirmTagsDialog.js' ),
 	SuggestionsWidget = require( './SuggestionsWidget.js' ),
@@ -35,6 +36,10 @@ function ImageWithSuggestionsWidget( config, queryType ) {
 	this.suggestionsWidget = new SuggestionsWidget( { suggestions: this.suggestions } )
 		.connect( this, { change: 'onChange' } );
 
+	// Make a copy of the SuggestionsWidget so we can keep track of suggestions
+	// sent by the provider (versus suggestions added by the user).
+	this.originalSuggestions = $.extend( true, {}, this.suggestionsWidget );
+
 	this.imageTitle = this.config.title.split( ':' ).pop();
 	this.filePageUrl = this.config.descriptionurl;
 	this.tab = queryType === 'user' ? 'personal' : 'popular';
@@ -42,6 +47,16 @@ function ImageWithSuggestionsWidget( config, queryType ) {
 	this.guidGenerator = new wikibase.utilities.ClaimGuidGenerator( this.mediaInfoId );
 	this.imageLoaded = false;
 	this.categoryList = new CategoryList();
+	this.wikidataIds = this.suggestions.map( function ( suggestion ) {
+		return suggestion.wikidataId;
+	} );
+
+	// Initialize add custom tag dialog.
+	this.addCustomTagDialog = new AddCustomTagDialog()
+		.connect( this, { addCustomTag: 'onAddCustomTag' } );
+	this.windowManager = new OO.ui.WindowManager();
+	$( document.body ).append( this.windowManager.$element );
+	this.windowManager.addWindows( [ this.addCustomTagDialog ] );
 
 	this.titleLabel = new OO.ui.LabelWidget( {
 		label: $( '<a>' )
@@ -57,6 +72,13 @@ function ImageWithSuggestionsWidget( config, queryType ) {
 		label: mw.message( 'machinevision-skip' ).parse(),
 		framed: false
 	} ).on( 'click', this.onSkip, [ true ], this );
+
+	this.addCustomTagButton = new OO.ui.ButtonWidget( {
+		classes: [ 'wbmad-custom-tag-button' ],
+		title: mw.message( 'machinevision-add-custom-tag-title' ).parse(),
+		label: mw.message( 'machinevision-add-custom-tag' ).parse(),
+		icon: 'add'
+	} ).on( 'click', this.onAddCustomTagClick, [], this );
 
 	this.publishButton = new OO.ui.ButtonWidget( {
 		classes: [ 'wbmad-action-buttons__publish' ],
@@ -75,10 +97,12 @@ function ImageWithSuggestionsWidget( config, queryType ) {
 
 	this.connect( this, {
 		confirm: 'onFinalConfirm',
-		change: 'onChange'
+		change: 'onChange',
+		addCustomTag: 'onAddCustomTag'
 	} );
 
 	this.render();
+	this.$element.find( '.oo-ui-multiselectWidget-group' ).append( this.addCustomTagButton.$element );
 
 	// Set image height to avoid scroll issue when image is loaded.
 	$image = this.$element.find( 'img' );
@@ -174,6 +198,41 @@ ImageWithSuggestionsWidget.prototype.onChange = function () {
 };
 
 /**
+ * Show a dialog where user can add a custom tag via autocomplete widget.
+ */
+ImageWithSuggestionsWidget.prototype.onAddCustomTagClick = function () {
+	this.addCustomTagDialog.setFilter( this.wikidataIds );
+	this.windowManager.openWindow( this.addCustomTagDialog, { $returnFocusTo: null } );
+};
+
+/**
+ * Add a confirmed suggestion widget for the new custom tag.
+ * @param {SuggestionData} suggestionData
+ */
+ImageWithSuggestionsWidget.prototype.onAddCustomTag = function ( suggestionData ) {
+	var option = this.suggestionsWidget.createOption( suggestionData );
+
+	// Add new tag and confirm it (which will enable the Publish button).
+	this.suggestionsWidget.addItems( option );
+	option.setSelected( true );
+
+	// Add it to our list of existing Wikidata items.
+	this.wikidataIds.push( suggestionData.wikidataId );
+
+	// Reset the position of the Add Custom tag button.
+	this.addCustomTagButton.$element.remove();
+	this.$element.find( '.oo-ui-multiselectWidget-group' ).append( this.addCustomTagButton.$element );
+
+	// Re-add the button click handler, unless the user has met the limit of 5
+	// custom tags.
+	if ( this.suggestions.length + 5 > this.wikidataIds.length ) {
+		this.addCustomTagButton.$element.on( 'click', this.onAddCustomTagClick.bind( this ) );
+	} else {
+		this.addCustomTagButton.setDisabled( true );
+	}
+};
+
+/**
  * Show a dialog prmopting user to confirm tags before publishing.
  */
 ImageWithSuggestionsWidget.prototype.onPublish = function () {
@@ -212,20 +271,25 @@ ImageWithSuggestionsWidget.prototype.onFinalConfirm = function () {
 	var self = this,
 		depictsPropertyId = mvConfig.depictsPropertyId,
 		selected = this.suggestionsWidget.findSelectedItems(),
-		// Data for all suggestions so we can update the database.
-		reviewBatch = this.suggestionsWidget.items.map( function ( suggestion ) {
-			return {
-				label: suggestion.data,
-				review: suggestion.isSelected() ? 'accept' : 'reject'
-			};
-		} ),
-		// Statements for confirmed suggestions to be added to file.
+		// Data for all provided suggestions so we can update the database.
+		reviewBatch = this.suggestionsWidget.items
+			// Remove custom suggestions.
+			.filter( function ( suggestion ) {
+				return !!self.originalSuggestions.findItemFromData( suggestion.data );
+			} )
+			.map( function ( suggestion ) {
+				return {
+					label: suggestion.data,
+					review: suggestion.isSelected() ? 'accept' : 'reject'
+				};
+			} ),
+		// Statements for confirmed suggestions, including custom.
 		depictsStatements = selected.map( function ( suggestion ) {
 			return new datamodel.Statement(
 				new datamodel.Claim(
 					new datamodel.PropertyValueSnak(
 						depictsPropertyId,
-						new datamodel.EntityId( suggestion.data )
+						new datamodel.EntityId( suggestion.wikidataId )
 					),
 					null, // qualifiers
 					self.guidGenerator.newGuid()
