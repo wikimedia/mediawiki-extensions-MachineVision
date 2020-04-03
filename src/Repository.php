@@ -90,7 +90,6 @@ class Repository implements LoggerAwareInterface {
 			'machine_vision_image',
 			[
 				'mvi_sha1' => $sha1,
-				// why does 'RAND()' not work here?
 				'mvi_rand' => $this->getRandomFloat(),
 			],
 			__METHOD__,
@@ -291,22 +290,36 @@ class Repository implements LoggerAwareInterface {
 		$rand = $this->getRandomFloat();
 		$fname = __METHOD__;
 
-		if ( $userId ) {
+		$tables = [ 'machine_vision_image', 'machine_vision_label' ];
+		$joins = [ 'machine_vision_label' => [ 'INNER JOIN', [ 'mvi_id = mvl_mvi_id' ] ] ];
+
+		if ( $userId !== null ) {
 			$conds = [
 				'mvl_review' => [ self::REVIEW_UNREVIEWED, self::REVIEW_WITHHELD ],
 				'mvl_uploader_id' => strval( $userId ),
 			];
 		} else {
-			$conds = [ 'mvl_review' => self::REVIEW_UNREVIEWED ];
+			$conds = [
+				'mvl_review' => self::REVIEW_UNREVIEWED,
+				// HACK: Use the mvs_timestamp value to identify label suggestions relating to
+				// images that were labeled as part of the "assessed" images group. These were
+				// labeled in November 2019, and new upload labeling was not enabled until
+				// December 2019 or later.
+				// TODO: Update the DB schema to add a column to identify the labeling "group"
+				'mvs_timestamp < 20191201000000',
+			];
+			$tables[] = 'machine_vision_suggestion';
+			$joins['machine_vision_suggestion'] = [ 'INNER JOIN', [ 'mvs_mvl_id = mvl_id' ] ];
 		}
 
-		$select = function ( $ascending, $limit, $conds ) use ( $fname, $rand, $multiplier ) {
+		$select = function ( $ascending, $limit, $conds ) use ( $fname, $tables, $joins, $rand,
+			$multiplier ) {
 			$whereClause = array_merge( $conds,
 				[ 'mvi_rand ' . ( $ascending ? '> ' : '< ' ) . strval( $rand ) ] );
 
 			return $this->dbr->selectFieldValues(
 				[ 'image', 'machinevision' => $this->dbr->buildSelectSubquery(
-					[ 'machine_vision_image', 'machine_vision_label' ],
+					$tables,
 					'mvi_sha1',
 					$whereClause,
 					$fname,
@@ -314,7 +327,7 @@ class Repository implements LoggerAwareInterface {
 						'ORDER BY' => 'mvi_rand ' . ( $ascending ? 'ASC' : 'DESC' ),
 						'LIMIT' => $limit * $multiplier,
 					],
-					[ 'machine_vision_label' => [ 'INNER JOIN', [ 'mvi_id = mvl_mvi_id' ] ] ]
+					$joins
 				) ],
 				'img_name',
 				'',
