@@ -41,6 +41,7 @@
 	"machinevision-no-uploads-cta-heading": "Você não tem imagens para revisão",
 	"machinevision-no-uploads-cta-text": "Carregue de novas imagens para que nossa ferramenta possa analisá-las e sugerir tags apropriadas. Se você já fez o upload de imagens e não as vê aqui, essas imagens ainda podem estar em revisão e você poderá verificar mais tarde. Você também pode facilitar a localização de imagens populares de outros usuários, marcando-as.",
 	"machinevision-javascript-required": "Este recurso não é suportado no seu navegador da web.",
+	"machinevision-categories-label": "Categorias:",
 	"right-imagelabel-review": "Analisar as sugestões do rótulo da imagem",
 	"action-imagelabel-review": "revisar sugestões de marcadores de imagem",
 	"right-imagelabel-test": "Testar sugestões de etiquetas de imagem",
