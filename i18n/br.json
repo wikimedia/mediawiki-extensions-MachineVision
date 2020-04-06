@@ -4,5 +4,7 @@
 			"Fulup"
 		]
 	},
-	"machinevision-categories-label": "Rummadoù :"
+	"machinevision-categories-label": "Rummadoù :",
+	"machinevision-add-custom-tag-dialog-add-action": "Ouzhpennañ",
+	"machinevision-add-custom-tag-dialog-cancel-action": "Nullañ"
 }

@@ -4,5 +4,7 @@
 			"Kareyac"
 		]
 	},
-	"machinevision-categories-label": "Կատեգորիաներ."
+	"machinevision-categories-label": "Կատեգորիաներ.",
+	"machinevision-add-custom-tag-dialog-add-action": "Ավելացնել",
+	"machinevision-add-custom-tag-dialog-cancel-action": "Չեղարկել"
 }

@@ -19,5 +19,6 @@
 	"machinevision-onboarding-dialog-cta": "태그 시작",
 	"machinevision-onboarding-dialog-close-label": "닫기",
 	"machinevision-no-uploads-cta-heading": "검토할 이미지가 없습니다",
-	"machinevision-javascript-required": "이 기능은 사용 중인 웹 브라우저에서 지원되지 않습니다."
+	"machinevision-javascript-required": "이 기능은 사용 중인 웹 브라우저에서 지원되지 않습니다.",
+	"machinevision-categories-label": "분류:"
 }

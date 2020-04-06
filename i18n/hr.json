@@ -42,6 +42,7 @@
 	"machinevision-no-uploads-cta-heading": "Nemate slika za pregled",
 	"machinevision-no-uploads-cta-text": "Molimo Vas, postavite nove slike kako bi ih naš alat mogao analizirati i predložiti odgovarajuće oznake. Ako ste već postavili slike a ovdje ih ne vidite, možda su još uvijek u pregledu i možete ih provjeriti kasnije. Učinite popularne slike drugih suradnika lakšim za pronalaženje tako što ćete im dodati oznake.",
 	"machinevision-javascript-required": "Ova značajka nije podržana u Vašem pregledniku.",
+	"machinevision-categories-label": "Kategorije:",
 	"right-imagelabel-review": "Pregledajte prijedloge slikovnih etiketa",
 	"action-imagelabel-review": "pregledajte prijedloge slikovnih etiketa",
 	"right-imagelabel-test": "Slika za isprobavanje prijedloga etiketa",
