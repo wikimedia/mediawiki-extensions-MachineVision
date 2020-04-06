@@ -239,7 +239,7 @@ class GoogleCloudVisionClient implements LoggerAwareInterface {
 
 		EchoEvent::create( [
 			'type' => 'machinevision-suggestions-ready',
-			'title' => $file->getTitle(),
+			'title' => \SpecialPage::getTitleFor( 'SuggestedTags' ),
 			'agent' => $file->getUser( 'object' )
 		] );
 	}
