@@ -22,7 +22,7 @@ function SuggestionsWidget( config ) {
 	};
 
 	SuggestionsWidget.parent.call( this, $.extend( {}, parentConfig ) );
-	this.connect( this, { select: 'onSelect' } );
+	this.connect( this, { select: [ 'emit', 'change' ] } );
 }
 OO.inheritClass( SuggestionsWidget, OO.ui.CheckboxMultiselectWidget );
 
@@ -47,19 +47,6 @@ SuggestionsWidget.prototype.createOption = function ( suggestion ) {
 		.addClass( 'wbmad-suggestions__suggestion__check-icon' );
 
 	return option;
-};
-
-/**
- * Handle user action of toggling a suggestion.
- * @param {OO.ui.CheckboxMultioptionWidget} suggestion
- */
-SuggestionsWidget.prototype.onSelect = function ( suggestion ) {
-	// Adding this class only after a suggestion has been changed once, that is,
-	// the first time it is selected, will allow us to animate the process of
-	// un-selecting a suggestion (sliding it back to center) without firing off
-	// that animation when the component first mounts.
-	suggestion.$element.addClass( 'wbmad-suggestions__suggestion--toggled' );
-	this.emit( 'change' );
 };
 
 module.exports = SuggestionsWidget;

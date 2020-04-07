@@ -32,6 +32,10 @@
 		color: @base0;
 	}
 
+	.oo-ui-labelElement-label {
+		.transition-transform( 0.2s );
+	}
+
 	.wbmad-suggestions__suggestion__checkbox-widget {
 		margin: 0;
 		position: absolute;
@@ -39,8 +43,14 @@
 
 	// Hide custom checkbox UI element.
 	.wbmad-suggestions__suggestion__check-icon {
-		display: block;
+		.transition( opacity 0.2s );
+		min-height: 0;
+		min-width: 0;
 		opacity: 0;
+		position: absolute;
+		right: 0;
+		visibility: hidden; // Hide from screen readers.
+		width: 0; // Don't take up space yet.
 	}
 
 	// Hide checkbox input.
@@ -59,22 +69,6 @@
 		padding-top: 4px;
 	}
 
-	// Animate the process of moving a label back to center when unselected.
-	&.wbmad-suggestions__suggestion--toggled {
-		.oo-ui-labelElement-label {
-			@keyframes slideRight {
-				0% {
-					.transform( translateX( -0.5em ) );
-				}
-
-				100% {
-					.transform( translateX( 0 ) );
-				}
-			}
-			animation: slideRight 0.2s;
-		}
-	}
-
 	// Selected suggestion.
 	&.oo-ui-multioptionWidget-selected {
 		background-color: @accent90;
@@ -84,17 +78,7 @@
 
 		// Slide to the left to make room for the check icon.
 		.oo-ui-labelElement-label {
-			@keyframes slideLeft {
-				0% {
-					.transform( translateX( 0 ) );
-				}
-
-				100% {
-					.transform( translateX( -0.5em ) );
-				}
-			}
-			.transform( translateX( -0.5em ) );
-			animation: slideLeft 0.2s;
+			transform: translateX( -0.5em );
 		}
 
 		.wbmad-suggestions__suggestion__checkbox-widget {
@@ -103,10 +87,8 @@
 		}
 
 		.wbmad-suggestions__suggestion__check-icon {
-			.fade-in( 0.2s );
-			min-height: 0;
-			min-width: 0;
 			opacity: 1;
+			visibility: visible;
 			width: 1em;
 		}
 	}
