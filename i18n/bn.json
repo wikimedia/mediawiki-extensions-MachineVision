@@ -1,8 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
-			"আফতাবুজ্জামান",
-			"Nokib Sarkar"
+			"Nokib Sarkar",
+			"Tahmid02016",
+			"আফতাবুজ্জামান"
 		]
 	},
 	"machinevision-machineaidedtagging": "পরামর্শকৃত ট্যাগগুলি",
@@ -17,5 +18,7 @@
 	"machinevision-confirm-tags-dialog-confirm-action": "ঠিক আছে",
 	"machinevision-confirm-tags-dialog-cancel-action": "বাতিল",
 	"machinevision-confirm-tags-dialog-heading": "এই চিত্র চিত্রিত করে:",
-	"machinevision-onboarding-dialog-close-label": "বন্ধ করুন"
+	"machinevision-onboarding-dialog-close-label": "বন্ধ করুন",
+	"machinevision-add-custom-tag-dialog-add-action": "যোগ করুন",
+	"machinevision-add-custom-tag-dialog-cancel-action": "বাতিল"
 }

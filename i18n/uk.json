@@ -1,8 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
-			"Ата",
-			"Piramidion"
+			"Movses",
+			"Piramidion",
+			"Ата"
 		]
 	},
 	"machinevision-desc": "Взаємодіє з внутрішніми й зовнішніми службами машинного розпізнавання зображень, а також зберігає й видає результати.",
@@ -17,6 +18,8 @@
 	"machinevision-autoconfirmed-message": "Точні теги полегшують пошук зображень для всіх користувачів Вікісховища, тому, будь ласка, отримайте [[mw:Manual:Autoconfirmed_users|права автопідтвердженого користувача]], оскільки лише автопідтверджені користувачі можуть користуватися цим інструментом.",
 	"machinevision-publish": "Опублікувати",
 	"machinevision-publish-title": "Опублікувати теги?",
+	"machinevision-add-custom-tag": "Додати тег",
+	"machinevision-add-custom-tag-title": "Додати інший тег цьому зображенню",
 	"machinevision-skip": "Пропустити",
 	"machinevision-skip-title": "Пропустити пропозиції для «$1»?",
 	"machinevision-personal-uploads-count": "Ви маєте $1 {{PLURAL:$1|персональне завантаження|персональні завантаження|персональних завантажень}} до перегляду.",
@@ -43,6 +46,9 @@
 	"machinevision-no-uploads-cta-text": "Будь ласка, завантажте нові зображення, щоб наш інструмент міг їх проаналізувати і запропонувати відповідні теги. Якщо Ви вже завантажили такі зображення, але не бачите їх тут, ці зображення, ймовірно, проходять перевірку, і Вам треба заглянути сюди трохи пізніше. Натомість Ви можете додавати теги також до популярних зображень від інших користувачів, аби полегшити їх пошук.",
 	"machinevision-javascript-required": "Ваш браузер не підтримує цю функцію.",
 	"machinevision-categories-label": "Категорії:",
+	"machinevision-add-custom-tag-dialog-title": "Інший тег",
+	"machinevision-add-custom-tag-dialog-add-action": "Додати",
+	"machinevision-add-custom-tag-dialog-cancel-action": "Скасувати",
 	"right-imagelabel-review": "Перегляд пропозицій міток зображень",
 	"action-imagelabel-review": "перегляд пропозицій міток зображень",
 	"right-imagelabel-test": "Тестування пропозицій міток зображень",

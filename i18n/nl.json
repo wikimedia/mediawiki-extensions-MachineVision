@@ -1,13 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
-			"RadioAzureus",
-			"Siebrand",
-			"Robin van der Linde",
 			"Elroy",
 			"LongJohn nl",
 			"Mainframe98",
-			"Romaine"
+			"RadioAzureus",
+			"Robin van der Linde",
+			"Romaine",
+			"Siebrand"
 		]
 	},
 	"machinevision-machineaidedtagging": "Voorgestelde labels",

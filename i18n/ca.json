@@ -5,9 +5,14 @@
 			"Jlrb+"
 		]
 	},
+	"machinevision-add-custom-tag": "Afegeix una etiqueta",
+	"machinevision-add-custom-tag-title": "Afegeix una etiqueta personalitzada a aquesta imatge",
 	"machinevision-success-message-with-warning": "S’han afegit etiquetes a les imatges, amb les excepcions següents:",
 	"machinevision-javascript-required": "El vostre navegador no admet aquesta funcionalitat.",
 	"machinevision-categories-label": "Categories:",
+	"machinevision-add-custom-tag-dialog-title": "Etiqueta personalitzada",
+	"machinevision-add-custom-tag-dialog-add-action": "Afegeix",
+	"machinevision-add-custom-tag-dialog-cancel-action": "Cancel·la",
 	"right-imagelabel-test": "Suggeriments d'etiqueta d'imatge de prova",
 	"action-imagelabel-test": "suggeriments d'etiqueta d'imatge de prova",
 	"tag-computer-aided-tagging": "Etiquetatge assistit per ordinador",

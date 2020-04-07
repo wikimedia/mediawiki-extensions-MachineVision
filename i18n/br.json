@@ -4,7 +4,10 @@
 			"Fulup"
 		]
 	},
+	"machinevision-add-custom-tag": "Ouzhpennañ un dikedenn",
+	"machinevision-add-custom-tag-title": "Ouzhpennañ un dikedenn bersonelaet d'ar skeudenn-se",
 	"machinevision-categories-label": "Rummadoù :",
+	"machinevision-add-custom-tag-dialog-title": "Tikedenn bersonelaet",
 	"machinevision-add-custom-tag-dialog-add-action": "Ouzhpennañ",
 	"machinevision-add-custom-tag-dialog-cancel-action": "Nullañ"
 }

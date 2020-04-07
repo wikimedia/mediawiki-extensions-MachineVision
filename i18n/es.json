@@ -1,10 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
+			"Canaan9801",
 			"Fitoschido",
-			"Madamebiblio",
 			"Hasley",
-			"Canaan9801"
+			"Madamebiblio"
 		]
 	},
 	"machinevision-desc": "Interactua con proveedores de servicios externos y internos de visión artificial y guarda y provee resultados.",

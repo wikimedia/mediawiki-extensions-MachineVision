@@ -1,9 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
-			"Winston Sung",
+			"Go1002opn",
 			"Kly",
-			"Go1002opn"
+			"Winston Sung"
 		]
 	},
 	"machinevision-desc": "與內部與外部機器視覺服務供應方的介面，且儲存並提供結果。",

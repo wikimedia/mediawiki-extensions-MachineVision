@@ -1,9 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
-			"MrJaroslavik",
 			"Juandev",
-			"Matěj Suchánek"
+			"Matěj Suchánek",
+			"MrJaroslavik"
 		]
 	},
 	"machinevision-desc": "Rozhraní s interními a externími poskytovateli služeb strojového vidění a ukládá a nabízí výsledky.",

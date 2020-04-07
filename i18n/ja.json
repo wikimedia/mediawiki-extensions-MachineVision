@@ -1,8 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Omotecho",
-			"Kkairri"
+			"Kkairri",
+			"Omotecho"
 		]
 	},
 	"machinevision-desc": "内部および外部の機械読み取りサービス提供者向けのインターフェースで出力結果の提供と保存を行う。",

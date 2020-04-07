@@ -1,8 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Wikimedia Product Infrastructure Team",
-			"Monte Hurd"
+			"Monte Hurd",
+			"Wikimedia Product Infrastructure Team"
 		]
 	},
 	"apihelp-reviewimagelabels-summary": "{{doc-apihelp-summary|reviewimagelabels}}",

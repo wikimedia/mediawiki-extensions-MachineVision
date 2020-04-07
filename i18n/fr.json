@@ -1,15 +1,15 @@
 {
 	"@metadata": {
 		"authors": [
-			"Gomoko",
-			"Wladek92",
-			"Thibaut120094",
-			"Crochet.david",
-			"Verdy p",
-			"Pols12",
-			"Vega",
 			"Aaribaud",
-			"Eneelk"
+			"Crochet.david",
+			"Eneelk",
+			"Gomoko",
+			"Pols12",
+			"Thibaut120094",
+			"Vega",
+			"Verdy p",
+			"Wladek92"
 		]
 	},
 	"machinevision-desc": "S’interface avec des fournisseurs de service de vision industrielle interne et externe pour stocker et fournir les résultats.",
@@ -25,6 +25,7 @@
 	"machinevision-publish": "Publier",
 	"machinevision-publish-title": "Publier ces mots-clés ?",
 	"machinevision-add-custom-tag": "Ajouter une balise",
+	"machinevision-add-custom-tag-title": "Ajouter une balise personnalisée à cette image",
 	"machinevision-skip": "Sauter",
 	"machinevision-skip-title": "Sauter les suggestions pour « $1 » ?",
 	"machinevision-personal-uploads-count": "Vous avez $1 téléversement{{PLURAL:$1||s}} personnel{{PLURAL:$1||s}} à passer en revue.",

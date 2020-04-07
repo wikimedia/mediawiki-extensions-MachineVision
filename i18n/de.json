@@ -1,5 +1,7 @@
 {
-	"@metadata": [],
+	"@metadata": {
+		"authors": []
+	},
 	"machinevision-desc": "Schnittstellen zu internen und externen Bildverarbeitungs-Dienstleistern sowie Speicherung und Bereitstellung von Ergebnissen.",
 	"machinevision-machineaidedtagging": "Vorgeschlagene Tags",
 	"machinevision-machineaidedtagging-intro": "Überprüfe die vorgeschlagenen Tags der [[Project:Depicts|abgebildeten Objekte]] in Bildern. Nur vom Benutzer bestätigte Tags werden den Bildern hinzugefügt. Weitere Informationen findest du auf der [[Project:Structured_data/Computer-aided_tagging|Projektseite]] und  [[Project_talk:Structured_data/Computer-aided_tagging|gib Feedback]], wie dieses Tool noch hilfreicher gemacht werden kann!",

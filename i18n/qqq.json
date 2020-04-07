@@ -1,13 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
-			"Wikimedia Product Infrastructure Team",
-			"Wikimedia Structured Data Team",
-			"Monte Hurd",
-			"Robby",
 			"EGardner (WMF)",
+			"Monte Hurd",
 			"Piramidion",
-			"Umherirrender"
+			"Robby",
+			"Umherirrender",
+			"Wikimedia Product Infrastructure Team",
+			"Wikimedia Structured Data Team"
 		]
 	},
 	"machinevision-desc": "{{desc|name=MachineVision|url=https://www.mediawiki.org/wiki/Extension:MachineVision}}\nNote: the word \"interfaces\" is a verb, not a noun.",

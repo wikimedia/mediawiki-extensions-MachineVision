@@ -7,6 +7,7 @@
 	},
 	"machinevision-machineaidedtagging": "Etichette suggerite",
 	"machinevision-publish": "Pubblica",
+	"machinevision-add-custom-tag": "Aggiungi etichetta",
 	"machinevision-skip": "Salta",
 	"machinevision-skip-title": "Salta suggerimenti per \"$1\"?",
 	"machinevision-suggestion-confirm-title": "Stai suggerendo \"$1\", confermi?",
@@ -14,5 +15,7 @@
 	"machinevision-confirm-tags-dialog-confirm-action": "OK",
 	"machinevision-confirm-tags-dialog-cancel-action": "Annulla",
 	"machinevision-onboarding-dialog-close-label": "Chiudi",
-	"machinevision-categories-label": "Categorie:"
+	"machinevision-categories-label": "Categorie:",
+	"machinevision-add-custom-tag-dialog-add-action": "Aggiungi",
+	"machinevision-add-custom-tag-dialog-cancel-action": "Annulla"
 }
