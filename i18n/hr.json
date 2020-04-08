@@ -56,5 +56,8 @@
 	"echo-machinevision-suggestions-ready-notification-body": "Pozdrav! Slikama koje ste nedavno postavili na Zajednički poslužitelj predložene su oznake i spremne su za pregled. Točne oznake pomažu u lakšem pronalaženju {{GENDER:$1|Vaših}} slika, stoga slijedite poveznicu za pregled {{GENDER:$1|Vaših}} predloženih oznaka. Samo one oznake koje su potvrdili suradnici biti će dodane kao dio podataka na Zajedničkom poslužitelju. Za više informacija o ovom alatu, molimo posjetite stranicu projekta.",
 	"echo-machinevision-suggestions-ready-notification-primary-link": "Primarna poveznica za obavijest o spremnim oznakama",
 	"echo-category-title-machinevision": "Predložene oznake za pregled",
-	"echo-pref-tooltip-machinevision-suggestions-ready": "Obavijesti me kada su moje slike obrađene te su predložene oznake spremne za moj pregled."
+	"echo-pref-tooltip-machinevision-suggestions-ready": "Obavijesti me kada su moje slike obrađene te su predložene oznake spremne za moj pregled.",
+	"group-machinevision-tester": "Ispitivači strojnoga vida",
+	"group-machinevision-tester-member": "{{GENDER:$1|ispitivač strojnoga vida|ispitivačica strojnoga vida}}",
+	"grouppage-machinevision-tester": "{{ns:project}}:Ispitivači strojnoga vida"
 }
