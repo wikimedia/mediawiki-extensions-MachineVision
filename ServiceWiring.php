@@ -12,7 +12,6 @@ use MediaWiki\Extension\MachineVision\Util;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\NameTableStore;
-use Wikibase\Lib\LanguageFallbackChainFactory;
 use Wikibase\Repo\WikibaseRepo;
 use Wikimedia\ObjectFactory;
 
@@ -144,7 +143,6 @@ return [
 	'MachineVisionLabelResolver' => function ( MediaWikiServices $services ): LabelResolver {
 		$extensionConfig = $services->getService( 'MachineVisionConfig' );
 		$entityLookup = WikibaseRepo::getDefaultInstance()->getEntityLookup();
-		$languageFallbackChainFactory = new LanguageFallbackChainFactory();
 		$httpRequestFactory = $services->getHttpRequestFactory();
 		$wikiDomain = $services->getMainConfig()->get( 'ServerName' );
 		$userAgent = $httpRequestFactory->getUserAgent() . " ($wikiDomain)";
@@ -153,7 +151,6 @@ return [
 
 		return new LabelResolver(
 			$entityLookup,
-			$languageFallbackChainFactory,
 			$httpRequestFactory,
 			$userAgent,
 			$useWikidataPublicApi

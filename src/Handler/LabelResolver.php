@@ -11,8 +11,6 @@ use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
 use Wikibase\DataModel\Entity\ItemId;
 use Wikibase\DataModel\Services\Lookup\EntityLookup;
-use Wikibase\Lib\LanguageFallbackChain;
-use Wikibase\Lib\LanguageFallbackChainFactory;
 
 /**
  * This class looks up Wikibase entities by ID and retreives human-readable
@@ -26,10 +24,6 @@ class LabelResolver implements LoggerAwareInterface {
 	/** @var EntityLookup */
 	private $entityLookup;
 
-	/** @var LanguageFallbackChainFactory */
-	// @phan-suppress-next-line PhanUndeclaredTypeProperty
-	private $languageFallbackChainFactory;
-
 	/** @var HttpRequestFactory */
 	private $httpRequestFactory;
 
@@ -42,19 +36,15 @@ class LabelResolver implements LoggerAwareInterface {
 	/**
 	 * LabelResolver constructor.
 	 * @param EntityLookup $entityLookup
-	 * @param LanguageFallbackChainFactory $languageFallbackChainFactory
 	 * @param HttpRequestFactory $httpRequestFactory
 	 * @param string $userAgent
 	 * @param bool $useWikidataPublicApi if true, request labels from the Wikidata public API
-	 * @suppress PhanUndeclaredTypeParameter
 	 */
 	public function __construct( EntityLookup $entityLookup,
-								 LanguageFallbackChainFactory $languageFallbackChainFactory,
 								 HttpRequestFactory $httpRequestFactory,
 								 $userAgent,
 								 $useWikidataPublicApi ) {
 		$this->entityLookup = $entityLookup;
-		$this->languageFallbackChainFactory = $languageFallbackChainFactory;
 		$this->httpRequestFactory = $httpRequestFactory;
 		$this->userAgent = $userAgent;
 		$this->useWikidataPublicApi = $useWikidataPublicApi;
@@ -66,29 +56,24 @@ class LabelResolver implements LoggerAwareInterface {
 	 * @param IContextSource $context
 	 * @param string[] $ids Wikidata IDs
 	 * @return array[] strings for labels, descriptions, and aliases mapped to IDs
-	 * @suppress PhanUndeclaredClassMethod
 	 */
 	public function resolve( $context, $ids ) {
 		// Determine UI language and fallback chain for later use
 		$uiLang = $context->getLanguage();
-		$languageFallbackChain = $this->languageFallbackChainFactory->newFromContext( $context );
 
 		return $this->useWikidataPublicApi
-			? $this->resolveExternal( $uiLang, $languageFallbackChain, $ids )
-			: $this->resolveInternal( $uiLang, $languageFallbackChain, $ids );
+			? $this->resolveExternal( $uiLang, $ids )
+			: $this->resolveInternal( $uiLang, $ids );
 	}
 
 	/**
 	 * Resolve item labels through the configured Wikibase repo.
 	 * @param Language $uiLang
-	 * @param LanguageFallbackChain $languageFallbackChain
 	 * @param string[] $ids Wikidata IDs
 	 * @return array[] strings for labels, descriptions, and aliases mapped to IDs
-	 * @suppress PhanUndeclaredTypeParameter
 	 */
 	private function resolveInternal(
 		Language $uiLang,
-		LanguageFallbackChain $languageFallbackChain,
 		$ids
 	) {
 		$result = [];
@@ -110,15 +95,15 @@ class LabelResolver implements LoggerAwareInterface {
 
 			if ( $labels ) {
 				$result[$id]['label'] =
-					$this->getLabelByLanguageFallbackChain( $languageFallbackChain, $labels );
+					$this->getTextByLanguageFallbackChain( $uiLang, $labels );
 			}
 			if ( $descriptions ) {
 				$result[$id]['description'] =
-					$this->getLabelByLanguageFallbackChain( $languageFallbackChain, $descriptions );
+					$this->getTextByLanguageFallbackChain( $uiLang, $descriptions );
 			}
 			if ( $aliases ) {
 				$result[$id]['alias'] =
-					$this->getAliasForCurrentLanguageOnly( $uiLang, $aliases );
+					$this->getTextByLanguageFallbackChain( $uiLang, $aliases );
 			}
 
 		}
@@ -131,14 +116,11 @@ class LabelResolver implements LoggerAwareInterface {
 	 * Wikidata as a Wikibase repo.
 	 * In production, we'll resolve these via EntityLookup and not the public API.
 	 * @param Language $uiLang
-	 * @param LanguageFallbackChain $languageFallbackChain
 	 * @param string[] $ids Wikidata IDs
 	 * @return array[] strings for labels, descriptions, and aliases mapped to IDs
-	 * @suppress PhanUndeclaredTypeParameter
 	 */
 	private function resolveExternal(
 		Language $uiLang,
-		LanguageFallbackChain $languageFallbackChain,
 		$ids
 	) {
 		$result = [];
@@ -177,7 +159,7 @@ class LabelResolver implements LoggerAwareInterface {
 			}
 			if ( $labels ) {
 				$result[$id]['label'] =
-					$this->getLabelByLanguageFallbackChain( $languageFallbackChain, $labels );
+					$this->getTextByLanguageFallbackChain( $uiLang, $labels );
 			}
 
 			// Get the best description for the current language
@@ -187,7 +169,7 @@ class LabelResolver implements LoggerAwareInterface {
 			}
 			if ( $descriptions ) {
 				$result[$id]['description'] =
-					$this->getLabelByLanguageFallbackChain( $languageFallbackChain, $descriptions );
+					$this->getTextByLanguageFallbackChain( $uiLang, $descriptions );
 			}
 
 			// Get the first best alias for the current language
@@ -197,7 +179,7 @@ class LabelResolver implements LoggerAwareInterface {
 			}
 			if ( $aliases ) {
 				$result[$id]['alias'] =
-					$this->getAliasForCurrentLanguageOnly( $uiLang, $aliases );
+					$this->getTextByLanguageFallbackChain( $uiLang, $aliases );
 			}
 
 		}
@@ -206,41 +188,28 @@ class LabelResolver implements LoggerAwareInterface {
 	}
 
 	/**
-	 * Return the best available label according to the provided language fallback chain.
-	 * @param LanguageFallbackChain $languageFallbackChain
-	 * @param string[] $labels
+	 * Return the best available text according to the provided language fallback chain.
+	 * @param Language $uiLang
+	 * @param string[] $items
 	 * @return string|null
-	 * @suppress PhanUndeclaredTypeParameter,PhanUndeclaredClassMethod
 	 */
-	private function getLabelByLanguageFallbackChain(
-		LanguageFallbackChain $languageFallbackChain,
-		$labels
+	private function getTextByLanguageFallbackChain(
+		Language $uiLang,
+		$items
 	) {
-		if ( !$labels ) {
+		if ( !$items ) {
 			return null;
 		}
-		foreach ( $languageFallbackChain->getFetchLanguageCodes() as $lang ) {
-			if ( array_key_exists( $lang, $labels ) ) {
-				return $labels[$lang];
+
+		$langCodes = array_merge(
+			[ $uiLang->getCode() ],
+			$uiLang->getFallbackLanguages()
+		);
+		foreach ( $langCodes as $lang ) {
+			if ( array_key_exists( $lang, $items ) ) {
+				return $items[$lang];
 			}
 		}
-		return array_values( $labels )[0];
-	}
-
-	/**
-	 * Only return an alias if one exists for the exact language currently specified,
-	 * otherwise return null
-	 * @param Language $uiLang
-	 * @param string[] $aliases
-	 * @return string|null
-	 */
-	private function getAliasForCurrentLanguageOnly( Language $uiLang, $aliases ) {
-		$langCode = $uiLang->getCode();
-
-		if ( array_key_exists( $langCode, $aliases ) ) {
-			return $aliases[$langCode];
-		} else {
-			return null;
-		}
+		return null;
 	}
 }
