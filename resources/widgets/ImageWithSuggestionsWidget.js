@@ -289,7 +289,7 @@ ImageWithSuggestionsWidget.prototype.onFinalConfirm = function () {
 				new datamodel.Claim(
 					new datamodel.PropertyValueSnak(
 						depictsPropertyId,
-						new datamodel.EntityId( suggestion.wikidataId )
+						new datamodel.EntityId( suggestion.data )
 					),
 					null, // qualifiers
 					self.guidGenerator.newGuid()
