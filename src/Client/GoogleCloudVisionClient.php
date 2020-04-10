@@ -51,6 +51,9 @@ class GoogleCloudVisionClient implements LoggerAwareInterface {
 	/** @var string|bool */
 	private $proxy;
 
+	/** @var array */
+	private $withholdImageList;
+
 	/**
 	 * GoogleCloudVisionClient constructor.
 	 * @param GoogleOAuthClient $oAuthClient
@@ -60,6 +63,7 @@ class GoogleCloudVisionClient implements LoggerAwareInterface {
 	 * @param bool $sendFileContents
 	 * @param array $safeSearchLimits
 	 * @param string|bool $proxy
+	 * @param array $withholdImageList
 	 */
 	public function __construct(
 		GoogleOAuthClient $oAuthClient,
@@ -68,7 +72,8 @@ class GoogleCloudVisionClient implements LoggerAwareInterface {
 		Repository $repository,
 		bool $sendFileContents,
 		array $safeSearchLimits,
-		$proxy
+		$proxy,
+		array $withholdImageList
 	) {
 		$this->oAuthClient = $oAuthClient;
 		$this->httpRequestFactory = $httpRequestFactory;
@@ -77,6 +82,7 @@ class GoogleCloudVisionClient implements LoggerAwareInterface {
 		$this->sendFileContents = $sendFileContents;
 		$this->safeSearchLimits = $safeSearchLimits;
 		$this->proxy = $proxy;
+		$this->withholdImageList = $withholdImageList;
 
 		$this->setLogger( LoggerFactory::getInstance( 'machinevision' ) );
 	}
@@ -142,22 +148,8 @@ class GoogleCloudVisionClient implements LoggerAwareInterface {
 		$violence = self::SAFE_SEARCH_LIKELIHOODS[$safeSearchAnnotation['violence']];
 		$racy = self::SAFE_SEARCH_LIKELIHOODS[$safeSearchAnnotation['racy']];
 
-		$initialState = Repository::REVIEW_UNREVIEWED;
-
-		if (
-			( array_key_exists( 'adult', $this->safeSearchLimits ) &&
-				$adult >= $this->safeSearchLimits['adult'] ) ||
-			( array_key_exists( 'spoof', $this->safeSearchLimits ) &&
-				$spoof >= $this->safeSearchLimits['spoof'] ) ||
-			( array_key_exists( 'medical', $this->safeSearchLimits ) &&
-				$medical >= $this->safeSearchLimits['medical'] ) ||
-			( array_key_exists( 'violence', $this->safeSearchLimits ) &&
-				$violence >= $this->safeSearchLimits['violence'] ) ||
-			( array_key_exists( 'racy', $this->safeSearchLimits ) &&
-				$racy >= $this->safeSearchLimits['racy'] )
-		) {
-			$initialState = Repository::REVIEW_WITHHELD;
-		}
+		$initialState = self::getInitialLabelState( $this->withholdImageList, $suggestions,
+			$this->safeSearchLimits, $adult, $spoof, $medical, $violence, $racy );
 
 		// If previous versions of this file exist, grab the oldest one so we
 		// can add this image to the original uploader's personal uploads.
@@ -242,6 +234,72 @@ class GoogleCloudVisionClient implements LoggerAwareInterface {
 			'title' => $file->getTitle(),
 			'agent' => $file->getUser( 'object' )
 		] );
+	}
+
+	/**
+	 * @param array $withholdImageList list of Wikidata IDs indicating the image should be withheld
+	 * @param array $labelSuggestions array of LabelSuggestion objects
+	 * @param array $safeSearchLimits
+	 * @param int $adult
+	 * @param int $spoof
+	 * @param int $medical
+	 * @param int $violence
+	 * @param int $racy
+	 * @return int
+	 */
+	private static function getInitialLabelState(
+		array $withholdImageList,
+		array $labelSuggestions,
+		array $safeSearchLimits,
+		int $adult,
+		int $spoof,
+		int $medical,
+		int $violence,
+		int $racy
+	): int {
+		if ( self::hasWithholdAllTag( $withholdImageList, $labelSuggestions ) ) {
+			return Repository::REVIEW_WITHHELD_ALL;
+		} elseif ( self::imageFailsSafeSearch( $safeSearchLimits, $adult, $spoof, $medical,
+			$violence, $racy ) ) {
+			return Repository::REVIEW_WITHHELD_POPULAR;
+		} else {
+			return Repository::REVIEW_UNREVIEWED;
+		}
+	}
+
+	/**
+	 * @param array $withholdImageList list of Wikidata IDs indicating the image should be withheld
+	 * @param array $labelSuggestions array of LabelSuggestion objects
+	 * @return bool
+	 */
+	private static function hasWithholdAllTag( array $withholdImageList, array $labelSuggestions ):
+		bool {
+		$wikidataIds = array_map( function ( LabelSuggestion $suggestion ) {
+			return $suggestion->getWikidataId();
+		}, $labelSuggestions );
+		return (bool)array_intersect( $withholdImageList, $wikidataIds );
+	}
+
+	/**
+	 * @param array $safeSearchLimits
+	 * @param int $adult
+	 * @param int $spoof
+	 * @param int $medical
+	 * @param int $violence
+	 * @param int $racy
+	 * @return bool
+	 */
+	private static function imageFailsSafeSearch( array $safeSearchLimits, int $adult, int $spoof,
+		int $medical, int $violence, int $racy ): bool {
+		return ( array_key_exists( 'adult', $safeSearchLimits ) &&
+			$adult >= $safeSearchLimits['adult'] ) ||
+		( array_key_exists( 'spoof', $safeSearchLimits ) &&
+			$spoof >= $safeSearchLimits['spoof'] ) ||
+		( array_key_exists( 'medical', $safeSearchLimits ) &&
+			$medical >= $safeSearchLimits['medical'] ) ||
+		( array_key_exists( 'violence', $safeSearchLimits ) &&
+			$violence >= $safeSearchLimits['violence'] ) ||
+		( array_key_exists( 'racy', $safeSearchLimits ) && $racy >= $safeSearchLimits['racy'] );
 	}
 
 }

@@ -55,6 +55,7 @@ return [
 		$cluster = $extensionConfig->get( 'MachineVisionCluster' );
 		$database = $extensionConfig->get( 'MachineVisionDatabase' );
 		$wikidataIdBlacklist = $extensionConfig->get( 'MachineVisionWikidataIdBlacklist' );
+		$withholdImageList = $extensionConfig->get( 'MachineVisionWithholdImageList' );
 		$loadBalancer = $cluster
 			? $loadBalancerFactory->getExternalLB( $cluster )
 			: $loadBalancerFactory->getMainLB( $database );
@@ -72,7 +73,8 @@ return [
 			$repository,
 			$sendFileContents,
 			$safeSearchLimits,
-			$proxy
+			$proxy,
+			$withholdImageList
 		);
 		$client->setLogger( LoggerFactory::getInstance( 'machinevision' ) );
 		return $client;
