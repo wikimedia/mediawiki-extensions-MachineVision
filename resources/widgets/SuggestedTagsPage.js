@@ -165,6 +165,20 @@ SuggestedTagsPage.prototype.getItemsForQueryResponse = function ( response ) {
 
 	// Helper function to process query results
 	function getImageDataForQueryResponse( item ) {
+		var categories = [],
+			titlePrefix,
+			sliceStart;
+
+		if ( item.categories && item.categories.length > 0 ) {
+			titlePrefix = 'Category:';
+			sliceStart = titlePrefix.length;
+
+			categories = item.categories.map( function ( category ) {
+				// Strip out the "Category:" string.
+				return { title: category.title.slice( sliceStart ) };
+			} );
+		}
+
 		return new ImageData(
 			item.title,
 			item.pageid,
@@ -173,7 +187,9 @@ SuggestedTagsPage.prototype.getItemsForQueryResponse = function ( response ) {
 			item.imageinfo[ 0 ].thumbheight,
 			item.imagelabels.map( function ( labelData ) {
 				return new SuggestionData( labelData.label, labelData.wikidata_id );
-			} )
+			} ),
+			categories
+
 		);
 	}
 
@@ -233,12 +249,14 @@ SuggestedTagsPage.prototype.fetchItems = function () {
 			formatversion: 2,
 			generator: 'unreviewedimagelabels',
 			guillimit: IMAGES_PER_PAGE,
-			prop: 'imageinfo|imagelabels',
+			prop: 'imageinfo|imagelabels|categories',
 			iiprop: 'url',
 			iiurlwidth: 800,
 			ilstate: 'unreviewed',
 			meta: 'unreviewedimagecount',
-			uselang: mw.config.get( 'wgUserLanguage' )
+			uselang: mw.config.get( 'wgUserLanguage' ),
+			cllimit: 500,
+			clshow: '!hidden'
 		};
 
 	if ( queryType === 'user' ) {

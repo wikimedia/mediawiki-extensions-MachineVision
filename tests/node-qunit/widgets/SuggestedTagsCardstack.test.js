@@ -9,7 +9,11 @@ var pathToWidget = '../../../resources/widgets/SuggestedTagsCardstack.js',
 				{ text: 'whiskers' }
 			],
 			thumbUrl: 'https://example.com/thumbnails/Cat.jpg',
-			title: 'Domestic shorthair cat with whiskers'
+			title: 'Domestic shorthair cat with whiskers',
+			categories: [
+				{ title: 'Cute animals' },
+				{ title: 'Things better than dogs' }
+			]
 		},
 		{
 			descriptionUrl: 'https://example.com/File:Dog.jpg',
@@ -19,7 +23,8 @@ var pathToWidget = '../../../resources/widgets/SuggestedTagsCardstack.js',
 				{ text: 'doge' }
 			],
 			thumbUrl: 'https://example.com/thumbnails/Dog.jpg',
-			title: 'Such dog'
+			title: 'Such dog',
+			categories: []
 		}
 	];
 

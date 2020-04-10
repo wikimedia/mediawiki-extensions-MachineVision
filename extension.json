@@ -230,7 +230,6 @@
 				"models/SuggestionData.js",
 				"widgets/AddCustomTagDialog.js",
 				"widgets/CardstackPlaceholder.js",
-				"widgets/CategoryList.js",
 				"widgets/ConfirmTagsDialog.js",
 				"widgets/ConfirmTagsDialogContent.js",
 				"widgets/EntityAutocompleteInputWidget.js",
@@ -245,7 +244,6 @@
 			"styles": [
 				"widgets/AddCustomTagDialog.less",
 				"widgets/CardstackPlaceholder.less",
-				"widgets/CategoryList.less",
 				"widgets/ConfirmTagsDialog.less",
 				"widgets/ConfirmTagsDialogContent.less",
 				"widgets/EntityAutocompleteInputWidget.less",
@@ -272,7 +270,6 @@
 			],
 			"templates": [
 				"widgets/CardstackPlaceholder.mustache+dom",
-				"widgets/CategoryList.mustache+dom",
 				"widgets/ConfirmTagsDialogContent.mustache+dom",
 				"widgets/EntityAutocompleteInputWidgetLabel.mustache+dom",
 				"widgets/ImageWithSuggestionsWidget.mustache+dom",
