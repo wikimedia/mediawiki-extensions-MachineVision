@@ -22,13 +22,15 @@ class Repository implements LoggerAwareInterface {
 	const REVIEW_UNREVIEWED = 0;
 	const REVIEW_ACCEPTED = 1;
 	const REVIEW_REJECTED = -1;
-	const REVIEW_WITHHELD = -2;
+	const REVIEW_WITHHELD_POPULAR = -2;
+	const REVIEW_WITHHELD_ALL = -3;
 
 	private static $reviewStates = [
 		self::REVIEW_UNREVIEWED,
 		self::REVIEW_ACCEPTED,
 		self::REVIEW_REJECTED,
-		self::REVIEW_WITHHELD,
+		self::REVIEW_WITHHELD_POPULAR,
+		self::REVIEW_WITHHELD_ALL,
 	];
 
 	/** @var NameTableStore */
@@ -208,7 +210,7 @@ class Repository implements LoggerAwareInterface {
 	 */
 	public function setLabelState( $sha1, $label, $state, $reviewerId, $ts ) {
 		$validStates = array_diff( self::$reviewStates,
-			[ self::REVIEW_UNREVIEWED, self::REVIEW_WITHHELD ] );
+			[ self::REVIEW_UNREVIEWED, self::REVIEW_WITHHELD_POPULAR ] );
 		if ( !in_array( $state, $validStates, true ) ) {
 			$validStates = implode( ', ', $validStates );
 			throw new InvalidArgumentException( "Invalid state $state (must be one of $validStates)" );
@@ -258,14 +260,14 @@ class Repository implements LoggerAwareInterface {
 	}
 
 	/**
-	 * Set all unreviewed label suggestions for an image to REVIEW_WITHHELD.
+	 * Set all unreviewed label suggestions for an image to REVIEW_WITHHELD_POPULAR.
 	 * @param string $sha1 image SHA1 digest
 	 */
-	public function withholdUnreviewedLabelsForFile( $sha1 ) {
+	public function withholdImageFromPopular( $sha1 ) {
 		$mviId = $this->getMviIdForSha1( $sha1 );
 		$this->dbw->update(
 			'machine_vision_label',
-			[ 'mvl_review' => self::REVIEW_WITHHELD ],
+			[ 'mvl_review' => self::REVIEW_WITHHELD_POPULAR ],
 			[
 				'mvl_mvi_id' => $mviId,
 				'mvl_review' => self::REVIEW_UNREVIEWED,
@@ -295,7 +297,7 @@ class Repository implements LoggerAwareInterface {
 
 		if ( $userId !== null ) {
 			$conds = [
-				'mvl_review' => [ self::REVIEW_UNREVIEWED, self::REVIEW_WITHHELD ],
+				'mvl_review' => [ self::REVIEW_UNREVIEWED, self::REVIEW_WITHHELD_POPULAR ],
 				'mvl_uploader_id' => strval( $userId ),
 			];
 		} else {
@@ -364,7 +366,7 @@ class Repository implements LoggerAwareInterface {
 		foreach ( $res as $row ) {
 			$total[$row->mvl_mvi_id] = true;
 			if ( (int)$row->mvl_review === self::REVIEW_UNREVIEWED ||
-				(int)$row->mvl_review === self::REVIEW_WITHHELD ) {
+				(int)$row->mvl_review === self::REVIEW_WITHHELD_POPULAR ) {
 				$unreviewed[$row->mvl_mvi_id] = true;
 			}
 		}

@@ -200,7 +200,7 @@ class ApiReviewImageLabels extends ApiBase implements LoggerAwareInterface {
 				wfMessage( 'apierror-reviewimagelabels-invalidlabel', $filename, $label )
 			);
 		}
-		$validOldStates = [ Repository::REVIEW_UNREVIEWED, Repository::REVIEW_WITHHELD ];
+		$validOldStates = [ Repository::REVIEW_UNREVIEWED, Repository::REVIEW_WITHHELD_POPULAR ];
 		if (
 			!in_array( $oldState, $validOldStates, true ) &&
 			// handle double-submits gracefully
