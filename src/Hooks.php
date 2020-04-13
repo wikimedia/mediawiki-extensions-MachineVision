@@ -121,7 +121,7 @@ class Hooks {
 					return;
 				}
 				$repo = $extensionServices->getRepository();
-				$repo->withholdUnreviewedLabelsForFile( $file->getSha1() );
+				$repo->withholdImageFromPopular( $file->getSha1() );
 			}
 		} );
 	}

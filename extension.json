@@ -140,6 +140,10 @@
 			"value": [],
 			"description": "Omit suggested tags corresponding with these Wikidata item (Q) ids."
 		},
+		"MachineVisionWithholdImageList": {
+			"value": [],
+			"description": "Withhold images with these Wikidata IDs as suggested labels from being served on Special:SuggestedTags."
+		},
 		"MachineVisionTestersOnly": {
 			"value": false,
 			"description": "If true, Special:SuggestedTags will be shown only to users with the 'imagelabel-test' user right."
