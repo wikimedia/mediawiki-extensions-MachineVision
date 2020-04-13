@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"FarsiNevis"
+		]
+	},
+	"machinevision-add-custom-tag": "افزودن برچسب",
+	"machinevision-add-custom-tag-dialog-title": "برچسب دلخواه",
+	"machinevision-add-custom-tag-dialog-add-action": "افزودن",
+	"machinevision-add-custom-tag-dialog-cancel-action": "لغو"
+}

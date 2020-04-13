@@ -5,8 +5,10 @@
 		]
 	},
 	"machinevision-publish": "Publikigar",
+	"machinevision-add-custom-tag": "Adjuntez etiketo",
 	"machinevision-skip": "Saltar",
 	"machinevision-categories-label": "Kategorii:",
+	"machinevision-add-custom-tag-dialog-title": "Ordinara etiketo",
 	"machinevision-add-custom-tag-dialog-add-action": "Adjuntar",
 	"machinevision-add-custom-tag-dialog-cancel-action": "Anular"
 }

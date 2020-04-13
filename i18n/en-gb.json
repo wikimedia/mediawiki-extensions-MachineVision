@@ -6,9 +6,5 @@
 			"NuqneH"
 		]
 	},
-	"machinevision-add-custom-tag": "أضف وسماً",
-	"machinevision-categories-label": "Categories:",
-	"machinevision-add-custom-tag-dialog-title": "خصص وسماً",
-	"machinevision-add-custom-tag-dialog-add-action": "Lägg till",
-	"machinevision-add-custom-tag-dialog-cancel-action": "Avbryt"
+	"machinevision-categories-label": "Categories:"
 }
