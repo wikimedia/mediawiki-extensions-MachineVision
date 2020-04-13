@@ -1,11 +1,15 @@
 {
+	"root": true,
 	"extends": [
-		"wikimedia/qunit",
-		"../../.eslintrc.json"
+		"wikimedia/server",
+		"wikimedia/jquery",
+		"wikimedia/qunit"
 	],
+	"env": {
+		"browser": true
+	},
 	"globals": {
-		"global": true,
-		"require": true
+		"OO": "readonly"
 	},
 	"rules": {
 		"no-implicit-globals": "off",

@@ -1,7 +1,7 @@
 /* eslint camelcase: 0 */
 'use strict';
 
-var TemplateRenderingDOMLessGroupWidget = require( './../base/TemplateRenderingDOMLessGroupWidget.js' ),
+var TemplateRenderingDOMLessGroupWidget = require( '../base/TemplateRenderingDOMLessGroupWidget.js' ),
 	AddCustomTagDialog = require( './AddCustomTagDialog.js' ),
 	CategoryList = require( './CategoryList.js' ),
 	ConfirmTagsDialog = require( './ConfirmTagsDialog.js' ),

@@ -2,14 +2,14 @@
 	"root": true,
 	"extends": [
 		"wikimedia/client",
-		"wikimedia/jquery"
+		"wikimedia/jquery",
+		"wikimedia/mediawiki"
 	],
 	"env": {
 		"commonjs": true
 	},
 	"globals": {
-		"mw": false,
-		"OO": false,
-		"wikibase": false
+		"OO": "readonly",
+		"wikibase": "readonly"
 	}
 }

@@ -1,7 +1,7 @@
 'use strict';
 
-var FormatValueElement = require( './../base/FormatValueElement.js' ),
-	SuggestionData = require( './../models/SuggestionData.js' ),
+var FormatValueElement = require( '../base/FormatValueElement.js' ),
+	SuggestionData = require( '../models/SuggestionData.js' ),
 	datamodel = require( 'wikibase.datamodel' );
 
 /**
