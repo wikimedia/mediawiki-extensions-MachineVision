@@ -30,7 +30,10 @@ class GoogleCloudVisionClient implements LoggerAwareInterface {
 		'VERY_LIKELY' => 5,
 	];
 
-	/** @var GoogleOAuthClient */
+	/**
+	 * Client for interacting with the Google auth API.
+	 * @var GoogleOAuthClient
+	 */
 	private $oAuthClient;
 
 	/** @var HttpRequestFactory */
@@ -39,20 +42,45 @@ class GoogleCloudVisionClient implements LoggerAwareInterface {
 	/** @var RepoGroup */
 	private $repoGroup;
 
-	/** @var Repository */
+	/**
+	 * Label suggestion repository object.
+	 * @var Repository
+	 */
 	private $repository;
 
-	/** @var bool */
+	/**
+	 * Whether to post the full file contents rather than the file's public URL. Intended for
+	 * development and testing only.
+	 * @var bool
+	 */
 	private $sendFileContents;
 
-	/** @var array */
+	/**
+	 * Array of SafeSearch limits at which an image should be excluded from the "popular" view
+	 * in Special:SuggestedTags.
+	 * @var array
+	 */
 	private $safeSearchLimits;
 
-	/** @var string|bool */
+	/**
+	 * Outgoing HTTP proxy.
+	 * @var string|bool
+	 */
 	private $proxy;
 
-	/** @var array */
+	/**
+	 * Array of Wikidata IDs indicating that the image should be withheld from appearing in
+	 * Special:SuggestedTags.
+	 * @var array
+	 */
 	private $withholdImageList;
+
+	/**
+	 * Array of Wikidata IDs that should not be used as label suggestions but do not block the
+	 * image from appearing in Special:SuggestedTags.
+	 * @var array
+	 */
+	private $wikidataIdBlocklist;
 
 	/**
 	 * GoogleCloudVisionClient constructor.
@@ -64,6 +92,7 @@ class GoogleCloudVisionClient implements LoggerAwareInterface {
 	 * @param array $safeSearchLimits
 	 * @param string|bool $proxy
 	 * @param array $withholdImageList
+	 * @param array $wikidataIdBlocklist
 	 */
 	public function __construct(
 		GoogleOAuthClient $oAuthClient,
@@ -73,7 +102,8 @@ class GoogleCloudVisionClient implements LoggerAwareInterface {
 		bool $sendFileContents,
 		array $safeSearchLimits,
 		$proxy,
-		array $withholdImageList
+		array $withholdImageList,
+		array $wikidataIdBlocklist
 	) {
 		$this->oAuthClient = $oAuthClient;
 		$this->httpRequestFactory = $httpRequestFactory;
@@ -83,6 +113,7 @@ class GoogleCloudVisionClient implements LoggerAwareInterface {
 		$this->safeSearchLimits = $safeSearchLimits;
 		$this->proxy = $proxy;
 		$this->withholdImageList = $withholdImageList;
+		$this->wikidataIdBlocklist = $wikidataIdBlocklist;
 
 		$this->setLogger( LoggerFactory::getInstance( 'machinevision' ) );
 	}
@@ -151,6 +182,18 @@ class GoogleCloudVisionClient implements LoggerAwareInterface {
 		$initialState = self::getInitialLabelState( $this->withholdImageList, $suggestions,
 			$this->safeSearchLimits, $adult, $spoof, $medical, $violence, $racy );
 
+		$filteredSuggestions = $this->filterIdBlocklist( $suggestions );
+		if ( count( $filteredSuggestions ) < 1 ) {
+			$this->logger->info(
+				'No labels remain after blocklist filtering',
+				[
+					'caller' => __METHOD__,
+					'content' => $annotationRequest->getContent()
+				]
+			);
+			return;
+		}
+
 		// If previous versions of this file exist, grab the oldest one so we
 		// can add this image to the original uploader's personal uploads.
 		$history = $file->getHistory();
@@ -160,7 +203,7 @@ class GoogleCloudVisionClient implements LoggerAwareInterface {
 			$file->getSha1(),
 			$provider,
 			$fileForUser->getUser( 'id' ),
-			$suggestions,
+			$filteredSuggestions,
 			$initialState
 		);
 
@@ -300,6 +343,17 @@ class GoogleCloudVisionClient implements LoggerAwareInterface {
 		( array_key_exists( 'violence', $safeSearchLimits ) &&
 			$violence >= $safeSearchLimits['violence'] ) ||
 		( array_key_exists( 'racy', $safeSearchLimits ) && $racy >= $safeSearchLimits['racy'] );
+	}
+
+	/**
+	 * Return filtered array removing blocklisted Q ids
+	 * @param array $suggestions array of LabelSuggestions filter
+	 * @return array Filtered array removing blocklisted Q ids
+	 */
+	protected function filterIdBlocklist( array $suggestions ) {
+		return array_filter( $suggestions, function ( $suggestion ) {
+			return !in_array( $suggestion->getWikidataId(), $this->wikidataIdBlocklist, true );
+		} );
 	}
 
 }
