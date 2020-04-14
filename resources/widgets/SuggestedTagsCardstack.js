@@ -93,7 +93,7 @@ SuggestedTagsCardstack.prototype.getItems = function () {
  */
 SuggestedTagsCardstack.prototype.showCurrentItem = function () {
 	if ( this.items && this.items.length > 0 ) {
-		this.items[ 0 ].displayWidget();
+		this.items[ 0 ].loadImage();
 	}
 };
 

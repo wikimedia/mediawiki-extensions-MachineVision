@@ -6,7 +6,8 @@ var ImageData = function WikibaseMachineAssistedDepictsImageData(
 	descriptionurl,
 	thumburl,
 	thumbheight,
-	suggestions
+	suggestions,
+	categories
 ) {
 	this.title = title;
 	this.pageid = pageid;
@@ -14,6 +15,7 @@ var ImageData = function WikibaseMachineAssistedDepictsImageData(
 	this.thumburl = thumburl;
 	this.thumbheight = thumbheight;
 	this.suggestions = suggestions;
+	this.categories = categories;
 };
 
 module.exports = ImageData;
