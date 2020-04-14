@@ -4,6 +4,7 @@
 			"Elroy",
 			"LongJohn nl",
 			"Mainframe98",
+			"PonkoSasuke",
 			"RadioAzureus",
 			"Robin van der Linde",
 			"Romaine",
@@ -18,6 +19,8 @@
 	"machinevision-machineaidedtagging-license-information": "CC0-licentie voor tag-bijdragen – Door op \"plaatsen\" te klikken, ga je akkoord met de [[wmf:Terms_of_Use|gebruiksvoorwaarden]], en stem je er onherroepelijk mee in je bijdrage onder de [https://creativecommons.org/publicdomain/zero/1.0/ Creative Commons CC0 Licentie] vrij te geven.",
 	"machinevision-publish": "Plaatsen",
 	"machinevision-publish-title": "Tags publiceren?",
+	"machinevision-add-custom-tag": "Label toevoegen",
+	"machinevision-add-custom-tag-title": "Voeg een label op maat toe aan dit beeld",
 	"machinevision-skip": "Overslaan",
 	"machinevision-personal-uploads-count": "U heeft $1 persoonlijke {{PLURAL:$1|upload|uploads}} om te beoordelen.",
 	"machinevision-suggestion-confirm-title": "Voorstel \"$1\" bevestigen?",
@@ -30,5 +33,8 @@
 	"machinevision-onboarding-dialog-close-label": "Sluiten",
 	"machinevision-cta-text": "Bedankt voor het helpen om afbeeldingen voor iedereen beter vindbaar te maken - wat dacht je van nog meer taggen?",
 	"machinevision-cta-cta": "Label populaire afbeeldingen",
+	"machinevision-add-custom-tag-dialog-title": "Label op maat",
+	"machinevision-add-custom-tag-dialog-add-action": "Toevoegen",
+	"machinevision-add-custom-tag-dialog-cancel-action": "Annuleren",
 	"echo-category-title-machinevision": "Gesuggereerde tags ter beoordeling"
 }

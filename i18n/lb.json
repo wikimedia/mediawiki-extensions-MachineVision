@@ -16,5 +16,7 @@
 	"machinevision-onboarding-dialog-close-label": "Zoumaachen",
 	"machinevision-cta-cta": "Markéiert beléift Biller",
 	"machinevision-no-uploads-cta-heading": "Dir hutt keng Biller fir nozekucken",
-	"machinevision-categories-label": "Kategorien:"
+	"machinevision-categories-label": "Kategorien:",
+	"machinevision-add-custom-tag-dialog-add-action": "Derbäisetzen",
+	"machinevision-add-custom-tag-dialog-cancel-action": "Ofbriechen"
 }

@@ -6,7 +6,11 @@
 	},
 	"machinevision-machineaidedtagging-popular-tab": "ہر من بھان٘وݨاں",
 	"machinevision-publish": "شائع کرو",
+	"machinevision-add-custom-tag": "ٹیگ شامل کرو",
 	"machinevision-skip": "چھوڑو",
 	"machinevision-loading-message": "لوڈ تھیندا پئے۔۔۔",
-	"machinevision-confirm-tags-dialog-confirm-action": "ٹھیک ہے"
+	"machinevision-confirm-tags-dialog-confirm-action": "ٹھیک ہے",
+	"machinevision-categories-label": "ونکیاں:",
+	"machinevision-add-custom-tag-dialog-add-action": "شامل کرو",
+	"machinevision-add-custom-tag-dialog-cancel-action": "منسوخ"
 }
