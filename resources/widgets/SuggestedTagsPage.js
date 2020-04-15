@@ -68,7 +68,8 @@ function SuggestedTagsPage( config ) {
 					height,
 					item.suggested_labels.map( function ( labelData ) {
 						return new SuggestionData( labelData.label, labelData.wikidata_id );
-					} )
+					} ),
+					[]
 				);
 			} ) );
 		} else {
@@ -161,24 +162,11 @@ SuggestedTagsPage.prototype.getItemsForQueryResponse = function ( response ) {
 			0,
 		userTotalImageCount = response.query && response.query.unreviewedimagecount ?
 			response.query.unreviewedimagecount.user.total :
-			0;
+			0,
+		self = this;
 
 	// Helper function to process query results
 	function getImageDataForQueryResponse( item ) {
-		var categories = [],
-			titlePrefix,
-			sliceStart;
-
-		if ( item.categories && item.categories.length > 0 ) {
-			titlePrefix = 'Category:';
-			sliceStart = titlePrefix.length;
-
-			categories = item.categories.map( function ( category ) {
-				// Strip out the "Category:" string.
-				return { title: category.title.slice( sliceStart ) };
-			} );
-		}
-
 		return new ImageData(
 			item.title,
 			item.pageid,
@@ -188,8 +176,7 @@ SuggestedTagsPage.prototype.getItemsForQueryResponse = function ( response ) {
 			item.imagelabels.map( function ( labelData ) {
 				return new SuggestionData( labelData.label, labelData.wikidata_id );
 			} ),
-			categories
-
+			self.getCategories( item )
 		);
 	}
 
@@ -358,6 +345,29 @@ SuggestedTagsPage.prototype.showOnboardingDialog = function () {
 	$( document.body ).append( windowManager.$element );
 	windowManager.addWindows( [ onboardingDialog ] );
 	windowManager.openWindow( onboardingDialog );
+};
+
+/**
+ * Get categories for an image.
+ * @param {Object} item
+ * @return {Array}
+ */
+SuggestedTagsPage.prototype.getCategories = function ( item ) {
+	var categories = [],
+		titlePrefix,
+		sliceStart;
+
+	if ( item.categories && item.categories.length > 0 ) {
+		titlePrefix = 'Category:';
+		sliceStart = titlePrefix.length;
+
+		categories = item.categories.map( function ( category ) {
+			// Strip out the "Category:" string.
+			return { title: category.title.slice( sliceStart ) };
+		} );
+	}
+
+	return categories;
 };
 
 module.exports = SuggestedTagsPage;
