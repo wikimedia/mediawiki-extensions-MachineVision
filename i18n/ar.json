@@ -4,6 +4,7 @@
 			"HitomiAkane",
 			"Meno25",
 			"NEHAOUA",
+			"Tala Ali",
 			"ديفيد",
 			"محمد أحمد عبد الفتاح"
 		]
@@ -46,6 +47,9 @@
 	"machinevision-no-uploads-cta-text": "يُرجَى رفع صور جديدة حتى تتمكن أداتنا من تحليلها واقتراح الوسوم المناسبة، إذا كنت قد قمت بالفعل برفع الصور ولم تشاهدها هنا، فقد تظل هذه الصور قيد المراجعة ويمكنك التحقق لاحقا، يمكنك أيضا جعل الصور الشائعة من المستخدمين الآخرين أسهل في البحث عن طريق سمها.",
 	"machinevision-javascript-required": "هذه الميزة غير مدعومة في متصفح الويب الخاص بك.",
 	"machinevision-categories-label": "التصنيفات:",
+	"machinevision-add-custom-tag-dialog-title": "نطاق مخصص",
+	"machinevision-add-custom-tag-dialog-add-action": "إضافة",
+	"machinevision-add-custom-tag-dialog-cancel-action": "إلغاء",
 	"right-imagelabel-review": "راجع اقتراحات تسمية الصورة",
 	"action-imagelabel-review": "راجع اقتراحات تسمية الصورة",
 	"right-imagelabel-test": "اختبار اقتراحات تسمية الصور",
