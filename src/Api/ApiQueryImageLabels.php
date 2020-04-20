@@ -22,6 +22,7 @@ class ApiQueryImageLabels extends ApiQueryBase {
 		Repository::REVIEW_REJECTED => 'rejected',
 		Repository::REVIEW_WITHHELD_POPULAR => 'withheld',
 		Repository::REVIEW_WITHHELD_ALL => 'withheld',
+		Repository::REVIEW_NOT_DISPLAYED => 'not-displayed',
 	];
 
 	/** @var RepoGroup */

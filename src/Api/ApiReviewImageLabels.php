@@ -25,6 +25,7 @@ class ApiReviewImageLabels extends ApiBase implements LoggerAwareInterface {
 	private static $reviewActions = [
 		'accept' => Repository::REVIEW_ACCEPTED,
 		'reject' => Repository::REVIEW_REJECTED,
+		'not-displayed' => Repository::REVIEW_NOT_DISPLAYED
 	];
 
 	/** @var RepoGroup */
