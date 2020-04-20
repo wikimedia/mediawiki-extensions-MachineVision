@@ -10,6 +10,7 @@ use DatabaseUpdater;
 use DeferredUpdates;
 use DomainException;
 use EchoEvent;
+use EchoNotificationMapper;
 use Exception;
 use File;
 use IContextSource;
@@ -329,13 +330,36 @@ class Hooks {
 			'group' => 'positive',
 			'section' => 'alert',
 			'presentation-model' => Notifications\SuggestionsReadyPresentationModel::class,
-			'user-locators' => [ 'EchoUserLocator::locateEventAgent' ],
-			'canNotifyAgent' => true,
-			'bundle' => [
-				'web' => true,
-				'email' => true,
-				'expandable' => false
-			]
+			'user-locators' => [ function ( EchoEvent $event ) {
+				// we don't want to spam users with notifications that essentially
+				// do the same thing: direct them to the Special:SuggestedTags page
+				// (while events could be bundled, they'd still unbundle once read,
+				// and pollute their read notifications)
+				// let's minimize the amount of notifications by only sending one
+				// of this kind until it has been read
+
+				$agent = $event->getAgent();
+				if ( !$agent || $agent->isAnon() ) {
+					// not a valid user
+					return [];
+				}
+
+				$notificationMapper = new EchoNotificationMapper();
+				$notifications = $notificationMapper->fetchUnreadByUser(
+					$agent,
+					1,
+					null,
+					[ $event->getType() ]
+				);
+				if ( count( $notifications ) > 0 ) {
+					// already has an unread notification of this kind
+					return [];
+				}
+
+				// has not yet been informed about these changes: send notification!
+				return [ $agent->getId() => $agent ];
+			} ],
+			'canNotifyAgent' => true
 		];
 
 		$icons['suggestions-ready']['path'] = 'MachineVision/resources/icons/suggestions-ready-icon.svg';
