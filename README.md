@@ -106,3 +106,15 @@ has been set to `true`). This will enqueue an image annotation job in the MediaW
 ##### Note
 When and how often jobs run depends on your local configuration; see https://www.mediawiki.org/wiki/Manual:Job_queue for details.
  You can always run all jobs in the job queue manually by executing `maintenance/runJobs.php`.
+
+### Working with LESS variables
+
+Since Wikimedia UI base variables aren't in core, we require them as a package
+dependency, then use a shell script to copy them to the `lib` directory. To
+update the base variables, require the new version in package.json and install
+it, then run `npm run build-lib` to copy the updated file into `lib`. Commit the
+updated files.
+
+We're including the base variables in our custom variables file, `resources/style-variables.less`.
+To use them in other files, include `style-variables.less` rather than directly
+including the base file itself.
