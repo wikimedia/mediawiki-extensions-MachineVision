@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Alexander Yukal",
+			"Kareyac",
 			"Katunchik",
 			"Movses",
 			"Марио"
@@ -19,5 +20,6 @@
 	"machinevision-suggestion-confirm-title": "Подтвердить предложение $1?",
 	"machinevision-suggestion-confirm-undo-title": "Отменить подтверждение предложения $1?",
 	"machinevision-loading-message": "Загрузка изображений…",
-	"machinevision-failure-message": "Мы сожалеем, но что-то пошло не так. Пожалуйста, зайдите позже или [[Project_talk:Structured_data/Computer-aided_tagging|свяжитесь с нами]]."
+	"machinevision-failure-message": "Мы сожалеем, но что-то пошло не так. Пожалуйста, зайдите позже или [[Project_talk:Structured_data/Computer-aided_tagging|свяжитесь с нами]].",
+	"machinevision-add-custom-tag-dialog-add-action": "Добавить"
 }
