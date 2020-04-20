@@ -16,6 +16,7 @@ use File;
 use IContextSource;
 use LocalFile;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\RevisionRecord;
 use MWException;
 use Revision;
 use Status;
@@ -128,18 +129,18 @@ class Hooks {
 	}
 
 	/**
-	 * Handler for ArticleRollbackComplete hook.
-	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/ArticleRollbackComplete
+	 * Handler for RollbackComplete hook.
+	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/RollbackComplete
 	 *
 	 * @param WikiPage $wikiPage The article that was edited
 	 * @param User $agent The user who did the rollback
-	 * @param Revision $newRev The revision the page was reverted back to
-	 * @param Revision $oldRev The revision of the top edit that was reverted
+	 * @param RevisionRecord $newRev The revision the page was reverted back to
+	 * @param RevisionRecord $oldRev The revision of the top edit that was reverted
 	 */
 	public static function onArticleRollbackComplete( WikiPage $wikiPage,
 							  User $agent,
-							  Revision $newRev,
-							  Revision $oldRev ) {
+							  RevisionRecord $newRev,
+							  RevisionRecord $oldRev ) {
 		self::tagComputerAidedTaggingRevert( $oldRev );
 	}
 
@@ -296,7 +297,7 @@ class Hooks {
 	}
 
 	/**
-	 * @param int|Revision $rev
+	 * @param int|RevisionRecord $rev
 	 */
 	private static function tagComputerAidedTaggingRevert( $rev ) {
 		if ( gettype( $rev ) === 'integer' ) {
