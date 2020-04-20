@@ -105,6 +105,7 @@ SuggestedTagsPage.prototype.render = function () {
 		autoconfirmedMessage: $( '<p>' ).msg( 'machinevision-autoconfirmed-message' ),
 		tabsHeading: mw.message( 'machinevision-machineaidedtagging-tabs-heading' ).parse(),
 		tabs: this.tabs || null,
+		preferencesLink: $( '<p>' ).msg( 'machinevision-machineaidedtagging-preferences-link' ),
 		licenseInfo: $( '<p>' ).msg( 'machinevision-machineaidedtagging-license-information' )
 	} );
 };

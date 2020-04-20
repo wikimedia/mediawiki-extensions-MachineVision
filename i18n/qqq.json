@@ -16,6 +16,7 @@
 	"machinevision-machineaidedtagging-tabs-heading": "Text that appears above tabs",
 	"machinevision-machineaidedtagging-popular-tab": "Title of tab with popular uploads",
 	"machinevision-machineaidedtagging-user-tab": "Title of tab with personal uploads",
+	"machinevision-machineaidedtagging-preferences-link": "Note that user can disable notifications for this tool with a link to the Notifications tab of User Preferences",
 	"machinevision-machineaidedtagging-license-information": "Explanation of CC0 license that user is agreeing to",
 	"machinevision-pageinfo-field-suggested-labels": "Field name for suggested labels in page info table",
 	"machinevision-login-message": "Instructions for user to log in to see page.",
