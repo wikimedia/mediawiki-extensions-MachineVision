@@ -9,7 +9,7 @@
 	"license-name": "GPL-2.0-or-later",
 	"type": "other",
 	"requires": {
-		"MediaWiki": ">= 1.34",
+		"MediaWiki": ">= 1.35",
 		"extensions": {
 			"WikibaseMediaInfo": "*"
 		}
@@ -46,7 +46,7 @@
 		"GetPreferences": "MediaWiki\\Extension\\MachineVision\\Hooks::onGetPreferences",
 		"FileDeleteComplete": "MediaWiki\\Extension\\MachineVision\\Hooks::onFileDeleteComplete",
 		"PageContentSaveComplete": "MediaWiki\\Extension\\MachineVision\\Hooks::onPageContentSaveComplete",
-		"ArticleRollbackComplete": "MediaWiki\\Extension\\MachineVision\\Hooks::onArticleRollbackComplete",
+		"RollbackComplete": "MediaWiki\\Extension\\MachineVision\\Hooks::onRollbackComplete",
 		"ListDefinedTags": "MediaWiki\\Extension\\MachineVision\\Hooks::onRegisterTags",
 		"ChangeTagsListActive": "MediaWiki\\Extension\\MachineVision\\Hooks::onRegisterTags",
 		"BeforeCreateEchoEvent": "MediaWiki\\Extension\\MachineVision\\Hooks::onBeforeCreateEchoEvent",
