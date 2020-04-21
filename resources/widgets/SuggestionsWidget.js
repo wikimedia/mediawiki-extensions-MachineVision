@@ -33,7 +33,10 @@ OO.inheritClass( SuggestionsWidget, OO.ui.CheckboxMultiselectWidget );
  */
 SuggestionsWidget.prototype.createOption = function ( suggestion ) {
 	var option = new OO.ui.CheckboxMultioptionWidget( {
-			data: suggestion.wikidataId,
+			data: {
+				wikidataId: suggestion.wikidataId,
+				custom: suggestion.custom || false
+			},
 			label: suggestion.text,
 			classes: [ 'wbmad-suggestions__suggestion' ]
 		} ),

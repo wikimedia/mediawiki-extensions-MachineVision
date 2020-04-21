@@ -212,6 +212,8 @@ class Hooks {
 	public static function onRegisterTags( array &$tags ) {
 		$tags[] = Util::getDepictsTag();
 		$tags[] = Util::getDepictsRevertTag();
+		$tags[] = Util::getDepictsCustomTag();
+		$tags[] = Util::getDepictsCustomRevertTag();
 		return true;
 	}
 
@@ -387,6 +389,7 @@ class Hooks {
 	 */
 	public static function onChangeTagsAllowedAdd( array &$allowedTags, array $tags, $user ) {
 		$allowedTags[] = Util::getDepictsTag();
+		$allowedTags[] = Util::getDepictsCustomTag();
 
 		return true;
 	}

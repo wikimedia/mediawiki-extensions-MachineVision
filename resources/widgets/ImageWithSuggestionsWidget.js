@@ -36,10 +36,6 @@ function ImageWithSuggestionsWidget( config, queryType ) {
 	this.suggestionsWidget = new SuggestionsWidget( { suggestions: this.suggestions } )
 		.connect( this, { change: 'onChange' } );
 
-	// Make a copy of the SuggestionsWidget so we can keep track of suggestions
-	// sent by the provider (versus suggestions added by the user).
-	this.originalSuggestions = $.extend( true, {}, this.suggestionsWidget );
-
 	this.imageTitle = this.config.title.split( ':' ).pop();
 	this.filePageUrl = this.config.descriptionurl;
 	this.tab = queryType === 'user' ? 'personal' : 'popular';
@@ -164,7 +160,12 @@ ImageWithSuggestionsWidget.prototype.onAddCustomTagClick = function () {
  * @param {SuggestionData} suggestionData
  */
 ImageWithSuggestionsWidget.prototype.onAddCustomTag = function ( suggestionData ) {
-	var option = this.suggestionsWidget.createOption( suggestionData );
+	var option = this.suggestionsWidget.createOption( $.extend(
+		{},
+		suggestionData, {
+			custom: true
+		} )
+	);
 
 	// Add new tag and confirm it (which will enable the Publish button).
 	this.suggestionsWidget.addItems( option );
@@ -218,22 +219,27 @@ ImageWithSuggestionsWidget.prototype.onPublish = function () {
 };
 
 /**
- * Publish new tags and move to the next image.
+ * Publish new tags and move to the next image. This method fires off two types
+ * of API requests: a 'reviewimagelabels' request with all suggested labels
+ * as payload (regardless of approval), and a 'wbsetclaim' request for each tag
+ * being added to the image. wbsetclaim reqeusts are staggered to prevent edit
+ * conflicts.
+ *
  * @return {jQuery.Promise}
  */
 ImageWithSuggestionsWidget.prototype.onFinalConfirm = function () {
 	var self = this,
 		depictsPropertyId = mvConfig.depictsPropertyId,
 		selected = this.suggestionsWidget.findSelectedItems(),
-		// Data for all provided suggestions so we can update the database.
 		reviewBatch = this.suggestionsWidget.items
-			// Remove custom suggestions.
+			// Don't include custom suggestions in label review, only initial
+			// suggestions
 			.filter( function ( suggestion ) {
-				return !!self.originalSuggestions.findItemFromData( suggestion.data );
+				return !suggestion.data.custom;
 			} )
 			.map( function ( suggestion ) {
 				return {
-					label: suggestion.data,
+					label: suggestion.data.wikidataId,
 					review: suggestion.isSelected() ? 'accept' : 'reject'
 				};
 			} ),
@@ -243,7 +249,7 @@ ImageWithSuggestionsWidget.prototype.onFinalConfirm = function () {
 				new datamodel.Claim(
 					new datamodel.PropertyValueSnak(
 						depictsPropertyId,
-						new datamodel.EntityId( suggestion.data )
+						new datamodel.EntityId( suggestion.data.wikidataId )
 					),
 					null, // qualifiers
 					self.guidGenerator.newGuid()
@@ -271,12 +277,19 @@ ImageWithSuggestionsWidget.prototype.onFinalConfirm = function () {
 	} );
 
 	// Send wbsetclaim calls one at a time to prevent edit conflicts
-	depictsStatements.forEach( function ( statement ) {
+	// check against the original "selected" group to determine which labels
+	// were added by the user rather than suggested so that we can tag edits
+	// appropriately
+	depictsStatements.forEach( function ( statement, index ) {
+		var correspondingSuggestion = selected[ index ];
+
 		promise = promise.then( function () {
 			return self.api.postWithToken( 'csrf', {
 				action: 'wbsetclaim',
 				claim: JSON.stringify( serializer.serialize( statement ) ),
-				tags: 'computer-aided-tagging'
+				tags: correspondingSuggestion.data.custom ?
+					'computer-aided-tagging-manual' :
+					'computer-aided-tagging'
 			} );
 		} );
 	} );
