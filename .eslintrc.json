@@ -11,5 +11,8 @@
 	"globals": {
 		"OO": "readonly",
 		"wikibase": "readonly"
+	},
+	"rules": {
+		"mediawiki/class-doc": "warn"
 	}
 }
