@@ -12,6 +12,7 @@
 	"machinevision-machineaidedtagging-tabs-heading": "檢閱的圖片",
 	"machinevision-machineaidedtagging-popular-tab": "熱門",
 	"machinevision-machineaidedtagging-user-tab": "個人上傳",
+	"machinevision-machineaidedtagging-preferences-link": "停用此工具的[[Special:Preferences#mw-prefsection-echo|通知]]",
 	"machinevision-machineaidedtagging-license-information": "用於標籤貢獻的 CC0 授權條款–透過點擊「發佈」，代表您同意[[wmf:Terms_of_Use|使用條款]]，並且不反悔基於[https://creativecommons.org/publicdomain/zero/1.0/deed.zh_TW 創用 CC CC0 授權條款]來釋出您的貢獻。",
 	"machinevision-pageinfo-field-suggested-labels": "建議的標籤",
 	"machinevision-login-message": "請<span class=\"plainlinks\">[{{fullurl:{{#Special:UserLogin}}|returnto=Special:SuggestedTags}} 登入]</span>來查看此頁面並開始標記圖片。準確的標籤可以讓圖片被所有維基共享資源使用者更容易找到，並感謝您所做的貢獻。",

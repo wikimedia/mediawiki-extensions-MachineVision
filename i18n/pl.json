@@ -9,6 +9,7 @@
 	"machinevision-machineaidedtagging-tabs-heading": "Obrazy do przeglądu",
 	"machinevision-machineaidedtagging-popular-tab": "Popularne",
 	"machinevision-machineaidedtagging-user-tab": "Przesłane pliki",
+	"machinevision-machineaidedtagging-preferences-link": "[[Special:Preferences#mw-prefsection-echo|Wyłącz powiadomienia]] z tego narzędzia",
 	"machinevision-pageinfo-field-suggested-labels": "Sugerowane etykiety",
 	"machinevision-login-message": "[[Special:UserLogin|Zaloguj się]] aby zobaczyć tę stronę i rozpocząć tagowanie obrazów. Prawidłowe tagi ułatwiają wszystkim użytkownikom Commons znajdowanie obrazów, doceniając przy tym twój wkład.",
 	"machinevision-autoconfirmed-message": "Prawidłowo dodane tagu ułatwiają wszystkim użytkownikom Commons wyszukiwanie obrazów, więc prosimy o uzyskanie statusu [[mw:Manual:Autoconfirmed_users/pl|automatycznie zatwierdzonego]], gdyż tylko tacy użytkownicy mogą używać tego narzędzia.",
@@ -45,5 +46,7 @@
 	"tag-computer-aided-tagging": "Tagowanie komputerowe",
 	"tag-computer-aided-tagging-description": "Edycje wykonane za pośrednictwem narzędzia do tagowania komputerowego",
 	"tag-computer-aided-tagging-revert": "Rewert tagowania komputerowego",
-	"tag-computer-aided-tagging-revert-description": "Edycja wycofująca jedną lub więcej wersji utworzonych za pośrednictwem narzędzia do tagowania komputerowego"
+	"tag-computer-aided-tagging-revert-description": "Edycja wycofująca jedną lub więcej wersji utworzonych za pośrednictwem narzędzia do tagowania komputerowego",
+	"echo-machinevision-suggestions-ready-notification-header-compact": "Sugerowane tagi sa gotowe do przeglądu",
+	"echo-machinevision-suggestions-ready-notification-primary-link": "Przejrzyj tagi"
 }

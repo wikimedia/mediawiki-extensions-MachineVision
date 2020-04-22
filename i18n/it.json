@@ -6,6 +6,7 @@
 		]
 	},
 	"machinevision-machineaidedtagging": "Etichette suggerite",
+	"machinevision-machineaidedtagging-preferences-link": "[[Special:Preferences#mw-prefsection-echo|Disabilita notifiche]] da questo strumento",
 	"machinevision-publish": "Pubblica",
 	"machinevision-add-custom-tag": "Aggiungi etichetta",
 	"machinevision-skip": "Salta",

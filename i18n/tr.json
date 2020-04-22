@@ -3,6 +3,7 @@
 		"authors": [
 			"BaRaN6161 TURK",
 			"Grkn gll",
+			"Sucsuzz",
 			"Suvarioglu"
 		]
 	},
@@ -12,6 +13,7 @@
 	"machinevision-machineaidedtagging-tabs-heading": "İnceleme için resimler",
 	"machinevision-machineaidedtagging-popular-tab": "Popüler",
 	"machinevision-machineaidedtagging-user-tab": "Kişisel yüklemeler",
+	"machinevision-machineaidedtagging-preferences-link": "Bu araçtan [[Special:Preferences#mw-prefsection-echo|bildirimleri devre dışı bırak]]",
 	"machinevision-machineaidedtagging-license-information": "Etiket katkıları için CC0 lisansı – \"Yayınla\"'yı tıklayarak [[wmf:Terms_of_Use|kullanım şartları]]'nı kabul etmiş olursunuz ve katkınızı [https://creativecommons.org/publicdomain/zero/1.0/deed.tr Creative Commons CC0 Lisansı] uyarınca geri dönülmez şekilde bırakmayı kabul edersiniz.",
 	"machinevision-pageinfo-field-suggested-labels": "Önerilen etiketler",
 	"machinevision-login-message": "Lütfen bu sayfayı görmek ve görüntüleri etiketlemeye başlamak için <span class=\"plainlinks\">[{{fullurl:{{#Special:UserLogin}}|returnto=Special:SuggestedTags}} giriş yapın]</span>. Doğru etiketler, tüm Commons kullanıcılarının resim bulmasını kolaylaştırır ve katkılarınız için teşekkür ederiz.",
@@ -57,10 +59,10 @@
 	"tag-computer-aided-tagging-description": "Bilgisayar Destekli Etiketleme aracıyla oluşturulan düzenlemeler",
 	"tag-computer-aided-tagging-revert": "Bilgisayar Destekli Etiketleme dönüşü",
 	"tag-computer-aided-tagging-revert-description": "Bilgisayar Destekli Etiketleme aracıyla oluşturulan bir veya daha fazla düzeltmeyi geri alan düzenlemeler",
-	"echo-machinevision-suggestions-ready-notification-header-compact": "{{GENDER:$1|Sizin}} \"$2\" dosyası için önerilen etiketler incelenmeye hazır",
+	"echo-machinevision-suggestions-ready-notification-header-compact": "Önerilen etiketler incelenmeye hazır",
 	"echo-machinevision-suggestions-ready-notification-header": "{{GENDER:$1|Sizin}} son yüklemeniz için önerilen etiketler incelenmeye hazır",
 	"echo-machinevision-suggestions-ready-notification-body": "Merhaba! Commons'a en son yüklenen {{GENDER:$1|siz}} resimleri önerilen etiketlerle işlendi ve incelenmeye hazır. Doğru etiketler, tüm Commons kullanıcılarının {{GENDER:$1|sizin}} resimlerinizi bulmasını kolaylaştırır, bu nedenle {{GENDER:$1|sizin}} önerilen etiketleri inceleme bağlantısını izleyin. Yalnızca kullanıcılar tarafından onaylanan etiketler, resmin Commons'taki verilerinin bir parçası olarak eklenir. Bu araç hakkında daha fazla bilgi için lütfen bilgisayar destekli etiketleme aracı proje sayfasını ziyaret edin.",
-	"echo-machinevision-suggestions-ready-notification-primary-link": "Öneriler için hazır bağlantı yankı bildirimi",
+	"echo-machinevision-suggestions-ready-notification-primary-link": "Etiketleri incele",
 	"echo-category-title-machinevision": "İncelenmesi için önerilen etiketler",
 	"echo-pref-tooltip-machinevision-suggestions-ready": "Resimlerim işlendiğinde ve önerilen etiketler incelemem için hazır olduğunda bana bildir.",
 	"group-machinevision-tester": "Yapay görme test cihazları",

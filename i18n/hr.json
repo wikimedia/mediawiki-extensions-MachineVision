@@ -11,6 +11,7 @@
 	"machinevision-machineaidedtagging-tabs-heading": "Slike za pregled",
 	"machinevision-machineaidedtagging-popular-tab": "Popularne",
 	"machinevision-machineaidedtagging-user-tab": "Osobno postavljene",
+	"machinevision-machineaidedtagging-preferences-link": "[[Special:Preferences#mw-prefsection-echo|Onemogući obavijesti]] u ovome alatu",
 	"machinevision-machineaidedtagging-license-information": "CC0 licencija za doprinose oznaka – Klikom na \"objavi\", slažete se s [[wmf:Terms_of_Use|Uvjetima uporabe]], i neopozivo pristajete na objavu doprinosa pod licencijom [https://creativecommons.org/publicdomain/zero/1.0/ Creative Commons CC0].",
 	"machinevision-pageinfo-field-suggested-labels": "Predložene etikete",
 	"machinevision-login-message": "Molimo <span class=\"plainlinks\">[{{fullurl:{{#Special:UserLogin}}|returnto=Special:SuggestedTags}} prijavite se]</span> da biste vidjeli ovu stranicu i započeli s označavanjem slika. Točne oznake pomažu svim suradnicima Zajedničkog poslužitelja u lakšem pronalaženju slika. Cijenimo Vaše doprinose.",

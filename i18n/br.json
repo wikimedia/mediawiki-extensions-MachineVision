@@ -4,10 +4,15 @@
 			"Fulup"
 		]
 	},
+	"machinevision-machineaidedtagging-preferences-link": "[[Special:Preferences#mw-prefsection-echo|Diweredekaat ar c'hemennadennoù]] graet gant an ostilh-mañ",
 	"machinevision-add-custom-tag": "Ouzhpennañ un dikedenn",
 	"machinevision-add-custom-tag-title": "Ouzhpennañ un dikedenn bersonelaet d'ar skeudenn-se",
 	"machinevision-categories-label": "Rummadoù :",
 	"machinevision-add-custom-tag-dialog-title": "Tikedenn bersonelaet",
 	"machinevision-add-custom-tag-dialog-add-action": "Ouzhpennañ",
-	"machinevision-add-custom-tag-dialog-cancel-action": "Nullañ"
+	"machinevision-add-custom-tag-dialog-cancel-action": "Nullañ",
+	"echo-machinevision-suggestions-ready-notification-header-compact": "Prest eo an tikedennoù kinniget da vezañ adwelet",
+	"echo-machinevision-suggestions-ready-notification-header": "Gallout a rit adwelet an tikedennoù kinniget evit an enporzhiadennoù graet nevez zo {{GENDER:$1|ganeoc'h}}",
+	"echo-machinevision-suggestions-ready-notification-body": "DEmat deoc'h ! Ar skeudenn(où) {{GENDER:$1|hoc'h eus}} enporzhiet nevez zo e Commons a zo bet dilefennet ha kinniget ez eus bet tikedennoù evito. Seul bishoc'h an tikedennoù, seul aesoc'h eo da holl implijerien Commons kavout {{GENDER:$1|ho}} skeudennoù ; gant se e c'hallit heuliañ al liamm evit teurel ur sell war an tikedennoù kinniget {{GENDER:$1|deoc'h}}. N'eus nemet an tikedennoù kadarnaet gant implijerien a vo ouzhpennet d'ar roadennoù a denn d'ar skeudenn Commons. Evit gouzout hiroc'h diwar-benn an ostilh-mañ, kit da welet pajenn ar raktres evit ouzhpennañ tikedennoù a-drugarez d'an urzhiataer.",
+	"echo-machinevision-suggestions-ready-notification-primary-link": "Adwelet an tikedennoù"
 }
