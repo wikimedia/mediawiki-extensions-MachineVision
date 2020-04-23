@@ -10,6 +10,7 @@
 	"machinevision-machineaidedtagging-tabs-heading": "পর্যালোচনার জন্য চিত্র",
 	"machinevision-machineaidedtagging-popular-tab": "জনপ্রিয়",
 	"machinevision-machineaidedtagging-user-tab": "ব্যক্তিগত আপলোড",
+	"machinevision-machineaidedtagging-preferences-link": "এই সরঞ্জাম থেকে [[Special:Preferences#mw-prefsection-echo|বিজ্ঞপ্তি নিষ্ক্রিয় করুন]]",
 	"machinevision-pageinfo-field-suggested-labels": "পরামর্শকৃত লেবেল",
 	"machinevision-publish": "প্রকাশ করুন",
 	"machinevision-publish-title": "ট্যাগ প্রকাশ করবেন?",
@@ -20,5 +21,6 @@
 	"machinevision-confirm-tags-dialog-heading": "এই চিত্র চিত্রিত করে:",
 	"machinevision-onboarding-dialog-close-label": "বন্ধ করুন",
 	"machinevision-add-custom-tag-dialog-add-action": "যোগ করুন",
-	"machinevision-add-custom-tag-dialog-cancel-action": "বাতিল"
+	"machinevision-add-custom-tag-dialog-cancel-action": "বাতিল",
+	"echo-machinevision-suggestions-ready-notification-primary-link": "ট্যাগ পর্যালোচনা করুন"
 }
