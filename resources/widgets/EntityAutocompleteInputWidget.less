@@ -1,3 +1,4 @@
+@import 'mediawiki.mixins.less';
 @import '../style-variables.less';
 
 .wbmad-entity-input {
@@ -20,13 +21,10 @@
 .wbmad-entity-input__autocomplete__description,
 .wbmad-entity-input__autocomplete__aliases {
 	color: @base10;
-	overflow: hidden;
-	-o-text-overflow: ellipsis; /* Opera 9 to 10 */
-	text-overflow: ellipsis;
-	white-space: nowrap;
 	padding: 2px 0;
 	font-size: 1em;
 	font-weight: normal;
+	.text-overflow( @visible: false );
 }
 
 .wbmad-entity-input__autocomplete__label,
