@@ -27,7 +27,6 @@ function SuggestedTagsPage( config ) {
 	this.$element.addClass( 'wbmad-suggested-tags-page' );
 	this.userIsAuthenticated = !!mw.config.get( 'wgUserName' );
 	this.userIsAutoconfirmed = userGroups.indexOf( 'autoconfirmed' ) !== -1;
-	this.initialData = mw.config.get( 'wgMVSuggestedTagsInitialData' );
 	this.placeholder = new CardstackPlaceholder();
 
 	showTabs = this.userIsAuthenticated && this.userIsAutoconfirmed;
@@ -49,32 +48,7 @@ function SuggestedTagsPage( config ) {
 
 		// Run query initially on the active tab so we get results.
 		this.goToTab( this.config.startTab );
-
-		if ( this.config.startTab === 'popular' && this.initialData ) {
-			this.setUpCardstack( this.initialData.map( function ( item ) {
-				var height = item.height,
-					width = item.width;
-
-				// Find thumbheight for images wider than 800px.
-				if ( width > 800 ) {
-					height = height * 800 / width;
-				}
-
-				return new ImageData(
-					item.title,
-					item.pageid,
-					item.description_url,
-					item.thumb_url,
-					height,
-					item.suggested_labels.map( function ( labelData ) {
-						return new SuggestionData( labelData.label, labelData.wikidata_id );
-					} ),
-					[]
-				);
-			} ) );
-		} else {
-			this.fetchItems();
-		}
+		this.fetchItems();
 
 		this.connect( this, {
 			fetchItems: 'fetchItems',

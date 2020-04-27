@@ -8,7 +8,6 @@ use MediaWiki\Extension\MachineVision\Repository;
 use MediaWiki\Extension\MachineVision\Services;
 use MediaWiki\MediaWikiServices;
 use SpecialPage;
-use Title;
 
 class SpecialSuggestedTags extends SpecialPage {
 
@@ -58,11 +57,6 @@ class SpecialSuggestedTags extends SpecialPage {
 		$out->addHTML( '</div>' );
 		$out->addModuleStyles( 'ext.MachineVision.init' );
 
-		$initialData = $this->getInitialSuggestedTagsData();
-		if ( $initialData ) {
-			$this->getOutput()->addJsConfigVars( 'wgMVSuggestedTagsInitialData', $initialData );
-		}
-
 		// Generate login message with link with returnto URL query parameter.
 		// Params aren't supported in the JS version of the messages API so we
 		// have parse it here then pass it to the JS.
@@ -108,65 +102,6 @@ class SpecialSuggestedTags extends SpecialPage {
 	<div class="wbmad-placeholder__license"></div>
 </div>
 EOT;
-	}
-
-	/**
-	 * Optimistically get some label data for images not specifically uploaded by the current user,
-	 * to be retrieved by the JS frontend on load.
-	 * @return array
-	 */
-	private function getInitialSuggestedTagsData() {
-		$result = [];
-		$rawTitles = $this->labelRepo->getTitlesWithUnreviewedLabels( 10 );
-
-		foreach ( $rawTitles as $rawTitle ) {
-			$title = Title::newFromText( $rawTitle, NS_FILE );
-			$file = $this->fileRepo->findFile( $title );
-			$thumbUrl = $file->transform( [ 'width' => 800, 'height' => 640 ] )->getUrl();
-
-			$labelData = $this->labelRepo->getLabels( $file->getSha1() );
-			$unreviewedLabelData = array_filter( $labelData, function ( array $data ) {
-				return $data['review'] === Repository::REVIEW_UNREVIEWED;
-			} );
-
-			if ( !$unreviewedLabelData ) {
-				continue;
-			}
-
-			$labels = $this->labelResolver->resolve(
-				$this->getContext(),
-				array_column(
-					$unreviewedLabelData,
-					'wikidata_id'
-				)
-			);
-
-			if ( !$labels ) {
-				continue;
-			}
-
-			$suggestedLabels = [];
-			foreach ( $labels as $id => $label ) {
-				$suggestedLabels[] = [
-					'wikidata_id' => $id,
-					'label' => $label['label'],
-					'description' => $label['description'] ?? null,
-					'alias' => $label['alias'] ?? null,
-				];
-			}
-
-			$result[] = [
-				'title' => $title->getPrefixedDBkey(),
-				'pageid' => $title->getArticleID(),
-				'description_url' => $file->getDescriptionUrl(),
-				'thumb_url' => $thumbUrl,
-				'height' => $file->getHeight(),
-				'width' => $file->getWidth(),
-				'suggested_labels' => $suggestedLabels,
-			];
-		}
-
-		return $result;
 	}
 
 	private function testersOnly() {
