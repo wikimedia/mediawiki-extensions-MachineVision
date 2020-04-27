@@ -2,7 +2,8 @@
 	"private": true,
 	"scripts": {
 		"test": "grunt test && npm run test:unit",
-		"test:unit": "mw-node-qunit --require @wikimedia/mw-node-qunit/wikimedia-setup.js 'tests/node-qunit/**/*.test.js'"
+		"test:unit": "mw-node-qunit --require @wikimedia/mw-node-qunit/wikimedia-setup.js 'tests/node-qunit/**/*.test.js'",
+		"build-lib": ". ./bin/build.sh"
 	},
 	"devDependencies": {
 		"@wikimedia/mw-node-qunit": "6.1.1",
@@ -17,6 +18,7 @@
 		"stylelint-config-wikimedia": "0.10.1",
 		"wikibase-data-model": "^6.1.0",
 		"wikibase-data-values": "^0.10.0",
-		"wikibase-serialization": "^5.0.0"
+		"wikibase-serialization": "^5.0.0",
+		"wikimedia-ui-base": "0.15.0"
 	}
 }
