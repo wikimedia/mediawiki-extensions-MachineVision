@@ -23,6 +23,16 @@ class Util {
 		return 'computer-aided-tagging-revert';
 	}
 
+	/** @return string */
+	public static function getDepictsCustomTag(): string {
+		return 'computer-aided-tagging-manual';
+	}
+
+	/** @return string */
+	public static function getDepictsCustomRevertTag(): string {
+		return 'computer-aided-tagging-manual-revert';
+	}
+
 	/**
 	 * Get the configured property ID for a MediaInfo property.
 	 * @param string $prop property name
