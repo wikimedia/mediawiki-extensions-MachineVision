@@ -27,21 +27,21 @@ if ( $basePath ) {
 }
 require_once "$basePath/maintenance/Maintenance.php";
 
-// Maintenance script for removing all blocklisted suggestions from the MachineVision tables
-// Should be run after the blocklist is updated
-class RemoveBlocklistedSuggestions extends Maintenance {
+// Maintenance script for removing all blacklisted suggestions from the MachineVision tables
+// Should be run after the blacklist is updated
+class RemoveBlacklistedSuggestions extends Maintenance {
 
 	/** @var IDatabase */
 	private $dbw;
 	/** @var IDatabase */
 	private $dbr;
 	/** @var array */
-	private $blocklist;
+	private $blacklist;
 
 	public function __construct() {
 		parent::__construct();
 		$this->requireExtension( 'MachineVision' );
-		$this->addDescription( 'Remove blocklisted suggestions from MachineVision tables' );
+		$this->addDescription( 'Remove blacklisted suggestions from MachineVision tables' );
 		$this->setBatchSize( 10000 );
 	}
 
@@ -62,24 +62,21 @@ class RemoveBlocklistedSuggestions extends Maintenance {
 		$this->dbw = $loadBalancer->getLazyConnectionRef( DB_MASTER, [], $database );
 		$this->dbr = $loadBalancer->getLazyConnectionRef( DB_REPLICA, [], $database );
 
-		$blocklist = $extensionConfig->get( 'MachineVisionWikidataIdBlacklist' );
-		$withholdingList = $extensionConfig->get( 'MachineVisionWithholdImageList' );
-
-		$this->blocklist = array_unique( array_merge( $blocklist, $withholdingList ) );
+		$this->blacklist = $extensionConfig->get( 'MachineVisionWikidataIdBlacklist' );
 	}
 
 	/** @inheritDoc */
 	public function execute() {
 		$this->init();
-		if ( count( $this->blocklist ) == 0 ) {
-			$this->output( "Blocklist is empty.\n" );
+		if ( count( $this->blacklist ) == 0 ) {
+			$this->output( "Blacklist is empty.\n" );
 			return;
 		}
 		$continue = true;
 		while ( $continue ) {
 			$idsToDelete =
 				$this->dbr->selectFieldValues( 'machine_vision_label', 'mvl_id',
-					[ 'mvl_wikidata_id' => $this->blocklist ], __METHOD__,
+					[ 'mvl_wikidata_id' => $this->blacklist ], __METHOD__,
 					[ 'LIMIT' => $this->getBatchSize() ] );
 			if ( count( $idsToDelete ) < 1 ) {
 				$continue = false;
@@ -103,7 +100,7 @@ class RemoveBlocklistedSuggestions extends Maintenance {
 	}
 }
 
-$maintClass = RemoveBlocklistedSuggestions::class;
+$maintClass = RemoveBlacklistedSuggestions::class;
 
 $doMaintenancePath = RUN_MAINTENANCE_IF_MAIN;
 if ( !( file_exists( $doMaintenancePath ) &&
