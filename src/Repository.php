@@ -177,14 +177,15 @@ class Repository implements LoggerAwareInterface {
 
 		$data = [];
 		foreach ( $res as $row ) {
+			$sha1 = $row->mvi_sha1;
 			$label = $row->mvl_wikidata_id;
 			$provider = $row->mvp_name;
 			$confidence = (float)$row->mvs_confidence;
 			if ( array_key_exists( $label, $data ) ) {
-				$data[$label]['confidence'][$provider] = $confidence;
+				$data["$sha1-$label"]['confidence'][$provider] = $confidence;
 			} else {
-				$data[$label] = [
-					'sha1' => $row->mvi_sha1,
+				$data["$sha1-$label"] = [
+					'sha1' => $sha1,
 					'wikidata_id' => $label,
 					'review' => (int)$row->mvl_review,
 					'reviewer_id' => (int)$row->mvl_reviewer_id,
