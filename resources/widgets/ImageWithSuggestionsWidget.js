@@ -33,6 +33,9 @@ function ImageWithSuggestionsWidget( config, queryType ) {
 	this.suggestions = this.config.suggestions.filter( function ( suggestion ) {
 		return !!suggestion.text;
 	} );
+	this.labellessSuggestions = this.config.suggestions.filter( function ( suggestion ) {
+		return !suggestion.text;
+	} );
 	this.suggestionsWidget = new SuggestionsWidget( { suggestions: this.suggestions } )
 		.connect( this, { change: 'onChange' } );
 
@@ -258,6 +261,14 @@ ImageWithSuggestionsWidget.prototype.onFinalConfirm = function () {
 		} ),
 		serializer = new serialization.StatementSerializer(),
 		promise;
+
+	// Tack labelless suggestions back on with "not-displayed" review state.
+	this.labellessSuggestions.forEach( function ( tag ) {
+		reviewBatch.push( {
+			label: tag.wikidataId,
+			review: 'not-displayed'
+		} );
+	} );
 
 	this.messages = [];
 	this.showSpinner = true;

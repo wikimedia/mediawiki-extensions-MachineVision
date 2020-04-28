@@ -26,7 +26,7 @@ CREATE TABLE /*_*/machine_vision_label (
     mvl_mvi_id int NOT NULL,
     -- Wikidata ID (Q-number) identifying the item identified as depicted in the image
     mvl_wikidata_id varbinary(32) NOT NULL,
-    -- Review status: 0: not reviewed yet, 1: accepted, -1: rejected, -2: withheld from popular, -3: withheld from all
+    -- Review status: 0: not reviewed yet, 1: accepted, -1: rejected, -2: withheld from popular, -3: withheld from all, -4: not displayed
     mvl_review tinyint NOT NULL DEFAULT 0,
     -- Local user ID of the user who uploaded the label
     mvl_uploader_id int(10) UNSIGNED,

@@ -24,6 +24,7 @@ class Repository implements LoggerAwareInterface {
 	const REVIEW_REJECTED = -1;
 	const REVIEW_WITHHELD_POPULAR = -2;
 	const REVIEW_WITHHELD_ALL = -3;
+	const REVIEW_NOT_DISPLAYED = -4;
 
 	private static $reviewStates = [
 		self::REVIEW_UNREVIEWED,
@@ -31,6 +32,7 @@ class Repository implements LoggerAwareInterface {
 		self::REVIEW_REJECTED,
 		self::REVIEW_WITHHELD_POPULAR,
 		self::REVIEW_WITHHELD_ALL,
+		self::REVIEW_NOT_DISPLAYED
 	];
 
 	/** @var NameTableStore */
