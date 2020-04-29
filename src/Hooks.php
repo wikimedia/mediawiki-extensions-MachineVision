@@ -137,7 +137,7 @@ class Hooks {
 	 * @param RevisionRecord $newRev The revision the page was reverted back to
 	 * @param RevisionRecord $oldRev The revision of the top edit that was reverted
 	 */
-	public static function onArticleRollbackComplete( WikiPage $wikiPage,
+	public static function onRollbackComplete( WikiPage $wikiPage,
 							  User $agent,
 							  RevisionRecord $newRev,
 							  RevisionRecord $oldRev ) {
