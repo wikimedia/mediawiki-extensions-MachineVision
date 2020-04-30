@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Eduardo Addad de Oliveira"
+			"Eduardo Addad de Oliveira",
+			"Jhonnatanricardo"
 		]
 	},
 	"machinevision-desc": "Interage com fornecedores de serviços de visão de máquina internos e externos, armazena e fornece resultados.",
@@ -56,6 +57,10 @@
 	"tag-computer-aided-tagging-description": "Edições criadas com a ferramenta marcação auxiliada por computador",
 	"tag-computer-aided-tagging-revert": "Rótulo assistido por computador",
 	"tag-computer-aided-tagging-revert-description": "Edita a reversão de uma ou mais revisões criadas com a ferramenta Marcação assistida por computador",
+	"tag-computer-aided-tagging-manual": "Marcação auxiliada por computador - manual",
+	"tag-computer-aided-tagging-manual-description": "Edições criadas pela ferramenta de marcação auxiliada por computador com rótulos criados por usuário",
+	"tag-computer-aided-tagging-manual-revert": "Marcações supervisionadas por computador - manual (reverter)",
+	"tag-computer-aided-tagging-manual-revert-description": "Edita as revisões reversas criadas a partir da ferramenta Marcação auxiliada por computador com etiquetas fornecidas pelo usuário",
 	"echo-machinevision-suggestions-ready-notification-header-compact": "As etiquetas sugeridas estão prontas para revisão",
 	"echo-machinevision-suggestions-ready-notification-header": "Etiquetas sugeridas para {{GENDER:$1|você}} de carregamento(s) recentes estão prontos para revisão",
 	"echo-machinevision-suggestions-ready-notification-body": "Olá! As imagen(s) que {{GENDER:$1|você}} recentemente enviados para Commons foram processados com etiquetas sugeridas e eles estão prontos para análise. Etiquetas precisas facilitam a localização de todos os usuários do Commons das {{GENDER:$1|suas}} imagens , então siga o link para revisar {{GENDER:$1|suas}} etiquetas sugeridas. Somente etiquetas confirmadas pelos usuários serão adicionadas como parte dos dados da imagem no Commons. Para obter mais informações sobre essa ferramenta, visite a página do projeto da ferramenta de marcação auxiliada por computador.",
