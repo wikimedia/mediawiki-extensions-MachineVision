@@ -9,7 +9,7 @@
 	"machinevision-machineaidedtagging-popular-tab": "Beliebt",
 	"machinevision-machineaidedtagging-user-tab": "Persönliche Uploads",
 	"machinevision-machineaidedtagging-preferences-link": "[[Special:Preferences#mw-prefsection-echo|Deaktivieren von Benachrichtigungen]] für dieses Tool",
-	"machinevision-machineaidedtagging-license-information": "CC0-Lizenz für Tag-Beiträge - Indem du auf „“veröffentlichen“ klickst, erklärst du sich mit den [[wmf:Terms_of_Use|Nutzungsbedingungen]] einverstanden und stimmst unwiderruflich zu, deinen Beitrag unter der [https://creativecommons.org/publicdomain/zero/1.0/ Creative Commons CC0-Lizenz] freizugeben.",
+	"machinevision-machineaidedtagging-license-information": "CC0-Lizenz für Tag-Beiträge - Indem du auf „veröffentlichen“ klickst, erklärst du dich mit den [[wmf:Terms_of_Use|Nutzungsbedingungen]] einverstanden und stimmst unwiderruflich zu, deinen Beitrag unter der [https://creativecommons.org/publicdomain/zero/1.0/ Creative Commons CC0-Lizenz] freizugeben.",
 	"machinevision-pageinfo-field-suggested-labels": "Vorgeschlagene Bezeichnungen",
 	"machinevision-login-message": "Bitte <span class=\"plainlinks\">[{{fullurl:{{#Special:UserLogin}}|returnto=Special:SuggestedTags}} anmelden]</span>, um diese Seite zu sehen und mit dem Markieren von Bildern zu beginnen. Genaue Tags machen es für alle Commons-Benutzer einfacher, Bilder zu finden; deine Beiträge sind willkommen.",
 	"machinevision-autoconfirmed-message": "Genaue Tags machen es für alle Commons-Benutzer einfacher, Bilder zu finden, also lasse dich bitte [[mw:Manual:Autoconfirmed_users|autobestätigen]], da nur autobestätigte Benutzer dieses Tool verwenden können.",

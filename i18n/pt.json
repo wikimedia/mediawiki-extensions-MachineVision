@@ -10,6 +10,7 @@
 	"machinevision-machineaidedtagging-tabs-heading": "Imagens para revisão",
 	"machinevision-machineaidedtagging-popular-tab": "Populares",
 	"machinevision-machineaidedtagging-user-tab": "Carregamentos pessoais",
+	"machinevision-machineaidedtagging-preferences-link": "[[Special:Preferences#mw-prefsection-echo|Desativar as notificações]] desta ferramenta",
 	"machinevision-pageinfo-field-suggested-labels": "Etiquetas sugeridas",
 	"machinevision-publish": "Publicar",
 	"machinevision-publish-title": "Publicar etiquetas?",
@@ -24,6 +25,8 @@
 	"machinevision-onboarding-dialog-close-label": "Fechar",
 	"machinevision-no-uploads-cta-heading": "Não tem imagens para rever",
 	"machinevision-javascript-required": "Esta funcionalidade não é suportada no seu navegador da Web.",
+	"echo-machinevision-suggestions-ready-notification-header-compact": "As etiquetas sugeridas estão prontas para revisão",
+	"echo-machinevision-suggestions-ready-notification-primary-link": "Rever etiquetas",
 	"echo-category-title-machinevision": "Etiquetas sugeridas para revisão",
 	"echo-pref-tooltip-machinevision-suggestions-ready": "Notificar-me quando as minhas imagens tiverem sido processadas e as etiquetas sugeridas estiverem prontas para minha revisão."
 }
