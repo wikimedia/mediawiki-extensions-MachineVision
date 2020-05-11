@@ -202,6 +202,15 @@
 		"remoteExtPath": "MachineVision/resources"
 	},
 	"ResourceModules": {
+		"ext.MachineVision.polyfill": {
+			"scripts": [
+				"polyfills/Array.prototype.find.js"
+			],
+			"targets": [
+				"mobile",
+				"desktop"
+			]
+		},
 		"ext.MachineVision.init": {
 			"styles": [
 				"init.css"
@@ -227,60 +236,70 @@
 		"ext.MachineVision": {
 			"packageFiles": [
 				"init.js",
-				"base/DOMLessGroupWidget.js",
-				"base/FormatValueElement.js",
-				"base/TemplateRenderingDOMLessGroupWidget.js",
-				"models/ImageData.js",
-				"models/SuggestionData.js",
-				"widgets/AddCustomTagDialog.js",
-				"widgets/CardstackPlaceholder.js",
+				"components/base/Button.vue",
+				"components/base/Icon.vue",
+				"components/base/Message.vue",
+				"components/base/Suggestion.vue",
+				"components/base/Tabs.vue",
+				"components/base/Tab.vue",
+				"components/base/ToastNotification.vue",
+				"components/App.vue",
+				"components/CardStack.vue",
+				"components/CardStackPlaceholder.vue",
+				"components/FadeIn.vue",
+				"components/ImageCard.vue",
+				"components/Spinner.vue",
+				"components/UserMessage.vue",
+				"components/PersonalUploadsCount.vue",
+				"widgets/base/TemplateRenderingDOMLessGroupWidget.js",
+				"widgets/base/DOMLessGroupWidget.js",
+				"widgets/base/FormatValueElement.js",
+				"widgets/OnboardingDialog.js",
 				"widgets/ConfirmTagsDialog.js",
 				"widgets/ConfirmTagsDialogContent.js",
+				"widgets/AddCustomTagDialog.js",
 				"widgets/EntityAutocompleteInputWidget.js",
-				"widgets/ImageWithSuggestionsWidget.js",
-				"widgets/OnboardingDialog.js",
-				"widgets/PersonalUploadsCount.js",
-				"widgets/SuggestedTagsCardstack.js",
-				"widgets/SuggestedTagsPage.js",
-				"widgets/SuggestionsWidget.js",
-				"widgets/UserMessage.js"
+				"widgets/UserMessage.js",
+				"plugins/api.js",
+				"plugins/logger.js",
+				"store/index.js",
+				"store/state.js",
+				"store/mutations.js",
+				"store/getters.js",
+				"store/actions.js",
+				"store/utils.js",
+				"models/Image.js",
+				"models/Suggestion.js"
 			],
 			"styles": [
+				"widgets/UserMessage.less",
 				"widgets/AddCustomTagDialog.less",
-				"widgets/CardstackPlaceholder.less",
-				"widgets/ConfirmTagsDialog.less",
-				"widgets/ConfirmTagsDialogContent.less",
-				"widgets/EntityAutocompleteInputWidget.less",
-				"widgets/ImageWithSuggestionsWidget.less",
+				"widgets/EntityAutocompleteWidget.less",
 				"widgets/OnboardingDialog.less",
-				"widgets/PersonalUploadsCount.less",
-				"widgets/SuggestedTagsCardstack.less",
-				"widgets/SuggestedTagsPage.less",
-				"widgets/SuggestionsWidget.less",
-				"widgets/UserMessage.less"
+				"widgets/ConfirmTagsDialog.less",
+				"widgets/ConfirmTagsDialogContent.less"
 			],
 			"dependencies": [
 				"ext.MachineVision.config",
+				"ext.MachineVision.polyfill",
 				"ext.eventLogging",
 				"oojs",
 				"oojs-ui-core",
 				"oojs-ui-widgets",
 				"oojs-ui-windows",
 				"mediawiki.template.mustache+dom",
+				"vue",
+				"vuex",
 				"wikibase.api.RepoApi",
 				"wikibase.datamodel",
 				"wikibase.serialization",
 				"wikibase.utilities.ClaimGuidGenerator"
 			],
 			"templates": [
-				"widgets/CardstackPlaceholder.mustache+dom",
+				"widgets/UserMessage.mustache+dom",
 				"widgets/ConfirmTagsDialogContent.mustache+dom",
 				"widgets/EntityAutocompleteInputWidgetLabel.mustache+dom",
-				"widgets/ImageWithSuggestionsWidget.mustache+dom",
-				"widgets/PersonalUploadsCount.mustache+dom",
-				"widgets/SuggestedTagsCardstack.mustache+dom",
-				"widgets/SuggestedTagsPage.mustache+dom",
-				"widgets/UserMessage.mustache+dom"
+				"widgets/ConfirmTagsDialogContent.mustache+dom"
 			],
 			"messages": [
 				"machinevision-machineaidedtagging",
@@ -319,6 +338,8 @@
 				"machinevision-cta-cta",
 				"machinevision-no-uploads-cta-heading",
 				"machinevision-no-uploads-cta-text",
+				"machinevision-generic-no-images-heading",
+				"machinevision-generic-no-images-text",
 				"machinevision-categories-label",
 				"machinevision-add-custom-tag-dialog-title",
 				"machinevision-add-custom-tag-dialog-add-action",

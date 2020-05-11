@@ -1,33 +1,20 @@
 @import '../lib/wikimedia-ui-base.less';
 
-// Global style variables
-// ---------------------------------------------------------
+// Use semantic variable names from wikimedia-ui-base in the code when it makes
+// sense to do so. Otherwise, create a new extension-specific semantic
+// variable here.
 
 // Colors
 // ---------------------------------------------------------
 // https://design.wikimedia.org/style-guide/visual-style_colors.html
-
-// Base
-@base0: @wmui-color-base0;
-@base10: @wmui-color-base10;
-@base20: @wmui-color-base20;
-@base30: @wmui-color-base30;
-@base50: @wmui-color-base50;
-@base70: @wmui-color-base70;
-@base80: @wmui-color-base80;
-@base90: @wmui-color-base90;
-@base100: @wmui-color-base100;
-
-// Accent
-@accent30: @wmui-color-accent30;
-@accent90: @wmui-color-accent90;
+@wbmad-background-color-spinner: @color-base--subtle;
+@wbmad-background-color-image-card: @background-color-tabs;
 
 // Sizes
 // ---------------------------------------------------------
-@wbmad-max-width: 60em;
-@outer-border-radius: 8px;
-@suggestion-border-width: 1px;
-@wbmad-spinner-size: 12px;
+@wbmad-size-max-width: 60em;
+@wbmad-size-spinner: 12px;
+@wbmad-border-radius-image-card: @border-radius-base * 4;
 
 // Mixins
 // ---------------------------------------------------------

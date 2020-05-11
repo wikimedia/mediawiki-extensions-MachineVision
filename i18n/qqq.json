@@ -49,6 +49,8 @@
 	"machinevision-cta-cta": "Call to action text for the button linking to the popular uploads tab",
 	"machinevision-no-uploads-cta-heading": "Heading for the user message when the user has not yet uploaded any images that have received tag suggestions",
 	"machinevision-no-uploads-cta-text": "Text for the user message when the user has not yet uploaded any images that have received tag suggestions",
+	"machinevision-generic-no-images-heading": "Heading for a generic message shown to user when there are no images to tag",
+	"machinevision-generic-no-images-text": "Text for a generic message shown to user when there are no images to tag",
 	"machinevision-javascript-required": "Message displayed when JavaScript is disabled or unsupported, informing the user that the feature is not supported in the current browser.",
 	"machinevision-categories-label": "Label text before the list of image categories\n{{Identical|Category}}",
 	"machinevision-add-custom-tag-dialog-title": "Text at the top of the 'Add custom tag' dialog",

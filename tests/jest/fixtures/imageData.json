@@ -1,0 +1,136 @@
+[
+	{
+		"title": "File:Fullsizeoutput 3c9.jpeg",
+		"pageid": 16,
+		"descriptionurl": "http://localhost/mediawiki/index.php/File:Fullsizeoutput_3c9.jpeg",
+		"thumburl": "http://localhost/mediawiki/images/thumb/9/97/Fullsizeoutput_3c9.jpeg/800px-Fullsizeoutput_3c9.jpeg",
+		"thumbheight": 533,
+		"suggestions": [
+			{
+				"text": "winter",
+				"wikidataId": "Q1311",
+				"confirmed": false
+			},
+			{
+				"text": "snow",
+				"wikidataId": "Q7561",
+				"confirmed": false
+			}
+		],
+		"categories": [
+			"Photographs",
+			"Photographs of people",
+			"Streets"
+		]
+	},
+	{
+		"title": "File:Fullsizeinput 2cd.jpg",
+		"pageid": 23,
+		"descriptionurl": "http://localhost/mediawiki/index.php/File:Fullsizeinput_2cd.jpg",
+		"thumburl": "http://localhost/mediawiki/images/thumb/8/87/Fullsizeinput_2cd.jpg/800px-Fullsizeinput_2cd.jpg",
+		"thumbheight": 509,
+		"suggestions": [
+			{
+				"text": "photograph",
+				"wikidataId": "Q125191",
+				"confirmed": false
+			},
+			{
+				"text": "snapshot",
+				"wikidataId": "Q1758746",
+				"confirmed": false
+			},
+			{
+				"text": "standing",
+				"wikidataId": "Q1986098",
+				"confirmed": false
+			},
+			{
+				"text": "street",
+				"wikidataId": "Q79007",
+				"confirmed": false
+			}
+		],
+		"categories": []
+	},
+	{
+		"title": "File:Fullsizeinput 2d0.jpg",
+		"pageid": 24,
+		"descriptionurl": "http://localhost/mediawiki/index.php/File:Fullsizeinput_2d0.jpg",
+		"thumburl": "http://localhost/mediawiki/images/thumb/5/5d/Fullsizeinput_2d0.jpg/800px-Fullsizeinput_2d0.jpg",
+		"thumbheight": 533,
+		"suggestions": [
+			{
+				"text": "monochrome",
+				"wikidataId": "Q10770146",
+				"confirmed": false
+			},
+			{
+				"text": "architecture",
+				"wikidataId": "Q12271",
+				"confirmed": false
+			},
+			{
+				"text": "crane",
+				"wikidataId": "Q178692",
+				"confirmed": false
+			},
+			{
+				"text": "white",
+				"wikidataId": "Q23444",
+				"confirmed": false
+			},
+			{
+				"text": "sky",
+				"wikidataId": "Q527",
+				"confirmed": false
+			},
+			{
+				"text": "monochrome",
+				"wikidataId": "Q6453656",
+				"confirmed": false
+			},
+			{
+				"text": "monochrome photography",
+				"wikidataId": "Q6901463",
+				"confirmed": false
+			},
+			{
+				"text": "urban area",
+				"wikidataId": "Q702492",
+				"confirmed": false
+			},
+			{
+				"text": "cloud",
+				"wikidataId": "Q8074",
+				"confirmed": false
+			},
+			{
+				"text": "black-and-white",
+				"wikidataId": "Q838368",
+				"confirmed": false
+			}
+		],
+		"categories": []
+	},
+	{
+		"title": "File:Fullsizeinput 2cb.jpg",
+		"pageid": 25,
+		"descriptionurl": "http://localhost/mediawiki/index.php/File:Fullsizeinput_2cb.jpg",
+		"thumburl": "http://localhost/mediawiki/images/thumb/7/7a/Fullsizeinput_2cb.jpg/800px-Fullsizeinput_2cb.jpg",
+		"thumbheight": 1200,
+		"suggestions": [
+			{
+				"text": "landmark",
+				"wikidataId": "Q2319498",
+				"confirmed": false
+			},
+			{
+				"text": "building",
+				"wikidataId": "Q41176",
+				"confirmed": false
+			}
+		],
+		"categories": []
+	}
+]

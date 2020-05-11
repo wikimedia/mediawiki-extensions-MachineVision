@@ -1,6 +1,7 @@
 'use strict';
+/* eslint-disable no-implicit-globals */
 
-var TemplateRenderingDOMLessGroupWidget = require( '../base/TemplateRenderingDOMLessGroupWidget.js' );
+var TemplateRenderingDOMLessGroupWidget = require( './base/TemplateRenderingDOMLessGroupWidget.js' );
 
 /**
  * User-facing content with an icon, text, and CTA button.

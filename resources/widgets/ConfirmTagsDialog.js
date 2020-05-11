@@ -1,4 +1,5 @@
 'use strict';
+/* eslint-disable no-implicit-globals */
 
 var ConfirmTagsDialogContent = require( './ConfirmTagsDialogContent.js' );
 

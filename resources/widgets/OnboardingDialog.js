@@ -1,4 +1,5 @@
 'use strict';
+/* eslint-disable no-implicit-globals */
 
 var UserMessage = require( './UserMessage.js' );
 

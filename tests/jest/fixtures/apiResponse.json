@@ -1,0 +1,243 @@
+{
+	"batchcomplete": true,
+	"query": {
+		"pages": [
+			{
+				"pageid": 23,
+				"ns": 6,
+				"title": "File:Fullsizeinput 2cd.jpg",
+				"imagerepository": "local",
+				"imageinfo": [
+					{
+						"thumburl": "http://localhost/mediawiki/images/thumb/8/87/Fullsizeinput_2cd.jpg/800px-Fullsizeinput_2cd.jpg",
+						"thumbwidth": 800,
+						"thumbheight": 509,
+						"url": "http://localhost/mediawiki/images/8/87/Fullsizeinput_2cd.jpg",
+						"descriptionurl": "http://localhost/mediawiki/index.php/File:Fullsizeinput_2cd.jpg",
+						"descriptionshorturl": "http://localhost/mediawiki/index.php?curid=23"
+					}
+				],
+				"imagelabels": [
+					{
+						"wikidata_id": "Q125191",
+						"state": "unreviewed",
+						"confidence": {
+							"google": 0.968785
+						},
+						"label": "photograph",
+						"description": "image created by light falling on a light-sensitive surface",
+						"alias": "photo"
+					},
+					{
+						"wikidata_id": "Q1758746",
+						"state": "unreviewed",
+						"confidence": {
+							"google": 0.898564
+						},
+						"label": "snapshot",
+						"description": "photography term",
+						"alias": null
+					},
+					{
+						"wikidata_id": "Q1986098",
+						"state": "unreviewed",
+						"confidence": {
+							"google": 0.898607
+						},
+						"label": "standing",
+						"description": "human position in which the body is held in an upright position",
+						"alias": "orthostasis"
+					},
+					{
+						"wikidata_id": "Q79007",
+						"state": "unreviewed",
+						"confidence": {
+							"google": 0.871769
+						},
+						"label": "street",
+						"description": "public thoroughfare in a built environment",
+						"alias": "St."
+					}
+				],
+				"categories": [
+					{
+						"ns": 14,
+						"title": "Category:Photographs"
+					},
+					{
+						"ns": 14,
+						"title": "Category:Photographs of people"
+					},
+					{
+						"ns": 14,
+						"title": "Category:Streets"
+					}
+				]
+			},
+			{
+				"pageid": 24,
+				"ns": 6,
+				"title": "File:Fullsizeinput 2d0.jpg",
+				"imagerepository": "local",
+				"imageinfo": [
+					{
+						"thumburl": "http://localhost/mediawiki/images/thumb/5/5d/Fullsizeinput_2d0.jpg/800px-Fullsizeinput_2d0.jpg",
+						"thumbwidth": 800,
+						"thumbheight": 533,
+						"url": "http://localhost/mediawiki/images/5/5d/Fullsizeinput_2d0.jpg",
+						"descriptionurl": "http://localhost/mediawiki/index.php/File:Fullsizeinput_2d0.jpg",
+						"descriptionshorturl": "http://localhost/mediawiki/index.php?curid=24"
+					}
+				],
+				"imagelabels": [
+					{
+						"wikidata_id": "Q10770146",
+						"state": "unreviewed",
+						"confidence": {
+							"google": 0.926626
+						},
+						"label": "monochrome",
+						"description": "shades of one color; describes paintings, drawings, design, or photographs in one color or values of one color, having only one colour",
+						"alias": null
+					},
+					{
+						"wikidata_id": "Q12271",
+						"state": "unreviewed",
+						"confidence": {
+							"google": 0.948456
+						},
+						"label": "architecture",
+						"description": "both the process and product of planning, designing and construction",
+						"alias": null
+					},
+					{
+						"wikidata_id": "Q178692",
+						"state": "unreviewed",
+						"confidence": {
+							"google": 0.915608
+						},
+						"label": "crane",
+						"description": "type of machine",
+						"alias": null
+					},
+					{
+						"wikidata_id": "Q23444",
+						"state": "unreviewed",
+						"confidence": {
+							"google": 0.962856
+						},
+						"label": "white",
+						"description": "color",
+						"alias": "W"
+					},
+					{
+						"wikidata_id": "Q527",
+						"state": "unreviewed",
+						"confidence": {
+							"google": 0.822089
+						},
+						"label": "sky",
+						"description": "everything that is above the surface of the Earth",
+						"alias": "celestial dome"
+					},
+					{
+						"wikidata_id": "Q6453656",
+						"state": "unreviewed",
+						"confidence": {
+							"google": 0.926626
+						},
+						"label": "monochrome",
+						"description": "Wikipedia disambiguation page",
+						"alias": null
+					},
+					{
+						"wikidata_id": "Q6901463",
+						"state": "unreviewed",
+						"confidence": {
+							"google": 0.888034
+						},
+						"label": "monochrome photography",
+						"description": "photography where each position on an image can record and show a different amount of light, but not a different hue",
+						"alias": "black and white photography"
+					},
+					{
+						"wikidata_id": "Q702492",
+						"state": "unreviewed",
+						"confidence": {
+							"google": 0.83516
+						},
+						"label": "urban area",
+						"description": "human settlement with high population density and infrastructure of built environment (Use Q2983893 \"urban district\" for a neighbourhood within a larger urban area; use Q1907114 \"metropolitan area\" for a wider area)",
+						"alias": null
+					},
+					{
+						"wikidata_id": "Q8074",
+						"state": "unreviewed",
+						"confidence": {
+							"google": 0.787356
+						},
+						"label": "cloud",
+						"description": "visible mass of liquid droplets or frozen crystals suspended in the atmosphere",
+						"alias": "clouds"
+					},
+					{
+						"wikidata_id": "Q838368",
+						"state": "unreviewed",
+						"confidence": {
+							"google": 0.951338
+						},
+						"label": "black-and-white",
+						"description": "monochrome form in visual arts",
+						"alias": "black and white"
+					}
+				],
+				"categories": []
+			},
+			{
+				"pageid": 25,
+				"ns": 6,
+				"title": "File:Fullsizeinput 2cb.jpg",
+				"imagerepository": "local",
+				"imageinfo": [
+					{
+						"thumburl": "http://localhost/mediawiki/images/thumb/7/7a/Fullsizeinput_2cb.jpg/800px-Fullsizeinput_2cb.jpg",
+						"thumbwidth": 800,
+						"thumbheight": 1200,
+						"url": "http://localhost/mediawiki/images/7/7a/Fullsizeinput_2cb.jpg",
+						"descriptionurl": "http://localhost/mediawiki/index.php/File:Fullsizeinput_2cb.jpg",
+						"descriptionshorturl": "http://localhost/mediawiki/index.php?curid=25"
+					}
+				],
+				"imagelabels": [
+					{
+						"wikidata_id": "Q2319498",
+						"state": "unreviewed",
+						"confidence": {
+							"google": 0.941235
+						},
+						"label": "landmark",
+						"description": "something, such as a geographic feature or building, that is easily recognizable and/or well known",
+						"alias": "POI"
+					},
+					{
+						"wikidata_id": "Q41176",
+						"state": "unreviewed",
+						"confidence": {
+							"google": 0.925539
+						},
+						"label": "building",
+						"description": "structure, typically with a roof and walls, standing more or less permanently in one place",
+						"alias": "edifice"
+					}
+				],
+				"categories": []
+			}
+		],
+		"unreviewedimagecount": {
+			"user": {
+				"unreviewed": 3,
+				"total": 7
+			}
+		}
+	}
+}

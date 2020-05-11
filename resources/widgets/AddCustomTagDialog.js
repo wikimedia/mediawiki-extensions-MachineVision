@@ -1,4 +1,5 @@
 'use strict';
+/* eslint-disable no-implicit-globals */
 
 var EntityAutocompleteInputWidget = require( './EntityAutocompleteInputWidget.js' );
 
@@ -82,6 +83,18 @@ AddCustomTagDialog.prototype.getActionProcess = function ( action ) {
 
 	// Fallback to parent handler.
 	return AddCustomTagDialog.parent.prototype.getActionProcess.call( this, action );
+};
+
+/**
+ * @inheritdoc
+ */
+AddCustomTagDialog.prototype.getReadyProcess = function ( data ) {
+	var self = this;
+	return AddCustomTagDialog.parent.prototype.getReadyProcess.call( this, data )
+		.next( function () {
+			// Once dialog opens, set focus on the input.
+			self.input.focus();
+		} );
 };
 
 /**

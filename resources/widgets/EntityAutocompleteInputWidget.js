@@ -1,7 +1,8 @@
 'use strict';
+/* eslint-disable no-implicit-globals */
 
-var FormatValueElement = require( '../base/FormatValueElement.js' ),
-	SuggestionData = require( '../models/SuggestionData.js' ),
+var FormatValueElement = require( './base/FormatValueElement.js' ),
+	SuggestionData = require( '../models/Suggestion.js' ),
 	datamodel = require( 'wikibase.datamodel' );
 
 /**

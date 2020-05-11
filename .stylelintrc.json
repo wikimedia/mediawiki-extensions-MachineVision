@@ -1,6 +1,10 @@
 {
 	"extends": "stylelint-config-wikimedia",
 	"rules": {
-		"selector-class-pattern": "^(wbmi|wb|wikibase|wbmad)-"
-	}
+		"selector-class-pattern": "^(wbmi|wb|wikibase|wbmad|mw)-"
+	},
+	"ignoreFiles": [
+		"node_modules/**/*.css",
+		"coverage/**/*.css"
+	]
 }

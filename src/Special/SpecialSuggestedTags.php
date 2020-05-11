@@ -43,6 +43,9 @@ class SpecialSuggestedTags extends SpecialPage {
 			'</p></div>'
 		);
 
+		// Vue.js app root
+		$out->addHTML( '<div id="wbmad-app"></div>' );
+
 		// Placeholder element, to be removed once UI finishes loading.
 		$user = $this->getUser();
 		$placeholder = $user->isAnon() ?
