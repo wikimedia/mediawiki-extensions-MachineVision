@@ -3,6 +3,7 @@
 		"authors": [
 			"Canaan9801",
 			"Fitoschido",
+			"Geryescalier",
 			"Hasley",
 			"Madamebiblio"
 		]
@@ -33,6 +34,9 @@
 	"machinevision-add-custom-tag-dialog-cancel-action": "Cancelar",
 	"right-imagelabel-test": "Sugerencias de etiquetas para imagenes de prueba",
 	"action-imagelabel-test": "sugerencias de etiquetas para imagenes de prueba",
+	"tag-computer-aided-tagging-manual": "Etiquetado asistido por computadora - manual",
+	"tag-computer-aided-tagging-manual-description": "Ediciones creadas desde la herramienta de etiquetado asistida por computadora con etiquetas proporcionadas por el usuario",
+	"tag-computer-aided-tagging-manual-revert": "Etiquetado asistido por computadora - manual (revertir)",
 	"echo-category-title-machinevision": "Etiquetas sugeridas para revisión",
 	"echo-pref-tooltip-machinevision-suggestions-ready": "Notificarme cuando se hayan procesado mis imágenes y haya etiquetas sugeridas para que las revise."
 }
