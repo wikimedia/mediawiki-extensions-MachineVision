@@ -248,6 +248,7 @@
 				"components/CardStackPlaceholder.vue",
 				"components/FadeIn.vue",
 				"components/ImageCard.vue",
+				"components/ImageExclusionNotice.vue",
 				"components/Spinner.vue",
 				"components/UserMessage.vue",
 				"components/PersonalUploadsCount.vue",
@@ -344,6 +345,8 @@
 				"machinevision-add-custom-tag-dialog-title",
 				"machinevision-add-custom-tag-dialog-add-action",
 				"machinevision-add-custom-tag-dialog-cancel-action",
+				"machinevision-image-exclusion-notification",
+				"machinevision-image-exclusion-notification-dismiss",
 				"wikibasemediainfo-filepage-statement-no-results",
 				"wikibasemediainfo-statements-item-input-placeholder"
 			],
@@ -355,6 +358,7 @@
 	},
 	"DefaultUserOptions": {
 		"wbmad-onboarding-dialog-dismissed": 0,
+		"wbmad-image-exclusion-notice-dismissed": 0,
 		"echo-subscriptions-web-machinevision": false
 	},
 	"load_composer_autoloader": true,

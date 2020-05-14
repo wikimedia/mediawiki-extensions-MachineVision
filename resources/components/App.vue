@@ -15,6 +15,8 @@
 
 			<!-- Tabs container -->
 			<template v-if="showTabs">
+				<wbmad-image-exclusion-notice />
+
 				<h2 v-i18n-html:machinevision-machineaidedtagging-tabs-heading
 					class="wbmad-suggested-tags-page-tabs-heading" />
 
@@ -62,6 +64,7 @@ var mapState = require( 'vuex' ).mapState,
 	PersonalUploadsCount = require( './PersonalUploadsCount.vue' ),
 	OnboardingDialog = require( '../widgets/OnboardingDialog.js' ),
 	FadeIn = require( './FadeIn.vue' ),
+	ImageExclusionNotice = require( './ImageExclusionNotice.vue' ),
 	url = new mw.Uri();
 
 /**
@@ -101,7 +104,8 @@ module.exports = {
 		'mw-toast-notification': ToastNotification,
 		'card-stack': CardStack,
 		'personal-uploads-count': PersonalUploadsCount,
-		'wbmad-fade-in': FadeIn
+		'wbmad-fade-in': FadeIn,
+		'wbmad-image-exclusion-notice': ImageExclusionNotice
 	},
 
 	/**

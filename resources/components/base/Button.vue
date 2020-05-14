@@ -10,7 +10,9 @@
 			v-bind:icon="icon"
 			v-bind:invert="invert"
 		/>
-		<slot />
+		<div class="mw-button__content">
+			<slot />
+		</div>
 	</button>
 </template>
 
@@ -21,8 +23,6 @@ var Icon = require( './Icon.vue' );
  * Button with optional icon.
  *
  * See ImageCard.vue for usage examples.
- *
- * // TODO: an invisiblelabel prop that hides the text node would be useful.
  */
 // @vue/component
 module.exports = {
@@ -44,6 +44,11 @@ module.exports = {
 		icon: {
 			type: String,
 			default: null
+		},
+
+		// Set to true to hide text node.
+		invisibletext: {
+			type: Boolean
 		},
 
 		// In OOUI, flags are passed in as an array (or a string or an object)
@@ -68,6 +73,7 @@ module.exports = {
 			return {
 				'mw-button--framed': !this.frameless,
 				'mw-button--icon': this.icon,
+				'mw-button--invisible-text': this.invisibletext,
 				'mw-button--progressive': this.progressive,
 				'mw-button--destructive': this.destructive,
 				'mw-button--primary': this.primary
@@ -243,6 +249,22 @@ module.exports = {
 
 		&:not( .mw-button--framed ) .mw-icon {
 			opacity: @opacity-base--disabled;
+		}
+	}
+
+	&--invisible-text {
+		padding-right: 0;
+
+		.mw-button__content {
+			border: 0;
+			clip: rect( 1px, 1px, 1px, 1px );
+			display: block;
+			height: 1px;
+			margin: -1px;
+			overflow: hidden;
+			padding: 0;
+			position: absolute;
+			width: 1px;
 		}
 	}
 }

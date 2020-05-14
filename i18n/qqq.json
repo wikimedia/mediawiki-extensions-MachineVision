@@ -56,6 +56,8 @@
 	"machinevision-add-custom-tag-dialog-title": "Text at the top of the 'Add custom tag' dialog",
 	"machinevision-add-custom-tag-dialog-add-action": "Text for the 'add' action of the 'Add custom tag' dialog\n{{identical|Add}}",
 	"machinevision-add-custom-tag-dialog-cancel-action": "Text for the 'cancel' action of the 'Add custom tag' dialog\n{{identical|Cancel}}",
+	"machinevision-image-exclusion-notification": "Explanation that certain types of images will not appear in the image queue",
+	"machinevision-image-exclusion-notification-dismiss": "Text for dismiss button",
 	"right-imagelabel-review": "{{doc-right|imagelabel-review}}",
 	"action-imagelabel-review": "{{doc-action|imagelabel-review}}",
 	"right-imagelabel-test": "{{doc-right|imagelabel-test}}",
