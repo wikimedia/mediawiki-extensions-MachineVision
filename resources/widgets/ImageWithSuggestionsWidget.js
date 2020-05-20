@@ -298,6 +298,7 @@ ImageWithSuggestionsWidget.prototype.onFinalConfirm = function () {
 			return self.api.postWithToken( 'csrf', {
 				action: 'wbsetclaim',
 				claim: JSON.stringify( serializer.serialize( statement ) ),
+				ignoreduplicatemainsnak: true,
 				tags: correspondingSuggestion.data.custom ?
 					'computer-aided-tagging-manual' :
 					'computer-aided-tagging'
