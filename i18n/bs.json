@@ -5,7 +5,7 @@
 		]
 	},
 	"machinevision-login-message": "Molimo Vas [[Special:UserLogin|prijavite se]] da bi ste vidjeli ovu stranicu i da bi ste mogli početi označavati slike. Tačne oznake pomažu svim korisnicima da pronađu slike i Vaši doprinosi su cijenjeni.",
-	"machinevision-autoconfirmed-message": "Tačne oznake omogućavaju svim korisnicima da nađu slike, pa Vas molimo da postanete [[mw:Manual:Autoconfirmed_users|autopotvrđeni]], jer jedino autopotvrđeni korisnici mogu koristiti ovaj alat.",
+	"machinevision-autoconfirmed-message": "Tačne oznake omogućavaju svim korisnicima da nađu slike, pa Vas molimo da postanete [[mw:Special:MyLanguage/Manual:Autoconfirmed_users|autopotvrđeni]], jer jedino autopotvrđeni korisnici mogu koristiti ovaj alat.",
 	"machinevision-loading-message": "Učitavam slike...",
 	"machinevision-failure-message": "Žao nam je, nešto je pošlo naopako. Molimo Vas pokušajte kasnije ili [[c:Commons_talk:Structured_data/Computer-aided_tagging|kontaktirajte nas]].",
 	"machinevision-publish-error-message": "Nešto je pošlo po zlu i taogvi nisu mogli biti objavljeni. Molimo Vas pokušajte poslije.",

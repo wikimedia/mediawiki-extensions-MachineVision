@@ -15,7 +15,7 @@
 	"machinevision-machineaidedtagging-license-information": "Лиценца CC0 за учество со ознаки – Стискајќи на „објави“ се согласувате со [[wmf:Terms_of_Use|условите на употреба]] и дека неотповикливо ги објавувате вашите придонеси под лиценцата [https://creativecommons.org/publicdomain/zero/1.0/deed.mk Криејтив комонс CC0].",
 	"machinevision-pageinfo-field-suggested-labels": "Предложени натписи",
 	"machinevision-login-message": "<span class=\"plainlinks\">[{{fullurl:{{#Special:UserLogin}}|returnto=Special:SuggestedTags}} Најавете се]</span> за да ја видите страницава и да почнете со означување на слики. Со точни ознаки, корисниците полесно ќе ги наоѓаат сликите на Ризницата, а вашите придонеси ќе бидат ценети.",
-	"machinevision-autoconfirmed-message": "Со точни ознаки, корисниците полесно ќе ги наоѓаат сликите/ Затоа, станете [[mw:Manual:Autoconfirmed_users|автопотврден корисник]], бидејќи само ваквите корисници имаат пристап до алаткава.",
+	"machinevision-autoconfirmed-message": "Со точни ознаки, корисниците полесно ќе ги наоѓаат сликите/ Затоа, станете [[mw:Special:MyLanguage/Manual:Autoconfirmed_users|автопотврден корисник]], бидејќи само ваквите корисници имаат пристап до алаткава.",
 	"machinevision-publish": "Објави",
 	"machinevision-publish-title": "Да ги објавам ознаките?",
 	"machinevision-add-custom-tag": "Додај ознака",

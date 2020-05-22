@@ -16,7 +16,7 @@
 	"machinevision-machineaidedtagging-license-information": "用於標籤貢獻的 CC0 授權條款–透過點擊「發佈」，代表您同意[[wmf:Terms_of_Use|使用條款]]，並且不反悔基於[https://creativecommons.org/publicdomain/zero/1.0/deed.zh_TW 創用 CC CC0 授權條款]來釋出您的貢獻。",
 	"machinevision-pageinfo-field-suggested-labels": "建議的標籤",
 	"machinevision-login-message": "請<span class=\"plainlinks\">[{{fullurl:{{#Special:UserLogin}}|returnto=Special:SuggestedTags}} 登入]</span>來查看此頁面並開始標記圖片。準確的標籤可以讓圖片被所有維基共享資源使用者更容易找到，並感謝您所做的貢獻。",
-	"machinevision-autoconfirmed-message": "準確的標籤可以讓圖片被所有普通使用者更容易找到，請讓自己成為一名[[mw:Manual:Autoconfirmed_users|自動確認使用者]]，因為此工具僅能讓自動確認使用者來使用。",
+	"machinevision-autoconfirmed-message": "準確的標籤可以讓圖片被所有普通使用者更容易找到，請讓自己成為一名[[mw:Special:MyLanguage/Manual:Autoconfirmed_users|自動確認使用者]]，因為此工具僅能讓自動確認使用者來使用。",
 	"machinevision-publish": "發佈",
 	"machinevision-publish-title": "發佈標籤？",
 	"machinevision-add-custom-tag": "添加標籤",

@@ -15,7 +15,7 @@
 	"machinevision-machineaidedtagging-license-information": "CC0 licencija za doprinose oznaka – Klikom na \"objavi\", slažete se s [[wmf:Terms_of_Use|Uvjetima uporabe]], i neopozivo pristajete na objavu doprinosa pod licencijom [https://creativecommons.org/publicdomain/zero/1.0/ Creative Commons CC0].",
 	"machinevision-pageinfo-field-suggested-labels": "Predložene etikete",
 	"machinevision-login-message": "Molimo <span class=\"plainlinks\">[{{fullurl:{{#Special:UserLogin}}|returnto=Special:SuggestedTags}} prijavite se]</span> da biste vidjeli ovu stranicu i započeli s označavanjem slika. Točne oznake pomažu svim suradnicima Zajedničkog poslužitelja u lakšem pronalaženju slika. Cijenimo Vaše doprinose.",
-	"machinevision-autoconfirmed-message": "Precizne oznake omogućavaju svim suradnicima Zajedničkog poslužitelja lakše pronalaženje slika, stoga molimo da postanete [[mw:Manual:Autoconfirmed_users|automatski potvrđeni suradnik]] jer samo takvi suradnici mogu rabiti ovaj alat.",
+	"machinevision-autoconfirmed-message": "Precizne oznake omogućavaju svim suradnicima Zajedničkog poslužitelja lakše pronalaženje slika, stoga molimo da postanete [[mw:Special:MyLanguage/Manual:Autoconfirmed_users|automatski potvrđeni suradnik]] jer samo takvi suradnici mogu rabiti ovaj alat.",
 	"machinevision-publish": "Objavi",
 	"machinevision-publish-title": "Objaviti oznake?",
 	"machinevision-add-custom-tag": "Dodaj oznaku",

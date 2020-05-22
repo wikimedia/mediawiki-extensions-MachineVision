@@ -13,7 +13,7 @@
 	"machinevision-machineaidedtagging-license-information": "CC0-lisens for taggbidrag – Ved å klikke «publiser» godtar du [[wmf:Terms_of_Use|bruksvilkårene]], og gir ugjenkallelig samtykke til å slippe bidraget ditt under lisensen [https://creativecommons.org/publicdomain/zero/1.0/ Creative Commons CC0].",
 	"machinevision-pageinfo-field-suggested-labels": "Foreslåtte etiketter",
 	"machinevision-login-message": "<span class=\"plainlinks\">[{{fullurl:{{#Special:UserLogin}}|returnto=Special:SuggestedTags}} Logg inn]</span> for å se denne siden og begynne å tagge bilder. Nøyaktige tagger gjør det enklere for alle Commons-brukere å finne bilder, og bidragene dine verdsettes høyt.",
-	"machinevision-autoconfirmed-message": "Nøyaktige tagger gjør det enklere for alle Commons-brukere å finne bilder, så sørg for å bli [[mw:Manual:Autoconfirmed_users|autobekreftet]], siden det kun er autobekreftede brukere som kan bruke dette verktøyet.",
+	"machinevision-autoconfirmed-message": "Nøyaktige tagger gjør det enklere for alle Commons-brukere å finne bilder, så sørg for å bli [[mw:Special:MyLanguage/Manual:Autoconfirmed_users|autobekreftet]], siden det kun er autobekreftede brukere som kan bruke dette verktøyet.",
 	"machinevision-publish": "Publiser",
 	"machinevision-publish-title": "Publisere tagger?",
 	"machinevision-skip": "Hopp over",

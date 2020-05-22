@@ -22,7 +22,7 @@
 	"machinevision-machineaidedtagging-license-information": "Licence CC0 pour les contributions aux mots-clés – En cliquant sur « Publier », vous acceptez les [[wmf:Terms_of_Use|conditions d’utilisation]], et acceptez de façon irrévocable de mettre votre contribution sous la [https://creativecommons.org/publicdomain/zero/1.0/ licence Creative Commons CC0].",
 	"machinevision-pageinfo-field-suggested-labels": "Légendes suggérées",
 	"machinevision-login-message": "Veuillez <span class=\"plainlinks\">[{{fullurl:{{#Special:UserLogin}}|returnto=Special:SuggestedTags}} vous connecter]</span> pour voir cette page et commencer à ajouter des mots-clés aux images. Des mots-clés pertinents facilitent la recherche d’images pour tous les utilisateurs de Commons et votre contribution serait appréciée.",
-	"machinevision-autoconfirmed-message": "Des mots-clés pertinents facilitent la recherche d’images pour tous les utilisateurs de Commons. Vous devez donc devenir [[mw:Manual:Autoconfirmed_users|confirmé automatiquement]] car seuls les utilisateurs confirmés automatiquement peuvent utiliser cet outil.",
+	"machinevision-autoconfirmed-message": "Des mots-clés pertinents facilitent la recherche d’images pour tous les utilisateurs de Commons. Vous devez donc devenir [[mw:Special:MyLanguage/Manual:Autoconfirmed_users|confirmé automatiquement]] car seuls les utilisateurs confirmés automatiquement peuvent utiliser cet outil.",
 	"machinevision-publish": "Publier",
 	"machinevision-publish-title": "Publier ces mots-clés ?",
 	"machinevision-add-custom-tag": "Ajouter un mot-clé",

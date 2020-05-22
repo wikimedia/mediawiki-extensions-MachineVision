@@ -14,7 +14,7 @@
 	"machinevision-machineaidedtagging-license-information": "Licenze CC0 pe le condrebbute taggate – Cazzanne \"pubbleche\", tu ste accette le [[wmf:Terms_of_Use|termine d'ause]], e irrevocabbilmende ste accette de relascià le condrebbute tune sotte a [https://creativecommons.org/publicdomain/zero/1.0/ Licenze Creative Commons CC0].",
 	"machinevision-pageinfo-field-suggested-labels": "Etichette suggerite",
 	"machinevision-login-message": "Pe piacere <span class=\"plainlinks\">[{{fullurl:{{#Special:UserLogin}}|returnto=Special:SuggestedTags}} tràse]</span> pe 'ndrucà sta pàgene e accumenzà 'a taggè le immaggine. Le tag accurate fanne addevendà cchiù facile a le utinde de Commons acchià l'immaggine, e le condrebbute tune sò apprezzate.",
-	"machinevision-autoconfirmed-message": "Le tag accurate fanne addevendà cchiù facile 'a recerche de le immaggine sus a Commons pe le utinde, accussì devinde [[mw:Manual:Autoconfirmed_users|autoconfirmatarije]], purcé sole le utinde autoconfirmatarije ponne ausà stu strumende.",
+	"machinevision-autoconfirmed-message": "Le tag accurate fanne addevendà cchiù facile 'a recerche de le immaggine sus a Commons pe le utinde, accussì devinde [[mw:Special:MyLanguage/Manual:Autoconfirmed_users|autoconfirmatarije]], purcé sole le utinde autoconfirmatarije ponne ausà stu strumende.",
 	"machinevision-publish": "Pubbleche",
 	"machinevision-publish-title": "Pubbleche le tag?",
 	"machinevision-add-custom-tag": "Aggiunge 'u tag",

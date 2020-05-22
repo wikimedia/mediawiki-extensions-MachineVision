@@ -13,7 +13,7 @@
 	"machinevision-machineaidedtagging-license-information": "สัญญาอนุญาติ CC0 สำหรับการมีส่วนร่วมในการสร้างแท็ก — โดยการกด\"เผยแพร่\" ถือว่าคุณเข้าใจและยอมรับใน[[wmf:Terms_of_Use|ข้อกำหนดการใช้งาน]]อย่างไม่สามารถเพิกถอนได้ การมีส่วนร่วมของคุณจะอยู่ภายใต้[https://creativecommons.org/publicdomain/zero/1.0/ Creative Commons CC0 License]",
 	"machinevision-pageinfo-field-suggested-labels": "ป้ายกำกับที่แนะนำ",
 	"machinevision-login-message": "กรุณา<span class=\"plainlinks\">[{{fullurl:{{#Special:UserLogin}}|returnto=Special:SuggestedTags}} เข้าสู่ระบบ]</span>เพื่อดูหน้านี้และเริ่มติดแท็กให้กับภาพ แท็กที่ถูกต้องทำให้ง่ายขึ้นสำหรับผู้ใช้คอมอนส์ในการค้นหาภาพได้ง่ายขึ้นและการมีส่วนร่วมของคณจะได้รับการชื่นชม",
-	"machinevision-autoconfirmed-message": "แท็กที่ถูกต้องทำให้การค้นหาภาพง่ายขึ้นสำหรับผู้ใช้คอมมอนส์ กรุณาเป็น[[mw:Manual:Autoconfirmed_users|autoconfirmed]] เฉพาะผู้ใช้ยืนยันแล้วเท่านั้นที่สามารถใช้เครื่องมือนี้ได้",
+	"machinevision-autoconfirmed-message": "แท็กที่ถูกต้องทำให้การค้นหาภาพง่ายขึ้นสำหรับผู้ใช้คอมมอนส์ กรุณาเป็น[[mw:Special:MyLanguage/Manual:Autoconfirmed_users|autoconfirmed]] เฉพาะผู้ใช้ยืนยันแล้วเท่านั้นที่สามารถใช้เครื่องมือนี้ได้",
 	"machinevision-publish": "เผยแพร่",
 	"machinevision-publish-title": "เผยแพร่แท็กหรือไม่?",
 	"machinevision-skip": "ข้าม",

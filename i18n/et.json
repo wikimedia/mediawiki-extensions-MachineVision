@@ -12,7 +12,7 @@
 	"machinevision-machineaidedtagging-preferences-link": "[[Special:Preferences#mw-prefsection-echo|Keela teavitused]] selle tööriista kohta",
 	"machinevision-machineaidedtagging-license-information": "Siltide kohta käib litsents CC0. Kui klõpsad nuppu \"{{int:machinevision-publish}}\", nõustud [[wmf:Terms_of_Use|kasutustingimustega]] ja oma kaastöö pöördumatu avaldamisega litsentsi [https://creativecommons.org/publicdomain/zero/1.0/ CC0] all.",
 	"machinevision-pageinfo-field-suggested-labels": "Sildisoovitused",
-	"machinevision-autoconfirmed-message": "Täpsete siltide abil on kõigil Commonsi kasutajatel lihtsam pilte leida. Sul tuleb saada [[mw:Manual:Autoconfirmed_users|automaatselt kinnitatuks]], sest ainult automaatselt kinnitatud kasutajad saavad seda tööriista kasutada.",
+	"machinevision-autoconfirmed-message": "Täpsete siltide abil on kõigil Commonsi kasutajatel lihtsam pilte leida. Sul tuleb saada [[mw:Special:MyLanguage/Manual:Autoconfirmed_users|automaatselt kinnitatuks]], sest ainult automaatselt kinnitatud kasutajad saavad seda tööriista kasutada.",
 	"machinevision-publish": "Avalda",
 	"machinevision-publish-title": "Kas avaldad sildid?",
 	"machinevision-add-custom-tag": "Lisa silt",
