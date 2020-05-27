@@ -10,6 +10,7 @@
 
 		<transition v-else-if="shouldDisplayImage"
 			name="wbmad-fade"
+			mode="in-out"
 			appear
 		>
 			<wbmad-image-card v-bind:key="currentImageId" />
@@ -187,6 +188,20 @@ module.exports = {
 </script>
 
 <style lang="less">
+.wbmad-suggested-tags-cardstack {
+	// To avoid an empty cardstack for an instant, which collapses the container
+	// and resets scroll height top the top, we're using an in-out transition,
+	// which will add the new image card before the old one has finished leaving.
+	// To avoid overlap, we'll hide the old one and ensure that only the latest
+	// (i.e. last) image card displays.
+	.wbmad-image-with-suggestions {
+		display: none;
+
+		&:last-child {
+			display: block;
+		}
+	}
+}
 .wbmad-user-cta {
 	.wbmad-user-message-icon {
 		background-image: url( ../icons/empty-state-icon.svg );
