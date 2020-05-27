@@ -271,6 +271,10 @@ class Hooks {
 		$preferences['wbmad-onboarding-dialog-dismissed'] = [
 			'type' => 'api'
 		];
+
+		$preferences['wbmad-image-exclusion-notice-dismissed'] = [
+			'type' => 'api'
+		];
 	}
 
 	/**

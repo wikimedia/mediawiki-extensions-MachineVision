@@ -52,6 +52,8 @@
 	"machinevision-add-custom-tag-dialog-title": "Custom tag",
 	"machinevision-add-custom-tag-dialog-add-action": "Add",
 	"machinevision-add-custom-tag-dialog-cancel-action": "Cancel",
+	"machinevision-image-exclusion-notification": "Certain types of files, such as identifiable known artwork or images of people, may be excluded from computer-aided tagging due to technical and cultural restrictions.",
+	"machinevision-image-exclusion-notification-dismiss": "Dismiss this notification",
 	"right-imagelabel-review": "Review image label suggestions",
 	"action-imagelabel-review": "review image label suggestions",
 	"right-imagelabel-test": "Test image label suggestions",
