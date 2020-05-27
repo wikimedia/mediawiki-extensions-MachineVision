@@ -196,15 +196,23 @@ module.exports = {
 		// Set claims, review labels, show toast notification, and skip to next image
 		$.when( setClaimsRequest, reviewImageLabelsRequest ).done( function () {
 			context.dispatch( 'showImageMessage', successToast );
-
-			if ( isUserImage ) {
-				context.commit( 'decrementUnreviewedCount' );
-			}
 		} ).fail( function () {
 			context.dispatch( 'showImageMessage', errorToast );
 		} ).always( function () {
 			context.dispatch( 'skipImage' );
 			context.dispatch( 'updatePublishPending', false );
+
+			// We're ready to wrap up at this point, either because
+			// both requests have succeeded, or one of them has failed
+			// If the reviewimagelabels request (and only if that one) succeeded,
+			// we need to decrement the unreviewed count, regardless of whether
+			// or not the setclaims request succeeded (in which case we lost data
+			// that was submitted, but it's still gone from our unreviewed queue)
+			return reviewImageLabelsRequest.then( function () {
+				if ( isUserImage ) {
+					context.commit( 'decrementUnreviewedCount' );
+				}
+			} );
 		} );
 	},
 

@@ -490,8 +490,12 @@ describe( 'getters', () => {
 			actions.publishTags( context );
 
 			promise.always( () => {
-				expect( context.commit ).toHaveBeenCalledWith( 'decrementUnreviewedCount' );
-				done();
+				// Wrap test inside setTimeout to make sure it's scheduled at the end of
+				// the call stack, *after* the actual post-API-call wrap-up has completed
+				setTimeout( () => {
+					expect( context.commit ).toHaveBeenCalledWith( 'decrementUnreviewedCount' );
+					done();
+				} );
 			} );
 
 			deferred.resolve( {} );
