@@ -16,7 +16,7 @@
 		"grunt-eslint": "22.0.0",
 		"grunt-stylelint": "0.15.0",
 		"jest": "^26.0.1",
-		"jquery": "3.4.1",
+		"jquery": "3.5.1",
 		"mockery": "^2.1.0",
 		"oojs": "3.0.0",
 		"oojs-ui": "0.39.0",
