@@ -25,5 +25,6 @@
 	"machinevision-categories-label": "분류:",
 	"machinevision-add-custom-tag-dialog-title": "사용자 지정 태그",
 	"machinevision-add-custom-tag-dialog-add-action": "추가",
-	"machinevision-add-custom-tag-dialog-cancel-action": "취소"
+	"machinevision-add-custom-tag-dialog-cancel-action": "취소",
+	"machinevision-image-exclusion-notification-dismiss": "알림 숨기기"
 }
