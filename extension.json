@@ -51,7 +51,7 @@
 		"ChangeTagsListActive": "MediaWiki\\Extension\\MachineVision\\Hooks::onRegisterTags",
 		"BeforeCreateEchoEvent": "MediaWiki\\Extension\\MachineVision\\Hooks::onBeforeCreateEchoEvent",
 		"EchoGetBundleRules": "MediaWiki\\Extension\\MachineVision\\Hooks::onEchoGetBundleRules",
-		"BaseTemplateToolbox": "MediaWiki\\Extension\\MachineVision\\Hooks::onBaseTemplateToolbox",
+		"SidebarBeforeOutput": "MediaWiki\\Extension\\MachineVision\\Hooks::onSidebarBeforeOutput",
 		"ChangeTagsAllowedAdd": "MediaWiki\\Extension\\MachineVision\\Hooks::onChangeTagsAllowedAdd"
 	},
 	"APIModules": {
