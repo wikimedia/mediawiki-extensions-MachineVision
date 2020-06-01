@@ -1,7 +1,7 @@
 <template>
 	<div
 		class="mw-suggestion"
-		v-bind:class="classObject"
+		v-bind:class="builtInClasses"
 		role="checkbox"
 		tabindex="0"
 		v-bind:aria-checked="confirmed ? 'true' : 'false'"
@@ -9,10 +9,14 @@
 		v-on:keyup.enter="$emit( 'click' )"
 		v-on:keydown.space.prevent="$emit( 'click' )"
 	>
-		<label class="mw-suggestion__label">
-			{{ text }}
-		</label>
+		<div class="mw-suggestion__content">
+			<slot v-if="hasSlot" />
+			<label v-else class="mw-suggestion__label">
+				{{ text }}
+			</label>
+		</div>
 		<icon
+			class="mw-suggestion__icon"
 			icon="check"
 			v-bind:title="iconText"
 			v-bind:label="iconText"
@@ -25,6 +29,10 @@ var Icon = require( './Icon.vue' );
 
 /**
  * Basically a button with an unconfirmed and a confirmed state.
+ *
+ * Text is required since it's used for the icon title and label. If a slot is
+ * present it will be displayed; otherwise the text will be displayed as a
+ * label.
  *
  * See ImageCard for usage example.
  */
@@ -41,6 +49,7 @@ module.exports = {
 			type: String,
 			required: true
 		},
+
 		confirmed: {
 			type: Boolean
 		}
@@ -53,10 +62,21 @@ module.exports = {
 	},
 
 	computed: {
-		classObject: function () {
+		/**
+		 * Conditional classes.
+		 * @return {Object}
+		 */
+		builtInClasses: function () {
 			return {
 				'mw-suggestion--confirmed': this.confirmed
 			};
+		},
+
+		/**
+		 * @return {boolean}
+		 */
+		hasSlot: function () {
+			return !!this.$slots.default;
 		}
 	}
 };
@@ -67,17 +87,20 @@ module.exports = {
 @import '../../../lib/wikimedia-ui-base.less';
 
 .mw-suggestion {
+	.box-sizing( border-box );
 	.transition( ~'background-color 100ms, color 100ms, border-color 100ms, box-shadow 100ms' );
 	background-color: @background-color-framed;
 	border: @border-base;
 	color: @color-base;
 	cursor: pointer;
-	// TODO: This is a pretty MachineVision-specific style and should possibly
-	// be moved.
 	margin: 0 4px 4px 0;
 	padding: 4px 1.25em;
 	border-radius: 18px;
 	white-space: nowrap;
+
+	@media screen and ( min-width: @width-breakpoint-tablet ) {
+		margin: 0 8px 8px 0;
+	}
 
 	&:hover,
 	&:focus {
@@ -91,7 +114,11 @@ module.exports = {
 		outline: 0;
 	}
 
-	.mw-suggestion__label {
+	label {
+		cursor: pointer;
+	}
+
+	.mw-suggestion__content {
 		.transition-transform( 0.2s );
 		cursor: pointer;
 		display: inline-block;
@@ -120,7 +147,7 @@ module.exports = {
 			background-color: @background-color-primary;
 		}
 
-		.mw-suggestion__label {
+		.mw-suggestion__content {
 			transform: translateX( -0.5em );
 		}
 

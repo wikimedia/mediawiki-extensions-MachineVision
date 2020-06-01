@@ -50,5 +50,7 @@ module.exports = {
 	 * Image-specific messages which will show up as "toast notifications":
 	 * these relate to success or errors when publishing image tags
 	 */
-	imageMessages: []
+	imageMessages: [],
+
+	tagDetailsExpanded: false
 };
