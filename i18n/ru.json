@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Alexander Yukal",
+			"Diman Russkov",
 			"Kareyac",
 			"Katunchik",
 			"Movses",
@@ -22,6 +23,11 @@
 	"machinevision-suggestion-confirm-undo-title": "Отменить подтверждение предложения $1?",
 	"machinevision-loading-message": "Загрузка изображений…",
 	"machinevision-failure-message": "Мы сожалеем, но что-то пошло не так. Пожалуйста, зайдите позже или [[Project_talk:Structured_data/Computer-aided_tagging|свяжитесь с нами]].",
+	"machinevision-confirm-tags-dialog-confirm-action": "ОК",
+	"machinevision-confirm-tags-dialog-cancel-action": "Отменить",
+	"machinevision-onboarding-dialog-close-label": "Закрыть",
+	"machinevision-categories-label": "Категории:",
 	"machinevision-add-custom-tag-dialog-add-action": "Добавить",
+	"machinevision-add-custom-tag-dialog-cancel-action": "Отменить",
 	"echo-machinevision-suggestions-ready-notification-primary-link": "Проверить теги"
 }

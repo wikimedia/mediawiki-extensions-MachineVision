@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
+			"Diman Russkov",
 			"Katunchik"
 		]
 	},
+	"apierror-reviewimagelabels-invalidfile": "<kbd>$1</kbd> - недопустимое имя файла.",
 	"apihelp-query+imagelabels-paramvalue-state-accepted": "Метки, которые были опознаны как правильные.",
 	"apihelp-query+imagelabels-paramvalue-state-rejected": "Метки, которые не были опознаны как правильные."
 }

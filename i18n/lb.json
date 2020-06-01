@@ -16,7 +16,9 @@
 	"machinevision-onboarding-dialog-close-label": "Zoumaachen",
 	"machinevision-cta-cta": "Markéiert beléift Biller",
 	"machinevision-no-uploads-cta-heading": "Dir hutt keng Biller fir nozekucken",
+	"machinevision-generic-no-images-heading": "Et sinn den Ament keng Biller disponibel fir ze markéieren.",
 	"machinevision-categories-label": "Kategorien:",
 	"machinevision-add-custom-tag-dialog-add-action": "Derbäisetzen",
-	"machinevision-add-custom-tag-dialog-cancel-action": "Ofbriechen"
+	"machinevision-add-custom-tag-dialog-cancel-action": "Ofbriechen",
+	"machinevision-image-exclusion-notification-dismiss": "Dës Notifikatioun zoumaachen"
 }
