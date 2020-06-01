@@ -3,7 +3,6 @@
 namespace MediaWiki\Extension\MachineVision;
 
 use Article;
-use BaseTemplate;
 use ChangeTags;
 use Content;
 use DatabaseUpdater;
@@ -19,6 +18,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MWException;
 use Revision;
+use Skin;
 use Status;
 use UploadBase;
 use User;
@@ -188,15 +188,14 @@ class Hooks {
 	}
 
 	/**
-	 * @param BaseTemplate $baseTemplate
-	 * @param array &$toolbox
+	 * @param Skin $skin
+	 * @param string[] &$sidebar
 	 */
-	public static function onBaseTemplateToolbox( BaseTemplate $baseTemplate, array &$toolbox ) {
+	public static function onSidebarBeforeOutput( Skin $skin, array &$sidebar ) {
 		$extensionServices = new Services( MediaWikiServices::getInstance() );
 		$extensionConfig = $extensionServices->getExtensionConfig();
 		if ( $extensionConfig->get( 'MachineVisionAddToolboxLink' ) ) {
-			$skin = $baseTemplate->getSkin();
-			$toolbox['computer-aided-tagging'] = [
+			$sidebar['TOOLBOX']['computer-aided-tagging'] = [
 				'text' => $skin->msg( 'machinevision-machineaidedtagging' ),
 				'href' => $skin::makeSpecialUrl( 'SuggestedTags' ),
 				'id' => 't-computer-aided-tagging',
