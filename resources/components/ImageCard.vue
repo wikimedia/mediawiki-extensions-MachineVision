@@ -13,41 +13,28 @@
 			</div>
 
 			<div class="wbmad-image-with-suggestions__content">
-				<label class="wbmad-image-with-suggestions__title-label">
-					<a v-bind:href="descriptionUrl" target="_blank">
-						{{ title }}
-					</a>
-				</label>
+				<div class="wbmad-image-with-suggestions__header">
+					<div class="wbmad-image-with-suggestions__header__title">
+						<label class="wbmad-image-with-suggestions__title-label">
+							<a v-bind:href="descriptionUrl" target="_blank">
+								{{ title }}
+							</a>
+						</label>
 
-				<div v-if="hasCategories" class="wbmad-category-list">
-					<span
-						v-i18n-html:machinevision-categories-label
-						class="wbmad-category-list__label" />
-					<span
-						v-for="( category, index ) in categories"
-						v-bind:key="category + index"
-						class="wbmad-category-list__item"
-					>{{ category }}</span>
+						<wbmad-categories-list />
+					</div>
+
+					<div class="wbmad-image-with-suggestions__header__toggle">
+						<mw-toggle-switch
+							name="wbmad-toggle-tag-details"
+							v-bind:label="$i18n( 'machinevision-detailed-tags-toggle-label' )"
+							v-bind:on="tagDetailsExpanded"
+							v-on:click="toggleTagDetails"
+						/>
+					</div>
 				</div>
 
-				<div class="wbmad-image-with-suggestions__tags">
-					<suggestion v-for="( suggestion, index ) in currentImageSuggestions"
-						v-bind:key="index"
-						v-bind:text="suggestion.text"
-						v-bind:confirmed="suggestion.confirmed"
-						v-on:click="toggleTagConfirmation( suggestion )"
-					/>
-
-					<!-- Add custom tag button -->
-					<mw-button
-						icon="add"
-						class="wbmad-custom-tag-button"
-						v-bind:title="$i18n( 'machinevision-add-custom-tag-title' ).parse()"
-						v-on:click="launchCustomTagDialog()"
-					>
-						{{ $i18n( 'machinevision-add-custom-tag' ).parse() }}
-					</mw-button>
-				</div>
+				<wbmad-suggestions-group v-on:custom-tag-button-click="launchCustomTagDialog" />
 
 				<div class="wbmad-action-buttons">
 					<mw-button
@@ -81,8 +68,10 @@ var mapActions = require( 'vuex' ).mapActions,
 	mapState = require( 'vuex' ).mapState,
 	Spinner = require( './Spinner.vue' ),
 	Button = require( './base/Button.vue' ),
-	Suggestion = require( './base/Suggestion.vue' ),
-	ConfirmTagsDialog = require( '../widgets/ConfirmTagsDialog.js' ),
+	ToggleSwitch = require( './base/ToggleSwitch.vue' ),
+	SuggestionsGroup = require( './SuggestionsGroup.vue' ),
+	CategoriesList = require( './CategoriesList.vue' ),
+	ConfirmTagsDialog = require( './../widgets/ConfirmTagsDialog.js' ),
 	AddCustomTagDialog = require( '../widgets/AddCustomTagDialog.js' );
 
 /**
@@ -114,16 +103,22 @@ var mapActions = require( 'vuex' ).mapActions,
  * parents via emitting events or using Vuex. See here for more information:
  * https://vuejs.org/v2/style-guide/#Implicit-parent-child-communication-use-with-caution
  */
+
+// @vue/component
 module.exports = {
 	name: 'ImageCard',
 
 	components: {
 		'mw-button': Button,
+		'mw-toggle-switch': ToggleSwitch,
 		'wbmad-spinner': Spinner,
-		suggestion: Suggestion
+		'wbmad-suggestions-group': SuggestionsGroup,
+		'wbmad-categories-list': CategoriesList
 	},
 
-	computed: $.extend( {}, mapGetters( [
+	computed: $.extend( {}, mapState( [
+		'tagDetailsExpanded'
+	] ), mapGetters( [
 		'currentImage',
 		'currentImageSuggestions',
 		'currentImageTitle'
@@ -213,8 +208,8 @@ module.exports = {
 	methods: $.extend( {}, mapActions( [
 		'publishTags',
 		'skipImage',
-		'toggleTagConfirmation',
-		'addCustomTag'
+		'addCustomTag',
+		'toggleTagDetails'
 	] ), {
 		/**
 		 * Launch the confirmation modal (OOUI modal). If confirmed, runs the
@@ -349,11 +344,25 @@ module.exports = {
 			color: @color-base;
 		}
 	}
+}
 
-	&__tags {
-		.flex-display();
-		.flex-wrap( wrap );
-		margin: 18px 0;
+.wbmad-image-with-suggestions__header {
+	.flex-display();
+	.flex-wrap();
+	align-items: center;
+	justify-content: space-between;
+}
+
+.wbmad-image-with-suggestions__header__toggle {
+	flex-shrink: 0;
+	margin: 16px 0 0;
+
+	@media screen and ( min-width: @width-breakpoint-tablet ) {
+		margin: 0 0 0 16px;
+	}
+
+	.mw-toggle-switch__label {
+		font-size: 0.928em;
 	}
 
 	.wbmad-spinner {
@@ -365,40 +374,6 @@ module.exports = {
 		top: 0;
 		width: 100%;
 		z-index: 1;
-	}
-}
-
-.wbmad-category-list {
-	// TODO: if the FadeIn transition could take in a duration prop we could
-	// use that and remove this mixin altogether.
-	.fade-in( 0.2s );
-	margin: 4px 0 0;
-
-	span {
-		color: @color-base--subtle;
-		font-size: 0.928em;
-	}
-}
-
-.wbmad-category-list__label {
-	margin: 0 0.4em 0 0;
-}
-
-// This isn't _exactly_ ideal, and spacing this pipe-deliminated list would be
-// more exact if we used flexbox. However, we need the text to wrap like a
-// paragraph, so we'll get as close as we can with a border-right and some magic
-// numbers. We'll at least explicitly set the word-spacing to normal to maximize
-// the chance that the spacing looks even.
-.wbmad-category-list__item {
-	border-right: solid 1px @color-base--subtle;
-	margin: 0 0.4em 0 0;
-	padding-right: 0.4em;
-	word-spacing: normal;
-
-	&:last-child {
-		border-right: 0;
-		margin: 0;
-		padding: 0;
 	}
 }
 
@@ -417,30 +392,6 @@ module.exports = {
 
 	&__skip {
 		margin-left: auto;
-	}
-}
-
-.wbmad-custom-tag-button.mw-button {
-	border-radius: 18px;
-	color: @color-base;
-	line-height: 1.6;
-	margin: 0 4px 4px 0;
-	padding: 4px 1.25em 4px 30/14em;
-	white-space: nowrap;
-
-	&:hover,
-	&:focus {
-		color: @color-base--emphasized;
-	}
-
-	&:focus {
-		border-color: @color-primary--active;
-		box-shadow: inset 0 0 0 1px @color-primary--active;
-		outline: 0;
-	}
-
-	.mw-icon {
-		width: 1em;
 	}
 }
 </style>

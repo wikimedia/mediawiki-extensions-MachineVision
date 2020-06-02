@@ -93,7 +93,12 @@ module.exports = {
 					item.imageinfo[ 0 ].thumburl,
 					item.imageinfo[ 0 ].thumbheight,
 					item.imagelabels.map( function ( labelData ) {
-						return new MvSuggestion( labelData.label, labelData.wikidata_id );
+						return new MvSuggestion(
+							labelData.label,
+							labelData.wikidata_id,
+							labelData.alias,
+							labelData.description
+						);
 					} ),
 					getCategories( item )
 				);
@@ -329,5 +334,13 @@ module.exports = {
 	 */
 	hideImageMessage: function ( context, key ) {
 		context.commit( 'removeImageMessage', key );
+	},
+
+	/**
+	 * Toggle expansion of tag details.
+	 * @param {Object} context
+	 */
+	toggleTagDetails: function ( context ) {
+		context.commit( 'toggleTagDetails' );
 	}
 };

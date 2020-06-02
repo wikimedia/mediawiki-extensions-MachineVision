@@ -186,7 +186,7 @@ module.exports = {
 			}
 
 			&:focus {
-				box-shadow: inset 0 0 0 1px @color-destructive,
+				box-shadow: inset 0 0 0 1px @color-destructive
 					inset 0 0 0 2px @color-base--inverted;
 			}
 		}
@@ -218,7 +218,7 @@ module.exports = {
 				}
 
 				&:focus {
-					box-shadow: inset 0 0 0 1px @color-destructive,
+					box-shadow: inset 0 0 0 1px @color-destructive
 						inset 0 0 0 2px @color-base--inverted;
 				}
 			}

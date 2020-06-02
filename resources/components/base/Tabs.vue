@@ -181,7 +181,6 @@ module.exports = {
 <style lang="less">
 @import 'mediawiki.mixins';
 @import '../../../lib/wikimedia-ui-base.less';
-
 .mw-tabs {
 	&__header {
 		.flex-display();
