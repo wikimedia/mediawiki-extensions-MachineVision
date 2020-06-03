@@ -349,8 +349,12 @@ module.exports = {
 .wbmad-image-with-suggestions__header {
 	.flex-display();
 	.flex-wrap();
-	align-items: center;
+	align-items: baseline;
 	justify-content: space-between;
+
+	@media screen and ( min-width: @width-breakpoint-tablet ) {
+		.flex-wrap( @wrap: nowrap );
+	}
 }
 
 .wbmad-image-with-suggestions__header__toggle {
