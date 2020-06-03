@@ -50,6 +50,7 @@
 	"machinevision-add-custom-tag-dialog-cancel-action": "Abbrechen",
 	"machinevision-image-exclusion-notification": "Bestimmte Dateitypen, wie identifizierbare bekannte Kunstwerke oder Abbildungen von Personen, können aufgrund technischer und kultureller Einschränkungen von der computergestützten Markierung ausgeschlossen werden.",
 	"machinevision-image-exclusion-notification-dismiss": "Benachrichtigung schließen",
+	"machinevision-detailed-tags-toggle-label": "Ausführliche Tags",
 	"right-imagelabel-review": "Vorschläge für Bildbezeichnungen prüfen",
 	"action-imagelabel-review": "Vorschläge für Bildbezeichnungen prüfen",
 	"right-imagelabel-test": "Vorschläge für Bildbezeichnungen testen",

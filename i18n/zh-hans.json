@@ -3,6 +3,7 @@
 		"authors": [
 			"Josephine W.",
 			"Looong",
+			"SomeyaMako",
 			"VulpesVulpes825"
 		]
 	},
@@ -11,6 +12,7 @@
 	"machinevision-pageinfo-field-suggested-labels": "被建议的标签",
 	"machinevision-publish": "保存",
 	"machinevision-skip": "跳过",
+	"machinevision-generic-no-images-heading": "暂无可添加标签的图片。",
 	"right-imagelabel-review": "审查图片标签建议",
 	"action-imagelabel-review": "审查图片标签建议",
 	"group-machinevision-tester": "机器视觉测试",
