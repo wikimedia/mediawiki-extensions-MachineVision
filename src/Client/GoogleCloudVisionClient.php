@@ -248,6 +248,7 @@ class GoogleCloudVisionClient implements LoggerAwareInterface {
 			'https://vision.googleapis.com/v1/images:annotate',
 			$options
 		);
+		// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 		$token = $this->oAuthClient->fetchAuthToken()['access_token'];
 		$annotationRequest->setHeader( 'Content-Type', 'application/json; charset=utf-8' );
 		$annotationRequest->setHeader( 'Authorization', "Bearer $token" );
