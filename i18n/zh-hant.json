@@ -54,6 +54,7 @@
 	"machinevision-add-custom-tag-dialog-cancel-action": "取消",
 	"machinevision-image-exclusion-notification": "出於技術與文化的限制，某些像是可識別的已知藝術品、人物圖片的類型檔案，可能會從電腦輔助標記中排除。",
 	"machinevision-image-exclusion-notification-dismiss": "取消此通知",
+	"machinevision-detailed-tags-toggle-label": "詳細標籤",
 	"right-imagelabel-review": "檢閱圖片標籤建議",
 	"action-imagelabel-review": "檢閱圖片標籤建議",
 	"right-imagelabel-test": "測試圖片標籤建議",
