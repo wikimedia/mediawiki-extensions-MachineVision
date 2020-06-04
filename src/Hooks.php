@@ -223,6 +223,11 @@ class Hooks {
 	public static function onLoadExtensionSchemaUpdates( DatabaseUpdater $updater ) {
 		$sqlDir = __DIR__ . '/../sql';
 		$updater->addExtensionTable( 'machine_vision_provider', "$sqlDir/machine_vision.sql" );
+		$updater->addExtensionField(
+			'machine_vision_image',
+			'mvi_priority',
+			"$sqlDir/patch-machine_vision_image-mvi_priority.sql"
+		);
 	}
 
 	/**

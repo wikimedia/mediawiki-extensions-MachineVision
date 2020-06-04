@@ -12,12 +12,15 @@ CREATE TABLE /*_*/machine_vision_image (
     mvi_id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
     -- sha1 digest of the image
     mvi_sha1 varbinary(32) NOT NULL,
+    -- Larger value = higher priority
+    mvi_priority tinyint(3) DEFAULT 0,
     -- Random value for querying random images
     mvi_rand float NOT NULL
 ) /*wgDBTableOptions*/;
 
 CREATE UNIQUE INDEX /*i*/mvi_sha1 ON /*_*/machine_vision_image (mvi_sha1(10));
 CREATE INDEX /*i*/mvi_rand ON /*_*/machine_vision_image (mvi_rand);
+CREATE INDEX /*i*/mvi_priority ON /*_*/machine_vision_image (mvi_priority);
 
 
 CREATE TABLE /*_*/machine_vision_label (
