@@ -67,7 +67,7 @@ class WikidataIdHandlerTest extends TestCase {
 			$labelResolver,
 			$apiUrlTemplate
 		);
-		$wikidataIdHandler->requestAnnotations( 'random',  $file );
+		$wikidataIdHandler->requestAnnotations( 'random',  $file, 0 );
 	}
 
 }

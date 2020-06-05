@@ -34,6 +34,7 @@ class FetchGoogleCloudVisionAnnotationsJob extends Job implements LoggerAwareInt
 		$title = $this->params['title'];
 		$namespace = $this->params['namespace'];
 		$provider = $this->params['provider'];
+		$priority = $this->params['priority'] ?? 0;
 
 		$services = MediaWikiServices::getInstance();
 		$repoGroup = $services->getRepoGroup();
@@ -49,7 +50,7 @@ class FetchGoogleCloudVisionAnnotationsJob extends Job implements LoggerAwareInt
 
 		$extensionServices = new Services( $services );
 		$client = $extensionServices->getGoogleCloudVisionClient();
-		$client->fetchAnnotations( $provider, $file, true );
+		$client->fetchAnnotations( $provider, $file, $priority, true );
 
 		return true;
 	}

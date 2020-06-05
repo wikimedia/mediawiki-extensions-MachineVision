@@ -49,8 +49,9 @@ class RandomWikidataIdHandler extends WikidataIdHandler {
 	 * Retrieves machine vision metadata about the image and stores it.
 	 * @param string $provider provider name
 	 * @param LocalFile $file
+	 * @param int $priority priority value between -128 & 127
 	 */
-	public function requestAnnotations( string $provider, LocalFile $file ): void {
+	public function requestAnnotations( string $provider, LocalFile $file, int $priority = 0 ): void {
 		$metadata = $this->client->getFileMetadata( $file, $this->apiUrlTemplate );
 		$this->logger->debug( ( $metadata ? 'Retrieved' : 'No' ) . ' machine vision info for file', [
 			'title' => $file->getTitle()->getPrefixedDBkey(),
@@ -62,7 +63,7 @@ class RandomWikidataIdHandler extends WikidataIdHandler {
 				return new LabelSuggestion( $wikidataId );
 			}, $wikidataIds );
 			$this->getRepository()->insertLabels( $file->getSha1(), $provider,
-				$file->getUser( 'id' ), $suggestions );
+				$file->getUser( 'id' ), $suggestions, $priority );
 		}
 	}
 

@@ -31,8 +31,9 @@ interface Handler extends LoggerAwareInterface {
 	 * Request image annotations from a machine vision provider.
 	 * @param string $provider provider name
 	 * @param LocalFile $file
+	 * @param int $priority priority value between -128 & 127
 	 */
-	public function requestAnnotations( string $provider, LocalFile $file ): void;
+	public function requestAnnotations( string $provider, LocalFile $file, int $priority = 0 ): void;
 
 	/**
 	 * Add extra data to the action=info page.

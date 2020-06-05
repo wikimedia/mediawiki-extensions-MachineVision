@@ -60,6 +60,7 @@ class FetchSuggestions extends Maintenance {
 			. 'for a given set of files' );
 		$this->addOption( 'filelist', 'File with a list of files to process, '
 			. 'one per line, with or without namespace prefix', true, true );
+		$this->addOption( 'priority', 'Priority of the images (between -128 & 127)', false, true );
 		$this->setBatchSize( 100 );
 	}
 
@@ -84,6 +85,7 @@ class FetchSuggestions extends Maintenance {
 		$localRepo = $this->repoGroup->getLocalRepo();
 		$processed = 0;
 		stream_wrapper_restore( 'php' );
+		$priority = (int)$this->getOption( 'priority' );
 		foreach ( $this->getFilenameBatches() as $filenameBatch ) {
 			$this->output( 'processing ' . $filenameBatch[0] . ' ... ' . end( $filenameBatch ) . "\n" );
 			$titles = array_map( function ( $filename ) {
@@ -92,7 +94,7 @@ class FetchSuggestions extends Maintenance {
 			$files = $localRepo->findFiles( $titles );
 			$this->beginTransaction( $this->getDB( DB_MASTER ), __METHOD__ );
 			foreach ( $files as $file ) {
-				$this->fetchForFile( $file );
+				$this->fetchForFile( $file, $priority );
 				$processed++;
 			}
 			$this->commitTransaction( $this->getDB( DB_MASTER ), __METHOD__ );
@@ -134,18 +136,19 @@ class FetchSuggestions extends Maintenance {
 
 	/**
 	 * @param LocalFile $file
+	 * @param int $priority priority value between -128 & 127
 	 */
-	private function fetchForFile( LocalFile $file ) {
+	private function fetchForFile( LocalFile $file, $priority ) {
 		foreach ( $this->handlerRegistry->getHandlers( $file ) as $provider => $handler ) {
 			try {
-				$this->client->fetchAnnotations( $provider, $file );
+				$this->client->fetchAnnotations( $provider, $file, $priority );
 			} catch ( Throwable $t ) {
 				$retries = $this->numRetries;
 				while ( $retries ) {
 					if ( $handler->isTooManyRequestsError( $t ) ) {
 						sleep( $this->backoffSeconds );
 						try {
-							$this->client->fetchAnnotations( $provider, $file );
+							$this->client->fetchAnnotations( $provider, $file, $priority );
 							return;
 						} catch ( Throwable $t ) {
 							if ( $handler->isTooManyRequestsError( $t ) ) {

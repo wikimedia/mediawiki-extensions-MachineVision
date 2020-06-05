@@ -64,9 +64,10 @@ class GoogleCloudVisionHandler extends WikidataIdHandler {
 	 * Retrieves machine vision metadata about the image and stores it.
 	 * @param string $provider provider name
 	 * @param LocalFile $file
+	 * @param int $priority priority value between -128 & 127
 	 */
-	public function requestAnnotations( string $provider, LocalFile $file ): void {
-		$fetchAnnotationsJob = $this->fetchAnnotationsJobFactory->createJob( $provider, $file );
+	public function requestAnnotations( string $provider, LocalFile $file, int $priority = 0 ): void {
+		$fetchAnnotationsJob = $this->fetchAnnotationsJobFactory->createJob( $provider, $file, $priority );
 		JobQueueGroup::singleton()->push( $fetchAnnotationsJob );
 	}
 

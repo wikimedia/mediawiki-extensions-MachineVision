@@ -70,6 +70,7 @@ class Repository implements LoggerAwareInterface {
 	 * @param string $providerName Provider name
 	 * @param int $uploaderId the uploader's local user ID
 	 * @param LabelSuggestion[] $suggestions A list of Wikidata ID such as 'Q123'
+	 * @param int $priority priority value between -128 & 127
 	 * @param int $initialState initial review state
 	 * @return int $labelsCount
 	 */
@@ -78,6 +79,7 @@ class Repository implements LoggerAwareInterface {
 		$providerName,
 		$uploaderId,
 		array $suggestions,
+		$priority = 0,
 		$initialState = self::REVIEW_UNREVIEWED
 	) {
 		$providerId = $this->nameTableStore->acquireId( $providerName );
@@ -88,6 +90,7 @@ class Repository implements LoggerAwareInterface {
 			'machine_vision_image',
 			[
 				'mvi_sha1' => $sha1,
+				'mvi_priority' => $priority,
 				'mvi_rand' => $this->getRandomFloat(),
 			],
 			__METHOD__,

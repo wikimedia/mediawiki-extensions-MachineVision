@@ -41,14 +41,16 @@ class FetchGoogleCloudVisionAnnotationsJobFactory {
 	 * Create a new GCV annotation fetching job.
 	 * @param string $provider provider DB string
 	 * @param LocalFile $file
+	 * @param int $priority priority value between -128 & 127
 	 * @return FetchGoogleCloudVisionAnnotationsJob
 	 */
-	public function createJob( string $provider, LocalFile $file ):
+	public function createJob( string $provider, LocalFile $file, int $priority = 0 ):
 	FetchGoogleCloudVisionAnnotationsJob {
 		$params = [
 			'title' => $file->getTitle()->getDBkey(),
 			'namespace' => $file->getTitle()->getNamespace(),
 			'provider' => $provider,
+			'priority' => $priority,
 		];
 		if ( $this->delay ) {
 			$params['jobReleaseTimestamp'] = (int)wfTimestamp() + $this->delay;
