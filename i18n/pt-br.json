@@ -53,6 +53,7 @@
 	"machinevision-add-custom-tag-dialog-cancel-action": "Cancelar",
 	"machinevision-image-exclusion-notification": "Certos tipos de arquivos, como obras de arte conhecidas identificáveis ou imagens de pessoas, podem ser excluídos da marcação auxiliada por computador devido a restrições técnicas e culturais.",
 	"machinevision-image-exclusion-notification-dismiss": "Ignorar esta notificação",
+	"machinevision-detailed-tags-toggle-label": "Etiquetas detalhadas",
 	"right-imagelabel-review": "Analisar as sugestões do rótulo da imagem",
 	"action-imagelabel-review": "revisar sugestões de marcadores de imagem",
 	"right-imagelabel-test": "Testar sugestões de etiquetas de imagem",
