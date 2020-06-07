@@ -243,7 +243,7 @@ class Hooks {
 		$wgMachineVisionDatabase = false;
 		$originalPrefix = $db->tablePrefix();
 		$db->tablePrefix( $prefix );
-		if ( !$db->tableExists( 'machine_vision_provider' ) ) {
+		if ( !$db->tableExists( 'machine_vision_provider', __METHOD__ ) ) {
 			$sqlDir = __DIR__ . '/../sql';
 			$db->sourceFile( "$sqlDir/machine_vision.sql" );
 		}
