@@ -94,7 +94,8 @@ class GoogleOAuthClient implements LoggerAwareInterface {
 
 		$request = $httpRequestFactory->create(
 			self::TOKEN_CREDENTIAL_URI,
-			$options
+			$options,
+			__METHOD__
 		);
 
 		$request->setHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
