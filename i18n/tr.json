@@ -55,6 +55,7 @@
 	"machinevision-add-custom-tag-dialog-cancel-action": "İptal",
 	"machinevision-image-exclusion-notification": "Tanımlanabilir bilinen sanat eserleri veya insan resimleri gibi belirli dosya türleri, teknik ve kültürel kısıtlamalar nedeniyle bilgisayar destekli etiketlemeden çıkarılabilir.",
 	"machinevision-image-exclusion-notification-dismiss": "Bu bildirimi reddet",
+	"machinevision-detailed-tags-toggle-label": "Ayrıntılı etiketler",
 	"right-imagelabel-review": "Resim etiketi önerilerini inceleyin",
 	"action-imagelabel-review": "resim etiketi önerilerini inceleyin",
 	"right-imagelabel-test": "Görüntü etiketi önerilerini test et",
