@@ -5,6 +5,7 @@ namespace MediaWiki\Extension\MachineVision\Handler;
 use IContextSource;
 use Language;
 use MediaWiki\Http\HttpRequestFactory;
+use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Logger\LoggerFactory;
 use MWException;
 use Psr\Log\LoggerAwareInterface;
@@ -203,7 +204,7 @@ class LabelResolver implements LoggerAwareInterface {
 
 		$langCodes = array_merge(
 			[ $uiLang->getCode() ],
-			$uiLang->getFallbackLanguages()
+			$uiLang->getFallbacksFor( $uiLang->getCode(), LanguageFallback::STRICT )
 		);
 		foreach ( $langCodes as $lang ) {
 			if ( array_key_exists( $lang, $items ) ) {
