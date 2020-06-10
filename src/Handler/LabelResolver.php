@@ -11,6 +11,7 @@ use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
 use Wikibase\DataModel\Entity\ItemId;
 use Wikibase\DataModel\Services\Lookup\EntityLookup;
+use Wikibase\DataModel\Term\AliasGroup;
 
 /**
  * This class looks up Wikibase entities by ID and retreives human-readable
@@ -90,8 +91,10 @@ class LabelResolver implements LoggerAwareInterface {
 			$labels = $item->getLabels()->toTextArray();
 			// @phan-suppress-next-line PhanUndeclaredMethod
 			$descriptions = $item->getDescriptions()->toTextArray();
+			$aliases = array_map( function ( AliasGroup $group ) {
+				return $group->getAliases()[0];
 			// @phan-suppress-next-line PhanUndeclaredMethod
-			$aliases = $item->getAliasGroups()->toArray();
+			}, $item->getAliasGroups()->toArray() );
 
 			if ( $labels ) {
 				$result[$id]['label'] =
