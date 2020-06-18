@@ -1,6 +1,6 @@
 <template>
 	<div class="wbmad-spinner">
-		<div class="wbmad-spinner-bounce" />
+		<div class="wbmad-spinner-bounce"></div>
 	</div>
 </template>
 

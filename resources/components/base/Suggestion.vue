@@ -10,7 +10,7 @@
 		v-on:keydown.space.prevent="$emit( 'click' )"
 	>
 		<div class="mw-suggestion__content">
-			<slot v-if="hasSlot" />
+			<slot v-if="hasSlot"></slot>
 			<label v-else class="mw-suggestion__label">
 				{{ text }}
 			</label>
@@ -20,7 +20,8 @@
 			icon="check"
 			v-bind:title="iconText"
 			v-bind:label="iconText"
-		/>
+		>
+		</icon>
 	</div>
 </template>
 

@@ -1,15 +1,15 @@
 <template>
 	<div class="wbmad-cardstack-placeholder">
 		<div class="wbmad-cardstack-placeholder__image">
-			<wbmad-spinner />
+			<wbmad-spinner></wbmad-spinner>
 		</div>
 		<div class="wbmad-cardstack-placeholder__tags">
-			<div class="wbmad-cardstack-placeholder__heading" />
+			<div class="wbmad-cardstack-placeholder__heading"></div>
 			<div class="wbmad-cardstack-placeholder__tag-list">
-				<div class="wbmad-cardstack-placeholder__tag" />
-				<div class="wbmad-cardstack-placeholder__tag" />
-				<div class="wbmad-cardstack-placeholder__tag" />
-				<div class="wbmad-cardstack-placeholder__tag" />
+				<div class="wbmad-cardstack-placeholder__tag"></div>
+				<div class="wbmad-cardstack-placeholder__tag"></div>
+				<div class="wbmad-cardstack-placeholder__tag"></div>
+				<div class="wbmad-cardstack-placeholder__tag"></div>
 			</div>
 		</div>
 	</div>

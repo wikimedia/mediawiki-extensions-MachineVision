@@ -23,7 +23,7 @@
 			v-bind:aria-checked="onState ? 'true' : 'false'"
 			v-bind:aria-labelled-by="name"
 		>
-			<span class="mw-toggle-switch__toggle__grip" />
+			<span class="mw-toggle-switch__toggle__grip"></span>
 		</div>
 	</div>
 </template>

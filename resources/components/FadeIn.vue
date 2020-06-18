@@ -5,7 +5,7 @@
 		appear-class="wbmad-fade-in-appear"
 		appear-active-class="wbmad-fade-in-appear-active"
 	>
-		<slot />
+		<slot></slot>
 	</transition>
 </template>
 

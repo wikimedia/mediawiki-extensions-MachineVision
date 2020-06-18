@@ -26,7 +26,7 @@
 		</div>
 
 		<div class="mw-tabs__content">
-			<slot />
+			<slot></slot>
 		</div>
 	</div>
 </template>

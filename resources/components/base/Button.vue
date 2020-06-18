@@ -9,9 +9,10 @@
 			v-if="icon"
 			v-bind:icon="icon"
 			v-bind:invert="invert"
-		/>
+		>
+		</icon>
 		<div class="mw-button__content">
-			<slot />
+			<slot></slot>
 		</div>
 	</button>
 </template>

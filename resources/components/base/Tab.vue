@@ -8,7 +8,7 @@
 			class="mw-tab"
 			role="tabpanel"
 		>
-			<slot />
+			<slot></slot>
 		</div>
 	</transition>
 </template>
