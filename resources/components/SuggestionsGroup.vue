@@ -56,7 +56,6 @@ var mapActions = require( 'vuex' ).mapActions,
 
 // @vue/component
 module.exports = {
-	name: 'SuggestionsGroup',
 
 	components: {
 		'mw-button': Button,
@@ -70,6 +69,7 @@ module.exports = {
 	] ), {
 		/**
 		 * Conditional classes.
+		 *
 		 * @return {Object}
 		 */
 		builtInClasses: function () {

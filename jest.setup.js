@@ -1,4 +1,4 @@
-/* eslint-disable no-implicit-globals */
+/* eslint-disable no-implicit-globals, mediawiki/valid-package-file-require */
 // eslint-disable-next-line no-redeclare
 /* global mw:true, jest:false, global:false */
 

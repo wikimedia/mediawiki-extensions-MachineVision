@@ -20,8 +20,6 @@ var Spinner = require( './Spinner.vue' );
 
 // @vue/component
 module.exports = {
-	name: 'CardStackPlaceholder',
-
 	components: {
 		'wbmad-spinner': Spinner
 	}

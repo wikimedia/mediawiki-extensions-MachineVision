@@ -40,8 +40,6 @@
  */
 // @vue/component
 module.exports = {
-	name: 'Tabs',
-
 	props: {
 		active: {
 			type: String,
@@ -67,6 +65,7 @@ module.exports = {
 	methods: {
 		/**
 		 * Change the current tab.
+		 *
 		 * @param {string} tabName
 		 */
 		selectTab: function ( tabName ) {
@@ -79,6 +78,7 @@ module.exports = {
 
 		/**
 		 * Set active attribute on each tab.
+		 *
 		 * @param {string} currentTabName
 		 */
 		setTabState: function ( currentTabName ) {
@@ -90,6 +90,7 @@ module.exports = {
 
 		/**
 		 * Set tab label classes.
+		 *
 		 * @param {VueComponent} tab
 		 * @return {Object}
 		 */
@@ -151,6 +152,7 @@ module.exports = {
 	watch: {
 		/**
 		 * When the tab stored in state changes, select that tab.
+		 *
 		 * @param {string} newTabName
 		 */
 		active: function ( newTabName ) {
@@ -159,6 +161,7 @@ module.exports = {
 
 		/**
 		 * When the current tab changes, set active states and emit an event.
+		 *
 		 * @param {string} newTabName
 		 */
 		currentTabName: function () {

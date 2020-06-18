@@ -26,8 +26,6 @@ var Icon = require( './Icon.vue' );
  */
 // @vue/component
 module.exports = {
-	name: 'Button',
-
 	components: {
 		icon: Icon
 	},

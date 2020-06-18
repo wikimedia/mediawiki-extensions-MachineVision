@@ -21,19 +21,16 @@ OO.inheritClass( AddCustomTagDialog, OO.ui.ProcessDialog );
 
 /**
  * @inheritdoc
- * @property name
  */
 AddCustomTagDialog.static.name = 'AddCustomTagDialog';
 
 /**
  * @inheritdoc
- * @property title
  */
 AddCustomTagDialog.static.title = mw.message( 'machinevision-add-custom-tag-dialog-title' ).parse();
 
 /**
  * @inheritdoc
- * @property actions
  */
 AddCustomTagDialog.static.actions = [
 	{
@@ -106,6 +103,7 @@ AddCustomTagDialog.prototype.onLookupMenuChoose = function () {
 
 /**
  * Trigger add action (after enter keypress within input).
+ *
  * @param {Object} e
  */
 AddCustomTagDialog.prototype.onEnter = function ( e ) {
@@ -120,6 +118,7 @@ AddCustomTagDialog.prototype.onEnter = function ( e ) {
 
 /**
  * Update list of existing Wikidata IDs to be filtered out.
+ *
  * @param {Array} wikidataIds
  */
 AddCustomTagDialog.prototype.setFilter = function ( wikidataIds ) {

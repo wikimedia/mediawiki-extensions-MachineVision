@@ -31,7 +31,6 @@ var Icon = require( './Icon.vue' ),
  */
 // @vue/component
 module.exports = {
-	name: 'Message',
 
 	components: {
 		icon: Icon

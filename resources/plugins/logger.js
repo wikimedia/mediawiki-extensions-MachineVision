@@ -17,6 +17,7 @@ module.exports = {
 	install: function ( Vue ) {
 		/**
 		 * Log a user interaction event.
+		 *
 		 * @param {Object} data
 		 * @return {jQuery.Promise} jQuery Promise object for the logging call.
 		 */

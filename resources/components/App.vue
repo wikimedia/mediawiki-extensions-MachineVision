@@ -9,6 +9,7 @@
 					v-bind:duration="message.duration"
 					v-on:leave="onToastLeave"
 				>
+					<!-- eslint-disable-next-line mediawiki/no-vue-dynamic-i18n -->
 					<p>{{ $i18n( message.messageKey ) }}</p>
 				</mw-toast-notification>
 			</template>
@@ -92,8 +93,6 @@ var mapState = require( 'vuex' ).mapState,
  * beforeDestroy() hook.
  */
 module.exports = {
-	name: 'MachineVision',
-
 	/**
 	 * All child components must be declared here before they can be used in
 	 * templates.
@@ -128,7 +127,7 @@ module.exports = {
 		/**
 		 * Whether or not to display the full UI
 		 *
-		 * @return {bool}
+		 * @return {boolean}
 		 */
 		showTabs: function () {
 			return this.isAuthenticated && this.isAutoconfirmed;
@@ -136,7 +135,8 @@ module.exports = {
 
 		/**
 		 * Due to limitations of the JS parser, we're parsing this message in
-		 * PHP and exporitng it as config.
+		 * PHP and exporting it as config.
+		 *
 		 * @return {string}
 		 */
 		loginMessage: function () {
@@ -158,7 +158,7 @@ module.exports = {
 		},
 
 		/**
-		 * @return {bool}
+		 * @return {boolean}
 		 */
 		showToasts: function () {
 			return this.imageMessages && this.imageMessages.length > 0;

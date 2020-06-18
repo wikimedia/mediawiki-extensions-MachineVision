@@ -20,7 +20,7 @@ module.exports = {
 	 *
 	 * @param {Object} state
 	 * @param {Object} payload
-	 * @param {bool} payload.pending
+	 * @param {boolean} payload.pending
 	 * @param {string} [payload.queue]
 	 */
 	setFetchPending: function ( state, payload ) {
@@ -37,7 +37,7 @@ module.exports = {
 	 *
 	 * @param {Object} state
 	 * @param {Object} payload
-	 * @param {bool} payload.error
+	 * @param {boolean} payload.error
 	 * @param {string} [payload.queue]
 	 */
 	setFetchError: function ( state, payload ) {
@@ -122,6 +122,7 @@ module.exports = {
 
 	/**
 	 * Set user stats (number of images to review and total images labelled).
+	 *
 	 * @param {Object} state
 	 * @param {Object} payload
 	 */
@@ -174,6 +175,7 @@ module.exports = {
 
 	/**
 	 * Toggle expansion of tag details.
+	 *
 	 * @param {Object} state
 	 */
 	toggleTagDetails: function ( state ) {

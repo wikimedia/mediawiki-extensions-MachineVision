@@ -13,8 +13,6 @@ var mapState = require( 'vuex' ).mapState,
 
 // @vue/component
 module.exports = {
-	name: 'PersonalUploadsCount',
-
 	components: {
 		'wbmad-fade-in': FadeIn
 	},

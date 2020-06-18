@@ -82,7 +82,7 @@ module.exports = {
 	 * Whether or not the user is logged in. Derived from non-Vuex global
 	 * state.
 	 *
-	 * @return {bool}
+	 * @return {boolean}
 	 */
 	isAuthenticated: function () {
 		return !!mw.config.get( 'wgUserName' );
@@ -92,7 +92,7 @@ module.exports = {
 	 * Whether or not the user is autoconfirmed. Derived from non-Vuex
 	 * global state.
 	 *
-	 * @return {bool}
+	 * @return {boolean}
 	 */
 	isAutoconfirmed: function () {
 		return userGroups.indexOf( 'autoconfirmed' ) !== -1;

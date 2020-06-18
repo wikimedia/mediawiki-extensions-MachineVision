@@ -106,8 +106,6 @@ var mapActions = require( 'vuex' ).mapActions,
 
 // @vue/component
 module.exports = {
-	name: 'ImageCard',
-
 	components: {
 		'mw-button': Button,
 		'mw-toggle-switch': ToggleSwitch,
@@ -162,6 +160,7 @@ module.exports = {
 
 		/**
 		 * Whether or not the publish button should be disabled.
+		 *
 		 * @return {boolean}
 		 */
 		publishDisabled: function () {
@@ -170,6 +169,7 @@ module.exports = {
 
 		/**
 		 * Whether or not the skip button should be disabled.
+		 *
 		 * @return {boolean}
 		 */
 		skipDisabled: function () {
@@ -187,6 +187,7 @@ module.exports = {
 
 		/**
 		 * Return an array of the wikidata IDs of existing suggestions.
+		 *
 		 * @return {Object}
 		 */
 		wikidataIds: function () {

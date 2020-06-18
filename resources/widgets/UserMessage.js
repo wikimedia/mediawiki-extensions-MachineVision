@@ -17,6 +17,7 @@ var TemplateRenderingDOMLessGroupWidget = require( './base/TemplateRenderingDOML
 function UserMessage( config ) {
 	this.config = config || {};
 	UserMessage.parent.call( this, $.extend( {}, config ) );
+	// eslint-disable-next-line mediawiki/class-doc
 	this.$element.addClass( 'wbmad-user-message ' + this.config.className );
 
 	this.ctaButton = new OO.ui.ButtonWidget( {

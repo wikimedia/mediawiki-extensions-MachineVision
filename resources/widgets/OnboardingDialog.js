@@ -22,13 +22,11 @@ OO.inheritClass( OnboardingDialog, OO.ui.ProcessDialog );
 
 /**
  * @inheritdoc
- * @property name
  */
 OnboardingDialog.static.name = 'OnboardingDialog';
 
 /**
  * @inheritdoc
- * @property actions
  */
 OnboardingDialog.static.actions = [
 	{

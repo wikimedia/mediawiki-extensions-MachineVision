@@ -32,7 +32,7 @@ module.exports = {
 	 * @param {Object} context
 	 * @param {Object} options
 	 * @param {string} [options.queue]
-	 * @return {$.Deferred} Promise
+	 * @return {jQuery.Deferred} Promise
 	 */
 	getImages: function ( context, options ) {
 		var queue = options && options.queue ? options.queue : context.state.currentTab,
@@ -105,7 +105,7 @@ module.exports = {
 			} );
 
 			// Commit the MvImage objects to the state in the appropriate queue
-			images.map( function ( image ) {
+			images.forEach( function ( image ) {
 				context.commit( 'addImage', {
 					image: image,
 					queue: queue
@@ -226,7 +226,7 @@ module.exports = {
 	 *
 	 * @param {Object} context
 	 * @param {Array} confirmedTags
-	 * @return {$.Deferred} jQuery Promise
+	 * @return {jQuery.Deferred} jQuery Promise
 	 */
 	setDepictsStatements: function ( context, confirmedTags ) {
 		var depictsPropertyId = mvConfig.depictsPropertyId,
@@ -338,6 +338,7 @@ module.exports = {
 
 	/**
 	 * Toggle expansion of tag details.
+	 *
 	 * @param {Object} context
 	 */
 	toggleTagDetails: function ( context ) {

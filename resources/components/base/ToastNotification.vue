@@ -36,8 +36,6 @@
  */
 // @vue/component
 module.exports = {
-	name: 'ToastNotification',
-
 	props: {
 		type: {
 			type: String,

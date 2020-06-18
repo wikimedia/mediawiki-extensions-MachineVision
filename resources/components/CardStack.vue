@@ -90,7 +90,8 @@ module.exports = {
 
 		/**
 		 * Pending state is queue-specific
-		 * @return {bool}
+		 *
+		 * @return {boolean}
 		 */
 		isPending: function () {
 			return this.fetchPending[ this.queue ];
@@ -98,7 +99,8 @@ module.exports = {
 
 		/**
 		 * Fetch error state is queue-specific
-		 * @return {bool}
+		 *
+		 * @return {boolean}
 		 */
 		isError: function () {
 			return this.fetchError[ this.queue ];
@@ -125,6 +127,7 @@ module.exports = {
 		/**
 		 * Whether or not the user has labeled uploads, which will determine the
 		 * message shown to them when they finish tagging personal uploads.
+		 *
 		 * @return {boolean}
 		 */
 		userHasLabeledUploads: function () {
@@ -134,6 +137,7 @@ module.exports = {
 		/**
 		 * Whether or not to show a message and CTA based on the user tagging
 		 * all of their images.
+		 *
 		 * @return {boolean}
 		 */
 		showUserCta: function () {
@@ -143,6 +147,7 @@ module.exports = {
 		/**
 		 * Whether or not to show a message and CTA based on the user having no
 		 * personal uploads, encouraging them to upload some images.
+		 *
 		 * @return {boolean}
 		 */
 		showUserCtaNoLabeledUploads: function () {
@@ -152,6 +157,7 @@ module.exports = {
 		/**
 		 * We need a unique ID for each image card so the component isn't
 		 * reused. Otherwise, transitions won't work.
+		 *
 		 * @return {number}
 		 */
 		currentImageId: function () {

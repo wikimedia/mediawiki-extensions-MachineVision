@@ -3,7 +3,7 @@ const VueTestUtils = require( '@vue/test-utils' );
 const Vuex = require( 'vuex' );
 const CardStack = require( '../../resources/components/CardStack.vue' );
 const ImageCard = require( '../../resources/components/ImageCard.vue' );
-const i18n = require( './plugins/i18n' );
+const i18n = require( './plugins/i18n.js' );
 const imageData = require( './fixtures/imageData.json' );
 
 const localVue = VueTestUtils.createLocalVue();

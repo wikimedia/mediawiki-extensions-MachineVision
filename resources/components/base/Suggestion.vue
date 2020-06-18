@@ -38,8 +38,6 @@ var Icon = require( './Icon.vue' );
  */
 // @vue/component
 module.exports = {
-	name: 'Suggestion',
-
 	components: {
 		icon: Icon
 	},
@@ -64,6 +62,7 @@ module.exports = {
 	computed: {
 		/**
 		 * Conditional classes.
+		 *
 		 * @return {Object}
 		 */
 		builtInClasses: function () {

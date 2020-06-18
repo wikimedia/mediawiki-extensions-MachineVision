@@ -19,7 +19,6 @@
  */
 // @vue/component
 module.exports = {
-	name: 'Tab',
 	props: {
 		name: {
 			type: String,

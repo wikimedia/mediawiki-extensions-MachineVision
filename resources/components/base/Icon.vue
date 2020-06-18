@@ -15,7 +15,6 @@
  */
 // @vue/component
 module.exports = {
-	name: 'Icon',
 	props: {
 		icon: {
 			type: String,

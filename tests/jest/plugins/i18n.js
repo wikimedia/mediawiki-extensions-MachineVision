@@ -51,6 +51,7 @@ module.exports = {
 				// If v-i18n-html:foo was used, binding.arg = 'foo'
 				// If v-i18n-html="'foo'" was used, binding.value = 'foo'
 				var messageKey = binding.arg || binding.value;
+				// eslint-disable-next-line mediawiki/msg-doc
 				el.innerHTML = mw.message( messageKey ).parse();
 			}
 		} );

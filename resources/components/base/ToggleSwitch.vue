@@ -31,7 +31,6 @@
 <script>
 // @vue/component
 module.exports = {
-	name: 'ToggleSwitch',
 	props: {
 		/**
 		 * Initial state of the toggle switch.

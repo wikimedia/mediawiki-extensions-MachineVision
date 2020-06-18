@@ -25,19 +25,16 @@ OO.inheritClass( ConfirmTagsDialog, OO.ui.ProcessDialog );
 
 /**
  * @inheritdoc
- * @property name
  */
 ConfirmTagsDialog.static.name = 'confirmTagsDialog';
 
 /**
  * @inheritdoc
- * @property title
  */
 ConfirmTagsDialog.static.title = mw.message( 'machinevision-confirm-tags-dialog-title' ).parse();
 
 /**
  * @inheritdoc
- * @property actions
  */
 ConfirmTagsDialog.static.actions = [
 	{

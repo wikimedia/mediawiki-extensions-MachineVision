@@ -21,8 +21,6 @@ var Button = require( './base/Button.vue' ),
 
 // @vue/component
 module.exports = {
-	name: 'ImageExclusionNotice',
-
 	components: {
 		'mw-button': Button,
 		'mw-message': Message

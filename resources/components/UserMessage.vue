@@ -30,8 +30,6 @@ var Button = require( './base/Button.vue' ),
 
 // @vue/component
 module.exports = {
-	name: 'UserMessage',
-
 	components: {
 		'mw-button': Button,
 		'wbmad-fade-in': FadeIn

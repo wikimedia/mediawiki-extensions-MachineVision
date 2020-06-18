@@ -2,7 +2,7 @@ const VueTestUtils = require( '@vue/test-utils' );
 const Vuex = require( 'vuex' );
 const App = require( '../../resources/components/App.vue' );
 const Tabs = require( '../../resources/components/base/Tabs.vue' );
-const i18n = require( './plugins/i18n' );
+const i18n = require( './plugins/i18n.js' );
 
 const localVue = VueTestUtils.createLocalVue();
 localVue.use( i18n );

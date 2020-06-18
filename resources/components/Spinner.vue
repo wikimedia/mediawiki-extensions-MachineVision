@@ -7,7 +7,6 @@
 <script>
 // @vue/component
 module.exports = {
-	name: 'Spinner'
 };
 </script>
 

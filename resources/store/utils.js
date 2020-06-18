@@ -16,6 +16,7 @@ module.exports.ensureTabExists = function ensureTabExists( state, tab ) {
 
 /**
  * Get categories for an image.
+ *
  * @param {Object} item
  * @return {Array}
  */
