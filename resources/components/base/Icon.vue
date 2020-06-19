@@ -1,7 +1,7 @@
 <template>
 	<span
 		class="mw-icon"
-		v-bind:class="builtInClasses"
+		:class="builtInClasses"
 	>
 		{{ label }}
 	</span>

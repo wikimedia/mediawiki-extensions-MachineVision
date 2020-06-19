@@ -6,14 +6,14 @@
 			appear-class="mw-toast-appear"
 			appear-active-class="mw-toast-appear-active"
 			appear-to-class="mw-toast-appear-to"
-			v-on:appear="onAppear"
-			v-on:after-leave="afterLeave"
+			@appear="onAppear"
+			@after-leave="afterLeave"
 		>
 			<div
 				v-if="show"
 				class="mw-toast__notification"
-				v-bind:aria-live="type !== 'error' ? 'polite' : false"
-				v-bind:role="type === 'error' ? 'alert' : false "
+				:aria-live="type !== 'error' ? 'polite' : false"
+				:role="type === 'error' ? 'alert' : false "
 			>
 				<div class="mw-toast__notification__content">
 					<slot></slot>

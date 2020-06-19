@@ -3,11 +3,11 @@
 		<wbmad-spinner v-if="publishPending"></wbmad-spinner>
 
 		<div class="wbmad-image-with-suggestions__container"
-			v-bind:class="containerClasses">
+			:class="containerClasses">
 			<div class="wbmad-image-with-suggestions__image">
 				<div class="wbmad-image-with-suggestions__image-wrapper">
-					<a v-bind:href="descriptionUrl" target="_blank">
-						<img v-bind:src="thumbUrl" alt="">
+					<a :href="descriptionUrl" target="_blank">
+						<img :src="thumbUrl" alt="">
 					</a>
 				</div>
 			</div>
@@ -16,7 +16,7 @@
 				<div class="wbmad-image-with-suggestions__header">
 					<div class="wbmad-image-with-suggestions__header__title">
 						<label class="wbmad-image-with-suggestions__title-label">
-							<a v-bind:href="descriptionUrl" target="_blank">
+							<a :href="descriptionUrl" target="_blank">
 								{{ title }}
 							</a>
 						</label>
@@ -27,34 +27,34 @@
 					<div class="wbmad-image-with-suggestions__header__toggle">
 						<mw-toggle-switch
 							name="wbmad-toggle-tag-details"
-							v-bind:label="$i18n( 'machinevision-detailed-tags-toggle-label' )"
-							v-bind:on="tagDetailsExpanded"
-							v-on:click="toggleTagDetails"
+							:label="$i18n( 'machinevision-detailed-tags-toggle-label' )"
+							:on="tagDetailsExpanded"
+							@click="toggleTagDetails"
 						>
 						</mw-toggle-switch>
 					</div>
 				</div>
 
-				<wbmad-suggestions-group v-on:custom-tag-button-click="launchCustomTagDialog">
+				<wbmad-suggestions-group @custom-tag-button-click="launchCustomTagDialog">
 				</wbmad-suggestions-group>
 
 				<div class="wbmad-action-buttons">
 					<mw-button
 						class="wbmad-action-buttons__publish"
-						v-bind:primary="true"
-						v-bind:progressive="true"
-						v-bind:disabled="publishDisabled"
-						v-bind:aria-label="$i18n( 'machinevision-publish-title' )"
-						v-on:click="onPublish"
+						:primary="true"
+						:progressive="true"
+						:disabled="publishDisabled"
+						:aria-label="$i18n( 'machinevision-publish-title' )"
+						@click="onPublish"
 					>
 						<span v-i18n-html:machinevision-publish></span>
 					</mw-button>
 					<mw-button
 						class="wbmad-action-buttons__skip"
-						v-bind:frameless="true"
-						v-bind:disabled="skipDisabled"
-						v-bind:aria-label="$i18n( 'machinevision-skip-title', title ).parse()"
-						v-on:click="onSkip"
+						:frameless="true"
+						:disabled="skipDisabled"
+						:aria-label="$i18n( 'machinevision-skip-title', title ).parse()"
+						@click="onSkip"
 					>
 						<span v-i18n-html:machinevision-skip></span>
 					</mw-button>

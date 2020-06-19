@@ -13,29 +13,29 @@
 			mode="in-out"
 			appear
 		>
-			<wbmad-image-card v-bind:key="currentImageId"></wbmad-image-card>
+			<wbmad-image-card :key="currentImageId"></wbmad-image-card>
 		</transition>
 
 		<wbmad-user-message v-else-if="showUserCta"
 			class="wbmad-user-cta"
-			v-bind:heading="$i18n( 'machinevision-cta-heading' )"
-			v-bind:text="$i18n( 'machinevision-cta-text' )"
-			v-bind:cta="$i18n( 'machinevision-cta-cta' )"
-			v-on:cta-click="goToPopularTab"
+			:heading="$i18n( 'machinevision-cta-heading' )"
+			:text="$i18n( 'machinevision-cta-text' )"
+			:cta="$i18n( 'machinevision-cta-cta' )"
+			@cta-click="goToPopularTab"
 		></wbmad-user-message>
 
 		<wbmad-user-message v-else-if="showUserCtaNoLabeledUploads"
 			class="wbmad-user-cta--no-uploads"
-			v-bind:heading="$i18n( 'machinevision-no-uploads-cta-heading' )"
-			v-bind:text="$i18n( 'machinevision-no-uploads-cta-text' )"
-			v-bind:cta="$i18n( 'machinevision-cta-cta' )"
-			v-on:cta-click="goToPopularTab"
+			:heading="$i18n( 'machinevision-no-uploads-cta-heading' )"
+			:text="$i18n( 'machinevision-no-uploads-cta-text' )"
+			:cta="$i18n( 'machinevision-cta-cta' )"
+			@cta-click="goToPopularTab"
 		></wbmad-user-message>
 
 		<wbmad-user-message v-else
 			class="wbmad-user-cta--generic-no-images"
-			v-bind:heading="$i18n( 'machinevision-generic-no-images-heading' )"
-			v-bind:text="$i18n( 'machinevision-generic-no-images-text' )"
+			:heading="$i18n( 'machinevision-generic-no-images-heading' )"
+			:text="$i18n( 'machinevision-generic-no-images-text' )"
 		></wbmad-user-message>
 	</div>
 </template>

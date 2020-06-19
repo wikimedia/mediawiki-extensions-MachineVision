@@ -1,27 +1,27 @@
 <template>
 	<div
 		class="mw-toggle-switch"
-		v-on:click="onClick"
-		v-on:keyup.enter="onClick"
-		v-on:keydown.space.prevent=""
-		v-on:keyup.space="onClick"
+		@click="onClick"
+		@keyup.enter="onClick"
+		@keydown.space.prevent=""
+		@keyup.space="onClick"
 	>
 		<label
-			v-bind:id="name"
+			:id="name"
 			class="mw-toggle-switch__label"
-			v-bind:class="labelClasses"
+			:class="labelClasses"
 		>
 			{{ label }}
 		</label>
 
 		<div
 			class="mw-toggle-switch__toggle"
-			v-bind:class="toggleClasses"
+			:class="toggleClasses"
 			role="checkbox"
 			tabindex="0"
-			v-bind:aria-disabled="disabledState ? 'true' : 'false'"
-			v-bind:aria-checked="onState ? 'true' : 'false'"
-			v-bind:aria-labelled-by="name"
+			:aria-disabled="disabledState ? 'true' : 'false'"
+			:aria-checked="onState ? 'true' : 'false'"
+			:aria-labelled-by="name"
 		>
 			<span class="mw-toggle-switch__toggle__grip"></span>
 		</div>

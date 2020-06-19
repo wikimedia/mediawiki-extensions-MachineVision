@@ -1,13 +1,13 @@
 <template>
 	<div
 		class="mw-suggestion"
-		v-bind:class="builtInClasses"
+		:class="builtInClasses"
 		role="checkbox"
 		tabindex="0"
-		v-bind:aria-checked="confirmed ? 'true' : 'false'"
-		v-on:click="$emit( 'click' )"
-		v-on:keyup.enter="$emit( 'click' )"
-		v-on:keydown.space.prevent="$emit( 'click' )"
+		:aria-checked="confirmed ? 'true' : 'false'"
+		@click="$emit( 'click' )"
+		@keyup.enter="$emit( 'click' )"
+		@keydown.space.prevent="$emit( 'click' )"
 	>
 		<div class="mw-suggestion__content">
 			<slot v-if="hasSlot"></slot>
@@ -18,8 +18,8 @@
 		<icon
 			class="mw-suggestion__icon"
 			icon="check"
-			v-bind:title="iconText"
-			v-bind:label="iconText"
+			:title="iconText"
+			:label="iconText"
 		>
 		</icon>
 	</div>

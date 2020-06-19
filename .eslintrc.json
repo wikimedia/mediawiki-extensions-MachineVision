@@ -28,7 +28,10 @@
 						"normal": "never",
 						"component": "never"
 					}
-				} ]
+				} ],
+				"vue/v-bind-style": [ "warn", "shorthand" ],
+				"vue/v-on-style": [ "warn", "shorthand" ],
+				"vue/v-slot-style": [ "warn", "shorthand" ]
 			}
 		}
 	]
