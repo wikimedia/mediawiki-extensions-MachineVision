@@ -1,6 +1,6 @@
 <template>
 	<div class="wbmad-image-with-suggestions">
-		<wbmad-spinner v-if="publishPending" />
+		<wbmad-spinner v-if="publishPending"></wbmad-spinner>
 
 		<div class="wbmad-image-with-suggestions__container"
 			v-bind:class="containerClasses">
@@ -21,7 +21,7 @@
 							</a>
 						</label>
 
-						<wbmad-categories-list />
+						<wbmad-categories-list></wbmad-categories-list>
 					</div>
 
 					<div class="wbmad-image-with-suggestions__header__toggle">
@@ -30,11 +30,13 @@
 							v-bind:label="$i18n( 'machinevision-detailed-tags-toggle-label' )"
 							v-bind:on="tagDetailsExpanded"
 							v-on:click="toggleTagDetails"
-						/>
+						>
+						</mw-toggle-switch>
 					</div>
 				</div>
 
-				<wbmad-suggestions-group v-on:custom-tag-button-click="launchCustomTagDialog" />
+				<wbmad-suggestions-group v-on:custom-tag-button-click="launchCustomTagDialog">
+				</wbmad-suggestions-group>
 
 				<div class="wbmad-action-buttons">
 					<mw-button
@@ -45,7 +47,7 @@
 						v-bind:aria-label="$i18n( 'machinevision-publish-title' )"
 						v-on:click="onPublish"
 					>
-						<span v-i18n-html:machinevision-publish />
+						<span v-i18n-html:machinevision-publish></span>
 					</mw-button>
 					<mw-button
 						class="wbmad-action-buttons__skip"
@@ -54,7 +56,7 @@
 						v-bind:aria-label="$i18n( 'machinevision-skip-title', title ).parse()"
 						v-on:click="onSkip"
 					>
-						<span v-i18n-html:machinevision-skip />
+						<span v-i18n-html:machinevision-skip></span>
 					</mw-button>
 				</div>
 			</div>

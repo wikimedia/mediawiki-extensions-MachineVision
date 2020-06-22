@@ -1,7 +1,7 @@
 <template>
 	<wbmad-fade-in>
 		<div class="wbmad-user-message">
-			<div class="wbmad-user-message-icon" />
+			<div class="wbmad-user-message-icon"></div>
 			<p class="wbmad-user-message-heading">
 				{{ heading }}
 			</p>

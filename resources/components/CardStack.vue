@@ -1,10 +1,10 @@
 <template>
 	<div class="wbmad-suggested-tags-cardstack">
-		<wbmad-cardstack-placeholder v-if="isPending" />
+		<wbmad-cardstack-placeholder v-if="isPending"></wbmad-cardstack-placeholder>
 
 		<wbmad-fade-in v-else-if="isError">
 			<mw-message class="wbmad-cardstack-message" type="error">
-				<p v-i18n-html:machinevision-failure-message />
+				<p v-i18n-html:machinevision-failure-message></p>
 			</mw-message>
 		</wbmad-fade-in>
 
@@ -13,7 +13,7 @@
 			mode="in-out"
 			appear
 		>
-			<wbmad-image-card v-bind:key="currentImageId" />
+			<wbmad-image-card v-bind:key="currentImageId"></wbmad-image-card>
 		</transition>
 
 		<wbmad-user-message v-else-if="showUserCta"
@@ -22,7 +22,7 @@
 			v-bind:text="$i18n( 'machinevision-cta-text' )"
 			v-bind:cta="$i18n( 'machinevision-cta-cta' )"
 			v-on:cta-click="goToPopularTab"
-		/>
+		></wbmad-user-message>
 
 		<wbmad-user-message v-else-if="showUserCtaNoLabeledUploads"
 			class="wbmad-user-cta--no-uploads"
@@ -30,13 +30,13 @@
 			v-bind:text="$i18n( 'machinevision-no-uploads-cta-text' )"
 			v-bind:cta="$i18n( 'machinevision-cta-cta' )"
 			v-on:cta-click="goToPopularTab"
-		/>
+		></wbmad-user-message>
 
 		<wbmad-user-message v-else
 			class="wbmad-user-cta--generic-no-images"
 			v-bind:heading="$i18n( 'machinevision-generic-no-images-heading' )"
 			v-bind:text="$i18n( 'machinevision-generic-no-images-text' )"
-		/>
+		></wbmad-user-message>
 	</div>
 </template>
 

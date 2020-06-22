@@ -2,12 +2,15 @@
 	<div v-if="hasCategories" class="wbmad-category-list">
 		<span
 			v-i18n-html:machinevision-categories-label
-			class="wbmad-category-list__label" />
+			class="wbmad-category-list__label">
+		</span>
 		<span
 			v-for="( category, index ) in categories"
 			v-bind:key="category + index"
 			class="wbmad-category-list__item"
-		>{{ category }}</span>
+		>
+			{{ category }}
+		</span>
 	</div>
 </template>
 

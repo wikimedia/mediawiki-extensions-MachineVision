@@ -16,7 +16,7 @@
 				v-bind:role="type === 'error' ? 'alert' : false "
 			>
 				<div class="mw-toast__notification__content">
-					<slot />
+					<slot></slot>
 				</div>
 			</div>
 		</transition>

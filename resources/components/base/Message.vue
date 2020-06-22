@@ -8,9 +8,10 @@
 		<icon
 			v-bind:icon="icon"
 			v-bind:class="iconClass"
-		/>
+		>
+		</icon>
 		<div class="mw-message__content">
-			<slot />
+			<slot></slot>
 		</div>
 	</div>
 </template>

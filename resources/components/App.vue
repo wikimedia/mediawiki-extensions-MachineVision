@@ -16,39 +16,42 @@
 
 			<!-- Tabs container -->
 			<template v-if="showTabs">
-				<wbmad-image-exclusion-notice />
+				<wbmad-image-exclusion-notice></wbmad-image-exclusion-notice>
 
 				<h2 v-i18n-html:machinevision-machineaidedtagging-tabs-heading
-					class="wbmad-suggested-tags-page-tabs-heading" />
+					class="wbmad-suggested-tags-page-tabs-heading">
+				</h2>
 
 				<tabs v-bind:active="currentTab" v-on:tab-change="onTabChange">
 					<!-- Popular tab -->
 					<tab name="popular" v-bind:title="popularTabTitle">
-						<card-stack v-bind:queue="'popular'" />
+						<card-stack v-bind:queue="'popular'"></card-stack>
 					</tab>
 
 					<!-- User tab -->
 					<tab name="user" v-bind:title="userTabTitle">
-						<personal-uploads-count />
-						<card-stack v-bind:queue="'user'" />
+						<personal-uploads-count></personal-uploads-count>
+						<card-stack v-bind:queue="'user'"></card-stack>
 					</tab>
 				</tabs>
 
 				<p v-i18n-html:machinevision-machineaidedtagging-preferences-link
-					class="wbmad-suggested-tags-page-preferences-link" />
+					class="wbmad-suggested-tags-page-preferences-link">
+				</p>
 
 				<div v-i18n-html:machinevision-machineaidedtagging-license-information
-					class="wbmad-suggested-tags-page-license-info" />
+					class="wbmad-suggested-tags-page-license-info">
+				</div>
 			</template>
 
 			<!-- Login message container -->
 			<template v-else-if="!isAuthenticated">
 				<!-- eslint-disable-next-line vue/no-v-html -->
-				<p v-html="loginMessage" />
+				<p v-html="loginMessage"></p>
 			</template>
 
 			<template v-else>
-				<p v-i18n-html:machinevision-autoconfirmed-message />
+				<p v-i18n-html:machinevision-autoconfirmed-message></p>
 			</template>
 		</div>
 	</wbmad-fade-in>
