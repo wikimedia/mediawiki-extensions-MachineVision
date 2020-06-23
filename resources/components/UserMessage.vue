@@ -10,10 +10,10 @@
 			</div>
 			<mw-button v-if="cta"
 				class="wbmad-user-message-cta"
-				v-bind:primary="true"
-				v-bind:progressive="true"
-				v-bind:title="cta"
-				v-on:click="$emit( 'cta-click' )"
+				:primary="true"
+				:progressive="true"
+				:title="cta"
+				@click="$emit( 'cta-click' )"
 			>
 				{{ cta }}
 			</mw-button>

@@ -3,13 +3,13 @@
 		name="wbmad-suggestion-fade"
 		tag="div"
 		class="wbmad-suggestions-group"
-		v-bind:class="builtInClasses"
+		:class="builtInClasses"
 	>
 		<mw-suggestion v-for="suggestion in currentImageSuggestions"
-			v-bind:key="getSuggestionKey( suggestion.wikidataId )"
-			v-bind:text="suggestion.text"
-			v-bind:confirmed="suggestion.confirmed"
-			v-on:click="toggleTagConfirmation( suggestion )"
+			:key="getSuggestionKey( suggestion.wikidataId )"
+			:text="suggestion.text"
+			:confirmed="suggestion.confirmed"
+			@click="toggleTagConfirmation( suggestion )"
 		>
 			<template v-if="tagDetailsExpanded">
 				<label class="wbmad-suggestion__label">
@@ -34,12 +34,12 @@
 		</mw-suggestion>
 
 		<!-- Add custom tag button -->
-		<div v-bind:key="buttonKey" class="wbmad-custom-tag-button-wrapper">
+		<div :key="buttonKey" class="wbmad-custom-tag-button-wrapper">
 			<mw-button
 				icon="add"
 				class="wbmad-custom-tag-button"
-				v-bind:title="$i18n( 'machinevision-add-custom-tag-title' )"
-				v-on:click="$emit( 'custom-tag-button-click' )"
+				:title="$i18n( 'machinevision-add-custom-tag-title' )"
+				@click="$emit( 'custom-tag-button-click' )"
 			>
 				{{ $i18n( 'machinevision-add-custom-tag' ) }}
 			</mw-button>

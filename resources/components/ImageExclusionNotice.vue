@@ -5,9 +5,9 @@
 			<mw-button
 				class="wbmad-image-exclusion-notice__dismiss-button"
 				icon="close"
-				v-bind:frameless="true"
-				v-bind:invisibletext="true"
-				v-on:click="dismiss"
+				:frameless="true"
+				:invisibletext="true"
+				@click="dismiss"
 			>
 				{{ $i18n( 'machinevision-image-exclusion-notification-dismiss' ) }}
 			</mw-button>

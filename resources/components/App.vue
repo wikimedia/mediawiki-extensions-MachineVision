@@ -4,10 +4,10 @@
 			<template v-if="showToasts">
 				<mw-toast-notification
 					v-for="message in imageMessages"
-					v-bind:key="message.key"
-					v-bind:type="message.type"
-					v-bind:duration="message.duration"
-					v-on:leave="onToastLeave"
+					:key="message.key"
+					:type="message.type"
+					:duration="message.duration"
+					@leave="onToastLeave"
 				>
 					<!-- eslint-disable-next-line mediawiki/no-vue-dynamic-i18n -->
 					<p>{{ $i18n( message.messageKey ) }}</p>
@@ -22,16 +22,16 @@
 					class="wbmad-suggested-tags-page-tabs-heading">
 				</h2>
 
-				<tabs v-bind:active="currentTab" v-on:tab-change="onTabChange">
+				<tabs :active="currentTab" @tab-change="onTabChange">
 					<!-- Popular tab -->
-					<tab name="popular" v-bind:title="popularTabTitle">
-						<card-stack v-bind:queue="'popular'"></card-stack>
+					<tab name="popular" :title="popularTabTitle">
+						<card-stack :queue="'popular'"></card-stack>
 					</tab>
 
 					<!-- User tab -->
-					<tab name="user" v-bind:title="userTabTitle">
+					<tab name="user" :title="userTabTitle">
 						<personal-uploads-count></personal-uploads-count>
-						<card-stack v-bind:queue="'user'"></card-stack>
+						<card-stack :queue="'user'"></card-stack>
 					</tab>
 				</tabs>
 

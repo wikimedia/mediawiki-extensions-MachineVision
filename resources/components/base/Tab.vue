@@ -2,9 +2,9 @@
 	<transition name="mw-tab-fade-in">
 		<div
 			v-show="isActive"
-			v-bind:id="id"
-			v-bind:aria-hidden="!isActive"
-			v-bind:aria-labeledby="id + '-label'"
+			:id="id"
+			:aria-hidden="!isActive"
+			:aria-labeledby="id + '-label'"
 			class="mw-tab"
 			role="tabpanel"
 		>

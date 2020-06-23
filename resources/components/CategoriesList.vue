@@ -6,7 +6,7 @@
 		</span>
 		<span
 			v-for="( category, index ) in categories"
-			v-bind:key="category + index"
+			:key="category + index"
 			class="wbmad-category-list__item"
 		>
 			{{ category }}

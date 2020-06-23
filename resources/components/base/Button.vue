@@ -1,14 +1,14 @@
 <template>
 	<button
 		class="mw-button"
-		v-bind:class="builtInClasses"
-		v-bind:disabled="disabled"
-		v-on:click="$emit( 'click' )"
+		:class="builtInClasses"
+		:disabled="disabled"
+		@click="$emit( 'click' )"
 	>
 		<icon
 			v-if="icon"
-			v-bind:icon="icon"
-			v-bind:invert="invert"
+			:icon="icon"
+			:invert="invert"
 		>
 		</icon>
 		<div class="mw-button__content">

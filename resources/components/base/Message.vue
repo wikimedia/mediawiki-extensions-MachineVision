@@ -1,13 +1,13 @@
 <template>
 	<div
 		class="mw-message"
-		v-bind:class="builtInClasses"
-		v-bind:aria-live="type !== 'error' ? 'polite' : false"
-		v-bind:role="type === 'error' ? 'alert' : false "
+		:class="builtInClasses"
+		:aria-live="type !== 'error' ? 'polite' : false"
+		:role="type === 'error' ? 'alert' : false "
 	>
 		<icon
-			v-bind:icon="icon"
-			v-bind:class="iconClass"
+			:icon="icon"
+			:class="iconClass"
 		>
 		</icon>
 		<div class="mw-message__content">
