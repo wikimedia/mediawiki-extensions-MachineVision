@@ -185,20 +185,14 @@ module.exports = {
 <style lang="less">
 @import 'mediawiki.mixins';
 @import '../../../lib/wikimedia-ui-base.less';
+
 .mw-tabs {
 	&__header {
 		.flex-display();
 		.box-shadow( inset 0 -1px 0 0 @border-color-base );
 
-		&:focus {
-			outline: 0;
-
-			.mw-tabs__header__item.is-active {
-				border-radius: 2px;
-				box-shadow: inset 0 0 0 2px @color-primary;
-			}
-		}
-
+		/* FIXME: Prefix is-active/is-disable classes */
+		/* stylelint-disable selector-class-pattern */
 		&__item {
 			color: @color-base--subtle;
 			cursor: pointer;
@@ -229,6 +223,16 @@ module.exports = {
 				}
 			}
 		}
+
+		&:focus {
+			outline: 0;
+
+			.mw-tabs__header__item.is-active {
+				border-radius: 2px;
+				box-shadow: inset 0 0 0 2px @color-primary;
+			}
+		}
+		/* stylelint-enable selector-class-pattern */
 	}
 
 	&__content {
