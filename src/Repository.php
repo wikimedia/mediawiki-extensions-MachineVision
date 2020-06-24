@@ -298,17 +298,36 @@ class Repository implements LoggerAwareInterface {
 				'mvl_uploader_id' => strval( $userId ),
 			];
 		} else {
+			// Because multiple users may request images to label, we can't simply serve
+			// the first available images, or they might end up labeling the exact same
+			// images. OTOH, we do want higher priority images to go out first, so...
+			// We'll do a quick pass to figure out a reasonable cutoff priority; this ought
+			// to ensure that we still prioritize, even though we attempt to (randomly)
+			// spread the results
+			$priority = $this->dbr->selectField(
+				'machine_vision_image',
+				'mvi_priority',
+				[
+					'mvi_id IN ' . $this->dbr->buildSelectSubquery(
+						'machine_vision_label',
+						'mvl_mvi_id',
+						[ 'mvl_review' => self::REVIEW_UNREVIEWED ],
+						$fname
+					)
+				],
+				$fname,
+				[
+					'ORDER BY' => 'mvi_priority DESC',
+					'LIMIT' => 1,
+					'OFFSET' => 20 * $limit
+				]
+			);
+			$priority = $priority === false ? -128 : (int)$priority;
+
 			$conds = [
 				'mvl_review' => self::REVIEW_UNREVIEWED,
-				// HACK: Use the mvs_timestamp value to identify label suggestions relating to
-				// images that were labeled as part of the "assessed" images group. These were
-				// labeled in November 2019, and new upload labeling was not enabled until
-				// December 2019 or later.
-				// TODO: Update the DB schema to add a column to identify the labeling "group"
-				'mvs_timestamp < 20191201000000',
+				'mvi_priority >= ' . strval( $priority ),
 			];
-			$tables[] = 'machine_vision_suggestion';
-			$joins['machine_vision_suggestion'] = [ 'INNER JOIN', [ 'mvs_mvl_id = mvl_id' ] ];
 		}
 
 		$select = function ( $ascending, $limit, $conds ) use ( $fname, $tables, $joins, $rand,
