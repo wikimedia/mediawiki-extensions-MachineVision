@@ -45,7 +45,7 @@ describe( 'getters', () => {
 		it( 'generates a title by calling mw.Title.newFromText', () => {
 			// the currentImageTitle getter makes use of the global mw object's
 			// Title and config methods, so we need to mock them here:
-			var mockGetters = { currentImage: { title: 'File:Test.jpg' } },
+			const mockGetters = { currentImage: { title: 'File:Test.jpg' } },
 				mockMwTitle = global.mw.Title,
 				mockMwConfig = global.mw.config;
 
@@ -58,7 +58,7 @@ describe( 'getters', () => {
 
 	describe( 'currentImageMediaInfoId', () => {
 		it( 'returns the MediaInfoId of the current image by prefixing pageId with "M"', () => {
-			var mockGetters = {
+			const mockGetters = {
 				currentImage: {
 					pageid: 123
 				}
@@ -70,7 +70,7 @@ describe( 'getters', () => {
 
 	describe( 'currentImageSuggestions', () => {
 		it( 'returns the suggestions array of the current image', () => {
-			var suggestions = fixtures[ 0 ].suggestions,
+			const suggestions = fixtures[ 0 ].suggestions,
 				mockGetters = {
 					currentImage: {
 						suggestions: fixtures[ 0 ].suggestions
@@ -81,7 +81,7 @@ describe( 'getters', () => {
 		} );
 
 		it( 'filters out any suggestions that do not contain text', () => {
-			var goodSuggestions = fixtures[ 0 ].suggestions,
+			const goodSuggestions = fixtures[ 0 ].suggestions,
 				badSuggestion = { wikidataId: 'Q123', confirmed: false, foo: 'bar' },
 				allSuggestions = [ ...goodSuggestions, badSuggestion ],
 				mockGetters = {

@@ -50,7 +50,7 @@ describe( 'getters', () => {
 
 	describe( 'getImages', () => {
 		it( 'makes a GET request to the API with the correct parameters', () => {
-			var deferred = $.Deferred(),
+			const deferred = $.Deferred(),
 				promise = deferred.promise();
 
 			mockApi.get.mockReturnValue( promise );
@@ -77,7 +77,7 @@ describe( 'getters', () => {
 		} );
 
 		it( 'defaults to fetching images for the current tab queue if no "queue" option is provided', () => {
-			var deferred = $.Deferred(),
+			const deferred = $.Deferred(),
 				promise = deferred.promise();
 
 			mockApi.get.mockReturnValue( promise );
@@ -98,7 +98,7 @@ describe( 'getters', () => {
 		} );
 
 		it( 'fetches user images if a "user" queue option is provided', () => {
-			var deferred = $.Deferred(),
+			const deferred = $.Deferred(),
 				promise = deferred.promise();
 
 			mockApi.get.mockReturnValue( promise );
@@ -111,16 +111,16 @@ describe( 'getters', () => {
 			} );
 		} );
 
-		it( 'Commits an addImage mutation for each image in the response', done => {
-			var apiImages = apiResponse.query.pages,
+		it( 'Commits an addImage mutation for each image in the response', ( done ) => {
+			const apiImages = apiResponse.query.pages,
 				deferred = $.Deferred(),
 				promise = deferred.resolve( apiResponse ).promise();
 
 			mockApi.get.mockReturnValue( promise );
 
 			actions.getImages( context ).then( () => {
-				var mutations = context.commit.mock.calls,
-					addImageMutations = mutations.filter( mutation => {
+				const mutations = context.commit.mock.calls,
+					addImageMutations = mutations.filter( ( mutation ) => {
 						return mutation[ 0 ] === 'addImage';
 					} );
 
@@ -129,8 +129,8 @@ describe( 'getters', () => {
 			} );
 		} );
 
-		it( 'Removes the pending state on the appropriate queue when request completes', done => {
-			var deferred = $.Deferred(),
+		it( 'Removes the pending state on the appropriate queue when request completes', ( done ) => {
+			const deferred = $.Deferred(),
 				promise = deferred.resolve( apiResponse ).promise();
 
 			context.state.currentTab = 'popular';
@@ -145,8 +145,8 @@ describe( 'getters', () => {
 			} );
 		} );
 
-		it( 'Handles fetch errors successfully', done => {
-			var deferred = $.Deferred(),
+		it( 'Handles fetch errors successfully', ( done ) => {
+			const deferred = $.Deferred(),
 				promise = deferred.promise();
 
 			context.state.currentTab = 'popular';
@@ -172,8 +172,8 @@ describe( 'getters', () => {
 			deferred.reject( {} );
 		} );
 
-		it( 'commits a setUnreviewedCount action when request completes', done => {
-			var deferred = $.Deferred(),
+		it( 'commits a setUnreviewedCount action when request completes', ( done ) => {
+			const deferred = $.Deferred(),
 				promise = deferred.resolve( apiResponse ).promise();
 
 			mockApi.get.mockReturnValue( promise );
@@ -191,7 +191,7 @@ describe( 'getters', () => {
 
 	describe( 'toggleTagConfirmation', () => {
 		it( 'Commits a toggleSuggestion mutation with the tag as an argument', () => {
-			var suggestions = fixtures[ 0 ].suggestions,
+			const suggestions = fixtures[ 0 ].suggestions,
 				tagIndex = 1,
 				tag = suggestions[ tagIndex ];
 
@@ -206,12 +206,11 @@ describe( 'getters', () => {
 
 	describe( 'publishTags', () => {
 		it( 'dispatches the setDepictsStatements action with a payload of all currently confirmed tags', () => {
-			var suggestions = fixtures[ 0 ].suggestions,
-				confirmed;
+			const suggestions = fixtures[ 0 ].suggestions;
 
 			suggestions[ 0 ].confirmed = true;
 
-			confirmed = suggestions.filter( function ( suggestion ) {
+			const confirmed = suggestions.filter( function ( suggestion ) {
 				return suggestion.confirmed;
 			} );
 
@@ -232,19 +231,17 @@ describe( 'getters', () => {
 		} );
 
 		it( 'makes a reviewimagelabels POST request with a reviewbatch including both confirmed and unconfirmed tags', () => {
-			var suggestions = fixtures[ 0 ].suggestions,
-				reviewBatch,
-				json;
+			const suggestions = fixtures[ 0 ].suggestions;
 
 			suggestions[ 0 ].confirmed = true;
-			reviewBatch = suggestions.map( suggestion => {
+			const reviewBatch = suggestions.map( ( suggestion ) => {
 				return {
 					label: suggestion.wikidataId,
 					review: suggestion.confirmed ? 'accept' : 'reject'
 				};
 			} );
 
-			json = JSON.stringify( reviewBatch );
+			const json = JSON.stringify( reviewBatch );
 
 			Object.defineProperty( context.getters, 'currentImageSuggestions', {
 				get: jest.fn().mockReturnValue( suggestions )
@@ -269,8 +266,8 @@ describe( 'getters', () => {
 		// For these tests, mockApi needs to return jQuery deferred objects
 		// rather than vanilla promises
 
-		it( 'shows success toast notification if requests are successful', done => {
-			var suggestions = fixtures[ 0 ].suggestions,
+		it( 'shows success toast notification if requests are successful', ( done ) => {
+			const suggestions = fixtures[ 0 ].suggestions,
 				deferred = $.Deferred(),
 				promise = deferred.promise(),
 				successToast = {
@@ -305,8 +302,8 @@ describe( 'getters', () => {
 			deferred.resolve( {} );
 		} );
 
-		it( 'sets publishPending to false after successful request completes', done => {
-			var suggestions = fixtures[ 0 ].suggestions,
+		it( 'sets publishPending to false after successful request completes', ( done ) => {
+			const suggestions = fixtures[ 0 ].suggestions,
 				deferred = $.Deferred(),
 				promise = deferred.promise();
 
@@ -336,8 +333,8 @@ describe( 'getters', () => {
 			deferred.resolve( {} );
 		} );
 
-		it( 'shows error toast notification if requests fail', done => {
-			var suggestions = fixtures[ 0 ].suggestions,
+		it( 'shows error toast notification if requests fail', ( done ) => {
+			const suggestions = fixtures[ 0 ].suggestions,
 				deferred = $.Deferred(),
 				promise = deferred.promise(),
 				toast = {
@@ -372,8 +369,8 @@ describe( 'getters', () => {
 			deferred.reject( {} );
 		} );
 
-		it( 'sets publishPending to false after failed request completes', done => {
-			var suggestions = fixtures[ 0 ].suggestions,
+		it( 'sets publishPending to false after failed request completes', ( done ) => {
+			const suggestions = fixtures[ 0 ].suggestions,
 				deferred = $.Deferred(),
 				promise = deferred.promise();
 
@@ -403,8 +400,8 @@ describe( 'getters', () => {
 			deferred.reject( {} );
 		} );
 
-		it( 'dispatches a skipImage action on success', done => {
-			var suggestions = fixtures[ 0 ].suggestions,
+		it( 'dispatches a skipImage action on success', ( done ) => {
+			const suggestions = fixtures[ 0 ].suggestions,
 				deferred = $.Deferred(),
 				promise = deferred.promise();
 
@@ -434,8 +431,8 @@ describe( 'getters', () => {
 			deferred.resolve( {} );
 		} );
 
-		it( 'dispatches a skipImage action on failure', done => {
-			var suggestions = fixtures[ 0 ].suggestions,
+		it( 'dispatches a skipImage action on failure', ( done ) => {
+			const suggestions = fixtures[ 0 ].suggestions,
 				deferred = $.Deferred(),
 				promise = deferred.promise();
 
@@ -465,8 +462,8 @@ describe( 'getters', () => {
 			deferred.reject( {} );
 		} );
 
-		it( 'commits a decrementUnreviewedCount mutation on success if current tab is user', done => {
-			var suggestions = fixtures[ 0 ].suggestions,
+		it( 'commits a decrementUnreviewedCount mutation on success if current tab is user', ( done ) => {
+			const suggestions = fixtures[ 0 ].suggestions,
 				deferred = $.Deferred(),
 				promise = deferred.promise();
 
@@ -501,8 +498,8 @@ describe( 'getters', () => {
 			deferred.resolve( {} );
 		} );
 
-		it( 'does not commit a decrementUnreviewedCount mutation on success if current tab is NOT user', done => {
-			var suggestions = fixtures[ 0 ].suggestions,
+		it( 'does not commit a decrementUnreviewedCount mutation on success if current tab is NOT user', ( done ) => {
+			const suggestions = fixtures[ 0 ].suggestions,
 				deferred = $.Deferred(),
 				promise = deferred.promise();
 
@@ -534,8 +531,8 @@ describe( 'getters', () => {
 	} );
 
 	describe( 'setDepictsStatements', () => {
-		it( 'makes a wbsetclaim POST request for each confirmed tag provided in the payload', done => {
-			var tags = fixtures[ 0 ].suggestions,
+		it( 'makes a wbsetclaim POST request for each confirmed tag provided in the payload', ( done ) => {
+			const tags = fixtures[ 0 ].suggestions,
 				deferred = $.Deferred(),
 				promise = deferred.promise();
 
@@ -549,8 +546,8 @@ describe( 'getters', () => {
 			deferred.resolve( {} );
 		} );
 
-		it( 'Assigns the correct edit tag for machine-suggested labels', done => {
-			var tags = fixtures[ 0 ].suggestions,
+		it( 'Assigns the correct edit tag for machine-suggested labels', ( done ) => {
+			const tags = fixtures[ 0 ].suggestions,
 				deferred = $.Deferred(),
 				promise = deferred.promise();
 
@@ -564,8 +561,8 @@ describe( 'getters', () => {
 			deferred.resolve( {} );
 		} );
 
-		it( 'Assigns the correct edit tag for user-provided labels', done => {
-			var tags = fixtures[ 0 ].suggestions,
+		it( 'Assigns the correct edit tag for user-provided labels', ( done ) => {
+			const tags = fixtures[ 0 ].suggestions,
 				deferred = $.Deferred(),
 				promise = deferred.promise();
 

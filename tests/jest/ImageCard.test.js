@@ -1,3 +1,5 @@
+'use strict';
+
 const VueTestUtils = require( '@vue/test-utils' );
 const Vuex = require( 'vuex' );
 const ImageCard = require( '../../resources/components/ImageCard.vue' );
@@ -68,8 +70,8 @@ describe( 'ImageCard', () => {
 	} );
 
 	it( 'publish button is enabled when at least one suggestion is confirmed', () => {
-		let unconfirmedSuggestion = imageFixtures[ 0 ].suggestions[ 0 ];
-		let confirmedSuggestion = imageFixtures[ 0 ].suggestions[ 1 ];
+		const unconfirmedSuggestion = imageFixtures[ 0 ].suggestions[ 0 ];
+		const confirmedSuggestion = imageFixtures[ 0 ].suggestions[ 1 ];
 		confirmedSuggestion.confirmed = true;
 
 		getters.currentImage.mockReturnValue( imageFixtures[ 0 ] );
@@ -85,8 +87,8 @@ describe( 'ImageCard', () => {
 	} );
 
 	it( 'dispatches the publish action when the publish button is clicked', () => {
-		let unconfirmedSuggestion = imageFixtures[ 0 ].suggestions[ 0 ];
-		let confirmedSuggestion = imageFixtures[ 0 ].suggestions[ 1 ];
+		const unconfirmedSuggestion = imageFixtures[ 0 ].suggestions[ 0 ];
+		const confirmedSuggestion = imageFixtures[ 0 ].suggestions[ 1 ];
 		confirmedSuggestion.confirmed = true;
 
 		getters.currentImage.mockReturnValue( imageFixtures[ 0 ] );
@@ -118,8 +120,8 @@ describe( 'ImageCard', () => {
 	} );
 
 	it( 'logs a "publish" event when the publish button is clicked', () => {
-		let unconfirmedSuggestion = imageFixtures[ 0 ].suggestions[ 0 ];
-		let confirmedSuggestion = imageFixtures[ 0 ].suggestions[ 1 ];
+		const unconfirmedSuggestion = imageFixtures[ 0 ].suggestions[ 0 ];
+		const confirmedSuggestion = imageFixtures[ 0 ].suggestions[ 1 ];
 		confirmedSuggestion.confirmed = true;
 
 		getters.currentImage.mockReturnValue( imageFixtures[ 0 ] );

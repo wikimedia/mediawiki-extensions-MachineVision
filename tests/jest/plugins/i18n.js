@@ -5,6 +5,8 @@
  * instead of banana-i18n.
  */
 
+'use strict';
+
 module.exports = {
 	install: function ( Vue ) {
 		/**
@@ -50,7 +52,7 @@ module.exports = {
 			bind: function ( el, binding ) {
 				// If v-i18n-html:foo was used, binding.arg = 'foo'
 				// If v-i18n-html="'foo'" was used, binding.value = 'foo'
-				var messageKey = binding.arg || binding.value;
+				const messageKey = binding.arg || binding.value;
 				// eslint-disable-next-line mediawiki/msg-doc
 				el.innerHTML = mw.message( messageKey ).parse();
 			}

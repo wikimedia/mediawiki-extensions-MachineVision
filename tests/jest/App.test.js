@@ -1,3 +1,5 @@
+'use strict';
+
 const VueTestUtils = require( '@vue/test-utils' );
 const Vuex = require( 'vuex' );
 const App = require( '../../resources/components/App.vue' );

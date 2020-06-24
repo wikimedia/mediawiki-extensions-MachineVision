@@ -1,3 +1,5 @@
+'use strict';
+
 const imageFixtures = require( './fixtures/imageData.json' ),
 	mutations = require( '../../resources/store/mutations.js' );
 
@@ -66,7 +68,7 @@ describe( 'mutations', () => {
 
 	describe( 'addImage', () => {
 		it( 'adds the image object to the specified queue', () => {
-			var image = fixtures[ 0 ];
+			const image = fixtures[ 0 ];
 			mutations.addImage( state, { image: image, queue: 'user' } );
 
 			expect( state.images.user.length ).toBe( 1 );
@@ -74,7 +76,7 @@ describe( 'mutations', () => {
 		} );
 
 		it( 'defaults to current tab queue if no queue is specified', () => {
-			var image = fixtures[ 0 ];
+			const image = fixtures[ 0 ];
 			mutations.addImage( state, { image: image } );
 
 			expect( state.images.popular.length ).toBe( 1 );
@@ -82,7 +84,7 @@ describe( 'mutations', () => {
 		} );
 
 		it( 'throws an error if specified queue does not exist', () => {
-			var image = fixtures[ 0 ];
+			const image = fixtures[ 0 ];
 
 			expect( () => {
 				mutations.addImage( state, { image: image, queue: 'foo' } );
@@ -125,7 +127,7 @@ describe( 'mutations', () => {
 
 	describe( 'toggleSuggestion', () => {
 		it( 'finds a suggestion of the first image in the active tab and toggles its state', () => {
-			var image = fixtures[ 0 ],
+			const image = fixtures[ 0 ],
 				suggestions = image.suggestions,
 				suggestionToToggle = suggestions[ 0 ];
 
