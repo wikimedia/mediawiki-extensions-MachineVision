@@ -45,7 +45,7 @@
 		"UnitTestsBeforeDatabaseTeardown": "MediaWiki\\Extension\\MachineVision\\Hooks::onUnitTestsBeforeDatabaseTeardown",
 		"GetPreferences": "MediaWiki\\Extension\\MachineVision\\Hooks::onGetPreferences",
 		"FileDeleteComplete": "MediaWiki\\Extension\\MachineVision\\Hooks::onFileDeleteComplete",
-		"PageContentSaveComplete": "MediaWiki\\Extension\\MachineVision\\Hooks::onPageContentSaveComplete",
+		"PageSaveComplete": "MediaWiki\\Extension\\MachineVision\\Hooks::onPageSaveComplete",
 		"RollbackComplete": "MediaWiki\\Extension\\MachineVision\\Hooks::onRollbackComplete",
 		"ListDefinedTags": "MediaWiki\\Extension\\MachineVision\\Hooks::onRegisterTags",
 		"ChangeTagsListActive": "MediaWiki\\Extension\\MachineVision\\Hooks::onRegisterTags",

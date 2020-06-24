@@ -4,7 +4,6 @@ namespace MediaWiki\Extension\MachineVision;
 
 use Article;
 use ChangeTags;
-use Content;
 use DatabaseUpdater;
 use DeferredUpdates;
 use DomainException;
@@ -16,10 +15,10 @@ use IContextSource;
 use LocalFile;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Storage\EditResult;
+use MediaWiki\User\UserIdentity;
 use MWException;
-use Revision;
 use Skin;
-use Status;
 use UploadBase;
 use User;
 use Wikimedia\Rdbms\IMaintainableDatabase;
@@ -62,41 +61,29 @@ class Hooks {
 	}
 
 	/**
-	 * Handler for PageContentSaveComplete hook
-	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/PageContentSaveComplete
+	 * Handler for PageSaveComplete hook
+	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/PageSaveComplete
 	 *
-	 * @param WikiPage &$wikiPage modified WikiPage
-	 * @param User &$user User who edited
-	 * @param Content $content New article text
+	 * @param WikiPage $wikiPage modified WikiPage
+	 * @param UserIdentity $userIdentity User who edited
 	 * @param string $summary Edit summary
-	 * @param bool $minoredit Minor edit or not
-	 * @param bool $watchthis Watch this article?
-	 * @param string $sectionanchor Section that was edited
-	 * @param int &$flags Edit flags
-	 * @param Revision $revision Revision that was created
-	 * @param Status &$status
-	 * @param int $baseRevId
-	 * @param int $undidRevId
+	 * @param int $flags Edit flags
+	 * @param RevisionRecord $revisionRecord Revision that was created
+	 * @param EditResult $editResult
 	 */
-	public static function onPageContentSaveComplete(
-		&$wikiPage,
-		&$user,
-		$content,
-		$summary,
-		$minoredit,
-		$watchthis,
-		$sectionanchor,
-		&$flags,
-		$revision,
-		Status &$status,
-		$baseRevId,
-		$undidRevId = 0
+	public static function onPageSaveComplete(
+		WikiPage $wikiPage,
+		UserIdentity $userIdentity,
+		string $summary,
+		int $flags,
+		RevisionRecord $revisionRecord,
+		EditResult $editResult
 	) {
+		$undidRevId = $editResult->getUndidRevId();
 		if ( $undidRevId ) {
 			self::tagComputerAidedTaggingRevert( $undidRevId );
 			return;
 		}
-		$services = MediaWikiServices::getInstance();
 		if ( strpos( $summary, 'wbsetclaim-create' ) === false ) {
 			return;
 		}
@@ -104,7 +91,6 @@ class Hooks {
 		if ( $title->getNamespace() !== NS_FILE ) {
 			return;
 		}
-		$services = MediaWikiServices::getInstance();
 		try {
 			$depicts = Util::getMediaInfoPropertyId( 'depicts' );
 		} catch ( DomainException $e ) {
@@ -115,6 +101,7 @@ class Hooks {
 		if ( strpos( $summary, $depicts ) === false ) {
 			return;
 		}
+		$services = MediaWikiServices::getInstance();
 		DeferredUpdates::addCallableUpdate( function () use ( $services, $title ) {
 			$extensionServices = new Services( $services );
 			if ( !$extensionServices->getTitleFilter()->isGoodTitle( $title ) ) {
