@@ -347,6 +347,17 @@ module.exports = {
 			color: @color-base;
 		}
 	}
+
+	.wbmad-spinner {
+		background-color: rgba( 255, 255, 255, 0.5 );
+		border-radius: @wbmad-border-radius-image-card;
+		height: 100%;
+		padding: 0;
+		position: absolute;
+		top: 0;
+		width: 100%;
+		z-index: 1;
+	}
 }
 
 .wbmad-image-with-suggestions__header {
@@ -370,17 +381,6 @@ module.exports = {
 
 	.mw-toggle-switch__label {
 		font-size: 0.928em;
-	}
-
-	.wbmad-spinner {
-		background-color: rgba( 255, 255, 255, 0.5 );
-		border-radius: @wbmad-border-radius-image-card;
-		height: 100%;
-		padding: 0;
-		position: absolute;
-		top: 0;
-		width: 100%;
-		z-index: 1;
 	}
 }
 
