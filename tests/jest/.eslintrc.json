@@ -1,22 +1,17 @@
 {
 	"root": true,
 	"extends": [
-		"../../.eslintrc.json"
+		"wikimedia/server",
+		"wikimedia/jquery",
+		"wikimedia/mediawiki"
 	],
-	"parserOptions": {
-		"ecmaVersion": 6
-	},
 	"globals": {
-		"OO": "readonly",
-		"global": true
+		"global": "readonly"
 	},
 	"rules": {
-		"no-implicit-globals": "off",
-		"max-len": "off",
-		"one-var": "off"
+		"max-len": "off"
 	},
 	"env": {
-		"es6": true,
 		"jest": true
 	}
 }

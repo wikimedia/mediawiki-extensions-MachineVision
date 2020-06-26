@@ -1,3 +1,5 @@
+'use strict';
+
 const Vue = require( 'vue' );
 const VueTestUtils = require( '@vue/test-utils' );
 const Vuex = require( 'vuex' );
@@ -88,7 +90,7 @@ describe( 'CardStack', () => {
 		expect( imageCard.exists() ).toBe( true );
 	} );
 
-	it( 'dispatches the getImages action when the count of the image queue reaches zero', done => {
+	it( 'dispatches the getImages action when the count of the image queue reaches zero', ( done ) => {
 		VueTestUtils.shallowMount( CardStack, {
 			propsData: {
 				queue: 'popular'

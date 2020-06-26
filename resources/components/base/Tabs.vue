@@ -136,6 +136,7 @@ module.exports = {
 		 * isActive attribute for each tab.
 		 */
 		initializeTabs: function () {
+			// eslint-disable-next-line no-jquery/variable-pattern
 			var tabs = this.$children;
 			this.tabs = {};
 
