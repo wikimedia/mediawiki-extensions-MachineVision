@@ -2,12 +2,13 @@
 	"@metadata": {
 		"authors": [
 			"Kkairri",
-			"Omotecho"
+			"Omotecho",
+			"Shirayuki"
 		]
 	},
 	"machinevision-desc": "内部および外部の機械読み取りサービス提供者向けのインターフェースで出力結果の提供と保存を行う。",
 	"machinevision-machineaidedtagging": "タグの候補",
-	"machinevision-machineaidedtagging-intro": "画像の[[c:Commons:Depicts|被写体もしくは対象物]]に対するタグの候補を評価します。利用者が確認したタグ以外は画像に添付されません。詳細は[[c:Commons:Structured_data/Computer-aided_tagging|プロジェクトページ]]を、またツールの改善点はぜひ[[c:Commons_talk:Structured_data/Computer-aided_tagging|フィードバック]]をご参照ください。",
+	"machinevision-machineaidedtagging-intro": "画像の[[Project:Depicts|被写体もしくは対象物]]に対するタグの候補を評価します。利用者が確認したタグ以外は画像に添付されません。詳細は[[Project:Structured_data/Computer-aided_tagging|プロジェクトページ]]を、またツールの改善点はぜひ[[Project_talk:Structured_data/Computer-aided_tagging|フィードバック]]を参照してください。",
 	"machinevision-machineaidedtagging-tabs-heading": "画像の評価",
 	"machinevision-machineaidedtagging-popular-tab": "人気",
 	"machinevision-machineaidedtagging-user-tab": "個人のアップロード",
@@ -60,7 +61,7 @@
 	"tag-computer-aided-tagging-manual-revert-description": "編集のうち、コンピュータ支援タグツールにより利用者設定ラベルを追加した版の巻き戻し",
 	"echo-machinevision-suggestions-ready-notification-header-compact": "タグが付き確認待ちです",
 	"echo-machinevision-suggestions-ready-notification-header": "{{GENDER:$1|あなた}}の最近の投稿にタグが付きましたので、ご確認ください",
-	"echo-machinevision-suggestions-ready-notification-body": "こんにちは！ 先日、{{GENDER:$1|あなたが}}コモンズに投稿した画像にタグが付きましたので、確認をお願いします。適切なタグが付くとコモンズ利用者の皆さんにとって{{GENDER:$1|あなたの}}画像を探しやすくなり、ぜひリンク先で{{GENDER:$1|あなたに}}提案されたタグを評価してください。投稿者の皆さんが承認したタグのみ、コモンズにある画像のデータに組み込まれます。このツールの詳細は、コンピュータ補助によるタグツールのプロジェクトページをご参照ください。",
+	"echo-machinevision-suggestions-ready-notification-body": "こんにちは！ 先日、{{GENDER:$1|あなたが}}コモンズに投稿した画像にタグが付きましたので、確認をお願いします。適切なタグが付くとコモンズ利用者の皆さんにとって{{GENDER:$1|あなたの}}画像を探しやすくなり、ぜひリンク先で{{GENDER:$1|あなたに}}提案されたタグを評価してください。投稿者の皆さんが承認したタグのみ、コモンズにある画像のデータに組み込まれます。このツールの詳細は、コンピュータ補助によるタグツールのプロジェクトページを参照してください。",
 	"echo-machinevision-suggestions-ready-notification-primary-link": "タグを確認",
 	"echo-category-title-machinevision": "確認が必要なタグ",
 	"echo-pref-tooltip-machinevision-suggestions-ready": "タグの確認作業があるかどうか知りたいので、タグ処理が済んだ私の画像の通知を受ける。"
