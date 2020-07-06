@@ -208,6 +208,7 @@ module.exports = {
 		}
 	}
 }
+
 .wbmad-user-cta {
 	.wbmad-user-message-icon {
 		background-image: url( ../icons/empty-state-icon.svg );
