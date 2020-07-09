@@ -1,0 +1,40 @@
+{
+	"@metadata": {
+		"authors": [
+			"Renessaince"
+		]
+	},
+	"machinevision-desc": "Узаемадзейнічае з унутранымі і зьнешнімі службамі машыннага распазнаваньня выяваў, захоўвае і выдае вынікі.",
+	"machinevision-machineaidedtagging": "Прапанаваныя цэтлікі",
+	"machinevision-machineaidedtagging-intro": "Праглядзіце прапанаваныя цэтлікі выяўленых на выявах [[Project:Depicts|аб’ектаў]]. Да выяваў будуць дададзеныя толькі пацьверджаныя ўдзельнікам цэтлікі. Каб даведацца болей, паглядзіце [[Project:Structured_data/Computer-aided_tagging|старонку праекта]] і [[Project_talk:Structured_data/Computer-aided_tagging|пакіньце водгук]], як зрабіць гэты інструмэнт яшчэ лепшым!",
+	"machinevision-machineaidedtagging-tabs-heading": "Выявы для праверкі",
+	"machinevision-machineaidedtagging-popular-tab": "Папулярныя",
+	"machinevision-machineaidedtagging-user-tab": "Уласныя загрузкі",
+	"machinevision-machineaidedtagging-preferences-link": "[[Special:Preferences#mw-prefsection-echo|Адключыць паведамленьні]] ад гэтага інструмэнту",
+	"machinevision-machineaidedtagging-license-information": "Ліцэнзія CC0 для тых, хто дадае цэтлікі - Націскаючы «Апублікаваць зьмены», вы згаджаецеся з [[wmf:Terms_of_Use|умовамі выкарыстаньня]] і незваротна згаджаецеся апублікаваць ваш унёсак паводле [https://creativecommons.org/publicdomain/zero/1.0/ ліцэнзіі Creative Commons CC0].",
+	"machinevision-pageinfo-field-suggested-labels": "Прапанаваныя меткі",
+	"machinevision-login-message": "Калі ласка, <span class=\"plainlinks\">[{{fullurl:{{#Special:UserLogin}}|returnto=Special:SuggestedTags}} увайдзіце]</span>, каб убачыць гэтую старонку і пачаць пазначаць выявы. Трапныя цэтлікі палягчаюць удзельнікам ВікіСховішча пошук выяваў, таму ваш унёсак будзе каштоўны.",
+	"machinevision-autoconfirmed-message": "Трапныя цэтлікі палягчаюць пошук выяваў усім удзельнікам ВікіСховішча, дык калі ласка, атрымайце [[mw:Special:MyLanguage/Manual:Autoconfirmed_users|аўтапацьверджаньне]], бо гэтым інструмэнтам могуць карыстацца толькі аўтапацьверджаныя ўдзельнікі.",
+	"machinevision-publish": "Апублікаваць",
+	"machinevision-publish-title": "Апублікаваць цэтлікі?",
+	"machinevision-add-custom-tag": "Дадаць цэтлік",
+	"machinevision-add-custom-tag-title": "Дадаць да гэтай выявы іншы цэтлік",
+	"machinevision-skip": "Прапусьціць",
+	"machinevision-skip-title": "Прапусьціць прапановы для «$1»?",
+	"machinevision-personal-uploads-count": "Вы маеце для прагляду $1 {{PLURAL:$1|уласную загрузку|уласныя загрузкі|уласных загрузак}}.",
+	"machinevision-suggestion-confirm-title": "Пацьвердзіць прапанову «$1»?",
+	"machinevision-suggestion-confirm-undo-title": "Скасаваць пацьверджаньне прапановы «$1»?",
+	"machinevision-loading-message": "Загрузка выяваў…",
+	"machinevision-failure-message": "Шкадуем, але нешта пайшло ня так. Калі ласка, вярніцеся пазьней або [[Project_talk:Structured_data/Computer-aided_tagging|зьвяжыцеся з намі]].",
+	"machinevision-confirm-tags-dialog-title": "Пацьвердзіць цэтлікі",
+	"machinevision-confirm-tags-dialog-confirm-action": "Добра",
+	"machinevision-confirm-tags-dialog-cancel-action": "Скасаваць",
+	"machinevision-confirm-tags-dialog-heading": "Гэтая выява адлюстроўвае:",
+	"machinevision-success-message": "Цэтлікі дададзеныя да выявы.",
+	"machinevision-success-message-with-warning": "Цэтлікі дададзеныя да выявы з наступнымі выняткамі:",
+	"machinevision-publish-error-message": "Нешта пайшло ня так і цэтлікі не былі апублікаваныя. Калі ласка, паспрабуйце пазьней.",
+	"machinevision-onboarding-dialog-heading": "Пазначайце выявы цэтлікамі, каб іх было лягчэй знайсьці іншым",
+	"machinevision-onboarding-dialog-text": "Пацьвярджаючы прапанаваныя цэтлікі, вы зможаце палегчыць пошук выяваў. Цэтлікі прапанаваныя кампутарам, але каб пацьвердзіць іхнюю трапнасьць, іх мусіць зацьвердзіць чалавек.",
+	"machinevision-onboarding-dialog-cta": "Пачаць пазначэньне",
+	"echo-category-title-machinevision": "Прапанаваныя цэтлікі для рэцэнзіі"
+}
