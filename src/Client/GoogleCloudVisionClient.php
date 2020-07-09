@@ -218,7 +218,7 @@ class GoogleCloudVisionClient implements LoggerAwareInterface {
 			$racy
 		);
 
-		if ( $notify && $labelsCount > 0 ) {
+		if ( $notify && $labelsCount > 0 && $initialState !== Repository::REVIEW_WITHHELD_ALL ) {
 			$this->createEchoNotification( $file );
 		}
 	}
