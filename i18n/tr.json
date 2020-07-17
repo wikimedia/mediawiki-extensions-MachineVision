@@ -3,6 +3,7 @@
 		"authors": [
 			"BaRaN6161 TURK",
 			"Grkn gll",
+			"Rapsar",
 			"Sucsuzz",
 			"Suvarioglu"
 		]
@@ -14,11 +15,11 @@
 	"machinevision-machineaidedtagging-popular-tab": "Popüler",
 	"machinevision-machineaidedtagging-user-tab": "Kişisel yüklemeler",
 	"machinevision-machineaidedtagging-preferences-link": "Bu araçtan [[Special:Preferences#mw-prefsection-echo|bildirimleri devre dışı bırak]]",
-	"machinevision-machineaidedtagging-license-information": "Etiket katkıları için CC0 lisansı – \"Yayınla\"'yı tıklayarak [[wmf:Terms_of_Use|kullanım şartları]]'nı kabul etmiş olursunuz ve katkınızı [https://creativecommons.org/publicdomain/zero/1.0/deed.tr Creative Commons CC0 Lisansı] uyarınca geri dönülmez şekilde bırakmayı kabul edersiniz.",
+	"machinevision-machineaidedtagging-license-information": "Etiket katkıları için CC0 lisansı - \"Yayımla\"ya tıklayarak [[wmf:Terms_of_Use|kullanım şartlarını]] ve katkınızı, [https://creativecommons.org/publicdomain/zero/1.0/deed.tr Creative Commons CC0 Lisansı] altında, geri dönülmez şekilde yayımlamayı kabul edersiniz.",
 	"machinevision-pageinfo-field-suggested-labels": "Önerilen etiketler",
 	"machinevision-login-message": "Lütfen bu sayfayı görmek ve görüntüleri etiketlemeye başlamak için <span class=\"plainlinks\">[{{fullurl:{{#Special:UserLogin}}|returnto=Special:SuggestedTags}} giriş yapın]</span>. Doğru etiketler, tüm Commons kullanıcılarının resim bulmasını kolaylaştırır ve katkılarınız için teşekkür ederiz.",
 	"machinevision-autoconfirmed-message": "Doğru etiketler, tüm Commons kullanıcılarının resimleri bulmasını kolaylaştırır, bu nedenle yalnızca otomatik olarak onaylanan kullanıcılar bu aracı kullanabildiğinden lütfen [[mw:Special:MyLanguage/Manual:Autoconfirmed_users|otomatik onaylanan]] olun.",
-	"machinevision-publish": "Yayınla",
+	"machinevision-publish": "Yayımla",
 	"machinevision-publish-title": "Etiketler yayınlansın mı?",
 	"machinevision-add-custom-tag": "Etiket ekle",
 	"machinevision-add-custom-tag-title": "Bu resme özel bir etiket ekle",
