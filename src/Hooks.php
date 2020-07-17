@@ -44,6 +44,12 @@ class Hooks {
 		if ( !Util::isMediaTypeAllowed( $file->getMediaType() ) ) {
 			return;
 		}
+
+		// Ignore new versions of existing files.
+		if ( $file->getHistory( 1 ) ) {
+			return;
+		}
+
 		$extensionServices = new Services( MediaWikiServices::getInstance() );
 		$extensionConfig = $extensionServices->getExtensionConfig();
 		if ( !$extensionConfig->get( 'MachineVisionRequestLabelsOnUploadComplete' ) ) {
