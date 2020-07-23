@@ -12,7 +12,7 @@
 	"machinevision-machineaidedtagging-tabs-heading": "Зображення до перевірки",
 	"machinevision-machineaidedtagging-popular-tab": "Популярні",
 	"machinevision-machineaidedtagging-user-tab": "Особисті завантаження",
-	"machinevision-machineaidedtagging-preferences-link": "[[Special:Preferences#mw-prefsection-echo|Вимкнути нотифікації]] цього інструменту",
+	"machinevision-machineaidedtagging-preferences-link": "[[Special:Preferences#mw-prefsection-echo|Вимкнути сповіщення]] від цього інструменту",
 	"machinevision-machineaidedtagging-license-information": "Ліцензія CC0 для тих, хто додає теги — клацнувши кнопку «опублікувати», Ви погоджуєтеся з нашими [[wmf:Terms_of_Use|Умовами використання]] та висловлюєте невідкличну згоду на публікацію свого внеску під [https://creativecommons.org/publicdomain/zero/1.0/ ліцензією Creative Commons CC0].",
 	"machinevision-pageinfo-field-suggested-labels": "Пропоновані мітки",
 	"machinevision-login-message": "Будь ласка, <span class=\"plainlinks\">[{{fullurl:{{#Special:UserLogin}}|returnto=Special:SuggestedTags}} увійдіть у систему]</span>, щоб переглянути цю сторінку й почати додавати теги до зображень. Точні теги полегшують пошук зображень для всіх користувачів Вікісховища, тож ми цінуємо Ваш внесок.",

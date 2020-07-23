@@ -1,6 +1,8 @@
 {
 	"@metadata": {
-		"authors": []
+		"authors": [
+			"WikiBayer"
+		]
 	},
 	"machinevision-desc": "Schnittstellen zu internen und externen Bildverarbeitungs-Dienstleistern sowie Speicherung und Bereitstellung von Ergebnissen.",
 	"machinevision-machineaidedtagging": "Vorgeschlagene Tags",
@@ -36,7 +38,7 @@
 	"machinevision-onboarding-dialog-cta": "Mit dem Hinzufügen von Tags anfangen",
 	"machinevision-onboarding-dialog-disclaimer": "Nur Tags, die du genehmigst, werden den Bildern hinzugefügt.",
 	"machinevision-onboarding-dialog-close-label": "Schließen",
-	"machinevision-cta-heading": "Du habst alle deine Uploads markiert!",
+	"machinevision-cta-heading": "Du hast alle deine Uploads markiert!",
 	"machinevision-cta-text": "Danke, dass du dazu beigetragen hast, die Bilder für alle leichter auffindbar zu machen - wie wäre es, noch mehr zu markieren?",
 	"machinevision-cta-cta": "Beliebte Bilder mit Tags versehen",
 	"machinevision-no-uploads-cta-heading": "Du hast keine Bilder zur Überprüfung",
