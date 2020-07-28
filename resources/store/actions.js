@@ -8,7 +8,7 @@ var MvImage = require( '../models/Image.js' ),
 	),
 	datamodel = require( 'wikibase.datamodel' ),
 	serialization = require( 'wikibase.serialization' ),
-	mvConfig = require( 'ext.MachineVision.config' ),
+	mvConfig = require( '../config.json' ),
 	ensureTabExists = require( './utils.js' ).ensureTabExists,
 	getCategories = require( './utils.js' ).getCategories,
 	queues = {

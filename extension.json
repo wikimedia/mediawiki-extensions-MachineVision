@@ -202,15 +202,6 @@
 		"remoteExtPath": "MachineVision/resources"
 	},
 	"ResourceModules": {
-		"ext.MachineVision.polyfill": {
-			"scripts": [
-				"polyfills/Array.prototype.find.js"
-			],
-			"targets": [
-				"mobile",
-				"desktop"
-			]
-		},
 		"ext.MachineVision.init": {
 			"styles": [
 				"init.css"
@@ -220,22 +211,14 @@
 				"desktop"
 			]
 		},
-		"ext.MachineVision.config": {
-			"packageFiles": [
-				"config/init.js",
-				{
-					"name": "config/config.json",
-					"callback": [ "MediaWiki\\Extension\\MachineVision\\Hooks", "getJSConfig" ]
-				}
-			],
-			"targets": [
-				"mobile",
-				"desktop"
-			]
-		},
 		"ext.MachineVision": {
 			"packageFiles": [
 				"init.js",
+				"polyfills/Array.prototype.find.js",
+				{
+					"name": "config.json",
+					"callback": [ "MediaWiki\\Extension\\MachineVision\\Hooks", "getJSConfig" ]
+				},
 				"components/base/Button.vue",
 				"components/base/Icon.vue",
 				"components/base/Message.vue",
@@ -284,8 +267,6 @@
 				"widgets/ConfirmTagsDialogContent.less"
 			],
 			"dependencies": [
-				"ext.MachineVision.config",
-				"ext.MachineVision.polyfill",
 				"ext.eventLogging",
 				"oojs",
 				"oojs-ui-core",
