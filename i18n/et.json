@@ -42,9 +42,12 @@
 	"machinevision-categories-label": "Kategooriad:",
 	"machinevision-add-custom-tag-dialog-title": "Kohandatud silt",
 	"machinevision-add-custom-tag-dialog-add-action": "Lisa",
+	"machinevision-image-exclusion-notification": "Teatud tüüpi failid nagu pildid tuvastatud ja teadaolevatest kunstiteostest või inimestest võivad tehniliste ja kultuuriliste piirangute tõttu raalsildistamisest kõrvale jääda.",
+	"machinevision-detailed-tags-toggle-label": "Üksikasjalikud sildid",
 	"echo-machinevision-suggestions-ready-notification-header-compact": "Sildisoovitused on ülevaatuseks valmis",
 	"echo-machinevision-suggestions-ready-notification-header": "Sildisoovitused {{GENDER:$1|sinu}} hiljuti üles laaditud faili(de) kohta on valmis ülevaatuseks.",
-	"echo-machinevision-suggestions-ready-notification-body": "Tere. Pildid, mille hiljuti Commonsisse laadisid, on töödeldud ja nende kohta käivad sildisoovitused on valmis ülevaatuseks. Täpsete siltide abil on Commonsi kasutajatel {{GENDER:$1|sinu}} pilte lihtsam leida. Lingitud lehel saad sildisoovitused üle vaadata. Pildi andmete hulka lisatakse Commonsis ainult sildid, mille kasutajad on kinnitanud. Lisateavet selle tööriista kohta leiad arvutipõhise sildistamise projektilehelt.",
+	"echo-machinevision-suggestions-ready-notification-body": "Tere. Pildid, mille hiljuti Commonsisse laadisid, on töödeldud ja nende kohta käivad sildisoovitused on valmis ülevaatuseks. Täpsete siltide abil on Commonsi kasutajatel {{GENDER:$1|sinu}} pilte lihtsam leida. Lingitud lehel saad sildisoovitused üle vaadata. Pildi andmete hulka lisatakse Commonsis ainult sildid, mille kasutajad on kinnitanud. Lisateavet selle tööriista kohta leiad raalsildistamise projektilehelt.",
+	"echo-machinevision-suggestions-ready-notification-primary-link": "Sildisoovituste ülevaatus",
 	"echo-category-title-machinevision": "Sildisoovituste ülevaatus",
 	"echo-pref-tooltip-machinevision-suggestions-ready": "Teavita mind, kui minu pildid on töödeldud ja sildisoovitused on ülevaatuseks valmis."
 }
