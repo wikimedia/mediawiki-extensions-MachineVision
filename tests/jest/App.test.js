@@ -43,8 +43,8 @@ describe( 'App', () => {
 			isAuthenticated: jest.fn(),
 			isAutoconfirmed: jest.fn(),
 			currentImage: jest.fn(), // needed for tests that use deep mounting
-			tabs: function ( state ) {
-				return Object.keys( state.images );
+			tabs: function ( tabsState ) {
+				return Object.keys( tabsState.images );
 			}
 		};
 

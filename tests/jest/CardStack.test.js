@@ -41,8 +41,8 @@ describe( 'CardStack', () => {
 		};
 
 		mutations = {
-			removeImage: function ( state ) {
-				state.images[ state.currentTab ].shift();
+			removeImage: function ( tabState ) {
+				tabState.images[ tabState.currentTab ].shift();
 			}
 		};
 
