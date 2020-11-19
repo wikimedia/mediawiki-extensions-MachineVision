@@ -1,7 +1,6 @@
 {
 	"require": {
-		"ext-openssl": "*",
-		"monolog/monolog": "^1.24.0"
+		"ext-openssl": "*"
 	},
 	"require-dev": {
 		"mediawiki/mediawiki-codesniffer": "33.0.0",
