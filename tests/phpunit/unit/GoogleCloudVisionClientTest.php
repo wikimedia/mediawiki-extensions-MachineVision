@@ -11,9 +11,9 @@ use Wikimedia\TestingAccessWrapper;
 /** @covers \MediaWiki\Extension\MachineVision\Client\GoogleCloudVisionClient */
 class GoogleCloudVisionClientTest extends MediaWikiUnitTestCase {
 
-	const WITHHOLD_IMAGE_LIST = [ 'Q1' ];
+	private const WITHHOLD_IMAGE_LIST = [ 'Q1' ];
 
-	const SAFE_SEARCH_LIMITS = [
+	private const SAFE_SEARCH_LIMITS = [
 		'adult' => 3,
 		'spoof' => 3,
 		'medical' => 3,

@@ -14,13 +14,13 @@ class GoogleOAuthClient implements LoggerAwareInterface {
 
 	use LoggerAwareTrait;
 
-	const TOKEN_CREDENTIAL_URI = 'https://oauth2.googleapis.com/token';
-	const JWT_URN = 'urn:ietf:params:oauth:grant-type:jwt-bearer';
-	const DEFAULT_EXPIRY_SECONDS = 3600;
-	const DEFAULT_SKEW_SECONDS = 60;
-	const SCOPE = 'https://www.googleapis.com/auth/cloud-vision';
-	const SIGNING_ALGORITHM = 'RS256';
-	const HASHING_ALGORITHM = 'SHA256';
+	private const TOKEN_CREDENTIAL_URI = 'https://oauth2.googleapis.com/token';
+	private const JWT_URN = 'urn:ietf:params:oauth:grant-type:jwt-bearer';
+	private const DEFAULT_EXPIRY_SECONDS = 3600;
+	private const DEFAULT_SKEW_SECONDS = 60;
+	private const SCOPE = 'https://www.googleapis.com/auth/cloud-vision';
+	private const SIGNING_ALGORITHM = 'RS256';
+	private const HASHING_ALGORITHM = 'SHA256';
 
 	/** @var HttpRequestFactory */
 	private $httpRequestFactory;

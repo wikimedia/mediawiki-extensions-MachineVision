@@ -19,9 +19,9 @@ class GoogleCloudVisionClient implements LoggerAwareInterface {
 
 	use LoggerAwareTrait;
 
-	const MAX_IMAGE_SIZE = 10485760;
+	private const MAX_IMAGE_SIZE = 10485760;
 
-	const SAFE_SEARCH_LIKELIHOODS = [
+	private const SAFE_SEARCH_LIKELIHOODS = [
 		'UNKNOWN' => 0,
 		'VERY_UNLIKELY' => 1,
 		'UNLIKELY' => 2,

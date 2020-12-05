@@ -19,12 +19,12 @@ class Repository implements LoggerAwareInterface {
 	use LoggerAwareTrait;
 
 	// Constants used for machine_vision_label.mvl_review
-	const REVIEW_UNREVIEWED = 0;
-	const REVIEW_ACCEPTED = 1;
-	const REVIEW_REJECTED = -1;
-	const REVIEW_WITHHELD_POPULAR = -2;
-	const REVIEW_WITHHELD_ALL = -3;
-	const REVIEW_NOT_DISPLAYED = -4;
+	public const REVIEW_UNREVIEWED = 0;
+	public const REVIEW_ACCEPTED = 1;
+	public const REVIEW_REJECTED = -1;
+	public const REVIEW_WITHHELD_POPULAR = -2;
+	public const REVIEW_WITHHELD_ALL = -3;
+	public const REVIEW_NOT_DISPLAYED = -4;
 
 	private static $reviewStates = [
 		self::REVIEW_UNREVIEWED,
