@@ -3,6 +3,7 @@
 		"authors": [
 			"Gomoko",
 			"Thibaut120094",
+			"Urhixidur",
 			"Verdy p",
 			"Wladek92"
 		]
@@ -33,7 +34,7 @@
 	"apihelp-query+imagelabels-paramvalue-state-withheld": "Légendes pour une image qui a été retenue de la présentation dans le Balisage assisté par ordinateur.",
 	"apihelp-query+imagelabels-example-1": "Afficher les légendes d’image suggérées par la machine pour <kbd>Example.png</kbd>.",
 	"apihelp-query+unreviewedimagelabels-summary": "Afficher les titres avec les libellés d’image suggérés nécessitant une relecture.",
-	"apihelp-query+unreviewedimagelabels-param-uploader": "Ne renvoyer que les résultats téléchargés par cet utilisateur.",
+	"apihelp-query+unreviewedimagelabels-param-uploader": "Ne renvoyer que les résultats téléversés par cet utilisateur.",
 	"apihelp-query+unreviewedimagelabels-param-limit": "Nombre d’éléments de résultat à renvoyer.",
 	"apihelp-query+unreviewedimagecount-summary": "Afficher le nombre d’images avec des suggestions de légende attendant une revue, globalement et pour l’utilisateur actuel s’il est connecté.",
 	"apihelp-query+unreviewedimagecount-example": "Obtenir le nombre d’images non revues."
