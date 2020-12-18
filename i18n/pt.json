@@ -7,6 +7,8 @@
 			"Mansil alfalb"
 		]
 	},
+	"machinevision-desc": "Faz interface com fornecedores internos e externos de serviços de visão artificial e armazena e serve os resultados.",
+	"machinevision-machineaidedtagging": "Etiquetas sugeridas",
 	"machinevision-machineaidedtagging-tabs-heading": "Imagens para revisão",
 	"machinevision-machineaidedtagging-popular-tab": "Populares",
 	"machinevision-machineaidedtagging-user-tab": "Carregamentos pessoais",
@@ -23,10 +25,21 @@
 	"machinevision-confirm-tags-dialog-confirm-action": "OK",
 	"machinevision-confirm-tags-dialog-cancel-action": "Cancelar",
 	"machinevision-onboarding-dialog-close-label": "Fechar",
+	"machinevision-cta-cta": "Etiquetar imagens populares",
 	"machinevision-no-uploads-cta-heading": "Não tem imagens para rever",
-	"machinevision-javascript-required": "Esta funcionalidade não é suportada no seu navegador da Web.",
+	"machinevision-no-uploads-cta-text": "Carregue imagens novas, por favor, para que a nossa ferramenta possa analisá-las e sugerir etiquetas apropriadas. Se já carregou imagens e não as vê aqui, essas imagens podem estar ainda em revisão e deverá verificar novamente mais tarde. Também pode ajudar a tornar as imagens populares de outros utilizadores mais fáceis de encontrar, etiquetando-as.",
+	"machinevision-generic-no-images-heading": "Neste momento não há imagens disponíveis para etiquetagem.",
+	"machinevision-generic-no-images-text": "Volte mais tarde para etiquetar mais imagens.",
+	"machinevision-javascript-required": "Esta funcionalidade não é suportada no seu browser da internet.",
+	"machinevision-categories-label": "Categorias:",
+	"machinevision-add-custom-tag-dialog-title": "Etiqueta personalizada",
+	"machinevision-add-custom-tag-dialog-add-action": "Adicionar",
+	"machinevision-add-custom-tag-dialog-cancel-action": "Cancelar",
 	"echo-machinevision-suggestions-ready-notification-header-compact": "As etiquetas sugeridas estão prontas para revisão",
 	"echo-machinevision-suggestions-ready-notification-primary-link": "Rever etiquetas",
 	"echo-category-title-machinevision": "Etiquetas sugeridas para revisão",
-	"echo-pref-tooltip-machinevision-suggestions-ready": "Notificar-me quando as minhas imagens tiverem sido processadas e as etiquetas sugeridas estiverem prontas para minha revisão."
+	"echo-pref-tooltip-machinevision-suggestions-ready": "Notificar-me quando as minhas imagens tiverem sido processadas e as etiquetas sugeridas estiverem prontas para minha revisão.",
+	"group-machinevision-tester": "Testadores de visão artificial",
+	"group-machinevision-tester-member": "{{GENDER:$1testador|testadora}} de visão artificial",
+	"grouppage-machinevision-tester": "{{ns:project}}:Testadores de visão artificial"
 }
