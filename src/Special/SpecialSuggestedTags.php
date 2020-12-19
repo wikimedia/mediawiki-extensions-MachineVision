@@ -63,7 +63,7 @@ class SpecialSuggestedTags extends SpecialPage {
 		// Generate login message with link with returnto URL query parameter.
 		// Params aren't supported in the JS version of the messages API so we
 		// have parse it here then pass it to the JS.
-		$loginMessage = wfMessage( 'machinevision-login-message' )->parse();
+		$loginMessage = $this->msg( 'machinevision-login-message' )->parse();
 		$this->getOutput()->addJsConfigVars( 'wgMVSuggestedTagsLoginMessage', $loginMessage );
 
 		$this->getOutput()->addModules( 'ext.MachineVision' );

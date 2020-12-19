@@ -171,14 +171,14 @@ class ApiReviewImageLabels extends ApiBase implements LoggerAwareInterface {
 		$title = Title::newFromText( $filename, NS_FILE );
 		if ( !$title ) {
 			$this->dieWithError(
-				wfMessage( 'apierror-reviewimagelabels-invalidfile', $filename )
+				$this->msg( 'apierror-reviewimagelabels-invalidfile', $filename )
 			);
 		}
 		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable T240141
 		$file = $this->repoGroup->getLocalRepo()->findFile( $title );
 		if ( !$file ) {
 			$this->dieWithError(
-				wfMessage( 'apierror-reviewimagelabels-invalidfile', $filename )
+				$this->msg( 'apierror-reviewimagelabels-invalidfile', $filename )
 			);
 		}
 		return $file;
@@ -198,7 +198,7 @@ class ApiReviewImageLabels extends ApiBase implements LoggerAwareInterface {
 	private function validateLabelState( $filename, $label, $oldState, $newState ) {
 		if ( $oldState === false ) {
 			$this->dieWithError(
-				wfMessage( 'apierror-reviewimagelabels-invalidlabel', $filename, $label )
+				$this->msg( 'apierror-reviewimagelabels-invalidlabel', $filename, $label )
 			);
 		}
 		$validOldStates = [ Repository::REVIEW_UNREVIEWED, Repository::REVIEW_WITHHELD_POPULAR ];
@@ -237,7 +237,7 @@ class ApiReviewImageLabels extends ApiBase implements LoggerAwareInterface {
 		if ( !is_array( $batch ) || $batch !== array_values( $batch ) || !$batch ) {
 			if ( json_last_error() ) {
 				$jsonError = json_last_error_msg();
-				$this->dieWithError( wfMessage( 'apierror-reviewimagelabels-batch-invalid-json',
+				$this->dieWithError( $this->msg( 'apierror-reviewimagelabels-batch-invalid-json',
 					wfEscapeWikiText( $jsonError ) ) );
 			}
 			$this->dieWithError( 'apierror-reviewimagelabels-batch-invalid-structure' );
@@ -246,7 +246,7 @@ class ApiReviewImageLabels extends ApiBase implements LoggerAwareInterface {
 		// Limit the batch size to a reasonable maximum.
 		// @phan-suppress-next-line PhanTypeMismatchArgumentNullableInternal T240141
 		if ( count( $batch ) > ApiBase::LIMIT_BIG1 ) {
-			$msg = wfMessage( 'apierror-reviewimagelabels-batch-toomanyvalues',
+			$msg = $this->msg( 'apierror-reviewimagelabels-batch-toomanyvalues',
 				ApiBase::LIMIT_BIG1 );
 			$this->dieWithError( $msg, 'toomanyvalues' );
 		}
