@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Eitvys200"
+			"Eitvys200",
+			"Tomasdd"
 		]
 	},
 	"apihelp-reviewimagelabels-param-review": "Peržiūros rezultatas.",
@@ -10,5 +11,5 @@
 	"apihelp-query+imagelabels-param-state": "Rodo žymes tik šiose peržiūros būsenose",
 	"apihelp-query+imagelabels-paramvalue-state-unreviewed": "Žymės, kurios dar nebuvo peržiūrėtos.",
 	"apihelp-query+imagelabels-paramvalue-state-accepted": "Žymės, kurios buvo atpažintos kaip tinkamos.",
-	"apihelp-query+imagelabels-paramvalue-state-rejected": "Žymės, kurios buvo identifikuotos kaip neteisingos."
+	"apihelp-query+imagelabels-paramvalue-state-rejected": "Žymės, kurios nebuvo identifikuotos kaip teisingos."
 }
