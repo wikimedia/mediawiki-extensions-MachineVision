@@ -36,5 +36,13 @@
 	"machinevision-onboarding-dialog-heading": "Пазначайце выявы цэтлікамі, каб іх было лягчэй знайсьці іншым",
 	"machinevision-onboarding-dialog-text": "Пацьвярджаючы прапанаваныя цэтлікі, вы зможаце палегчыць пошук выяваў. Цэтлікі прапанаваныя кампутарам, але каб пацьвердзіць іхнюю трапнасьць, іх мусіць зацьвердзіць чалавек.",
 	"machinevision-onboarding-dialog-cta": "Пачаць пазначэньне",
+	"tag-computer-aided-tagging": "Кампутарызаванае тэгаваньне",
+	"tag-computer-aided-tagging-description": "Рэдагаваньні створаныя інструмэнтам Computer-Aided Tagging",
+	"tag-computer-aided-tagging-revert": "Скасаваньне кампутарызаванага тэгаваньня",
+	"tag-computer-aided-tagging-revert-description": "Рэдагаваньні, якія скасоўваюць рэдагаваньні, зробленыя з выкарыстаньнем інструмэнту Computer-Aided Tagging",
+	"tag-computer-aided-tagging-manual": "Кампутарызаванае тэгаваньне — уручную",
+	"tag-computer-aided-tagging-manual-description": "Рэдагаваньні створаныя інструмэнтам Computer-Aided Tagging з прастаўленымі карыстальнікам меткамі",
+	"tag-computer-aided-tagging-manual-revert": "Кампутарызаванае тэгаваньне — уручную (скасаваньне)",
+	"tag-computer-aided-tagging-manual-revert-description": "Рэдагаваньні, якія скасоўваюць рэдагаваньні, зробленыя з выкарыстаньнем інструмэнту Computer-Aided Tagging з прастаўленымі карыстальнікам меткамі",
 	"echo-category-title-machinevision": "Прапанаваныя цэтлікі для рэцэнзіі"
 }
