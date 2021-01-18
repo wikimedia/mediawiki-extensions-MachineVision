@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"Eleassar"
+		]
+	},
+	"tag-computer-aided-tagging-description": "Urejanja, opravljena z orodjem za računalniško podprto označevanje",
+	"tag-computer-aided-tagging-revert": "razveljavitev računalniško podprtega označevanja",
+	"tag-computer-aided-tagging-revert-description": "Urejanja z razveljavitvijo ene ali več redakcij, opravljenih z orodjem za računalniško podprto označevanje",
+	"tag-computer-aided-tagging-manual": "računalniško podprto označevanje – ročno",
+	"tag-computer-aided-tagging-manual-description": "Urejanja, opravljena z orodjem za računalniško podprto označevanje z uporabniškimi oznakami",
+	"tag-computer-aided-tagging-manual-revert": "računalniško podprto označevanje – ročno (razveljavitev)",
+	"tag-computer-aided-tagging-manual-revert-description": "Razveljavitve urejanj z orodjem za računalniško podprto označevanje z uporabniškimi oznakami"
+}
