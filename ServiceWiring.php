@@ -13,6 +13,7 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\NameTableStore;
 use Wikibase\Repo\WikibaseRepo;
+use Wikimedia\AtEase\AtEase;
 use Wikimedia\ObjectFactory;
 
 return [
@@ -39,12 +40,13 @@ return [
 		if ( !$credentialsData ) {
 			// Allow providing a filesystem path for local development
 			$filename = $extensionConfig->get( 'MachineVisionGoogleCredentialsFileLocation' );
-			if ( file_exists( $filename ) ) {
-				$json = file_get_contents( $filename );
-				$credentialsData = json_decode( $json, true );
-			} else {
-				throw new MWException( "Bad credentials file location: $filename" );
+			AtEase::suppressWarnings();
+			$json = file_get_contents( $filename );
+			AtEase::restoreWarnings();
+			if ( $json === false ) {
+				throw new RuntimeException( "File not found: $filename" );
 			}
+			$credentialsData = json_decode( $json, true );
 		}
 
 		$safeSearchLimits = $extensionConfig->get( 'MachineVisionGoogleSafeSearchLimits' );
