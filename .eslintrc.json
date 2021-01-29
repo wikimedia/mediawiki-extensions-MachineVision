@@ -17,7 +17,8 @@
 					"dataValues"
 				]
 			}
-		]
+		],
+		"compat/compat": "warn"
 	},
 	"overrides": [
 		{
