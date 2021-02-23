@@ -1,0 +1,24 @@
+{
+	"@metadata": {
+		"authors": [
+			"Kambai Akau"
+		]
+	},
+	"machinevision-publish": "Shei",
+	"machinevision-publish-title": "Shei a̱yaalama a?",
+	"machinevision-add-custom-tag": "Mbeang a̱lama",
+	"machinevision-add-custom-tag-title": "Mbeang ghwughwu huni a̱lama jhyi a̱gwam",
+	"machinevision-skip": "Fi̱p",
+	"machinevision-loading-message": "Á̱ nyian lodi nghwughwu...",
+	"machinevision-confirm-tags-dialog-title": "Nwuak a̱yaalama shim",
+	"machinevision-confirm-tags-dialog-confirm-action": "Ndei",
+	"machinevision-confirm-tags-dialog-cancel-action": "Lyang",
+	"machinevision-confirm-tags-dialog-heading": "Ghwughwu huni lyiat tazwa:",
+	"machinevision-success-message": "A̱yaalama nang á̱ mbeang ghwughwu huni ndyo.",
+	"machinevision-onboarding-dialog-close-label": "Nyim",
+	"machinevision-categories-label": "Si̱sa:",
+	"machinevision-add-custom-tag-dialog-title": "A̱lama jhyi a̱gwam",
+	"machinevision-add-custom-tag-dialog-add-action": "Mbeang",
+	"machinevision-add-custom-tag-dialog-cancel-action": "Lyang",
+	"machinevision-image-exclusion-notification-dismiss": "Kam shei li̱lak huni"
+}
