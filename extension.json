@@ -193,7 +193,7 @@
 	"attributes": {
 		"EventLogging": {
 			"Schemas": {
-				"SuggestedTagsAction": 19624708
+				"SuggestedTagsAction": "/analytics/legacy/suggestedtagsaction/1.0.0"
 			}
 		}
 	},
