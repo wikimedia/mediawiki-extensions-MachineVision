@@ -7,8 +7,6 @@ use ApiPageSet;
 use ApiQuery;
 use ApiQueryGeneratorBase;
 use MediaWiki\Extension\MachineVision\Repository;
-use MediaWiki\Extension\MachineVision\Services;
-use MediaWiki\MediaWikiServices;
 use Title;
 
 class ApiQueryUnreviewedImageLabels extends ApiQueryGeneratorBase {
@@ -17,22 +15,6 @@ class ApiQueryUnreviewedImageLabels extends ApiQueryGeneratorBase {
 	private $repository;
 
 	/**
-	 * @param ApiQuery $main
-	 * @param string $moduleName
-	 * @return self
-	 */
-	public static function factory( ApiQuery $main, $moduleName ) {
-		$services = MediaWikiServices::getInstance();
-		$extensionServices = new Services( $services );
-		return new self(
-			$main,
-			$moduleName,
-			$extensionServices->getRepository()
-		);
-	}
-
-	/**
-	 * ApiQueryUnreviewedImageLabels constructor.
 	 * @param ApiQuery $queryModule
 	 * @param string $moduleName
 	 * @param Repository $repository

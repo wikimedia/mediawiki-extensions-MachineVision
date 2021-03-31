@@ -5,8 +5,6 @@ namespace MediaWiki\Extension\MachineVision\Api;
 use ApiQuery;
 use ApiQueryBase;
 use MediaWiki\Extension\MachineVision\Repository;
-use MediaWiki\Extension\MachineVision\Services;
-use MediaWiki\MediaWikiServices;
 
 class ApiQueryUnreviewedImageCount extends ApiQueryBase {
 
@@ -14,22 +12,6 @@ class ApiQueryUnreviewedImageCount extends ApiQueryBase {
 	private $repository;
 
 	/**
-	 * @param ApiQuery $main
-	 * @param string $moduleName
-	 * @return self
-	 */
-	public static function factory( ApiQuery $main, $moduleName ) {
-		$services = MediaWikiServices::getInstance();
-		$extensionServices = new Services( $services );
-		return new self(
-			$main,
-			$moduleName,
-			$extensionServices->getRepository()
-		);
-	}
-
-	/**
-	 * ApiQueryUnreviewedImageLabels constructor.
 	 * @param ApiQuery $queryModule
 	 * @param string $moduleName
 	 * @param Repository $repository
