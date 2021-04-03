@@ -279,18 +279,14 @@ class ApiReviewImageLabels extends ApiBase implements LoggerAwareInterface {
 	 * TODO: This is copied nearly verbatim from ApiTrait in ReadingLists, with only message keys
 	 * changed. Have a chat with Gergo about moving it into a library, and/or file a task.
 	 * @param array $op
-	 * @param string $param,...
+	 * @param string ...$param
 	 */
-	// @codingStandardsIgnoreLine MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment.NewLineComment
-	protected function requireAtLeastOneBatchParameter( array $op, $param /*...*/ ) {
-		$required = func_get_args();
-		array_shift( $required );
-
+	protected function requireAtLeastOneBatchParameter( array $op, ...$param ) {
 		$intersection = array_intersect(
 			array_keys( array_filter( $op, function ( $val ) {
 				return $val !== null && $val !== false;
 			} ) ),
-			$required
+			$param
 		);
 
 		if ( count( $intersection ) == 0 ) {
@@ -300,9 +296,9 @@ class ApiReviewImageLabels extends ApiBase implements LoggerAwareInterface {
 					function ( $p ) {
 						return '<var>' . $this->encodeParamName( $p ) . '</var>';
 					},
-					array_values( $required )
+					$param
 				) ),
-				count( $required ),
+				count( $param ),
 			], 'missingparam' );
 		}
 	}
