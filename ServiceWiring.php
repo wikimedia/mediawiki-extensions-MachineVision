@@ -144,7 +144,7 @@ return [
 
 	'MachineVisionLabelResolver' => function ( MediaWikiServices $services ): LabelResolver {
 		$extensionConfig = $services->getService( 'MachineVisionConfig' );
-		$entityLookup = WikibaseRepo::getDefaultInstance()->getEntityLookup();
+		$entityLookup = WikibaseRepo::getEntityLookup( $services );
 		$httpRequestFactory = $services->getHttpRequestFactory();
 		$wikiDomain = $services->getMainConfig()->get( 'ServerName' );
 		$userAgent = $httpRequestFactory->getUserAgent() . " ($wikiDomain)";
