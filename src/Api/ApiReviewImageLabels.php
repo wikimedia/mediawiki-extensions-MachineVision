@@ -8,9 +8,7 @@ use IDBAccessObject;
 use MediaWiki\Extension\MachineVision\Handler\LabelResolver;
 use MediaWiki\Extension\MachineVision\Handler\Registry;
 use MediaWiki\Extension\MachineVision\Repository;
-use MediaWiki\Extension\MachineVision\Services;
 use MediaWiki\Logger\LoggerFactory;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\NameTableStore;
 use Message;
 use Psr\Log\LoggerAwareInterface;
@@ -42,25 +40,6 @@ class ApiReviewImageLabels extends ApiBase implements LoggerAwareInterface {
 
 	/** @var LabelResolver */
 	private $labelResolver;
-
-	/**
-	 * @param ApiMain $main
-	 * @param string $moduleName
-	 * @return self
-	 */
-	public static function factory( ApiMain $main, $moduleName ) {
-		$services = MediaWikiServices::getInstance();
-		$extensionServices = new Services( $services );
-		return new self(
-			$main,
-			$moduleName,
-			$services->getRepoGroup(),
-			$extensionServices->getNameTableStore(),
-			$extensionServices->getRepository(),
-			$extensionServices->getHandlerRegistry(),
-			$extensionServices->getLabelResolver()
-		);
-	}
 
 	/**
 	 * @param ApiMain $main

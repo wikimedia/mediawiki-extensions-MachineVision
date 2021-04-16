@@ -57,25 +57,39 @@
 	"APIModules": {
 		"reviewimagelabels": {
 			"class": "MediaWiki\\Extension\\MachineVision\\Api\\ApiReviewImageLabels",
-			"factory": "MediaWiki\\Extension\\MachineVision\\Api\\ApiReviewImageLabels::factory"
+			"services": [
+				"RepoGroup",
+				"MachineVisionNameTableStore",
+				"MachineVisionRepository",
+				"MachineVisionHandlerRegistry",
+				"MachineVisionLabelResolver"
+			]
 		}
 	},
 	"APIListModules": {
 		"unreviewedimagelabels": {
 			"class": "MediaWiki\\Extension\\MachineVision\\Api\\ApiQueryUnreviewedImageLabels",
-			"factory": "MediaWiki\\Extension\\MachineVision\\Api\\ApiQueryUnreviewedImageLabels::factory"
+			"services": [
+				"MachineVisionRepository"
+			]
 		}
 	},
 	"APIPropModules": {
 		"imagelabels": {
 			"class": "MediaWiki\\Extension\\MachineVision\\Api\\ApiQueryImageLabels",
-			"factory": "MediaWiki\\Extension\\MachineVision\\Api\\ApiQueryImageLabels::factory"
+			"services": [
+				"RepoGroup",
+				"MachineVisionLabelResolver",
+				"MachineVisionRepository"
+			]
 		}
 	},
 	"APIMetaModules": {
 		"unreviewedimagecount": {
 			"class": "MediaWiki\\Extension\\MachineVision\\Api\\ApiQueryUnreviewedImageCount",
-			"factory": "MediaWiki\\Extension\\MachineVision\\Api\\ApiQueryUnreviewedImageCount::factory"
+			"services": [
+				"MachineVisionRepository"
+			]
 		}
 	},
 	"JobClasses": {

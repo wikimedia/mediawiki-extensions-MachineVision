@@ -9,8 +9,6 @@ use ApiResult;
 use LocalFile;
 use MediaWiki\Extension\MachineVision\Handler\LabelResolver;
 use MediaWiki\Extension\MachineVision\Repository;
-use MediaWiki\Extension\MachineVision\Services;
-use MediaWiki\MediaWikiServices;
 use RepoGroup;
 use Title;
 
@@ -33,18 +31,6 @@ class ApiQueryImageLabels extends ApiQueryBase {
 
 	/** @var Repository */
 	private $repository;
-
-	/**
-	 * @param ApiQuery $query
-	 * @param string $moduleName
-	 * @return self
-	 */
-	public static function factory( ApiQuery $query, $moduleName ) {
-		$services = MediaWikiServices::getInstance();
-		$extensionServices = new Services( $services );
-		return new self( $query, $moduleName, $services->getRepoGroup(),
-			$extensionServices->getLabelResolver(), $extensionServices->getRepository() );
-	}
 
 	/**
 	 * @param ApiQuery $query
