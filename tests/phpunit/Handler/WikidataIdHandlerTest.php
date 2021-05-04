@@ -36,7 +36,7 @@ class WikidataIdHandlerTest extends TestCase {
 
 		$client = $this->getMockBuilder( RandomWikidataIdClient::class )
 			->disableOriginalConstructor()
-			->setMethods( [ 'getFileMetadata' ] )
+			->onlyMethods( [ 'getFileMetadata' ] )
 			->getMock();
 		$client->expects( $this->once() )
 			->method( 'getFileMetadata' )
@@ -46,7 +46,7 @@ class WikidataIdHandlerTest extends TestCase {
 
 		$repository = $this->getMockBuilder( Repository::class )
 			->disableOriginalConstructor()
-			->setMethods( [ 'insertLabels' ] )
+			->onlyMethods( [ 'insertLabels' ] )
 			->getMock();
 		$repository->expects( $this->once() )
 			->method( 'insertLabels' )

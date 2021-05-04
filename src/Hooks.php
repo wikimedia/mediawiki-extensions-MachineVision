@@ -108,7 +108,7 @@ class Hooks {
 			return;
 		}
 		$services = MediaWikiServices::getInstance();
-		DeferredUpdates::addCallableUpdate( function () use ( $services, $title ) {
+		DeferredUpdates::addCallableUpdate( static function () use ( $services, $title ) {
 			$extensionServices = new Services( $services );
 			if ( !$extensionServices->getTitleFilter()->isGoodTitle( $title ) ) {
 				$file = $services->getRepoGroup()->getLocalRepo()->findFile( $title );
@@ -286,7 +286,7 @@ class Hooks {
 		$reason ) {
 		if ( !$oldimage ) {
 			$extensionServices = new Services( MediaWikiServices::getInstance() );
-			DeferredUpdates::addCallableUpdate( function () use ( $file, $extensionServices ) {
+			DeferredUpdates::addCallableUpdate( static function () use ( $file, $extensionServices ) {
 				$repository = $extensionServices->getRepository();
 				$repository->deleteDataOfDeletedFile( $file->getSha1() );
 			} );
@@ -334,7 +334,7 @@ class Hooks {
 			'group' => 'positive',
 			'section' => 'alert',
 			'presentation-model' => Notifications\SuggestionsReadyPresentationModel::class,
-			'user-locators' => [ function ( EchoEvent $event ) {
+			'user-locators' => [ static function ( EchoEvent $event ) {
 				// we don't want to spam users with notifications that essentially
 				// do the same thing: direct them to the Special:SuggestedTags page
 				// (while events could be bundled, they'd still unbundle once read,

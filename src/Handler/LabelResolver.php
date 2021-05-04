@@ -92,7 +92,7 @@ class LabelResolver implements LoggerAwareInterface {
 			$labels = $item->getLabels()->toTextArray();
 			// @phan-suppress-next-line PhanUndeclaredMethod
 			$descriptions = $item->getDescriptions()->toTextArray();
-			$aliases = array_map( function ( AliasGroup $group ) {
+			$aliases = array_map( static function ( AliasGroup $group ) {
 				return $group->getAliases()[0];
 			// @phan-suppress-next-line PhanUndeclaredMethod
 			}, $item->getAliasGroups()->toArray() );

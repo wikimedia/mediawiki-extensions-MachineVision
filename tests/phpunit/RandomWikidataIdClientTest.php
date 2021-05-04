@@ -52,7 +52,7 @@ class RandomWikidataIdClientTest extends TestCase {
 	private function getMockHttpRequestFactory( $url, $response ): HttpRequestFactory {
 		$httpRequestFactory = $this->getMockBuilder( HttpRequestFactory::class )
 			->disableOriginalConstructor()
-			->setMethods( [ 'get' ] )
+			->onlyMethods( [ 'get' ] )
 			->getMock();
 		$httpRequestFactory->expects( $this->once() )
 			->method( 'get' )

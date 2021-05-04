@@ -127,7 +127,7 @@ class CreateFileListFromCategoriesAndTemplates extends Maintenance {
 			$result = array_merge( $result, $this->titleFilter->filterGoodTitles( $candidates ) );
 		}
 
-		file_put_contents( $outputFile, array_map( function ( $title ) {
+		file_put_contents( $outputFile, array_map( static function ( $title ) {
 			return "$title\n";
 		}, array_unique( $result ) ) );
 	}

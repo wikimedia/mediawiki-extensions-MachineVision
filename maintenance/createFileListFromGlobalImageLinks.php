@@ -103,7 +103,7 @@ class CreateFileListFromGlobalImageLinks extends Maintenance {
 			}
 		}
 
-		file_put_contents( $outputFile, array_map( function ( $title ) {
+		file_put_contents( $outputFile, array_map( static function ( $title ) {
 			return "$title\n";
 		}, $result ) );
 	}

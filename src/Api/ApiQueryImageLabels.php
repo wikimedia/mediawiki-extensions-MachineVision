@@ -63,14 +63,14 @@ class ApiQueryImageLabels extends ApiQueryBase {
 		// For now, we handle local images only. Still, use an approach that would work for
 		// remote images as well - too many things to go wrong with naked joins.
 		$titlesByPageId = array_filter( $this->getPageSet()->getGoodTitles(),
-			function ( Title $title ) use ( $continuePageId ) {
+			static function ( Title $title ) use ( $continuePageId ) {
 				return $title->inNamespace( NS_FILE ) && ( $title->getArticleID() >= $continuePageId );
 			} );
-		$filenameToPageId = array_flip( array_map( function ( Title $title ) {
+		$filenameToPageId = array_flip( array_map( static function ( Title $title ) {
 			return $title->getDBkey();
 		}, $titlesByPageId ) );
 		$filesByFilename = $this->repoGroup->getLocalRepo()->findFiles( $titlesByPageId );
-		$filenameToSha1 = array_map( function ( LocalFile $file ) {
+		$filenameToSha1 = array_map( static function ( LocalFile $file ) {
 			return $file->getSha1();
 		}, $filesByFilename );
 		if ( !$filenameToSha1 ) {

@@ -122,7 +122,7 @@ class PrioritizeFilesWithTemplate extends Maintenance {
 
 			$uncategorizedMviIds = array_filter(
 				$unreviewed,
-				function ( $key ) use ( $uncategorizedPageIds ) {
+				static function ( $key ) use ( $uncategorizedPageIds ) {
 					return in_array( $key, $uncategorizedPageIds );
 				},
 				ARRAY_FILTER_USE_KEY
