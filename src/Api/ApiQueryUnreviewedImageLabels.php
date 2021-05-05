@@ -33,7 +33,7 @@ class ApiQueryUnreviewedImageLabels extends ApiQueryGeneratorBase {
 	/** @inheritDoc */
 	public function execute() {
 		$params = $this->extractRequestParams();
-		$result = array_map( function ( $item ) {
+		$result = array_map( static function ( $item ) {
 			$title = Title::newFromText( $item, NS_FILE );
 			return [
 				'title' => $title->getPrefixedDBkey(),
@@ -50,7 +50,7 @@ class ApiQueryUnreviewedImageLabels extends ApiQueryGeneratorBase {
 	 */
 	public function executeGenerator( $resultPageSet ) {
 		$params = $this->extractRequestParams();
-		$resultPageSet->populateFromTitles( array_map( function ( $title ) {
+		$resultPageSet->populateFromTitles( array_map( static function ( $title ) {
 			return Title::newFromText( $title, NS_FILE );
 		}, $this->repository->getTitlesWithUnreviewedLabels( $params['limit'],
 			$params['uploader'] ) ) );

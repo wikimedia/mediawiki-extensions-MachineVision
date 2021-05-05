@@ -111,7 +111,7 @@ class RepositoryTest extends MediaWikiIntegrationTestCase {
 		$this->assertFalse( $success );
 
 		// no such state
-		$this->assertThrows( function () use ( $sha1Foo, $repository ) {
+		$this->assertThrows( static function () use ( $sha1Foo, $repository ) {
 			$repository->setLabelState( $sha1Foo, 'Q123', 10, 0, 0 );
 		}, InvalidArgumentException::class );
 	}

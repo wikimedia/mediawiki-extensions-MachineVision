@@ -18,7 +18,7 @@ use Wikimedia\ObjectFactory;
 
 return [
 
-	'MachineVisionRandomWikidataIdClient' => function ( MediaWikiServices $services ):
+	'MachineVisionRandomWikidataIdClient' => static function ( MediaWikiServices $services ):
 		RandomWikidataIdClient {
 		$httpRequestFactory = $services->getHttpRequestFactory();
 		$wikiDomain = $services->getMainConfig()->get( 'ServerName' );
@@ -31,7 +31,7 @@ return [
 		return $client;
 	},
 
-	'MachineVisionGoogleCloudVisionClient' => function ( MediaWikiServices $services ):
+	'MachineVisionGoogleCloudVisionClient' => static function ( MediaWikiServices $services ):
 	GoogleCloudVisionClient {
 		$configFactory = $services->getConfigFactory();
 		$extensionConfig = $configFactory->makeConfig( 'MachineVision' );
@@ -82,7 +82,7 @@ return [
 		return $client;
 	},
 
-	'MachineVisionNameTableStore' => function ( MediaWikiServices $services ): NameTableStore {
+	'MachineVisionNameTableStore' => static function ( MediaWikiServices $services ): NameTableStore {
 		$extensionConfig = $services->getService( 'MachineVisionConfig' );
 		$loadBalancerFactory = $services->getDBLoadBalancerFactory();
 		$wanObjectCache = $services->getMainWANObjectCache();
@@ -106,7 +106,7 @@ return [
 		);
 	},
 
-	'MachineVisionRepository' => function ( MediaWikiServices $services ): Repository {
+	'MachineVisionRepository' => static function ( MediaWikiServices $services ): Repository {
 		$extensionConfig = $services->getService( 'MachineVisionConfig' );
 		$loadBalancerFactory = $services->getDBLoadBalancerFactory();
 
@@ -124,7 +124,7 @@ return [
 		);
 	},
 
-	'MachineVisionHandlerRegistry' => function ( MediaWikiServices $services ): Registry {
+	'MachineVisionHandlerRegistry' => static function ( MediaWikiServices $services ): Registry {
 		$objectFactory = new ObjectFactory( $services );
 		$extensionConfig = $services->getService( 'MachineVisionConfig' );
 		$handlerConfig = $extensionConfig->get( 'MachineVisionHandlers' );
@@ -134,15 +134,15 @@ return [
 		return $registry;
 	},
 
-	'MachineVisionConfig' => function ( MediaWikiServices $services ): Config {
+	'MachineVisionConfig' => static function ( MediaWikiServices $services ): Config {
 		return $services->getConfigFactory()->makeConfig( 'MachineVision' );
 	},
 
-	'MachineVisionRepoGroup' => function ( MediaWikiServices $services ): RepoGroup {
+	'MachineVisionRepoGroup' => static function ( MediaWikiServices $services ): RepoGroup {
 		return $services::getInstance()->getRepoGroup();
 	},
 
-	'MachineVisionLabelResolver' => function ( MediaWikiServices $services ): LabelResolver {
+	'MachineVisionLabelResolver' => static function ( MediaWikiServices $services ): LabelResolver {
 		$extensionConfig = $services->getService( 'MachineVisionConfig' );
 		$entityLookup = WikibaseRepo::getEntityLookup( $services );
 		$httpRequestFactory = $services->getHttpRequestFactory();
@@ -159,7 +159,7 @@ return [
 		);
 	},
 
-	'MachineVisionTitleFilter' => function ( MediaWikiServices $services ): TitleFilter {
+	'MachineVisionTitleFilter' => static function ( MediaWikiServices $services ): TitleFilter {
 		$configFactory = $services->getConfigFactory();
 		$extensionConfig = $configFactory->makeConfig( 'MachineVision' );
 		return new TitleFilter(
@@ -174,7 +174,7 @@ return [
 	},
 
 	'MachineVisionFetchGoogleCloudVisionAnnotationsJobFactory' =>
-		function ( MediaWikiServices $services ): FetchGoogleCloudVisionAnnotationsJobFactory {
+		static function ( MediaWikiServices $services ): FetchGoogleCloudVisionAnnotationsJobFactory {
 			$configFactory = $services->getConfigFactory();
 			$extensionConfig = $configFactory->makeConfig( 'MachineVision' );
 			$safeSearchLimits = $extensionConfig->get( 'MachineVisionGoogleSafeSearchLimits' );

@@ -59,7 +59,7 @@ class RandomWikidataIdHandler extends WikidataIdHandler {
 		] );
 		if ( $metadata ) {
 			$wikidataIds = array_column( $metadata['labels'], 'wikidata_id' );
-			$suggestions = array_map( function ( $wikidataId ) {
+			$suggestions = array_map( static function ( $wikidataId ) {
 				return new LabelSuggestion( $wikidataId );
 			}, $wikidataIds );
 			$this->getRepository()->insertLabels( $file->getSha1(), $provider,

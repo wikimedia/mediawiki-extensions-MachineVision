@@ -114,7 +114,7 @@ class HooksTest extends MediaWikiIntegrationTestCase {
 
 	private function getMockUpload( LocalFile $file ): UploadBase {
 		$upload = $this->getMockBuilder( UploadBase::class )
-			->setMethods( [ 'getLocalFile' ] )
+			->onlyMethods( [ 'getLocalFile' ] )
 			->getMockForAbstractClass();
 		$upload->expects( $this->any() )
 			->method( 'getLocalFile' )
@@ -126,7 +126,7 @@ class HooksTest extends MediaWikiIntegrationTestCase {
 	private function getMockClient( $response ) {
 		$client = $this->getMockBuilder( RandomWikidataIdClient::class )
 			->disableOriginalConstructor()
-			->setMethods( [ 'getFileMetadata' ] )
+			->onlyMethods( [ 'getFileMetadata' ] )
 			->getMock();
 		$client->expects( $this->once() )
 			->method( 'getFileMetadata' )
@@ -139,7 +139,7 @@ class HooksTest extends MediaWikiIntegrationTestCase {
 		$title = Title::newFromText( $name, NS_FILE );
 		$file = MockHelper::getMockFile( $this, $name, $sha1 );
 		$repo = $this->prophesize( LocalRepo::class );
-		$repo->findFile( Argument::that( function ( $actualTitle ) use ( $title ) {
+		$repo->findFile( Argument::that( static function ( $actualTitle ) use ( $title ) {
 			return $title->equals( $actualTitle );
 		} ) )->willReturn( $file );
 		$repoGroup = $this->prophesize( RepoGroup::class );

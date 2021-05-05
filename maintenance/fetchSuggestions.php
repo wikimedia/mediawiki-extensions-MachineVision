@@ -88,7 +88,7 @@ class FetchSuggestions extends Maintenance {
 		$priority = (int)$this->getOption( 'priority' );
 		foreach ( $this->getFilenameBatches() as $filenameBatch ) {
 			$this->output( 'processing ' . $filenameBatch[0] . ' ... ' . end( $filenameBatch ) . "\n" );
-			$titles = array_map( function ( $filename ) {
+			$titles = array_map( static function ( $filename ) {
 				return Title::newFromText( $filename, NS_FILE );
 			}, $filenameBatch );
 			$files = $localRepo->findFiles( $titles );

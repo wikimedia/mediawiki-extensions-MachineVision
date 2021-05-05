@@ -138,7 +138,7 @@ class TitleFilter {
 			}
 		}
 		if ( count( $this->templateBlacklist ) ) {
-			$templates = array_map( function ( Title $title ) {
+			$templates = array_map( static function ( Title $title ) {
 				return $title->getPrefixedDBKey();
 			}, $title->getTemplateLinksFrom() );
 			if ( count( array_intersect( $templates, $this->templateBlacklist ) ) ) {

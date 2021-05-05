@@ -168,7 +168,7 @@ class GoogleCloudVisionClient implements LoggerAwareInterface {
 			$freebaseId = $label['mid'];
 			$score = $label['score'];
 			$mappedWikidataIds = $this->repository->getMappedWikidataIds( $freebaseId );
-			$newSuggestions = array_map( function ( $mappedId ) use ( $score ) {
+			$newSuggestions = array_map( static function ( $mappedId ) use ( $score ) {
 				return new LabelSuggestion( $mappedId, $score );
 			}, $mappedWikidataIds );
 			$suggestions = array_merge( $suggestions, $newSuggestions );
@@ -321,7 +321,7 @@ class GoogleCloudVisionClient implements LoggerAwareInterface {
 	 */
 	private static function hasWithholdAllTag( array $withholdImageList, array $labelSuggestions ):
 		bool {
-		$wikidataIds = array_map( function ( LabelSuggestion $suggestion ) {
+		$wikidataIds = array_map( static function ( LabelSuggestion $suggestion ) {
 			return $suggestion->getWikidataId();
 		}, $labelSuggestions );
 		return (bool)array_intersect( $withholdImageList, $wikidataIds );

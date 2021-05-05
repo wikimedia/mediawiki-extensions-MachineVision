@@ -242,7 +242,7 @@ class ApiReviewImageLabels extends ApiBase implements LoggerAwareInterface {
 				$this->dieWithError( 'apierror-reviewimagelabels-batch-invalid-structure' );
 			}
 			// JSON-escaped characters might have skipped WebRequest's normalization, repeat it.
-			array_walk_recursive( $op, function ( &$value ) use ( $request ) {
+			array_walk_recursive( $op, static function ( &$value ) use ( $request ) {
 				if ( is_string( $value ) ) {
 					$value = $request->normalizeUnicode( $value );
 				}
@@ -262,7 +262,7 @@ class ApiReviewImageLabels extends ApiBase implements LoggerAwareInterface {
 	 */
 	protected function requireAtLeastOneBatchParameter( array $op, ...$param ) {
 		$intersection = array_intersect(
-			array_keys( array_filter( $op, function ( $val ) {
+			array_keys( array_filter( $op, static function ( $val ) {
 				return $val !== null && $val !== false;
 			} ) ),
 			$param
