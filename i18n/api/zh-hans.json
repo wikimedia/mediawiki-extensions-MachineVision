@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Lakejason0",
 			"Looong"
 		]
 	},
@@ -18,6 +19,6 @@
 	"apihelp-query+imagelabels-param-state": "只列举这些审查状态的标签",
 	"apihelp-query+imagelabels-paramvalue-state-unreviewed": "还没有被审查的标签。",
 	"apihelp-query+imagelabels-paramvalue-state-accepted": "已经被认定为正确的标签。",
-	"apihelp-query+imagelabels-paramvalue-state-rejected": "已经被标记为正确的标签",
+	"apihelp-query+imagelabels-paramvalue-state-rejected": "已经被标记为不正确的标签。",
 	"apihelp-query+imagelabels-example-1": "为<kbd>Example.png</kbd>显示机器建议的图片标签。"
 }
