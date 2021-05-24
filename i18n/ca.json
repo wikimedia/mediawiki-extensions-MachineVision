@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Fitoschido",
-			"Jlrb+"
+			"Jlrb+",
+			"Jmarchn"
 		]
 	},
 	"machinevision-add-custom-tag": "Afegeix una etiqueta",
@@ -16,5 +17,5 @@
 	"right-imagelabel-test": "Suggeriments d'etiqueta d'imatge de prova",
 	"action-imagelabel-test": "suggeriments d'etiqueta d'imatge de prova",
 	"tag-computer-aided-tagging": "Etiquetatge assistit per ordinador",
-	"echo-pref-tooltip-machinevision-suggestions-ready": "Notifica’m quan les meves imatges s’hagin processades i n’hi hagi etiquetes suggerides per revisar"
+	"echo-pref-tooltip-machinevision-suggestions-ready": "Notifica’m quan les meves imatges s'hagin processat i hi hagi etiquetes suggerides perquè jo les revisi"
 }
