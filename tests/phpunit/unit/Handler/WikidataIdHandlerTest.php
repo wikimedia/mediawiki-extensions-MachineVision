@@ -4,21 +4,19 @@ namespace MediaWiki\Extension\MachineVision\Handler;
 
 use MediaWiki\Extension\MachineVision\Client\RandomWikidataIdClient;
 use MediaWiki\Extension\MachineVision\LabelSuggestion;
-use MediaWiki\Extension\MachineVision\MockHelper;
 use MediaWiki\Extension\MachineVision\Repository;
-use PHPUnit\Framework\TestCase;
-use User;
+use MediaWiki\Tests\Rest\Handler\MediaTestTrait;
+use MediaWikiUnitTestCase;
 
-class WikidataIdHandlerTest extends TestCase {
+/**
+ * @covers \MediaWiki\Extension\MachineVision\Handler\WikidataIdHandler
+ */
+class WikidataIdHandlerTest extends MediaWikiUnitTestCase {
+	use MediaTestTrait;
 
-	/**
-	 * @covers \MediaWiki\Extension\MachineVision\Handler\WikidataIdHandler::handleUploadComplete
-	 */
 	public function testHandleUploadComplete() {
 		$apiUrlTemplate = 'https://example.com/?title=$1';
-		$sha1 = '0beec7b5ea3f0fdbc95d0dd47f3c5bc275da8a33';
-		$user = User::newFromId( 1 );
-		$file = MockHelper::getMockFile( $this, 'Foo.png', $sha1, $user );
+		$file = $this->makeMockFile( 'Foo.png' );
 		$response = [
 			'title' => 'File:Seal_mechanical_compression.png',
 			'timestamp' => 1563972620213,
@@ -50,7 +48,7 @@ class WikidataIdHandlerTest extends TestCase {
 			->getMock();
 		$repository->expects( $this->once() )
 			->method( 'insertLabels' )
-			->with( $sha1, 'random', $user, [
+			->with( $file->getSha1(), 'random', $file->getUploader(), [
 				new LabelSuggestion( 'Q773044' ),
 				new LabelSuggestion( 'Q29106' ),
 			] );

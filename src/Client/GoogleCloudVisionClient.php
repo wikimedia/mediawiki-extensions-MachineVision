@@ -4,6 +4,7 @@ namespace MediaWiki\Extension\MachineVision\Client;
 
 use EchoEvent;
 use ExtensionRegistry;
+use File;
 use LocalFile;
 use MediaWiki\Extension\MachineVision\LabelSuggestion;
 use MediaWiki\Extension\MachineVision\Repository;
@@ -203,7 +204,7 @@ class GoogleCloudVisionClient implements LoggerAwareInterface {
 		$labelsCount = $this->repository->insertLabels(
 			$file->getSha1(),
 			$provider,
-			$fileForUser->getUser( 'id' ),
+			$fileForUser->getUploader( File::RAW ),
 			$filteredSuggestions,
 			$priority,
 			$initialState
@@ -276,11 +277,14 @@ class GoogleCloudVisionClient implements LoggerAwareInterface {
 			return;
 		}
 
-		EchoEvent::create( [
-			'type' => 'machinevision-suggestions-ready',
-			'title' => \SpecialPage::getTitleFor( 'SuggestedTags' ),
-			'agent' => $file->getUser( 'object' )
-		] );
+		$uploader = $file->getUploader( File::RAW );
+		if ( $uploader ) {
+			EchoEvent::create( [
+				'type' => 'machinevision-suggestions-ready',
+				'title' => \SpecialPage::getTitleFor( 'SuggestedTags' ),
+				'agent' => $uploader,
+			] );
+		}
 	}
 
 	/**

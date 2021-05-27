@@ -6,6 +6,7 @@ use DBAccessObjectUtils;
 use InvalidArgumentException;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Storage\NameTableStore;
+use MediaWiki\User\UserIdentity;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
 use UnexpectedValueException;
@@ -68,7 +69,7 @@ class Repository implements LoggerAwareInterface {
 	 * case of service restart, for example).
 	 * @param string $sha1 Image SHA1
 	 * @param string $providerName Provider name
-	 * @param int $uploaderId the uploader's local user ID
+	 * @param UserIdentity|null $uploader the uploader's identity, if known
 	 * @param LabelSuggestion[] $suggestions A list of Wikidata ID such as 'Q123'
 	 * @param int $priority priority value between -128 & 127
 	 * @param int $initialState initial review state
@@ -77,7 +78,7 @@ class Repository implements LoggerAwareInterface {
 	public function insertLabels(
 		$sha1,
 		$providerName,
-		$uploaderId,
+		?UserIdentity $uploader,
 		array $suggestions,
 		$priority = 0,
 		$initialState = self::REVIEW_UNREVIEWED
@@ -114,7 +115,7 @@ class Repository implements LoggerAwareInterface {
 					'mvl_mvi_id' => $mviRowId,
 					'mvl_wikidata_id' => $wikidataId,
 					'mvl_review' => $initialState,
-					'mvl_uploader_id' => $uploaderId,
+					'mvl_uploader_id' => $uploader ? $uploader->getId() : 0,
 				],
 				__METHOD__,
 				[ 'IGNORE' ]
