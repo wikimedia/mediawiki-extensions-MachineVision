@@ -55,9 +55,9 @@ class Hooks {
 		if ( !$extensionConfig->get( 'MachineVisionRequestLabelsOnUploadComplete' ) ) {
 			return;
 		}
-		$userId = $file->getUser( 'id' );
+		$uploader = $file->getUploader( File::RAW );
 		if ( $extensionConfig->get( 'MachineVisionTestersOnly' ) &&
-			!self::isMachineVisionTester( User::newFromId( $userId ) ) ) {
+			!self::isMachineVisionTester( $uploader ) ) {
 			return;
 		}
 		$registry = $extensionServices->getHandlerRegistry();
@@ -293,7 +293,10 @@ class Hooks {
 		}
 	}
 
-	private static function isMachineVisionTester( User $user ): bool {
+	private static function isMachineVisionTester( ?UserIdentity $user ): bool {
+		if ( !$user ) {
+			return false;
+		}
 		$permissionsManager = MediaWikiServices::getInstance()->getPermissionManager();
 		$perms = $permissionsManager->getUserPermissions( $user );
 		return in_array( 'imagelabel-test', $perms );

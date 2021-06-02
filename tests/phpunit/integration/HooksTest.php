@@ -3,22 +3,25 @@
 namespace MediaWiki\Extension\MachineVision;
 
 use DerivativeContext;
+use File;
 use LocalFile;
 use LocalRepo;
 use MediaWiki\Extension\MachineVision\Handler\WikidataIdHandler;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Tests\Rest\Handler\MediaTestTrait;
+use MediaWiki\User\UserIdentityValue;
 use MediaWikiIntegrationTestCase;
 use Prophecy\Argument;
 use RepoGroup;
 use RequestContext;
 use Title;
 use UploadBase;
-use function Wikimedia\base_convert;
 
 /**
  * @group Database
  */
 class HooksTest extends MediaWikiIntegrationTestCase {
+	use MediaTestTrait;
 
 	public function setUp() : void {
 		parent::setUp();
@@ -40,8 +43,7 @@ class HooksTest extends MediaWikiIntegrationTestCase {
 			. 'No such service: MachineVisionClient'
 		);
 
-		$sha1 = base_convert( sha1( 'baz' ), 16, 36, 31 );
-		$file = MockHelper::getMockFile( $this, 'Foo.png', $sha1 );
+		$file = $this->makeMockFile( 'Foo.png' );
 		$upload = $this->getMockUpload( $file );
 		$response = [
 			'title' => 'File:Seal_mechanical_compression.png',
@@ -60,21 +62,21 @@ class HooksTest extends MediaWikiIntegrationTestCase {
 
 		// sanity check
 		$row = $this->db->selectRow( 'machine_vision_label', '*',
-			[ 'mvl_image_sha1' => $sha1 ], __METHOD__ );
+			[ 'mvl_image_sha1' => $file->getSha1() ], __METHOD__ );
 		$this->assertSame( false, $row );
 
 		$this->setService( 'MachineVisionClient', $this->getMockClient( null ) );
 		Hooks::onUploadComplete( $upload );
 
 		$row = $this->db->selectRow( 'machine_vision_label', '*',
-			[ 'mvl_image_sha1' => $sha1 ], __METHOD__ );
+			[ 'mvl_image_sha1' => $file->getSha1() ], __METHOD__ );
 		$this->assertSame( false, $row );
 
 		$this->setService( 'MachineVisionClient', $this->getMockClient( $response ) );
 		Hooks::onUploadComplete( $upload );
 
 		$values = $this->db->selectFieldValues( 'machine_vision_label', 'mvl_wikidata_id',
-			[ 'mvl_image_sha1' => $sha1 ], __METHOD__ );
+			[ 'mvl_image_sha1' => $file->getSha1() ], __METHOD__ );
 		$this->assertArrayEquals( [ 'Q773044', 'Q29106' ], $values );
 	}
 
@@ -84,8 +86,6 @@ class HooksTest extends MediaWikiIntegrationTestCase {
 	public function testOnInfoAction() {
 		$this->markTestSkipped( 'Broken: No such service: MachineVisionClient' );
 
-		$sha1 = base_convert( sha1( 'Foom.png' ), 16, 36, 31 );
-
 		$context = new DerivativeContext( RequestContext::getMain() );
 		$context->setTitle( Title::newFromText( 'File:Foom.png' ) );
 
@@ -94,7 +94,7 @@ class HooksTest extends MediaWikiIntegrationTestCase {
 		Hooks::onInfoAction( $context, $pageInfo );
 		$this->assertEmpty( $pageInfo );
 
-		$this->setSetMockFile( 'File:Foom.png', $sha1 );
+		$file = $this->setSetMockFile( 'File:Foom.png' );
 
 		// file has no labels
 		$pageInfo = [];
@@ -103,7 +103,12 @@ class HooksTest extends MediaWikiIntegrationTestCase {
 
 		$extensionServices = new Services( MediaWikiServices::getInstance() );
 		$repository = $extensionServices->getRepository();
-		$repository->insertLabels( $sha1, 'fake', [ 'Q123', 'Q234' ] );
+		$repository->insertLabels(
+			$file->getSha1(),
+			'fake',
+			UserIdentityValue::newAnonymous( '123.123.123.123' ),
+			[ new LabelSuggestion( 'Q123' ), new LabelSuggestion( 'Q234' ) ]
+		);
 
 		$pageInfo = [];
 		Hooks::onInfoAction( $context, $pageInfo );
@@ -135,9 +140,9 @@ class HooksTest extends MediaWikiIntegrationTestCase {
 		return $client;
 	}
 
-	private function setSetMockFile( $name, $sha1 ) {
+	private function setSetMockFile( $name ): File {
 		$title = Title::newFromText( $name, NS_FILE );
-		$file = MockHelper::getMockFile( $this, $name, $sha1 );
+		$file = $this->makeMockFile( $title );
 		$repo = $this->prophesize( LocalRepo::class );
 		$repo->findFile( Argument::that( static function ( $actualTitle ) use ( $title ) {
 			return $title->equals( $actualTitle );
@@ -145,6 +150,7 @@ class HooksTest extends MediaWikiIntegrationTestCase {
 		$repoGroup = $this->prophesize( RepoGroup::class );
 		$repoGroup->getLocalRepo()->willReturn( $repo->reveal() );
 		$this->setService( 'RepoGroup', $repoGroup->reveal() );
+		return $file;
 	}
 
 }
