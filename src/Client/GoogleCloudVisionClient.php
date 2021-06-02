@@ -83,7 +83,6 @@ class GoogleCloudVisionClient implements LoggerAwareInterface {
 	private $wikidataIdBlocklist;
 
 	/**
-	 * GoogleCloudVisionClient constructor.
 	 * @param GoogleOAuthClient $oAuthClient
 	 * @param HttpRequestFactory $httpRequestFactory
 	 * @param RepoGroup $repoGroup

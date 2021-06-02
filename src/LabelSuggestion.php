@@ -11,7 +11,6 @@ class LabelSuggestion {
 	private $confidence;
 
 	/**
-	 * LabelSuggestion constructor.
 	 * @param string $wikidataId
 	 * @param float $confidence
 	 */

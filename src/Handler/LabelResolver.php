@@ -36,16 +36,17 @@ class LabelResolver implements LoggerAwareInterface {
 	private $useWikidataPublicApi;
 
 	/**
-	 * LabelResolver constructor.
 	 * @param EntityLookup $entityLookup
 	 * @param HttpRequestFactory $httpRequestFactory
 	 * @param string $userAgent
 	 * @param bool $useWikidataPublicApi if true, request labels from the Wikidata public API
 	 */
-	public function __construct( EntityLookup $entityLookup,
-								 HttpRequestFactory $httpRequestFactory,
-								 $userAgent,
-								 $useWikidataPublicApi ) {
+	public function __construct(
+		EntityLookup $entityLookup,
+		HttpRequestFactory $httpRequestFactory,
+		$userAgent,
+		$useWikidataPublicApi
+	) {
 		$this->entityLookup = $entityLookup;
 		$this->httpRequestFactory = $httpRequestFactory;
 		$this->userAgent = $userAgent;

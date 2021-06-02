@@ -19,7 +19,6 @@ class FetchGoogleCloudVisionAnnotationsJobFactory {
 	private $delay;
 
 	/**
-	 * FetchGoogleCloudVisionAnnotationsJobFactory constructor.
 	 * @param bool $sendFileContents
 	 * @param array $safeSearchLimits
 	 * @param bool|string $proxy

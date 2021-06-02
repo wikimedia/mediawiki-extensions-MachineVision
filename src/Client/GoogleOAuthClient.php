@@ -32,7 +32,6 @@ class GoogleOAuthClient implements LoggerAwareInterface {
 	private $proxy;
 
 	/**
-	 * GoogleOAuthClient constructor.
 	 * @param HttpRequestFactory $httpRequestFactory
 	 * @param array $credentialsData
 	 * @param string|null $proxy

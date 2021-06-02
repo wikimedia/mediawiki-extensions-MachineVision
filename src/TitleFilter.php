@@ -32,7 +32,6 @@ class TitleFilter {
 	private $depictsIdSerialization;
 
 	/**
-	 * TitleFilter constructor.
 	 * @param LocalRepo $localRepo
 	 * @param RevisionStore $revisionStore
 	 * @param int $minImageWidth min image width to qualify for labeling

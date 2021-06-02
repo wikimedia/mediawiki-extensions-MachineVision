@@ -16,7 +16,6 @@ class FetchGoogleCloudVisionAnnotationsJob extends Job implements LoggerAwareInt
 	use LoggerAwareTrait;
 
 	/**
-	 * FetchGoogleCloudVisionAnnotationsJob constructor.
 	 * @param string $command
 	 * @param array|Title|null $params
 	 */
