@@ -5,7 +5,7 @@ external machine vision services, storing it for on-wiki usage, and serving it
 for editor verification.
 
 For details, see the [project page on
-mediawiki.org](https://www.mediawiki.org/wiki/Wikimedia_Product/Machine_vision_middleware).
+mediawiki.org](https://www.mediawiki.org/wiki/Extension:MachineVision).
 
 ### Installation
 
