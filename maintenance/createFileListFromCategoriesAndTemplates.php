@@ -40,6 +40,12 @@ class CreateFileListFromCategoriesAndTemplates extends Maintenance {
 	/** @var IDatabase */
 	private $dbr;
 
+	/** @var string */
+	private $outputFile;
+
+	/** @var array */
+	private $categoriesAlreadyChecked = [];
+
 	public function __construct() {
 		parent::__construct();
 		$this->requireExtension( 'MachineVision' );
@@ -63,6 +69,13 @@ class CreateFileListFromCategoriesAndTemplates extends Maintenance {
 	}
 
 	public function init() {
+		// Check outputFile path for validity before going any further
+		$this->outputFile = $this->getOption( 'outputFile', '' );
+		$path = substr( $this->outputFile, 0, strrpos( $this->outputFile, '/' ) );
+		if ( !is_dir( $path ) ) {
+			throw new MWException( "Bad output file location: $this->outputFile" );
+		}
+
 		$services = MediaWikiServices::getInstance();
 		$extensionServices = new Services( $services );
 		$this->titleFilter = $extensionServices->getTitleFilter();
@@ -91,20 +104,10 @@ class CreateFileListFromCategoriesAndTemplates extends Maintenance {
 		$categories = $this->getOption( 'category', [] );
 		$deepcat = $this->getOption( 'deepcat', false );
 		$templates = $this->getOption( 'template', [] );
-		$outputFile = $this->getOption( 'outputFile' );
-		$result = [];
-
-		// Check outputFile path for validity before going any further
-		$path = substr( $outputFile, 0, strrpos( $outputFile, '/' ) );
-		if ( !is_dir( $path ) ) {
-			throw new MWException( "Bad output file location: $outputFile" );
-		}
+		file_put_contents( $this->outputFile, '' );
 
 		foreach ( $categories as $category ) {
-			$result = array_merge(
-				$result,
-				$this->getPagesInCategory( $category, NS_FILE, [], $deepcat )
-			);
+			$this->processPagesInCategory( $category, (bool)$this->getOption( 'deepcat', false ) );
 		}
 		foreach ( $templates as $template ) {
 			$candidates = $this->dbr->selectFieldValues(
@@ -124,72 +127,78 @@ class CreateFileListFromCategoriesAndTemplates extends Maintenance {
 					]
 				]
 			);
-			$result = array_merge( $result, $this->titleFilter->filterGoodTitles( $candidates ) );
+			file_put_contents(
+				$this->outputFile,
+				array_map(
+					static function ( $title ) {
+						return "$title\n";
+					},
+					array_unique( $this->titleFilter->filterGoodTitles( $candidates ) )
+				),
+				FILE_APPEND
+			);
 		}
-
-		file_put_contents( $outputFile, array_map( static function ( $title ) {
-			return "$title\n";
-		}, array_unique( $result ) ) );
+		// remove duplicates
+		$allFiles = file( $this->outputFile );
+		file_put_contents( $this->outputFile, array_unique( $allFiles ) );
 	}
 
 	/**
 	 * @param string $categoryName
-	 * @param int $namespace
-	 * @param array $categoriesToExclude Categories that have already been checked, and must be
-	 * 	excluded to avoid recursion
 	 * @param bool $includeSubcats
-	 * @return array
 	 */
-	private function getPagesInCategory(
+	private function processPagesInCategory(
 		string $categoryName,
-		int $namespace,
-		array $categoriesToExclude,
 		bool $includeSubcats = false
 	) {
-		$pages = $this->dbr->selectFieldValues(
-			[ 'page', 'categorylinks' ],
-			'page_title',
-			[
-				'page_namespace' => $namespace,
-				'cl_to' => $categoryName,
-			],
-			__METHOD__,
-			[],
-			[
-				'categorylinks' => [
-					'LEFT JOIN',
-					'cl_from = page_id',
-				]
-			]
+		$filesInCategory = $this->getCategoryMembers( $categoryName, NS_FILE );
+		file_put_contents(
+			$this->outputFile,
+			implode( "\n", $filesInCategory ) . "\n",
+			FILE_APPEND
 		);
-		if ( $namespace == NS_FILE ) {
-			$pages = $this->titleFilter->filterGoodTitles( $pages );
-		}
-		$categoriesToExclude[] = $categoryName;
+
+		$this->categoriesAlreadyChecked[] = $categoryName;
 		if ( $includeSubcats ) {
-			$subcategories = $this->getPagesInCategory(
+			$subcategories = $this->getCategoryMembers(
 				$categoryName,
-				NS_CATEGORY,
-				$categoriesToExclude
+				NS_CATEGORY
 			);
 			foreach ( $subcategories as $subcategory ) {
 				// guard against cyclic category relationships
-				if ( !in_array( $subcategory, $categoriesToExclude ) ) {
-					$pages = array_merge(
-						$pages,
-						$this->getPagesInCategory(
-							$subcategory,
-							$namespace,
-							$categoriesToExclude,
-							$includeSubcats
-						)
+				if ( !in_array( $subcategory, $this->categoriesAlreadyChecked ) ) {
+					$this->processPagesInCategory(
+						$subcategory,
+						$includeSubcats
 					);
-					$categoriesToExclude[] = $subcategory;
 				}
 			}
 		}
+	}
 
-		return array_unique( $pages );
+	private function getCategoryMembers( string $categoryName, int $namespace ): array {
+		$members = array_unique(
+			$this->dbr->selectFieldValues(
+				[ 'page', 'categorylinks' ],
+				'page_title',
+				[
+					'page_namespace' => $namespace,
+					'cl_to' => $categoryName,
+				],
+				__METHOD__,
+				[],
+				[
+					'categorylinks' => [
+						'LEFT JOIN',
+						'cl_from = page_id',
+					]
+				]
+			)
+		);
+		if ( $namespace === NS_FILE ) {
+			$members = $this->titleFilter->filterGoodTitles( $members );
+		}
+		return $members;
 	}
 }
 
