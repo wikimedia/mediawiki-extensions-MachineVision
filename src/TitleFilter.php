@@ -23,13 +23,16 @@ class TitleFilter {
 	private $maxExistingDepictsStatements;
 
 	/** @var string[] */
-	private $categoryBlacklist;
+	private $categoryBlocklist;
 
 	/** @var string[] */
-	private $templateBlacklist;
+	private $templateBlocklist;
 
 	/** @var string */
 	private $depictsIdSerialization;
+
+	/** @var bool */
+	private $blocklistsActive = true;
 
 	/**
 	 * @param LocalRepo $localRepo
@@ -37,8 +40,8 @@ class TitleFilter {
 	 * @param int $minImageWidth min image width to qualify for labeling
 	 * @param int $maxExistingDepictsStatements max # of existing depicts statements to qualify for
 	 *  labeling
-	 * @param array $categoryBlacklist omit images with these categories from labeling
-	 * @param array $templateBlacklist omit images with these templates from labeling
+	 * @param array $categoryBlocklist omit images with these categories from labeling
+	 * @param array $templateBlocklist omit images with these templates from labeling
 	 * @param string $depictsIdSerialization depicts ID defined in WikibaseMediaInfo config
 	 */
 	public function __construct(
@@ -46,16 +49,16 @@ class TitleFilter {
 		RevisionStore $revisionStore,
 		$minImageWidth,
 		$maxExistingDepictsStatements,
-		array $categoryBlacklist,
-		array $templateBlacklist,
+		array $categoryBlocklist,
+		array $templateBlocklist,
 		$depictsIdSerialization
 	) {
 		$this->localRepo = $localRepo;
 		$this->revisionStore = $revisionStore;
 		$this->minImageWidth = $minImageWidth;
 		$this->maxExistingDepictsStatements = $maxExistingDepictsStatements;
-		$this->categoryBlacklist = $categoryBlacklist;
-		$this->templateBlacklist = $templateBlacklist;
+		$this->categoryBlocklist = $categoryBlocklist;
+		$this->templateBlocklist = $templateBlocklist;
 		$this->depictsIdSerialization = $depictsIdSerialization;
 	}
 
@@ -130,21 +133,29 @@ class TitleFilter {
 				}
 			}
 		}
-		if ( count( $this->categoryBlacklist ) ) {
+		if ( $this->blocklistsActive && count( $this->categoryBlocklist ) ) {
 			$categories = array_keys( $title->getParentCategories() );
-			if ( count( array_intersect( $categories, $this->categoryBlacklist ) ) ) {
+			if ( count( array_intersect( $categories, $this->categoryBlocklist ) ) ) {
 				return false;
 			}
 		}
-		if ( count( $this->templateBlacklist ) ) {
+		if ( $this->blocklistsActive && count( $this->templateBlocklist ) ) {
 			$templates = array_map( static function ( Title $title ) {
 				return $title->getPrefixedDBKey();
 			}, $title->getTemplateLinksFrom() );
-			if ( count( array_intersect( $templates, $this->templateBlacklist ) ) ) {
+			if ( count( array_intersect( $templates, $this->templateBlocklist ) ) ) {
 				return false;
 			}
 		}
 		return true;
+	}
+
+	public function disableBlocklists() {
+		$this->blocklistsActive = false;
+	}
+
+	public function enableBlocklists() {
+		$this->blocklistsActive = true;
 	}
 
 }

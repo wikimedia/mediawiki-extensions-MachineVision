@@ -52,12 +52,25 @@ class CreateFileListFromCategoriesAndTemplates extends Maintenance {
 			false, true, 't', true );
 		$this->addOption( 'outputFile', 'Filename to which to write results',
 			true, true, 'o' );
+		$this->addOption(
+			'disableBlocklists',
+			'Add files to file list even if they would normally be excluded because the category or template blocklists'
+		);
+		$this->addOption(
+			'deepcat',
+			'Include subcategories when adding files in a category'
+		);
 	}
 
 	public function init() {
 		$services = MediaWikiServices::getInstance();
 		$extensionServices = new Services( $services );
 		$this->titleFilter = $extensionServices->getTitleFilter();
+		if ( $this->getOption( 'disableBlocklists', false ) ) {
+			$this->titleFilter->disableBlocklists();
+		} else {
+			$this->titleFilter->enableBlocklists();
+		}
 
 		$extensionConfig = $extensionServices->getExtensionConfig();
 		$loadBalancerFactory = $services->getDBLoadBalancerFactory();
@@ -76,6 +89,7 @@ class CreateFileListFromCategoriesAndTemplates extends Maintenance {
 	public function execute() {
 		$this->init();
 		$categories = $this->getOption( 'category', [] );
+		$deepcat = $this->getOption( 'deepcat', false );
 		$templates = $this->getOption( 'template', [] );
 		$outputFile = $this->getOption( 'outputFile' );
 		$result = [];
@@ -87,25 +101,11 @@ class CreateFileListFromCategoriesAndTemplates extends Maintenance {
 		}
 
 		foreach ( $categories as $category ) {
-			$candidates = $this->dbr->selectFieldValues(
-				[ 'page', 'categorylinks' ],
-				'page_title',
-				[
-					'page_namespace' => NS_FILE,
-					'cl_to' => $category,
-				],
-				__METHOD__,
-				[],
-				[
-					'categorylinks' => [
-						'LEFT JOIN',
-						'cl_from = page_id',
-					]
-				]
+			$result = array_merge(
+				$result,
+				$this->getPagesInCategory( $category, NS_FILE, [], $deepcat )
 			);
-			$result = array_merge( $result, $this->titleFilter->filterGoodTitles( $candidates ) );
 		}
-
 		foreach ( $templates as $template ) {
 			$candidates = $this->dbr->selectFieldValues(
 				[ 'page', 'templatelinks' ],
@@ -132,6 +132,65 @@ class CreateFileListFromCategoriesAndTemplates extends Maintenance {
 		}, array_unique( $result ) ) );
 	}
 
+	/**
+	 * @param string $categoryName
+	 * @param int $namespace
+	 * @param array $categoriesToExclude Categories that have already been checked, and must be
+	 * 	excluded to avoid recursion
+	 * @param bool $includeSubcats
+	 * @return array
+	 */
+	private function getPagesInCategory(
+		string $categoryName,
+		int $namespace,
+		array $categoriesToExclude,
+		bool $includeSubcats = false
+	) {
+		$pages = $this->dbr->selectFieldValues(
+			[ 'page', 'categorylinks' ],
+			'page_title',
+			[
+				'page_namespace' => $namespace,
+				'cl_to' => $categoryName,
+			],
+			__METHOD__,
+			[],
+			[
+				'categorylinks' => [
+					'LEFT JOIN',
+					'cl_from = page_id',
+				]
+			]
+		);
+		if ( $namespace == NS_FILE ) {
+			$pages = $this->titleFilter->filterGoodTitles( $pages );
+		}
+		$categoriesToExclude[] = $categoryName;
+		if ( $includeSubcats ) {
+			$subcategories = $this->getPagesInCategory(
+				$categoryName,
+				NS_CATEGORY,
+				$categoriesToExclude
+			);
+			foreach ( $subcategories as $subcategory ) {
+				// guard against cyclic category relationships
+				if ( !in_array( $subcategory, $categoriesToExclude ) ) {
+					$pages = array_merge(
+						$pages,
+						$this->getPagesInCategory(
+							$subcategory,
+							$namespace,
+							$categoriesToExclude,
+							$includeSubcats
+						)
+					);
+					$categoriesToExclude[] = $subcategory;
+				}
+			}
+		}
+
+		return array_unique( $pages );
+	}
 }
 
 $maintClass = CreateFileListFromCategoriesAndTemplates::class;
