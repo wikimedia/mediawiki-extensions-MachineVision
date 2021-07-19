@@ -14,6 +14,7 @@
 	"machinevision-publish": "게시",
 	"machinevision-publish-title": "태그를 게시하시겠습니까?",
 	"machinevision-add-custom-tag": "태그 추가",
+	"machinevision-add-custom-tag-title": "사용자 지정 태그를 이 이미지에 추가",
 	"machinevision-skip": "건너뛰기",
 	"machinevision-skip-title": "\"$1\"의 제안을 건너뛰시겠습니까?",
 	"machinevision-suggestion-confirm-title": "\"$1\" 제안을 확인하시겠습니까?",
