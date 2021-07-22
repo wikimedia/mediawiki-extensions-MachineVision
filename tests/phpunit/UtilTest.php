@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
  */
 class UtilTest extends TestCase {
 
-	public function setUp() : void {
+	public function setUp(): void {
 		global $wgMediaInfoProperties;
 		$wgMediaInfoProperties = [
 			'depicts' => 'P1',

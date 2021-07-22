@@ -14,7 +14,7 @@ use function Wikimedia\base_convert;
  */
 class RepositoryTest extends MediaWikiIntegrationTestCase {
 
-	public function setUp() : void {
+	public function setUp(): void {
 		parent::setUp();
 		$this->tablesUsed[] = 'machine_vision_provider';
 		$this->tablesUsed[] = 'machine_vision_label';

@@ -23,7 +23,7 @@ use UploadBase;
 class HooksTest extends MediaWikiIntegrationTestCase {
 	use MediaTestTrait;
 
-	public function setUp() : void {
+	public function setUp(): void {
 		parent::setUp();
 		$this->setMwGlobals( 'wgMachineVisionHandlers', [
 			'random' => [
