@@ -38,8 +38,7 @@ class Util {
 	 * @param string $prop property name
 	 * @return string
 	 */
-	public static function getMediaInfoPropertyId( string $prop ):
-	string {
+	public static function getMediaInfoPropertyId( string $prop ): string {
 		$configFactory = MediaWikiServices::getInstance()->getConfigFactory();
 		$wbmiConfig = $configFactory->makeConfig( 'WikibaseMediaInfo' );
 		if ( !$wbmiConfig->has( 'MediaInfoProperties' ) ) {

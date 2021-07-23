@@ -18,8 +18,9 @@ use Wikimedia\ObjectFactory;
 
 return [
 
-	'MachineVisionRandomWikidataIdClient' => static function ( MediaWikiServices $services ):
-		RandomWikidataIdClient {
+	'MachineVisionRandomWikidataIdClient' => static function (
+		MediaWikiServices $services
+	): RandomWikidataIdClient {
 		$httpRequestFactory = $services->getHttpRequestFactory();
 		$wikiDomain = $services->getMainConfig()->get( 'ServerName' );
 
@@ -31,8 +32,9 @@ return [
 		return $client;
 	},
 
-	'MachineVisionGoogleCloudVisionClient' => static function ( MediaWikiServices $services ):
-	GoogleCloudVisionClient {
+	'MachineVisionGoogleCloudVisionClient' => static function (
+		MediaWikiServices $services
+	): GoogleCloudVisionClient {
 		$configFactory = $services->getConfigFactory();
 		$extensionConfig = $configFactory->makeConfig( 'MachineVision' );
 

@@ -322,8 +322,10 @@ class GoogleCloudVisionClient implements LoggerAwareInterface {
 	 * @param array $labelSuggestions array of LabelSuggestion objects
 	 * @return bool
 	 */
-	private static function hasWithholdAllTag( array $withholdImageList, array $labelSuggestions ):
-		bool {
+	private static function hasWithholdAllTag(
+		array $withholdImageList,
+		array $labelSuggestions
+	): bool {
 		$wikidataIds = array_map( static function ( LabelSuggestion $suggestion ) {
 			return $suggestion->getWikidataId();
 		}, $labelSuggestions );

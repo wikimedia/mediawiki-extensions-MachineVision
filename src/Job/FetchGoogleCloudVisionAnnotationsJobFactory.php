@@ -43,8 +43,11 @@ class FetchGoogleCloudVisionAnnotationsJobFactory {
 	 * @param int $priority priority value between -128 & 127
 	 * @return FetchGoogleCloudVisionAnnotationsJob
 	 */
-	public function createJob( string $provider, LocalFile $file, int $priority = 0 ):
-	FetchGoogleCloudVisionAnnotationsJob {
+	public function createJob(
+		string $provider,
+		LocalFile $file,
+		int $priority = 0
+	): FetchGoogleCloudVisionAnnotationsJob {
 		$params = [
 			'title' => $file->getTitle()->getDBkey(),
 			'namespace' => $file->getTitle()->getNamespace(),
