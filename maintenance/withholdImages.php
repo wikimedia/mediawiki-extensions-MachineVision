@@ -64,7 +64,7 @@ class WithholdImages extends Maintenance {
 			? $this->loadBalancerFactory->getExternalLB( $cluster )
 			: $this->loadBalancerFactory->getMainLB( $database );
 
-		$this->dbw = $loadBalancer->getLazyConnectionRef( DB_MASTER, [], $database );
+		$this->dbw = $loadBalancer->getLazyConnectionRef( DB_PRIMARY, [], $database );
 		$this->dbr = $loadBalancer->getLazyConnectionRef( DB_REPLICA, [], $database );
 
 		$this->withholdList = $extensionConfig->get( 'MachineVisionWithholdImageList' );

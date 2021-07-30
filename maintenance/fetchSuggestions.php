@@ -92,12 +92,12 @@ class FetchSuggestions extends Maintenance {
 				return Title::newFromText( $filename, NS_FILE );
 			}, $filenameBatch );
 			$files = $localRepo->findFiles( $titles );
-			$this->beginTransaction( $this->getDB( DB_MASTER ), __METHOD__ );
+			$this->beginTransaction( $this->getDB( DB_PRIMARY ), __METHOD__ );
 			foreach ( $files as $file ) {
 				$this->fetchForFile( $file, $priority );
 				$processed++;
 			}
-			$this->commitTransaction( $this->getDB( DB_MASTER ), __METHOD__ );
+			$this->commitTransaction( $this->getDB( DB_PRIMARY ), __METHOD__ );
 		}
 		$this->output( "Done, processed $processed files\n" );
 	}

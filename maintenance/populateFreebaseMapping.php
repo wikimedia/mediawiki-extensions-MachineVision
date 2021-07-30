@@ -57,7 +57,7 @@ class PopulateFreebaseMapping extends Maintenance {
 			? $loadBalancerFactory->getExternalLB( $cluster )
 			: $loadBalancerFactory->getMainLB( $database );
 
-		$this->dbw = $loadBalancer->getLazyConnectionRef( DB_MASTER, [], $database );
+		$this->dbw = $loadBalancer->getLazyConnectionRef( DB_PRIMARY, [], $database );
 	}
 
 	/** @inheritDoc */

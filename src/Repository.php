@@ -241,7 +241,7 @@ class Repository implements LoggerAwareInterface {
 	 */
 	public function getLabelState( $sha1, $label, $flags = 0 ) {
 		list( $index, $options ) = DBAccessObjectUtils::getDBOptions( $flags );
-		$db = ( $index === DB_MASTER ) ? $this->dbw : $this->dbr;
+		$db = ( $index === DB_PRIMARY ) ? $this->dbw : $this->dbr;
 
 		$state = $db->selectField(
 			[ 'machine_vision_image', 'machine_vision_label' ],
