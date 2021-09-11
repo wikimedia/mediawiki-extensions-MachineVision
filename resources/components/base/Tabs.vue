@@ -189,7 +189,7 @@ module.exports = {
 .mw-tabs {
 	&__header {
 		.flex-display();
-		.box-shadow( inset 0 -1px 0 0 @border-color-base );
+		box-shadow: inset 0 -1px 0 0 @border-color-base;
 
 		/* FIXME: Prefix is-active/is-disable classes */
 		/* stylelint-disable selector-class-pattern */
@@ -204,12 +204,12 @@ module.exports = {
 			&:hover,
 			&.is-active {
 				color: @color-primary;
-				.box-shadow( inset 0 -2px 0 0 @color-primary );
+				box-shadow: inset 0 -2px 0 0 @color-primary;
 			}
 
 			&:hover {
 				color: @color-primary--hover;
-				.box-shadow( inset 0 -2px 0 0 @color-primary--hover );
+				box-shadow: inset 0 -2px 0 0 @color-primary--hover;
 			}
 
 			&.is-disabled {
