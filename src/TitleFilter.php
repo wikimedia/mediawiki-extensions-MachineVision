@@ -6,7 +6,7 @@ use InvalidArgumentException;
 use LocalRepo;
 use MediaWiki\Storage\RevisionStore;
 use Title;
-use Wikibase\DataModel\Entity\PropertyId;
+use Wikibase\DataModel\Entity\NumericPropertyId;
 
 class TitleFilter {
 
@@ -126,7 +126,7 @@ class TitleFilter {
 				// @phan-suppress-next-line PhanUndeclaredMethod
 				$mediaInfo = $mediaInfoContent->getEntity();
 				$statementList = $mediaInfo->getStatements();
-				$propertyId = new PropertyId( $this->depictsIdSerialization );
+				$propertyId = new NumericPropertyId( $this->depictsIdSerialization );
 				$depictsStatements = $statementList->getByPropertyId( $propertyId );
 				if ( $depictsStatements->count() > $this->maxExistingDepictsStatements ) {
 					return false;
