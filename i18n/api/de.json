@@ -1,0 +1,8 @@
+{
+	"@metadata": {
+		"authors": [
+			"Umlaut"
+		]
+	},
+	"apierror-reviewimagelabels-invalidfile": "<kbd>$1</kbd> ist kein gültiger Dateiname."
+}

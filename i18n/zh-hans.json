@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			")8",
 			"GuoPC",
 			"Josephine W.",
 			"Looong",
@@ -15,7 +16,10 @@
 	"machinevision-pageinfo-field-suggested-labels": "被建议的标签",
 	"machinevision-publish": "保存",
 	"machinevision-skip": "跳过",
+	"machinevision-confirm-tags-dialog-cancel-action": "取消",
+	"machinevision-onboarding-dialog-close-label": "关闭",
 	"machinevision-generic-no-images-heading": "暂无可添加标签的图片。",
+	"machinevision-add-custom-tag-dialog-cancel-action": "取消",
 	"right-imagelabel-review": "审查图片标签建议",
 	"action-imagelabel-review": "审查图片标签建议",
 	"group-machinevision-tester": "机器视觉测试",
