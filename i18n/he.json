@@ -27,7 +27,7 @@
 	"machinevision-suggestion-confirm-title": "לאשר את ההצעה \"$1\"?",
 	"machinevision-suggestion-confirm-undo-title": "לבטל את אישר ההצעה \"$1\"?",
 	"machinevision-loading-message": "טעינת תמונות...",
-	"machinevision-failure-message": "סליחה, משהו השתבש. נא לבדוק מאוחר יותר או [[Project_talk:Structured_data/Computer-aided_tagging|ליצור איתנו קשר]].",
+	"machinevision-failure-message": "מצטערים, משהו השתבש. נא לבדוק מאוחר יותר או [[Project_talk:Structured_data/Computer-aided_tagging|ליצור איתנו קשר]].",
 	"machinevision-confirm-tags-dialog-title": "אישור תגים",
 	"machinevision-confirm-tags-dialog-confirm-action": "אישור",
 	"machinevision-confirm-tags-dialog-cancel-action": "ביטול",
