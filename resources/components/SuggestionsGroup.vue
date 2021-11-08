@@ -31,10 +31,7 @@
 			<template v-else>
 				<label class="wbmad-suggestion__label">{{ suggestion.text }}</label>
 			</template>
-		</mw-suggestion>
-
-		<!-- Add custom tag button -->
-		<div :key="buttonKey" class="wbmad-custom-tag-button-wrapper">
+		</mw-suggestion><!-- The elements cannot have a breaking space due to a bug in code that will be fixed with this upstream PR: https://github.com/vuejs/vue-next/pull/4647 --><div :key="buttonKey" class="wbmad-custom-tag-button-wrapper">
 			<mw-button
 				icon="add"
 				class="wbmad-custom-tag-button"

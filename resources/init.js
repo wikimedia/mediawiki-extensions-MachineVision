@@ -12,22 +12,8 @@ require( './polyfills/Array.prototype.find.js' );
 	// Remove placeholder UI
 	$( document.body ).addClass( 'wbmad-ui-initialized' );
 
-	/**
-	 * Vue plugins need to be initialized with Vue.use() before the Vue
-	 * instance is created. These plugins live in the resources/plugins
-	 * directory. More information about Vue plugins can be found here:
-	 * https://vuejs.org/v2/guide/plugins.html
-	 */
-	Vue.use( api );
-	Vue.use( logger );
-
-	// Create the Vue instance
-	// eslint-disable-next-line no-new
-	new Vue( {
-		el: '#wbmad-app',
-		store: store,
-		render: function ( h ) {
-			return h( App );
-		}
-	} );
+	Vue.createMwApp( $.extend( { store: store }, App ) )
+		.use( api )
+		.use( logger )
+		.mount( '#wbmad-app' );
 }() );
