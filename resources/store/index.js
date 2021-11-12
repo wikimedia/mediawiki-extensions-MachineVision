@@ -1,14 +1,11 @@
 'use strict';
 
 /* eslint-disable no-implicit-globals */
-var Vue = require( 'vue' ),
-	Vuex = require( 'vuex' ),
+var Vuex = require( 'vuex' ),
 	state = require( './state.js' ),
 	getters = require( './getters.js' ),
 	mutations = require( './mutations.js' ),
 	actions = require( './actions.js' );
-
-Vue.use( Vuex );
 
 /**
  * Vuex Store: shared application state lives here
