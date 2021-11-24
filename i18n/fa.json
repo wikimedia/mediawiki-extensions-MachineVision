@@ -1,12 +1,34 @@
 {
 	"@metadata": {
 		"authors": [
-			"FarsiNevis"
+			"FarsiNevis",
+			"Jeeputer"
 		]
 	},
+	"machinevision-machineaidedtagging-tabs-heading": "تصاویر برای بازبینی",
+	"machinevision-machineaidedtagging-popular-tab": "محبوب",
+	"machinevision-machineaidedtagging-user-tab": "بارگذاری‌های شخصی",
+	"machinevision-machineaidedtagging-preferences-link": "[[Special:Preferences#mw-prefsection-echo|غیرفعال‌سازی اعلان]] برای این ابزار",
+	"machinevision-pageinfo-field-suggested-labels": "برچسب‌های پیشنهادی",
+	"machinevision-publish": "انتشار",
+	"machinevision-publish-title": "انتشار برچسب‌ها؟",
 	"machinevision-add-custom-tag": "افزودن برچسب",
+	"machinevision-add-custom-tag-title": "افزودن یک برچسب سفارشی به این تصویر",
+	"machinevision-skip": "صرف نظر",
+	"machinevision-skip-title": "صرف نظر از پیشنهادها برای «$1»؟",
+	"machinevision-suggestion-confirm-title": "تأیید پیشنهاد «$1»؟",
+	"machinevision-suggestion-confirm-undo-title": "واگردانی تأییدیهٔ پیشنهاد «$1»؟",
+	"machinevision-loading-message": "بارگیری تصاویر...",
+	"machinevision-confirm-tags-dialog-title": "تأیید برچسب‌ها",
+	"machinevision-confirm-tags-dialog-confirm-action": "تأیید",
+	"machinevision-confirm-tags-dialog-cancel-action": "لغو",
+	"machinevision-success-message": "برچسب‌ها به تصویر افزوده شدند.",
+	"machinevision-onboarding-dialog-cta": "آغاز برچسب‌زنی",
+	"machinevision-onboarding-dialog-close-label": "بستن",
 	"machinevision-categories-label": "رده‌ها:",
 	"machinevision-add-custom-tag-dialog-title": "برچسب دلخواه",
 	"machinevision-add-custom-tag-dialog-add-action": "افزودن",
-	"machinevision-add-custom-tag-dialog-cancel-action": "لغو"
+	"machinevision-add-custom-tag-dialog-cancel-action": "لغو",
+	"echo-machinevision-suggestions-ready-notification-primary-link": "بازبینی برچسب‌ها",
+	"echo-category-title-machinevision": "برچسب‌های پیشنهادی برای بازبینی"
 }
