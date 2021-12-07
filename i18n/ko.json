@@ -1,14 +1,20 @@
 {
 	"@metadata": {
 		"authors": [
-			"Ykhwong"
+			"Ykhwong",
+			"Kwj2772"
 		]
 	},
 	"machinevision-machineaidedtagging": "제안 태그",
+	"machinevision-machineaidedtagging-tabs-heading": "검토할 이미지",
+	"machinevision-machineaidedtagging-user-tab": "개인 업로드",
+	"machinevision-machineaidedtagging-license-information": "태그 기여에는 CC0 라이선스가 적용됩니다 – \"게시\"를 클릭하면, [[wmf:Terms_of_Use|이용 약관]]에 동의하고, [https://creativecommons.org/publicdomain/zero/1.0/ 크리에이티브 커먼즈 CC0 라이선스]로 배포하는 것에 동의하며 이 동의는 철회할 수 없습니다.",
+	"machinevision-pageinfo-field-suggested-labels": "추천하는 레이블",
 	"machinevision-autoconfirmed-message": "정확한 태그를 달면 모든 공용 사용자들이 이미지를 더 쉽게 찾을 수 있으므로 [[mw:Special:MyLanguage/Manual:Autoconfirmed_users|자동 인증된 사용자]]가 되어야 합니다. 자동 인증된 사용자만이 이 도구를 사용할 수 있습니다.",
 	"machinevision-publish": "게시",
 	"machinevision-publish-title": "태그를 게시하시겠습니까?",
 	"machinevision-add-custom-tag": "태그 추가",
+	"machinevision-add-custom-tag-title": "사용자 지정 태그를 이 이미지에 추가",
 	"machinevision-skip": "건너뛰기",
 	"machinevision-skip-title": "\"$1\"의 제안을 건너뛰시겠습니까?",
 	"machinevision-suggestion-confirm-title": "\"$1\" 제안을 확인하시겠습니까?",
@@ -26,5 +32,6 @@
 	"machinevision-add-custom-tag-dialog-title": "사용자 지정 태그",
 	"machinevision-add-custom-tag-dialog-add-action": "추가",
 	"machinevision-add-custom-tag-dialog-cancel-action": "취소",
-	"machinevision-image-exclusion-notification-dismiss": "알림 숨기기"
+	"machinevision-image-exclusion-notification-dismiss": "알림 숨기기",
+	"machinevision-detailed-tags-toggle-label": "태그 상세 정보"
 }

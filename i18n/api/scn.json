@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ajeje Brazorf"
+		]
+	},
+	"apihelp-reviewimagelabels-param-filename": "Nomu dâ mmàggini (senza lu prifissu di namespace).",
+	"apierror-reviewimagelabels-invalidfile": "<kbd>$1</kbd> è nu nomu di file nun vàliddu."
+}
