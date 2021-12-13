@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"Narazeni"
+		]
+	},
+	"machinevision-machineaidedtagging": "მერზიებული ხინტკეფი",
+	"machinevision-machineaidedtagging-tabs-heading": "სურათეფი ოძირაფალო",
+	"machinevision-machineaidedtagging-popular-tab": "პოპულარული",
+	"machinevision-machineaidedtagging-user-tab": "პერსონალური ეხარგუეფი",
+	"machinevision-publish": "გუმობჟინაფა",
+	"machinevision-publish-title": "გჷმუობჟინათო ხინტკეფი?",
+	"machinevision-add-custom-tag": "ხინტკიშ გეძინა",
+	"machinevision-skip": "გიშატება",
+	"machinevision-personal-uploads-count": "თქვა გიღჷნა $1 პერსონალური {{PLURAL:$1|ეხარგუა}} ოძირაფალო.",
+	"machinevision-loading-message": "იხარგუ სურათეფი...",
+	"machinevision-confirm-tags-dialog-confirm-action": "OK",
+	"machinevision-confirm-tags-dialog-cancel-action": "გოუქვაფა",
+	"machinevision-onboarding-dialog-close-label": "კილუა"
+}

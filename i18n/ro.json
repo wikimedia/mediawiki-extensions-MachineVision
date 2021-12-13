@@ -1,8 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"GabiBil"
+			"GabiBil",
+			"NGC 54"
 		]
 	},
-	"machinevision-machineaidedtagging": "Etichete sugerate"
+	"machinevision-machineaidedtagging": "Etichete sugerate",
+	"echo-machinevision-suggestions-ready-notification-header-compact": "Etichete sugerate sunt gata pentru revizuire"
 }

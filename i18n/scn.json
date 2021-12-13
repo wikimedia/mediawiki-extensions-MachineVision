@@ -1,0 +1,15 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ajeje Brazorf"
+		]
+	},
+	"machinevision-add-custom-tag": "Agghiunci etichetta",
+	"machinevision-confirm-tags-dialog-title": "Cunferma etichetti",
+	"machinevision-confirm-tags-dialog-confirm-action": "OK",
+	"machinevision-confirm-tags-dialog-cancel-action": "Annulla",
+	"machinevision-onboarding-dialog-close-label": "Chiudi",
+	"machinevision-categories-label": "Catigurìi:",
+	"machinevision-add-custom-tag-dialog-add-action": "Agghiunci",
+	"machinevision-add-custom-tag-dialog-cancel-action": "Annulla"
+}

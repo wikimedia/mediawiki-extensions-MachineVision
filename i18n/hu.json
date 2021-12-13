@@ -17,7 +17,7 @@
 	"machinevision-suggestion-confirm-title": "„$1” javaslat megerősítése?",
 	"machinevision-suggestion-confirm-undo-title": "„$1” javaslat megerősítésének visszavonása?",
 	"machinevision-loading-message": "Képek betöltése…",
-	"machinevision-failure-message": "Sajnáljuk, valami elromlott. Kérjük, nézz vissza később, vagy [[c:Commons_talk:Structured_data/Computer-aided_tagging|lépj kapcsolatba velünk]].",
+	"machinevision-failure-message": "Sajnáljuk, valami elromlott. Kérjük, nézz vissza később, vagy [[Project_talk:Structured_data/Computer-aided_tagging|lépj kapcsolatba velünk]].",
 	"machinevision-confirm-tags-dialog-title": "Címkék megerősítése",
 	"machinevision-confirm-tags-dialog-confirm-action": "OK",
 	"machinevision-confirm-tags-dialog-cancel-action": "Mégse",
@@ -34,7 +34,7 @@
 	"machinevision-cta-cta": "Népszerű képek címkézése",
 	"machinevision-no-uploads-cta-heading": "Nincsenek átnézendő képeid",
 	"machinevision-javascript-required": "Ezt a funkciót nem támogatja a böngésződ.",
-	"echo-machinevision-suggestions-ready-notification-header-compact": "A(z) „$2” {{GENDER:$1|fájlodhoz}} tartozó címkék ellenőrzésre készen állnak",
+	"echo-machinevision-suggestions-ready-notification-header-compact": "A címkék ellenőrzésre készen állnak",
 	"echo-machinevision-suggestions-ready-notification-header": "A frissen feltöltött {{GENDER:$1|fájljaidhoz}} tartozó címkék ellenőrzésre készen állnak",
 	"echo-category-title-machinevision": "Ellenőrzésre váró javasolt címkék"
 }

@@ -3,7 +3,8 @@
 		"authors": [
 			"Kkairri",
 			"Omotecho",
-			"Shirayuki"
+			"Shirayuki",
+			"おはぐろ蜻蛉"
 		]
 	},
 	"machinevision-desc": "内部および外部の機械読み取りサービス提供者向けのインターフェースで出力結果の提供と保存を行う。",
@@ -12,9 +13,11 @@
 	"machinevision-machineaidedtagging-tabs-heading": "画像の評価",
 	"machinevision-machineaidedtagging-popular-tab": "人気",
 	"machinevision-machineaidedtagging-user-tab": "個人のアップロード",
+	"machinevision-machineaidedtagging-preferences-link": "このツールからの[[Special:Preferences#mw-prefsection-echo|通知を無効にする]]",
 	"machinevision-machineaidedtagging-license-information": "CC0 license for tag contributions\n\nタグ投稿と CC0 ライセンス  – 「公開する」をクリックすることで、あなたは[[wmf:Terms_of_Use|利用規約]]に同意し、あなたの投稿を[https://creativecommons.org/publicdomain/zero/1.0/ クリエイティブコモンズ CC0 ライセンス]の下で公表することについて、取消し不能な形で同意します。",
 	"machinevision-pageinfo-field-suggested-labels": "ラベルの候補",
 	"machinevision-login-message": "このページを閲覧し、画像へのタグ付けを行うには、<span class=\"plainlinks\">[{{fullurl:{{#Special:UserLogin}}|returnto=Special:SuggestedTags}} ログイン]</span>してください。適切なタグは、すべてのCommonsの利用者が画像を見つけやすくします。あなたの投稿に感謝いたします。",
+	"machinevision-autoconfirmed-message": "的確なタグですべてのコモンズの利用者が画像を見つけやすくなります。このツールは自動承認された利用者しか使えないため、是非[[mw:Special:MyLanguage/Manual:Autoconfirmed_users|自動承認された利用者]]になりましょう。",
 	"machinevision-publish": "公開する",
 	"machinevision-publish-title": "タグを公開しますか？",
 	"machinevision-add-custom-tag": "タグを追加",
@@ -49,9 +52,9 @@
 	"machinevision-image-exclusion-notification": "既知の芸術作品や人物画像と判定されたものなどの一部のファイルについては、技術上・文化上の制約のため、コンピュータ支援タグ付けの対象外となる場合があります。",
 	"machinevision-detailed-tags-toggle-label": "詳細タグ",
 	"right-imagelabel-review": "画像ラベルの提案を査読",
-	"action-imagelabel-review": "画像ラベルの提案を査読",
+	"action-imagelabel-review": "画像ラベルの提案の査読",
 	"right-imagelabel-test": "画像ラベルの提案をテスト",
-	"action-imagelabel-test": "画像ラベルの提案をテスト",
+	"action-imagelabel-test": "画像ラベルの提案のテスト",
 	"tag-computer-aided-tagging": "コンピュータ支援タグ付け",
 	"tag-computer-aided-tagging-description": "コンピュータ支援タグ付けツールを使った編集",
 	"tag-computer-aided-tagging-revert": "コンピュータ支援タグ付けの差し戻し",
@@ -64,5 +67,6 @@
 	"echo-machinevision-suggestions-ready-notification-body": "こんにちは！ 先日、{{GENDER:$1|あなたが}}コモンズに投稿した画像にタグが付きましたので、確認をお願いします。適切なタグが付くとコモンズ利用者の皆さんにとって{{GENDER:$1|あなたの}}画像を探しやすくなり、ぜひリンク先で{{GENDER:$1|あなたに}}提案されたタグを評価してください。投稿者の皆さんが承認したタグのみ、コモンズにある画像のデータに組み込まれます。このツールの詳細は、コンピュータ補助によるタグツールのプロジェクトページを参照してください。",
 	"echo-machinevision-suggestions-ready-notification-primary-link": "タグを確認",
 	"echo-category-title-machinevision": "確認が必要なタグ",
-	"echo-pref-tooltip-machinevision-suggestions-ready": "タグの確認作業があるかどうか知りたいので、タグ処理が済んだ私の画像の通知を受ける。"
+	"echo-pref-tooltip-machinevision-suggestions-ready": "タグの確認作業があるかどうか知りたいので、タグ処理が済んだ私の画像の通知を受ける。",
+	"group-machinevision-tester": "マシンビジョンテスター"
 }

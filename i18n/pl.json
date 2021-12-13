@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"FunPL",
-			"Rail"
+			"Rail",
+			"WTM"
 		]
 	},
 	"machinevision-machineaidedtagging": "Proponowane tagi",
@@ -47,6 +48,6 @@
 	"tag-computer-aided-tagging-description": "Edycje wykonane za pośrednictwem narzędzia do tagowania komputerowego",
 	"tag-computer-aided-tagging-revert": "Rewert tagowania komputerowego",
 	"tag-computer-aided-tagging-revert-description": "Edycja wycofująca jedną lub więcej wersji utworzonych za pośrednictwem narzędzia do tagowania komputerowego",
-	"echo-machinevision-suggestions-ready-notification-header-compact": "Sugerowane tagi sa gotowe do przeglądu",
+	"echo-machinevision-suggestions-ready-notification-header-compact": "Sugerowane tagi są gotowe do przeglądu",
 	"echo-machinevision-suggestions-ready-notification-primary-link": "Przejrzyj tagi"
 }

@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"Khun Kt"
+		]
+	},
+	"machinevision-machineaidedtagging-tabs-heading": "ထွားစဲစ်ချာတာႏ ရုက်ပုင်ႏဖိုင်ႏ",
+	"machinevision-machineaidedtagging-popular-tab": "လိုꩻကျွိုက်အာ",
+	"machinevision-publish": "ဒင်ႏထင်ႏ",
+	"machinevision-add-custom-tag": "ထဲမ်သော့ꩻtag",
+	"machinevision-skip": "ကာႏထိုꩻ",
+	"machinevision-confirm-tags-dialog-confirm-action": "မွေးသွူ",
+	"machinevision-confirm-tags-dialog-cancel-action": "မာꩻတဝ်းဒွုမ်",
+	"machinevision-onboarding-dialog-close-label": "ပေ့ꩻထိုꩻ",
+	"machinevision-categories-label": "ကဏ္ဍဖုံႏ:",
+	"machinevision-add-custom-tag-dialog-add-action": "ထဲမ်သော့ꩻ",
+	"machinevision-add-custom-tag-dialog-cancel-action": "မာꩻတဝ်းဒွုမ်"
+}

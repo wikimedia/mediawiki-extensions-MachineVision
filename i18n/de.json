@@ -1,10 +1,13 @@
 {
 	"@metadata": {
-		"authors": []
+		"authors": [
+			"Umherirrender",
+			"WikiBayer"
+		]
 	},
 	"machinevision-desc": "Schnittstellen zu internen und externen Bildverarbeitungs-Dienstleistern sowie Speicherung und Bereitstellung von Ergebnissen.",
 	"machinevision-machineaidedtagging": "Vorgeschlagene Tags",
-	"machinevision-machineaidedtagging-intro": "Überprüfe die vorgeschlagenen Tags der [[Project:Depicts|abgebildeten Objekte]] in Bildern. Nur vom Benutzer bestätigte Tags werden den Bildern hinzugefügt. Weitere Informationen findest du auf der [[Project:Structured_data/Computer-aided_tagging|Projektseite]] und  [[Project_talk:Structured_data/Computer-aided_tagging|gib Feedback]], wie dieses Tool noch hilfreicher gemacht werden kann!",
+	"machinevision-machineaidedtagging-intro": "Überprüfe die vorgeschlagenen Tags der [[Project:Depicts|abgebildeten Objekte]] in Bildern. Nur vom Benutzer bestätigte Tags werden den Bildern hinzugefügt. Weitere Informationen findest du auf der [[Project:Structured_data/Computer-aided_tagging|Projektseite]] und [[Project_talk:Structured_data/Computer-aided_tagging|gib Feedback]], wie dieses Tool noch hilfreicher gemacht werden kann!",
 	"machinevision-machineaidedtagging-tabs-heading": "Bilder zur Überprüfung",
 	"machinevision-machineaidedtagging-popular-tab": "Beliebt",
 	"machinevision-machineaidedtagging-user-tab": "Persönliche Uploads",
@@ -18,11 +21,11 @@
 	"machinevision-add-custom-tag": "Tag hinzufügen",
 	"machinevision-add-custom-tag-title": "Füge ein benutzerdefiniertes Tag zu diesem Bild hinzu",
 	"machinevision-skip": "Überspringen",
-	"machinevision-skip-title": "Vorschläge für \"$1\" überspringen?",
+	"machinevision-skip-title": "Vorschläge für „$1“ überspringen?",
 	"machinevision-personal-uploads-count": "Du hast $1 persönliche {{PLURAL:$1|Upload|Uploads}} zur Überprüfung.",
-	"machinevision-suggestion-confirm-title": "Bestätigen des Vorschlags \"$1\"?",
+	"machinevision-suggestion-confirm-title": "Bestätigen des Vorschlags „$1“?",
 	"machinevision-suggestion-confirm-undo-title": "Bestätigung des Vorschlags „$1“ rückgängig machen?",
-	"machinevision-loading-message": "Lade Bilder ...",
+	"machinevision-loading-message": "Lade Bilder …",
 	"machinevision-failure-message": "Es tut uns leid, es ist etwas schief gelaufen. Bitte schaue später noch einmal vorbei oder [[Project_talk:Structured_data/Computer-aided_tagging|kontaktiere uns]].",
 	"machinevision-confirm-tags-dialog-title": "Tags bestätigen",
 	"machinevision-confirm-tags-dialog-confirm-action": "OK",
@@ -36,7 +39,7 @@
 	"machinevision-onboarding-dialog-cta": "Mit dem Hinzufügen von Tags anfangen",
 	"machinevision-onboarding-dialog-disclaimer": "Nur Tags, die du genehmigst, werden den Bildern hinzugefügt.",
 	"machinevision-onboarding-dialog-close-label": "Schließen",
-	"machinevision-cta-heading": "Du habst alle deine Uploads markiert!",
+	"machinevision-cta-heading": "Du hast alle deine Uploads markiert!",
 	"machinevision-cta-text": "Danke, dass du dazu beigetragen hast, die Bilder für alle leichter auffindbar zu machen - wie wäre es, noch mehr zu markieren?",
 	"machinevision-cta-cta": "Beliebte Bilder mit Tags versehen",
 	"machinevision-no-uploads-cta-heading": "Du hast keine Bilder zur Überprüfung",
