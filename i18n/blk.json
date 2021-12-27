@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Khun Kt"
+			"Khun Kt",
+			"咽頭べさ"
 		]
 	},
 	"machinevision-machineaidedtagging-tabs-heading": "ထွားစဲစ်ချာတာႏ ရုက်ပုင်ႏဖိုင်ႏ",
@@ -9,6 +10,8 @@
 	"machinevision-publish": "ဒင်ႏထင်ႏ",
 	"machinevision-add-custom-tag": "ထဲမ်သော့ꩻtag",
 	"machinevision-skip": "ကာႏထိုꩻ",
+	"machinevision-skip-title": "အီႏကာႏထိုꩻ \"$1\"တာႏ ဖေႏကျံႏညဏ်ႏချက်ဖိုင်ႏနဲ့?",
+	"machinevision-loading-message": "အဝ်ႏဒင်ႏထင်ႏပုင်ႏဖိုင်ႏကျာꩻ...",
 	"machinevision-confirm-tags-dialog-confirm-action": "မွေးသွူ",
 	"machinevision-confirm-tags-dialog-cancel-action": "မာꩻတဝ်းဒွုမ်",
 	"machinevision-onboarding-dialog-close-label": "ပေ့ꩻထိုꩻ",
