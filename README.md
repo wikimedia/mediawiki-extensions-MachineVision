@@ -53,6 +53,7 @@ $wgMachineVisionHandlers['google'] = [
 		'MachineVisionRepository',
 		'MachineVisionRepoGroup',
 		'MachineVisionLabelResolver',
+		'JobQueueGroup',
 	],
 ];
 ```

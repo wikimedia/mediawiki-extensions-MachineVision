@@ -18,6 +18,9 @@ class GoogleCloudVisionHandler extends WikidataIdHandler {
 	/** @var RepoGroup */
 	private $repoGroup;
 
+	/** @var JobQueueGroup */
+	private $jobQueueGroup;
+
 	/**
 	 * Maximum requests per minute to send to the Google Cloud Vision API when running the label
 	 * fetcher script.
@@ -30,6 +33,7 @@ class GoogleCloudVisionHandler extends WikidataIdHandler {
 	 * @param Repository $repository
 	 * @param RepoGroup $repoGroup
 	 * @param LabelResolver $labelResolver
+	 * @param JobQueueGroup $jobQueueGroup
 	 * @param int $maxRequestsPerMinute
 	 */
 	public function __construct(
@@ -37,12 +41,14 @@ class GoogleCloudVisionHandler extends WikidataIdHandler {
 		Repository $repository,
 		RepoGroup $repoGroup,
 		LabelResolver $labelResolver,
+		JobQueueGroup $jobQueueGroup,
 		$maxRequestsPerMinute = 0
 	) {
 		parent::__construct( $repository, $labelResolver );
 		$this->fetchAnnotationsJobFactory = $fetchAnnotationsJobFactory;
 		$this->repoGroup = $repoGroup;
 		$this->maxRequestsPerMinute = $maxRequestsPerMinute;
+		$this->jobQueueGroup = $jobQueueGroup;
 
 		$this->setLogger( LoggerFactory::getInstance( 'machinevision' ) );
 	}
@@ -68,7 +74,7 @@ class GoogleCloudVisionHandler extends WikidataIdHandler {
 	 */
 	public function requestAnnotations( string $provider, LocalFile $file, int $priority = 0 ): void {
 		$fetchAnnotationsJob = $this->fetchAnnotationsJobFactory->createJob( $provider, $file, $priority );
-		JobQueueGroup::singleton()->push( $fetchAnnotationsJob );
+		$this->jobQueueGroup->push( $fetchAnnotationsJob );
 	}
 
 }
