@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
+			"Chadyka",
 			"ZlyiLev"
 		]
 	},
+	"machinevision-confirm-tags-dialog-confirm-action": "Добра",
 	"tag-computer-aided-tagging-revert": "Адмена камп’ютарызаванага тэгавання",
 	"tag-computer-aided-tagging-manual-revert": "Камп’ютарызаванае тэгаванне — уручную (адкат)"
 }
