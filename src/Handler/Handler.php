@@ -15,12 +15,6 @@ use Throwable;
 interface Handler extends LoggerAwareInterface {
 
 	/**
-	 * Get the maximum requests per minute that this handler should make when running a script.
-	 * @return int
-	 */
-	public function getMaxRequestsPerMinute(): int;
-
-	/**
 	 * Return true if the error is a 429 according to the provider's error output format.
 	 * @param Throwable $t
 	 * @return bool

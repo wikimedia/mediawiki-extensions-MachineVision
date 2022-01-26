@@ -37,11 +37,6 @@ class RandomWikidataIdHandler extends WikidataIdHandler {
 	}
 
 	/** @inheritDoc */
-	public function getMaxRequestsPerMinute(): int {
-		return 0;
-	}
-
-	/** @inheritDoc */
 	public function isTooManyRequestsError( Throwable $t ): bool {
 		return false;
 	}

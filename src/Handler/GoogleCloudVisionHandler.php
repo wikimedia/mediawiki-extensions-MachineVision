@@ -22,40 +22,25 @@ class GoogleCloudVisionHandler extends WikidataIdHandler {
 	private $jobQueueGroup;
 
 	/**
-	 * Maximum requests per minute to send to the Google Cloud Vision API when running the label
-	 * fetcher script.
-	 * @var int
-	 */
-	private $maxRequestsPerMinute;
-
-	/**
 	 * @param FetchGoogleCloudVisionAnnotationsJobFactory $fetchAnnotationsJobFactory
 	 * @param Repository $repository
 	 * @param RepoGroup $repoGroup
 	 * @param LabelResolver $labelResolver
 	 * @param JobQueueGroup $jobQueueGroup
-	 * @param int $maxRequestsPerMinute
 	 */
 	public function __construct(
 		FetchGoogleCloudVisionAnnotationsJobFactory $fetchAnnotationsJobFactory,
 		Repository $repository,
 		RepoGroup $repoGroup,
 		LabelResolver $labelResolver,
-		JobQueueGroup $jobQueueGroup,
-		$maxRequestsPerMinute = 0
+		JobQueueGroup $jobQueueGroup
 	) {
 		parent::__construct( $repository, $labelResolver );
 		$this->fetchAnnotationsJobFactory = $fetchAnnotationsJobFactory;
 		$this->repoGroup = $repoGroup;
-		$this->maxRequestsPerMinute = $maxRequestsPerMinute;
 		$this->jobQueueGroup = $jobQueueGroup;
 
 		$this->setLogger( LoggerFactory::getInstance( 'machinevision' ) );
-	}
-
-	/** @inheritDoc */
-	public function getMaxRequestsPerMinute(): int {
-		return $this->maxRequestsPerMinute;
 	}
 
 	/**

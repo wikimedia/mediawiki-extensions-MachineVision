@@ -32,9 +32,6 @@ abstract class WikidataIdHandler implements Handler {
 	}
 
 	/** @inheritDoc */
-	abstract public function getMaxRequestsPerMinute(): int;
-
-	/** @inheritDoc */
 	abstract public function isTooManyRequestsError( Throwable $t ): bool;
 
 	/** @return Repository */
