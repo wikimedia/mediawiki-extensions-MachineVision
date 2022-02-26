@@ -4,7 +4,7 @@ namespace MediaWiki\Extension\MachineVision;
 
 use InvalidArgumentException;
 use LocalRepo;
-use MediaWiki\Storage\RevisionStore;
+use MediaWiki\Revision\RevisionStore;
 use Title;
 use Wikibase\DataModel\Entity\NumericPropertyId;
 
