@@ -1,6 +1,5 @@
 'use strict';
 
-/* eslint-disable no-implicit-globals */
 var Vuex = require( 'vuex' ),
 	state = require( './state.js' ),
 	getters = require( './getters.js' ),

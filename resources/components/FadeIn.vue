@@ -14,7 +14,7 @@
  * Reusable fade-in transition.
  */
 // @vue/component
-module.exports = {
+module.exports = exports = {
 };
 </script>
 

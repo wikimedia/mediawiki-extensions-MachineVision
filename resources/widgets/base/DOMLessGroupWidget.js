@@ -1,5 +1,4 @@
 'use strict';
-/* eslint-disable no-implicit-globals */
 
 /**
  * A wrapper around OO.ui.mixin.GroupElement, to provide the exact

@@ -7,11 +7,6 @@ const i18n = require( './plugins/i18n.js' );
 const logger = require( '../../resources/plugins/logger.js' );
 const imageFixtures = require( './fixtures/imageData.json' );
 
-const localVue = VueTestUtils.createLocalVue();
-localVue.use( i18n );
-localVue.use( Vuex );
-localVue.use( logger );
-
 // The ImageCard template creates a Suggestion component with some message-based
 // props (title, text). These props are required, but the messages are not
 // available in the test environment. In cases where we call mount() as opposed
@@ -28,6 +23,13 @@ describe( 'ImageCard', () => {
 		getters,
 		actions,
 		store;
+
+	beforeAll( () => {
+		VueTestUtils.config.global = {
+			plugins: [ i18n, logger ],
+			mocks: { $i18n, $logEvent }
+		};
+	} );
 
 	beforeEach( () => {
 		state = {
@@ -53,16 +55,17 @@ describe( 'ImageCard', () => {
 			getters,
 			actions
 		} );
+
 	} );
 
 	it( 'publish button is disabled when no suggestions are confirmed', () => {
 		getters.currentImage.mockReturnValue( imageFixtures[ 0 ] );
 		getters.currentImageSuggestions.mockReturnValue( imageFixtures[ 0 ].suggestions );
 
-		const wrapper = VueTestUtils.mount( ImageCard, { store, localVue, mocks: { $i18n } } );
+		const wrapper = VueTestUtils.mount( ImageCard, { global: { plugins: [ store ] } } );
 		const publishButton = wrapper.find( '.wbmad-action-buttons__publish' );
 
-		expect( publishButton.attributes( 'disabled' ) ).toBe( 'disabled' );
+		expect( publishButton.attributes( 'disabled' ) ).toBeDefined();
 		expect( actions.publishTags ).not.toHaveBeenCalled();
 
 		publishButton.trigger( 'click' );
@@ -80,10 +83,10 @@ describe( 'ImageCard', () => {
 			confirmedSuggestion
 		] );
 
-		const wrapper = VueTestUtils.mount( ImageCard, { store, localVue, mocks: { $i18n } } );
+		const wrapper = VueTestUtils.mount( ImageCard, { global: { plugins: [ store ] } } );
 		const publishButton = wrapper.find( '.wbmad-action-buttons__publish' );
 
-		expect( publishButton.attributes( 'disabled' ) ).not.toBe( 'disabled' );
+		expect( publishButton.attributes( 'disabled' ) ).not.toBeDefined();
 	} );
 
 	it( 'dispatches the publish action when the publish button is clicked', () => {
@@ -97,7 +100,7 @@ describe( 'ImageCard', () => {
 			confirmedSuggestion
 		] );
 
-		const wrapper = VueTestUtils.mount( ImageCard, { store, localVue, mocks: { $i18n, $logEvent } } );
+		const wrapper = VueTestUtils.mount( ImageCard, { global: { plugins: [ store ] } } );
 		const publishButton = wrapper.find( '.wbmad-action-buttons__publish' );
 		expect( actions.publishTags ).not.toHaveBeenCalled();
 
@@ -110,7 +113,7 @@ describe( 'ImageCard', () => {
 		getters.currentImage.mockReturnValue( imageFixtures[ 0 ] );
 		getters.currentImageSuggestions.mockReturnValue( imageFixtures[ 0 ].suggestions );
 
-		const wrapper = VueTestUtils.mount( ImageCard, { store, localVue, mocks: { $i18n, $logEvent } } );
+		const wrapper = VueTestUtils.mount( ImageCard, { global: { plugins: [ store ] } } );
 		const skipButton = wrapper.find( '.wbmad-action-buttons__skip' );
 
 		expect( actions.skipImage ).not.toHaveBeenCalled();
@@ -130,7 +133,7 @@ describe( 'ImageCard', () => {
 			confirmedSuggestion
 		] );
 
-		const wrapper = VueTestUtils.mount( ImageCard, { store, localVue, mocks: { $i18n, $logEvent } } );
+		const wrapper = VueTestUtils.mount( ImageCard, { global: { plugins: [ store ] } } );
 		const publishButton = wrapper.find( '.wbmad-action-buttons__publish' );
 
 		publishButton.trigger( 'click' );
@@ -143,7 +146,7 @@ describe( 'ImageCard', () => {
 		getters.currentImage.mockReturnValue( imageFixtures[ 0 ] );
 		getters.currentImageSuggestions.mockReturnValue( imageFixtures[ 0 ].suggestions );
 
-		const wrapper = VueTestUtils.mount( ImageCard, { store, localVue, mocks: { $i18n, $logEvent } } );
+		const wrapper = VueTestUtils.mount( ImageCard, { global: { plugins: [ store ] } } );
 		const skipButton = wrapper.find( '.wbmad-action-buttons__skip' );
 
 		expect( actions.skipImage ).not.toHaveBeenCalled();

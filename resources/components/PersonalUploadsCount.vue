@@ -12,7 +12,7 @@ var mapState = require( 'vuex' ).mapState,
 	FadeIn = require( './FadeIn.vue' );
 
 // @vue/component
-module.exports = {
+module.exports = exports = {
 	components: {
 		'wbmad-fade-in': FadeIn
 	},

@@ -29,7 +29,7 @@ var Button = require( './base/Button.vue' ),
 	FadeIn = require( './FadeIn.vue' );
 
 // @vue/component
-module.exports = {
+module.exports = exports = {
 	components: {
 		'mw-button': Button,
 		'wbmad-fade-in': FadeIn

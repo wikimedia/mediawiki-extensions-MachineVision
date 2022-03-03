@@ -1,6 +1,5 @@
-/* eslint-disable no-implicit-globals, mediawiki/valid-package-file-require */
-// eslint-disable-next-line no-redeclare
-/* global mw:true, jest:false, global:false */
+/* global jest:false */
+var Vue = require( 'vue' );
 
 /**
  * Mock out a global mediawiki object for use in unit tests
@@ -10,10 +9,13 @@
  * The basic Jest mock functions here can be overridden with more specific
  * behavior as needed in individual test files.
  */
-// eslint-disable-next-line no-redeclare
 var mw,
 	mockWbApi,
 	fakeTitle;
+
+Vue.configureCompat( {
+	MODE: 3
+} );
 
 // Mock API (instances created ggwith new mw.Api() )
 function Api() { }

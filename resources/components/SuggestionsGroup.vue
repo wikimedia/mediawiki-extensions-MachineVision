@@ -52,7 +52,7 @@ var mapActions = require( 'vuex' ).mapActions,
 	Suggestion = require( './base/Suggestion.vue' );
 
 // @vue/component
-module.exports = {
+module.exports = exports = {
 
 	components: {
 		'mw-button': Button,

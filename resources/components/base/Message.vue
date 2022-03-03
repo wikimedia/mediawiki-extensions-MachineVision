@@ -31,7 +31,7 @@ var Icon = require( './Icon.vue' ),
  * See CardStack for usage example.
  */
 // @vue/component
-module.exports = {
+module.exports = exports = {
 
 	components: {
 		icon: Icon

@@ -3,12 +3,7 @@
 const VueTestUtils = require( '@vue/test-utils' );
 const Vuex = require( 'vuex' );
 const App = require( '../../resources/components/App.vue' );
-const Tabs = require( '../../resources/components/base/Tabs.vue' );
 const i18n = require( './plugins/i18n.js' );
-
-const localVue = VueTestUtils.createLocalVue();
-localVue.use( i18n );
-localVue.use( Vuex );
 
 describe( 'App', () => {
 	let state,
@@ -16,6 +11,10 @@ describe( 'App', () => {
 		actions,
 		store,
 		computed;
+
+	beforeAll( () => {
+		VueTestUtils.config.global.plugins = [ i18n ];
+	} );
 
 	// Mock Vuex store and i18n-based computed props for testing
 	beforeEach( () => {
@@ -70,13 +69,15 @@ describe( 'App', () => {
 				return 'user';
 			}
 		};
+
+		VueTestUtils.config.global.computed = computed;
 	} );
 
 	it( 'does not display if user is not logged in', () => {
 		getters.isAuthenticated.mockReturnValue( false );
 		getters.isAutoconfirmed.mockReturnValue( false );
 
-		const wrapper = VueTestUtils.shallowMount( App, { store, localVue, computed } );
+		const wrapper = VueTestUtils.shallowMount( App, { global: { plugins: [ store ] } } );
 		const tabsHeading = wrapper.find( '.wbmad-suggested-tags-page-tabs-heading' );
 		expect( tabsHeading.exists() ).toBe( false );
 	} );
@@ -85,16 +86,17 @@ describe( 'App', () => {
 		getters.isAuthenticated.mockReturnValue( true );
 		getters.isAutoconfirmed.mockReturnValue( false );
 
-		const wrapper = VueTestUtils.shallowMount( App, { store, localVue, computed } );
+		const wrapper = VueTestUtils.shallowMount( App, { global: { plugins: [ store ] } } );
 		const tabsHeading = wrapper.find( '.wbmad-suggested-tags-page-tabs-heading' );
 		expect( tabsHeading.exists() ).toBe( false );
 	} );
 
-	it( 'displays if user is both authenticated and autoconfirmed', () => {
+	it.only( 'displays if user is both authenticated and autoconfirmed', () => {
 		getters.isAuthenticated.mockReturnValue( true );
 		getters.isAutoconfirmed.mockReturnValue( true );
 
-		const wrapper = VueTestUtils.shallowMount( App, { store, localVue, computed } );
+		const wrapper = VueTestUtils.mount( App, { global: { plugins: [ store ] } } );
+
 		const tabsHeading = wrapper.find( '.wbmad-suggested-tags-page-tabs-heading' );
 		expect( tabsHeading.exists() ).toBe( true );
 	} );
@@ -104,14 +106,10 @@ describe( 'App', () => {
 		getters.isAutoconfirmed.mockReturnValue( true );
 
 		// Use mount to test events emitted from child components
-		const wrapper = VueTestUtils.mount( App, {
-			store,
-			localVue,
-			computed
-		} );
+		const wrapper = VueTestUtils.shallowMount( App, { global: { plugins: [ store ] } } );
 
-		// Emit a "tab-like" object with the appropriate tab name.
-		wrapper.findComponent( Tabs ).vm.$emit( 'tab-change', {
+		// We emulate the click of a tab
+		wrapper.vm.onTabChange( {
 			name: 'user'
 		} );
 
@@ -129,7 +127,7 @@ describe( 'App', () => {
 
 		// Expect the getImages action to be dispatched when component is mounted
 		expect( actions.getImages.mock.calls.length ).toBe( 0 );
-		VueTestUtils.shallowMount( App, { store, localVue, computed } );
+		VueTestUtils.shallowMount( App, { global: { plugins: [ store ] } } );
 		expect( actions.getImages.mock.calls.length ).toBe( 2 );
 	} );
 } );

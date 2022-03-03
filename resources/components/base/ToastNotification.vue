@@ -35,7 +35,7 @@
  * Type can be one of "success" or "error".
  */
 // @vue/component
-module.exports = {
+module.exports = exports = {
 	props: {
 		type: {
 			type: String,

@@ -1,6 +1,5 @@
 'use strict';
 
-/* eslint-disable no-implicit-globals */
 var userGroups = mw.config.get( 'wgUserGroups' ) || [];
 
 module.exports = {

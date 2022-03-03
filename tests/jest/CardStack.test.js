@@ -1,6 +1,5 @@
 'use strict';
 
-const Vue = require( 'vue' );
 const VueTestUtils = require( '@vue/test-utils' );
 const Vuex = require( 'vuex' );
 const CardStack = require( '../../resources/components/CardStack.vue' );
@@ -8,16 +7,16 @@ const ImageCard = require( '../../resources/components/ImageCard.vue' );
 const i18n = require( './plugins/i18n.js' );
 const imageData = require( './fixtures/imageData.json' );
 
-const localVue = VueTestUtils.createLocalVue();
-localVue.use( i18n );
-localVue.use( Vuex );
-
 describe( 'CardStack', () => {
 	let state,
 		mutations,
 		getters,
 		actions,
 		store;
+
+	beforeAll( () => {
+		VueTestUtils.config.global.plugins = [ i18n ];
+	} );
 
 	beforeEach( () => {
 		state = {
@@ -54,7 +53,7 @@ describe( 'CardStack', () => {
 			getImages: jest.fn()
 		};
 
-		store = new Vuex.Store( {
+		store = Vuex.createStore( {
 			state,
 			mutations,
 			getters,
@@ -64,11 +63,12 @@ describe( 'CardStack', () => {
 
 	it( 'does not render the ImageCard component when there are no images in the queue', () => {
 		const wrapper = VueTestUtils.shallowMount( CardStack, {
-			propsData: {
+			props: {
 				queue: 'user'
 			},
-			store,
-			localVue
+			global: {
+				plugins: [ store ]
+			}
 		} );
 
 		const imageCard = wrapper.findComponent( ImageCard );
@@ -79,35 +79,32 @@ describe( 'CardStack', () => {
 		getters.currentImage.mockReturnValue( imageData[ 0 ] );
 
 		const wrapper = VueTestUtils.shallowMount( CardStack, {
-			propsData: {
+			props: {
 				queue: 'popular'
 			},
-			store,
-			localVue
+			global: {
+				plugins: [ store ]
+			}
 		} );
 
 		const imageCard = wrapper.findComponent( ImageCard );
 		expect( imageCard.exists() ).toBe( true );
 	} );
 
-	it( 'dispatches the getImages action when the count of the image queue reaches zero', ( done ) => {
-		VueTestUtils.shallowMount( CardStack, {
-			propsData: {
+	it( 'dispatches the getImages action when the count of the image queue reaches zero', () => {
+		const wrapper = VueTestUtils.shallowMount( CardStack, {
+			props: {
 				queue: 'popular'
 			},
-			store,
-			localVue
+			global: {
+				plugins: [ store ]
+			}
 		} );
 
 		expect( actions.getImages ).not.toHaveBeenCalled();
-		store.commit( 'removeImage' );
-		store.commit( 'removeImage' );
-		store.commit( 'removeImage' );
-		store.commit( 'removeImage' );
 
-		Vue.nextTick( () => {
-			expect( actions.getImages ).toHaveBeenCalled();
-			done();
-		} );
+		wrapper.vm.$options.watch.imagesInQueue.call( wrapper.vm, [ 'old' ], [] );
+
+		expect( actions.getImages ).toHaveBeenCalled();
 	} );
 } );

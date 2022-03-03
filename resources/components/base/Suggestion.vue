@@ -38,7 +38,7 @@ var Icon = require( './Icon.vue' );
  * See ImageCard for usage example.
  */
 // @vue/component
-module.exports = {
+module.exports = exports = {
 	components: {
 		icon: Icon
 	},

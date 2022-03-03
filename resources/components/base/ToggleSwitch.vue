@@ -30,7 +30,7 @@
 
 <script>
 // @vue/component
-module.exports = {
+module.exports = exports = {
 	props: {
 		/**
 		 * Initial state of the toggle switch.
