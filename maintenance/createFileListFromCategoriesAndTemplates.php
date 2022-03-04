@@ -95,7 +95,7 @@ class CreateFileListFromCategoriesAndTemplates extends Maintenance {
 			? $loadBalancerFactory->getExternalLB( $cluster )
 			: $loadBalancerFactory->getMainLB( $database );
 
-		$this->dbr = $loadBalancer->getLazyConnectionRef( DB_REPLICA, [], $database );
+		$this->dbr = $loadBalancer->getConnectionRef( DB_REPLICA, [], $database );
 	}
 
 	/** @inheritDoc */
