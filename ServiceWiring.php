@@ -14,7 +14,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\NameTableStore;
 use Wikibase\Repo\WikibaseRepo;
 use Wikimedia\AtEase\AtEase;
-use Wikimedia\ObjectFactory;
+use Wikimedia\ObjectFactory\ObjectFactory;
 
 return [
 
