@@ -1,5 +1,4 @@
 'use strict';
-/* eslint-disable no-implicit-globals */
 
 var TemplateRenderingDOMLessGroupWidget = require( './base/TemplateRenderingDOMLessGroupWidget.js' );
 

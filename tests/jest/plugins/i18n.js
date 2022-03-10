@@ -13,6 +13,9 @@ module.exports = {
 		 * @class Vue
 		 */
 
+		if ( Vue.config.globalProperties.$i18n ) {
+			return;
+		}
 		/**
 		 * Adds an `$i18n()` instance method that can be used in all components. This method is a
 		 * proxy to mw.message.
@@ -29,7 +32,7 @@ module.exports = {
 		 * @param {...Mixed} parameters Values for $N replacements
 		 * @return {mw.Message}
 		 */
-		Vue.prototype.$i18n = function () {
+		Vue.config.globalProperties.$i18n = function () {
 			return mw.message.apply( mw, arguments );
 		};
 

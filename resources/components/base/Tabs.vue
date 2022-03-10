@@ -39,14 +39,16 @@
  * active prop passed to the Tabs component.
  */
 // @vue/component
-module.exports = {
+module.exports = exports = {
 	props: {
 		active: {
 			type: String,
 			default: null
 		}
 	},
-
+	compatConfig: {
+		MODE: 2
+	},
 	data: function () {
 		return {
 			tabs: {},

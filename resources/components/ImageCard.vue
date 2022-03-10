@@ -107,7 +107,7 @@ var mapActions = require( 'vuex' ).mapActions,
  */
 
 // @vue/component
-module.exports = {
+module.exports = exports = {
 	components: {
 		'mw-button': Button,
 		'mw-toggle-switch': ToggleSwitch,
@@ -166,7 +166,11 @@ module.exports = {
 		 * @return {boolean}
 		 */
 		publishDisabled: function () {
-			return this.confirmedSuggestions.length < 1 || this.publishPending;
+			if ( this.confirmedSuggestions.length < 1 || this.publishPending ) {
+				return true;
+			} else {
+				return null;
+			}
 		},
 
 		/**

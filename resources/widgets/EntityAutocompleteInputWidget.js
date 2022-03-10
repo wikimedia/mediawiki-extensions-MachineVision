@@ -1,5 +1,4 @@
 'use strict';
-/* eslint-disable no-implicit-globals */
 
 var FormatValueElement = require( './base/FormatValueElement.js' ),
 	SuggestionData = require( '../models/Suggestion.js' ),

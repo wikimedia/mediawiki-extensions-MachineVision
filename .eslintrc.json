@@ -8,6 +8,9 @@
 	"globals": {
 		"wikibase": "readonly"
 	},
+	"env": {
+		"commonjs": true
+	},
 	"rules": {
 		"jsdoc/no-undefined-types": [
 			"warn",

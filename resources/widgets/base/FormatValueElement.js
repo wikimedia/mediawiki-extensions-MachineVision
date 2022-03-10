@@ -1,5 +1,4 @@
 'use strict';
-/* eslint-disable no-implicit-globals */
 
 var FormatValueElement = function MediaInfoStatementsFormatValueElement() {};
 OO.initClass( FormatValueElement );

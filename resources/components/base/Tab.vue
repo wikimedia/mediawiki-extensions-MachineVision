@@ -18,7 +18,7 @@
  * A single tab, to be used inside a Tabs component. See App for usage example.
  */
 // @vue/component
-module.exports = {
+module.exports = exports = {
 	props: {
 		name: {
 			type: String,

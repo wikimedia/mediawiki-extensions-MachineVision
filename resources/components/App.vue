@@ -95,7 +95,7 @@ var mapState = require( 'vuex' ).mapState,
  * listener added in the mounted() hook. This listener is removed in the
  * beforeDestroy() hook.
  */
-module.exports = {
+module.exports = exports = {
 	/**
 	 * All child components must be declared here before they can be used in
 	 * templates.

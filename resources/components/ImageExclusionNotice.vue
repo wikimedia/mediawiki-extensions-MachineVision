@@ -20,7 +20,7 @@ var Button = require( './base/Button.vue' ),
 	Message = require( './base/Message.vue' );
 
 // @vue/component
-module.exports = {
+module.exports = exports = {
 	components: {
 		'mw-button': Button,
 		'mw-message': Message

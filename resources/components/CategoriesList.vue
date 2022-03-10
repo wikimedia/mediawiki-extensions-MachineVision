@@ -18,7 +18,7 @@
 var mapGetters = require( 'vuex' ).mapGetters;
 
 // @vue/component
-module.exports = {
+module.exports = exports = {
 	name: 'CategoriesList',
 
 	computed: $.extend( {}, mapGetters( [

@@ -19,7 +19,7 @@
 var Spinner = require( './Spinner.vue' );
 
 // @vue/component
-module.exports = {
+module.exports = exports = {
 	components: {
 		'wbmad-spinner': Spinner
 	}

@@ -14,7 +14,7 @@
  * See Button, Message, and Suggestion for usage examples.
  */
 // @vue/component
-module.exports = {
+module.exports = exports = {
 	props: {
 		icon: {
 			type: String,

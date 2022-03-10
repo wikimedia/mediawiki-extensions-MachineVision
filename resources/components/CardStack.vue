@@ -54,7 +54,7 @@ var mapState = require( 'vuex' ).mapState,
  * Wrapper component for tab content.
  */
 // @vue/component
-module.exports = {
+module.exports = exports = {
 	name: 'CardStack',
 
 	components: {

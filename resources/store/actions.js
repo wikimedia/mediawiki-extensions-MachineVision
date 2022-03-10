@@ -1,6 +1,5 @@
 'use strict';
 
-/* eslint-disable no-implicit-globals */
 var MvImage = require( '../models/Image.js' ),
 	MvSuggestion = require( '../models/Suggestion.js' ),
 	api = wikibase.api.getLocationAgnosticMwApi(

@@ -1,6 +1,5 @@
 'use strict';
 
-/* eslint-disable no-implicit-globals */
 var ensureTabExists = require( './utils.js' ).ensureTabExists;
 
 module.exports = {
