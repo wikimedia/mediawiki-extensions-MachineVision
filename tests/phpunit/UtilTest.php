@@ -21,7 +21,7 @@ class UtilTest extends TestCase {
 	 * @dataProvider mediaTypeProvider
 	 */
 	public function testIsMediaTypeAllowed( $mediaType, $expected ) {
-		$this->assertEquals( Util::isMediaTypeAllowed( $mediaType ), $expected );
+		$this->assertEquals( $expected, Util::isMediaTypeAllowed( $mediaType ) );
 	}
 
 	public function mediaTypeProvider() {
@@ -35,7 +35,7 @@ class UtilTest extends TestCase {
 	 * @dataProvider mediaInfoPropertyIdProvider
 	 */
 	public function testGetMediaInfoPropertyId( $property, $id, $expected ) {
-		$this->assertEquals( Util::getMediaInfoPropertyId( $property ) === $id, $expected );
+		$this->assertEquals( $expected, Util::getMediaInfoPropertyId( $property ) === $id );
 	}
 
 	public function mediaInfoPropertyIdProvider() {
