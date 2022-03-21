@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Extension\MachineVision\Special;
 
+use Html;
 use LocalRepo;
 use MediaWiki\Extension\MachineVision\Handler\LabelResolver;
 use MediaWiki\Extension\MachineVision\Repository;
@@ -55,8 +56,11 @@ class SpecialSuggestedTags extends SpecialPage {
 
 		// no-JS fallback
 		$out->addHTML( '<div class="wbmad-client-nojs">' );
-		$out->addHTML( '<p class="warningbox">' .
-			$this->msg( 'machinevision-javascript-required' )->parse() . '</p>' );
+		$out->addHTML(
+			Html::warningBox(
+				$this->msg( 'machinevision-javascript-required' )->parse()
+			)
+		);
 		$out->addHTML( '</div>' );
 		$out->addModuleStyles( 'ext.MachineVision.init' );
 
