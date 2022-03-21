@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Ykhwong",
-			"Kwj2772"
+			"Kwj2772",
+			"MemphisA5"
 		]
 	},
 	"machinevision-machineaidedtagging": "제안 태그",
@@ -20,7 +21,7 @@
 	"machinevision-suggestion-confirm-title": "\"$1\" 제안을 확인하시겠습니까?",
 	"machinevision-suggestion-confirm-undo-title": "\"$1\" 제안 확인을 취소하시겠습니까?",
 	"machinevision-loading-message": "이미지를 불러오는 중...",
-	"machinevision-failure-message": "죄송하지만 무언가 잘못되었습니다. 나중에 다시 확인하거나 [[c:Commons_talk:Structured_data/Computer-aided_tagging|저희에게 문의해 주십시오]].",
+	"machinevision-failure-message": "죄송하지만 무언가 잘못되었습니다. 나중에 다시 확인하거나 [[Project_talk:Structured_data/Computer-aided_tagging|저희에게 문의해 주십시오]].",
 	"machinevision-confirm-tags-dialog-confirm-action": "확인",
 	"machinevision-confirm-tags-dialog-cancel-action": "취소",
 	"machinevision-publish-error-message": "무언가 잘못되어 태그를 게시하지 못했습니다. 나중에 다시 시도해 주십시오.",
