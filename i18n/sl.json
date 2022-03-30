@@ -4,6 +4,8 @@
 			"Eleassar"
 		]
 	},
+	"machinevision-confirm-tags-dialog-cancel-action": "Prekliči",
+	"machinevision-add-custom-tag-dialog-cancel-action": "Prekliči",
 	"tag-computer-aided-tagging": "računalniško podprto označevanje",
 	"tag-computer-aided-tagging-description": "Urejanja, opravljena z orodjem za računalniško podprto označevanje",
 	"tag-computer-aided-tagging-revert": "razveljavitev računalniško podprtega označevanja",
