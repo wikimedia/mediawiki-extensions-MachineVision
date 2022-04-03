@@ -8,6 +8,7 @@ use ApiQuery;
 use ApiQueryGeneratorBase;
 use MediaWiki\Extension\MachineVision\Repository;
 use Title;
+use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 
 class ApiQueryUnreviewedImageLabels extends ApiQueryGeneratorBase {
 
@@ -62,9 +63,9 @@ class ApiQueryUnreviewedImageLabels extends ApiQueryGeneratorBase {
 			'uploader' => [ ApiBase::PARAM_TYPE => 'user' ],
 			'limit' => [
 				ApiBase::PARAM_TYPE => 'limit',
-				ApiBase::PARAM_MIN => 1,
-				ApiBase::PARAM_MAX => 10,
-				ApiBase::PARAM_MAX2 => 100,
+				IntegerDef::PARAM_MIN => 1,
+				IntegerDef::PARAM_MAX => 10,
+				IntegerDef::PARAM_MAX2 => 100,
 				ApiBase::PARAM_DFLT => 1,
 			],
 		];
