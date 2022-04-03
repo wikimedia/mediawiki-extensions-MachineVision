@@ -15,6 +15,7 @@ use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
 use RepoGroup;
 use Title;
+use Wikimedia\ParamValidator\ParamValidator;
 
 class ApiReviewImageLabels extends ApiBase implements LoggerAwareInterface {
 
@@ -296,18 +297,18 @@ class ApiReviewImageLabels extends ApiBase implements LoggerAwareInterface {
 	protected function getAllowedParams() {
 		return [
 			'filename' => [
-				ApiBase::PARAM_TYPE => 'string',
-				ApiBase::PARAM_REQUIRED => true,
+				ParamValidator::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_REQUIRED => true,
 			],
 			'label' => [
-				ApiBase::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_TYPE => 'string',
 			],
 			'review' => [
-				ApiBase::PARAM_TYPE => array_keys( self::$reviewActions ),
+				ParamValidator::PARAM_TYPE => array_keys( self::$reviewActions ),
 				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
 			],
 			'batch' => [
-				ApiBase::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_TYPE => 'string',
 			]
 		];
 	}

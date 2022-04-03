@@ -2,12 +2,12 @@
 
 namespace MediaWiki\Extension\MachineVision\Api;
 
-use ApiBase;
 use ApiPageSet;
 use ApiQuery;
 use ApiQueryGeneratorBase;
 use MediaWiki\Extension\MachineVision\Repository;
 use Title;
+use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 
 class ApiQueryUnreviewedImageLabels extends ApiQueryGeneratorBase {
@@ -60,13 +60,13 @@ class ApiQueryUnreviewedImageLabels extends ApiQueryGeneratorBase {
 	/** @inheritDoc */
 	protected function getAllowedParams() {
 		return [
-			'uploader' => [ ApiBase::PARAM_TYPE => 'user' ],
+			'uploader' => [ ParamValidator::PARAM_TYPE => 'user' ],
 			'limit' => [
-				ApiBase::PARAM_TYPE => 'limit',
+				ParamValidator::PARAM_TYPE => 'limit',
 				IntegerDef::PARAM_MIN => 1,
 				IntegerDef::PARAM_MAX => 10,
 				IntegerDef::PARAM_MAX2 => 100,
-				ApiBase::PARAM_DFLT => 1,
+				ParamValidator::PARAM_DEFAULT => 1,
 			],
 		];
 	}

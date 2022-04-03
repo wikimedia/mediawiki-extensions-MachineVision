@@ -11,6 +11,7 @@ use MediaWiki\Extension\MachineVision\Handler\LabelResolver;
 use MediaWiki\Extension\MachineVision\Repository;
 use RepoGroup;
 use Title;
+use Wikimedia\ParamValidator\ParamValidator;
 
 class ApiQueryImageLabels extends ApiQueryBase {
 
@@ -124,8 +125,8 @@ class ApiQueryImageLabels extends ApiQueryBase {
 	protected function getAllowedParams() {
 		return [
 			'state' => [
-				ApiBase::PARAM_TYPE => array_unique( array_values( self::$reviewStateNames ) ),
-				ApiBase::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_TYPE => array_unique( array_values( self::$reviewStateNames ) ),
+				ParamValidator::PARAM_ISMULTI => true,
 				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
 			],
 			// Given the small number of labels per image, a limit parameter seems not worth the effort.
