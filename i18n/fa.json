@@ -2,13 +2,14 @@
 	"@metadata": {
 		"authors": [
 			"FarsiNevis",
-			"Jeeputer"
+			"Jeeputer",
+			"Beginneruser"
 		]
 	},
 	"machinevision-machineaidedtagging-tabs-heading": "تصاویر برای بازبینی",
 	"machinevision-machineaidedtagging-popular-tab": "محبوب",
 	"machinevision-machineaidedtagging-user-tab": "بارگذاری‌های شخصی",
-	"machinevision-machineaidedtagging-preferences-link": "[[Special:Preferences#mw-prefsection-echo|غیرفعال‌سازی اعلان]] برای این ابزار",
+	"machinevision-machineaidedtagging-preferences-link": "[[Special:Preferences#mw-prefsection-echo|غیرفعال‌سازی آگاه‌سازی‌ها]] از این ابزار",
 	"machinevision-pageinfo-field-suggested-labels": "برچسب‌های پیشنهادی",
 	"machinevision-publish": "انتشار",
 	"machinevision-publish-title": "انتشار برچسب‌ها؟",
