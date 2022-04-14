@@ -98,6 +98,7 @@ class FetchSuggestions extends Maintenance {
 				$processed++;
 			}
 			$this->commitTransaction( $this->getDB( DB_PRIMARY ), __METHOD__ );
+			$this->waitForReplication();
 		}
 		$this->output( "Done, processed $processed files\n" );
 	}
