@@ -166,6 +166,7 @@ return [
 		$extensionConfig = $configFactory->makeConfig( 'MachineVision' );
 		return new TitleFilter(
 			$services->getRepoGroup()->getLocalRepo(),
+			$services->getRestrictionStore(),
 			$services->getRevisionStore(),
 			$extensionConfig->get( 'MachineVisionMinImageWidth' ),
 			$extensionConfig->get( 'MachineVisionMaxExistingDepictsStatements' ),

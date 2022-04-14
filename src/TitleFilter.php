@@ -4,6 +4,7 @@ namespace MediaWiki\Extension\MachineVision;
 
 use InvalidArgumentException;
 use LocalRepo;
+use MediaWiki\Permissions\RestrictionStore;
 use MediaWiki\Revision\RevisionStore;
 use Title;
 use Wikibase\DataModel\Entity\NumericPropertyId;
@@ -12,6 +13,9 @@ class TitleFilter {
 
 	/** @var LocalRepo */
 	private $localRepo;
+
+	/** @var RestrictionStore */
+	private $restrictionStore;
 
 	/** @var RevisionStore */
 	private $revisionStore;
@@ -36,6 +40,7 @@ class TitleFilter {
 
 	/**
 	 * @param LocalRepo $localRepo
+	 * @param RestrictionStore $restrictionStore
 	 * @param RevisionStore $revisionStore
 	 * @param int $minImageWidth min image width to qualify for labeling
 	 * @param int $maxExistingDepictsStatements max # of existing depicts statements to qualify for
@@ -46,6 +51,7 @@ class TitleFilter {
 	 */
 	public function __construct(
 		LocalRepo $localRepo,
+		RestrictionStore $restrictionStore,
 		RevisionStore $revisionStore,
 		$minImageWidth,
 		$maxExistingDepictsStatements,
@@ -54,6 +60,7 @@ class TitleFilter {
 		$depictsIdSerialization
 	) {
 		$this->localRepo = $localRepo;
+		$this->restrictionStore = $restrictionStore;
 		$this->revisionStore = $revisionStore;
 		$this->minImageWidth = $minImageWidth;
 		$this->maxExistingDepictsStatements = $maxExistingDepictsStatements;
@@ -109,7 +116,7 @@ class TitleFilter {
 		if ( $title->isRedirect() ) {
 			return false;
 		}
-		if ( $title->isProtected() ) {
+		if ( $this->restrictionStore->isProtected( $title ) ) {
 			return false;
 		}
 		$file = $this->localRepo->findFile( $title );
