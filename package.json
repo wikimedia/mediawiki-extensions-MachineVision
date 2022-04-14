@@ -1,4 +1,5 @@
 {
+	"name": "MachineVision",
 	"private": true,
 	"scripts": {
 		"test": "grunt test && npm run test:unit",
