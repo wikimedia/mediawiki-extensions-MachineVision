@@ -7,6 +7,7 @@ use MediaWiki\Extension\MachineVision\Repository;
 use MediaWiki\Extension\MachineVision\Services;
 use MediaWiki\MediaWikiServices;
 use MWException;
+use TitleValue;
 use Wikimedia\Rdbms\IDatabase;
 
 // Security: Disable all stream wrappers and reenable individually as needed
@@ -104,16 +105,16 @@ class PrioritizeFilesWithTemplate extends Maintenance {
 				$unreviewed[ $row->page_id ] = $row->mvi_id;
 			}
 			$lastMviId = max( $unreviewed );
+			$targetConds = MediaWikiServices::getInstance()->getLinksMigration()->getLinksConditions(
+				'templatelinks',
+				new TitleValue( NS_TEMPLATE, $this->getOption( 'template' ) )
+			);
 
 			$uncategorizedPageIds = array_unique(
 				$this->dbr->selectFieldValues(
 					'templatelinks',
 					'tl_from',
-					[
-						'tl_from' => array_keys( $unreviewed ),
-						'tl_namespace' => NS_TEMPLATE,
-						'tl_title' => $this->getOption( 'template' ),
-					],
+					array_merge( $targetConds, [ 'tl_from' => array_keys( $unreviewed ) ] ),
 					__METHOD__,
 					[],
 					[]

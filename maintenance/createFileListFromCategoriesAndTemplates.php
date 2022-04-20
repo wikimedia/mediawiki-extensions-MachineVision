@@ -7,6 +7,7 @@ use MediaWiki\Extension\MachineVision\Services;
 use MediaWiki\Extension\MachineVision\TitleFilter;
 use MediaWiki\MediaWikiServices;
 use MWException;
+use TitleValue;
 use Wikimedia\Rdbms\IDatabase;
 
 // Security: Disable all stream wrappers and reenable individually as needed
@@ -110,14 +111,14 @@ class CreateFileListFromCategoriesAndTemplates extends Maintenance {
 			$this->processPagesInCategory( $category, (bool)$this->getOption( 'deepcat', false ) );
 		}
 		foreach ( $templates as $template ) {
+			$targetConds = MediaWikiServices::getInstance()->getLinksMigration()->getLinksConditions(
+				'templatelinks',
+				new TitleValue( NS_TEMPLATE, $template )
+			);
 			$candidates = $this->dbr->selectFieldValues(
 				[ 'page', 'templatelinks' ],
 				'page_title',
-				[
-					'page_namespace' => NS_FILE,
-					'tl_namespace' => NS_TEMPLATE,
-					'tl_title' => $template,
-				],
+				array_merge( $targetConds, [ 'page_namespace' => NS_FILE ] ),
 				__METHOD__,
 				[],
 				[
