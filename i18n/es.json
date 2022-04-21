@@ -5,7 +5,8 @@
 			"Fitoschido",
 			"Geryescalier",
 			"Hasley",
-			"Madamebiblio"
+			"Madamebiblio",
+			"DiegoAmbrocio"
 		]
 	},
 	"machinevision-desc": "Interactua con proveedores de servicios externos y internos de visión artificial y guarda y provee resultados.",
@@ -26,6 +27,8 @@
 	"machinevision-confirm-tags-dialog-heading": "Esta imagen muestra:",
 	"machinevision-success-message": "Se añadieron las etiquetas a la imagen.",
 	"machinevision-success-message-with-warning": "Se añadieron etiquetas a la imagen con las excepciones siguientes:",
+	"machinevision-onboarding-dialog-cta": "Empezar a etiquetar",
+	"machinevision-onboarding-dialog-disclaimer": "Sólo se añadirán a las imágenes, las etiquetas que usted apruebe.",
 	"machinevision-onboarding-dialog-close-label": "Cerrar",
 	"machinevision-javascript-required": "Tu navegador no admite esta función.",
 	"machinevision-categories-label": "Categorías:",
@@ -37,6 +40,7 @@
 	"tag-computer-aided-tagging-manual": "Etiquetado asistido por computadora - manual",
 	"tag-computer-aided-tagging-manual-description": "Ediciones creadas desde la herramienta de etiquetado asistida por computadora con etiquetas proporcionadas por el usuario",
 	"tag-computer-aided-tagging-manual-revert": "Etiquetado asistido por computadora - manual (revertir)",
+	"echo-machinevision-suggestions-ready-notification-primary-link": "Etiquetas de revisión",
 	"echo-category-title-machinevision": "Etiquetas sugeridas para revisión",
 	"echo-pref-tooltip-machinevision-suggestions-ready": "Notificarme cuando se hayan procesado mis imágenes y haya etiquetas sugeridas para que las revise."
 }
