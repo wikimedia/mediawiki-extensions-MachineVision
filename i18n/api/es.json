@@ -2,9 +2,11 @@
 	"@metadata": {
 		"authors": [
 			"Fitoschido",
-			"Silverie04"
+			"Silverie04",
+			"DiegoAmbrocio"
 		]
 	},
+	"apihelp-reviewimagelabels-param-review": "Resultado de la revisión.",
 	"apihelp-reviewimagelabels-paramvalue-review-accept": "La sugerencia es correcta.",
 	"apihelp-reviewimagelabels-paramvalue-review-reject": "La sugerencia es incorrecta.",
 	"apierror-reviewimagelabels-invalidfile": "<kbd>$1</kbd> no es un nombre de archivo válido.",
