@@ -3,6 +3,11 @@
 	<rule ref="./vendor/mediawiki/mediawiki-codesniffer/MediaWiki">
 		<exclude name="MediaWiki.Commenting.FunctionComment.MissingDocumentationPrivate" />
 		<exclude name="MediaWiki.Commenting.PropertyDocumentation.MissingDocumentationPrivate" />
+		<exclude name="MediaWiki.PHPUnit.AssertionOrder.WrongOrder" />
+		<exclude name="MediaWiki.PHPUnit.SetMethods.SetMethods" />
+		<exclude name="MediaWiki.Usage.StaticClosure.StaticClosure" />
+		<exclude name="PSR12.Functions.ReturnTypeDeclaration.SpaceBeforeColon" />
+		<exclude name="PSR12.Functions.ReturnTypeDeclaration.SpaceBeforeReturnType" />
 	</rule>
 	<file>.</file>
 	<arg name="extensions" value="php" />
