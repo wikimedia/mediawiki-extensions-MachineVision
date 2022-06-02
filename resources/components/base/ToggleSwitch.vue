@@ -200,7 +200,7 @@ module.exports = exports = {
 		.mw-toggle-switch__toggle__grip {
 			background-color: transparent;
 			border: @border-width-base @border-style-base @background-color-base;
-			box-shadow: @box-shadow-inset--inverted;
+			box-shadow: @box-shadow-filled--disabled;
 		}
 
 		&.mw-toggle-switch__toggle--on {
