@@ -1,0 +1,24 @@
+{
+	"@metadata": {
+		"authors": [
+			"Lancine.kounfantoh.fofana"
+		]
+	},
+	"machinevision-machineaidedtagging-popular-tab": "ߛߘߊߡߊ",
+	"machinevision-machineaidedtagging-user-tab": "ߖߘߍ߬ߞߊ߬ߣߌ߲߫ ߟߊߦߟߍߟߌ ߟߎ߬",
+	"machinevision-machineaidedtagging-preferences-link": "[[Special:Preferences#mw-prefsection-echo|ߖߊ߲߬ߓߌ߬ߟߊ߬ߟߌ ߓߐ߫ ߊ߬ ߟߊ߫]] ߖߐ߯ߙߊ߲ ߣߌ߲߬ ߠߊ߫",
+	"machinevision-pageinfo-field-suggested-labels": "ߞߘߐߦߌߘߊ ߞߎ߲߬ߦߌ߬ߘߊ߬ߟߌ ߟߎ߬",
+	"machinevision-publish": "ߟߊ߬ߥߊ߲߬ߞߊ߬ߟߌ",
+	"machinevision-skip": "ߊ߬ ߟߊߜߊ߲߫",
+	"machinevision-skip-title": "ߞߊ߬ ߞߎ߲߬ߦߌ߬ߘߊ߬ߟߌ ߟߊߝߘߏ߬ \"$1\" ߢߍ߫؟",
+	"machinevision-personal-uploads-count": "ߌ ߖߘߍ߬ߞߊ߬ߣߌ߲߫ $1 ߦߴߌ ߓߟߏ߫ {{PLURAL:|ߟߊ߬ߦߟߍ߬ߟߌ|ߟߊ߬ߦߟߍ߬ߟߌ $1 ߟߎ߬}} ߛߊߞߍߟߌ߫ ߞߊ߲ߡߊ߬.",
+	"machinevision-suggestion-confirm-title": "ߞߊ߬ ߞߎ߲߬ߦߌ߬ߘߊ߬ߟߌ \"$1\" ߟߊߛߙߋߦߊ߫؟",
+	"machinevision-suggestion-confirm-undo-title": "ߞߊ߬ \"$1\" ߞߎ߲߬ߦߌ߬ߘߊ߬ߟߌ ߟߊ߬ߛߙߋ߬ߦߊ߬ߟߌ ߘߐߛߊ߬؟",
+	"machinevision-loading-message": "ߖߌ߬ߟߊ߬ߓߍ ߟߊߢߎ߲ߠߌ߲ ߦߴߌ ߘߐ߫...",
+	"machinevision-confirm-tags-dialog-confirm-action": "ߏ߬ߞߍ߫",
+	"machinevision-confirm-tags-dialog-cancel-action": "ߊ߬ ߘߐߛߊ߬",
+	"machinevision-onboarding-dialog-cta": "ߛߓߍߟߌ ߘߊߡߌ߬ߣߊ߬",
+	"machinevision-onboarding-dialog-close-label": "ߊ߬ ߘߊߕߎ߲߯",
+	"machinevision-cta-cta": "ߖߌ߬ߦߊ߬ߓߍ߫ ߛߘߊߡߊ ߕߐ߮ ߟߊߘߏ߲߬",
+	"machinevision-categories-label": "ߦߌߟߡߊ ߟߎ߬:"
+}
