@@ -215,12 +215,17 @@ class Hooks {
 	 */
 	public static function onLoadExtensionSchemaUpdates( DatabaseUpdater $updater ) {
 		$sqlDir = __DIR__ . '/../sql';
-		$updater->addExtensionTable( 'machine_vision_provider', "$sqlDir/machine_vision.sql" );
-		$updater->addExtensionField(
-			'machine_vision_image',
-			'mvi_priority',
-			"$sqlDir/patch-machine_vision_image-mvi_priority.sql"
-		);
+		$dbType = $updater->getDB()->getType();
+		$updater->addExtensionTable( 'machine_vision_provider', "$sqlDir/$dbType/tables-generated.sql" );
+
+		if ( $dbType === 'mysql' ) {
+			// 1.35
+			$updater->addExtensionField(
+				'machine_vision_image',
+				'mvi_priority',
+				"$sqlDir/$dbType/patch-machine_vision_image-mvi_priority.sql"
+			);
+		}
 	}
 
 	/**

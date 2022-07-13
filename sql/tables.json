@@ -1,0 +1,217 @@
+[
+	{
+		"name": "machine_vision_provider",
+		"columns": [
+			{
+				"name": "mvp_id",
+				"comment": "Numeric ID for the provider",
+				"type": "integer",
+				"options": { "autoincrement": true, "notnull": true, "unsigned": true }
+			},
+			{
+				"name": "mvp_name",
+				"comment": "Provider name",
+				"type": "binary",
+				"options": { "notnull": true, "length": 255 }
+			}
+		],
+		"indexes": [
+			{
+				"name": "mvp_name",
+				"columns": [ "mvp_name" ],
+				"unique": true
+			}
+		],
+		"pk": [ "mvp_id" ]
+	},
+	{
+		"name": "machine_vision_image",
+		"columns": [
+			{
+				"name": "mvi_id",
+				"type": "integer",
+				"options": { "autoincrement": true, "notnull": true }
+			},
+			{
+				"name": "mvi_sha1",
+				"comment": "sha1 digest of the image",
+				"type": "binary",
+				"options": { "notnull": true, "length": 32 }
+			},
+			{
+				"name": "mvi_priority",
+				"comment": "Larger value = higher priority",
+				"type": "mwtinyint",
+				"options": { "notnull": false, "length": 3, "default": 0 }
+			},
+			{
+				"name": "mvi_rand",
+				"comment": "Random value for querying random images",
+				"type": "float",
+				"options": { "notnull": true }
+			}
+		],
+		"indexes": [
+			{
+				"name": "mvi_sha1",
+				"columns": [ "mvi_sha1" ],
+				"options": { "lengths": [ 10 ] },
+				"unique": true
+			},
+			{
+				"name": "mvi_rand",
+				"columns": [ "mvi_rand" ],
+				"unique": false
+			},
+			{
+				"name": "mvi_priority",
+				"columns": [ "mvi_priority" ],
+				"unique": false
+			}
+		],
+		"pk": [ "mvi_id" ]
+	},
+	{
+		"name": "machine_vision_label",
+		"columns": [
+			{
+				"name": "mvl_id",
+				"type": "integer",
+				"options": { "autoincrement": true, "notnull": true }
+			},
+			{
+				"name": "mvl_mvi_id",
+				"comment": "mvi_id of the image to which this suggested label belongs",
+				"type": "integer",
+				"options": { "notnull": true }
+			},
+			{
+				"name": "mvl_wikidata_id",
+				"comment": "Wikidata ID (Q-number) identifying the item identified as depicted in the image",
+				"type": "binary",
+				"options": { "notnull": true, "length": 32 }
+			},
+			{
+				"name": "mvl_review",
+				"comment": "Review status: 0: not reviewed yet, 1: accepted, -1: rejected, -2: withheld from popular, -3: withheld from all, -4: not displayed",
+				"type": "mwtinyint",
+				"options": { "notnull": true, "default": 0 }
+			},
+			{
+				"name": "mvl_uploader_id",
+				"comment": "Local user ID of the user who uploaded the label",
+				"type": "integer",
+				"options": { "notnull": false, "unsigned": true }
+			},
+			{
+				"name": "mvl_reviewer_id",
+				"comment": "Local user ID of the user who reviewed the label",
+				"type": "integer",
+				"options": { "notnull": false, "unsigned": true }
+			},
+			{
+				"name": "mvl_reviewed_time",
+				"comment": "Timestamp representing the time at which the label suggestion was reviewed.",
+				"type": "mwtimestamp",
+				"options": { "notnull": false }
+			}
+		],
+		"indexes": [
+			{
+				"name": "mvl_mvi_wikidata",
+				"columns": [ "mvl_mvi_id", "mvl_wikidata_id" ],
+				"unique": true
+			},
+			{
+				"name": "mvl_uploader_review",
+				"columns": [ "mvl_uploader_id", "mvl_review" ],
+				"unique": false
+			}
+		],
+		"pk": [ "mvl_id" ]
+	},
+	{
+		"name": "machine_vision_suggestion",
+		"columns": [
+			{
+				"name": "mvs_mvl_id",
+				"type": "integer",
+				"options": { "notnull": true }
+			},
+			{
+				"name": "mvs_provider_id",
+				"comment": "Numeric ID of the machine vision label provider",
+				"type": "integer",
+				"options": { "notnull": true, "unsigned": true }
+			},
+			{
+				"name": "mvs_timestamp",
+				"comment": "Time of receiving the label",
+				"type": "mwtimestamp",
+				"options": { "notnull": true }
+			},
+			{
+				"name": "mvs_confidence",
+				"comment": "Confidence score provided with the suggested label",
+				"type": "float",
+				"options": { "notnull": true, "unsigned": true, "default": 0 }
+			}
+		],
+		"indexes": [],
+		"pk": [ "mvs_mvl_id", "mvs_provider_id" ]
+	},
+	{
+		"name": "machine_vision_freebase_mapping",
+		"columns": [
+			{
+				"name": "mvfm_freebase_id",
+				"type": "binary",
+				"options": { "notnull": true, "length": 32 }
+			},
+			{
+				"name": "mvfm_wikidata_id",
+				"type": "binary",
+				"options": { "notnull": true, "length": 32 }
+			}
+		],
+		"indexes": [],
+		"pk": [ "mvfm_freebase_id", "mvfm_wikidata_id" ]
+	},
+	{
+		"name": "machine_vision_safe_search",
+		"columns": [
+			{
+				"name": "mvss_mvi_id",
+				"type": "integer",
+				"options": { "notnull": true }
+			},
+			{
+				"name": "mvss_adult",
+				"type": "mwtinyint",
+				"options": { "notnull": true, "default": 0 }
+			},
+			{
+				"name": "mvss_spoof",
+				"type": "mwtinyint",
+				"options": { "notnull": true, "default": 0 }
+			},
+			{
+				"name": "mvss_medical",
+				"type": "mwtinyint",
+				"options": { "notnull": true, "default": 0 }
+			},
+			{
+				"name": "mvss_violence",
+				"type": "mwtinyint",
+				"options": { "notnull": true, "default": 0 }
+			},
+			{
+				"name": "mvss_racy",
+				"type": "mwtinyint",
+				"options": { "notnull": true, "default": 0 }
+			}
+		],
+		"indexes": [],
+		"pk": [ "mvss_mvi_id" ]
+	}
+]
