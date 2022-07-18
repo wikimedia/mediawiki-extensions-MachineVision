@@ -4,6 +4,13 @@
 			"McDutchie"
 		]
 	},
+	"machinevision-desc": "Interage con fornitores de servicio interne e externe de vision artificial e immagazina e servi resultatos.",
+	"machinevision-machineaidedtagging": "Etiquettas suggerite",
+	"machinevision-machineaidedtagging-intro": "Revide le etiquettas suggerite de [[Project:Depicts|objectos illustrate]] in imagines. Solo le etiquettas confirmate per un usator es addite al imagines. Pro plus information, lege le [[Project:Structured_data/Computer-aided_tagging|pagina del projecto]] e [[Project_talk:Structured_data/Computer-aided_tagging|da nos tu ideas]] pro render iste instrumento plus utile!",
+	"machinevision-machineaidedtagging-tabs-heading": "Imagines a revider",
+	"machinevision-machineaidedtagging-popular-tab": "Popular",
+	"machinevision-machineaidedtagging-user-tab": "Incargamentos personal",
+	"machinevision-machineaidedtagging-preferences-link": "[[Special:Preferences#mw-prefsection-echo|Disactivate le notificationes]] de iste instrumento",
 	"machinevision-autoconfirmed-message": "Le etiquettas accurate facilita le recerca de imagines pro tote le usatores de Commons. Dunque, per favor, face te [[mw:Special:MyLanguage/Manual:Autoconfirmed_users|autoconfirmar]], nam solmente le usatores autoconfirmate pote usar iste instrumento.",
 	"machinevision-publish": "Publicar",
 	"machinevision-add-custom-tag": "Adder etiquetta",
