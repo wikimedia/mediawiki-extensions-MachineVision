@@ -3,7 +3,8 @@
 		"authors": [
 			"Bugoslav",
 			"MaGa",
-			"Neptune, the Mystic"
+			"Neptune, the Mystic",
+			"Ponor"
 		]
 	},
 	"machinevision-desc": "Komunicira s unutarnjom i vanjskom uslugom obrade slike i sprema rezultate na poslužitelj.",
@@ -40,7 +41,7 @@
 	"machinevision-onboarding-dialog-cta": "Započni označavanje",
 	"machinevision-onboarding-dialog-disclaimer": "Slikama će biti dodane samo one oznake koje odobrite.",
 	"machinevision-onboarding-dialog-close-label": "Zatvori",
-	"machinevision-cta-heading": "Označili ste sve vaše postavljene datoteke!",
+	"machinevision-cta-heading": "Označili ste sve svoje postavljene datoteke!",
 	"machinevision-cta-text": "Hvala Vam što pomažete da slike budu lakše za pronalaženje. Želite li dodati još oznaka?",
 	"machinevision-cta-cta": "Označavanje popularnih slika",
 	"machinevision-no-uploads-cta-heading": "Nemate slika za pregled",
