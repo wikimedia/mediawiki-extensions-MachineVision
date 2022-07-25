@@ -13,7 +13,7 @@
 		]
 	},
 	"machinevision-machineaidedtagging": "Voorgestelde labels",
-	"machinevision-machineaidedtagging-intro": "Beoordeel voorgestelde tags van [[Project:Depicts|afgebeelde objecten]] in afbeeldingen. Alleen door gebruikers bevestigde tags worden aan afbeeldingen toegevoegd. Voor meer informatie bekijkt u de [[Project:Structured_data/Computer-aided_tagging|projectpagina]]. [[Project_talk:Structured_data/Computer-aided_tagging|Laat ons weten]] hoe deze tool nog nuttiger gemaakt kan worden!",
+	"machinevision-machineaidedtagging-intro": "Beoordeel voorgestelde tags van in afbeeldingen [[Project:Depicts|geïllustreerde objecten]]. Alleen door gebruikers bevestigde tags worden aan afbeeldingen toegevoegd. Voor meer informatie bekijkt u de [[Project:Structured_data/Computer-aided_tagging|projectpagina]]. [[Project_talk:Structured_data/Computer-aided_tagging|Laat ons weten]] hoe deze tool nog nuttiger gemaakt kan worden!",
 	"machinevision-machineaidedtagging-tabs-heading": "Afbeeldingen ter beoordeling",
 	"machinevision-machineaidedtagging-popular-tab": "Populair",
 	"machinevision-machineaidedtagging-user-tab": "Eigen uploads",
