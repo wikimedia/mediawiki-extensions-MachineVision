@@ -6,7 +6,8 @@
 			"Geryescalier",
 			"Hasley",
 			"Madamebiblio",
-			"DiegoAmbrocio"
+			"DiegoAmbrocio",
+			"McDutchie"
 		]
 	},
 	"machinevision-desc": "Interactua con proveedores de servicios externos y internos de visión artificial y guarda y provee resultados.",
@@ -35,8 +36,8 @@
 	"machinevision-add-custom-tag-dialog-title": "Etiqueta personalizada",
 	"machinevision-add-custom-tag-dialog-add-action": "Añadir",
 	"machinevision-add-custom-tag-dialog-cancel-action": "Cancelar",
-	"right-imagelabel-test": "Sugerencias de etiquetas para imagenes de prueba",
-	"action-imagelabel-test": "sugerencias de etiquetas para imagenes de prueba",
+	"right-imagelabel-test": "Probar sugerencias de etiquetas de imágenes",
+	"action-imagelabel-test": "probar sugerencias de etiquetas de imágenes",
 	"tag-computer-aided-tagging-manual": "Etiquetado asistido por computadora - manual",
 	"tag-computer-aided-tagging-manual-description": "Ediciones creadas desde la herramienta de etiquetado asistida por computadora con etiquetas proporcionadas por el usuario",
 	"tag-computer-aided-tagging-manual-revert": "Etiquetado asistido por computadora - manual (revertir)",
