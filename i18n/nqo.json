@@ -23,5 +23,8 @@
 	"machinevision-categories-label": "ߦߌߟߡߊ ߟߎ߬:",
 	"machinevision-add-custom-tag-dialog-add-action": "ߊ߬ ߝߙߊ߬",
 	"machinevision-add-custom-tag-dialog-cancel-action": "ߊ߬ ߘߐߛߊ߬",
-	"machinevision-image-exclusion-notification-dismiss": "ߖߊ߲߬ߓߌ߬ߟߊ߬ߟߌ ߣߌ߲߬ ߘߊߕߎ߲߯"
+	"machinevision-image-exclusion-notification-dismiss": "ߖߊ߲߬ߓߌ߬ߟߊ߬ߟߌ ߣߌ߲߬ ߘߊߕߎ߲߯",
+	"group-machinevision-tester": "ߕߙߏ߬ߞߏ ߦߋߟߌ ߞߘߐߓߐߟߊ߲",
+	"group-machinevision-tester-member": "{{GENDER:|ߕߙߏ߬ߞߏ ߦߋߟߌ ߞߘߐߓߐߟߊ߲ $1}}",
+	"grouppage-machinevision-tester": "{{ns:project}}:ߕߙߏ߬ߞߏ ߦߋߟߌ ߞߘߐߓߐߟߊ߲"
 }

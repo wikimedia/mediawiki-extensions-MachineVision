@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"פוילישער"
+			"פוילישער",
+			"Pacha Tchernof"
 		]
 	},
 	"machinevision-machineaidedtagging": "פֿארגעשלאגענע טאגן",
@@ -16,5 +17,6 @@
 	"machinevision-confirm-tags-dialog-title": "באשטעטיקן טאגן",
 	"machinevision-confirm-tags-dialog-confirm-action": "יאָ",
 	"machinevision-confirm-tags-dialog-cancel-action": "אַנולירן",
-	"machinevision-onboarding-dialog-close-label": "פארמאכן"
+	"machinevision-onboarding-dialog-close-label": "פארמאכן",
+	"machinevision-add-custom-tag-dialog-cancel-action": "אַנולירן"
 }
