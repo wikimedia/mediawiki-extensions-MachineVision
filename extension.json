@@ -346,6 +346,7 @@
 				"wikibasemediainfo-filepage-statement-no-results",
 				"wikibasemediainfo-statements-item-input-placeholder"
 			],
+			"es6": true,
 			"targets": [
 				"mobile",
 				"desktop"
