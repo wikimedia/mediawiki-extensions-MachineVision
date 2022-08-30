@@ -1,10 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
-			"Seipinne"
+			"Seipinne",
+			"Yupik"
 		]
 	},
 	"machinevision-publish": "Almostit",
 	"machinevision-confirm-tags-dialog-confirm-action": "OK",
-	"machinevision-add-custom-tag-dialog-add-action": "Lasseet"
+	"machinevision-confirm-tags-dialog-cancel-action": "Jooskâ",
+	"machinevision-add-custom-tag-dialog-add-action": "Lasseet",
+	"machinevision-add-custom-tag-dialog-cancel-action": "Jooskâ"
 }
