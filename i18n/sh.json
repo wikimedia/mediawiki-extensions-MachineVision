@@ -4,7 +4,7 @@
 			"Vlad5250"
 		]
 	},
-	"machinevision-desc": "Sučelje za unutrašnju i spoljašnju uslugu za mašinski uvid i sprema ishode za uporabu na wikiju",
+	"machinevision-desc": "Komunicira s unutrašnjom i spoljašnjom uslugom za mašinski uvid i sprema ishode na poslužitelj",
 	"machinevision-machineaidedtagging": "Predloženi tagovi",
 	"machinevision-machineaidedtagging-intro": "Provjerite predložene tagove [[c:Commons:Depicts|prikazanih predmeta]] u slikama. Dodaju se samo tagovi potvrđeni korisnicima. Više ćete saznati na [[c:Commons:Structured_data/Computer-aided_tagging|projektnoj stranici]] i [[give feedback|dajte vašu povratnu informaciju]] kako da napravim alat korisnijim!",
 	"machinevision-machineaidedtagging-tabs-heading": "Slike za provjeru",
@@ -14,11 +14,13 @@
 	"machinevision-pageinfo-field-suggested-labels": "Predložene etikete",
 	"machinevision-publish": "Objavi",
 	"machinevision-publish-title": "Da objavim tagove?",
+	"machinevision-add-custom-tag": "Dodaj oznaku",
+	"machinevision-add-custom-tag-title": "Dodaj proizvoljnu oznaku slici",
 	"machinevision-skip": "Preskoči",
 	"machinevision-skip-title": "Da preskočim prijedloge za \"$1\"?",
 	"machinevision-suggestion-confirm-title": "Da potvrdim prijedlog \"$1\"?",
 	"machinevision-suggestion-confirm-undo-title": "Da poništim potvrdu prijedloga \"$1\"?",
-	"machinevision-loading-message": "Učitavanje...",
+	"machinevision-loading-message": "Učitavanje slika...",
 	"right-imagelabel-review": "Provjera predloženih etiketa za slike",
 	"action-imagelabel-review": "provjera predloženih etiketa za slike"
 }
