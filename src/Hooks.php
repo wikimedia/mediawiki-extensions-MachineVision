@@ -248,7 +248,8 @@ class Hooks {
 		$db->tablePrefix( $prefix );
 		if ( !$db->tableExists( 'machine_vision_provider', __METHOD__ ) ) {
 			$sqlDir = __DIR__ . '/../sql';
-			$db->sourceFile( "$sqlDir/machine_vision.sql" );
+			$dbType = $db->getType();
+			$db->sourceFile( "$sqlDir/$dbType/tables-generated.sql" );
 		}
 		$db->tablePrefix( $originalPrefix );
 	}
