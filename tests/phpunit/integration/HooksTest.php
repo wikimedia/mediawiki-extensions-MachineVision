@@ -11,7 +11,6 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Tests\Rest\Handler\MediaTestTrait;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiIntegrationTestCase;
-use Prophecy\Argument;
 use RepoGroup;
 use RequestContext;
 use Title;
@@ -143,13 +142,16 @@ class HooksTest extends MediaWikiIntegrationTestCase {
 	private function setSetMockFile( $name ): File {
 		$title = Title::newFromText( $name, NS_FILE );
 		$file = $this->makeMockFile( $title );
-		$repo = $this->prophesize( LocalRepo::class );
-		$repo->findFile( Argument::that( static function ( $actualTitle ) use ( $title ) {
-			return $title->equals( $actualTitle );
-		} ) )->willReturn( $file );
-		$repoGroup = $this->prophesize( RepoGroup::class );
-		$repoGroup->getLocalRepo()->willReturn( $repo->reveal() );
-		$this->setService( 'RepoGroup', $repoGroup->reveal() );
+		$repo = $this->createMock( LocalRepo::class );
+		$repo->method( 'findFile' )
+			->with( $this->callback( static function ( $actualTitle ) use ( $title ) {
+				return $title->equals( $actualTitle );
+			} ) )
+			->willReturn( $file );
+		$repoGroup = $this->createMock( RepoGroup::class );
+		$repoGroup->method( 'getLocalRepo' )
+			->willReturn( $repo );
+		$this->setService( 'RepoGroup', $repoGroup );
 		return $file;
 	}
 
