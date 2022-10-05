@@ -1,9 +1,38 @@
 {
 	"@metadata": {
 		"authors": [
-			"Mansil"
+			"Mansil",
+			"Hamilton Abreu"
 		]
 	},
+	"apihelp-reviewimagelabels-summary": "Rever etiquetas de imagens sugeridas por computador.",
+	"apihelp-reviewimagelabels-param-filename": "Nome da imagem (sem o prefixo do espaço nominal).",
+	"apihelp-reviewimagelabels-param-label": "Identificador Wikidata da etiqueta sugerida (com o prefixo Q).",
+	"apihelp-reviewimagelabels-param-review": "Resultado da revisão.",
+	"apihelp-reviewimagelabels-param-batch": "Dados agrupados para revisão de várias sugestões de etiquetas para uma imagem num único pedido, na forma de uma matriz JSON com um ou mais objetos com os campos <var>label</var> (etiqueta) e <var>review</var> (revisão).",
 	"apihelp-reviewimagelabels-paramvalue-review-accept": "A sugestão está correta.",
-	"apihelp-reviewimagelabels-paramvalue-review-reject": "A sugestão está incorreta."
+	"apihelp-reviewimagelabels-paramvalue-review-reject": "A sugestão está incorreta.",
+	"apihelp-reviewimagelabels-example-1": "Marcar <kbd>Q123</kbd> como uma sugestão correta para <kbd>Example.png</kbd>.",
+	"apihelp-reviewimagelabels-example-2": "Aceitar <kbd>Q1</kbd> e rejeitar <kbd>Q2</kbd> como sugestões para <kbd>Example.png</kbd>.",
+	"apierror-reviewimagelabels-batch-invalid-json": "JSON inválido para o parâmetro <var>batch</var> (grupo): $1",
+	"apierror-reviewimagelabels-batch-invalid-structure": "Entrada inválida para o parâmetro <var>batch</var> (grupo): tem de conter uma matriz de objetos que tenham valores escalares.",
+	"apierror-reviewimagelabels-batch-missingparam-at-least-one-of": "Em todos os objetos dentro da entrada <var>batch</var> (grupo), {{PLURAL:$2|o campo|pelo menos um dos campos}} $1 é obrigatório.",
+	"apierror-reviewimagelabels-batch-toomanyvalues": "Entrada inválida para o parâmetro <var>batch</var> (grupo): há demasiadas entradas, o número máximo permitido é $1",
+	"apierror-reviewimagelabels-invalidfile": "<kbd>$1</kbd> não é um nome de ficheiro válido.",
+	"apierror-reviewimagelabels-invalidlabel": "O ficheiro <kbd>$1</kbd> não tem nenhuma etiqueta <kbd>$2</kbd>.",
+	"apierror-reviewimagelabels-invalidstate": "<kbd>$3</kbd> não é uma operação válida para a etiqueta <kbd>$2</kbd> do ficheiro <kbd>$1</kbd>.",
+	"apiwarn-reviewimagelabels-setlabelstate-failed": "Não foi possível armazenar o estado de etiqueta <kbd>$1</kbd> para a etiqueta <kbd>$2</kbd>",
+	"apiwarn-reviewimagelabels-depicts-exists": "A declaração '$1 ($2): $3' já existe para o ficheiro $4",
+	"apihelp-query+imagelabels-summary": "Mostrar etiquetas de imagens sugeridas por computador.",
+	"apihelp-query+imagelabels-param-state": "Listar só as etiquetas nestes estados de revisão",
+	"apihelp-query+imagelabels-paramvalue-state-unreviewed": "Etiquetas que ainda não foram revistas.",
+	"apihelp-query+imagelabels-paramvalue-state-accepted": "Etiquetas que foram identificadas como corretas.",
+	"apihelp-query+imagelabels-paramvalue-state-rejected": "Etiquetas que não foram identificadas como corretas.",
+	"apihelp-query+imagelabels-paramvalue-state-withheld": "Etiquetas para uma imagem que não foi apresentada na etiquetagem assistida por computador.",
+	"apihelp-query+imagelabels-example-1": "Mostrar etiquetas de imagem sugeridas por computador para <kbd>Exemplo.png</kbd>.",
+	"apihelp-query+unreviewedimagelabels-summary": "Mostrar títulos com etiquetas de imagem sugeridas que precisam de revisão.",
+	"apihelp-query+unreviewedimagelabels-param-uploader": "Devolver apenas os resultados carregados por este utilizador.",
+	"apihelp-query+unreviewedimagelabels-param-limit": "O número de resultados a serem devolvidos.",
+	"apihelp-query+unreviewedimagecount-summary": "Mostrar contagem das imagens com sugestões de etiquetas a aguardar revisão, incluindo a contagem total e (se tiver sessão iniciada) a do utilizador atual.",
+	"apihelp-query+unreviewedimagecount-example": "Obter contagens das imagens não revistas."
 }
