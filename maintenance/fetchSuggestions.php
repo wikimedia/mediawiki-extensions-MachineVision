@@ -8,29 +8,15 @@ use MediaWiki\Extension\MachineVision\Client\GoogleCloudVisionClient;
 use MediaWiki\Extension\MachineVision\Handler\Registry;
 use MediaWiki\Extension\MachineVision\Services;
 use MediaWiki\MediaWikiServices;
-use MWException;
 use RepoGroup;
 use Throwable;
 use Title;
 
-// Security: Disable all stream wrappers and reenable individually as needed
-foreach ( stream_get_wrappers() as $wrapper ) {
-	stream_wrapper_unregister( $wrapper );
+$IP = getenv( 'MW_INSTALL_PATH' );
+if ( $IP === false ) {
+	$IP = __DIR__ . '/../../..';
 }
-
-stream_wrapper_restore( 'file' );
-$basePath = getenv( 'MW_INSTALL_PATH' );
-if ( $basePath ) {
-	if ( !is_dir( $basePath )
-		|| strpos( $basePath, '..' ) !== false
-		|| strpos( $basePath, '~' ) !== false
-	) {
-		throw new MWException( "Bad MediaWiki install path: $basePath" );
-	}
-} else {
-	$basePath = __DIR__ . '/../../..';
-}
-require_once "$basePath/maintenance/Maintenance.php";
+require_once "$IP/maintenance/Maintenance.php";
 
 /**
  * Maintenance script for fetching suggestions for specific files.
@@ -169,11 +155,4 @@ class FetchSuggestions extends Maintenance {
 }
 
 $maintClass = FetchSuggestions::class;
-
-$doMaintenancePath = RUN_MAINTENANCE_IF_MAIN;
-if ( !( file_exists( $doMaintenancePath ) &&
-	$doMaintenancePath === "$basePath/maintenance/doMaintenance.php" ) ) {
-	throw new MWException( "Bad maintenance script location: $basePath" );
-}
-
 require_once RUN_MAINTENANCE_IF_MAIN;
