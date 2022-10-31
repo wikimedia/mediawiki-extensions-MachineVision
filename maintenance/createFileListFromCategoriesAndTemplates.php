@@ -90,12 +90,12 @@ class CreateFileListFromCategoriesAndTemplates extends Maintenance {
 	public function execute() {
 		$this->init();
 		$categories = $this->getOption( 'category', [] );
-		$deepcat = $this->getOption( 'deepcat', false );
+		$deepcat = (bool)$this->getOption( 'deepcat', false );
 		$templates = $this->getOption( 'template', [] );
 		file_put_contents( $this->outputFile, '' );
 
 		foreach ( $categories as $category ) {
-			$this->processPagesInCategory( $category, (bool)$this->getOption( 'deepcat', false ) );
+			$this->processPagesInCategory( $category, $deepcat );
 		}
 		foreach ( $templates as $template ) {
 			$targetConds = MediaWikiServices::getInstance()->getLinksMigration()->getLinksConditions(
