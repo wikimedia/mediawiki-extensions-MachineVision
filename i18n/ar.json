@@ -59,7 +59,7 @@
 	"tag-computer-aided-tagging-description": "التعديلات المنشأة بواسطة أداة الوسم بمساعدة الحاسوب",
 	"tag-computer-aided-tagging-revert": "تراجع الوسم بمساعدة الحاسوب",
 	"tag-computer-aided-tagging-revert-description": "تعديلات تُرجع مراجعة أو أكثر من المراجعات المنشأة بواسطة أداة الوسم بمساعدة الحاسوب",
-	"echo-machinevision-suggestions-ready-notification-header-compact": "الوسوم المقترحة {{GENDER:$1|لملفك}} $2 جاهزة للمراجعة",
+	"echo-machinevision-suggestions-ready-notification-header-compact": "الوسوم المقترحة جاهزة للمراجعة",
 	"echo-machinevision-suggestions-ready-notification-header": "الوسوم المقترحة {{GENDER:$1|لمرفوعاتك}} الحديثة جاهزة للمراجعة",
 	"echo-machinevision-suggestions-ready-notification-body": "مرحبا! تمت معالجة الصور {{GENDER:$1|صورك}} التي رفعتها مؤخرا إلى كومنز بالوسوم المقترحة وهي جاهزة للمراجعة، تسهل الوسوم الدقيقة على جميع مستخدمي كومنز العثور على {{GENDER:$1|صورك}}؛ لذلك اتبع الرابط لمراجعة {{GENDER:$1|وسومك}} المقترحة، ستتم إضافة الوسوم التي أكدها المستخدمون فقط كجزء من بيانات الصورة على كومنز، لمزيد من المعلومات حول هذه الأداة؛ تُرجَى زيارة صفحة مشروع أداة وضع الوسم بمساعدة الحاسوب.",
 	"echo-machinevision-suggestions-ready-notification-primary-link": "الرابط الأساسي للاقتراحات الإخطار الجاهزة",
