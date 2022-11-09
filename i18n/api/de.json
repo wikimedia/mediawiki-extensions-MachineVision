@@ -1,8 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
+			"TMg",
 			"Umlaut"
 		]
 	},
+	"apihelp-reviewimagelabels-param-review": "Ergebnis der Überprüfung.",
+	"apihelp-reviewimagelabels-paramvalue-review-accept": "Der Vorschlag ist richtig.",
+	"apihelp-reviewimagelabels-paramvalue-review-reject": "Der Vorschlag ist falsch.",
 	"apierror-reviewimagelabels-invalidfile": "<kbd>$1</kbd> ist kein gültiger Dateiname."
 }
