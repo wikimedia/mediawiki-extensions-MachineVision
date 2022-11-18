@@ -1,10 +1,9 @@
 'use strict';
 
-const VueTestUtils = require( '@vue/test-utils' );
+const { shallowMount } = require( '@vue/test-utils' );
 const Vuex = require( 'vuex' );
 const CardStack = require( '../../resources/components/CardStack.vue' );
 const ImageCard = require( '../../resources/components/ImageCard.vue' );
-const i18n = require( './plugins/i18n.js' );
 const imageData = require( './fixtures/imageData.json' );
 
 describe( 'CardStack', () => {
@@ -13,10 +12,6 @@ describe( 'CardStack', () => {
 		getters,
 		actions,
 		store;
-
-	beforeAll( () => {
-		VueTestUtils.config.global.plugins = [ i18n ];
-	} );
 
 	beforeEach( () => {
 		state = {
@@ -62,7 +57,7 @@ describe( 'CardStack', () => {
 	} );
 
 	it( 'does not render the ImageCard component when there are no images in the queue', () => {
-		const wrapper = VueTestUtils.shallowMount( CardStack, {
+		const wrapper = shallowMount( CardStack, {
 			props: {
 				queue: 'user'
 			},
@@ -78,7 +73,7 @@ describe( 'CardStack', () => {
 	it( 'renders the ImageCard component when there are images in the queue', () => {
 		getters.currentImage.mockReturnValue( imageData[ 0 ] );
 
-		const wrapper = VueTestUtils.shallowMount( CardStack, {
+		const wrapper = shallowMount( CardStack, {
 			props: {
 				queue: 'popular'
 			},
@@ -92,7 +87,7 @@ describe( 'CardStack', () => {
 	} );
 
 	it( 'dispatches the getImages action when the count of the image queue reaches zero', () => {
-		const wrapper = VueTestUtils.shallowMount( CardStack, {
+		const wrapper = shallowMount( CardStack, {
 			props: {
 				queue: 'popular'
 			},

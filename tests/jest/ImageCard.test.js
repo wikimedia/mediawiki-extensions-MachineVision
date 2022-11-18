@@ -1,35 +1,15 @@
 'use strict';
 
-const VueTestUtils = require( '@vue/test-utils' );
+const { mount, config } = require( '@vue/test-utils' );
 const Vuex = require( 'vuex' );
 const ImageCard = require( '../../resources/components/ImageCard.vue' );
-const i18n = require( './plugins/i18n.js' );
-const logger = require( '../../resources/plugins/logger.js' );
 const imageFixtures = require( './fixtures/imageData.json' );
-
-// The ImageCard template creates a Suggestion component with some message-based
-// props (title, text). These props are required, but the messages are not
-// available in the test environment. In cases where we call mount() as opposed
-// to just shallowMount(), it is helpful to fake an object that can give us a
-// string to pass down.
-const $i18n = jest.fn().mockReturnValue( {
-	parse: jest.fn().mockReturnValue( 'message' )
-} );
-
-const $logEvent = jest.fn().mockResolvedValue( {} );
 
 describe( 'ImageCard', () => {
 	let state,
 		getters,
 		actions,
 		store;
-
-	beforeAll( () => {
-		VueTestUtils.config.global = {
-			plugins: [ i18n, logger ],
-			mocks: { $i18n, $logEvent }
-		};
-	} );
 
 	beforeEach( () => {
 		state = {
@@ -62,7 +42,7 @@ describe( 'ImageCard', () => {
 		getters.currentImage.mockReturnValue( imageFixtures[ 0 ] );
 		getters.currentImageSuggestions.mockReturnValue( imageFixtures[ 0 ].suggestions );
 
-		const wrapper = VueTestUtils.mount( ImageCard, { global: { plugins: [ store ] } } );
+		const wrapper = mount( ImageCard, { global: { plugins: [ store ] } } );
 		const publishButton = wrapper.find( '.wbmad-action-buttons__publish' );
 
 		expect( publishButton.attributes( 'disabled' ) ).toBeDefined();
@@ -83,7 +63,7 @@ describe( 'ImageCard', () => {
 			confirmedSuggestion
 		] );
 
-		const wrapper = VueTestUtils.mount( ImageCard, { global: { plugins: [ store ] } } );
+		const wrapper = mount( ImageCard, { global: { plugins: [ store ] } } );
 		const publishButton = wrapper.find( '.wbmad-action-buttons__publish' );
 
 		expect( publishButton.attributes( 'disabled' ) ).not.toBeDefined();
@@ -100,7 +80,7 @@ describe( 'ImageCard', () => {
 			confirmedSuggestion
 		] );
 
-		const wrapper = VueTestUtils.mount( ImageCard, { global: { plugins: [ store ] } } );
+		const wrapper = mount( ImageCard, { global: { plugins: [ store ] } } );
 		const publishButton = wrapper.find( '.wbmad-action-buttons__publish' );
 		expect( actions.publishTags ).not.toHaveBeenCalled();
 
@@ -113,7 +93,7 @@ describe( 'ImageCard', () => {
 		getters.currentImage.mockReturnValue( imageFixtures[ 0 ] );
 		getters.currentImageSuggestions.mockReturnValue( imageFixtures[ 0 ].suggestions );
 
-		const wrapper = VueTestUtils.mount( ImageCard, { global: { plugins: [ store ] } } );
+		const wrapper = mount( ImageCard, { global: { plugins: [ store ] } } );
 		const skipButton = wrapper.find( '.wbmad-action-buttons__skip' );
 
 		expect( actions.skipImage ).not.toHaveBeenCalled();
@@ -133,11 +113,11 @@ describe( 'ImageCard', () => {
 			confirmedSuggestion
 		] );
 
-		const wrapper = VueTestUtils.mount( ImageCard, { global: { plugins: [ store ] } } );
+		const wrapper = mount( ImageCard, { global: { plugins: [ store ] } } );
 		const publishButton = wrapper.find( '.wbmad-action-buttons__publish' );
 
 		publishButton.trigger( 'click' );
-		expect( $logEvent ).toHaveBeenCalledWith(
+		expect( config.global.mocks.$logEvent ).toHaveBeenCalledWith(
 			expect.objectContaining( { action: 'publish' } )
 		);
 	} );
@@ -146,13 +126,13 @@ describe( 'ImageCard', () => {
 		getters.currentImage.mockReturnValue( imageFixtures[ 0 ] );
 		getters.currentImageSuggestions.mockReturnValue( imageFixtures[ 0 ].suggestions );
 
-		const wrapper = VueTestUtils.mount( ImageCard, { global: { plugins: [ store ] } } );
+		const wrapper = mount( ImageCard, { global: { plugins: [ store ] } } );
 		const skipButton = wrapper.find( '.wbmad-action-buttons__skip' );
 
 		expect( actions.skipImage ).not.toHaveBeenCalled();
 
 		skipButton.trigger( 'click' );
-		expect( $logEvent ).toHaveBeenCalledWith(
+		expect( config.global.mocks.$logEvent ).toHaveBeenCalledWith(
 			expect.objectContaining( { action: 'skip' } )
 		);
 	} );
