@@ -1,17 +1,23 @@
 /* global jest:false */
-var Vue = require( 'vue' );
+const Vue = require( 'vue' );
+const { config } = require( '@vue/test-utils' );
 
-/**
- * Mock out a global mediawiki object for use in unit tests
- * Adapted from:
- * https://github.com/wikimedia/mw-node-qunit/blob/master/src/mockMediaWiki.js
- *
- * The basic Jest mock functions here can be overridden with more specific
- * behavior as needed in individual test files.
- */
-var mw,
-	mockWbApi,
-	fakeTitle;
+// Mock Vue plugins in test suites
+config.global.mocks = {
+	$logEvent: jest.fn().mockResolvedValue( {} ),
+	$i18n: ( str ) => {
+		return {
+			text: () => str,
+			parse: () => str
+		};
+	}
+};
+
+config.global.directives = {
+	'i18n-html': ( el, binding ) => {
+		el.innerHTML = `${binding.arg} (${binding.value})`;
+	}
+};
 
 Vue.configureCompat( {
 	MODE: 3
@@ -25,12 +31,12 @@ Api.prototype.getToken = jest.fn().mockResolvedValue( {} );
 Api.prototype.postWithToken = jest.fn().mockResolvedValue( {} );
 
 // Fake mw.Title instance
-fakeTitle = {
+const fakeTitle = {
 	getRelativeText: jest.fn()
 };
 
 // Mock MW object
-mw = {
+const mw = {
 	Api: Api,
 	RegExp: {
 		escape: jest.fn()
@@ -127,7 +133,7 @@ global.OO = require( 'oojs' );
 require( 'oojs-ui' );
 require( 'oojs-ui/dist/oojs-ui-wikimediaui.js' );
 
-mockWbApi = {
+const mockWbApi = {
 	get: jest.fn().mockResolvedValue( {} ),
 	post: jest.fn().mockResolvedValue( {} ),
 	postWithToken: jest.fn().mockResolvedValue( {} )

@@ -1,9 +1,8 @@
 'use strict';
 
-const VueTestUtils = require( '@vue/test-utils' );
+const { config, mount, shallowMount } = require( '@vue/test-utils' );
 const Vuex = require( 'vuex' );
 const App = require( '../../resources/components/App.vue' );
-const i18n = require( './plugins/i18n.js' );
 
 describe( 'App', () => {
 	let state,
@@ -11,10 +10,6 @@ describe( 'App', () => {
 		actions,
 		store,
 		computed;
-
-	beforeAll( () => {
-		VueTestUtils.config.global.plugins = [ i18n ];
-	} );
 
 	// Mock Vuex store and i18n-based computed props for testing
 	beforeEach( () => {
@@ -70,14 +65,14 @@ describe( 'App', () => {
 			}
 		};
 
-		VueTestUtils.config.global.computed = computed;
+		config.global.computed = computed;
 	} );
 
 	it( 'does not display if user is not logged in', () => {
 		getters.isAuthenticated.mockReturnValue( false );
 		getters.isAutoconfirmed.mockReturnValue( false );
 
-		const wrapper = VueTestUtils.shallowMount( App, { global: { plugins: [ store ] } } );
+		const wrapper = shallowMount( App, { global: { plugins: [ store ] } } );
 		const tabsHeading = wrapper.find( '.wbmad-suggested-tags-page-tabs-heading' );
 		expect( tabsHeading.exists() ).toBe( false );
 	} );
@@ -86,7 +81,7 @@ describe( 'App', () => {
 		getters.isAuthenticated.mockReturnValue( true );
 		getters.isAutoconfirmed.mockReturnValue( false );
 
-		const wrapper = VueTestUtils.shallowMount( App, { global: { plugins: [ store ] } } );
+		const wrapper = shallowMount( App, { global: { plugins: [ store ] } } );
 		const tabsHeading = wrapper.find( '.wbmad-suggested-tags-page-tabs-heading' );
 		expect( tabsHeading.exists() ).toBe( false );
 	} );
@@ -95,7 +90,7 @@ describe( 'App', () => {
 		getters.isAuthenticated.mockReturnValue( true );
 		getters.isAutoconfirmed.mockReturnValue( true );
 
-		const wrapper = VueTestUtils.mount( App, { global: { plugins: [ store ] } } );
+		const wrapper = mount( App, { global: { plugins: [ store ] } } );
 
 		const tabsHeading = wrapper.find( '.wbmad-suggested-tags-page-tabs-heading' );
 		expect( tabsHeading.exists() ).toBe( true );
@@ -106,7 +101,7 @@ describe( 'App', () => {
 		getters.isAutoconfirmed.mockReturnValue( true );
 
 		// Use mount to test events emitted from child components
-		const wrapper = VueTestUtils.shallowMount( App, { global: { plugins: [ store ] } } );
+		const wrapper = shallowMount( App, { global: { plugins: [ store ] } } );
 
 		// We emulate the click of a tab
 		wrapper.vm.onTabChange( {
@@ -127,7 +122,7 @@ describe( 'App', () => {
 
 		// Expect the getImages action to be dispatched when component is mounted
 		expect( actions.getImages.mock.calls.length ).toBe( 0 );
-		VueTestUtils.shallowMount( App, { global: { plugins: [ store ] } } );
+		shallowMount( App, { global: { plugins: [ store ] } } );
 		expect( actions.getImages.mock.calls.length ).toBe( 2 );
 	} );
 } );
