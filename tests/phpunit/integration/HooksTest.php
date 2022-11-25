@@ -91,14 +91,14 @@ class HooksTest extends MediaWikiIntegrationTestCase {
 		// file doesn't exist
 		$pageInfo = [];
 		Hooks::onInfoAction( $context, $pageInfo );
-		$this->assertEmpty( $pageInfo );
+		$this->assertSame( [], $pageInfo );
 
 		$file = $this->setSetMockFile( 'File:Foom.png' );
 
 		// file has no labels
 		$pageInfo = [];
 		Hooks::onInfoAction( $context, $pageInfo );
-		$this->assertEmpty( $pageInfo );
+		$this->assertSame( [], $pageInfo );
 
 		$extensionServices = new Services( MediaWikiServices::getInstance() );
 		$repository = $extensionServices->getRepository();
