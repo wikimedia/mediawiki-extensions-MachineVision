@@ -10,7 +10,7 @@
 	},
 	"apihelp-reviewimagelabels-summary": "Relire les légendes d’image suggérées par la machine.",
 	"apihelp-reviewimagelabels-param-filename": "Nom de l’image (sans le préfixe de l’espace de noms).",
-	"apihelp-reviewimagelabels-param-label": "ID Wikidata de la légende suggérée (avec le préfixe Q).",
+	"apihelp-reviewimagelabels-param-label": "Identifiant Wikidata du libellé suggéré (avec le préfixe Q).",
 	"apihelp-reviewimagelabels-param-review": "Résultat de la relecture.",
 	"apihelp-reviewimagelabels-param-batch": "Lot de données pour relire les suggestions multiples de légendes d’une image en une seule requête, sous forme d’une table JSON listant un ou plusieurs objets avec les champs <var>label</var> et <var>review</var>.",
 	"apihelp-reviewimagelabels-paramvalue-review-accept": "La suggestion est correcte.",
