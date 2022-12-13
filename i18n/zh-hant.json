@@ -3,7 +3,8 @@
 		"authors": [
 			"Go1002opn",
 			"Kly",
-			"Winston Sung"
+			"Winston Sung",
+			"捍粵者"
 		]
 	},
 	"machinevision-desc": "與內部與外部機器視覺服務供應方的介面，且儲存並提供結果。",
@@ -67,7 +68,7 @@
 	"tag-computer-aided-tagging-manual-description": "使用由使用者所提供標籤的從電腦輔助標記工具所建立之編輯",
 	"tag-computer-aided-tagging-manual-revert": "電腦輔助標記 - 手動（回退）",
 	"tag-computer-aided-tagging-manual-revert-description": "使用由使用者所提供標籤的從電腦輔助標記工具所建立之回退修訂編輯",
-	"echo-machinevision-suggestions-ready-notification-header-compact": "建議標籤已準備好進行檢閱",
+	"echo-machinevision-suggestions-ready-notification-header-compact": "建議標籤準備好檢閱",
 	"echo-machinevision-suggestions-ready-notification-header": "{{GENDER:$1|您的}}近期上傳之建議標籤已準備好進行檢閱",
 	"echo-machinevision-suggestions-ready-notification-body": "哈囉！{{GENDER:$1|您}}近期上傳到維基共享資源的圖片已採用建議標籤來作處理，並已準備好來檢閱。準確的標籤可以讓所有維基共享資源使用者能更容易找到{{GENDER:$1|您的}}圖片，因此請點擊連結來檢閱{{GENDER:$1|您的}}建議標籤。僅有被使用者確認的標籤，才會被添加為在維基共享資源上的圖片資料一部份。有關此工具的更多資訊，請參訪電腦輔助標記工具專案頁面。",
 	"echo-machinevision-suggestions-ready-notification-primary-link": "檢閱標籤",
