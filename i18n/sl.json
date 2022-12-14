@@ -72,6 +72,6 @@
 	"echo-category-title-machinevision": "Predlagane oznake za pregled",
 	"echo-pref-tooltip-machinevision-suggestions-ready": "Obvesti me, ko bodo moje slike obdelane in bodo predlagane oznake na voljo za pregled.",
 	"group-machinevision-tester": "Preizkuševalci strojnega vida",
-	"group-machinevision-tester-member": "{{GENDER:$1|preizkuševalec strojnega vida|preizkuševalka strojnega vida|preizkuševalec/ka strojnega vida}}",
+	"group-machinevision-tester-member": "{{GENDER:$1|preizkuševalec strojnega vida|preizkuševalka strojnega vida|preizkuševalec_ka strojnega vida}}",
 	"grouppage-machinevision-tester": "{{ns:project}}:Preizkuševalci strojnega vida"
 }
