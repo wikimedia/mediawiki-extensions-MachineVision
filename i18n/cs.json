@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Jkjk",
 			"Juandev",
 			"Matěj Suchánek",
 			"Mormegil",
@@ -29,6 +30,7 @@
 	"machinevision-personal-uploads-count": "Máte $1 {{PLURAL:$1|osobní nahrávku|osobní nahrávky|osobních nahrávek}} k posouzení.",
 	"machinevision-suggestion-confirm-title": "Povrdit „$1“ návrhy?",
 	"machinevision-loading-message": "Načítání obrázků…",
+	"machinevision-failure-message": "Je nám líto, něco se pokazilo. Vraťte se prosím později nebo [[Project_talk:Structured_data/Computer-aided_tagging|nás kontaktujte]].",
 	"machinevision-confirm-tags-dialog-title": "Potvrdit značky",
 	"machinevision-confirm-tags-dialog-confirm-action": "OK",
 	"machinevision-confirm-tags-dialog-cancel-action": "Zrušit",
