@@ -156,6 +156,7 @@ return [
 		return new LabelResolver(
 			$entityLookup,
 			$httpRequestFactory,
+			$services->getLanguageFallback(),
 			$userAgent,
 			$useWikidataPublicApi
 		);

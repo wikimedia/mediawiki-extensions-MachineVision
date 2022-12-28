@@ -29,6 +29,9 @@ class LabelResolver implements LoggerAwareInterface {
 	/** @var HttpRequestFactory */
 	private $httpRequestFactory;
 
+	/** @var LanguageFallback */
+	private $languageFallback;
+
 	/** @var string */
 	private $userAgent;
 
@@ -38,17 +41,20 @@ class LabelResolver implements LoggerAwareInterface {
 	/**
 	 * @param EntityLookup $entityLookup
 	 * @param HttpRequestFactory $httpRequestFactory
+	 * @param LanguageFallback $languageFallback
 	 * @param string $userAgent
 	 * @param bool $useWikidataPublicApi if true, request labels from the Wikidata public API
 	 */
 	public function __construct(
 		EntityLookup $entityLookup,
 		HttpRequestFactory $httpRequestFactory,
+		LanguageFallback $languageFallback,
 		$userAgent,
 		$useWikidataPublicApi
 	) {
 		$this->entityLookup = $entityLookup;
 		$this->httpRequestFactory = $httpRequestFactory;
+		$this->languageFallback = $languageFallback;
 		$this->userAgent = $userAgent;
 		$this->useWikidataPublicApi = $useWikidataPublicApi;
 
@@ -208,7 +214,7 @@ class LabelResolver implements LoggerAwareInterface {
 
 		$langCodes = array_merge(
 			[ $uiLang->getCode() ],
-			$uiLang->getFallbacksFor( $uiLang->getCode(), LanguageFallback::STRICT )
+			$this->languageFallback->getAll( $uiLang->getCode(), LanguageFallback::STRICT )
 		);
 		foreach ( $langCodes as $lang ) {
 			if ( array_key_exists( $lang, $items ) ) {
