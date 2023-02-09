@@ -200,11 +200,11 @@ module.exports = exports = {
 .wbmad-suggestion-fade-leave,
 .wbmad-suggestion-fade-leave-active,
 .wbmad-suggestion-fade-leave-to {
-	.transition( none );
+	transition: none;
 	opacity: 0;
 }
 
 .wbmad-suggestion-fade-enter-active {
-	.transition( opacity 0.5s );
+	transition: opacity 0.5s;
 }
 </style>

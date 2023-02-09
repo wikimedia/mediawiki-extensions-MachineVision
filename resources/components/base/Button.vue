@@ -91,7 +91,7 @@ module.exports = exports = {
 @import '../../../lib/wikimedia-ui-base.less';
 
 .mw-button {
-	.transition( ~'background-color 100ms, color 100ms, border-color 100ms, box-shadow 100ms' );
+	transition: background-color 100ms, color 100ms, border-color 100ms, box-shadow 100ms;
 	background-color: transparent;
 	border: @border-width-base @border-style-base transparent;
 	border-radius: 2px;

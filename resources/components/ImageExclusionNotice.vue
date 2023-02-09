@@ -77,7 +77,7 @@ module.exports = exports = {
 
 // Transitions
 .wbmad-fade-out-leave-active {
-	.transition( opacity 0.5s );
+	transition: opacity 0.5s;
 }
 
 .wbmad-fade-out-leave-to {

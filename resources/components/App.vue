@@ -317,7 +317,7 @@ module.exports = exports = {
 	}
 
 	.wbmad-suggested-tags-page-license-info {
-		.box-sizing( border-box );
+		box-sizing: border-box;
 		background-color: @background-color-framed;
 		padding: 16px;
 

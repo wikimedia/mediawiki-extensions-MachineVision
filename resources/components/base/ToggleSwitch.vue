@@ -115,9 +115,9 @@ module.exports = exports = {
 }
 
 .mw-toggle-switch__toggle {
-	.box-sizing( border-box );
-	.transform( translateZ( 0 ) );
-	.transition( ~'background-color 250ms, border-color 250ms' );
+	box-sizing: border-box;
+	transform: translateZ( 0 );
+	transition: background-color 250ms, border-color 250ms;
 	background-color: @background-color-framed;
 	border: @border-width-base @border-style-base @border-color-base;
 	border-radius: 1em;
@@ -131,7 +131,7 @@ module.exports = exports = {
 	width: 3.5em;
 
 	&:before {
-		.transition( border-color 250ms );
+		transition: border-color 250ms;
 		border: 1px solid transparent;
 		border-radius: 1em;
 		bottom: 1px;
@@ -165,8 +165,8 @@ module.exports = exports = {
 	}
 
 	&__grip {
-		.box-sizing( border-box );
-		.transition( ~'background-color 250ms, left 100ms, margin-left 100ms' );
+		box-sizing: border-box;
+		transition: background-color 250ms, left 100ms, margin-left 100ms;
 		background-color: @background-color-framed;
 		border: @border-base;
 		border-radius: @toggleSize;

@@ -87,8 +87,8 @@ module.exports = exports = {
 @import '../../../lib/wikimedia-ui-base.less';
 
 .mw-suggestion {
-	.box-sizing( border-box );
-	.transition( ~'background-color 100ms, color 100ms, border-color 100ms, box-shadow 100ms' );
+	box-sizing: border-box;
+	transition: background-color 100ms, color 100ms, border-color 100ms, box-shadow 100ms;
 	background-color: @background-color-framed;
 	border: @border-base;
 	color: @color-base;
@@ -119,14 +119,14 @@ module.exports = exports = {
 	}
 
 	.mw-suggestion__content {
-		.transition-transform( 0.2s );
+		transition: transform 0.2s;
 		cursor: pointer;
 		display: inline-block;
 	}
 
 	// Check icon shown for confirmed suggestions.
 	.mw-icon {
-		.transition( opacity 0.2s );
+		transition: opacity 0.2s;
 		min-height: 0;
 		min-width: 0;
 		opacity: 0;
