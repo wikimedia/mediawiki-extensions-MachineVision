@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Brettchenweber",
 			"Umherirrender",
 			"WikiBayer"
 		]
@@ -26,7 +27,7 @@
 	"machinevision-suggestion-confirm-title": "Bestätigen des Vorschlags „$1“?",
 	"machinevision-suggestion-confirm-undo-title": "Bestätigung des Vorschlags „$1“ rückgängig machen?",
 	"machinevision-loading-message": "Lade Bilder …",
-	"machinevision-failure-message": "Es tut uns leid, es ist etwas schief gelaufen. Bitte schaue später noch einmal vorbei oder [[Project_talk:Structured_data/Computer-aided_tagging|kontaktiere uns]].",
+	"machinevision-failure-message": "Es tut uns leid, es ist etwas schiefgelaufen. Bitte schaue später noch einmal vorbei oder [[Project_talk:Structured_data/Computer-aided_tagging|kontaktiere uns]].",
 	"machinevision-confirm-tags-dialog-title": "Tags bestätigen",
 	"machinevision-confirm-tags-dialog-confirm-action": "OK",
 	"machinevision-confirm-tags-dialog-cancel-action": "Abbrechen",
