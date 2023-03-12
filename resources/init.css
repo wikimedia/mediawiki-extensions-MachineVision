@@ -98,8 +98,8 @@
 }
 
 .wbmad-placeholder__spinner-bounce,
-.wbmad-placeholder__spinner:before,
-.wbmad-placeholder__spinner:after {
+.wbmad-placeholder__spinner::before,
+.wbmad-placeholder__spinner::after {
 	animation: wbmadSpinnerBouncedelay 1600ms ease-in-out -160ms infinite both;
 	background-color: #72777d;
 	border-radius: 100%;
@@ -110,12 +110,12 @@
 	width: 12px;
 }
 
-.wbmad-placeholder__spinner:before {
+.wbmad-placeholder__spinner::before {
 	animation-delay: -330ms;
 	margin-right: 4px;
 }
 
-.wbmad-placeholder__spinner:after {
+.wbmad-placeholder__spinner::after {
 	animation-delay: 0s;
 	margin-left: 4px;
 }

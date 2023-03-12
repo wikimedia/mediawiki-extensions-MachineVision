@@ -130,7 +130,7 @@ module.exports = exports = {
 	vertical-align: middle;
 	width: 3.5em;
 
-	&:before {
+	&::before {
 		transition: border-color 250ms;
 		border: 1px solid transparent;
 		border-radius: 1em;
@@ -154,7 +154,7 @@ module.exports = exports = {
 		&:focus {
 			box-shadow: @box-shadow-base--focus;
 
-			&:before {
+			&::before {
 				border-color: @background-color-base;
 			}
 		}

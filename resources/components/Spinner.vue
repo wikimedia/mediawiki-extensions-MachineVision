@@ -36,8 +36,8 @@ module.exports = exports = {
 	white-space: nowrap;
 
 	& .wbmad-spinner-bounce,
-	&:before,
-	&:after {
+	&::before,
+	&::after {
 		animation: wbmadSpinnerBouncedelay 1600ms ease-in-out -160ms infinite both;
 		background-color: @wbmad-background-color-spinner;
 		border-radius: 100%;
@@ -48,12 +48,12 @@ module.exports = exports = {
 		width: @wbmad-size-spinner;
 	}
 
-	&:before {
+	&::before {
 		animation-delay: -330ms;
 		margin-right: 4px;
 	}
 
-	&:after {
+	&::after {
 		animation-delay: 0s;
 		margin-left: 4px;
 	}
