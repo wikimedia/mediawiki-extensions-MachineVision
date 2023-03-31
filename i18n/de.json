@@ -64,7 +64,7 @@
 	"tag-computer-aided-tagging-revert": "Computergestütztes Tagging rückgängig gemacht",
 	"tag-computer-aided-tagging-revert-description": "Bearbeitungen, die eine oder mehrere Versionen, die mit dem computergestützten Tagging-Tool erstellt wurden, rückgängig machten.",
 	"tag-computer-aided-tagging-manual": "Computergestütztes Tagging - manuell",
-	"tag-computer-aided-tagging-manual-description": "Mit dem computergestützten Tagging-Tool erstellte Bearbeitungen mit vom Benutzer eingegebene Tags",
+	"tag-computer-aided-tagging-manual-description": "Mit dem computergestützten Tagging-Tool erstellte Bearbeitungen mit vom Benutzer eingegebenen Tags",
 	"tag-computer-aided-tagging-manual-revert": "Computergestütztes Tagging - manuell (Revert)",
 	"tag-computer-aided-tagging-manual-revert-description": "Rückgängig gemachte Bearbeitungen, die mit dem computergestützten Tagging-Tool erstellt wurden, mit von Benutzern eingegebenen Tags",
 	"echo-machinevision-suggestions-ready-notification-header-compact": "Vorgeschlagene Tags stehen zur Überprüfung bereit",
