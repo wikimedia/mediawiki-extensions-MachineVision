@@ -2,7 +2,8 @@
 	<div class="wbmad-image-with-suggestions">
 		<wbmad-spinner v-if="publishPending"></wbmad-spinner>
 
-		<div class="wbmad-image-with-suggestions__container"
+		<div
+			class="wbmad-image-with-suggestions__container"
 			:class="containerClasses">
 			<div class="wbmad-image-with-suggestions__image">
 				<div class="wbmad-image-with-suggestions__image-wrapper">

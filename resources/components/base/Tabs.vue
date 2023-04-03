@@ -10,7 +10,8 @@
 			@keydown.right="moveForward"
 			@keydown.down.prevent="moveForward"
 		>
-			<div v-for="tab in tabs"
+			<div
+				v-for="tab in tabs"
 				:id="tab.id + '-label'"
 				:key="tab.title"
 				:class="determineTabLabelClasses( tab )"

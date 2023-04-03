@@ -8,7 +8,8 @@
 			<div class="wbmad-user-message-text">
 				{{ text }}
 			</div>
-			<mw-button v-if="cta"
+			<mw-button
+				v-if="cta"
 				class="wbmad-user-message-cta"
 				:primary="true"
 				:progressive="true"

@@ -5,7 +5,8 @@
 		class="wbmad-suggestions-group"
 		:class="builtInClasses"
 	>
-		<mw-suggestion v-for="suggestion in currentImageSuggestions"
+		<mw-suggestion
+			v-for="suggestion in currentImageSuggestions"
 			:key="getSuggestionKey( suggestion.wikidataId )"
 			:text="suggestion.text"
 			:confirmed="suggestion.confirmed"

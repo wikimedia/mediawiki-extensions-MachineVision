@@ -8,7 +8,8 @@
 			</mw-message>
 		</wbmad-fade-in>
 
-		<transition v-else-if="shouldDisplayImage"
+		<transition
+			v-else-if="shouldDisplayImage"
 			name="wbmad-fade"
 			mode="in-out"
 			appear
@@ -16,7 +17,8 @@
 			<wbmad-image-card :key="currentImageId"></wbmad-image-card>
 		</transition>
 
-		<wbmad-user-message v-else-if="showUserCta"
+		<wbmad-user-message
+			v-else-if="showUserCta"
 			class="wbmad-user-cta"
 			:heading="$i18n( 'machinevision-cta-heading' )"
 			:text="$i18n( 'machinevision-cta-text' )"
@@ -24,7 +26,8 @@
 			@cta-click="goToPopularTab"
 		></wbmad-user-message>
 
-		<wbmad-user-message v-else-if="showUserCtaNoLabeledUploads"
+		<wbmad-user-message
+			v-else-if="showUserCtaNoLabeledUploads"
 			class="wbmad-user-cta--no-uploads"
 			:heading="$i18n( 'machinevision-no-uploads-cta-heading' )"
 			:text="$i18n( 'machinevision-no-uploads-cta-text' )"
@@ -32,7 +35,8 @@
 			@cta-click="goToPopularTab"
 		></wbmad-user-message>
 
-		<wbmad-user-message v-else
+		<wbmad-user-message
+			v-else
 			class="wbmad-user-cta--generic-no-images"
 			:heading="$i18n( 'machinevision-generic-no-images-heading' )"
 			:text="$i18n( 'machinevision-generic-no-images-text' )"

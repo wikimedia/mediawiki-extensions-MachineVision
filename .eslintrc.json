@@ -21,7 +21,12 @@
 				]
 			}
 		],
-		"compat/compat": "warn"
+		"compat/compat": "warn",
+		"es-x/no-array-prototype-keys": "warn",
+		"es-x/no-block-scoped-variables": "warn",
+		"es-x/no-destructuring": "warn",
+		"es-x/no-arrow-functions": "warn",
+		"es-x/no-template-literals": "warn"
 	},
 	"overrides": [
 		{
@@ -51,7 +56,12 @@
 				"vue/v-slot-style": [
 					"warn",
 					"shorthand"
-				]
+				],
+				"vue/multi-word-component-names": "warn",
+				"vue/no-unused-properties": "warn",
+				"vue/no-undef-properties": "warn",
+				"vue/no-undef-components": "warn",
+				"mediawiki/vue-exports-component-directive": "warn"
 			}
 		},
 		{

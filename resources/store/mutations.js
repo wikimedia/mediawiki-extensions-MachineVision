@@ -101,7 +101,6 @@ module.exports = {
 	 */
 	toggleSuggestion: function ( state, suggestion ) {
 		var currentImage = state.images[ state.currentTab ][ 0 ],
-			// eslint-disable-next-line no-restricted-syntax
 			selected = currentImage.suggestions.find( function ( s ) {
 				return s.wikidataId === suggestion.wikidataId;
 			} );

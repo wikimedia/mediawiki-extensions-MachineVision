@@ -1,6 +1,7 @@
 <template>
 	<wbmad-fade-in>
-		<div v-if="unreviewedCount > 0"
+		<div
+			v-if="unreviewedCount > 0"
 			class="wbmad-personal-uploads-count">
 			<p>{{ $i18n( 'machinevision-personal-uploads-count', unreviewedCount ) }}</p>
 		</div>

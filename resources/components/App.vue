@@ -18,28 +18,31 @@
 			<template v-if="showTabs">
 				<wbmad-image-exclusion-notice></wbmad-image-exclusion-notice>
 
-				<h2 v-i18n-html:machinevision-machineaidedtagging-tabs-heading
+				<h2
+					v-i18n-html:machinevision-machineaidedtagging-tabs-heading
 					class="wbmad-suggested-tags-page-tabs-heading">
 				</h2>
 
 				<tabs :active="currentTab" @tab-change="onTabChange">
 					<!-- Popular tab -->
 					<tab name="popular" :title="popularTabTitle">
-						<card-stack :queue="'popular'"></card-stack>
+						<card-stack queue="popular"></card-stack>
 					</tab>
 
 					<!-- User tab -->
 					<tab name="user" :title="userTabTitle">
 						<personal-uploads-count></personal-uploads-count>
-						<card-stack :queue="'user'"></card-stack>
+						<card-stack queue="user"></card-stack>
 					</tab>
 				</tabs>
 
-				<p v-i18n-html:machinevision-machineaidedtagging-preferences-link
+				<p
+					v-i18n-html:machinevision-machineaidedtagging-preferences-link
 					class="wbmad-suggested-tags-page-preferences-link">
 				</p>
 
-				<div v-i18n-html:machinevision-machineaidedtagging-license-information
+				<div
+					v-i18n-html:machinevision-machineaidedtagging-license-information
 					class="wbmad-suggested-tags-page-license-info">
 				</div>
 			</template>
@@ -155,7 +158,7 @@ module.exports = exports = {
 
 		/**
 		 * @return {string}
-		 * */
+		 */
 		userTabTitle: function () {
 			return this.$i18n( 'machinevision-machineaidedtagging-user-tab' ).text();
 		},
@@ -204,7 +207,7 @@ module.exports = exports = {
 		 */
 		onHashChange: function ( e ) {
 			var newHash = new URL( e.newURL ).hash,
-				newTabName = newHash.substring( 1 );
+				newTabName = newHash.slice( 1 );
 
 			if ( this.tabs.indexOf( newTabName ) !== -1 ) {
 				this.updateCurrentTab( newTabName );
