@@ -39,6 +39,8 @@
 	"machinevision-add-custom-tag-dialog-title": "Anpassad tagg",
 	"machinevision-add-custom-tag-dialog-add-action": "Lägg till",
 	"machinevision-add-custom-tag-dialog-cancel-action": "Avbryt",
+	"machinevision-image-exclusion-notification-dismiss": "Stäng denna avisering",
+	"machinevision-detailed-tags-toggle-label": "Detaljerade taggar",
 	"echo-machinevision-suggestions-ready-notification-header-compact": "Föreslagna taggar för {{GENDER:$1|din}} fil \"$2\" är redo att granskas",
 	"echo-machinevision-suggestions-ready-notification-header": "Föreslagna taggar för {{GENDER:$1|dina}} senaste uppladdningar är redo att granskas",
 	"echo-category-title-machinevision": "Föreslagna taggar att granska",
