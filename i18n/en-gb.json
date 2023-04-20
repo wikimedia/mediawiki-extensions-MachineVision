@@ -4,8 +4,10 @@
 			"Abijeet Patro",
 			"Bjh21",
 			"Michel Bakni",
-			"NuqneH"
+			"NuqneH",
+			"Dreamy Jazz"
 		]
 	},
-	"machinevision-machineaidedtagging-license-information": "CC0 license for tag contributions – By clicking \"publish\", you agree to the [[wmf:Terms_of_Use|terms of use]], and you irrevocably agree to release your contribution under the [https://creativecommons.org/publicdomain/zero/1.0/ Creative Commons CC0 Licence]."
+	"machinevision-machineaidedtagging-license-information": "CC0 license for tag contributions – By clicking \"publish\", you agree to the [[wmf:Terms_of_Use|terms of use]], and you irrevocably agree to release your contribution under the [https://creativecommons.org/publicdomain/zero/1.0/ Creative Commons CC0 Licence].",
+	"machinevision-no-uploads-cta-text": "Please upload new images so our tool can analyse them and suggest appropriate tags. If you've already uploaded images and don't see them here, those images may be still under review and you can check back later. You can also make popular images from other users easier to find by tagging them."
 }
