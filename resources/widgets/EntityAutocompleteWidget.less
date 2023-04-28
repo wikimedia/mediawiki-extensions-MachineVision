@@ -1,5 +1,5 @@
-@import 'mediawiki.mixins.less';
 @import '../style-variables.less';
+@import 'mediawiki.mixins.less';
 
 .wbmad-entity-input {
 	max-width: 100%;
@@ -12,7 +12,7 @@
 	&.oo-ui-flaggedElement-destructive {
 		input {
 			color: @color-destructive;
-			border-color: @color-destructive;
+			border-color: @border-color-destructive;
 		}
 	}
 }
@@ -23,13 +23,13 @@
 	color: @color-base;
 	padding: 2px 0;
 	font-size: 1em;
-	font-weight: normal;
+	font-weight: @font-weight-normal;
 	.text-overflow( @visible: false );
 }
 
 .wbmad-entity-input__autocomplete__label,
 .wbmad-entity-input__autocomplete__aliases {
-	font-weight: bold;
+	font-weight: @font-weight-bold;
 	display: inline;
 }
 

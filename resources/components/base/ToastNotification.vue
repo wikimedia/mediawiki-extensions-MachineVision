@@ -80,8 +80,8 @@ module.exports = exports = {
 </script>
 
 <style lang="less">
+@import 'mediawiki.skin.variables.less';
 @import 'mediawiki.mixins';
-@import '../../../lib/wikimedia-ui-base.less';
 
 .mw-toast {
 	// Center the toast within the parent container.
@@ -93,7 +93,7 @@ module.exports = exports = {
 	background-color: @color-base;
 	border-radius: @border-radius-base * 4;
 	bottom: 5vh;
-	color: @color-base--inverted;
+	color: @color-inverted;
 	display: inline-block;
 	margin: 0;
 	padding: 8px 32px;

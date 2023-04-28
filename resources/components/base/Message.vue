@@ -68,12 +68,12 @@ module.exports = exports = {
 </script>
 
 <style lang="less">
+@import 'mediawiki.skin.variables.less';
 @import 'mediawiki.mixins';
-@import '../../../lib/wikimedia-ui-base.less';
 
 .mw-message {
 	color: @color-notice;
-	font-weight: bold;
+	font-weight: @font-weight-bold;
 	max-width: 50em;
 	position: relative;
 
@@ -87,27 +87,29 @@ module.exports = exports = {
 
 	&--block {
 		color: @color-notice;
-		font-weight: normal;
+		border-width: @border-width-base;
+		border-style: @border-style-base;
 		padding: 16px 24px;
+		font-weight: @font-weight-normal;
 
 		&.mw-message--notice {
-			background-color: @background-color-notice--framed;
-			border: @border-notice;
+			background-color: @background-color-notice-subtle;
+			border-color: @border-color-notice;
 		}
 
 		&.mw-message--error {
-			background-color: @background-color-error--framed;
-			border: @border-error;
+			background-color: @background-color-error-subtle;
+			border-color: @border-color-error;
 		}
 
 		&.mw-message--warning {
-			background-color: @background-color-warning--framed;
-			border: @border-warning;
+			background-color: @background-color-warning-subtle;
+			border-color: @border-color-warning;
 		}
 
 		&.mw-message--success {
-			background-color: @background-color-success--framed;
-			border: @border-success;
+			background-color: @background-color-success-subtle;
+			border-color: @border-color-success;
 		}
 	}
 

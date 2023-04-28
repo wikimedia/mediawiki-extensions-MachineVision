@@ -83,16 +83,15 @@ module.exports = exports = {
 </script>
 
 <style lang="less">
+@import 'mediawiki.skin.variables.less';
 @import 'mediawiki.mixins';
-@import '../../../lib/wikimedia-ui-base.less';
 
 .mw-suggestion {
 	box-sizing: border-box;
 	transition: background-color 100ms, color 100ms, border-color 100ms, box-shadow 100ms;
-	background-color: @background-color-framed;
+	background-color: @background-color-interactive-subtle;
 	border: @border-base;
 	color: @color-base;
-	cursor: pointer;
 	margin: 0 4px 4px 0;
 	padding: 4px 1.25em;
 	border-radius: 18px;
@@ -103,19 +102,20 @@ module.exports = exports = {
 	}
 
 	&:hover,
+	label:hover {
+		cursor: @cursor-base--hover;
+	}
+
+	&:hover,
 	&:focus {
-		background-color: @background-color-framed--hover;
-		color: @color-base--emphasized;
+		background-color: @background-color-base;
+		color: @color-emphasized;
 	}
 
 	&:focus {
-		border-color: @color-primary--active;
-		box-shadow: inset 0 0 0 1px @color-primary--active;
-		outline: 0;
-	}
-
-	label {
-		cursor: pointer;
+		border-color: @border-color-progressive--active;
+		box-shadow: @box-shadow-inset-small @box-shadow-color-progressive--active;
+		outline: @outline-base--focus;
 	}
 
 	.mw-suggestion__content {
@@ -137,14 +137,14 @@ module.exports = exports = {
 	}
 
 	&--confirmed {
-		background-color: @background-color-primary;
-		border-color: @color-primary--active;
-		color: @color-base--emphasized;
+		background-color: @background-color-progressive-subtle;
+		color: @color-emphasized;
+		border-color: @border-color-progressive--active;
 		position: relative;
 
 		&:hover,
 		&:focus {
-			background-color: @background-color-primary;
+			background-color: @background-color-progressive-subtle;
 		}
 
 		.mw-suggestion__content {

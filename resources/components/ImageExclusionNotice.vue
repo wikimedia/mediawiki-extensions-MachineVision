@@ -55,6 +55,7 @@ module.exports = exports = {
 </script>
 
 <style lang="less">
+@import 'mediawiki.skin.variables.less';
 @import 'mediawiki.mixins';
 
 .wbmad-image-exclusion-notice__message {
@@ -71,7 +72,7 @@ module.exports = exports = {
 	margin-left: 32px;
 
 	&:hover {
-		background-color: transparent;
+		background-color: @background-color-transparent;
 	}
 }
 

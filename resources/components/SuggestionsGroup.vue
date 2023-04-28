@@ -94,8 +94,8 @@ module.exports = exports = {
 </script>
 
 <style lang="less">
-@import 'mediawiki.mixins';
 @import '../style-variables.less';
+@import 'mediawiki.mixins';
 
 .wbmad-suggestions-group {
 	.flex-display();
@@ -141,7 +141,7 @@ module.exports = exports = {
 	}
 
 	.wbmad-suggestion__label__text {
-		font-weight: bold;
+		font-weight: @font-weight-bold;
 	}
 }
 
@@ -176,13 +176,14 @@ module.exports = exports = {
 
 	&:hover,
 	&:focus {
-		color: @color-base--emphasized;
+		color: @color-emphasized;
 	}
 
 	&:focus {
-		border-color: @color-primary--active;
-		box-shadow: inset 0 0 0 1px @color-primary--active;
-		outline: 0;
+		// TODO: Deriving from standard focus styles seems like a design consistency issue
+		border-color: @border-color-progressive--active;
+		box-shadow: @box-shadow-inset-small @box-shadow-color-progressive--active;
+		outline: @outline-base--focus;
 	}
 
 	.mw-icon {

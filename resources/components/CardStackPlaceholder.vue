@@ -31,7 +31,7 @@ module.exports = exports = {
 
 .wbmad-cardstack-placeholder {
 	align-items: center;
-	background-color: @background-color-framed;
+	background-color: @background-color-interactive-subtle;
 	border-radius: 8px;
 	box-shadow: 0 1px 4px rgba( 0, 0, 0, 0.1 );
 	display: flex;
@@ -57,7 +57,7 @@ module.exports = exports = {
 }
 
 .wbmad-cardstack-placeholder__heading {
-	background-color: @background-color-framed;
+	background-color: @background-color-interactive-subtle;
 	border-radius: 18px;
 	height: 28px;
 	margin: 24px 16px;
@@ -70,7 +70,7 @@ module.exports = exports = {
 }
 
 .wbmad-cardstack-placeholder__tag {
-	background-color: @background-color-framed;
+	background-color: @background-color-interactive-subtle;
 	border-radius: 18px;
 	height: 28px;
 	margin: 0 4px 4px 0;

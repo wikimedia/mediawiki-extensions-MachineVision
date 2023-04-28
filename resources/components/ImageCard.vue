@@ -295,8 +295,8 @@ module.exports = exports = {
 </script>
 
 <style lang="less">
-@import 'mediawiki.mixins';
 @import '../style-variables.less';
+@import 'mediawiki.mixins';
 
 .wbmad-image-with-suggestions {
 	position: relative;
@@ -312,7 +312,7 @@ module.exports = exports = {
 
 	&__image {
 		.flex-display();
-		background-color: @wbmad-background-color-image-card;
+		background-color: @background-color-interactive;
 		border-radius: @wbmad-border-radius-image-card @wbmad-border-radius-image-card 0 0;
 		justify-content: center;
 		// Ensure image doesn't overflow border radius.
@@ -346,7 +346,7 @@ module.exports = exports = {
 	&__title-label {
 		display: block;
 		font-size: 1.125em;
-		font-weight: bold;
+		font-weight: @font-weight-bold;
 
 		a {
 			color: @color-base;
