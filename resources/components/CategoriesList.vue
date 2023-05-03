@@ -52,7 +52,7 @@ module.exports = exports = {
 	margin: 4px 0 0;
 
 	span {
-		color: @color-base--subtle;
+		color: @color-subtle;
 		font-size: 0.928em;
 	}
 }
@@ -67,7 +67,9 @@ module.exports = exports = {
 // numbers. We'll at least explicitly set the word-spacing to normal to maximize
 // the chance that the spacing looks even.
 .wbmad-category-list__item {
-	border-right: solid 1px @color-base--subtle;
+	// TODO: Use only `border-color-*` design token. This color isn't available as
+	// design token right now, so revisit with design.
+	border-right: @border-width-base @border-style-base @color-subtle;
 	margin: 0 0.4em 0 0;
 	padding-right: 0.4em;
 	word-spacing: normal;

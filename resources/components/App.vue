@@ -302,8 +302,8 @@ module.exports = exports = {
 </script>
 
 <style lang="less">
-@import 'mediawiki.mixins';
 @import '../style-variables.less';
+@import 'mediawiki.mixins';
 
 .wbmad-suggested-tags-page {
 	max-width: @wbmad-size-max-width;
@@ -321,7 +321,7 @@ module.exports = exports = {
 
 	.wbmad-suggested-tags-page-license-info {
 		box-sizing: border-box;
-		background-color: @background-color-framed;
+		background-color: @background-color-interactive-subtle;
 		padding: 16px;
 
 		p {

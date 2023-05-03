@@ -11,8 +11,8 @@ module.exports = exports = {
 </script>
 
 <style lang="less">
-@import 'mediawiki.mixins';
 @import '../style-variables.less';
+@import 'mediawiki.mixins';
 
 .wbmad-spinner {
 	@keyframes wbmadSpinnerBouncedelay {
@@ -40,7 +40,7 @@ module.exports = exports = {
 	&::after {
 		animation: wbmadSpinnerBouncedelay 1600ms ease-in-out -160ms infinite both;
 		background-color: @wbmad-background-color-spinner;
-		border-radius: 100%;
+		border-radius: @border-radius-circle;
 		content: '';
 		display: block;
 		float: left;

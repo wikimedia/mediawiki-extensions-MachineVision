@@ -87,30 +87,30 @@ module.exports = exports = {
 </script>
 
 <style lang="less">
+@import 'mediawiki.skin.variables.less';
 @import 'mediawiki.mixins';
-@import '../../../lib/wikimedia-ui-base.less';
 
 .mw-button {
 	transition: background-color 100ms, color 100ms, border-color 100ms, box-shadow 100ms;
-	background-color: transparent;
-	border: @border-width-base @border-style-base transparent;
-	border-radius: 2px;
+	background-color: @background-color-transparent;
+	border: @border-width-base @border-style-base @border-color-transparent;
+	border-radius: @border-radius-base;
 	color: @color-base;
-	cursor: pointer;
 	font-size: inherit;
-	font-weight: bold;
+	font-weight: @font-weight-bold;
 	padding: 6px;
 	user-select: none;
 
 	&:hover {
 		background-color: rgba( 0, 24, 73, 7/255 );
-		color: @color-base--emphasized;
+		color: @color-emphasized;
+		cursor: @cursor-base--hover;
 	}
 
 	&:focus {
-		border-color: @color-primary;
-		box-shadow: @box-shadow-base--focus;
-		outline: 0;
+		border-color: @border-color-progressive--focus;
+		box-shadow: @box-shadow-inset-small @box-shadow-color-progressive--focus;
+		outline: @outline-base--focus;
 	}
 
 	.mw-icon {
@@ -133,12 +133,12 @@ module.exports = exports = {
 	}
 
 	&--framed {
-		background-color: @background-color-framed;
+		background-color: @background-color-interactive-subtle;
 		border-color: @border-color-base;
 		padding: 6px 12px;
 
 		&:hover {
-			background-color: @background-color-framed--hover;
+			background-color: @background-color-interactive;
 			color: @color-base--hover;
 		}
 
@@ -154,15 +154,15 @@ module.exports = exports = {
 	}
 
 	&--progressive {
-		color: @color-primary;
+		color: @color-progressive;
 
 		&:hover {
-			color: @color-primary--hover;
+			color: @color-progressive--hover;
 		}
 
 		&.mw-button--framed {
 			&:hover {
-				border-color: @color-primary--hover;
+				border-color: @border-color-progressive--hover;
 			}
 		}
 	}
@@ -175,17 +175,17 @@ module.exports = exports = {
 		}
 
 		&:focus {
-			border-color: @color-destructive;
-			box-shadow: inset 0 0 0 1px @color-destructive;
+			border-color: @border-color-destructive;
+			box-shadow: @box-shadow-inset-small @box-shadow-color-destructive--focus;
 		}
 
 		&.mw-button--framed {
 			&:hover {
-				border-color: @color-destructive--hover;
+				border-color: @border-color-destructive--hover;
 			}
 
 			&:focus {
-				box-shadow: inset 0 0 0 1px @color-destructive;
+				box-shadow: @box-shadow-inset-small @box-shadow-color-destructive--focus;
 			}
 		}
 	}
@@ -193,38 +193,38 @@ module.exports = exports = {
 	&--primary {
 		&.mw-button--framed {
 			// Default to progressive.
-			background-color: @color-primary;
-			border-color: @color-primary;
-			color: @color-base--inverted;
+			background-color: @background-color-progressive;
+			border-color: @border-color-progressive;
+			color: @color-inverted;
 
 			&:hover {
-				background-color: @color-primary--hover;
-				border-color: @color-primary--hover;
+				background-color: @color-progressive--hover;
+				border-color: @border-color-progressive--hover;
 			}
 
 			&:focus {
-				box-shadow: @box-shadow-primary--focus;
+				box-shadow: @box-shadow-inset-small @box-shadow-color-progressive--focus, @box-shadow-inset-medium @box-shadow-color-inverted;
 			}
 
 			&.mw-button--destructive {
-				background-color: @color-destructive;
-				border-color: @color-destructive;
+				background-color: @background-color-destructive;
+				border-color: @border-color-destructive;
 
 				&:hover {
-					background-color: @color-destructive--hover;
-					border-color: @color-destructive--hover;
+					background-color: @background-color-destructive--hover;
+					border-color: @border-color-destructive--hover;
 				}
 
 				&:focus {
-					box-shadow: inset 0 0 0 1px @color-destructive, inset 0 0 0 2px @color-base--inverted;
+					box-shadow: @box-shadow-inset-small @box-shadow-color-destructive--focus, @box-shadow-inset-medium @box-shadow-color-inverted;
 				}
 			}
 		}
 	}
 
 	&:disabled {
-		color: @color-base--disabled;
-		cursor: auto;
+		color: @color-disabled;
+		cursor: @cursor-base--disabled;
 
 		&:hover,
 		&:focus {
@@ -232,20 +232,20 @@ module.exports = exports = {
 		}
 
 		&.mw-button--framed {
-			background-color: @background-color-filled--disabled;
-			border-color: @border-color-base--disabled;
-			color: @color-base--inverted;
+			background-color: @background-color-disabled;
+			border-color: @border-color-disabled;
+			color: @color-inverted;
 
 			&:hover,
 			&:focus {
-				background-color: @background-color-filled--disabled;
-				border-color: @border-color-base--disabled;
+				background-color: @background-color-disabled;
+				border-color: @border-color-disabled;
 				box-shadow: none;
 			}
 		}
 
 		&:not( .mw-button--framed ) .mw-icon {
-			opacity: @opacity-base--disabled;
+			opacity: @opacity-icon-base--disabled;
 		}
 	}
 

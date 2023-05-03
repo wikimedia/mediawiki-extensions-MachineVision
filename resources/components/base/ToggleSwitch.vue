@@ -100,8 +100,8 @@ module.exports = exports = {
 </script>
 
 <style lang="less">
+@import 'mediawiki.skin.variables.less';
 @import 'mediawiki.mixins';
-@import '../../../lib/wikimedia-ui-base.less';
 
 @toggleSize: 16/14em;
 @toggleSpacing: 5/14em;
@@ -110,7 +110,7 @@ module.exports = exports = {
 	margin-right: 8px;
 
 	&--disabled {
-		color: @color-base--disabled;
+		color: @color-disabled;
 	}
 }
 
@@ -118,9 +118,9 @@ module.exports = exports = {
 	box-sizing: border-box;
 	transform: translateZ( 0 );
 	transition: background-color 250ms, border-color 250ms;
-	background-color: @background-color-framed;
-	border: @border-width-base @border-style-base @border-color-base;
-	border-radius: 1em;
+	background-color: @background-color-interactive-subtle;
+	border: @border-base;
+	border-radius: @border-radius-pill;
 	display: inline-block;
 	height: 2em;
 	margin-right: 8px;
@@ -132,8 +132,8 @@ module.exports = exports = {
 
 	&::before {
 		transition: border-color 250ms;
-		border: 1px solid transparent;
-		border-radius: 1em;
+		border: @border-width-base @border-style-base @border-color-transparent;
+		border-radius: @border-radius-pill;
 		bottom: 1px;
 		content: '';
 		display: block;
@@ -145,17 +145,19 @@ module.exports = exports = {
 	}
 
 	&:focus {
-		outline: 0;
+		outline: @outline-base--focus;
 	}
 
 	&--enabled {
-		cursor: pointer;
+		&:hover {
+			cursor: @cursor-base--hover;
+		}
 
 		&:focus {
-			box-shadow: @box-shadow-base--focus;
+			box-shadow: @box-shadow-inset-small @box-shadow-color-progressive--focus;
 
 			&::before {
-				border-color: @background-color-base;
+				border-color: @border-color-disabled;
 			}
 		}
 	}
@@ -167,9 +169,9 @@ module.exports = exports = {
 	&__grip {
 		box-sizing: border-box;
 		transition: background-color 250ms, left 100ms, margin-left 100ms;
-		background-color: @background-color-framed;
+		background-color: @background-color-interactive-subtle;
 		border: @border-base;
-		border-radius: @toggleSize;
+		border-radius: @border-radius-circle;
 		display: block;
 		height: @toggleSize;
 		left: @toggleSpacing;
@@ -181,12 +183,12 @@ module.exports = exports = {
 	}
 
 	&--on {
-		background-color: @color-primary;
-		border-color: @color-primary;
+		background-color: @background-color-progressive;
+		border-color: @border-color-progressive;
 
 		.mw-toggle-switch__toggle__grip {
 			background-color: @background-color-base;
-			border-color: @background-color-base;
+			border-color: @border-color-disabled;
 			box-shadow: 0 0 0 1px rgba( 0, 0, 0, 0.1 );
 			left: 1.9em;
 			margin-left: -2px;
@@ -194,18 +196,18 @@ module.exports = exports = {
 	}
 
 	&--disabled {
-		background-color: @background-color-filled--disabled;
-		border-color: @background-color-filled--disabled;
+		background-color: @background-color-disabled;
+		border-color: @background-color-disabled;
 
 		.mw-toggle-switch__toggle__grip {
-			background-color: transparent;
+			background-color: @background-color-transparent;
 			border: @border-width-base @border-style-base @background-color-base;
-			box-shadow: @box-shadow-filled--disabled;
+			box-shadow: @box-shadow-inset-small @box-shadow-color-inverted;
 		}
 
 		&.mw-toggle-switch__toggle--on {
 			.mw-toggle-switch__toggle__grip {
-				background-color: @background-color-framed;
+				background-color: @background-color-interactive-subtle;
 			}
 		}
 	}

@@ -96,7 +96,7 @@ module.exports = exports = {
 	}
 
 	.wbmad-user-message-disclaimer {
-		color: @color-base--subtle;
+		color: @color-subtle;
 		font-size: 0.9em;
 	}
 }

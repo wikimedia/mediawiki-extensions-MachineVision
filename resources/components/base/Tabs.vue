@@ -186,8 +186,8 @@ module.exports = exports = {
 </script>
 
 <style lang="less">
+@import 'mediawiki.skin.variables.less';
 @import 'mediawiki.mixins';
-@import '../../../lib/wikimedia-ui-base.less';
 
 .mw-tabs {
 	&__header {
@@ -197,42 +197,42 @@ module.exports = exports = {
 		/* FIXME: Prefix is-active/is-disable classes */
 		/* stylelint-disable selector-class-pattern */
 		&__item {
-			color: @color-base--subtle;
-			cursor: pointer;
-			font-weight: bold;
+			color: @color-subtle;
+			font-weight: @font-weight-bold;
 			margin: 6px 6px 0 0;
 			padding: 6px 13px;
 			transition: color 100ms, box-shadow 100ms;
 
 			&:hover,
 			&.is-active {
-				color: @color-primary;
-				box-shadow: inset 0 -2px 0 0 @color-primary;
+				color: @color-progressive;
+				box-shadow: inset 0 -2px 0 0 @color-progressive;
 			}
 
 			&:hover {
-				color: @color-primary--hover;
-				box-shadow: inset 0 -2px 0 0 @color-primary--hover;
+				color: @color-progressive--hover;
+				box-shadow: inset 0 -2px 0 0 @color-progressive--hover;
+				cursor: @cursor-base--hover;
 			}
 
 			&.is-disabled {
-				color: @color-base--disabled;
+				color: @color-disabled;
 				cursor: not-allowed;
 
 				&:hover,
 				&.is-active {
-					color: @color-base--disabled;
+					color: @color-disabled;
 					box-shadow: unset;
 				}
 			}
 		}
 
 		&:focus {
-			outline: 0;
+			outline: @outline-base--focus;
 
 			.mw-tabs__header__item.is-active {
-				border-radius: 2px;
-				box-shadow: inset 0 0 0 2px @color-primary;
+				border-radius: @border-radius-base;
+				box-shadow: inset 0 0 0 2px @color-progressive;
 			}
 		}
 		/* stylelint-enable selector-class-pattern */

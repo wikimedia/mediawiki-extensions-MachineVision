@@ -25,8 +25,10 @@ module.exports = exports = {
 </script>
 
 <style lang="less">
+@import 'mediawiki.skin.variables.less';
+
 .wbmad-personal-uploads-count {
-	font-weight: bold;
+	font-weight: @font-weight-bold;
 	margin-bottom: 16px;
 
 	p {
