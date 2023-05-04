@@ -2,8 +2,7 @@
 	"private": true,
 	"scripts": {
 		"test": "grunt test && npm run test:unit",
-		"test:unit": "jest",
-		"build-lib": ". ./bin/build.sh"
+		"test:unit": "jest"
 	},
 	"devDependencies": {
 		"@babel/preset-env": "^7.16.11",
