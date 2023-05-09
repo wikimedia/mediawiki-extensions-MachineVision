@@ -74,12 +74,12 @@
 	"tag-computer-aided-tagging-manual-revert": "Balisage assisté par ordinateur — manuel (annulé)",
 	"tag-computer-aided-tagging-manual-revert-description": "Modifications annulant les révisions créées par l’outil de balisage assisté par ordinateur avec des libellés fournis par l’utilisateur",
 	"echo-machinevision-suggestions-ready-notification-header-compact": "Les mots-clés suggérés sont prêts à être passés en revue",
-	"echo-machinevision-suggestions-ready-notification-header": "Des mots-clés suggérés pour {{GENDER:$1|vos}} récentes importations sont prêts à être passés en revue",
-	"echo-machinevision-suggestions-ready-notification-body": "Bonjour ! Les images que {{GENDER:$1|}}vous avez récemment mises en ligne sur Commons ont été analysées et des mots-clés sont suggérés. Des mots-clés précis permettent à tous les utilisateurs de Commons de trouver plus facilement {{GENDER:$1|}}vos images ; aussi, suivez le lien pour passer en revue {{GENDER:$1|}}les mots-clés suggérés. Seuls les mots-clés confirmés par des utilisateurs seront ajoutés aux données concernant l’image sur Commons. Pour plus d’informations au sujet de cet outil, vous pouvez visiter la page du projet d’ajout de mots-clés assisté par ordinateur.",
-	"echo-machinevision-suggestions-ready-notification-primary-link": "Passer en revue les balises",
+	"echo-machinevision-suggestions-ready-notification-header": "Des mots-clés suggérés pour {{GENDER:$1|}}vos récents téléversements sont prêts à être passés en revue",
+	"echo-machinevision-suggestions-ready-notification-body": "Bonjour ! Les images que {{GENDER:$1|}}vous avez récemment mises en ligne sur Commons ont été analysées et des mots-clés sont suggérés. Des mots-clés précis permettent à tous les utilisateurs de Commons de trouver plus facilement {{GENDER:$1|}}vos images ; aussi, suivez le lien pour passer en revue les mots-clés qui {{GENDER:$1|}}vous sont suggérés. Seuls les mots-clés confirmés par des utilisateurs seront ajoutés aux données de l’image sur Commons. Pour plus d’informations concernant cet outil, vous pouvez visiter la page du projet d’ajout de mots-clés assisté par ordinateur.",
+	"echo-machinevision-suggestions-ready-notification-primary-link": "Passer en revue les mots-clés",
 	"echo-category-title-machinevision": "Mots-clés suggérés devant être passés en revue",
 	"echo-pref-tooltip-machinevision-suggestions-ready": "Me notifier quand mes images ont été traitées et que je peux passer en revue des mots-clés qui ont été suggérés.",
-	"group-machinevision-tester": "Testeurs de la vision industrielle",
-	"group-machinevision-tester-member": "{{GENDER:$1|testeur|testeuse}} de la vision industrielle",
+	"group-machinevision-tester": "Testeurs de vision par machine",
+	"group-machinevision-tester-member": "testeu{{GENDER:$1|r|se}} de la vision par machine",
 	"grouppage-machinevision-tester": "{{ns:project}}:Machine vision testers"
 }
