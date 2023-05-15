@@ -6,9 +6,12 @@
 	},
 	"devDependencies": {
 		"@babel/preset-env": "^7.16.11",
+		"@vue/compat": "3.2.31",
+		"@vue/compiler-sfc": "3.2.31",
 		"@vue/test-utils": "2.0.0-rc.18",
+		"@vue/vue3-jest": "27.0.0-alpha.4",
 		"babel-core": "^6.26.3",
-		"eslint-config-wikimedia": "0.24.0",
+		"eslint-config-wikimedia": "0.25.0",
 		"grunt": "1.6.1",
 		"grunt-banana-checker": "0.10.0",
 		"grunt-eslint": "24.0.1",
@@ -22,9 +25,6 @@
 		"stylelint-config-wikimedia": "0.14.0",
 		"vue": "3.2.31",
 		"vuex": "4.0.2",
-		"@vue/compat": "3.2.31",
-		"@vue/compiler-sfc": "3.2.31",
-		"@vue/vue3-jest": "27.0.0-alpha.4",
 		"wikibase-data-model": "^6.1.0",
 		"wikibase-data-values": "^0.10.0",
 		"wikibase-serialization": "^5.0.0"
