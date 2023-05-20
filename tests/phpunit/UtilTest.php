@@ -24,7 +24,7 @@ class UtilTest extends TestCase {
 		$this->assertEquals( $expected, Util::isMediaTypeAllowed( $mediaType ) );
 	}
 
-	public function mediaTypeProvider() {
+	public static function mediaTypeProvider() {
 		return [
 			[ 'BITMAP', true ],
 			[ 'VIDEO', false ]
@@ -38,7 +38,7 @@ class UtilTest extends TestCase {
 		$this->assertEquals( $expected, Util::getMediaInfoPropertyId( $property ) === $id );
 	}
 
-	public function mediaInfoPropertyIdProvider() {
+	public static function mediaInfoPropertyIdProvider() {
 		return [
 			[ 'banana', 'P4', true ],
 			[ 'depicts', 'P1', true ],

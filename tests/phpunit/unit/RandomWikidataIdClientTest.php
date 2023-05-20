@@ -14,14 +14,15 @@ class RandomWikidataIdClientTest extends MediaWikiUnitTestCase {
 	 * @covers \MediaWiki\Extension\MachineVision\Client\RandomWikidataIdClient::getFileMetadata
 	 * @dataProvider provideGetFileMetadata
 	 */
-	public function testGetFileMetadata( $httpRequestFactory, $expectedData ) {
+	public function testGetFileMetadata( $mockUrl, $mockResponse, $expectedData ) {
+		$httpRequestFactory = $this->getMockHttpRequestFactory( $mockUrl, $mockResponse );
 		$file = $this->makeMockFile( 'X.png' );
 		$client = new RandomWikidataIdClient( $httpRequestFactory, 'UA' );
 		$data = $client->getFileMetadata( $file, 'https://example.com/?title=$1' );
 		$this->assertSame( $expectedData, $data );
 	}
 
-	public function provideGetFileMetadata() {
+	public static function provideGetFileMetadata() {
 		$response = [
 			'title' => 'File:Seal_mechanical_compression.png',
 			'data' => [
@@ -38,17 +39,9 @@ class RandomWikidataIdClientTest extends MediaWikiUnitTestCase {
 			],
 		];
 
-		$httpRequestFactory = $this->getMockHttpRequestFactory(
-			'https://example.com/?title=File%3AX.png', null );
-		yield 'HTTP error' => [ $httpRequestFactory, null ];
-
-		$httpRequestFactory = $this->getMockHttpRequestFactory(
-			'https://example.com/?title=File%3AX.png', '{{' );
-		yield 'invalid JSON' => [ $httpRequestFactory, null ];
-
-		$httpRequestFactory = $this->getMockHttpRequestFactory(
-			'https://example.com/?title=File%3AX.png', json_encode( $response ) );
-		yield 'valid' => [ $httpRequestFactory, $response ];
+		yield 'HTTP error' => [ 'https://example.com/?title=File%3AX.png', null, null ];
+		yield 'invalid JSON' => [ 'https://example.com/?title=File%3AX.png', '{{', null ];
+		yield 'valid' => [ 'https://example.com/?title=File%3AX.png', json_encode( $response ), $response ];
 	}
 
 	private function getMockHttpRequestFactory( $url, $response ): HttpRequestFactory {
