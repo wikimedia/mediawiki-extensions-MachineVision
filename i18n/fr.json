@@ -12,7 +12,7 @@
 			"Wladek92"
 		]
 	},
-	"machinevision-desc": "S’interface avec des fournisseurs internes et externes de services de vision par la machine pour stocker et servir des résultats.",
+	"machinevision-desc": "S’interface avec des fournisseurs internes et externes de services de visionique pour stocker et servir des résultats.",
 	"machinevision-machineaidedtagging": "Mots-clés suggérés",
 	"machinevision-machineaidedtagging-intro": "Passer en revue les mots-clés suggérés des [[Project:Depicts|objets représentés]] dans les images. Seuls les mots-clés confirmés par un utilisateur sont ajoutés aux images. Pour plus d’information, consultez la [[Project:Structured_data/Computer-aided_tagging|page du projet]] et [[Project_talk:Structured_data/Computer-aided_tagging|donnez vos idées]] pour rendre cet outil plus utile !",
 	"machinevision-machineaidedtagging-tabs-heading": "Images à passer en revue",
@@ -51,8 +51,8 @@
 	"machinevision-cta-cta": "Ajouter des mots-clés aux images populaires",
 	"machinevision-no-uploads-cta-heading": "Vous n’avez aucune image à passer en revue",
 	"machinevision-no-uploads-cta-text": "Téléversez de nouvelles images afin que notre outil puisse les analyser et suggérer des mots-clés appropriés. Si vous avez déjà téléversé des images et que vous ne les voyez pas ici, ces images sont peut-être toujours en cours de passage en revue et vous pourrez revenir ici ultérieurement. Vous pouvez également faciliter la recherche d’images populaires d’autres utilisateurs en leur ajoutant des mots-clés.",
-	"machinevision-generic-no-images-heading": "Il n’y a aucune image disponible à marquer pour le moment.",
-	"machinevision-generic-no-images-text": "Veuillez revenir ultérieurement pour marquer plus d’images.",
+	"machinevision-generic-no-images-heading": "Il n’y a aucune image à laquelle ajouter des mots-clés disponible pour le moment.",
+	"machinevision-generic-no-images-text": "Veuillez revenir ultérieurement pour ajouter des mots-clés à d’autres images.",
 	"machinevision-javascript-required": "Cette fonctionnalité n’est pas prise en charge par votre navigateur web.",
 	"machinevision-categories-label": "Catégories :",
 	"machinevision-add-custom-tag-dialog-title": "Mot-clé personnalisé",
@@ -79,7 +79,7 @@
 	"echo-machinevision-suggestions-ready-notification-primary-link": "Passer en revue les mots-clés",
 	"echo-category-title-machinevision": "Mots-clés suggérés devant être passés en revue",
 	"echo-pref-tooltip-machinevision-suggestions-ready": "Me notifier quand mes images ont été traitées et que je peux passer en revue des mots-clés qui ont été suggérés.",
-	"group-machinevision-tester": "Testeurs de vision par machine",
-	"group-machinevision-tester-member": "testeu{{GENDER:$1|r|se}} de la vision par machine",
-	"grouppage-machinevision-tester": "{{ns:project}}:Machine vision testers"
+	"group-machinevision-tester": "Testeurs de la visionique",
+	"group-machinevision-tester-member": "testeu{{GENDER:$1|r|se}} de la visionique",
+	"grouppage-machinevision-tester": "{{ns:project}}:Testeurs de la visionique"
 }
