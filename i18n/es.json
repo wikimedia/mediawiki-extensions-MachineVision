@@ -7,7 +7,8 @@
 			"Hasley",
 			"Madamebiblio",
 			"DiegoAmbrocio",
-			"McDutchie"
+			"McDutchie",
+			"No se"
 		]
 	},
 	"machinevision-desc": "Interactua con proveedores de servicios externos y internos de visión artificial y guarda y provee resultados.",
@@ -41,7 +42,9 @@
 	"tag-computer-aided-tagging-manual": "Etiquetado asistido por computadora - manual",
 	"tag-computer-aided-tagging-manual-description": "Ediciones creadas desde la herramienta de etiquetado asistida por computadora con etiquetas proporcionadas por el usuario",
 	"tag-computer-aided-tagging-manual-revert": "Etiquetado asistido por computadora - manual (revertir)",
+	"echo-machinevision-suggestions-ready-notification-body": "¡Hola! La(s) imagen(es) que {{GENDER:$1|has}} subido recientemente a Commons se han procesado con etiquetas sugeridas y están listas para su revisión. Las etiquetas precisas facilitan que todos los usuarios de Commons encuentren {{GENDER:$1|tus}} imágenes, así que siga el enlace para revisar {{GENDER:$1|tus}} etiquetas sugeridas. Solo las etiquetas confirmadas por los usuarios se agregarán como parte de los datos de la imagen en Commons. Para obtener más información acerca de esta herramienta, visite la página del proyecto de la herramienta de etiquetado asistido por computadora.",
 	"echo-machinevision-suggestions-ready-notification-primary-link": "Etiquetas de revisión",
 	"echo-category-title-machinevision": "Etiquetas sugeridas para revisión",
-	"echo-pref-tooltip-machinevision-suggestions-ready": "Notificarme cuando se hayan procesado mis imágenes y haya etiquetas sugeridas para que las revise."
+	"echo-pref-tooltip-machinevision-suggestions-ready": "Notificarme cuando se hayan procesado mis imágenes y haya etiquetas sugeridas para que las revise.",
+	"group-machinevision-tester": "Probadores de visión artificial"
 }
