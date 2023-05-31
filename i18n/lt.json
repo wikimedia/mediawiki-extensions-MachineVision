@@ -2,13 +2,33 @@
 	"@metadata": {
 		"authors": [
 			"Eitvys200",
-			"Tomasdd"
+			"Tomasdd",
+			"Nokeoo"
 		]
 	},
+	"machinevision-machineaidedtagging": "Siūlomos žymos",
+	"machinevision-machineaidedtagging-intro": "Peržiūrėkite siūlomas [[Project:Depicts|vaizduojamų objektų]] paveikslėliuose žymes. Tik naudotojų patvirtintos žymės pridedamos prie paveikslėlių. Daugiau informacijos rasite [[Project:Structured_data/Computer-aided_tagging|projekto puslapyje]] ir galite [[Project_talk:Structured_data/Computer-aided_tagging|palikti atsiliepimą]] kaip patobulinti šį įrankį, kad jis padėtų daugiau!",
 	"machinevision-machineaidedtagging-tabs-heading": "paveikslėliai peržiūrai",
 	"machinevision-machineaidedtagging-popular-tab": "Populiaru",
 	"machinevision-machineaidedtagging-user-tab": "Asmeniniai įkėlimai",
+	"machinevision-machineaidedtagging-preferences-link": "[[Special:Preferences#mw-prefsection-echo|Išjungti pranešimus]], siunčiamus šio įrankio",
+	"machinevision-machineaidedtagging-license-information": "CC0 licencija žymių indėliui – Paspaudžiant „paskelbti“ sutinkate su [[wmf:Terms_of_Use|naudojimo sąlygomis]] ir negrįžtama sutinkate paskelbti savo indėlį pagal [https://creativecommons.org/publicdomain/zero/1.0/ Creative Commons CC0 licenciją].",
 	"machinevision-pageinfo-field-suggested-labels": "Siūlomos žymos",
+	"machinevision-login-message": "Prašome <span class=\"plainlinks\">[{{fullurl:{{#Special:UserLogin}}|returnto=Special:SuggestedTags}} prisijungti]</span>, kad matytumėte šį puslapį ir pradėtumėte žymėti paveikslėlius. Tikslios žymės padeda Vikitekos naudotojams rasti paveikslėlius ir jūsų indėlis yra vertinamas.",
+	"machinevision-publish": "Paskelbti",
+	"machinevision-publish-title": "Paskelbti žymes?",
+	"machinevision-add-custom-tag": "Pridėti žymą",
+	"machinevision-add-custom-tag-title": "Pridėti tinkintą žymę prie šio paveikslėlio",
+	"machinevision-skip": "Praleisti",
+	"machinevision-skip-title": "Praleisti „$1“ pasiūlymą?",
+	"machinevision-personal-uploads-count": "Turite $1 {{PLURAL:$1|asmeninį įkėlimą|asmeninius įkėlimus}} peržiūrai.",
+	"machinevision-suggestion-confirm-title": "Patvirtinti „$1“ pasiūlymą?",
+	"machinevision-suggestion-confirm-undo-title": "Atšaukti „$1“ pasiūlymo patvirtinimą?",
+	"machinevision-loading-message": "Paveikslėliai įkeliami...",
+	"machinevision-failure-message": "Atsiprašome, kažkas ne taip. Prašome grįžti vėliau arba [[Project_talk:Structured_data/Computer-aided_tagging|susisiekti su mumis]].",
+	"machinevision-confirm-tags-dialog-title": "Patvirtinti žymes",
+	"machinevision-confirm-tags-dialog-confirm-action": "Gerai",
+	"machinevision-confirm-tags-dialog-cancel-action": "Atšaukti",
 	"machinevision-onboarding-dialog-cta": "Pradėti žymėjimą",
 	"machinevision-onboarding-dialog-disclaimer": "Prie vaizdų bus pridėtos tik jūsų patvirtintos žymos.",
 	"machinevision-onboarding-dialog-close-label": "Uždaryti"
