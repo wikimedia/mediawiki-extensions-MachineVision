@@ -6,11 +6,30 @@
 			"Tomasdd"
 		]
 	},
+	"apihelp-reviewimagelabels-summary": "Peržiūrėti automatiškai siūlomas paveikslėlio žymes.",
+	"apihelp-reviewimagelabels-param-filename": "Paveikslėlio pavadinimas (be vardų srities priešdėlio).",
+	"apihelp-reviewimagelabels-param-label": "Siūlomos žymės vikiduomenų ID (su Q priešdėliu).",
 	"apihelp-reviewimagelabels-param-review": "Peržiūros rezultatas.",
 	"apihelp-reviewimagelabels-paramvalue-review-accept": "Pasiūlymas yra teisingas.",
 	"apihelp-reviewimagelabels-paramvalue-review-reject": "Pasiūlymas yra neteisingas.",
+	"apihelp-reviewimagelabels-example-1": "Žymėti <kbd>Q123</kbd> kaip tinkamą <kbd>Example.png</kbd> siūlymą.",
+	"apihelp-reviewimagelabels-example-2": "Priimti <kbd>Q1</kbd> ir atmesti <kbd>Q2</kbd> kaip <kbd>Example.png</kbd> siūlymus.",
+	"apierror-reviewimagelabels-batch-invalid-json": "Negalimas JSON <var>batch</var> parametrui: $1",
+	"apierror-reviewimagelabels-batch-missingparam-at-least-one-of": "Kiekvienam objektui, kuris yra <var>batch</var> įvestyje, {{PLURAL:$2|laukas|bent vienas iš laukų}} $1 yra reikalingas.",
+	"apierror-reviewimagelabels-batch-toomanyvalues": "Negalima įvestis <var>batch</var> parametrui: per daug įrašų, maksimalus leidžiamas $1",
+	"apierror-reviewimagelabels-invalidfile": "<kbd>$1</kbd> nėra galimas failo pavadinimas.",
+	"apierror-reviewimagelabels-invalidlabel": "Failas <kbd>$1</kbd> neturi <kbd>$2</kbd> žymės.",
+	"apierror-reviewimagelabels-invalidstate": "<kbd>$3</kbd> nėra galimas <kbd>$1</kbd> failo žymės <kbd>$2</kbd> veiksmas.",
+	"apiwarn-reviewimagelabels-setlabelstate-failed": "Nepavyko įrašyti žymės <kbd>$2</kbd> būsenos <kbd>$1</kbd>",
+	"apihelp-query+imagelabels-summary": "Rodyti automatiškai siūlomas paveikslėlio žymes.",
 	"apihelp-query+imagelabels-param-state": "Rodo žymes tik šiose peržiūros būsenose",
 	"apihelp-query+imagelabels-paramvalue-state-unreviewed": "Žymės, kurios dar nebuvo peržiūrėtos.",
 	"apihelp-query+imagelabels-paramvalue-state-accepted": "Žymės, kurios buvo atpažintos kaip tinkamos.",
-	"apihelp-query+imagelabels-paramvalue-state-rejected": "Žymės, kurios nebuvo identifikuotos kaip teisingos."
+	"apihelp-query+imagelabels-paramvalue-state-rejected": "Žymės, kurios nebuvo identifikuotos kaip teisingos.",
+	"apihelp-query+imagelabels-example-1": "Rodyti automatiškai siūlomas <kbd>Example.png</kbd> paveikslėlio žymes.",
+	"apihelp-query+unreviewedimagelabels-summary": "Rodyti pavadinimas su siūlomomis paveikslėlių žymomis, kurias reikia peržiūrėti.",
+	"apihelp-query+unreviewedimagelabels-param-uploader": "Grąžinti tik rezultatus, įkeltus šio naudotojo.",
+	"apihelp-query+unreviewedimagelabels-param-limit": "Gražinamų rezultatų skaičius.",
+	"apihelp-query+unreviewedimagecount-summary": "Rodyti paveikslėlių su žymų pasiūlymais laukiančių peržiūros skaičių, viso ir (jei prisijungta) dabartinio naudotojo.",
+	"apihelp-query+unreviewedimagecount-example": "Gauti neperžiūrėtų paveikslėlių skaičių."
 }
