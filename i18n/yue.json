@@ -1,7 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
-			"Roy17"
+			"Roy17",
+			"Moon0319",
+			"捍粵者"
 		]
 	},
 	"machinevision-machineaidedtagging": "建議標籤",
@@ -26,7 +28,7 @@
 	"machinevision-cta-heading": "你上載嘅冚唪冷標晒！",
 	"machinevision-cta-cta": "標籤熱門圖片",
 	"machinevision-no-uploads-cta-heading": "你冇圖片可供檢閱",
-	"machinevision-javascript-required": "你個瀏覽器用唔到呢個功能。",
+	"machinevision-javascript-required": "您嘅瀏覽器用毋到爾款功能。",
 	"tag-computer-aided-tagging": "電腦輔助標籤",
 	"echo-machinevision-suggestions-ready-notification-header-compact": "你份檔案「$2」嘅建議標籤而家可供檢閱",
 	"echo-machinevision-suggestions-ready-notification-header": "你最近上載圖片嘅建議標籤而家可供檢閱",
