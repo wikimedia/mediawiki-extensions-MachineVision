@@ -125,6 +125,7 @@ class PrioritizeFilesWithTemplate extends Maintenance {
 				);
 				$this->commitTransaction( $this->dbw, __METHOD__ );
 				$this->output( '.' );
+				$this->waitForReplication();
 			}
 		} while ( count( $unreviewed ) > 0 );
 
