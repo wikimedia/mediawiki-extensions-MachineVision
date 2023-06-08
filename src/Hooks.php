@@ -17,7 +17,6 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Storage\EditResult;
 use MediaWiki\User\UserIdentity;
-use MWException;
 use Skin;
 use UploadBase;
 use User;
@@ -36,7 +35,6 @@ class Hooks {
 
 	/**
 	 * @param UploadBase $uploadBase
-	 * @throws MWException
 	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/UploadComplete
 	 */
 	public static function onUploadComplete( UploadBase $uploadBase ) {

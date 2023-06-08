@@ -6,7 +6,6 @@ use Job;
 use MediaWiki\Extension\MachineVision\Services;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
-use MWException;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
 use Title;
@@ -27,7 +26,6 @@ class FetchGoogleCloudVisionAnnotationsJob extends Job implements LoggerAwareInt
 	/**
 	 * @return bool success
 	 * @suppress PhanTypeMismatchArgument
-	 * @throws MWException
 	 */
 	public function run(): bool {
 		$title = $this->params['title'];

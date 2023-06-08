@@ -125,7 +125,6 @@ class GoogleCloudVisionClient implements LoggerAwareInterface {
 	 * @param int $priority priority value between -128 & 127
 	 * @param bool $notify true if a notification should be sent to the uploader on success
 	 * @return void
-	 * @throws \MWException
 	 */
 	public function fetchAnnotations( string $provider, LocalFile $file, int $priority = 0, bool $notify = false ) {
 		$annotationRequest = $this->getAnnotationRequest( $file );

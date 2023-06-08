@@ -6,7 +6,7 @@ use Maintenance;
 use MediaWiki\Extension\MachineVision\Services;
 use MediaWiki\Extension\MachineVision\TitleFilter;
 use MediaWiki\MediaWikiServices;
-use MWException;
+use RuntimeException;
 use Wikimedia\Rdbms\IDatabase;
 
 $IP = getenv( 'MW_INSTALL_PATH' );
@@ -70,7 +70,7 @@ class CreateFileListFromGlobalImageLinks extends Maintenance {
 		// Check outputFile path for validity before going any further
 		$path = substr( $outputFile, 0, strrpos( $outputFile, '/' ) );
 		if ( !is_dir( $path ) ) {
-			throw new MWException( "Bad output file location: $outputFile" );
+			throw new RuntimeException( "Bad output file location: $outputFile" );
 		}
 
 		$result = [];
