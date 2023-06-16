@@ -70,7 +70,7 @@ const mw = {
 		}
 	},
 	jqueryMsg: {
-		parser: jest.fn()
+		Parser: jest.fn()
 	},
 	language: {
 		convertNumber: jest.fn(),
