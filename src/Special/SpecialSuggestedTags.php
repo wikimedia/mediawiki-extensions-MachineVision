@@ -49,7 +49,7 @@ class SpecialSuggestedTags extends SpecialPage {
 
 		// Placeholder element, to be removed once UI finishes loading.
 		$user = $this->getUser();
-		$placeholder = $user->isAnon() ?
+		$placeholder = !$user->isNamed() ?
 			'<div class="wbmad-placeholder wbmad-placeholder-anonymous"></div>' :
 			$this->getPlaceholderMarkup();
 		$out->addHTML( $placeholder );
