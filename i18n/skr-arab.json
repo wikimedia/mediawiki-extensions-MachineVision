@@ -4,15 +4,22 @@
 			"Saraiki"
 		]
 	},
+	"machinevision-machineaidedtagging": "مجوزہ ٹیگ",
+	"machinevision-machineaidedtagging-tabs-heading": "نظرثانی کیتے تصویراں",
 	"machinevision-machineaidedtagging-popular-tab": "ہر من بھان٘وݨاں",
+	"machinevision-machineaidedtagging-user-tab": "ذاتی اپ لوڈاں",
+	"machinevision-pageinfo-field-suggested-labels": "مجوزہ لیبل",
 	"machinevision-publish": "شائع کرو",
+	"machinevision-publish-title": "ٹیگ شائع کروں؟",
 	"machinevision-add-custom-tag": "ٹیگ شامل کرو",
 	"machinevision-skip": "چھوڑو",
 	"machinevision-loading-message": "لوڈ تھیندا پئے۔۔۔",
 	"machinevision-confirm-tags-dialog-confirm-action": "ٹھیک ہے",
 	"machinevision-confirm-tags-dialog-cancel-action": "منسوخ",
+	"machinevision-onboarding-dialog-cta": "ٹیگ کرݨ شروع کرو",
 	"machinevision-onboarding-dialog-close-label": "بند کرو",
 	"machinevision-categories-label": "ونکیاں:",
 	"machinevision-add-custom-tag-dialog-add-action": "شامل کرو",
-	"machinevision-add-custom-tag-dialog-cancel-action": "منسوخ"
+	"machinevision-add-custom-tag-dialog-cancel-action": "منسوخ",
+	"machinevision-detailed-tags-toggle-label": "تفصیلی ٹیگ"
 }
