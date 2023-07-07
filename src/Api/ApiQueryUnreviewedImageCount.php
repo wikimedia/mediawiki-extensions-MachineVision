@@ -33,8 +33,9 @@ class ApiQueryUnreviewedImageCount extends ApiQueryBase {
 	 */
 	public function execute() {
 		$totals = [];
-		if ( !$this->getUser()->isAnon() ) {
-			$userId = $this->getUser()->getId();
+		$user = $this->getUser();
+		if ( $user->isNamed() ) {
+			$userId = $user->getId();
 			$totals['user'] = $this->repository->getUnreviewedImageCountForUser( $userId );
 		}
 		$this->getResult()->addValue( 'query', 'unreviewedimagecount', $totals );

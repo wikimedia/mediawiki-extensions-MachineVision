@@ -84,7 +84,7 @@ module.exports = {
 	 * @return {boolean}
 	 */
 	isAuthenticated: function () {
-		return !!mw.config.get( 'wgUserName' );
+		return !!mw.config.get( 'wgUserName' ) && mw.user.isNamed();
 	},
 
 	/**
