@@ -1,0 +1,34 @@
+{
+	"@metadata": {
+		"authors": [
+			"Winston Sung"
+		]
+	},
+	"machinevision-machineaidedtagging": "建議標籤",
+	"machinevision-machineaidedtagging-tabs-heading": "等檢閱嘅圖",
+	"machinevision-machineaidedtagging-popular-tab": "熱門",
+	"machinevision-machineaidedtagging-user-tab": "私人上載",
+	"machinevision-publish": "發佈",
+	"machinevision-publish-title": "發佈標籤？",
+	"machinevision-skip": "跳過",
+	"machinevision-skip-title": "跳過「$1」嘅建議？",
+	"machinevision-personal-uploads-count": "你有$1張私人上載圖片可供檢閱。",
+	"machinevision-loading-message": "圖片加載緊……",
+	"machinevision-failure-message": "對唔住，有D嘢出錯。請稍後再來過，或者[[c:Commons_talk:Structured_data/Computer-aided_tagging|聯絡我哋]]。",
+	"machinevision-confirm-tags-dialog-title": "確認標籤",
+	"machinevision-confirm-tags-dialog-cancel-action": "取消",
+	"machinevision-confirm-tags-dialog-heading": "呢張圖顯示：",
+	"machinevision-success-message": "標籤加咗落幅圖。",
+	"machinevision-publish-error-message": "有嘢出錯，標籤發佈唔到。請稍後重試。",
+	"machinevision-onboarding-dialog-cta": "開始標籤",
+	"machinevision-onboarding-dialog-disclaimer": "得你批准嘅標籤先會加落圖片。",
+	"machinevision-onboarding-dialog-close-label": "閂",
+	"machinevision-cta-heading": "你上載嘅冚唪冷標晒！",
+	"machinevision-cta-cta": "標籤熱門圖片",
+	"machinevision-no-uploads-cta-heading": "你冇圖片可供檢閱",
+	"machinevision-javascript-required": "你個瀏覽器用唔到呢個功能。",
+	"tag-computer-aided-tagging": "電腦輔助標籤",
+	"echo-machinevision-suggestions-ready-notification-header-compact": "你份檔案「$2」嘅建議標籤而家可供檢閱",
+	"echo-machinevision-suggestions-ready-notification-header": "你最近上載圖片嘅建議標籤而家可供檢閱",
+	"echo-category-title-machinevision": "供檢閱嘅建議標籤"
+}
