@@ -46,8 +46,8 @@ class PrioritizeFilesWithTemplate extends Maintenance {
 			? $loadBalancerFactory->getExternalLB( $cluster )
 			: $loadBalancerFactory->getMainLB( $database );
 
-		$this->dbw = $loadBalancer->getConnectionRef( DB_PRIMARY, [], $database );
-		$this->dbr = $loadBalancer->getConnectionRef( DB_REPLICA, [], $database );
+		$this->dbw = $loadBalancer->getConnection( DB_PRIMARY, [], $database );
+		$this->dbr = $loadBalancer->getConnection( DB_REPLICA, [], $database );
 	}
 
 	/** @inheritDoc */

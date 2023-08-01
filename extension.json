@@ -228,7 +228,10 @@
 				"polyfills/Array.prototype.find.js",
 				{
 					"name": "config.json",
-					"callback": [ "MediaWiki\\Extension\\MachineVision\\Hooks", "getJSConfig" ]
+					"callback": [
+						"MediaWiki\\Extension\\MachineVision\\Hooks",
+						"getJSConfig"
+					]
 				},
 				"components/base/Button.vue",
 				"components/base/Icon.vue",

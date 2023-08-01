@@ -65,8 +65,8 @@ return [
 			: $loadBalancerFactory->getMainLB( $database );
 		$repository = new Repository(
 			$services->getService( 'MachineVisionNameTableStore' ),
-			$loadBalancer->getConnectionRef( DB_REPLICA, [], $database ),
-			$loadBalancer->getConnectionRef( DB_PRIMARY, [], $database )
+			$loadBalancer->getConnection( DB_REPLICA, [], $database ),
+			$loadBalancer->getConnection( DB_PRIMARY, [], $database )
 		);
 
 		$client = new GoogleCloudVisionClient(
@@ -121,8 +121,8 @@ return [
 
 		return new Repository(
 			$services->getService( 'MachineVisionNameTableStore' ),
-			$loadBalancer->getConnectionRef( DB_REPLICA, [], $database ),
-			$loadBalancer->getConnectionRef( DB_PRIMARY, [], $database )
+			$loadBalancer->getConnection( DB_REPLICA, [], $database ),
+			$loadBalancer->getConnection( DB_PRIMARY, [], $database )
 		);
 	},
 
