@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Kly"
+			"Kly",
+			"Winston Sung"
 		]
 	},
 	"apihelp-reviewimagelabels-summary": "檢閱機器建議圖片標籤。",
@@ -28,6 +29,7 @@
 	"apihelp-query+imagelabels-paramvalue-state-accepted": "識別為正確的標籤。",
 	"apihelp-query+imagelabels-paramvalue-state-rejected": "沒被識別為正確的標籤。",
 	"apihelp-query+imagelabels-paramvalue-state-withheld": "電腦輔助標記呈現的已保留圖片標籤",
+	"apihelp-query+imagelabels-paramvalue-state-not-displayed": "未顯示的標籤。",
 	"apihelp-query+imagelabels-example-1": "顯示用於 <kbd>Example.png</kbd> 的機器建立圖片標籤。",
 	"apihelp-query+unreviewedimagelabels-summary": "顯示帶有需要檢閱建議圖片標籤的標題。",
 	"apihelp-query+unreviewedimagelabels-param-uploader": "僅回傳由該使用者上傳的結果。",
