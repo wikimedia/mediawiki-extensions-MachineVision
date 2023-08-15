@@ -2,11 +2,25 @@
 	"@metadata": {
 		"authors": [
 			"Umlaut",
-			"TMg"
+			"TMg",
+			"Brettchenweber"
 		]
 	},
+	"apihelp-reviewimagelabels-param-filename": "Name des Bildes (ohne Namespace-Präfix).",
+	"apihelp-reviewimagelabels-param-label": "Wikidata-ID des vorgeschlagenen Labels (mit Q-Präfix).",
 	"apihelp-reviewimagelabels-param-review": "Ergebnis der Überprüfung.",
 	"apihelp-reviewimagelabels-paramvalue-review-accept": "Der Vorschlag ist richtig.",
 	"apihelp-reviewimagelabels-paramvalue-review-reject": "Der Vorschlag ist falsch.",
-	"apierror-reviewimagelabels-invalidfile": "<kbd>$1</kbd> ist kein gültiger Dateiname."
+	"apihelp-reviewimagelabels-example-1": "Markieren von <kbd>Q123</kbd> als korrekten Vorschlag für <kbd>Example.png</kbd> .",
+	"apihelp-reviewimagelabels-example-2": "Akzeptieren von <kbd>Q1</kbd> und ablehnen von <kbd>Q2</kbd> als Vorschläge für <kbd>„Example.png“</kbd>.",
+	"apierror-reviewimagelabels-batch-invalid-json": "Ungültiges JSON für den Parameter <var>batch</var>: $1",
+	"apierror-reviewimagelabels-batch-invalid-structure": "Ungültige Eingabe für den Parameter <var>batch</var>: Es muss eine Anordnung von Objekten enthalten, die skalare Werte haben.",
+	"apierror-reviewimagelabels-batch-missingparam-at-least-one-of": "In jedem Objekt innerhalb der Eingabe <var>batch</var> ist {{PLURAL:$2|das Feld|mindestens eines der Felder}} $1 erforderlich.",
+	"apierror-reviewimagelabels-batch-toomanyvalues": "Ungültige Eingabe für den Parameter <var>batch</var>: zu viele Einträge, maximal erlaubt sind $1",
+	"apierror-reviewimagelabels-invalidfile": "<kbd>$1</kbd> ist kein gültiger Dateiname.",
+	"apierror-reviewimagelabels-invalidlabel": "Datei <kbd>$1</kbd> hat kein <kbd>$2</kbd> Label.",
+	"apiwarn-reviewimagelabels-depicts-exists": "Die Aussage „$1 ($2): $3“ existiert bereits für die Datei $4",
+	"apihelp-query+imagelabels-summary": "Maschinell vorgeschlagene Bildbeschriftungen anzeigen.",
+	"apihelp-query+unreviewedimagelabels-param-uploader": "Es werden nur von diesem Benutzer hochgeladene Ergebnisse zurückgegeben.",
+	"apihelp-query+unreviewedimagelabels-param-limit": "Anzahl der zurückzugebenden Ergebniseinträge."
 }
