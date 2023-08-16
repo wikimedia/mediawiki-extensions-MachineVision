@@ -1,9 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"Kimberli Mäkäräinen (WMNO)"
+			"Kimberli Mäkäräinen (WMNO)",
+			"Yupik"
 		]
 	},
-	"machinevision-confirm-tags-dialog-cancel-action": "Šluhtte",
-	"machinevision-add-custom-tag-dialog-cancel-action": "Šluhtte"
+	"machinevision-confirm-tags-dialog-cancel-action": "Gaskkalduhte",
+	"machinevision-add-custom-tag-dialog-cancel-action": "Gaskkalduhte"
 }
