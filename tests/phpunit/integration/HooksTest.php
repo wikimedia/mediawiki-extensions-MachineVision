@@ -9,11 +9,11 @@ use LocalRepo;
 use MediaWiki\Extension\MachineVision\Handler\WikidataIdHandler;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Tests\Rest\Handler\MediaTestTrait;
+use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiIntegrationTestCase;
 use RepoGroup;
 use RequestContext;
-use Title;
 use UploadBase;
 
 /**

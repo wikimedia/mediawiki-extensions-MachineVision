@@ -6,7 +6,7 @@ use InvalidArgumentException;
 use LocalRepo;
 use MediaWiki\Permissions\RestrictionStore;
 use MediaWiki\Revision\RevisionStore;
-use Title;
+use MediaWiki\Title\Title;
 use Wikibase\DataModel\Entity\NumericPropertyId;
 
 class TitleFilter {
