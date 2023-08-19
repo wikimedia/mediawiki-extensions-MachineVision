@@ -10,11 +10,11 @@ use MediaWiki\Extension\MachineVision\Handler\Registry;
 use MediaWiki\Extension\MachineVision\Repository;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Storage\NameTableStore;
+use MediaWiki\Title\Title;
 use Message;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
 use RepoGroup;
-use Title;
 use Wikimedia\ParamValidator\ParamValidator;
 
 class ApiReviewImageLabels extends ApiBase implements LoggerAwareInterface {
