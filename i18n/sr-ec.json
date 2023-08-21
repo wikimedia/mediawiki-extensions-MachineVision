@@ -1,8 +1,14 @@
 {
 	"@metadata": {
 		"authors": [
-			"BadDog"
+			"BadDog",
+			"Milicevic01"
 		]
 	},
-	"machinevision-failure-message": "Нешто није у реду. Навратите касније или [[Project_talk:Structured_data/Computer-aided_tagging|нам се обратите]]."
+	"machinevision-skip": "Прескочи",
+	"machinevision-failure-message": "Нешто није у реду. Навратите касније или [[Project_talk:Structured_data/Computer-aided_tagging|нам се обратите]].",
+	"machinevision-confirm-tags-dialog-confirm-action": "У реду",
+	"machinevision-confirm-tags-dialog-cancel-action": "Откажи",
+	"machinevision-confirm-tags-dialog-heading": "Ова слика приказује:",
+	"machinevision-onboarding-dialog-close-label": "Затвори"
 }
