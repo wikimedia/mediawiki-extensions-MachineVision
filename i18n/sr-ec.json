@@ -5,10 +5,21 @@
 			"Milicevic01"
 		]
 	},
+	"machinevision-machineaidedtagging": "Предложене ознаке",
+	"machinevision-machineaidedtagging-popular-tab": "Популарно",
+	"machinevision-publish": "Објави",
+	"machinevision-publish-title": "Објави ознаке?",
+	"machinevision-add-custom-tag": "Додај ознаку",
 	"machinevision-skip": "Прескочи",
+	"machinevision-loading-message": "Учитавам слике...",
 	"machinevision-failure-message": "Нешто није у реду. Навратите касније или [[Project_talk:Structured_data/Computer-aided_tagging|нам се обратите]].",
 	"machinevision-confirm-tags-dialog-confirm-action": "У реду",
 	"machinevision-confirm-tags-dialog-cancel-action": "Откажи",
 	"machinevision-confirm-tags-dialog-heading": "Ова слика приказује:",
-	"machinevision-onboarding-dialog-close-label": "Затвори"
+	"machinevision-onboarding-dialog-close-label": "Затвори",
+	"machinevision-categories-label": "Категорије:",
+	"machinevision-add-custom-tag-dialog-add-action": "Додај",
+	"machinevision-add-custom-tag-dialog-cancel-action": "Откажи",
+	"machinevision-image-exclusion-notification-dismiss": "Одбаци ово обавештење",
+	"tag-computer-aided-tagging": "Рачунарски потпомогнуто означавање"
 }
