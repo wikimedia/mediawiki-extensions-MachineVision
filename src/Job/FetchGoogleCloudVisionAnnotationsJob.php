@@ -47,7 +47,7 @@ class FetchGoogleCloudVisionAnnotationsJob extends Job implements LoggerAwareInt
 
 		$extensionServices = new Services( $services );
 		$client = $extensionServices->getGoogleCloudVisionClient();
-		$client->fetchAnnotations( $provider, $file, $priority, true );
+		$client->fetchAnnotations( $provider, $file, $priority, false );
 
 		return true;
 	}

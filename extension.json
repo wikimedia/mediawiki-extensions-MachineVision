@@ -35,19 +35,15 @@
 		}
 	},
 	"Hooks": {
-		"UploadComplete": "MediaWiki\\Extension\\MachineVision\\Hooks::onUploadComplete",
 		"InfoAction": "MediaWiki\\Extension\\MachineVision\\Hooks::onInfoAction",
 		"LoadExtensionSchemaUpdates": "MediaWiki\\Extension\\MachineVision\\Hooks::onLoadExtensionSchemaUpdates",
 		"UnitTestsAfterDatabaseSetup": "MediaWiki\\Extension\\MachineVision\\Hooks::onUnitTestsAfterDatabaseSetup",
 		"UnitTestsBeforeDatabaseTeardown": "MediaWiki\\Extension\\MachineVision\\Hooks::onUnitTestsBeforeDatabaseTeardown",
-		"GetPreferences": "MediaWiki\\Extension\\MachineVision\\Hooks::onGetPreferences",
 		"FileDeleteComplete": "MediaWiki\\Extension\\MachineVision\\Hooks::onFileDeleteComplete",
 		"PageSaveComplete": "MediaWiki\\Extension\\MachineVision\\Hooks::onPageSaveComplete",
 		"RollbackComplete": "MediaWiki\\Extension\\MachineVision\\Hooks::onRollbackComplete",
 		"ListDefinedTags": "MediaWiki\\Extension\\MachineVision\\Hooks::onRegisterTags",
 		"ChangeTagsListActive": "MediaWiki\\Extension\\MachineVision\\Hooks::onRegisterTags",
-		"BeforeCreateEchoEvent": "MediaWiki\\Extension\\MachineVision\\Hooks::onBeforeCreateEchoEvent",
-		"EchoGetBundleRules": "MediaWiki\\Extension\\MachineVision\\Hooks::onEchoGetBundleRules",
 		"SidebarBeforeOutput": "MediaWiki\\Extension\\MachineVision\\Hooks::onSidebarBeforeOutput",
 		"ChangeTagsAllowedAdd": "MediaWiki\\Extension\\MachineVision\\Hooks::onChangeTagsAllowedAdd"
 	},

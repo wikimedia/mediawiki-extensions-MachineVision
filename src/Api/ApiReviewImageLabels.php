@@ -4,7 +4,6 @@ namespace MediaWiki\Extension\MachineVision\Api;
 
 use ApiBase;
 use ApiMain;
-use IDBAccessObject;
 use MediaWiki\Extension\MachineVision\Handler\LabelResolver;
 use MediaWiki\Extension\MachineVision\Handler\Registry;
 use MediaWiki\Extension\MachineVision\Repository;
@@ -72,49 +71,7 @@ class ApiReviewImageLabels extends ApiBase implements LoggerAwareInterface {
 
 	/** @inheritDoc */
 	public function execute() {
-		$this->checkUserRightsAny( 'imagelabel-review' );
-
-		// TODO move some of this to Handler?
-		$params = $this->extractRequestParams();
-		$votes = $this->collectAndValidateVotes( $params );
-		$userId = $this->getUser()->getId();
-		$ts = (int)( microtime( true ) * 10000 );
-
-		$filename = $params['filename'];
-		$file = $this->getFile( $filename );
-		$sha1 = $file->getSha1();
-
-		$result = [ 'success' => [] ];
-
-		foreach ( $votes as $vote ) {
-			$label = $vote['label'];
-			$review = $vote['review'];
-
-			$oldState = $this->repository->getLabelState( $sha1, $label,
-				IDBAccessObject::READ_EXCLUSIVE );
-			$newState = self::$reviewActions[$review];
-
-			if ( !$this->validateLabelState( $filename, $label, $oldState, $newState ) ) {
-				continue;
-			}
-
-			$success = $this->repository->setLabelState( $sha1, $label, $newState,
-				$userId, $ts );
-			if ( $success ) {
-				$result['success'][$label] = $review;
-			} else {
-				$this->addWarning(
-					$this->getContext()->msg( 'apiwarn-reviewimagelabels-setlabelstate-failed',
-						$review, $label )
-				);
-				if ( !array_key_exists( 'failure', $result ) ) {
-					$result['failure'] = [];
-				}
-				$result['failure'][$label] = $review;
-			}
-		}
-
-		$this->getResult()->addValue( null, $this->getModuleName(), [ 'result' => $result ] );
+		$this->dieWithError( 'machinevision-disabled-notice', null, null, 410 );
 	}
 
 	private function collectAndValidateVotes( $params ) {
@@ -154,7 +111,6 @@ class ApiReviewImageLabels extends ApiBase implements LoggerAwareInterface {
 				$this->msg( 'apierror-reviewimagelabels-invalidfile', $filename )
 			);
 		}
-		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable T240141
 		$file = $this->repoGroup->getLocalRepo()->findFile( $title );
 		if ( !$file ) {
 			$this->dieWithError(

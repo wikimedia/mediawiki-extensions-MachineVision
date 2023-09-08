@@ -55,6 +55,7 @@
 	"machinevision-image-exclusion-notification": "Certain types of files, such as identifiable known artwork or images of people, may be excluded from computer-aided tagging due to technical and cultural restrictions.",
 	"machinevision-image-exclusion-notification-dismiss": "Dismiss this notification",
 	"machinevision-detailed-tags-toggle-label": "Detailed tags",
+	"machinevision-disabled-notice": "Sorry, the Computer-Aided Tagging tool has been disabled - see https://phabricator.wikimedia.org/T339902",
 	"right-imagelabel-review": "Review image label suggestions",
 	"action-imagelabel-review": "review image label suggestions",
 	"right-imagelabel-test": "Test image label suggestions",
