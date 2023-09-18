@@ -1,0 +1,13 @@
+{
+	"@metadata": {
+		"authors": [
+			"TerranBoy"
+		]
+	},
+	"machinevision-loading-message": "بارکردن وێنەگان...",
+	"machinevision-confirm-tags-dialog-confirm-action": "باشە",
+	"machinevision-confirm-tags-dialog-cancel-action": "هەڵوەشاننەوە",
+	"machinevision-onboarding-dialog-close-label": "بەسان",
+	"machinevision-add-custom-tag-dialog-add-action": "ئزافەکردن",
+	"machinevision-add-custom-tag-dialog-cancel-action": "هەڵوەشاننەوە"
+}
