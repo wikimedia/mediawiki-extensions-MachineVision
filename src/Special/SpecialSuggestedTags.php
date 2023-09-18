@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Extension\MachineVision\Special;
 
-use Html;
 use LocalRepo;
 use MediaWiki\Extension\MachineVision\Handler\LabelResolver;
 use MediaWiki\Extension\MachineVision\Repository;
@@ -36,41 +35,11 @@ class SpecialSuggestedTags extends SpecialPage {
 		$this->setHeaders();
 
 		$out = $this->getOutput();
-
-		// Page intro.
 		$out->addHTML(
 			'<div class="wbmad-intro"><p>' .
-			$this->msg( 'machinevision-machineaidedtagging-intro' )->parse() .
+			$this->msg( 'machinevision-disabled-notice' )->parse() .
 			'</p></div>'
 		);
-
-		// Vue.js app root
-		$out->addHTML( '<div id="wbmad-app"></div>' );
-
-		// Placeholder element, to be removed once UI finishes loading.
-		$user = $this->getUser();
-		$placeholder = !$user->isNamed() ?
-			'<div class="wbmad-placeholder wbmad-placeholder-anonymous"></div>' :
-			$this->getPlaceholderMarkup();
-		$out->addHTML( $placeholder );
-
-		// no-JS fallback
-		$out->addHTML( '<div class="wbmad-client-nojs">' );
-		$out->addHTML(
-			Html::warningBox(
-				$this->msg( 'machinevision-javascript-required' )->parse()
-			)
-		);
-		$out->addHTML( '</div>' );
-		$out->addModuleStyles( 'ext.MachineVision.init' );
-
-		// Generate login message with link with returnto URL query parameter.
-		// Params aren't supported in the JS version of the messages API so we
-		// have parse it here then pass it to the JS.
-		$loginMessage = $this->msg( 'machinevision-login-message' )->parse();
-		$this->getOutput()->addJsConfigVars( 'wgMVSuggestedTagsLoginMessage', $loginMessage );
-
-		$this->getOutput()->addModules( 'ext.MachineVision' );
 	}
 
 	/** @inheritDoc */

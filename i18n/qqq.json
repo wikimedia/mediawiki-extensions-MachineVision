@@ -59,6 +59,7 @@
 	"machinevision-image-exclusion-notification": "Explanation that certain types of images will not appear in the image queue",
 	"machinevision-image-exclusion-notification-dismiss": "Text for dismiss button",
 	"machinevision-detailed-tags-toggle-label": "Label for the toggle switch that expands tag details",
+	"machinevision-disabled-notice": "Text to inform users that the tool has been disabled - should reference https://phabricator.wikimedia.org/T339902",
 	"right-imagelabel-review": "{{doc-right|imagelabel-review}}",
 	"action-imagelabel-review": "{{doc-action|imagelabel-review}}",
 	"right-imagelabel-test": "{{doc-right|imagelabel-test}}",

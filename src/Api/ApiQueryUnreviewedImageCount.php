@@ -32,13 +32,7 @@ class ApiQueryUnreviewedImageCount extends ApiQueryBase {
 	 * @inheritDoc
 	 */
 	public function execute() {
-		$totals = [];
-		$user = $this->getUser();
-		if ( $user->isNamed() ) {
-			$userId = $user->getId();
-			$totals['user'] = $this->repository->getUnreviewedImageCountForUser( $userId );
-		}
-		$this->getResult()->addValue( 'query', 'unreviewedimagecount', $totals );
+		$this->dieWithError( 'machinevision-disabled-notice', null, null, 410 );
 	}
 
 	/**

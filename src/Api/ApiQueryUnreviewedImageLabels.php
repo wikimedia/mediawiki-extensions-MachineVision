@@ -33,16 +33,7 @@ class ApiQueryUnreviewedImageLabels extends ApiQueryGeneratorBase {
 
 	/** @inheritDoc */
 	public function execute() {
-		$params = $this->extractRequestParams();
-		$result = array_map( static function ( $item ) {
-			$title = Title::newFromText( $item, NS_FILE );
-			return [
-				'title' => $title->getPrefixedDBkey(),
-				'ns' => NS_FILE,
-			];
-		}, $this->repository->getTitlesWithUnreviewedLabels( $params['limit'],
-			$params['uploader'] ) );
-		$this->getResult()->addValue( 'query', 'unreviewedimagelabels', $result );
+		$this->dieWithError( 'machinevision-disabled-notice', null, null, 410 );
 	}
 
 	/**

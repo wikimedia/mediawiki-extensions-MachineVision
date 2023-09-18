@@ -7,8 +7,6 @@ use ChangeTags;
 use DatabaseUpdater;
 use DeferredUpdates;
 use DomainException;
-use EchoEvent;
-use EchoNotificationMapper;
 use Exception;
 use File;
 use IContextSource;
@@ -317,76 +315,6 @@ class Hooks {
 		if ( in_array( Util::getDepictsTag(), $oldRevTags, true ) ) {
 			ChangeTags::addTags( Util::getDepictsRevertTag(), null, $rev->getId() );
 		}
-	}
-
-	/**
-	 * @param array &$notifications
-	 * @param array &$notificationCategories
-	 * @param array &$icons
-	 */
-	public static function onBeforeCreateEchoEvent(
-		&$notifications,
-		&$notificationCategories,
-		&$icons
-	) {
-		// 1. Define notification categories: $notificationCategories[ '...' ]
-		$notificationCategories[ 'machinevision' ] = [
-			'priority' => 3,
-			'tooltip' => 'echo-pref-tooltip-machinevision-suggestions-ready',
-		];
-
-		// 2. Define the event: $notifications[ '...' ]
-		$notifications[ 'machinevision-suggestions-ready'] = [
-			'category' => 'machinevision',
-			'group' => 'positive',
-			'section' => 'alert',
-			'presentation-model' => Notifications\SuggestionsReadyPresentationModel::class,
-			'user-locators' => [ static function ( EchoEvent $event ) {
-				// we don't want to spam users with notifications that essentially
-				// do the same thing: direct them to the Special:SuggestedTags page
-				// (while events could be bundled, they'd still unbundle once read,
-				// and pollute their read notifications)
-				// let's minimize the amount of notifications by only sending one
-				// of this kind until it has been read
-
-				$agent = $event->getAgent();
-				if ( !$agent || $agent->isAnon() ) {
-					// not a valid user
-					return [];
-				}
-
-				$notificationMapper = new EchoNotificationMapper();
-				$notifications = $notificationMapper->fetchUnreadByUser(
-					$agent,
-					1,
-					null,
-					[ $event->getType() ]
-				);
-				if ( count( $notifications ) > 0 ) {
-					// already has an unread notification of this kind
-					return [];
-				}
-
-				// has not yet been informed about these changes: send notification!
-				return [ $agent->getId() => $agent ];
-			} ],
-			'canNotifyAgent' => true
-		];
-
-		$icons['suggestions-ready']['path'] = 'MachineVision/resources/icons/suggestions-ready-icon.svg';
-	}
-
-	/**
-	 * @param EchoEvent $event
-	 * @param string &$bundleString
-	 * @return bool
-	 */
-	public static function onEchoGetBundleRules( EchoEvent $event, &$bundleString ) {
-		if ( $event->getType() === 'machinevision-suggestions-ready' ) {
-			$bundleString = 'machinevision';
-		}
-
-		return true;
 	}
 
 	/**
