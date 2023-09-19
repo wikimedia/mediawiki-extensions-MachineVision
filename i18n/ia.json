@@ -53,6 +53,7 @@
 	"machinevision-image-exclusion-notification": "Certe typos de file, como obras de arte recognoscibile o imagines de personas, pote esser excludite del etiquettage assistite per computator a causa de restrictiones technic e cultural.",
 	"machinevision-image-exclusion-notification-dismiss": "Clauder iste notification",
 	"machinevision-detailed-tags-toggle-label": "Etiquettas detaliate",
+	"machinevision-disabled-notice": "Regrettabilemente, le instrumento de etiquettage adjutate per computator ha essite disactivate; vide https://phabricator.wikimedia.org/T339902",
 	"right-imagelabel-review": "Revider suggestiones de etiquettas de imagines",
 	"action-imagelabel-review": "revider suggestiones de etiquettas de imagines",
 	"right-imagelabel-test": "Probar suggestiones de etiquettas de imagines",

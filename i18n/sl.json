@@ -53,6 +53,7 @@
 	"machinevision-image-exclusion-notification": "Nekatere vrste datotek, kot so prepoznavna umetniška dela ali slike ljudi, so iz računalniško podprtega označevanja zaradi tehničnih in kulturnih omejitev morda izključene.",
 	"machinevision-image-exclusion-notification-dismiss": "Opusti to obvestilo",
 	"machinevision-detailed-tags-toggle-label": "Podrobne oznake",
+	"machinevision-disabled-notice": "Oprostite, orodje za računalniško podprto označevanje je bilo onemogočeno – glejte https://phabricator.wikimedia.org/T339902",
 	"right-imagelabel-review": "Pregledovanje predlaganih oznak slik",
 	"action-imagelabel-review": "pregledovanje predlaganih oznak slik",
 	"right-imagelabel-test": "Preizkušanje predlaganih oznak slik",

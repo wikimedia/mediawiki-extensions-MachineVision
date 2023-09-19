@@ -53,6 +53,7 @@
 	"machinevision-image-exclusion-notification": "Visse typer filer, som identifiserbare kjente kunstverk eller bilder av mennesker kan være ekskludert fra maskinassistert tagging på grunn av tekniske og kulturelle restriksjoner.",
 	"machinevision-image-exclusion-notification-dismiss": "Lukk dette varselet",
 	"machinevision-detailed-tags-toggle-label": "Detaljerte tagger",
+	"machinevision-disabled-notice": "Beklager, men verktøyet for datamaskinstøttet tagging har blitt deaktivert – se https://phabricator.wikimedia.org/T339902",
 	"right-imagelabel-review": "Gå gjennom bildeetikettforslag",
 	"action-imagelabel-review": "gå gjennom bildeetikettforslag",
 	"right-imagelabel-test": "Teste bildeetikettforslag",

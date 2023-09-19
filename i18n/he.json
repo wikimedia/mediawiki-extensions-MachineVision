@@ -55,6 +55,7 @@
 	"machinevision-image-exclusion-notification": "סוגים מסוימים של קבצים, כגון יצירות אומנות ניתנות לזיהוי או תמונות של אנשים יכולות להיות מסוננות מתיוג בעזרת מחשב בשל הגבלות טכניות ותרבותיות.",
 	"machinevision-image-exclusion-notification-dismiss": "מחיקת ההתראה הזאת",
 	"machinevision-detailed-tags-toggle-label": "תגים מפורטים",
+	"machinevision-disabled-notice": "מצטערים, כלי התיוג בעזרת מחשב הושבת – ר' https://phabricator.wikimedia.org/T339902",
 	"right-imagelabel-review": "סקירת הצעות תוויות תמונה",
 	"action-imagelabel-review": "לסקור הצעות תוויות תמונה",
 	"right-imagelabel-test": "בדיקת הצעות תוויות תמונה",
