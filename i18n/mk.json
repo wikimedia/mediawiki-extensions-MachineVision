@@ -54,6 +54,7 @@
 	"machinevision-image-exclusion-notification": "Извесни видови податотеки, како познати и препознатливи уметнички дела или слики од луѓе може да бидат изземени од сметачки потпомогнатото означување поради технички или културни ограничувања.",
 	"machinevision-image-exclusion-notification-dismiss": "Тргни го известувањево",
 	"machinevision-detailed-tags-toggle-label": "Подробни ознаки",
+	"machinevision-disabled-notice": "За жал, алатката за сметачки потпомогнато означување е исклучена — погледајте на https://phabricator.wikimedia.org/T339902",
 	"right-imagelabel-review": "Проверка на предложени натписи за слики",
 	"action-imagelabel-review": "проверка на предложени натписи за слики",
 	"right-imagelabel-test": "Испробување на предлози на натписи за слики",

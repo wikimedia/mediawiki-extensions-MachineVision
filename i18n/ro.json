@@ -1,10 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
+			"Alesaru",
 			"GabiBil",
 			"NGC 54"
 		]
 	},
 	"machinevision-machineaidedtagging": "Etichete sugerate",
+	"machinevision-disabled-notice": "Ne pare rău, instrumentul de etichetare asistată de computer a fost dezactivat - consultați https://phabricator.wikimedia.org/T339902",
 	"echo-machinevision-suggestions-ready-notification-header-compact": "Etichete sugerate sunt gata pentru revizuire"
 }
