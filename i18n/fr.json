@@ -61,6 +61,7 @@
 	"machinevision-image-exclusion-notification": "Certains types de fichier, comme les œuvres d’art identifiables ou les images de personnes, peuvent être exclues du marquage assisté par ordinateur, du fait de restrictions techniques et culturelles.",
 	"machinevision-image-exclusion-notification-dismiss": "Fermer cette notification",
 	"machinevision-detailed-tags-toggle-label": "Balises détaillées",
+	"machinevision-disabled-notice": "Désolé, l’outil Balisage assisté par ordinateur a été désactivé - voir https://phabricator.wikimedia.org/T339902",
 	"right-imagelabel-review": "Passer en revue les suggestions de légende des images",
 	"action-imagelabel-review": "passer en revue les suggestions de légende des images",
 	"right-imagelabel-test": "Tester les suggestions de légende d’image",
