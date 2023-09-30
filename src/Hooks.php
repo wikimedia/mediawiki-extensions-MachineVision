@@ -2,26 +2,46 @@
 
 namespace MediaWiki\Extension\MachineVision;
 
-use Article;
 use ChangeTags;
-use DatabaseUpdater;
 use DeferredUpdates;
 use DomainException;
 use Exception;
 use File;
 use IContextSource;
 use LocalFile;
+use MediaWiki\ChangeTags\Hook\ChangeTagsAllowedAddHook;
+use MediaWiki\ChangeTags\Hook\ChangeTagsListActiveHook;
+use MediaWiki\ChangeTags\Hook\ListDefinedTagsHook;
+use MediaWiki\Hook\FileDeleteCompleteHook;
+use MediaWiki\Hook\InfoActionHook;
+use MediaWiki\Hook\SidebarBeforeOutputHook;
+use MediaWiki\Hook\UnitTestsAfterDatabaseSetupHook;
+use MediaWiki\Hook\UnitTestsBeforeDatabaseTeardownHook;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\Hook\RollbackCompleteHook;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Storage\EditResult;
+use MediaWiki\Storage\Hook\PageSaveCompleteHook;
 use MediaWiki\User\UserIdentity;
 use Skin;
 use UploadBase;
 use User;
+use WikiFilePage;
 use Wikimedia\Rdbms\IMaintainableDatabase;
 use WikiPage;
 
-class Hooks {
+class Hooks implements
+	InfoActionHook,
+	UnitTestsAfterDatabaseSetupHook,
+	UnitTestsBeforeDatabaseTeardownHook,
+	FileDeleteCompleteHook,
+	PageSaveCompleteHook,
+	RollbackCompleteHook,
+	ListDefinedTagsHook,
+	ChangeTagsListActiveHook,
+	SidebarBeforeOutputHook,
+	ChangeTagsAllowedAddHook
+{
 
 	/** @var array Tables which need to be set up / torn down for tests */
 	public static $testTables = [
@@ -73,13 +93,13 @@ class Hooks {
 	 * @param RevisionRecord $revisionRecord Revision that was created
 	 * @param EditResult $editResult
 	 */
-	public static function onPageSaveComplete(
-		WikiPage $wikiPage,
-		UserIdentity $userIdentity,
-		string $summary,
-		int $flags,
-		RevisionRecord $revisionRecord,
-		EditResult $editResult
+	public function onPageSaveComplete(
+		$wikiPage,
+		$userIdentity,
+		$summary,
+		$flags,
+		$revisionRecord,
+		$editResult
 	) {
 		$undidRevId = $editResult->getUndidRevId();
 		if ( $undidRevId ) {
@@ -122,14 +142,14 @@ class Hooks {
 	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/RollbackComplete
 	 *
 	 * @param WikiPage $wikiPage The article that was edited
-	 * @param User $agent The user who did the rollback
+	 * @param UserIdentity $agent The user who did the rollback
 	 * @param RevisionRecord $newRev The revision the page was reverted back to
 	 * @param RevisionRecord $oldRev The revision of the top edit that was reverted
 	 */
-	public static function onRollbackComplete( WikiPage $wikiPage,
-							  User $agent,
-							  RevisionRecord $newRev,
-							  RevisionRecord $oldRev ) {
+	public function onRollbackComplete( $wikiPage,
+							  $agent,
+							  $newRev,
+							  $oldRev ) {
 		self::tagComputerAidedTaggingRevert( $oldRev );
 	}
 
@@ -138,7 +158,7 @@ class Hooks {
 	 * @param array &$pageInfo
 	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/InfoAction
 	 */
-	public static function onInfoAction( IContextSource $context, array &$pageInfo ) {
+	public function onInfoAction( $context, &$pageInfo ) {
 		$title = $context->getTitle();
 		if ( !$title->inNamespace( NS_FILE ) ) {
 			return;
@@ -180,7 +200,7 @@ class Hooks {
 	 * @param Skin $skin
 	 * @param string[] &$sidebar
 	 */
-	public static function onSidebarBeforeOutput( Skin $skin, array &$sidebar ) {
+	public function onSidebarBeforeOutput( $skin, &$sidebar ): void {
 		$extensionServices = new Services( MediaWikiServices::getInstance() );
 		$extensionConfig = $extensionServices->getExtensionConfig();
 		if ( $extensionConfig->get( 'MachineVisionAddToolboxLink' ) ) {
@@ -194,34 +214,28 @@ class Hooks {
 
 	/**
 	 * @param array &$tags
-	 * @return bool true
-	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/ListDefinedTags
 	 */
-	public static function onRegisterTags( array &$tags ) {
+	public function addRegisterTags( array &$tags ) {
 		$tags[] = Util::getDepictsTag();
 		$tags[] = Util::getDepictsRevertTag();
 		$tags[] = Util::getDepictsCustomTag();
 		$tags[] = Util::getDepictsCustomRevertTag();
-		return true;
 	}
 
 	/**
-	 * @param DatabaseUpdater $updater
-	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/LoadExtensionSchemaUpdates
+	 * @param array &$tags
+	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/ListDefinedTags
 	 */
-	public static function onLoadExtensionSchemaUpdates( DatabaseUpdater $updater ) {
-		$sqlDir = __DIR__ . '/../sql';
-		$dbType = $updater->getDB()->getType();
-		$updater->addExtensionTable( 'machine_vision_provider', "$sqlDir/$dbType/tables-generated.sql" );
+	public function onListDefinedTags( &$tags ) {
+		$this->addRegisterTags( $tags );
+	}
 
-		if ( $dbType === 'mysql' ) {
-			// 1.35
-			$updater->addExtensionField(
-				'machine_vision_image',
-				'mvi_priority',
-				"$sqlDir/$dbType/patch-machine_vision_image-mvi_priority.sql"
-			);
-		}
+	/**
+	 * @param array &$tags
+	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/ChangeTagsListActive
+	 */
+	public function onChangeTagsListActive( &$tags ) {
+		$this->addRegisterTags( $tags );
 	}
 
 	/**
@@ -236,7 +250,7 @@ class Hooks {
 	 * @throws Exception
 	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/UnitTestsAfterDatabaseSetup
 	 */
-	public static function onUnitTestsAfterDatabaseSetup( $db, $prefix ) {
+	public function onUnitTestsAfterDatabaseSetup( $db, $prefix ) {
 		global $wgMachineVisionCluster, $wgMachineVisionDatabase;
 		$wgMachineVisionCluster = false;
 		$wgMachineVisionDatabase = false;
@@ -253,7 +267,7 @@ class Hooks {
 	/**
 	 * Cleans up tables created by onUnitTestsAfterDatabaseSetup() above
 	 */
-	public static function onUnitTestsBeforeDatabaseTeardown() {
+	public function onUnitTestsBeforeDatabaseTeardown() {
 		$db = wfGetDB( DB_PRIMARY );
 		foreach ( self::$testTables as $table ) {
 			$db->dropTable( $table );
@@ -277,14 +291,14 @@ class Hooks {
 	}
 
 	/**
-	 * @param File $file
+	 * @param LocalFile $file
 	 * @param string $oldimage
-	 * @param Article $article
+	 * @param WikiFilePage|null $article
 	 * @param User $user
 	 * @param string $reason
 	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/FileDeleteComplete
 	 */
-	public static function onFileDeleteComplete( File $file, $oldimage, $article, User $user,
+	public function onFileDeleteComplete( $file, $oldimage, $article, $user,
 		$reason ) {
 		if ( !$oldimage ) {
 			$extensionServices = new Services( MediaWikiServices::getInstance() );
@@ -321,12 +335,9 @@ class Hooks {
 	 * @param array &$allowedTags
 	 * @param array $tags
 	 * @param User|null $user
-	 * @return bool
 	 */
-	public static function onChangeTagsAllowedAdd( array &$allowedTags, array $tags, $user ) {
+	public function onChangeTagsAllowedAdd( &$allowedTags, $tags, $user ) {
 		$allowedTags[] = Util::getDepictsTag();
 		$allowedTags[] = Util::getDepictsCustomTag();
-
-		return true;
 	}
 }

@@ -35,17 +35,25 @@
 		}
 	},
 	"Hooks": {
-		"InfoAction": "MediaWiki\\Extension\\MachineVision\\Hooks::onInfoAction",
-		"LoadExtensionSchemaUpdates": "MediaWiki\\Extension\\MachineVision\\Hooks::onLoadExtensionSchemaUpdates",
-		"UnitTestsAfterDatabaseSetup": "MediaWiki\\Extension\\MachineVision\\Hooks::onUnitTestsAfterDatabaseSetup",
-		"UnitTestsBeforeDatabaseTeardown": "MediaWiki\\Extension\\MachineVision\\Hooks::onUnitTestsBeforeDatabaseTeardown",
-		"FileDeleteComplete": "MediaWiki\\Extension\\MachineVision\\Hooks::onFileDeleteComplete",
-		"PageSaveComplete": "MediaWiki\\Extension\\MachineVision\\Hooks::onPageSaveComplete",
-		"RollbackComplete": "MediaWiki\\Extension\\MachineVision\\Hooks::onRollbackComplete",
-		"ListDefinedTags": "MediaWiki\\Extension\\MachineVision\\Hooks::onRegisterTags",
-		"ChangeTagsListActive": "MediaWiki\\Extension\\MachineVision\\Hooks::onRegisterTags",
-		"SidebarBeforeOutput": "MediaWiki\\Extension\\MachineVision\\Hooks::onSidebarBeforeOutput",
-		"ChangeTagsAllowedAdd": "MediaWiki\\Extension\\MachineVision\\Hooks::onChangeTagsAllowedAdd"
+		"InfoAction": "main",
+		"LoadExtensionSchemaUpdates": "schema",
+		"UnitTestsAfterDatabaseSetup": "main",
+		"UnitTestsBeforeDatabaseTeardown": "main",
+		"FileDeleteComplete": "main",
+		"PageSaveComplete": "main",
+		"RollbackComplete": "main",
+		"ListDefinedTags": "main",
+		"ChangeTagsListActive": "main",
+		"SidebarBeforeOutput": "main",
+		"ChangeTagsAllowedAdd": "main"
+	},
+	"HookHandlers": {
+		"main": {
+			"class": "MediaWiki\\Extension\\MachineVision\\Hooks"
+		},
+		"schema": {
+			"class": "MediaWiki\\Extension\\MachineVision\\SchemaHooks"
+		}
 	},
 	"APIModules": {
 		"reviewimagelabels": {
