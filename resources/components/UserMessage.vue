@@ -90,7 +90,7 @@ module.exports = exports = {
 		padding: 8px 48px;
 		width: 100%;
 
-		@media screen and ( min-width: @width-breakpoint-tablet ) {
+		@media screen and ( min-width: @min-width-breakpoint-tablet ) {
 			width: auto;
 		}
 	}

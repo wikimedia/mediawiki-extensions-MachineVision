@@ -103,7 +103,7 @@ module.exports = exports = {
 	// This is debatable.
 	z-index: 4;
 
-	@media screen and ( min-width: @width-breakpoint-tablet ) {
+	@media screen and ( min-width: @min-width-breakpoint-tablet ) {
 		width: auto;
 	}
 }

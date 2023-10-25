@@ -97,7 +97,7 @@ module.exports = exports = {
 	border-radius: 18px;
 	white-space: nowrap;
 
-	@media screen and ( min-width: @width-breakpoint-tablet ) {
+	@media screen and ( min-width: @min-width-breakpoint-tablet ) {
 		margin: 0 8px 8px 0;
 	}
 

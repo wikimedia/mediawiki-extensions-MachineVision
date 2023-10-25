@@ -117,7 +117,7 @@ module.exports = exports = {
 		.flex( 0, 0, 100% );
 		max-width: 100%;
 
-		@media screen and ( min-width: @width-breakpoint-tablet ) {
+		@media screen and ( min-width: @min-width-breakpoint-tablet ) {
 			.flex( 0, 0, 49.4% );
 		}
 	}
@@ -148,7 +148,7 @@ module.exports = exports = {
 // Use column layout if possible.
 @supports ( columns: 2 auto ) {
 	.wbmad-suggestions-group--expanded {
-		@media screen and ( min-width: @width-breakpoint-tablet ) {
+		@media screen and ( min-width: @min-width-breakpoint-tablet ) {
 			columns: 2 auto;
 			column-gap: 12px;
 			display: block;

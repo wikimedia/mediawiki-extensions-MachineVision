@@ -321,7 +321,7 @@ module.exports = exports = {
 		.wbmad-image-with-suggestions__image-wrapper {
 			max-width: 100%;
 
-			@media screen and ( min-width: @width-breakpoint-tablet ) {
+			@media screen and ( min-width: @min-width-breakpoint-tablet ) {
 				max-width: 800px;
 			}
 		}
@@ -333,7 +333,7 @@ module.exports = exports = {
 			max-width: 100%;
 			width: auto;
 
-			@media screen and ( min-width: @width-breakpoint-tablet ) {
+			@media screen and ( min-width: @min-width-breakpoint-tablet ) {
 				max-height: 600px;
 			}
 		}
@@ -371,7 +371,7 @@ module.exports = exports = {
 	align-items: baseline;
 	justify-content: space-between;
 
-	@media screen and ( min-width: @width-breakpoint-tablet ) {
+	@media screen and ( min-width: @min-width-breakpoint-tablet ) {
 		.flex-wrap( @wrap: nowrap );
 	}
 }
@@ -380,7 +380,7 @@ module.exports = exports = {
 	flex-shrink: 0;
 	margin: 16px 0 0;
 
-	@media screen and ( min-width: @width-breakpoint-tablet ) {
+	@media screen and ( min-width: @min-width-breakpoint-tablet ) {
 		margin: 0 0 0 16px;
 	}
 
