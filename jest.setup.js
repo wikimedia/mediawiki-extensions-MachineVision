@@ -19,9 +19,11 @@ config.global.directives = {
 	}
 };
 
-Vue.configureCompat( {
-	MODE: 3
-} );
+if ( Vue.configureCompat ) {
+	Vue.configureCompat( {
+		MODE: 3
+	} );
+}
 
 // Mock API (instances created ggwith new mw.Api() )
 function Api() { }
