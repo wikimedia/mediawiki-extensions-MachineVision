@@ -1,8 +1,38 @@
 {
 	"@metadata": {
 		"authors": [
+			"McDutchie",
 			"Siebrand"
 		]
 	},
-	"apihelp-reviewimagelabels-paramvalue-review-accept": "Het voorstel is correct."
+	"apihelp-reviewimagelabels-summary": "Door de machine voorgestelde afbeeldingslabels beoordelen.",
+	"apihelp-reviewimagelabels-param-filename": "Naam van de afbeelding (zonder naamruimtevoorvoegsel).",
+	"apihelp-reviewimagelabels-param-label": "Wikidata-ID van het voorgestelde label (met Q-voorvoegsel).",
+	"apihelp-reviewimagelabels-param-review": "Resultaat van de beoordeling.",
+	"apihelp-reviewimagelabels-param-batch": "Gegevens bundelen om in één verzoek meerdere labelsuggesties voor een afbeelding te beoordelen, in de vorm van een JSON-array met één of meer objecten met de velden <var>label</var> en <var>review</var>.",
+	"apihelp-reviewimagelabels-paramvalue-review-accept": "Het voorstel is correct.",
+	"apihelp-reviewimagelabels-paramvalue-review-reject": "De suggestie is onjuist.",
+	"apihelp-reviewimagelabels-paramvalue-review-not-displayed": "De suggestie wordt niet weergegeven.",
+	"apihelp-reviewimagelabels-example-1": "Markeer <kbd>Q123</kbd> als een correcte suggestie voor <kbd>Exemple.png</kbd>.",
+	"apihelp-reviewimagelabels-example-2": "Accepteer <kbd>Q1</kbd> en wijs <kbd>Q2</kbd> af als suggesties voor <kbd>Example.png</kbd>.",
+	"apierror-reviewimagelabels-batch-invalid-json": "Ongeldige JSON voor parameter <var>batch</var>: $1",
+	"apierror-reviewimagelabels-batch-invalid-structure": "Ongeldige invoer voor parameter <var>batch</var>: moet een array met objecten bevatten die scalaire waarden hebben.",
+	"apierror-reviewimagelabels-batch-missingparam-at-least-one-of": "In elk object binnen de <var>batch</var>-invoer is {{PLURAL:$2|het veld|minstens één van de velden}} $1 vereist.",
+	"apierror-reviewimagelabels-batch-toomanyvalues": "Ongeldige invoer voor parameter <var>batch</var>: te veel vermeldingen, maximaal toegestaan is $1",
+	"apierror-reviewimagelabels-invalidfile": "<kbd>$1</kbd> is geen geldige bestandsnaam.",
+	"apierror-reviewimagelabels-invalidlabel": "Bestand <kbd>$1</kbd> heeft geen label <kbd>$2</kbd>.",
+	"apierror-reviewimagelabels-invalidstate": "<kbd>$3</kbd> is geen geldige handeling voor het label <kbd>$2</kbd> van het bestand <kbd>$1</kbd>.",
+	"apiwarn-reviewimagelabels-setlabelstate-failed": "Kan labelstatus <kbd>$1</kbd> voor label <kbd>$2</kbd> niet opslaan",
+	"apiwarn-reviewimagelabels-depicts-exists": "Statement ‘$1 ($2): $3’ bestaat al voor bestand $4",
+	"apihelp-query+imagelabels-summary": "Door de machine voorgestelde afbeeldingslabels weergeven.",
+	"apihelp-query+imagelabels-param-state": "Alleen labels in deze beoordelingstoestanden vermelden",
+	"apihelp-query+imagelabels-paramvalue-state-unreviewed": "Labels die nog niet zijn beoordeeld.",
+	"apihelp-query+imagelabels-paramvalue-state-accepted": "Labels die als correct zijn geïdentificeerd.",
+	"apihelp-query+imagelabels-paramvalue-state-rejected": "Labels die niet als correct zijn geïdentificeerd.",
+	"apihelp-query+imagelabels-paramvalue-state-withheld": "Labels voor een afbeelding die voor weergave is tegengehouden in Computer-Aided Tagging.",
+	"apihelp-query+imagelabels-paramvalue-state-not-displayed": "Labels die niet werden weergegeven.",
+	"apihelp-query+imagelabels-example-1": "Toon door de machine voorgestelde afbeeldingslabels voor <kbd>Example.png</kbd> .",
+	"apihelp-query+unreviewedimagelabels-summary": "Toon titels met voorgestelde afbeeldingslabels die moeten worden beoordeeld.",
+	"apihelp-query+unreviewedimagelabels-param-uploader": "Retourneer alleen resultaten die door deze gebruiker zijn geüpload.",
+	"apihelp-query+unreviewedimagelabels-param-limit": "Aantal te retourneren resultaatitems."
 }
