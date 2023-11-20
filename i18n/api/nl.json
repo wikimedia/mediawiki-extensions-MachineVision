@@ -32,5 +32,7 @@
 	"apihelp-query+imagelabels-example-1": "Toon door de machine voorgestelde afbeeldingslabels voor <kbd>Example.png</kbd> .",
 	"apihelp-query+unreviewedimagelabels-summary": "Toon titels met voorgestelde afbeeldingslabels die moeten worden beoordeeld.",
 	"apihelp-query+unreviewedimagelabels-param-uploader": "Retourneer alleen resultaten die door deze gebruiker zijn geüpload.",
-	"apihelp-query+unreviewedimagelabels-param-limit": "Aantal te retourneren resultaatitems."
+	"apihelp-query+unreviewedimagelabels-param-limit": "Aantal te retourneren resultaatitems.",
+	"apihelp-query+unreviewedimagecount-summary": "Toon het aantal afbeeldingen met labelsuggesties die wachten op beoordeling, in totaal en (indien aangemeld) voor de huidige gebruiker.",
+	"apihelp-query+unreviewedimagecount-example": "Het aantal niet-beoordeelde afbeeldingen verkrijgen."
 }
