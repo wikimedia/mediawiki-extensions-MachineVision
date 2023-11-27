@@ -2,9 +2,11 @@
 	"@metadata": {
 		"authors": [
 			"Patriot Kor",
-			"Patriot Kur"
+			"Patriot Kur",
+			"Гусейн"
 		]
 	},
 	"machinevision-confirm-tags-dialog-cancel-action": "Ləğv karde",
+	"machinevision-categories-label": "Kategorijon:",
 	"machinevision-add-custom-tag-dialog-cancel-action": "Ləğv karde"
 }
