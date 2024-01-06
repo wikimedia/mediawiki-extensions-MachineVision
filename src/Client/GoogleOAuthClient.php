@@ -5,10 +5,10 @@ namespace MediaWiki\Extension\MachineVision\Client;
 use DomainException;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\Status\Status;
 use MWHttpRequest;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
-use Status;
 
 class GoogleOAuthClient implements LoggerAwareInterface {
 

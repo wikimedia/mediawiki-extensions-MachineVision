@@ -3,6 +3,7 @@
 namespace MediaWiki\Extension\MachineVision\Notifications;
 
 use EchoEventPresentationModel;
+use MediaWiki\SpecialPage\SpecialPage;
 use Message;
 
 class SuggestionsReadyPresentationModel extends EchoEventPresentationModel {
@@ -64,7 +65,7 @@ class SuggestionsReadyPresentationModel extends EchoEventPresentationModel {
 	 * @return array|false
 	 */
 	public function getPrimaryLink() {
-		$url = \SpecialPage::getTitleFor( 'SuggestedTags', false, 'user' );
+		$url = SpecialPage::getTitleFor( 'SuggestedTags', false, 'user' );
 
 		return [
 			'url' => $url->getLinkURL(),

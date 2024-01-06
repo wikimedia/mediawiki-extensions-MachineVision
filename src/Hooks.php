@@ -3,7 +3,6 @@
 namespace MediaWiki\Extension\MachineVision;
 
 use ChangeTags;
-use DeferredUpdates;
 use DomainException;
 use Exception;
 use File;
@@ -12,6 +11,7 @@ use LocalFile;
 use MediaWiki\ChangeTags\Hook\ChangeTagsAllowedAddHook;
 use MediaWiki\ChangeTags\Hook\ChangeTagsListActiveHook;
 use MediaWiki\ChangeTags\Hook\ListDefinedTagsHook;
+use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Hook\FileDeleteCompleteHook;
 use MediaWiki\Hook\InfoActionHook;
 use MediaWiki\Hook\SidebarBeforeOutputHook;
@@ -22,10 +22,10 @@ use MediaWiki\Page\Hook\RollbackCompleteHook;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Storage\EditResult;
 use MediaWiki\Storage\Hook\PageSaveCompleteHook;
+use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use Skin;
 use UploadBase;
-use User;
 use WikiFilePage;
 use Wikimedia\Rdbms\IMaintainableDatabase;
 use WikiPage;
@@ -277,7 +277,7 @@ class Hooks implements
 	/**
 	 * Handler for the GetPreferences hook
 	 *
-	 * @param \User $user The user object
+	 * @param User $user The user object
 	 * @param array &$preferences Their preferences object
 	 */
 	public static function onGetPreferences( User $user, array &$preferences ) {

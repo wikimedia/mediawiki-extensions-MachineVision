@@ -2,10 +2,10 @@
 
 namespace MediaWiki\Extension\MachineVision\Handler;
 
-use Html;
 use IContextSource;
 use LocalFile;
 use MediaWiki\Extension\MachineVision\Repository;
+use MediaWiki\Html\Html;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\NullLogger;
 use Throwable;

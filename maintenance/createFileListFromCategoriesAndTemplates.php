@@ -6,8 +6,8 @@ use Maintenance;
 use MediaWiki\Extension\MachineVision\Services;
 use MediaWiki\Extension\MachineVision\TitleFilter;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Title\TitleValue;
 use RuntimeException;
-use TitleValue;
 use Wikimedia\Rdbms\IDatabase;
 
 $IP = getenv( 'MW_INSTALL_PATH' );

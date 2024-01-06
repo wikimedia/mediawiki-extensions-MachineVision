@@ -10,11 +10,12 @@ use MediaWiki\Extension\MachineVision\LabelSuggestion;
 use MediaWiki\Extension\MachineVision\Repository;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\SpecialPage\SpecialPage;
+use MediaWiki\Status\Status;
 use MWHttpRequest;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
 use RepoGroup;
-use Status;
 
 class GoogleCloudVisionClient implements LoggerAwareInterface {
 
@@ -279,7 +280,7 @@ class GoogleCloudVisionClient implements LoggerAwareInterface {
 		if ( $uploader ) {
 			EchoEvent::create( [
 				'type' => 'machinevision-suggestions-ready',
-				'title' => \SpecialPage::getTitleFor( 'SuggestedTags' ),
+				'title' => SpecialPage::getTitleFor( 'SuggestedTags' ),
 				'agent' => $uploader,
 			] );
 		}

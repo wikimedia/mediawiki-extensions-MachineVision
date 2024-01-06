@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Config\Config;
 use MediaWiki\Extension\MachineVision\Client\GoogleCloudVisionClient;
 use MediaWiki\Extension\MachineVision\Client\GoogleOAuthClient;
 use MediaWiki\Extension\MachineVision\Client\RandomWikidataIdClient;

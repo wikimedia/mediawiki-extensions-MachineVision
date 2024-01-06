@@ -3,7 +3,7 @@
 
 namespace MediaWiki\Extension\MachineVision;
 
-use Config;
+use MediaWiki\Config\Config;
 use MediaWiki\Extension\MachineVision\Client\GoogleCloudVisionClient;
 use MediaWiki\Extension\MachineVision\Client\RandomWikidataIdClient;
 use MediaWiki\Extension\MachineVision\Handler\LabelResolver;
