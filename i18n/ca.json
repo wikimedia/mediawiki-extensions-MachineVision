@@ -3,7 +3,8 @@
 		"authors": [
 			"Fitoschido",
 			"Jlrb+",
-			"Jmarchn"
+			"Jmarchn",
+			"SMP"
 		]
 	},
 	"machinevision-add-custom-tag": "Afegeix una etiqueta",
@@ -14,8 +15,8 @@
 	"machinevision-add-custom-tag-dialog-title": "Etiqueta personalitzada",
 	"machinevision-add-custom-tag-dialog-add-action": "Afegeix",
 	"machinevision-add-custom-tag-dialog-cancel-action": "Cancel·la",
-	"right-imagelabel-test": "Suggeriments d'etiqueta d'imatge de prova",
-	"action-imagelabel-test": "suggeriments d'etiqueta d'imatge de prova",
+	"right-imagelabel-test": "Provar els suggeriments d'etiquetes d'imatge",
+	"action-imagelabel-test": "provar els suggeriments d'etiquetes d'imatge",
 	"tag-computer-aided-tagging": "Etiquetatge assistit per ordinador",
 	"echo-pref-tooltip-machinevision-suggestions-ready": "Notifica’m quan les meves imatges s'hagin processat i hi hagi etiquetes suggerides perquè jo les revisi"
 }
