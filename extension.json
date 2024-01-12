@@ -220,10 +220,6 @@
 		"ext.MachineVision.init": {
 			"styles": [
 				"init.css"
-			],
-			"targets": [
-				"mobile",
-				"desktop"
 			]
 		},
 		"ext.MachineVision": {
@@ -353,11 +349,7 @@
 				"wikibasemediainfo-filepage-statement-no-results",
 				"wikibasemediainfo-statements-item-input-placeholder"
 			],
-			"es6": true,
-			"targets": [
-				"mobile",
-				"desktop"
-			]
+			"es6": true
 		}
 	},
 	"DefaultUserOptions": {
