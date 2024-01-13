@@ -348,8 +348,7 @@
 				"machinevision-detailed-tags-toggle-label",
 				"wikibasemediainfo-filepage-statement-no-results",
 				"wikibasemediainfo-statements-item-input-placeholder"
-			],
-			"es6": true
+			]
 		}
 	},
 	"DefaultUserOptions": {
