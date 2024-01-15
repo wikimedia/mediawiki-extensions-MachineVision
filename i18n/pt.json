@@ -56,6 +56,7 @@
 	"machinevision-image-exclusion-notification": "Certos tipos de ficheiros, como obras de arte conhecidas e identificáveis ou imagens de pessoas, podem ser excluídos da etiquetagem assistida por computador devido a restrições técnicas e culturais.",
 	"machinevision-image-exclusion-notification-dismiss": "Ignorar esta notificação",
 	"machinevision-detailed-tags-toggle-label": "Etiquetas detalhadas",
+	"machinevision-disabled-notice": "Desculpe, a ferramenta de etiquetagem assistida por computador foi desativada - ver https://phabricator.wikimedia.org/T339902",
 	"right-imagelabel-review": "Rever sugestões de etiquetas de imagens",
 	"action-imagelabel-review": "rever sugestões de etiquetas de imagens",
 	"right-imagelabel-test": "Testar sugestões de etiquetas de imagens",
