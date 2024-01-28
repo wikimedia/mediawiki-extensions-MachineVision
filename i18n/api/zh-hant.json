@@ -12,6 +12,7 @@
 	"apihelp-reviewimagelabels-param-batch": "用於在單一請求裡，檢視圖片多項標籤建議的批量資料，形式為帶有一個或多個 <var>label</var> 與 <var>review</var> 欄位物件的 JSON 陣列。",
 	"apihelp-reviewimagelabels-paramvalue-review-accept": "建議正確。",
 	"apihelp-reviewimagelabels-paramvalue-review-reject": "建議不正確。",
+	"apihelp-reviewimagelabels-paramvalue-review-not-displayed": "該建議未顯示。",
 	"apihelp-reviewimagelabels-example-1": "標記 <kbd>Q123</kbd> 為 <kbd>Example.png</kbd> 的正確建議。",
 	"apihelp-reviewimagelabels-example-2": "接收 <kbd>Q1</kbd>，並拒絕 <kbd>Q2</kbd> 作為 <kbd>Example.png</kbd> 的建議。",
 	"apierror-reviewimagelabels-batch-invalid-json": "用於 <var>batch</var> 參數的無效 JSON：$1",
