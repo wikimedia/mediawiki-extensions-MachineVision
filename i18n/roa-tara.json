@@ -53,6 +53,7 @@
 	"machinevision-image-exclusion-notification": "Certe tipe de file, cumme 'na faìe d'arte canusciute o immaggine de crestiane, ponne essere escluse da 'u taggamende cu l'aijute d'u combiuter pe colpe de restriziune tecniche e culturale.",
 	"machinevision-image-exclusion-notification-dismiss": "Scitte sta notifeche",
 	"machinevision-detailed-tags-toggle-label": "Tag dettagliate",
+	"machinevision-disabled-notice": "Ne despiace, 'u strumende Computer-Aided Tagging ha state disabbilitate - 'ndruche https://phabricator.wikimedia.org/T339902",
 	"right-imagelabel-review": "Condrolle le suggereminde de l'etichette de l'immaggine",
 	"action-imagelabel-review": "condrolle le suggereminde de l'etichette de l'immaggine",
 	"right-imagelabel-test": "Teste le suggereminde de l'etichette de l'immaggine",
