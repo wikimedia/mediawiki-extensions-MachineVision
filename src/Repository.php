@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Extension\MachineVision;
 
-use DBAccessObjectUtils;
+use IDBAccessObject;
 use InvalidArgumentException;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Storage\NameTableStore;
@@ -240,17 +240,20 @@ class Repository implements LoggerAwareInterface {
 	 *   or false if there was no such suggestion.
 	 */
 	public function getLabelState( $sha1, $label, $flags = 0 ) {
-		list( $index, $options ) = DBAccessObjectUtils::getDBOptions( $flags );
-		$db = ( $index === DB_PRIMARY ) ? $this->dbw : $this->dbr;
+		if ( ( $flags & IDBAccessObject::READ_LATEST ) == IDBAccessObject::READ_LATEST ) {
+			$db = $this->dbw;
+		} else {
+			$db = $this->dbr;
+		}
 
-		$state = $db->selectField(
-			[ 'machine_vision_image', 'machine_vision_label' ],
-			'mvl_review',
-			[ 'mvi_sha1' => $sha1, 'mvl_wikidata_id' => $label ],
-			__METHOD__,
-			$options,
-			[ 'machine_vision_label' => [ 'INNER JOIN', [ 'mvi_id = mvl_mvi_id' ] ] ]
-		);
+		$state = $db->newSelectQueryBuilder()
+			->select( 'mvl_review' )
+			->from( 'machine_vision_image' )
+			->join( 'machine_vision_label', null, 'mvi_id = mvl_mvi_id' )
+			->where( [ 'mvi_sha1' => $sha1, 'mvl_wikidata_id' => $label ] )
+			->recency( $flags )
+			->caller( __METHOD__ )->fetchField();
+
 		if ( $state === false ) {
 			return false;
 		}
