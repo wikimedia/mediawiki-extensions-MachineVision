@@ -65,7 +65,7 @@ class WikidataIdHandlerTest extends MediaWikiUnitTestCase {
 			$labelResolver,
 			$apiUrlTemplate
 		);
-		$wikidataIdHandler->requestAnnotations( 'random',  $file, 0 );
+		$wikidataIdHandler->requestAnnotations( 'random', $file, 0 );
 	}
 
 }
