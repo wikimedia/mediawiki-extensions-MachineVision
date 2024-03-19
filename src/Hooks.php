@@ -268,7 +268,8 @@ class Hooks implements
 	 * Cleans up tables created by onUnitTestsAfterDatabaseSetup() above
 	 */
 	public function onUnitTestsBeforeDatabaseTeardown() {
-		$db = wfGetDB( DB_PRIMARY );
+		$mwServices = MediaWikiServices::getInstance();
+		$db = $mwServices->getDBLoadBalancer()->getMaintenanceConnectionRef( DB_PRIMARY );
 		foreach ( self::$testTables as $table ) {
 			$db->dropTable( $table );
 		}
@@ -322,10 +323,12 @@ class Hooks implements
 	 * @param int|RevisionRecord $rev
 	 */
 	private static function tagComputerAidedTaggingRevert( $rev ) {
+		$mwServices = MediaWikiServices::getInstance();
+		$dbr = $mwServices->getDBLoadBalancerFactory()->getReplicaDatabase();
 		if ( gettype( $rev ) === 'integer' ) {
 			$rev = MediaWikiServices::getInstance()->getRevisionStore()->getRevisionById( $rev );
 		}
-		$oldRevTags = ChangeTags::getTags( wfGetDB( DB_REPLICA ), null, $rev->getId() );
+		$oldRevTags = ChangeTags::getTags( $dbr, null, $rev->getId() );
 		if ( in_array( Util::getDepictsTag(), $oldRevTags, true ) ) {
 			ChangeTags::addTags( Util::getDepictsRevertTag(), null, $rev->getId() );
 		}
